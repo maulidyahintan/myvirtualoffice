@@ -36,7 +36,8 @@ a { color: var(--hijau); }
   background: var(--hijau);
   color: #fff;
 }
-.topbar .logo { font-weight: 800; font-size: 18px; letter-spacing: 0.2px; }
+.topbar .logo { color: #fff; }
+.topbar a:has(.logo):hover { text-decoration: none; filter: brightness(1.05); }
 .topbar nav { display: flex; gap: 18px; }
 .topbar a { color: #e9f5f0; text-decoration: none; font-weight: 600; }
 .topbar a:hover { color: #fff; text-decoration: underline; }

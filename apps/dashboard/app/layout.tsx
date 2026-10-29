@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Fredoka } from 'next/font/google';
 import { loadConfig } from '@kantor/shared';
 import { ChatMengambang } from '@/components/ChatMengambang';
+import { LogoTasnie } from '@/components/LogoTasnie';
 import './globals.css';
 
+// font tulisan logo, sama seperti di video
+const fredoka = Fredoka({ subsets: ['latin'], weight: ['600', '700'] });
+
 export const metadata: Metadata = {
-  title: 'Kantor AI',
+  title: 'Kantor AI · Tasnie',
   description: 'Kantor AI untuk channel YouTube cerita islami anak',
 };
 
@@ -15,7 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id">
       <body>
         <header className="topbar">
-          <span className="logo">🏢 {cfg.namaChannel}</span>
+          <Link href="/" aria-label={cfg.namaChannel} style={{ textDecoration: 'none' }}>
+            <LogoTasnie keterangan={cfg.namaChannel.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />
+          </Link>
           <nav>
             <Link href="/">Papan Kerja</Link>
             <Link href="/kantor">Kantor 3D</Link>

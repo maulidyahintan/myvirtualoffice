@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="emas" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#FFE9A3"/>
+      <stop offset="0.55" stop-color="#FFCB4F"/>
+      <stop offset="1" stop-color="#F2A12E"/>
+    </radialGradient>
+    <mask id="sabit">
+      <rect width="200" height="200" fill="white"/>
+      <circle cx="138" cy="78" r="62" fill="black"/>
+    </mask>
+  </defs>
+  <circle cx="100" cy="100" r="82" fill="url(#emas)" mask="url(#sabit)"/>
+  <path d="M38 112 q8 -9 16 0" stroke="#5A3A20" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M64 120 q8 -9 16 0" stroke="#5A3A20" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M52 134 q10 12 22 2" stroke="#5A3A20" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path transform="translate(142 92)" d="M0 -30 L8 -9 L30 -8 L13 6 L19 28 L0 16 L-19 28 L-13 6 L-30 -8 L-8 -9 Z" fill="#F07AA0" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"/>
+</svg>
