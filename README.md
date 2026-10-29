@@ -48,6 +48,12 @@ fajar, langit malam, dst.). Rekam bacaanmu dalam satu file dengan **jeda ±1 det
 setiap bacaan**: video otomatis berpindah ayat/ulangan mengikuti jeda itu. Kalau ada yang
 meleset, waktunya bisa dikoreksi di halaman episode. Pratinjau: komposisi `Hafalan`.
 
+**🎵 Musik pembuka & penutup** (menu **Pengaturan**). Upload musik intro dan outro, atur
+volumenya, dan pilih apakah dipakai juga di Shorts. Intro/outro otomatis memanjang mengikuti
+musik (maks. 10/12 detik video biasa, 3/4 detik Shorts) dan musik dipudarkan di akhir. Berlaku
+untuk render berikutnya. File tersimpan di `packages/video/public/musik/`. Pakai musik buatan
+sendiri atau yang lisensinya jelas.
+
 **💬 Chat dengan agen** (menu **Chat**). Tanya apa saja ke Mochi (manajer), Miku (riset),
 Chimi (penulis), Choki (reviewer), Momo (sutradara), atau Lulu (channel manager), boleh
 sambil memilih episode yang sedang dibahas. Agen hanya menjawab; pekerjaan tetap

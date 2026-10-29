@@ -171,8 +171,20 @@ export interface EpisodeVideoProps {
   format?: Format;
   /** Diisi untuk video hafalan; adegan cerita diabaikan. */
   hafalan?: HafalanVideo;
+  /** Musik pembuka & penutup dari pengaturan channel. */
+  musik?: MusikVideo;
   /** Diisi otomatis oleh calculateMetadata. */
   frameAdegan?: number[];
+  frameIntro?: number;
+  frameOutro?: number;
+}
+
+export interface MusikVideo {
+  /** path di packages/video/public, misal musik/pembuka.mp3 */
+  pembuka?: string;
+  penutup?: string;
+  /** 0..1 */
+  volume: number;
 }
 
 export interface ThumbnailProps {
@@ -192,4 +204,8 @@ export interface KantorConfig {
   maksRevisiOtomatis: number;
   jamTayangDefault: string;
   zonaWaktu: string;
+  musik?: MusikVideo & {
+    /** dipakai juga di Shorts (intro/outro Shorts dibatasi supaya tetap < 60 detik) */
+    diShorts: boolean;
+  };
 }

@@ -33,9 +33,19 @@ export function hitungFrameAdegan(adegan: Adegan[], durasiAudioDetik?: number): 
   });
 }
 
-export function totalFrame(frameAdegan: number[], format: Format = 'biasa'): number {
+/** Panjang intro/outro: bawaan format, diperpanjang mengikuti musik (dibatasi maksimum format). */
+export function frameIntroOutro(format: Format = 'biasa', detikPembuka?: number, detikPenutup?: number) {
   const spek = SPEK_FORMAT[format];
-  return spek.introDetik * FPS + frameAdegan.reduce((s, f) => s + f, 0) + spek.outroDetik * FPS;
+  const ikut = (bawaan: number, maks: number, musik?: number) => Math.round(Math.min(maks, Math.max(bawaan, musik ?? 0)) * FPS);
+  return {
+    intro: ikut(spek.introDetik, spek.introMaksDetik, detikPembuka),
+    outro: ikut(spek.outroDetik, spek.outroMaksDetik, detikPenutup),
+  };
+}
+
+export function totalFrame(frameAdegan: number[], format: Format = 'biasa', intro?: number, outro?: number): number {
+  const bawaan = frameIntroOutro(format);
+  return (intro ?? bawaan.intro) + frameAdegan.reduce((s, f) => s + f, 0) + (outro ?? bawaan.outro);
 }
 
 /** Urutan segmen hafalan: tiap ayat diulang `ulang` kali (basmalah sekali saja). */

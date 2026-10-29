@@ -10,6 +10,9 @@ import {
   updateEpisode,
   type Episode,
   type EpisodeVideoProps,
+  type Format,
+  type KantorConfig,
+  type MusikVideo,
   type ThumbnailProps,
 } from '@kantor/shared';
 
@@ -76,6 +79,15 @@ export async function deteksiSegmen(fileAudio: string, jumlahSegmen: number): Pr
   return [0, ...batas];
 }
 
+/** Musik pembuka/penutup dari pengaturan; file yang hilang dilewati. */
+function musikVideo(cfg: KantorConfig, format: Format): MusikVideo | undefined {
+  const m = cfg.musik;
+  if (!m || (format === 'short' && !m.diShorts)) return undefined;
+  const ada = (f?: string) => (f && fs.existsSync(path.join(paths.videoPkg(), 'public', f)) ? f : undefined);
+  const hasil = { pembuka: ada(m.pembuka), penutup: ada(m.penutup), volume: m.volume };
+  return hasil.pembuka || hasil.penutup ? hasil : undefined;
+}
+
 export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
   if (!ep.adegan?.length) throw new Error('Episode belum punya adegan dari Sutradara');
   const cfg = loadConfig();
@@ -108,6 +120,7 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
     fileAudio: ep.fileAudio,
     format: ep.ide.format ?? 'biasa',
     hafalan,
+    musik: musikVideo(cfg, ep.ide.format ?? 'biasa'),
   };
   const propsFile = path.join(dir, `${ep.id}.props.json`);
   fs.writeFileSync(propsFile, JSON.stringify(props));

@@ -39,9 +39,12 @@ export const FORMAT_LABEL = { biasa: 'Video biasa', short: 'YouTube Shorts' } as
 
 /** Ukuran & durasi pembuka/penutup per format. */
 export const SPEK_FORMAT = {
-  biasa: { lebar: 1920, tinggi: 1080, introDetik: 3, outroDetik: 4 },
-  short: { lebar: 1080, tinggi: 1920, introDetik: 1.5, outroDetik: 2 },
+  biasa: { lebar: 1920, tinggi: 1080, introDetik: 3, outroDetik: 4, introMaksDetik: 10, outroMaksDetik: 12 },
+  short: { lebar: 1080, tinggi: 1920, introDetik: 1.5, outroDetik: 2, introMaksDetik: 3, outroMaksDetik: 4 },
 } as const;
+
+export const JENIS_MUSIK = ['pembuka', 'penutup'] as const;
+export type JenisMusik = (typeof JENIS_MUSIK)[number];
 
 export const STATUS_LABEL = {
   idea: 'Ide',

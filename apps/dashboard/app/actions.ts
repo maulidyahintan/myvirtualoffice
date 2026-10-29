@@ -1,16 +1,22 @@
 'use server';
 
+import fs from 'node:fs';
+import path from 'node:path';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   createEpisodeFromIdea,
   getEpisode,
   loadConfig,
+  paths,
+  saveConfig,
   setStatus,
   updateEpisode,
   FORMAT,
+  JENIS_MUSIK,
   USIA,
   type Format,
+  type JenisMusik,
   type Naskah,
   type Usia,
 } from '@kantor/shared';
@@ -194,4 +200,23 @@ export async function pulihkan(form: FormData) {
   const status = ep.render ? 'needs_video_approval' : ep.adegan ? 'needs_audio' : ep.naskah ? 'needs_script_approval' : 'idea';
   setStatus(id, status, 'pemilik', 'Dipulihkan');
   segarkan(id);
+}
+
+export async function simpanMusik(form: FormData) {
+  const cfg = loadConfig();
+  const volume = Math.min(100, Math.max(0, Number(teks(form, 'volume')) || 0)) / 100;
+  cfg.musik = { ...cfg.musik, volume, diShorts: form.get('diShorts') === 'on' };
+  saveConfig(cfg);
+  revalidatePath('/pengaturan');
+}
+
+export async function hapusMusik(form: FormData) {
+  const jenis = teks(form, 'jenis') as JenisMusik;
+  const cfg = loadConfig();
+  const file = JENIS_MUSIK.includes(jenis) ? cfg.musik?.[jenis] : undefined;
+  if (!cfg.musik || !file) return;
+  fs.rmSync(path.join(paths.videoPkg(), 'public', file), { force: true });
+  delete cfg.musik[jenis];
+  saveConfig(cfg);
+  revalidatePath('/pengaturan');
 }

@@ -13,7 +13,7 @@ import {
 import { getAudioDurationInSeconds } from '@remotion/media-utils';
 import type { EpisodeVideoProps, HafalanVideo } from '@kantor/shared/types';
 import { FPS, SPEK_FORMAT } from '@kantor/shared/constants';
-import { hitungFrameAdegan, hitungFrameHafalan, segmenHafalan, totalFrame } from '@kantor/shared/timing';
+import { frameIntroOutro, hitungFrameAdegan, hitungFrameHafalan, segmenHafalan, totalFrame } from '@kantor/shared/timing';
 import { Adegan, gayaPanggung, jepit } from './Adegan';
 import { AyatHafalanView } from './Hafalan';
 import { Latar } from './backgrounds/Latar';
@@ -166,6 +166,17 @@ const Outro: React.FC = () => {
 /** Lama transisi antar adegan (frame). Adegan baru mulai menimpa adegan lama selama ini. */
 const TRANSISI = 14;
 
+/** Musik pembuka/penutup: masuk lembut, keluar pelan di akhir bagiannya. */
+const Musik: React.FC<{ src: string; volume: number; durasi: number }> = ({ src, volume, durasi }) => (
+  <Html5Audio
+    src={staticFile(src)}
+    volume={(f) =>
+      volume *
+      interpolate(f, [0, 6, durasi - FPS, durasi], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    }
+  />
+);
+
 /** Susun ayat hafalan: tiap ayat jadi satu sequence berisi semua bacaan ulangnya. */
 function kelompokHafalan(h: HafalanVideo, frames: number[]) {
   const segmen = segmenHafalan(h.ayat, h.ulang);
@@ -178,10 +189,22 @@ function kelompokHafalan(h: HafalanVideo, frames: number[]) {
   return { grup, total };
 }
 
-export const Episode: React.FC<EpisodeVideoProps> = ({ namaSeri, judul, adegan, fileAudio, frameAdegan, format = 'biasa', hafalan }) => {
+export const Episode: React.FC<EpisodeVideoProps> = ({
+  namaSeri,
+  judul,
+  adegan,
+  fileAudio,
+  frameAdegan,
+  format = 'biasa',
+  hafalan,
+  musik,
+  frameIntro,
+  frameOutro,
+}) => {
   const frames = frameAdegan ?? (hafalan ? hitungFrameHafalan(hafalan.ayat, hafalan.ulang) : hitungFrameAdegan(adegan));
-  const spek = SPEK_FORMAT[format];
-  const intro = spek.introDetik * FPS;
+  const bawaan = frameIntroOutro(format);
+  const intro = frameIntro ?? bawaan.intro;
+  const outro = (frameOutro ?? bawaan.outro) + TRANSISI;
   let mulai = intro;
 
   let isi: React.ReactNode;
@@ -240,9 +263,20 @@ export const Episode: React.FC<EpisodeVideoProps> = ({ namaSeri, judul, adegan, 
 
       {isi}
 
-      <Sequence from={mulai - TRANSISI} durationInFrames={spek.outroDetik * FPS + TRANSISI} name="Outro">
+      <Sequence from={mulai - TRANSISI} durationInFrames={outro} name="Outro">
         <Outro />
       </Sequence>
+
+      {musik?.pembuka ? (
+        <Sequence durationInFrames={intro} name="Musik pembuka">
+          <Musik src={musik.pembuka} volume={musik.volume} durasi={intro} />
+        </Sequence>
+      ) : null}
+      {musik?.penutup ? (
+        <Sequence from={mulai - TRANSISI} durationInFrames={outro} name="Musik penutup">
+          <Musik src={musik.penutup} volume={musik.volume} durasi={outro} />
+        </Sequence>
+      ) : null}
 
       {fileAudio ? (
         <Sequence from={intro} name="Rekaman suara">
@@ -259,11 +293,13 @@ export const hitungMetadataEpisode: CalculateMetadataFunction<EpisodeVideoProps>
     ? hitungFrameHafalan(props.hafalan.ayat, props.hafalan.ulang, durasiAudio, props.hafalan.mulaiSegmen)
     : hitungFrameAdegan(props.adegan, durasiAudio);
   const format = props.format ?? 'biasa';
+  const detik = async (m?: string) => (m ? getAudioDurationInSeconds(staticFile(m)) : undefined);
+  const { intro: frameIntro, outro: frameOutro } = frameIntroOutro(format, await detik(props.musik?.pembuka), await detik(props.musik?.penutup));
   return {
-    durationInFrames: totalFrame(frameAdegan, format),
+    durationInFrames: totalFrame(frameAdegan, format, frameIntro, frameOutro),
     // ukuran video mengikuti format: 1920x1080 (biasa) atau 1080x1920 (Shorts)
     width: SPEK_FORMAT[format].lebar,
     height: SPEK_FORMAT[format].tinggi,
-    props: { ...props, frameAdegan },
+    props: { ...props, frameAdegan, frameIntro, frameOutro },
   };
 };

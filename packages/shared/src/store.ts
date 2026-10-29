@@ -31,6 +31,7 @@ export const paths = {
   secrets: () => path.join(rootDir(), 'data', 'secrets'),
   videoPkg: () => path.join(rootDir(), 'packages', 'video'),
   audio: () => path.join(rootDir(), 'packages', 'video', 'public', 'audio'),
+  musik: () => path.join(rootDir(), 'packages', 'video', 'public', 'musik'),
   prompts: () => path.join(rootDir(), 'packages', 'agents', 'prompts'),
 };
 
@@ -41,6 +42,10 @@ function ensure(dir: string) {
 
 export function loadConfig(): KantorConfig {
   return JSON.parse(fs.readFileSync(path.join(rootDir(), 'kantor.config.json'), 'utf8'));
+}
+
+export function saveConfig(cfg: KantorConfig) {
+  fs.writeFileSync(path.join(rootDir(), 'kantor.config.json'), JSON.stringify(cfg, null, 2) + '\n');
 }
 
 function fileOf(id: string) {
