@@ -205,3 +205,25 @@ details summary { cursor: pointer; font-weight: 700; color: var(--hijau); }
   .chat-mengambang { right: 8px; left: 8px; flex-direction: column-reverse; align-items: stretch; }
   .chat-daftar-mengambang, .chat-jendela { width: auto; }
 }
+
+/* ---------- Studio Rekam ---------- */
+.studio { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; }
+@media (max-width: 900px) { .studio { grid-template-columns: 1fr; } }
+.studio-layar { position: relative; background: #1d1a28; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16 / 9; }
+.studio-layar.vertikal { aspect-ratio: 9 / 16; max-height: 70vh; margin: 0 auto; width: auto; height: 70vh; }
+.studio-layar video { width: 100%; height: 100%; display: block; object-fit: contain; }
+.studio-kosong { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: #ddd6ea; background: #1d1a28; }
+.studio-hitung { position: absolute; inset: 0; display: grid; place-items: center; font-size: 120px; font-weight: 800; color: #fff; background: rgba(0, 0, 0, 0.35); }
+.studio-rec { position: absolute; top: 12px; left: 12px; background: var(--merah); color: #fff; font-weight: 800; font-size: 13px; padding: 4px 10px; border-radius: 99px; }
+.studio-teks { font-size: 22px; line-height: 1.6; font-weight: 600; }
+.studio-teks.arab { font-size: 32px; line-height: 2; font-family: 'Noto Naskh Arabic', serif; text-align: right; }
+.studio-bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin: 6px 0 4px; }
+.studio-bar > div { height: 100%; border-radius: 99px; transition: width 0.1s linear; }
+.studio-item { display: flex; gap: 8px; align-items: flex-start; text-align: left; width: 100%; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 8px; font-weight: 400; cursor: pointer; }
+.studio-item:hover { background: #f7f1e6; filter: none; }
+.studio-item.aktif { background: var(--hijau-muda); border-color: var(--hijau); }
+.studio-item-isi { display: grid; gap: 2px; min-width: 0; font-size: 13px; }
+.studio-item-isi .muted { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.studio-rec { display: flex; align-items: center; gap: 8px; }
+.studio-level { display: inline-block; width: 60px; height: 6px; background: rgba(255, 255, 255, 0.35); border-radius: 99px; overflow: hidden; }
+.studio-level > span { display: block; height: 100%; background: #fff; transition: width 0.05s linear; }

@@ -48,6 +48,26 @@ export const SPEK_FORMAT = {
   short: { lebar: 1080, tinggi: 1920, introDetik: 1.5, outroDetik: 2, introMaksDetik: 3, outroMaksDetik: 4 },
 } as const;
 
+/** Batas geser nada suara (semiton). Lebih dari ini suara mulai terdengar tidak alami. */
+export const NADA_MAKS = 4;
+
+/**
+ * Filter ffmpeg pengubah suara. `nada` (semiton) menggeser nada sekaligus warna suara
+ * (+ terdengar lebih kecil/anak-anak, − lebih berat); `tempo` 1 = kecepatan bicara asli.
+ */
+export function filterSuara({ nada = 0, tempo = 1 }: { nada?: number; tempo?: number }): string | undefined {
+  const st = Math.round(nada * 2) / 2;
+  const tp = Math.max(0.7, Math.min(1.4, tempo));
+  if (!st && Math.abs(tp - 1) < 0.005) return undefined;
+  const f = 2 ** (st / 12);
+  return `aresample=48000,asetrate=${(48000 * f).toFixed(0)},aresample=48000,atempo=${(tp / f).toFixed(5)}`;
+}
+
+/** Geser nada seluruh rekaman episode tanpa mengubah tempo (0 = tanpa filter). */
+export function filterNada(semiton: number): string | undefined {
+  return filterSuara({ nada: Math.max(-NADA_MAKS, Math.min(NADA_MAKS, semiton)) });
+}
+
 export const JENIS_MUSIK = ['pembuka', 'penutup'] as const;
 export type JenisMusik = (typeof JENIS_MUSIK)[number];
 

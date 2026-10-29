@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { addLog, ensureDir, getEpisode, paths, setStatus, updateEpisode } from '@kantor/shared';
+import { addLog, ensureDir, filterNada, getEpisode, paths, setStatus, updateEpisode } from '@kantor/shared';
+import { olahAudio } from '@/lib/ffmpeg';
 import { jalankanKantor } from '@/lib/jalankan';
 
 const TIPE: Record<string, string> = {
@@ -9,10 +10,12 @@ const TIPE: Record<string, string> = {
   '.wav': 'audio/wav',
   '.aac': 'audio/aac',
   '.ogg': 'audio/ogg',
+  '.webm': 'audio/webm', // rekaman langsung dari browser (Studio Rekam)
 };
 const EKSTENSI = Object.keys(TIPE);
 
 // Putar satu rekaman untuk dicek: ?bagian=0, 1, … atau ?adegan=0, 1, …
+// &nada=2 → dengarkan dengan nada digeser (seperti hasil render nanti).
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const ep = getEpisode(id);
@@ -20,6 +23,17 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
   const file = q.has('adegan') ? ep.audioPerAdegan?.[Number(q.get('adegan'))] : ep.bagianAudio?.[Number(q.get('bagian'))];
   const lokasi = file ? path.join(paths.videoPkg(), 'public', file) : '';
   if (!file || !fs.existsSync(lokasi)) return new Response('Tidak ditemukan', { status: 404 });
+  // rekaman Studio: mulai dari saat video mulai (lewati hitung mundur), sama seperti render
+  const offset = q.has('adegan') ? (ep.offsetAdegan?.[Number(q.get('adegan'))] ?? 0) : 0;
+  const filter = [
+    offset > 0.05 ? `atrim=start=${offset.toFixed(3)},asetpts=PTS-STARTPTS` : undefined,
+    filterNada(Number(q.get('nada')) || 0),
+  ]
+    .filter(Boolean)
+    .join(',');
+  if (filter) {
+    return new Response(new Uint8Array(await olahAudio(lokasi, filter)), { headers: { 'Content-Type': 'audio/wav', 'Cache-Control': 'no-store' } });
+  }
   return new Response(fs.readFileSync(lokasi), {
     headers: { 'Content-Type': TIPE[path.extname(lokasi)] ?? 'application/octet-stream', 'Cache-Control': 'no-store' },
   });
@@ -63,10 +77,14 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
       if (per[i]) fs.rmSync(path.join(pub, per[i]!), { force: true });
       per[i] = `audio/${nama}`;
       e.audioPerAdegan = per;
+      const offset = Array.from({ length: jumlah }, (_, k) => e.offsetAdegan?.[k] ?? null);
+      offset[i] = Math.max(0, Number(form.get('offset')) || 0) || null;
+      e.offsetAdegan = offset;
       e.modeRekam = 'per-adegan';
       if (e.hafalan) e.hafalan.mulaiSegmen = undefined;
     });
     addLog(id, 'pemilik', `Rekaman ${ep.ide.jenis === 'hafalan' ? 'ayat' : 'adegan'} ${i + 1} diupload`);
+    if (new URL(req.url).searchParams.has('json')) return Response.json({ ok: true });
     return Response.redirect(new URL(`/episode/${id}#adegan-${i + 1}`, req.url), 303);
   }
 

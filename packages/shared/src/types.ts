@@ -163,7 +163,17 @@ export interface Episode {
   modeRekam?: ModeRekam;
   /** Rekaman per adegan/ayat, sesuai indeks adegan (cerita) atau ayat (hafalan). */
   audioPerAdegan?: (string | null)[];
-  render?: { video: string; thumbnail?: string; waktu: string };
+  /** Detik di rekaman per adegan saat video mulai (Studio merekam sejak hitung mundur). */
+  offsetAdegan?: (number | null)[];
+  render?: {
+    video: string;
+    thumbnail?: string;
+    waktu: string;
+    /** Detik mulai & lama tiap adegan (hafalan: tiap ayat) di video hasil render, untuk Studio Rekam. */
+    adegan?: { mulai: number; durasi: number }[];
+  };
+  /** Geser nada rekaman (semiton, + lebih tinggi, − lebih rendah); kecepatan bicara tetap. */
+  nadaSuara?: number;
   youtube?: { videoId: string; url: string; jadwalTayang?: string };
   log: LogEntry[];
 }

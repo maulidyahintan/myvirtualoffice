@@ -13,6 +13,7 @@ import {
   setStatus,
   updateEpisode,
   JENIS_MUSIK,
+  NADA_MAKS,
   PILIHAN_FORMAT,
   USIA,
   type PilihanFormat,
@@ -242,6 +243,13 @@ export async function hapusMusik(form: FormData) {
   revalidatePath('/pengaturan');
 }
 
+export async function simpanNada(id: string, semiton: number) {
+  updateEpisode(id, (e) => {
+    e.nadaSuara = Math.max(-NADA_MAKS, Math.min(NADA_MAKS, Math.round(semiton * 2) / 2)) || undefined;
+  });
+  segarkan(id);
+}
+
 export async function ubahModeRekam(form: FormData) {
   const id = teks(form, 'id');
   const mode: ModeRekam = teks(form, 'mode') === 'per-adegan' ? 'per-adegan' : 'urut';
@@ -262,6 +270,7 @@ export async function hapusRekaman(form: FormData) {
   updateEpisode(id, (e) => {
     e.bagianAudio = undefined;
     e.audioPerAdegan = undefined;
+    e.offsetAdegan = undefined;
     e.fileAudio = undefined;
     if (e.hafalan) e.hafalan.mulaiSegmen = undefined;
   });

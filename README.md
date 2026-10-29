@@ -141,6 +141,15 @@ three.js (React Three Fiber), jadi tanpa aset berbayar. Ganti nama, warna, atau 
    untuk tiap naskah adegan, durasi tiap adegan di video ikut persis panjang rekamannya, dan
    satu adegan bisa direkam ulang tanpa mengulang semuanya. Video dirender mengikuti panjang
    rekamanmu.
+
+   **🎙️ Studio Rekam** (tombol di halaman episode): rekam langsung dari browser per adegan
+   (hafalan: per ayat) sambil potongan video adegan itu diputar, dengarkan hasilnya bersama
+   videonya, rekam ulang sampai pas, lalu simpan. Satu rekaman = satu sesi: video berhenti di
+   akhir adegan dan rekaman berhenti sendiri setelah kamu selesai bicara; hening di awal/akhir
+   dirapikan saat render (jeda berpikir setelah pertanyaan ditambahkan otomatis).
+   Ada juga pengatur **nada suara** (±4 semiton,
+   kecepatan bicara tetap) yang diterapkan saat render. Pakai headset supaya suara video tidak
+   ikut terekam. Agar video bisa diputar per adegan, render pratinjau tanpa suara dulu.
 5. Tonton → **Setujui & jadwalkan**. Selesai.
 
 Semua juga bisa lewat terminal:

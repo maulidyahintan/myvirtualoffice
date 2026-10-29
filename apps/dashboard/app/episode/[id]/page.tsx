@@ -337,6 +337,9 @@ function PanelAksi({ ep }: { ep: Episode }) {
               <li>Upload file (mp3, m4a, wav). Video otomatis dirender menyesuaikan durasi suaramu.</li>
             </ol>
           )}
+          <Link href={`/episode/${ep.id}/studio`} className="tombol" style={{ textAlign: 'center' }}>
+            🎙️ Buka Studio Rekam (rekam sambil lihat video, atur nada)
+          </Link>
           <PilihModeRekam ep={ep} />
           {ep.modeRekam === 'per-adegan' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
           <form action={renderVideo}>
@@ -389,6 +392,10 @@ function PanelAksi({ ep }: { ep: Episode }) {
           ) : null}
           <details>
             <summary>Rekam ulang / render ulang</summary>
+            <p style={{ marginTop: 10 }}>
+              <Link href={`/episode/${ep.id}/studio`}>🎙️ Buka Studio Rekam</Link> untuk merekam ulang adegan tertentu sambil melihat
+              videonya, atau mengatur nada suara.
+            </p>
             {ep.modeRekam === 'per-adegan' ? (
               <div style={{ marginTop: 10 }}>
                 <RekamanPerAdegan ep={ep} />
