@@ -1,5 +1,7 @@
-import { JENIS_MUSIK, loadConfig, SPEK_FORMAT } from '@kantor/shared';
-import { hapusMusik, simpanMusik } from '../actions';
+import { BATAS_NADA_KARAKTER, JENIS_MUSIK, loadConfig, PEMBICARA, SPEK_FORMAT, SUARA_KARAKTER_BAWAAN, suaraPembicara } from '@kantor/shared';
+import { hapusMusik, simpanMusik, simpanSuaraKarakter } from '../actions';
+
+const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi' } as const;
 
 export const dynamic = 'force-dynamic';
 
@@ -55,6 +57,46 @@ export default function Pengaturan() {
           Pakai juga di Shorts
         </label>
         <button>Simpan</button>
+      </form>
+
+      <form action={simpanSuaraKarakter} className="panel stack">
+        <h2>🎭 Suara karakter</h2>
+        <p className="muted kecil" style={{ margin: 0 }}>
+          Dipakai saat merekam <b>per adegan</b> (Studio Rekam): tiap adegan diberi efek sesuai pembicaranya. <b>Nada</b> dalam semiton:
+          + terdengar lebih kecil seperti anak-anak, − lebih berat. <b>Tempo</b> 100% = kecepatan bicaramu. Bacaan hafalan Al-Qur&apos;an
+          selalu memakai suara asli.
+        </p>
+        {PEMBICARA.map((p) => {
+          const s = suaraPembicara(p, cfg);
+          return (
+            <div key={p} className="row" style={{ flexWrap: 'wrap', gap: 12, alignItems: 'end' }}>
+              <div style={{ minWidth: 150 }}>
+                <b>{NAMA_PEMBICARA[p]}</b>
+                <div className="kecil muted">bawaan: {SUARA_KARAKTER_BAWAAN[p].ket}</div>
+              </div>
+              <label className="kecil">
+                Nada
+                <input
+                  type="number"
+                  name={`${p}-nada`}
+                  min={BATAS_NADA_KARAKTER.min}
+                  max={BATAS_NADA_KARAKTER.maks}
+                  step={0.5}
+                  defaultValue={s.nada}
+                  style={{ width: 80 }}
+                />
+              </label>
+              <label className="kecil">
+                Tempo (%)
+                <input type="number" name={`${p}-tempo`} min={70} max={140} step={1} defaultValue={Math.round(s.tempo * 100)} style={{ width: 80 }} />
+              </label>
+              <label className="kecil" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                <input type="checkbox" name={`${p}-reset`} /> kembalikan ke bawaan
+              </label>
+            </div>
+          );
+        })}
+        <button>Simpan suara karakter</button>
       </form>
     </div>
   );

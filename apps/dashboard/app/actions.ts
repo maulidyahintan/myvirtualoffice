@@ -14,6 +14,8 @@ import {
   updateEpisode,
   JENIS_MUSIK,
   NADA_MAKS,
+  BATAS_NADA_KARAKTER,
+  PEMBICARA,
   PILIHAN_FORMAT,
   USIA,
   type PilihanFormat,
@@ -248,6 +250,27 @@ export async function simpanNada(id: string, semiton: number) {
     e.nadaSuara = Math.max(-NADA_MAKS, Math.min(NADA_MAKS, Math.round(semiton * 2) / 2)) || undefined;
   });
   segarkan(id);
+}
+
+export async function simpanEfekKarakter(id: string, aktif: boolean) {
+  updateEpisode(id, (e) => {
+    e.efekKarakter = aktif ? undefined : false;
+  });
+  segarkan(id);
+}
+
+export async function simpanSuaraKarakter(form: FormData) {
+  const cfg = loadConfig();
+  const suara: NonNullable<typeof cfg.suaraKarakter> = {};
+  for (const p of PEMBICARA) {
+    if (form.get(`${p}-reset`) === 'on') continue;
+    const nada = Math.max(BATAS_NADA_KARAKTER.min, Math.min(BATAS_NADA_KARAKTER.maks, Number(teks(form, `${p}-nada`)) || 0));
+    const tempo = Math.max(70, Math.min(140, Number(teks(form, `${p}-tempo`)) || 100)) / 100;
+    suara[p] = { nada, tempo };
+  }
+  cfg.suaraKarakter = suara;
+  saveConfig(cfg);
+  revalidatePath('/pengaturan');
 }
 
 export async function ubahModeRekam(form: FormData) {

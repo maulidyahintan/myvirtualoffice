@@ -68,6 +68,17 @@ export function filterNada(semiton: number): string | undefined {
   return filterSuara({ nada: Math.max(-NADA_MAKS, Math.min(NADA_MAKS, semiton)) });
 }
 
+/** Suara per pembicara di rekaman per adegan. Bisa diubah di halaman Pengaturan. */
+export const PEMBICARA = ['narator', 'ibu', 'mamas', 'mochi'] as const;
+export const SUARA_KARAKTER_BAWAAN: Record<(typeof PEMBICARA)[number], { nada: number; tempo: number; ket: string }> = {
+  narator: { nada: 0, tempo: 1, ket: 'suara asli' },
+  // geseran nada kecil saja: makin jauh digeser, makin terdengar seperti robot/chipmunk
+  ibu: { nada: -1.5, tempo: 0.96, ket: 'sedikit lebih berat, kalem & pelan' },
+  mamas: { nada: 2.5, tempo: 1.04, ket: 'lebih muda & ceria, tetap natural' },
+  mochi: { nada: 4, tempo: 1.05, ket: 'kecil & menggemaskan' },
+};
+export const BATAS_NADA_KARAKTER = { min: -6, maks: 9 };
+
 export const JENIS_MUSIK = ['pembuka', 'penutup'] as const;
 export type JenisMusik = (typeof JENIS_MUSIK)[number];
 

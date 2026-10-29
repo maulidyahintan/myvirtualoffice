@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { addLog, ensureDir, filterNada, getEpisode, paths, setStatus, updateEpisode } from '@kantor/shared';
+import { addLog, ensureDir, filterNada, filterSuara, getEpisode, paths, setStatus, suaraPembicara, updateEpisode } from '@kantor/shared';
 import { olahAudio } from '@/lib/ffmpeg';
 import { jalankanKantor } from '@/lib/jalankan';
 
@@ -15,7 +15,8 @@ const TIPE: Record<string, string> = {
 const EKSTENSI = Object.keys(TIPE);
 
 // Putar satu rekaman untuk dicek: ?bagian=0, 1, … atau ?adegan=0, 1, …
-// &nada=2 → dengarkan dengan nada digeser (seperti hasil render nanti).
+// &nada=2 → dengarkan dengan nada digeser, &efek=1 → dengan efek suara karakter
+// (seperti hasil render nanti).
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const ep = getEpisode(id);
@@ -23,10 +24,12 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
   const file = q.has('adegan') ? ep.audioPerAdegan?.[Number(q.get('adegan'))] : ep.bagianAudio?.[Number(q.get('bagian'))];
   const lokasi = file ? path.join(paths.videoPkg(), 'public', file) : '';
   if (!file || !fs.existsSync(lokasi)) return new Response('Tidak ditemukan', { status: 404 });
+  const pembicara = q.has('adegan') && q.get('efek') === '1' && ep.ide.jenis !== 'hafalan' ? ep.adegan?.[Number(q.get('adegan'))]?.pembicara : undefined;
   // rekaman Studio: mulai dari saat video mulai (lewati hitung mundur), sama seperti render
   const offset = q.has('adegan') ? (ep.offsetAdegan?.[Number(q.get('adegan'))] ?? 0) : 0;
   const filter = [
     offset > 0.05 ? `atrim=start=${offset.toFixed(3)},asetpts=PTS-STARTPTS` : undefined,
+    pembicara ? filterSuara(suaraPembicara(pembicara)) : undefined,
     filterNada(Number(q.get('nada')) || 0),
   ]
     .filter(Boolean)

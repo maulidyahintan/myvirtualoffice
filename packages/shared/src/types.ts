@@ -174,6 +174,8 @@ export interface Episode {
   };
   /** Geser nada rekaman (semiton, + lebih tinggi, − lebih rendah); kecepatan bicara tetap. */
   nadaSuara?: number;
+  /** false = rekaman per adegan tanpa efek suara karakter (default: pakai efek). */
+  efekKarakter?: boolean;
   youtube?: { videoId: string; url: string; jadwalTayang?: string };
   log: LogEntry[];
 }
@@ -226,6 +228,8 @@ export interface KantorConfig {
   maksRevisiOtomatis: number;
   jamTayangDefault: string;
   zonaWaktu: string;
+  /** Efek suara per pembicara (menimpa SUARA_KARAKTER_BAWAAN). */
+  suaraKarakter?: Partial<Record<'narator' | 'ibu' | 'mamas' | 'mochi', { nada: number; tempo: number }>>;
   musik?: MusikVideo & {
     /** dipakai juga di Shorts (intro/outro Shorts dibatasi supaya tetap < 60 detik) */
     diShorts: boolean;

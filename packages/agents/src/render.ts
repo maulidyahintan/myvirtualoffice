@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import {
   ensureDir,
   filterNada,
+  filterSuara,
   FPS,
   frameIntroOutro,
   hitungFrameAdegan,
@@ -12,6 +13,7 @@ import {
   loadConfig,
   paths,
   segmenHafalan,
+  suaraPembicara,
   updateEpisode,
   type Episode,
   type EpisodeVideoProps,
@@ -178,7 +180,7 @@ async function filterRapikan(lokasi: string): Promise<string | undefined> {
 export async function gabungAudio(
   id: string,
   files: string[],
-  opsi: { jeda?: number[]; rapikan?: boolean; mulaiDari?: (number | null | undefined)[] } = {},
+  opsi: { jeda?: number[]; rapikan?: boolean; efek?: (string | undefined)[]; mulaiDari?: (number | null | undefined)[] } = {},
   onLine?: (s: string) => void,
 ): Promise<{ file: string; mulai: number[]; durasi: number[]; olahan: string[] }> {
   const pub = path.join(paths.videoPkg(), 'public');
@@ -195,7 +197,7 @@ export async function gabungAudio(
       if (fs.existsSync(pra)) sumber = pra;
     }
     const potong = opsi.rapikan ? await filterRapikan(sumber) : undefined;
-    const filter = [potong, 'aresample=48000,aformat=sample_fmts=s16:channel_layouts=stereo'].filter(Boolean).join(',');
+    const filter = [potong, opsi.efek?.[i], 'aresample=48000,aformat=sample_fmts=s16:channel_layouts=stereo'].filter(Boolean).join(',');
     const out = await ffmpeg(['-hide_banner', '-y', '-i', sumber, '-af', filter, path.join(pub, olahan[i])]);
     if (sumber !== path.join(pub, f)) fs.rmSync(sumber, { force: true });
     if (!fs.existsSync(path.join(pub, olahan[i]))) throw new Error(`Gagal mengolah rekaman ${f}:\n${out.slice(-600)}`);
@@ -241,7 +243,12 @@ async function siapkanAudioPerAdegan(ep: Episode, onLine?: (s: string) => void) 
   }
   const files = per.slice(0, jumlah) as string[];
   const jeda = files.map((_, i) => JEDA_PER_ADEGAN + (!hafal && ep.adegan?.[i]?.jenis === 'pertanyaan' ? JEDA_PERTANYAAN : 0));
-  const { file, mulai, durasi, olahan } = await gabungAudio(ep.id, files, { jeda, rapikan: true, mulaiDari: ep.offsetAdegan }, onLine);
+  // efek suara karakter (Ibu, Mamas, …) hanya untuk cerita; bacaan Al-Qur'an tetap suara asli
+  const cfg = loadConfig();
+  const efek = files.map((_, i) =>
+    !hafal && ep.efekKarakter !== false && ep.adegan?.[i] ? filterSuara(suaraPembicara(ep.adegan[i].pembicara, cfg)) : undefined,
+  );
+  const { file, mulai, durasi, olahan } = await gabungAudio(ep.id, files, { jeda, rapikan: true, efek, mulaiDari: ep.offsetAdegan }, onLine);
   ep.fileAudio = file;
 
   let mulaiSegmen: number[] | undefined;

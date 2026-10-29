@@ -1,11 +1,19 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getEpisode, hitungKata, NADA_MAKS, type Episode } from '@kantor/shared';
+import { getEpisode, hitungKata, loadConfig, NADA_MAKS, SUARA_KARAKTER_BAWAAN, suaraPembicara, type Episode } from '@kantor/shared';
 import { StudioRekam, type BagianStudio } from '@/components/StudioRekam';
 
 export const dynamic = 'force-dynamic';
 
 const NAMA_PEMBICARA: Record<string, string> = { narator: 'Narator', ibu: 'Ibu', mamas: 'Mamas', mochi: 'Mochi' };
+
+/** Keterangan efek suara pembicara, misal "Ibu · lebih berat, kalem & pelan (nada −2, tempo 95%)". */
+function ketSuara(pembicara: string): string {
+  const s = suaraPembicara(pembicara, loadConfig());
+  const ket = SUARA_KARAKTER_BAWAAN[pembicara as keyof typeof SUARA_KARAKTER_BAWAAN]?.ket ?? '';
+  const asli = !s.nada && s.tempo === 1;
+  return `${NAMA_PEMBICARA[pembicara] ?? pembicara}: ${asli ? 'suara asli' : `${ket} (nada ${s.nada > 0 ? '+' : ''}${s.nada}, tempo ${Math.round(s.tempo * 100)}%)`}`;
+}
 
 function daftarBagian(ep: Episode): BagianStudio[] {
   const waktu = ep.render?.adegan;
@@ -30,6 +38,7 @@ function daftarBagian(ep: Episode): BagianStudio[] {
           heningStop: 2.5,
           // ±2,3 kata per detik (membaca pelan untuk anak)
           perkiraan: hitungKata(a.narasi) / 2.3,
+          suara: ketSuara(a.pembicara),
         }));
   const cocok = waktu?.length === bagian.length;
   return bagian.map((b, i) => ({
@@ -69,6 +78,7 @@ export default async function HalamanStudio({ params }: { params: Promise<{ id: 
         bagian={daftarBagian(ep)}
         nadaAwal={ep.nadaSuara ?? 0}
         nadaMaks={NADA_MAKS}
+        efekAwal={ep.ide.jenis === 'hafalan' ? undefined : ep.efekKarakter !== false}
         satuan={ep.ide.jenis === 'hafalan' ? 'ayat' : 'adegan'}
       />
     </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { renderVideo, simpanNada } from '@/app/actions';
+import { renderVideo, simpanEfekKarakter, simpanNada } from '@/app/actions';
 
 export interface BagianStudio {
   judul: string;
@@ -18,6 +18,8 @@ export interface BagianStudio {
   heningStop: number;
   /** perkiraan lama membaca (detik); rekaman tidak berhenti otomatis sebelum ±70% dari ini */
   perkiraan: number;
+  /** keterangan efek suara pembicara (cerita saja) */
+  suara?: string;
 }
 
 interface Take {
@@ -60,6 +62,7 @@ export function StudioRekam({
   bagian,
   nadaAwal,
   nadaMaks,
+  efekAwal,
   satuan,
 }: {
   id: string;
@@ -68,6 +71,8 @@ export function StudioRekam({
   bagian: BagianStudio[];
   nadaAwal: number;
   nadaMaks: number;
+  /** undefined = efek karakter tidak berlaku (hafalan) */
+  efekAwal?: boolean;
   satuan: string;
 }) {
   const router = useRouter();
@@ -83,6 +88,7 @@ export function StudioRekam({
   const [batasHening, setBatasHening] = useState<number | null>(null);
   const [level, setLevel] = useState(0);
   const [sisaHening, setSisaHening] = useState<number | null>(null);
+  const [efek, setEfek] = useState(efekAwal ?? false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -372,6 +378,11 @@ export function StudioRekam({
             {b.teks}
           </div>
           {b.catatan ? <div className="kecil muted">{b.catatan}</div> : null}
+          {b.suara && efekAwal !== undefined ? (
+            <div className="kecil">
+              🎭 <b>{efek ? b.suara : 'Efek karakter mati: suara asli'}</b>
+            </div>
+          ) : null}
 
           {b.durasi !== undefined ? (
             <div className="kecil">
@@ -419,10 +430,10 @@ export function StudioRekam({
                   <button
                     type="button"
                     className="sekunder"
-                    onClick={() => void dengar(`/api/audio/${id}?adegan=${aktif}&nada=${nada}&v=${Date.now()}`)}
+                    onClick={() => void dengar(`/api/audio/${id}?adegan=${aktif}&nada=${nada}&efek=${efek ? 1 : 0}&v=${Date.now()}`)}
                     disabled={sibuk}
                   >
-                    ▶️ Dengar yang tersimpan{nada ? ' (dengan nada)' : ''}
+                    ▶️ Dengar yang tersimpan{efek && b.suara ? ' (dengan efek)' : nada ? ' (dengan nada)' : ''}
                   </button>
                 ) : null}
               </>
@@ -453,6 +464,27 @@ export function StudioRekam({
           {pesan ? <div className="peringatan kecil">{pesan}</div> : null}
           <audio ref={audioRef} hidden />
         </div>
+
+        {efekAwal !== undefined ? (
+          <div className="panel stack" style={{ gap: 8 }}>
+            <b>🎭 Efek suara karakter</b>
+            <label className="kecil" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <input
+                type="checkbox"
+                checked={efek}
+                onChange={(e) => {
+                  setEfek(e.target.checked);
+                  void simpanEfekKarakter(id, e.target.checked);
+                }}
+              />
+              Pakai efek suara per pembicara di episode ini
+            </label>
+            <div className="kecil muted">
+              Narator memakai suara asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria. Efek diterapkan saat render; dengarkan
+              lewat &quot;Dengar yang tersimpan&quot;. Atur kekuatan efek tiap karakter di halaman <a href="/pengaturan">Pengaturan</a>.
+            </div>
+          </div>
+        ) : null}
 
         <div className="panel stack" style={{ gap: 8 }}>
           <b>🎚️ Nada suara</b>

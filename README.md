@@ -147,7 +147,10 @@ three.js (React Three Fiber), jadi tanpa aset berbayar. Ganti nama, warna, atau 
    videonya, rekam ulang sampai pas, lalu simpan. Satu rekaman = satu sesi: video berhenti di
    akhir adegan dan rekaman berhenti sendiri setelah kamu selesai bicara; hening di awal/akhir
    dirapikan saat render (jeda berpikir setelah pertanyaan ditambahkan otomatis).
-   Ada juga pengatur **nada suara** (±4 semiton,
+   **🎭 Efek suara karakter**: tiap adegan diberi efek sesuai pembicaranya — Narator suara
+   asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria, Mochi kecil &
+   menggemaskan. Kekuatan efek (nada & tempo) diatur di **Pengaturan**, dan bisa dimatikan per
+   episode di Studio. Bacaan hafalan selalu suara asli. Ada juga pengatur **nada suara** (±4 semiton,
    kecepatan bicara tetap) yang diterapkan saat render. Pakai headset supaya suara video tidak
    ikut terekam. Agar video bisa diputar per adegan, render pratinjau tanpa suara dulu.
 5. Tonton → **Setujui & jadwalkan**. Selesai.

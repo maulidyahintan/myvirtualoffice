@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import type { AgenChat, Episode, EpisodeStatus, Ide, KantorConfig, PesanChat } from './types.ts';
+import { SUARA_KARAKTER_BAWAAN, type PEMBICARA } from './constants.ts';
 
 let rootCache: string | undefined;
 
@@ -42,6 +43,13 @@ function ensure(dir: string) {
 
 export function loadConfig(): KantorConfig {
   return JSON.parse(fs.readFileSync(path.join(rootDir(), 'kantor.config.json'), 'utf8'));
+}
+
+/** Pengaturan suara satu pembicara: dari kantor.config.json, atau bawaan. */
+export function suaraPembicara(pembicara: string, cfg: KantorConfig = loadConfig()): { nada: number; tempo: number } {
+  const p = pembicara as (typeof PEMBICARA)[number];
+  const bawaan = SUARA_KARAKTER_BAWAAN[p] ?? SUARA_KARAKTER_BAWAAN.narator;
+  return { nada: bawaan.nada, tempo: bawaan.tempo, ...cfg.suaraKarakter?.[p] };
 }
 
 export function saveConfig(cfg: KantorConfig) {
