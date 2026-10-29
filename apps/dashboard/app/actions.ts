@@ -12,10 +12,10 @@ import {
   saveConfig,
   setStatus,
   updateEpisode,
-  FORMAT,
   JENIS_MUSIK,
+  PILIHAN_FORMAT,
   USIA,
-  type Format,
+  type PilihanFormat,
   type JenisMusik,
   type Naskah,
   type Usia,
@@ -40,22 +40,49 @@ export async function buatLaporan() {
   revalidatePath('/laporan');
 }
 
-function bacaFormat(form: FormData): Format {
-  const f = teks(form, 'format') as Format;
-  return FORMAT.includes(f) ? f : 'biasa';
+function bacaFormat(form: FormData): PilihanFormat {
+  const f = teks(form, 'format') as PilihanFormat;
+  return PILIHAN_FORMAT.includes(f) ? f : 'biasa';
+}
+
+/**
+ * Terapkan pilihan format ke episode. 'keduanya' → episode ini jadi video biasa dan
+ * dibuatkan kembaran Shorts dari ide yang sama; keduanya saling tertaut.
+ * Kembalikan id semua episode yang perlu dikerjakan.
+ */
+function terapkanFormat(id: string, pilihan: PilihanFormat): string[] {
+  if (pilihan !== 'keduanya') {
+    updateEpisode(id, (e) => {
+      e.ide.format = pilihan;
+    });
+    return [id];
+  }
+  const ep = getEpisode(id);
+  const short = createEpisodeFromIdea({ ...ep.ide, format: 'short' }, 'pemilik');
+  updateEpisode(short.id, (e) => {
+    e.pasangan = id;
+    e.log.push({ waktu: new Date().toISOString(), oleh: 'pemilik', pesan: `Kembaran Shorts dari episode ${id}` });
+  });
+  updateEpisode(id, (e) => {
+    e.ide.format = 'biasa';
+    e.pasangan = short.id;
+    e.log.push({ waktu: new Date().toISOString(), oleh: 'pemilik', pesan: `Dibuat juga versi Shorts: ${short.id}` });
+  });
+  return [id, short.id];
+}
+
+/** Mulai pekerjaan pertama: ambil teks surat (hafalan) atau tugaskan penulis (cerita). */
+function mulaiTulis(id: string, oleh: string) {
+  if (getEpisode(id).ide.jenis === 'hafalan') {
+    setStatus(id, 'writing', oleh, 'Mengambil teks surat');
+    jalankanKantor(['hafalan', id], id);
+  } else {
+    setStatus(id, 'writing', oleh, 'Penulis mulai bekerja');
+    jalankanKantor(['tulis', id], id);
+  }
 }
 
 /** Ganti format selama naskah belum ditulis. */
-export async function ubahFormat(form: FormData) {
-  const id = teks(form, 'id');
-  const format = bacaFormat(form);
-  updateEpisode(id, (e) => {
-    e.ide.format = format;
-    e.log.push({ waktu: new Date().toISOString(), oleh: 'pemilik', pesan: `Format diubah ke ${format}` });
-  });
-  segarkan(id);
-}
-
 export async function buatHafalan(form: FormData) {
   const nomor = Number(teks(form, 'surat'));
   if (!Number.isInteger(nomor) || nomor < 1 || nomor > 114) throw new Error('Nomor surat harus 1–114');
@@ -73,7 +100,6 @@ export async function buatHafalan(form: FormData) {
       seri: 'hafalan',
       usia: USIA.includes(usia) ? usia : '1-10',
       pesanMoral: `Menghafal Surat ${s.namaLatin} (${s.arti})${ulang > 1 ? `, tiap ayat diulang ${ulang}x` : ''}`,
-      format: bacaFormat(form),
       jenis: 'hafalan',
       hafalan: { surat: nomor, namaSurat: s.namaLatin, ayatDari: dari, ayatSampai: sampai, ulang, basmalah: form.get('basmalah') === 'on' },
       alasan: 'Ide hafalan dari pemilik channel',
@@ -81,8 +107,7 @@ export async function buatHafalan(form: FormData) {
     },
     'pemilik',
   );
-  setStatus(ep.id, 'writing', 'pemilik', 'Mengambil teks surat');
-  jalankanKantor(['hafalan', ep.id], ep.id);
+  for (const id of terapkanFormat(ep.id, bacaFormat(form))) mulaiTulis(id, 'pemilik');
   segarkan();
   redirect(`/episode/${ep.id}`);
 }
@@ -111,25 +136,20 @@ export async function buatIdeManual(form: FormData) {
       seri: teks(form, 'seri'),
       usia: USIA.includes(usia) ? usia : '4-6',
       pesanMoral: teks(form, 'pesanMoral'),
-      format: bacaFormat(form),
       alasan: 'Ide dari pemilik channel',
       referensi: [],
     },
     'pemilik',
   );
+  terapkanFormat(ep.id, bacaFormat(form));
   segarkan();
   redirect(`/episode/${ep.id}`);
 }
 
 export async function tulisNaskah(form: FormData) {
   const id = teks(form, 'id');
-  if (getEpisode(id).ide.jenis === 'hafalan') {
-    setStatus(id, 'writing', 'dashboard', 'Mengambil teks surat');
-    jalankanKantor(['hafalan', id], id);
-    return segarkan(id);
-  }
-  setStatus(id, 'writing', 'dashboard', 'Penulis mulai bekerja');
-  jalankanKantor(['tulis', id], id);
+  const ids = form.has('format') ? terapkanFormat(id, bacaFormat(form)) : [id];
+  for (const i of ids) mulaiTulis(i, 'dashboard');
   segarkan(id);
 }
 

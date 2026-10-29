@@ -37,6 +37,11 @@ export const FORMAT = ['biasa', 'short'] as const;
 
 export const FORMAT_LABEL = { biasa: 'Video biasa', short: 'YouTube Shorts' } as const;
 
+/** Pilihan saat menyetujui materi: 'keduanya' memecah satu ide jadi dua episode (video biasa + Shorts). */
+export const PILIHAN_FORMAT = [...FORMAT, 'keduanya'] as const;
+export type PilihanFormat = (typeof PILIHAN_FORMAT)[number];
+export const PILIHAN_FORMAT_LABEL: Record<PilihanFormat, string> = { ...FORMAT_LABEL, keduanya: 'Keduanya (Video + Shorts)' };
+
 /** Ukuran & durasi pembuka/penutup per format. */
 export const SPEK_FORMAT = {
   biasa: { lebar: 1920, tinggi: 1080, introDetik: 3, outroDetik: 4, introMaksDetik: 10, outroMaksDetik: 12 },

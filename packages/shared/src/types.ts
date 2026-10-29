@@ -145,6 +145,8 @@ export interface Episode {
   status: EpisodeStatus;
   catatanStatus?: string;
   ide: Ide;
+  /** Episode kembaran dari ide yang sama dengan format lain (video biasa ↔ Shorts). */
+  pasangan?: string;
   naskah?: Naskah;
   review?: Review;
   jumlahRevisi: number;

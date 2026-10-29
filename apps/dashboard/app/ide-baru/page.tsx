@@ -1,4 +1,4 @@
-import { FORMAT, FORMAT_LABEL, loadConfig, USIA } from '@kantor/shared';
+import { loadConfig, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, USIA } from '@kantor/shared';
 import { buatIdeManual } from '../actions';
 
 export default function IdeBaru() {
@@ -13,9 +13,9 @@ export default function IdeBaru() {
       <label>
         Format video
         <select name="format" defaultValue="biasa">
-          {FORMAT.map((f) => (
+          {PILIHAN_FORMAT.map((f) => (
             <option key={f} value={f}>
-              {FORMAT_LABEL[f]} {f === 'short' ? '(vertikal, < 60 detik)' : '(16:9, 3–5 menit)'}
+              {PILIHAN_FORMAT_LABEL[f]} {f === 'short' ? '(vertikal, < 60 detik)' : f === 'biasa' ? '(16:9, 3–5 menit)' : '(jadi 2 episode)'}
             </option>
           ))}
         </select>

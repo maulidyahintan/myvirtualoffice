@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FORMAT, FORMAT_LABEL, getEpisode, loadConfig, paths, STATUS_SIBUK, type Episode } from '@kantor/shared';
+import { FORMAT_LABEL, getEpisode, loadConfig, paths, STATUS_SIBUK, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, type Episode } from '@kantor/shared';
 import {
   mintaRevisi,
   pulihkan,
@@ -13,7 +13,6 @@ import {
   simpanWaktuHafalan,
   tolak,
   tulisNaskah,
-  ubahFormat,
 } from '../../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Badge } from '@/components/Badge';
@@ -52,25 +51,22 @@ function PanelAksi({ ep }: { ep: Episode }) {
       return (
         <div className="panel aksi stack">
           <h2>Langkah berikutnya: tulis naskah</h2>
-          <form action={ubahFormat} className="row">
+          <form action={tulisNaskah} className="stack">
             <Id id={ep.id} />
             <label className="kecil">
               Format video{' '}
               <select name="format" defaultValue={ep.ide.format ?? 'biasa'}>
-                {FORMAT.map((f) => (
+                {PILIHAN_FORMAT.map((f) => (
                   <option key={f} value={f}>
-                    {FORMAT_LABEL[f]}
+                    {PILIHAN_FORMAT_LABEL[f]}
                   </option>
                 ))}
               </select>
             </label>
-            <button type="submit" className="sekunder">
-              Simpan format
-            </button>
-          </form>
-          <form action={tulisNaskah}>
-            <Id id={ep.id} />
-            <button type="submit">{ep.ide.jenis === 'hafalan' ? '📖 Ambil teks surat' : '✍️ Tugaskan Penulis + Reviewer'}</button>
+            <span className="kecil muted">
+              Pilih <b>Keduanya</b> untuk membuat dua episode sekaligus dari materi ini: video biasa dan Shorts, dikerjakan bersamaan.
+            </span>
+            <button type="submit">{ep.ide.jenis === 'hafalan' ? '📖 Setujui & ambil teks surat' : '✍️ Setujui & tugaskan Penulis + Reviewer'}</button>
           </form>
           <FormTolak id={ep.id} />
         </div>
@@ -303,6 +299,11 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
             <span>
               {seri} · usia {ep.ide.usia} · {FORMAT_LABEL[ep.ide.format ?? 'biasa']}
             </span>
+            {ep.pasangan ? (
+              <Link href={`/episode/${ep.pasangan}`} className="kecil">
+                🔗 Lihat versi {ep.ide.format === 'short' ? 'video biasa' : 'Shorts'}
+              </Link>
+            ) : null}
             <Badge status={ep.status} />
           </div>
         </div>

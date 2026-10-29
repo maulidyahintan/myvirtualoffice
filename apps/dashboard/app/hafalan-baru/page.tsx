@@ -1,4 +1,4 @@
-import { FORMAT, FORMAT_LABEL, USIA } from '@kantor/shared';
+import { PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, USIA } from '@kantor/shared';
 import { buatHafalan } from '../actions';
 
 export const dynamic = 'force-dynamic';
@@ -69,9 +69,9 @@ export default async function HafalanBaru() {
       <label>
         Format video
         <select name="format" defaultValue="biasa">
-          {FORMAT.map((f) => (
+          {PILIHAN_FORMAT.map((f) => (
             <option key={f} value={f}>
-              {FORMAT_LABEL[f]}
+              {PILIHAN_FORMAT_LABEL[f]}
             </option>
           ))}
         </select>

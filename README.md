@@ -35,8 +35,9 @@ orisinal = konten autentik.
 
 **Dua format video.** Setiap ide punya format: **Video biasa** (16:9, 3–5 menit) atau
 **YouTube Shorts** (9:16 vertikal, < 60 detik, satu konsep). Agen riset mengusulkan
-campuran keduanya; kamu bisa mengganti format di halaman episode selama naskah belum
-ditulis. Penulis, Sutradara, render, dan upload otomatis menyesuaikan (Shorts tanpa
+campuran keduanya; kamu memilih format saat menyetujui materi di halaman episode. Pilih
+**Keduanya (Video + Shorts)** dan ide itu langsung dipecah jadi dua episode yang saling
+tertaut (🔗), masing-masing dikerjakan penulis dengan gaya formatnya sendiri. Penulis, Sutradara, render, dan upload otomatis menyesuaikan (Shorts tanpa
 thumbnail kustom, deskripsi diberi `#Shorts`). Pratinjau di Remotion Studio: komposisi
 `Episode` (biasa) dan `Short`.
 
