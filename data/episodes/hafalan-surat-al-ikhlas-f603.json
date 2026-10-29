@@ -1,0 +1,351 @@
+{
+  "id": "hafalan-surat-al-ikhlas-f603",
+  "dibuat": "2026-10-29T07:23:38.619Z",
+  "diubah": "2026-10-29T08:32:32.876Z",
+  "status": "needs_video_approval",
+  "ide": {
+    "judul": "Hafalan Surat Al-Ikhlas",
+    "seri": "hafalan",
+    "usia": "1-10",
+    "pesanMoral": "Menghafal Surat Al-Ikhlas (Ikhlas)",
+    "format": "biasa",
+    "jenis": "hafalan",
+    "hafalan": {
+      "surat": 112,
+      "namaSurat": "Al-Ikhlas",
+      "ayatDari": 1,
+      "ayatSampai": 4,
+      "ulang": 1,
+      "basmalah": true
+    },
+    "alasan": "Ide hafalan dari pemilik channel",
+    "referensi": []
+  },
+  "jumlahRevisi": 0,
+  "log": [
+    {
+      "waktu": "2026-10-29T07:23:38.619Z",
+      "oleh": "pemilik",
+      "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-29T07:23:38.621Z",
+      "oleh": "pemilik",
+      "pesan": "Mengambil teks surat"
+    },
+    {
+      "waktu": "2026-10-29T07:23:39.449Z",
+      "oleh": "orchestrator",
+      "pesan": "Mengambil teks Surat Al-Ikhlas dari equran.id"
+    },
+    {
+      "waktu": "2026-10-29T07:23:39.856Z",
+      "oleh": "orchestrator",
+      "pesan": "Teks surat siap dicek pemilik channel"
+    },
+    {
+      "waktu": "2026-10-29T07:23:56.748Z",
+      "oleh": "pemilik",
+      "pesan": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "waktu": "2026-10-29T07:23:57.358Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih latar sesuai arti ayat & menyusun metadata"
+    },
+    {
+      "waktu": "2026-10-29T07:24:04.156Z",
+      "oleh": "sutradara",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-29T07:24:15.076Z",
+      "oleh": "channel-manager",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-29T07:24:15.631Z",
+      "oleh": "orchestrator",
+      "pesan": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    },
+    {
+      "waktu": "2026-10-29T08:19:29.376Z",
+      "oleh": "pemilik",
+      "pesan": "Bagian 1 rekaman diupload (0.8 MB), total 1 bagian"
+    },
+    {
+      "waktu": "2026-10-29T08:19:31.655Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-29T08:20:32.276Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    }
+  ],
+  "catatanStatus": "Video siap ditonton & disetujui",
+  "hafalan": {
+    "namaSurat": "Al-Ikhlas",
+    "artiSurat": "Ikhlas",
+    "ayat": [
+      {
+        "nomor": 0,
+        "arab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "arti": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya"
+        ]
+      },
+      {
+        "nomor": 1,
+        "arab": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
+        "latin": "Qul huwallāhu aḥad(un).",
+        "arti": "Katakanlah (Nabi Muhammad), “Dialah Allah Yang Maha Esa.",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya"
+        ]
+      },
+      {
+        "nomor": 2,
+        "arab": "اَللّٰهُ الصَّمَدُۚ",
+        "latin": "Allāhuṣ-ṣamad(u).",
+        "arti": "Allah tempat meminta segala sesuatu.",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya",
+          "burung"
+        ]
+      },
+      {
+        "nomor": 3,
+        "arab": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ",
+        "latin": "Lam yalid wa lam yūlad.",
+        "arti": "Dia tidak beranak dan tidak pula diperanakkan",
+        "latar": "langit-malam",
+        "suasana": [
+          "cahaya",
+          "bintang"
+        ]
+      },
+      {
+        "nomor": 4,
+        "arab": "وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ ࣖ",
+        "latin": "Wa lam yakul lahū kufuwan aḥad(un).",
+        "arti": "serta tidak ada sesuatu pun yang setara dengan-Nya.”",
+        "latar": "langit-malam",
+        "suasana": [
+          "cahaya",
+          "bintang"
+        ]
+      }
+    ]
+  },
+  "naskah": {
+    "judul": "Hafalan Surat Al-Ikhlas",
+    "ringkasan": "Surat ke-112 (Ikhlas), 4 ayat. Tiap ayat dibaca 1x.",
+    "adegan": [
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "petunjukVisual": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Qul huwallāhu aḥad(un).",
+        "petunjukVisual": "Katakanlah (Nabi Muhammad), “Dialah Allah Yang Maha Esa."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Allāhuṣ-ṣamad(u).",
+        "petunjukVisual": "Allah tempat meminta segala sesuatu."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Lam yalid wa lam yūlad.",
+        "petunjukVisual": "Dia tidak beranak dan tidak pula diperanakkan"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Wa lam yakul lahū kufuwan aḥad(un).",
+        "petunjukVisual": "serta tidak ada sesuatu pun yang setara dengan-Nya.”"
+      }
+    ],
+    "dalil": [
+      {
+        "jenis": "ayat",
+        "teksArab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "terjemah": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "sumber": "Basmalah"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
+        "latin": "Qul huwallāhu aḥad(un).",
+        "terjemah": "Katakanlah (Nabi Muhammad), “Dialah Allah Yang Maha Esa.",
+        "sumber": "QS. Al-Ikhlas: 1"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "اَللّٰهُ الصَّمَدُۚ",
+        "latin": "Allāhuṣ-ṣamad(u).",
+        "terjemah": "Allah tempat meminta segala sesuatu.",
+        "sumber": "QS. Al-Ikhlas: 2"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ",
+        "latin": "Lam yalid wa lam yūlad.",
+        "terjemah": "Dia tidak beranak dan tidak pula diperanakkan",
+        "sumber": "QS. Al-Ikhlas: 3"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ ࣖ",
+        "latin": "Wa lam yakul lahū kufuwan aḥad(un).",
+        "terjemah": "serta tidak ada sesuatu pun yang setara dengan-Nya.”",
+        "sumber": "QS. Al-Ikhlas: 4"
+      }
+    ]
+  },
+  "review": {
+    "keputusan": "lolos",
+    "skor": 10,
+    "catatan": [
+      "Teks diambil otomatis dari equran.id (Kemenag RI), tidak ditulis AI."
+    ],
+    "cekManusia": [
+      "Cocokkan teks Arab & harakat dengan mushaf kamu.",
+      "Pastikan rentang ayat sesuai yang ingin dihafalkan."
+    ]
+  },
+  "adegan": [
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Bismillāhir-raḥmānir-raḥīm(i).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "arti": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Qul huwallāhu aḥad(un).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
+        "latin": "Qul huwallāhu aḥad(un).",
+        "arti": "Katakanlah (Nabi Muhammad), “Dialah Allah Yang Maha Esa."
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Allāhuṣ-ṣamad(u).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "اَللّٰهُ الصَّمَدُۚ",
+        "latin": "Allāhuṣ-ṣamad(u).",
+        "arti": "Allah tempat meminta segala sesuatu."
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Lam yalid wa lam yūlad.",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ",
+        "latin": "Lam yalid wa lam yūlad.",
+        "arti": "Dia tidak beranak dan tidak pula diperanakkan"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Wa lam yakul lahū kufuwan aḥad(un).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ ࣖ",
+        "latin": "Wa lam yakul lahū kufuwan aḥad(un).",
+        "arti": "serta tidak ada sesuatu pun yang setara dengan-Nya.”"
+      }
+    }
+  ],
+  "metadata": {
+    "judul": "Hafalan Surat Al-Ikhlas untuk Anak | Ayat demi Ayat",
+    "deskripsi": "Yuk, menghafal Surat Al-Ikhlas bersama! Di video ini, adik-adik belajar Surat Al-Ikhlas ayat demi ayat. Setiap ayat diulang supaya mudah diikuti dan diingat. Cocok untuk anak usia 1–10 tahun.\n\n📖 Surat Al-Ikhlas (QS. Al-Ikhlas [112]: 1–4)\nJumlah ayat: 4 ayat | Golongan: Makkiyah\n\nArti singkat:\nSurat ini mengajarkan bahwa Allah itu Maha Esa (satu). Allah tempat meminta segala sesuatu. Allah tidak beranak dan tidak diperanakkan. Tidak ada sesuatu pun yang setara dengan-Nya.\n\nPelajaran hari ini:\n• Allah itu satu, tidak ada yang menyamai-Nya.\n• Kepada Allah saja kita meminta dan berdoa.\n\nKeutamaan:\nRasulullah ﷺ bersabda bahwa Surat Al-Ikhlas sebanding dengan sepertiga Al-Qur'an (HR. Bukhari no. 5013).\n\nSumber teks Arab & terjemah: Al-Qur'an dan Terjemahannya, Kemenag RI (via equran.id).\n\nUntuk Ayah dan Bunda:\nDampingi si kecil saat menonton, ya. Ajak ia menirukan setiap ayat dengan pelan. Ulangi bersama sebelum tidur atau sesudah shalat, sedikit demi sedikit. Pujian yang hangat akan membuat anak makin semangat menghafal. Semoga Allah memudahkan hafalan anak-anak kita. Aamiin.",
+    "tags": [
+      "hafalan surat al ikhlas",
+      "surat al ikhlas",
+      "al ikhlas untuk anak",
+      "hafalan juz amma anak",
+      "belajar mengaji anak",
+      "murottal anak",
+      "surat pendek untuk anak",
+      "hafalan quran anak",
+      "juz 30 anak",
+      "belajar al quran anak",
+      "video islami anak",
+      "tauhid untuk anak",
+      "anak muslim",
+      "qul huwallahu ahad"
+    ],
+    "teksThumbnail": "Al-Ikhlas"
+  },
+  "modeRekam": "urut",
+  "bagianAudio": [
+    "audio/hafalan-surat-al-ikhlas-f603-mvt9vj6m-1.m4a"
+  ],
+  "fileAudio": "audio/hafalan-surat-al-ikhlas-f603-mvt9vj6m-1.m4a",
+  "render": {
+    "video": "hafalan-surat-al-ikhlas-f603.mp4",
+    "thumbnail": "hafalan-surat-al-ikhlas-f603.png",
+    "waktu": "2026-10-29T08:20:32.275Z",
+    "adegan": [
+      {
+        "mulai": 10,
+        "durasi": 14.633333333333333
+      },
+      {
+        "mulai": 24.633333333333333,
+        "durasi": 8.466666666666667
+      },
+      {
+        "mulai": 33.1,
+        "durasi": 6.933333333333334
+      },
+      {
+        "mulai": 40.03333333333333,
+        "durasi": 9.233333333333333
+      },
+      {
+        "mulai": 49.266666666666666,
+        "durasi": 12.333333333333334
+      }
+    ]
+  }
+}

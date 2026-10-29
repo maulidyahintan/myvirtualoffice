@@ -1,8 +1,8 @@
 {
   "id": "hafalan-surat-an-nas-4d50",
   "dibuat": "2026-10-29T02:20:03.145Z",
-  "diubah": "2026-10-29T02:20:33.227Z",
-  "status": "needs_audio",
+  "diubah": "2026-10-29T08:32:33.254Z",
+  "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat An-Nas",
     "seri": "hafalan",
@@ -67,9 +67,84 @@
       "waktu": "2026-10-29T02:20:33.227Z",
       "oleh": "orchestrator",
       "pesan": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    },
+    {
+      "waktu": "2026-10-29T07:04:25.307Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman suara diupload (1.0 MB)"
+    },
+    {
+      "waktu": "2026-10-29T07:04:26.284Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-29T07:04:53.236Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-29T07:17:00.531Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman suara diupload (0.7 MB)"
+    },
+    {
+      "waktu": "2026-10-29T07:17:01.477Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-29T07:17:23.097Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-29T07:22:38.509Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman suara diupload (0.8 MB)"
+    },
+    {
+      "waktu": "2026-10-29T07:22:39.460Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-29T07:23:02.496Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-29T07:25:44.716Z",
+      "oleh": "pemilik",
+      "pesan": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "waktu": "2026-10-29T07:25:45.317Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-29T07:26:07.878Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-29T07:27:16.734Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui"
+    },
+    {
+      "waktu": "2026-10-29T07:27:17.555Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-29T07:27:22.689Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-10-30T09:30:00.000Z"
     }
   ],
-  "catatanStatus": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan",
+  "catatanStatus": "Terjadwal tayang 2026-10-30T09:30:00.000Z",
   "hafalan": {
     "namaSurat": "An-Nas",
     "artiSurat": "Manusia",
@@ -365,5 +440,45 @@
       "shorts islami anak"
     ],
     "teksThumbnail": "An-Nas"
+  },
+  "fileAudio": "audio/hafalan-surat-an-nas-4d50.m4a",
+  "render": {
+    "video": "hafalan-surat-an-nas-4d50.mp4",
+    "waktu": "2026-10-29T07:26:07.877Z",
+    "adegan": [
+      {
+        "mulai": 1.5,
+        "durasi": 9.7
+      },
+      {
+        "mulai": 11.2,
+        "durasi": 7.166666666666667
+      },
+      {
+        "mulai": 18.366666666666667,
+        "durasi": 4.1
+      },
+      {
+        "mulai": 22.466666666666665,
+        "durasi": 4.1
+      },
+      {
+        "mulai": 26.566666666666666,
+        "durasi": 9.2
+      },
+      {
+        "mulai": 35.766666666666666,
+        "durasi": 10.233333333333333
+      },
+      {
+        "mulai": 46,
+        "durasi": 7.166666666666667
+      }
+    ]
+  },
+  "youtube": {
+    "videoId": "kxu5wXHQtQk",
+    "url": "https://www.youtube.com/watch?v=kxu5wXHQtQk",
+    "jadwalTayang": "2026-10-30T09:30:00.000Z"
   }
 }
