@@ -157,6 +157,12 @@ export interface Episode {
   hafalan?: { namaSurat: string; artiSurat: string; ayat: AyatHafalan[]; mulaiSegmen?: number[] };
   /** Path relatif ke packages/video/public, contoh "audio/abc.mp3" */
   fileAudio?: string;
+  /** Rekaman yang dikirim per bagian (berurutan); digabung jadi fileAudio saat render. */
+  bagianAudio?: string[];
+  /** 'urut' (default): satu rekaman/bagian berurutan. 'per-adegan': satu file per adegan (hafalan: per ayat). */
+  modeRekam?: ModeRekam;
+  /** Rekaman per adegan/ayat, sesuai indeks adegan (cerita) atau ayat (hafalan). */
+  audioPerAdegan?: (string | null)[];
   render?: { video: string; thumbnail?: string; waktu: string };
   youtube?: { videoId: string; url: string; jadwalTayang?: string };
   log: LogEntry[];
@@ -170,6 +176,8 @@ export interface EpisodeVideoProps {
   namaSeri: string;
   adegan: Adegan[];
   fileAudio?: string;
+  /** Detik mulai tiap adegan di fileAudio (rekaman per adegan); durasi adegan ikut persis. */
+  mulaiAdegan?: number[];
   format?: Format;
   /** Diisi untuk video hafalan; adegan cerita diabaikan. */
   hafalan?: HafalanVideo;
@@ -180,6 +188,8 @@ export interface EpisodeVideoProps {
   frameIntro?: number;
   frameOutro?: number;
 }
+
+export type ModeRekam = 'urut' | 'per-adegan';
 
 export interface MusikVideo {
   /** path di packages/video/public, misal musik/pembuka.mp3 */

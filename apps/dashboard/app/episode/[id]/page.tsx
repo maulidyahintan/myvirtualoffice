@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FORMAT_LABEL, getEpisode, loadConfig, paths, STATUS_SIBUK, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, type Episode } from '@kantor/shared';
 import {
+  hapusRekaman,
+  ubahModeRekam,
   mintaRevisi,
   pulihkan,
   renderVideo,
@@ -20,6 +22,181 @@ import { TombolTanyaAgen } from '@/components/TombolTanyaAgen';
 
 export const dynamic = 'force-dynamic';
 
+/** Pilih cara mengirim rekaman: berurutan (1 file / beberapa bagian) atau per adegan. */
+function PilihModeRekam({ ep }: { ep: Episode }) {
+  const mode = ep.modeRekam ?? 'urut';
+  const satuan = ep.ide.jenis === 'hafalan' ? 'ayat' : 'adegan';
+  const pilihan = [
+    {
+      mode: 'urut',
+      label: '📼 Berurutan',
+      ket: 'satu file, atau beberapa bagian (mis. per 2 menit)',
+    },
+    {
+      mode: 'per-adegan',
+      label: `🎬 Per ${satuan}`,
+      ket: `satu file untuk tiap ${satuan}, durasi ${satuan} ikut persis`,
+    },
+  ] as const;
+  return (
+    <div className="stack" style={{ gap: 8 }}>
+      <b className="kecil">Cara mengirim rekaman:</b>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {pilihan.map((p) => (
+          <form key={p.mode} action={ubahModeRekam} style={{ flex: '1 1 220px' }}>
+            <Id id={ep.id} />
+            <input type="hidden" name="mode" value={p.mode} />
+            <button type="submit" className={mode === p.mode ? '' : 'sekunder'} style={{ width: '100%', textAlign: 'left' }}>
+              {p.label}
+              <br />
+              <span style={{ fontWeight: 400, fontSize: 13 }}>{p.ket}</span>
+            </button>
+          </form>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Upload rekaman per adegan (hafalan: per ayat). Bisa juga dipakai untuk merekam ulang satu adegan saja. */
+function RekamanPerAdegan({ ep }: { ep: Episode }) {
+  const hafalan = ep.ide.jenis === 'hafalan';
+  const satuan = hafalan ? 'Ayat' : 'Adegan';
+  const ulang = ep.ide.hafalan?.ulang ?? 1;
+  const daftar = hafalan
+    ? (ep.hafalan?.ayat ?? []).map((a) => ({
+        judul: a.nomor === 0 ? 'Basmalah' : `Ayat ${a.nomor}${ulang > 1 ? ` (baca ${ulang}x, jeda ±1 detik)` : ''}`,
+        teks: a.latin,
+      }))
+    : (ep.adegan ?? []).map((a, i) => ({
+        judul: `Adegan ${i + 1}${a.jenis === 'pertanyaan' ? ' (jeda berpikir ±3 detik ditambahkan otomatis)' : ''}`,
+        teks: a.narasi,
+      }));
+  const per = ep.audioPerAdegan ?? [];
+  const sudah = daftar.filter((_, i) => per[i]).length;
+  return (
+    <div className="stack">
+      <p className="kecil muted" style={{ margin: 0 }}>
+        {sudah} dari {daftar.length} {satuan.toLowerCase()} sudah direkam. Upload satu per satu; bisa diganti kapan saja.
+      </p>
+      {daftar.map((d, i) => (
+        <div
+          key={i}
+          id={`adegan-${i + 1}`}
+          className="stack"
+          style={{
+            gap: 6,
+            padding: 10,
+            border: '1px solid var(--line)',
+            borderRadius: 10,
+          }}
+        >
+          <div className="kecil">
+            <b>
+              {per[i] ? '✅' : '⬜'} {d.judul}
+            </b>
+            <div className="muted" style={{ marginTop: 4 }}>
+              {d.teks}
+            </div>
+          </div>
+          {per[i] ? (
+            <audio
+              controls
+              preload="none"
+              src={`/api/audio/${ep.id}?adegan=${i}&v=${encodeURIComponent(per[i]!)}`}
+              style={{ width: '100%', height: 36 }}
+            />
+          ) : null}
+          <form
+            action={`/api/audio/${ep.id}`}
+            method="post"
+            encType="multipart/form-data"
+            style={{
+              display: 'flex',
+              gap: 8,
+              flexWrap: 'wrap',
+              alignItems: 'center',
+            }}
+          >
+            <input type="hidden" name="adegan" value={i} />
+            <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" required style={{ flex: '1 1 200px' }} />
+            <button type="submit" className="sekunder">
+              {per[i] ? 'Ganti' : 'Upload'}
+            </button>
+          </form>
+        </div>
+      ))}
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <form action={renderVideo}>
+          <Id id={ep.id} />
+          <button type="submit" disabled={sudah < daftar.length}>
+            🎬{' '}
+            {sudah < daftar.length ? `Render (kurang ${daftar.length - sudah} ${satuan.toLowerCase()})` : 'Semua lengkap, render sekarang'}
+          </button>
+        </form>
+        {sudah ? (
+          <form action={hapusRekaman}>
+            <Id id={ep.id} />
+            <button type="submit" className="bahaya">
+              🗑️ Hapus semua rekaman
+            </button>
+          </form>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/** Upload rekaman per bagian: kirim bagian demi bagian, lalu render setelah lengkap. */
+function RekamanBagian({ ep }: { ep: Episode }) {
+  const bagian = ep.bagianAudio ?? [];
+  return (
+    <div className="stack">
+      {bagian.length ? (
+        <div className="stack" style={{ gap: 8 }}>
+          <b className="kecil">Rekaman terkirim ({bagian.length} bagian):</b>
+          {bagian.map((b, i) => (
+            <div key={b} className="kecil">
+              Bagian {i + 1}
+              <audio controls preload="none" src={`/api/audio/${ep.id}?bagian=${i}`} style={{ width: '100%', height: 36 }} />
+            </div>
+          ))}
+        </div>
+      ) : null}
+      <form action={`/api/audio/${ep.id}`} method="post" encType="multipart/form-data" className="stack">
+        <input type="hidden" name="mode" value="lanjut" />
+        <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" multiple required />
+        <span className="kecil muted">
+          {bagian.length ? `File ini jadi bagian ${bagian.length + 1} dan seterusnya. ` : ''}
+          Boleh pilih beberapa file sekaligus; diurutkan menurut nama file (1, 2, 3…).
+        </span>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <button type="submit" name="render" value="1">
+            ⬆️ Upload & render
+          </button>
+          <button type="submit" name="render" value="0" className="sekunder">
+            ➕ Upload, masih ada bagian berikutnya
+          </button>
+        </div>
+      </form>
+      {bagian.length ? (
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <form action={renderVideo}>
+            <Id id={ep.id} />
+            <button type="submit">🎬 Sudah lengkap, render sekarang</button>
+          </form>
+          <form action={hapusRekaman}>
+            <Id id={ep.id} />
+            <button type="submit" className="bahaya">
+              🗑️ Hapus semua bagian
+            </button>
+          </form>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function ekorLog(id: string, baris = 40) {
   const f = path.join(paths.logs(), `${id}.log`);
   if (!fs.existsSync(f)) return '';
@@ -28,7 +205,9 @@ function ekorLog(id: string, baris = 40) {
 
 function besokJamTayang(jam: string) {
   const d = new Date(Date.now() + 86400_000);
-  const tgl = new Intl.DateTimeFormat('en-CA', { timeZone: loadConfig().zonaWaktu }).format(d);
+  const tgl = new Intl.DateTimeFormat('en-CA', {
+    timeZone: loadConfig().zonaWaktu,
+  }).format(d);
   return `${tgl}T${jam}`;
 }
 
@@ -130,7 +309,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
           {ep.ide.jenis === 'hafalan' ? (
             <ol className="kecil" style={{ margin: 0, paddingLeft: 18 }}>
               <li>
-                Rekam di ruangan sepi pakai HP, dalam <b>satu file</b>.
+                Rekam di ruangan sepi pakai HP, dalam satu file atau <b>beberapa bagian</b> (potong di jeda, bukan di tengah ayat).
               </li>
               {ep.hafalan?.ayat[0]?.nomor === 0 ? <li>Mulai dengan basmalah (sekali).</li> : null}
               <li>
@@ -151,16 +330,15 @@ function PanelAksi({ ep }: { ep: Episode }) {
             <ol className="kecil" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Rekam di ruangan sepi pakai HP (aplikasi perekam bawaan cukup).</li>
               <li>
-                Bacakan narasi adegan 1 sampai akhir <b>berurutan dalam satu file</b>, jeda ±1 detik antar adegan.
+                Bacakan narasi adegan 1 sampai akhir <b>berurutan</b>, jeda ±1 detik antar adegan. Boleh satu file atau beberapa bagian
+                (mis. per 2 menit, potong di jeda antar kalimat).
               </li>
               <li>Untuk adegan pertanyaan, beri jeda ±3 detik setelah bertanya.</li>
               <li>Upload file (mp3, m4a, wav). Video otomatis dirender menyesuaikan durasi suaramu.</li>
             </ol>
           )}
-          <form action={`/api/audio/${ep.id}`} method="post" encType="multipart/form-data" className="stack">
-            <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" required />
-            <button type="submit">⬆️ Upload & render</button>
-          </form>
+          <PilihModeRekam ep={ep} />
+          {ep.modeRekam === 'per-adegan' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
           <form action={renderVideo}>
             <Id id={ep.id} />
             <button type="submit" className="sekunder">
@@ -211,12 +389,20 @@ function PanelAksi({ ep }: { ep: Episode }) {
           ) : null}
           <details>
             <summary>Rekam ulang / render ulang</summary>
-            <form action={`/api/audio/${ep.id}`} method="post" encType="multipart/form-data" className="stack" style={{ marginTop: 10 }}>
-              <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" required />
-              <button type="submit" className="sekunder">
-                ⬆️ Upload rekaman baru
-              </button>
-            </form>
+            {ep.modeRekam === 'per-adegan' ? (
+              <div style={{ marginTop: 10 }}>
+                <RekamanPerAdegan ep={ep} />
+              </div>
+            ) : (
+              <form action={`/api/audio/${ep.id}`} method="post" encType="multipart/form-data" className="stack" style={{ marginTop: 10 }}>
+                <input type="hidden" name="mode" value="ganti" />
+                <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" multiple required />
+                <span className="kecil muted">Boleh pilih beberapa file sekaligus; diurutkan menurut nama file (1, 2, 3…).</span>
+                <button type="submit" className="sekunder">
+                  ⬆️ Upload rekaman baru
+                </button>
+              </form>
+            )}
           </details>
           <FormTolak id={ep.id} />
         </div>
@@ -443,8 +629,12 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
                 .reverse()
                 .map((l, i) => (
                   <li key={i}>
-                    <span className="muted">{new Date(l.waktu).toLocaleString('id-ID', { timeZone: cfg.zonaWaktu })}</span> ·{' '}
-                    <b>{l.oleh}</b>: {l.pesan}
+                    <span className="muted">
+                      {new Date(l.waktu).toLocaleString('id-ID', {
+                        timeZone: cfg.zonaWaktu,
+                      })}
+                    </span>{' '}
+                    · <b>{l.oleh}</b>: {l.pesan}
                   </li>
                 ))}
             </ul>

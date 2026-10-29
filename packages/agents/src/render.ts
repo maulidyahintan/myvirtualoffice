@@ -79,6 +79,131 @@ export async function deteksiSegmen(fileAudio: string, jumlahSegmen: number): Pr
   return [0, ...batas];
 }
 
+/** Jeda hening yang disisipkan setelah tiap rekaman per adegan, supaya adegan tidak terasa terburu-buru. */
+const JEDA_PER_ADEGAN = 0.6;
+
+/** Lama audio (detik). */
+async function durasiAudio(lokasi: string): Promise<number> {
+  const m = (await ffmpeg(['-hide_banner', '-i', lokasi])).match(/Duration: (\d+):(\d+):([\d.]+)/);
+  return m ? Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3]) : 0;
+}
+
+/** Lama audio (detik) dari path relatif ke packages/video/public. */
+function durasiFile(rel: string): Promise<number> {
+  return durasiAudio(path.join(paths.videoPkg(), 'public', rel));
+}
+
+/**
+ * Potongan rekaman yang berisi suara: hening di awal (sisakan 0,2 dtk) & akhir
+ * (sisakan 0,4 dtk, supaya ujung kata yang lirih tidak terpotong) dibuang. Kembalikan filter atrim, atau undefined kalau tidak perlu.
+ */
+async function filterRapikan(lokasi: string): Promise<string | undefined> {
+  const durasi = await durasiAudio(lokasi);
+  const out = await ffmpeg(['-hide_banner', '-i', lokasi, '-af', 'silencedetect=noise=-50dB:d=0.3', '-f', 'null', '-']);
+  const hening: { mulai: number; akhir: number }[] = [];
+  for (const m of out.matchAll(/silence_start: ([\d.]+)|silence_end: ([\d.]+)/g)) {
+    if (m[1] !== undefined) hening.push({ mulai: Number(m[1]), akhir: durasi });
+    else if (hening.length) hening[hening.length - 1].akhir = Number(m[2]);
+  }
+  const awal = hening[0] && hening[0].mulai < 0.05 ? hening[0].akhir : 0;
+  const ujung = hening.at(-1);
+  const akhir = ujung && ujung.akhir > durasi - 0.05 && ujung.mulai > awal ? ujung.mulai : durasi;
+  const dari = Math.max(0, awal - 0.2);
+  const sampai = Math.min(durasi, akhir + 0.4);
+  if (dari < 0.05 && sampai > durasi - 0.05) return undefined;
+  return `atrim=start=${dari.toFixed(3)}:end=${sampai.toFixed(3)},asetpts=PTS-STARTPTS`;
+}
+
+/**
+ * Gabungkan beberapa rekaman jadi satu file wav, berurutan. Tiap file diseragamkan dulu
+ * (bisa beda HP/aplikasi), opsional dirapikan heningnya, lalu diberi jeda hening setelahnya.
+ * Kembalikan file hasil, detik mulai & lama tiap rekaman (setelah dirapikan).
+ */
+export async function gabungAudio(
+  id: string,
+  files: string[],
+  opsi: { jeda?: number[]; rapikan?: boolean } = {},
+  onLine?: (s: string) => void,
+): Promise<{ file: string; mulai: number[]; durasi: number[]; olahan: string[] }> {
+  const pub = path.join(paths.videoPkg(), 'public');
+  for (const f of files) if (!fs.existsSync(path.join(pub, f))) throw new Error(`Rekaman ${f} tidak ditemukan`);
+
+  const olahan = files.map((_, i) => `audio/${id}-olah-${i + 1}.wav`);
+  for (const [i, f] of files.entries()) {
+    const sumber = path.join(pub, f);
+    const potong = opsi.rapikan ? await filterRapikan(sumber) : undefined;
+    const filter = [potong, 'aresample=48000,aformat=sample_fmts=s16:channel_layouts=stereo'].filter(Boolean).join(',');
+    const out = await ffmpeg(['-hide_banner', '-y', '-i', sumber, '-af', filter, path.join(pub, olahan[i])]);
+    if (!fs.existsSync(path.join(pub, olahan[i]))) throw new Error(`Gagal mengolah rekaman ${f}:\n${out.slice(-600)}`);
+  }
+  const durasi = await Promise.all(olahan.map(durasiFile));
+  const jeda = files.map((_, i) => opsi.jeda?.[i] ?? 0);
+  const mulai = durasi.map((_, i) => durasi.slice(0, i).reduce((s, d, k) => s + d + jeda[k], 0));
+
+  const hasil = `audio/${id}-gabung.wav`;
+  fs.rmSync(path.join(pub, hasil), { force: true });
+  const beriJeda = olahan.map((_, i) => `[${i}:a]${jeda[i] ? `apad=pad_dur=${jeda[i]}` : 'anull'}[a${i}]`).join(';');
+  const sambung = `${olahan.map((_, i) => `[a${i}]`).join('')}concat=n=${olahan.length}:v=0:a=1[out]`;
+  const out = await ffmpeg([
+    '-hide_banner',
+    '-y',
+    ...olahan.flatMap((f) => ['-i', path.join(pub, f)]),
+    '-filter_complex',
+    `${beriJeda};${sambung}`,
+    '-map',
+    '[out]',
+    path.join(pub, hasil),
+  ]);
+  if (!fs.existsSync(path.join(pub, hasil))) throw new Error(`Gagal menggabungkan rekaman:\n${out.slice(-600)}`);
+  onLine?.(`${files.length} rekaman digabung`);
+  return { file: hasil, mulai, durasi, olahan };
+}
+
+function hapusOlahan(olahan: string[]) {
+  for (const f of olahan) fs.rmSync(path.join(paths.videoPkg(), 'public', f), { force: true });
+}
+
+/** Jeda berpikir untuk anak setelah adegan pertanyaan (rekaman per adegan tidak perlu menunggu). */
+const JEDA_PERTANYAAN = 3;
+
+/** Rekaman per adegan/ayat → satu file + detik mulai tiap adegan (hafalan: tiap bacaan). */
+async function siapkanAudioPerAdegan(ep: Episode, onLine?: (s: string) => void) {
+  const hafal = ep.ide.jenis === 'hafalan' ? ep.hafalan : undefined;
+  const jumlah = hafal ? hafal.ayat.length : (ep.adegan?.length ?? 0);
+  const per = ep.audioPerAdegan ?? [];
+  const kosong = Array.from({ length: jumlah }, (_, i) => i).filter((i) => !per[i]);
+  if (kosong.length) {
+    throw new Error(`Rekaman ${hafal ? 'ayat' : 'adegan'} ke-${kosong.map((i) => i + 1).join(', ')} belum diupload`);
+  }
+  const files = per.slice(0, jumlah) as string[];
+  const jeda = files.map((_, i) => JEDA_PER_ADEGAN + (!hafal && ep.adegan?.[i]?.jenis === 'pertanyaan' ? JEDA_PERTANYAAN : 0));
+  const { file, mulai, durasi, olahan } = await gabungAudio(ep.id, files, { jeda, rapikan: true }, onLine);
+  ep.fileAudio = file;
+
+  let mulaiSegmen: number[] | undefined;
+  if (hafal && !hafal.mulaiSegmen) {
+    // tiap file ayat bisa berisi beberapa bacaan ulang → cari jedanya di dalam file itu
+    const segmen = segmenHafalan(hafal.ayat, ep.ide.hafalan?.ulang ?? 1);
+    mulaiSegmen = [];
+    for (const [i, f] of olahan.entries()) {
+      const n = segmen.filter((s) => s.ayat === i).length;
+      // jeda tidak jelas → bacaan dibagi rata dalam file ayat itu
+      const dalam =
+        n > 1
+          ? ((await deteksiSegmen(path.join(paths.videoPkg(), 'public', f), n)) ?? Array.from({ length: n }, (_, k) => (k * durasi[i]) / n))
+          : [0];
+      mulaiSegmen.push(...dalam.map((t) => mulai[i] + t));
+    }
+    hafal.mulaiSegmen = mulaiSegmen;
+  }
+  hapusOlahan(olahan);
+  updateEpisode(ep.id, (e) => {
+    e.fileAudio = file;
+    if (mulaiSegmen && e.hafalan) e.hafalan.mulaiSegmen = mulaiSegmen;
+  });
+  return hafal ? undefined : mulai;
+}
+
 /** Musik pembuka/penutup dari pengaturan; file yang hilang dilewati. */
 function musikVideo(cfg: KantorConfig, format: Format): MusikVideo | undefined {
   const m = cfg.musik;
@@ -92,6 +217,18 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
   if (!ep.adegan?.length) throw new Error('Episode belum punya adegan dari Sutradara');
   const cfg = loadConfig();
   const dir = ensureDir(paths.renders());
+
+  let mulaiAdegan: number[] | undefined;
+  if (ep.modeRekam === 'per-adegan') {
+    mulaiAdegan = await siapkanAudioPerAdegan(ep, onLine);
+  } else if ((ep.bagianAudio?.length ?? 0) > 1) {
+    const { file, olahan } = await gabungAudio(ep.id, ep.bagianAudio!, {}, onLine);
+    hapusOlahan(olahan);
+    ep.fileAudio = file;
+    updateEpisode(ep.id, (e) => {
+      e.fileAudio = file;
+    });
+  }
 
   if (ep.fileAudio && !fs.existsSync(path.join(paths.videoPkg(), 'public', ep.fileAudio))) {
     throw new Error(`File audio ${ep.fileAudio} tidak ditemukan`);
@@ -118,6 +255,7 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
     namaSeri: cfg.seri.find((s) => s.id === ep.ide.seri)?.nama ?? '',
     adegan: ep.adegan,
     fileAudio: ep.fileAudio,
+    mulaiAdegan,
     format: ep.ide.format ?? 'biasa',
     hafalan,
     musik: musikVideo(cfg, ep.ide.format ?? 'biasa'),

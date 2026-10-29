@@ -134,8 +134,13 @@ three.js (React Three Fiber), jadi tanpa aset berbayar. Ganti nama, warna, atau 
 2. Buka ide → **Tugaskan Penulis + Reviewer**.
 3. Baca naskah. Cek **setiap dalil** (nomor ayat/hadits, teks Arab). Setujui, minta
    revisi, atau edit JSON-nya langsung.
-4. Sutradara & Channel Manager bekerja → **rekam suaramu** (satu file, berurutan) → upload.
-   Video otomatis dirender mengikuti panjang rekamanmu.
+4. Sutradara & Channel Manager bekerja → **rekam suaramu** (berurutan) → upload.
+   Boleh satu file, atau beberapa bagian (mis. 6 menit = 3 file @2 menit): kirim bagian demi
+   bagian dengan **➕ Upload, masih ada bagian berikutnya**, lalu **Render sekarang**. Bagian
+   digabung otomatis sesuai urutan. Atau pilih **🎬 Per adegan** (hafalan: per ayat): satu file
+   untuk tiap naskah adegan, durasi tiap adegan di video ikut persis panjang rekamannya, dan
+   satu adegan bisa direkam ulang tanpa mengulang semuanya. Video dirender mengikuti panjang
+   rekamanmu.
 5. Tonton → **Setujui & jadwalkan**. Selesai.
 
 Semua juga bisa lewat terminal:

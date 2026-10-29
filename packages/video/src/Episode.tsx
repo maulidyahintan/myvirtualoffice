@@ -291,7 +291,7 @@ export const hitungMetadataEpisode: CalculateMetadataFunction<EpisodeVideoProps>
   const durasiAudio = props.fileAudio ? await getAudioDurationInSeconds(staticFile(props.fileAudio)) : undefined;
   const frameAdegan = props.hafalan
     ? hitungFrameHafalan(props.hafalan.ayat, props.hafalan.ulang, durasiAudio, props.hafalan.mulaiSegmen)
-    : hitungFrameAdegan(props.adegan, durasiAudio);
+    : hitungFrameAdegan(props.adegan, durasiAudio, props.mulaiAdegan);
   const format = props.format ?? 'biasa';
   const detik = async (m?: string) => (m ? getAudioDurationInSeconds(staticFile(m)) : undefined);
   const { intro: frameIntro, outro: frameOutro } = frameIntroOutro(format, await detik(props.musik?.pembuka), await detik(props.musik?.penutup));

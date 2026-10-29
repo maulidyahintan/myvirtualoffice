@@ -17,6 +17,7 @@ import {
   USIA,
   type PilihanFormat,
   type JenisMusik,
+  type ModeRekam,
   type Naskah,
   type Usia,
 } from '@kantor/shared';
@@ -239,4 +240,30 @@ export async function hapusMusik(form: FormData) {
   delete cfg.musik[jenis];
   saveConfig(cfg);
   revalidatePath('/pengaturan');
+}
+
+export async function ubahModeRekam(form: FormData) {
+  const id = teks(form, 'id');
+  const mode: ModeRekam = teks(form, 'mode') === 'per-adegan' ? 'per-adegan' : 'urut';
+  updateEpisode(id, (e) => {
+    e.modeRekam = mode;
+    // file gabungan lama tidak berlaku lagi; dibuat ulang saat render
+    e.fileAudio = mode === 'urut' && e.bagianAudio?.length === 1 ? e.bagianAudio[0] : undefined;
+    if (e.hafalan) e.hafalan.mulaiSegmen = undefined;
+  });
+  segarkan(id);
+}
+
+export async function hapusRekaman(form: FormData) {
+  const id = teks(form, 'id');
+  const ep = getEpisode(id);
+  const pub = path.join(paths.videoPkg(), 'public');
+  for (const f of [...(ep.bagianAudio ?? []), ...(ep.audioPerAdegan ?? []), ep.fileAudio]) if (f) fs.rmSync(path.join(pub, f), { force: true });
+  updateEpisode(id, (e) => {
+    e.bagianAudio = undefined;
+    e.audioPerAdegan = undefined;
+    e.fileAudio = undefined;
+    if (e.hafalan) e.hafalan.mulaiSegmen = undefined;
+  });
+  segarkan(id);
 }

@@ -13,14 +13,27 @@ function bobot(a: Adegan): number {
   return Math.max(4, hitungKata(a.narasi));
 }
 
+/** Frame tiap potongan dari detik mulai masing-masing di rekaman (+1 detik napas di akhir). */
+function frameDariMulai(mulai: number[], durasiAudioDetik: number): number[] {
+  const batas = [...mulai.slice(1), durasiAudioDetik + 1];
+  let sebelum = 0;
+  return batas.map((t) => {
+    const f = Math.max(FPS, Math.round(t * FPS) - sebelum);
+    sebelum += f;
+    return f;
+  });
+}
+
 /**
  * Hitung durasi (frame) setiap adegan.
  * - Tanpa audio: perkiraan dari jumlah kata.
+ * - Rekaman per adegan (`mulaiAdegan`): tiap adegan persis sepanjang rekamannya.
  * - Dengan audio: durasi audio dibagi proporsional sesuai panjang narasi,
  *   jadi teks di layar kurang lebih ikut suara kamu.
  */
-export function hitungFrameAdegan(adegan: Adegan[], durasiAudioDetik?: number): number[] {
+export function hitungFrameAdegan(adegan: Adegan[], durasiAudioDetik?: number, mulaiAdegan?: number[]): number[] {
   if (adegan.length === 0) return [];
+  if (durasiAudioDetik && mulaiAdegan?.length === adegan.length) return frameDariMulai(mulaiAdegan, durasiAudioDetik);
   if (durasiAudioDetik && durasiAudioDetik > 0) {
     const total = adegan.reduce((s, a) => s + bobot(a), 0);
     const totalFrame = Math.ceil(durasiAudioDetik * FPS) + FPS; // +1 detik napas di akhir
@@ -72,16 +85,7 @@ export function hitungFrameHafalan(
 ): number[] {
   const segmen = segmenHafalan(ayat, ulang);
   if (segmen.length === 0) return [];
-  if (durasiAudioDetik && mulaiSegmen && mulaiSegmen.length === segmen.length) {
-    const batas = [...mulaiSegmen.slice(1), durasiAudioDetik + 1];
-    let sebelum = 0;
-    return batas.map((t) => {
-      const akhir = Math.round(t * FPS);
-      const f = Math.max(FPS, akhir - sebelum);
-      sebelum += f;
-      return f;
-    });
-  }
+  if (durasiAudioDetik && mulaiSegmen && mulaiSegmen.length === segmen.length) return frameDariMulai(mulaiSegmen, durasiAudioDetik);
   const panjang = segmen.map((s) => Math.max(8, ayat[s.ayat].arab.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\s]/g, '').length));
   if (durasiAudioDetik && durasiAudioDetik > 0) {
     const total = panjang.reduce((a, b) => a + b, 0);
