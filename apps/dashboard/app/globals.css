@@ -195,12 +195,12 @@ details summary { cursor: pointer; font-weight: 700; color: var(--hijau); }
 .chat-saran { text-align: left; }
 .chat-tulis { border-top: 1px solid var(--line); padding: 10px; display: flex; flex-direction: column; gap: 6px; }
 .chat-tulis textarea { flex: 1; min-height: 0; resize: none; }
-.gelembung { max-width: 85%; padding: 8px 12px; border-radius: 14px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
-.gelembung.saya { align-self: flex-end; background: var(--hijau); color: #fff; border-bottom-right-radius: 4px; }
-.gelembung.saya .muted { color: rgba(255, 255, 255, 0.75); }
-.gelembung.agen { align-self: flex-start; background: var(--emas-muda); border-bottom-left-radius: 4px; }
-.gelembung-teks { white-space: pre-wrap; line-height: 1.45; }
-.gelembung.mengetik { color: var(--muted); font-style: italic; }
+.chat-pesan { max-width: 85%; padding: 8px 12px; border-radius: 14px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
+.chat-pesan.saya { align-self: flex-end; background: var(--hijau); color: #fff; border-bottom-right-radius: 4px; }
+.chat-pesan.saya .muted { color: rgba(255, 255, 255, 0.75); }
+.chat-pesan.agen { align-self: flex-start; background: var(--emas-muda); border-bottom-left-radius: 4px; }
+.chat-pesan-teks { white-space: pre-wrap; line-height: 1.45; }
+.chat-pesan.mengetik { color: var(--muted); font-style: italic; }
 @media (max-width: 760px) {
   .chat-mengambang { right: 8px; left: 8px; flex-direction: column-reverse; align-items: stretch; }
   .chat-daftar-mengambang, .chat-jendela { width: auto; }

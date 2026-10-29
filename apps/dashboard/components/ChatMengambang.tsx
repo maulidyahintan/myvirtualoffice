@@ -166,14 +166,14 @@ export function ChatMengambang() {
                   </div>
                 ) : null}
                 {pesan.map((p, i) => (
-                  <div key={i} className={`gelembung ${p.dari}`}>
+                  <div key={i} className={`chat-pesan ${p.dari}`}>
                     {p.episodeId && (i === 0 || pesan[i - 1].episodeId !== p.episodeId) ? (
                       <div className="kecil muted">📎 {p.judulEpisode ?? 'episode'}</div>
                     ) : null}
-                    <div className="gelembung-teks">{p.teks}</div>
+                    <div className="chat-pesan-teks">{p.teks}</div>
                   </div>
                 ))}
-                {mengetik ? <div className="gelembung agen mengetik">mengetik…</div> : null}
+                {mengetik ? <div className="chat-pesan agen mengetik">mengetik…</div> : null}
               </div>
               <form
                 className="chat-tulis"
