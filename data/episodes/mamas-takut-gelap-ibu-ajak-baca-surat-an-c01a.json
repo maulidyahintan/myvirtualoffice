@@ -132,6 +132,11 @@
       "waktu": "2026-10-29T13:06:06.770Z",
       "oleh": "pemilik",
       "pesan": "Rekaman adegan 11 diupload"
+    },
+    {
+      "waktu": "2026-10-29T13:11:29.000Z",
+      "oleh": "sistem",
+      "pesan": "Efek suara karakter dinyalakan lagi, nada episode dikembalikan ke asli"
     }
   ],
   "catatanStatus": "Video siap ditonton & disetujui",
@@ -614,7 +619,5 @@
     null,
     null,
     null
-  ],
-  "efekKarakter": false,
-  "nadaSuara": 4
+  ]
 }

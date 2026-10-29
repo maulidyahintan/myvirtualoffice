@@ -320,12 +320,15 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
     hafalan = { namaSurat: ep.hafalan.namaSurat, artiSurat: ep.hafalan.artiSurat, ayat: ep.hafalan.ayat, ulang, mulaiSegmen };
   }
 
+  // efek karakter sudah mengatur nada tiap pembicara → nada episode tidak ditumpuk lagi
+  const pakaiEfek = ep.modeRekam === 'per-adegan' && ep.ide.jenis !== 'hafalan' && ep.efekKarakter !== false;
+  const nada = pakaiEfek ? 0 : (ep.nadaSuara ?? 0);
   const props: EpisodeVideoProps = {
     namaChannel: cfg.namaChannel,
     judul: ep.naskah?.judul ?? ep.ide.judul,
     namaSeri: cfg.seri.find((s) => s.id === ep.ide.seri)?.nama ?? '',
     adegan: ep.adegan,
-    fileAudio: ep.fileAudio && ep.nadaSuara ? await geserNada(ep.id, ep.fileAudio, ep.nadaSuara, onLine) : ep.fileAudio,
+    fileAudio: ep.fileAudio && nada ? await geserNada(ep.id, ep.fileAudio, nada, onLine) : ep.fileAudio,
     mulaiAdegan,
     format: ep.ide.format ?? 'biasa',
     hafalan,

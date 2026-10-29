@@ -98,6 +98,7 @@ export function StudioRekam({
   const timerRef = useRef(0);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
+  const olahanRef = useRef('');
 
   const b = bagian[aktif];
   const t = take[aktif];
@@ -282,6 +283,27 @@ export function StudioRekam({
     setStatus('putar');
   }
 
+  /** Rekaman baru: kalau ada efek/nada, olah dulu di server supaya terdengar seperti hasil render. */
+  async function dengarBaru(tk: Take) {
+    const pakaiEfek = efek && Boolean(b.suara);
+    if (!pakaiEfek && !nada) return dengar(tk.url, tk.offset);
+    setPesan('Menerapkan efek suara…');
+    const fd = new FormData();
+    fd.append('audio', tk.blob, `pratinjau${tk.ext}`);
+    fd.append('adegan', String(aktif));
+    fd.append('offset', tk.offset.toFixed(3));
+    fd.append('efek', pakaiEfek ? '1' : '0');
+    fd.append('nada', String(nada));
+    const res = await fetch(`/api/audio/${id}?pratinjau=1`, { method: 'POST', body: fd });
+    if (!res.ok) {
+      setPesan('Gagal menerapkan efek; diputar suara asli.');
+      return dengar(tk.url, tk.offset);
+    }
+    if (olahanRef.current) URL.revokeObjectURL(olahanRef.current);
+    olahanRef.current = URL.createObjectURL(await res.blob());
+    return dengar(olahanRef.current);
+  }
+
   function stopDengar() {
     hentikan();
     setStatus('siap');
@@ -422,8 +444,8 @@ export function StudioRekam({
             ) : (
               <>
                 {t ? (
-                  <button type="button" className="sekunder" onClick={() => void dengar(t.url, t.offset)} disabled={sibuk}>
-                    ▶️ Dengar rekaman baru
+                  <button type="button" className="sekunder" onClick={() => void dengarBaru(t)} disabled={sibuk}>
+                    ▶️ Dengar rekaman baru{efek && b.suara ? ' (dengan efek)' : nada ? ' (dengan nada)' : ''}
                   </button>
                 ) : null}
                 {tersimpan[aktif] ? (
@@ -480,15 +502,20 @@ export function StudioRekam({
               Pakai efek suara per pembicara di episode ini
             </label>
             <div className="kecil muted">
-              Narator memakai suara asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria. Efek diterapkan saat render; dengarkan
-              lewat &quot;Dengar yang tersimpan&quot;. Atur kekuatan efek tiap karakter di halaman <a href="/pengaturan">Pengaturan</a>.
+              Narator memakai suara asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria. Efek diterapkan saat render dan
+              sudah terdengar lewat tombol &quot;Dengar…&quot;. Atur kekuatan efek tiap karakter di halaman <a href="/pengaturan">Pengaturan</a>.
             </div>
           </div>
         ) : null}
 
         <div className="panel stack" style={{ gap: 8 }}>
           <b>🎚️ Nada suara</b>
-          <label className="kecil">
+          {efekAwal !== undefined && efek ? (
+            <div className="kecil muted">
+              Tidak dipakai selama efek suara karakter aktif: nada tiap karakter diatur di <a href="/pengaturan">Pengaturan</a>.
+            </div>
+          ) : null}
+          <label className="kecil" style={efekAwal !== undefined && efek ? { opacity: 0.5 } : undefined}>
             {nada === 0 ? 'Asli' : `${nada > 0 ? '+' : ''}${nada} semiton (${nada > 0 ? 'lebih tinggi' : 'lebih rendah'})`}
             <input
               type="range"
@@ -497,12 +524,13 @@ export function StudioRekam({
               step={0.5}
               value={nada}
               onChange={(e) => setNada(Number(e.target.value))}
+              disabled={efekAwal !== undefined && efek}
               style={{ width: '100%' }}
             />
           </label>
           <div className="kecil muted">
             Berlaku untuk seluruh rekaman episode ini saat render; kecepatan bicara tidak berubah. Dengarkan efeknya lewat tombol
-            &quot;Dengar yang tersimpan&quot;. Geser tipis saja (±1–2) supaya suara tetap alami dan bacaan tetap jelas.
+            &quot;Dengar…&quot;. Geser tipis saja (±1–2) supaya suara tetap alami dan bacaan tetap jelas.
           </div>
         </div>
       </div>
