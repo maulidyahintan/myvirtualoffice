@@ -1,0 +1,23 @@
+{
+  "name": "@kantor/video",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:contoh": "remotion render src/index.ts Episode out/contoh.mp4",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@kantor/shared": "*",
+    "@remotion/cli": "4.0.539",
+    "@remotion/fonts": "4.0.539",
+    "@remotion/media-utils": "4.0.539",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0"
+  }
+}

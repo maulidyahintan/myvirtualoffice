@@ -1,0 +1,26 @@
+{
+  "name": "kantor-ai-islami",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Kantor AI untuk channel YouTube cerita islami anak (Claude Agent SDK + Next.js + Remotion)",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @kantor/dashboard",
+    "kantor": "node --import tsx packages/agents/src/cli.ts",
+    "auth:youtube": "node --import tsx packages/agents/src/youtube/auth.ts",
+    "studio": "npm run studio -w @kantor/video",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,13 @@
+node_modules
+.env
+.next
+out
+dist
+*.tsbuildinfo
+
+# data produksi (naskah tetap boleh di-commit kalau mau, rahasia jangan)
+data/secrets/
+data/logs/
+data/renders/
+packages/video/public/audio/*
+!packages/video/public/audio/.gitkeep

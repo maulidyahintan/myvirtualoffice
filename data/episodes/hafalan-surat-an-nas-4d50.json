@@ -1,0 +1,369 @@
+{
+  "id": "hafalan-surat-an-nas-4d50",
+  "dibuat": "2026-10-29T02:20:03.145Z",
+  "diubah": "2026-10-29T02:20:33.227Z",
+  "status": "needs_audio",
+  "ide": {
+    "judul": "Hafalan Surat An-Nas",
+    "seri": "hafalan",
+    "usia": "1-10",
+    "pesanMoral": "Menghafal Surat An-Nas (Manusia)",
+    "format": "short",
+    "jenis": "hafalan",
+    "hafalan": {
+      "surat": 114,
+      "namaSurat": "An-Nas",
+      "ayatDari": 1,
+      "ayatSampai": 6,
+      "ulang": 1,
+      "basmalah": true
+    },
+    "alasan": "Ide hafalan dari pemilik channel",
+    "referensi": []
+  },
+  "jumlahRevisi": 0,
+  "log": [
+    {
+      "waktu": "2026-10-29T02:20:03.145Z",
+      "oleh": "pemilik",
+      "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-29T02:20:03.147Z",
+      "oleh": "pemilik",
+      "pesan": "Mengambil teks surat"
+    },
+    {
+      "waktu": "2026-10-29T02:20:03.992Z",
+      "oleh": "orchestrator",
+      "pesan": "Mengambil teks Surat An-Nas dari equran.id"
+    },
+    {
+      "waktu": "2026-10-29T02:20:04.157Z",
+      "oleh": "orchestrator",
+      "pesan": "Teks surat siap dicek pemilik channel"
+    },
+    {
+      "waktu": "2026-10-29T02:20:21.284Z",
+      "oleh": "pemilik",
+      "pesan": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "waktu": "2026-10-29T02:20:21.895Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih latar sesuai arti ayat & menyusun metadata"
+    },
+    {
+      "waktu": "2026-10-29T02:20:25.337Z",
+      "oleh": "sutradara",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-29T02:20:32.675Z",
+      "oleh": "channel-manager",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-29T02:20:33.227Z",
+      "oleh": "orchestrator",
+      "pesan": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    }
+  ],
+  "catatanStatus": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan",
+  "hafalan": {
+    "namaSurat": "An-Nas",
+    "artiSurat": "Manusia",
+    "ayat": [
+      {
+        "nomor": 0,
+        "arab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "arti": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya"
+        ]
+      },
+      {
+        "nomor": 1,
+        "arab": "قُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ",
+        "latin": "Qul a‘ūżu birabbin-nās(i).",
+        "arti": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan manusia,",
+        "latar": "langit-malam",
+        "suasana": [
+          "cahaya",
+          "bintang"
+        ]
+      },
+      {
+        "nomor": 2,
+        "arab": "مَلِكِ النَّاسِۙ",
+        "latin": "Malikin-nās(i).",
+        "arti": "raja manusia,",
+        "latar": "langit-malam",
+        "suasana": [
+          "cahaya",
+          "bintang"
+        ]
+      },
+      {
+        "nomor": 3,
+        "arab": "اِلٰهِ النَّاسِۙ",
+        "latin": "Ilāhin-nās(i).",
+        "arti": "sembahan manusia",
+        "latar": "masjid",
+        "suasana": [
+          "cahaya"
+        ]
+      },
+      {
+        "nomor": 4,
+        "arab": "مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِۖ",
+        "latin": "Min syarril-waswāsil-khannās(i).",
+        "arti": "dari kejahatan (setan) pembisik yang bersembunyi",
+        "latar": "langit-malam",
+        "suasana": []
+      },
+      {
+        "nomor": 5,
+        "arab": "الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِۙ",
+        "latin": "Allażī yuwaswisu fī ṣudūrin-nās(i).",
+        "arti": "yang membisikkan (kejahatan) ke dalam dada manusia,",
+        "latar": "langit-malam",
+        "suasana": []
+      },
+      {
+        "nomor": 6,
+        "arab": "مِنَ الْجِنَّةِ وَالنَّاسِ ࣖ ",
+        "latin": "Minal jinnati wan-nās(i).",
+        "arti": "dari (golongan) jin dan manusia.”",
+        "latar": "kamar-malam",
+        "suasana": [
+          "bintang"
+        ]
+      }
+    ]
+  },
+  "naskah": {
+    "judul": "Hafalan Surat An-Nas",
+    "ringkasan": "Surat ke-114 (Manusia), 6 ayat. Tiap ayat dibaca 1x.",
+    "adegan": [
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "petunjukVisual": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Qul a‘ūżu birabbin-nās(i).",
+        "petunjukVisual": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan manusia,"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Malikin-nās(i).",
+        "petunjukVisual": "raja manusia,"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Ilāhin-nās(i).",
+        "petunjukVisual": "sembahan manusia"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Min syarril-waswāsil-khannās(i).",
+        "petunjukVisual": "dari kejahatan (setan) pembisik yang bersembunyi"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Allażī yuwaswisu fī ṣudūrin-nās(i).",
+        "petunjukVisual": "yang membisikkan (kejahatan) ke dalam dada manusia,"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Minal jinnati wan-nās(i).",
+        "petunjukVisual": "dari (golongan) jin dan manusia.”"
+      }
+    ],
+    "dalil": [
+      {
+        "jenis": "ayat",
+        "teksArab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "terjemah": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "sumber": "Basmalah"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "قُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ",
+        "latin": "Qul a‘ūżu birabbin-nās(i).",
+        "terjemah": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan manusia,",
+        "sumber": "QS. An-Nas: 1"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "مَلِكِ النَّاسِۙ",
+        "latin": "Malikin-nās(i).",
+        "terjemah": "raja manusia,",
+        "sumber": "QS. An-Nas: 2"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "اِلٰهِ النَّاسِۙ",
+        "latin": "Ilāhin-nās(i).",
+        "terjemah": "sembahan manusia",
+        "sumber": "QS. An-Nas: 3"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِۖ",
+        "latin": "Min syarril-waswāsil-khannās(i).",
+        "terjemah": "dari kejahatan (setan) pembisik yang bersembunyi",
+        "sumber": "QS. An-Nas: 4"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِۙ",
+        "latin": "Allażī yuwaswisu fī ṣudūrin-nās(i).",
+        "terjemah": "yang membisikkan (kejahatan) ke dalam dada manusia,",
+        "sumber": "QS. An-Nas: 5"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "مِنَ الْجِنَّةِ وَالنَّاسِ ࣖ ",
+        "latin": "Minal jinnati wan-nās(i).",
+        "terjemah": "dari (golongan) jin dan manusia.”",
+        "sumber": "QS. An-Nas: 6"
+      }
+    ]
+  },
+  "review": {
+    "keputusan": "lolos",
+    "skor": 10,
+    "catatan": [
+      "Teks diambil otomatis dari equran.id (Kemenag RI), tidak ditulis AI."
+    ],
+    "cekManusia": [
+      "Cocokkan teks Arab & harakat dengan mushaf kamu.",
+      "Pastikan rentang ayat sesuai yang ingin dihafalkan."
+    ]
+  },
+  "adegan": [
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Bismillāhir-raḥmānir-raḥīm(i).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "arti": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Qul a‘ūżu birabbin-nās(i).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "قُلْ اَعُوْذُ بِرَبِّ النَّاسِۙ",
+        "latin": "Qul a‘ūżu birabbin-nās(i).",
+        "arti": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan manusia,"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Malikin-nās(i).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "مَلِكِ النَّاسِۙ",
+        "latin": "Malikin-nās(i).",
+        "arti": "raja manusia,"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Ilāhin-nās(i).",
+      "latar": "masjid",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "اِلٰهِ النَّاسِۙ",
+        "latin": "Ilāhin-nās(i).",
+        "arti": "sembahan manusia"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Min syarril-waswāsil-khannās(i).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِۖ",
+        "latin": "Min syarril-waswāsil-khannās(i).",
+        "arti": "dari kejahatan (setan) pembisik yang bersembunyi"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Allażī yuwaswisu fī ṣudūrin-nās(i).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِۙ",
+        "latin": "Allażī yuwaswisu fī ṣudūrin-nās(i).",
+        "arti": "yang membisikkan (kejahatan) ke dalam dada manusia,"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Minal jinnati wan-nās(i).",
+      "latar": "kamar-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "مِنَ الْجِنَّةِ وَالنَّاسِ ࣖ ",
+        "latin": "Minal jinnati wan-nās(i).",
+        "arti": "dari (golongan) jin dan manusia.”"
+      }
+    }
+  ],
+  "metadata": {
+    "judul": "Hafalan Surat An-Nas untuk Anak | 6 Ayat Pendek",
+    "deskripsi": "Yuk menghafal Surat An-Nas (QS. 114, 6 ayat) bersama. Isinya doa memohon perlindungan kepada Allah, Tuhan, Raja, dan Sembahan manusia, dari bisikan jahat setan, baik dari golongan jin maupun manusia. Teks dan terjemah dari Kemenag RI via equran.id. Ayah dan Bunda, dampingi si kecil mengulang ayat per ayat, ya.\n\n#Shorts #HafalanSurat #SuratAnNas",
+    "tags": [
+      "hafalan surat an-nas",
+      "surat an nas untuk anak",
+      "an-nas 6 ayat",
+      "hafalan juz amma anak",
+      "surat pendek untuk anak",
+      "belajar mengaji anak",
+      "murojaah anak",
+      "quran anak muslim",
+      "doa perlindungan",
+      "tahfidz anak",
+      "kartun islami anak",
+      "shorts islami anak"
+    ],
+    "teksThumbnail": "An-Nas"
+  }
+}

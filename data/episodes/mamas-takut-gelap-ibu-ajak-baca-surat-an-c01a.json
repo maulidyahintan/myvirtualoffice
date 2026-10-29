@@ -1,0 +1,212 @@
+{
+  "id": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a",
+  "dibuat": "2026-10-28T10:20:42.356Z",
+  "diubah": "2026-10-28T10:22:43.039Z",
+  "status": "needs_script_approval",
+  "ide": {
+    "judul": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
+    "seri": "kisah-sebelum-tidur",
+    "usia": "4-6",
+    "pesanMoral": "Kalau takut, jangan panik. Ingat Allah selalu menjaga kita, lalu baca Al-Ikhlas, Al-Falaq, dan An-Nas sebelum tidur.",
+    "alasan": "Tema 'takut tidur' sedang ramai: 'Adik Takut Tidur Sendirian' 15.961 views/hari dan 'Anak susah tidur? Ajarkan bacaan Nabi ini' 35.304 views/hari, tapi belum ada yang mengaitkannya ke makna An-Nas lewat cerita. Konfliknya kecil: lampu dimatikan, Mamas takut, dan Mochi kaget mendengar bunyi angin. Penyelesaiannya jelas: Ibu mengajarkan sunnah membaca tiga Qul, meniup telapak tangan, lalu mengusap badan (HR. Bukhari 5017). Episode ini menjadi pintu masuk ke episode Asbabun Nuzul.",
+    "referensi": [
+      "https://www.youtube.com/watch?v=eTrw9c43wpg (Adik Takut Tidur Sendirian – 15.961 views/hari)",
+      "https://www.youtube.com/watch?v=0AIHtgomvBc (Anak susah tidur? Ajarkan bacaan Nabi – 35.304 views/hari)",
+      "HR. Bukhari no. 5017 (Aisyah ra., membaca Al-Mu'awwidzat sebelum tidur)",
+      "QS. An-Nas 114:1-6"
+    ]
+  },
+  "jumlahRevisi": 1,
+  "log": [
+    {
+      "waktu": "2026-10-28T10:20:42.356Z",
+      "oleh": "riset",
+      "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-28T10:21:04.858Z",
+      "oleh": "dashboard",
+      "pesan": "Penulis mulai bekerja"
+    },
+    {
+      "waktu": "2026-10-28T10:21:05.689Z",
+      "oleh": "penulis",
+      "pesan": "Mulai menulis naskah"
+    },
+    {
+      "waktu": "2026-10-28T10:21:58.256Z",
+      "oleh": "penulis",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-28T10:21:58.803Z",
+      "oleh": "reviewer",
+      "pesan": "Memeriksa naskah"
+    },
+    {
+      "waktu": "2026-10-28T10:22:42.620Z",
+      "oleh": "reviewer",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-28T10:22:43.039Z",
+      "oleh": "orchestrator",
+      "pesan": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "catatanStatus": "Naskah siap diperiksa pemilik channel",
+  "naskah": {
+    "judul": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
+    "ringkasan": "Lampu kamar dimatikan. Angin berbunyi \"wuuush\", dan ada bayangan besar di dinding. Mamas dan Mochi sama-sama ketakutan. Ternyata bayangan itu cuma sarung Ayah yang tergantung. Ibu menenangkan Mamas: Allah tidak pernah tidur dan selalu menjaga kita. Lalu Ibu mengajarkan sunnah Rasulullah ﷺ sebelum tidur. Caranya: baca Al-Ikhlas, Al-Falaq, dan An-Nas ke telapak tangan, lalu usapkan ke badan. Mamas juga belajar arti Surat An-Nas, yaitu kita meminta perlindungan kepada Allah. Episode ditutup dengan doa sebelum tidur.",
+    "adegan": [
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Assalamu'alaikum, adik-adik! Sudah sikat gigi? Sudah wudhu? Sekarang malam sudah datang. Di kamar Mamas, selimut sudah rapi. Mochi juga sudah meringkuk di ujung kasur. Yuk, kita dengarkan cerita malam ini.",
+        "petunjukVisual": "Kamar Mamas yang hangat di malam hari, lampu kuning redup, Mamas berbaring berselimut dan Mochi meringkuk di ujung kasur."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Mas, sudah malam. Ibu matikan lampunya, ya. Lampu tidur kecil tetap menyala.",
+        "petunjukVisual": "Ibu berdiri di dekat saklar dan tersenyum lembut ke arah Mamas, kamar mulai lebih gelap dan hanya diterangi lampu tidur kecil."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Klik. Lampu besar padam. Lalu terdengar bunyi dari jendela. Wuuussshhh. Mochi langsung melompat! Ekornya mengembang seperti sikat botol. Mochi masuk ke dalam selimut Mamas.",
+        "petunjukVisual": "Tirai jendela bergoyang pelan tertiup angin, Mochi kaget dengan ekor mengembang lalu menyelinap ke dalam selimut Mamas, suasananya lucu dan tidak menyeramkan."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Ibu! Ibu! Itu ada bayangan besar di dinding! Mamas takut. Mochi juga takut, Bu!",
+        "petunjukVisual": "Mamas menarik selimut sampai ke hidung, hanya kepala Mochi yang mengintip, dan di dinding terlihat bayangan besar yang bentuknya samar."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Sini, Ibu peluk. Tarik napas pelan-pelan, Mas. Yuk, kita lihat sama-sama. Ternyata itu sarung Ayah yang digantung. Kena angin, jadi bergoyang.",
+        "petunjukVisual": "Ibu duduk di tepi kasur memeluk Mamas sambil menunjuk sarung kotak-kotak yang tergantung di balik pintu, bayangannya di dinding ikut bergoyang."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Mochi mengintip dari selimut. Ia mengendus sarung itu. Hmm... cuma sarung. Mochi pura-pura tidak pernah takut. Ia menjilat kakinya dengan gaya sok berani.",
+        "petunjukVisual": "Mochi keluar dari selimut, mengendus ujung sarung, lalu duduk tegak sambil menjilat kakinya dengan wajah sok tenang."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Hehe, Mochi lucu. Tapi Bu, kalau gelap, Mamas tetap takut. Kenapa ya, Mamas takut?",
+        "petunjukVisual": "Mamas tertawa kecil melihat Mochi, lalu menatap Ibu dengan wajah polos dan penasaran."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Takut itu wajar, Mas. Semua orang pernah takut. Tapi ingat, Allah tidak pernah mengantuk. Allah juga tidak pernah tidur. Kita tidur, Allah tetap menjaga kita.",
+        "petunjukVisual": "Ibu mengelus kepala Mamas dengan lembut, dan dari jendela terlihat langit malam yang tenang penuh bintang."
+      },
+      {
+        "jenis": "pertanyaan",
+        "pembicara": "narator",
+        "narasi": "Adik-adik, kalau adik takut sebelum tidur, apa yang bisa adik lakukan? Coba pikirkan dulu, ya. ... Nah, yuk kita lihat apa kata Ibu.",
+        "petunjukVisual": "Mamas dan Mochi menoleh ke arah penonton dengan wajah bertanya, kamar tetap tenang dan diterangi lampu tidur kecil."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Rasulullah shallallahu 'alaihi wa sallam punya kebiasaan setiap malam. Sebelum tidur, beliau menangkupkan kedua telapak tangan. Beliau meniupnya dan membaca tiga surat. Qul huwallahu ahad, Qul a'udzu birabbil falaq, dan Qul a'udzu birabbin nas. Lalu beliau mengusapkan tangan ke badan. Mulai dari kepala, lalu wajah, lalu badan bagian depan. Diulang tiga kali.",
+        "petunjukVisual": "Ibu menangkupkan kedua telapak tangan di depan dada untuk mencontohkan, dan Mamas memperhatikan dengan serius."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Mamas mau coba, Bu! Tangannya begini, ya?",
+        "petunjukVisual": "Mamas duduk di kasur dan menangkupkan tangan kecilnya, sementara Mochi ikut duduk dan menatap tangan Mamas."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Pintar. Kita baca An-Nas pelan-pelan, ya. Qul a'udzu birabbin nas. Malikin nas. Ilahin nas. Min syarril waswasil khannas. Alladzi yuwaswisu fi shudurin nas. Minal jinnati wan nas. Artinya, kita minta perlindungan kepada Allah. Allah Rajanya manusia. Allah menjaga kita dari bisikan yang jahat.",
+        "petunjukVisual": "Ibu dan Mamas membaca bersama dengan tangan tertangkup, lalu Mamas mengusap kepala dan wajahnya, sementara cahaya lampu tidur terasa hangat."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Mamas mengusap kepala, wajah, lalu badannya. Satu, dua, tiga kali. Hatinya jadi tenang. Mochi menguap lebar sekali. Hoaaam. Rupanya Mochi juga sudah tenang.",
+        "petunjukVisual": "Mamas tersenyum lega dengan mata mulai sayu, dan Mochi menguap lebar lalu bergelung di samping bantal."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Adik-adik, kalau takut, jangan panik, ya. Tarik napas pelan-pelan. Ingat, Allah selalu menjaga kita. Lalu baca Al-Ikhlas, Al-Falaq, dan An-Nas seperti Mamas.",
+        "petunjukVisual": "Kamar yang tenang dengan Mamas dan Mochi berbaring berdampingan, bayangan sarung di dinding kini terlihat biasa saja."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "mamas",
+        "narasi": "Sekarang Mamas baca doa tidur. Bismika allahumma amutu wa ahya. Artinya, dengan nama-Mu ya Allah, aku mati dan aku hidup.",
+        "petunjukVisual": "Mamas berbaring miring ke kanan dengan tangan di bawah pipi, matanya hampir terpejam, dan Ibu menyelimutinya."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Selamat tidur, Mamas. Selamat tidur, Mochi. Selamat tidur, adik-adik. Jangan lupa baca tiga Qul malam ini, ya. Wassalamu'alaikum warahmatullahi wabarakatuh.",
+        "petunjukVisual": "Ibu mengecup kening Mamas lalu keluar pelan-pelan, kamera bergerak ke jendela yang memperlihatkan bulan dan bintang yang tenang."
+      }
+    ],
+    "dalil": [
+      {
+        "jenis": "ayat",
+        "teksArab": "لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ",
+        "latin": "Lā ta'khudzuhū sinatuw wa lā naum",
+        "terjemah": "Dia (Allah) tidak mengantuk dan tidak tidur.",
+        "sumber": "QS. Al-Baqarah 2:255 (potongan Ayat Kursi)"
+      },
+      {
+        "jenis": "hadits",
+        "terjemah": "Dari Aisyah radhiyallahu 'anha: Setiap malam, ketika Nabi ﷺ berbaring di tempat tidurnya, beliau menghimpun kedua telapak tangannya, lalu meniupnya dan membaca padanya 'Qul huwallahu ahad', 'Qul a'udzu birabbil falaq', dan 'Qul a'udzu birabbin nas'. Kemudian beliau mengusapkan kedua tangan ke bagian tubuh yang bisa dijangkau. Beliau memulai dari kepala, wajah, dan tubuh bagian depan. Beliau melakukannya tiga kali.",
+        "sumber": "HR. Bukhari no. 5017"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝ مَلِكِ ٱلنَّاسِ ۝ إِلَٰهِ ٱلنَّاسِ ۝ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ",
+        "latin": "Qul a'ūdzu birabbin-nās. Malikin-nās. Ilāhin-nās. Min syarril-waswāsil-khannās. Alladzī yuwaswisu fī shudūrin-nās. Minal-jinnati wan-nās.",
+        "terjemah": "Katakanlah: Aku berlindung kepada Tuhannya manusia. Raja manusia. Sembahan manusia. Dari kejahatan bisikan yang bersembunyi. Yang membisikkan ke dalam dada manusia. Dari golongan jin dan manusia.",
+        "sumber": "QS. An-Nas 114:1-6"
+      },
+      {
+        "jenis": "doa",
+        "teksArab": "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+        "latin": "Bismika allāhumma amūtu wa ahyā",
+        "terjemah": "Dengan nama-Mu ya Allah, aku mati dan aku hidup.",
+        "sumber": "HR. Bukhari no. 6324, dari Hudzaifah radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "keputusan": "lolos",
+    "skor": 8.5,
+    "catatan": [
+      "SYARIAT – Visual sudah aman. Nabi ﷺ tidak digambar. Adegan hadits memakai Ibu yang mencontohkan. Ayah tidak digambar, hanya sarungnya yang muncul. Pertahankan ini di tahap visual.",
+      "SYARIAT – Arti An-Nas di narasi Ibu terlalu dipadatkan. 'Ilahin nas' (Sembahan manusia) terlewat. Saran ganti: 'Artinya, kita minta perlindungan kepada Allah. Allah Tuhan kita. Allah Raja kita. Allah menjaga kita dari bisikan jahat.' Kalimatnya tetap pendek dan lebih lengkap. Bagian 'jin' boleh tetap tidak disebut untuk usia 4–6.",
+      "SYARIAT (opsional) – Ibu bilang 'Allah tidak pernah mengantuk... tidak pernah tidur'. Ini dari Ayat Kursi, tapi narasi tidak menyebut sumbernya. Saran tambah satu kalimat: 'Kata Allah di Ayat Kursi, Allah tidak mengantuk dan tidak tidur.' Dengan begitu dalil di naskah tersambung ke cerita.",
+      "INTERAKTIF – Di adegan pertanyaan, ganti '...' dengan petunjuk jeda yang jelas. Contoh: [jeda 3 detik, efek suara 'ting' lembut]. Editor jadi tahu harus diam berapa lama.",
+      "ALUR – Setelah pertanyaan, jawaban Ibu langsung ke hadits. Saran tambah satu kalimat penghubung di awal adegan Ibu: 'Kita ingat Allah, dan baca tiga surat, Mas.' Anak jadi langsung dapat jawaban sebelum masuk ke cerita Rasulullah ﷺ.",
+      "AUDIO – Efek suara angin 'wuuussshhh' dan adegan bayangan besar: pastikan volumenya pelan dan bayangannya sebentar saja (≤ 3 detik sebelum Ibu menenangkan). Jangan ada suara mengejutkan atau musik tegang. Penyelesaiannya (cuma sarung) sudah bagus dan lucu.",
+      "BAHASA – Hampir semua kalimat ≤ 12 kata. Kalimat 'Rasulullah shallallahu 'alaihi wa sallam punya kebiasaan setiap malam' saat dibacakan terasa panjang. Bisa dipecah: 'Rasulullah ﷺ punya kebiasaan. Setiap malam, sebelum tidur...'",
+      "JUDUL – Isi episode mengajarkan tiga Qul, tapi judulnya hanya menyebut An-Nas. Judul ini tidak menyesatkan, jadi boleh dipakai. Kalau mau lebih tepat: 'Mamas Takut Gelap, Ibu Ajak Baca Tiga Qul'."
+    ],
+    "cekManusia": [
+      "DALIL 1 – QS. Al-Baqarah 2:255 (potongan Ayat Kursi): 'لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ' – 'Dia tidak mengantuk dan tidak tidur.' Cek teks Arab dengan mushaf.",
+      "DALIL 2 – HR. Bukhari no. 5017, dari Aisyah ra., tentang kebiasaan Nabi ﷺ sebelum tidur: menghimpun telapak tangan, meniup, membaca tiga Qul, mengusap mulai dari kepala, wajah, dan tubuh bagian depan, tiga kali. Saya cukup yakin nomornya benar (Kitab Fadha'il al-Qur'an). Tetap cocokkan nomor dan terjemahnya dengan sumber resmi seperti Fathul Bari atau sunnah.com. Hadits ini juga ada di Bukhari 5748 dan 6319, jadi pastikan 5017 adalah versi yang menyebut 'kepala, wajah, tubuh bagian depan'.",
+      "DALIL 3 – QS. An-Nas 114:1–6, teks Arab, latin, dan terjemah. Cek harakat Arab dengan mushaf. Cek juga ejaan latin yang dibacakan Ibu: 'Qul a'udzu birabbin nas... Minal jinnati wan nas.'",
+      "DALIL 4 – Doa tidur 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', disebut HR. Bukhari no. 6324 dari Hudzaifah ra. INI PERLU DICEK KHUSUS. Doa ini memang shahih dari Hudzaifah di Shahih Bukhari. Tapi saya tidak 100% yakin bahwa no. 6324 memakai lafaz 'Bismika Allahumma' persis seperti ini. Riwayat lain memakai 'Allahumma bismika amutu wa ahya' atau 'Bismika amutu wa ahya' (sekitar no. 6312, 6314, 7394). Pastikan nomor hadits cocok dengan lafaz yang dibacakan Mamas.",
+      "Ajakan 'Sudah wudhu?' di pembuka: wudhu sebelum tidur adalah sunnah yang shahih (HR. Bukhari dari Al-Bara' bin 'Azib). Di naskah tidak disebut keutamaannya, jadi aman. Pastikan narasi tidak ditambah klaim keutamaan tanpa dalil.",
+      "Narasi 'kalau takut, baca Al-Ikhlas, Al-Falaq, dan An-Nas': ini penerapan umum dari membaca surat-surat perlindungan (al-mu'awwidzat), dan menurut saya wajar. Pastikan pemilik channel setuju dengan cara penyampaian ini, karena hadits Bukhari 5017 sendiri tentang rutinitas sebelum tidur, bukan khusus saat takut.",
+      "Visual: pastikan ilustrator tidak menambah sosok apa pun (Nabi, malaikat, atau 'penjaga' bercahaya) saat Ibu bercerita tentang Rasulullah ﷺ atau tentang Allah menjaga. Cukup langit malam dan bintang.",
+      "Pastikan audio final tidak memakai musik instrumen, dan efek suara angin/bayangan tidak mengagetkan anak."
+    ]
+  }
+}

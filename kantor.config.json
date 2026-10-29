@@ -1,0 +1,14 @@
+{
+  "namaChannel": "Tasnie Office",
+  "bahasa": "id",
+  "seri": [
+    { "id": "asbabun-nuzul", "nama": "Asbabun Nuzul", "usia": "0-17", "playlistId": "" },
+     { "id": "kisah-sebelum-tidur", "nama": "Kisah Sebelum Tidur", "usia": "4-6", "playlistId": "" },
+    { "id": "doa-harian", "nama": "Doa Harian Mamas", "usia": "1-3", "playlistId": "" },
+    { "id": "kenapa-ya", "nama": "Kenapa Ya? (Akhlak & Ibadah)", "usia": "7-10", "playlistId": "" },
+    { "id": "hafalan", "nama": "Hafalan Surat", "usia": "1-10", "playlistId": "" }
+  ],
+  "maksRevisiOtomatis": 2,
+  "jamTayangDefault": "16:30",
+  "zonaWaktu": "Asia/Jakarta"
+}
