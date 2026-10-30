@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { EKSPRESI, FORMAT, JENIS_ADEGAN, KARAKTER, LATAR, SUASANA, USIA } from '@kantor/shared/constants';
+import { AKSI, BENDA, EKSPRESI, FORMAT, JENIS_ADEGAN, KARAKTER, LATAR, PROPERTI, SUASANA, USIA } from '@kantor/shared/constants';
 
 const pembicara = z.enum([...KARAKTER, 'narator']);
 
@@ -59,6 +59,12 @@ export const AdeganSchema = z.object({
   ekspresi: z.enum(EKSPRESI),
   teksLayar: z.string().optional(),
   doa: z.object({ arab: z.string(), latin: z.string(), arti: z.string() }).optional(),
+  properti: z.array(z.enum(PROPERTI)).max(3).optional().describe('properti pendukung di sekitar tokoh'),
+  aksi: z
+    .array(z.object({ karakter: z.enum(KARAKTER), aksi: z.enum(AKSI), benda: z.enum(BENDA).optional() }))
+    .max(3)
+    .optional()
+    .describe('apa yang sedang dilakukan tokoh di adegan ini'),
 });
 
 export const SutradaraSchema = z.object({ adegan: z.array(AdeganSchema) });

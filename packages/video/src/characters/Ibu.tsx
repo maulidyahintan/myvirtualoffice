@@ -1,5 +1,7 @@
 import React, { useId } from 'react';
-import { noise, noiseS, type PoseLengan, type PropsRig } from './gerak';
+import { campurPose, faseMakan, noise, noiseS, type PoseLengan, type PropsRig } from './gerak';
+import { Quran } from '../properti/Benda';
+import { bendaDipegang } from './Mamas';
 import { Lengan } from './Lengan';
 import { Wajah } from './Wajah';
 
@@ -28,6 +30,21 @@ function poseIbu(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
   }
   if (lambai) {
     return { kiri: { bahu: 140, siku: 20 + Math.sin(f / 5) * 20 }, kanan: { bahu: -12 - taut, siku: -42 } };
+  }
+  const pegang: PoseLengan = { bahu: 8 + taut, siku: -88 };
+  const kiriAksi: PoseLengan = bicara ? { bahu: 6 + noise(f / 24, r.seed + 5) * 22, siku: 30 + noise(f / 24, r.seed + 5) * 60 } : bertaut;
+  switch (r.aksi) {
+    case 'membaca-quran':
+      return { kiri: { bahu: -16, siku: -70 }, kanan: { bahu: -16, siku: -70 } };
+    case 'berdoa': {
+      const s = Math.sin(f / 40) * 2;
+      return { kiri: { bahu: 20 + s, siku: -140 }, kanan: { bahu: 20 + s, siku: -140 } };
+    }
+    case 'makan':
+      return { kiri: kiriAksi, kanan: campurPose(pegang, { bahu: -30, siku: -132 }, faseMakan(f)) };
+    case 'memegang':
+    case 'bermain':
+      return { kiri: kiriAksi, kanan: pegang };
   }
   if (ekspresi === 'kaget') {
     // kedua tangan terangkat ke dada
@@ -64,6 +81,8 @@ export const Ibu: React.FC<PropsRig> = (r) => {
     turun += 3;
   }
   if (ekspresi === 'berpikir') miring += 5;
+  if (r.aksi === 'membaca-quran') turun += 4;
+  const tanganDepan = r.aksi !== undefined && r.aksi !== 'tidur';
   const alisNaik = bicara ? Math.max(0, noiseS(f / 11, r.seed + 7)) : 0;
 
   const tangan = (kanan: boolean) => (
@@ -80,6 +99,7 @@ export const Ibu: React.FC<PropsRig> = (r) => {
       warnaTangan={w.kulit}
       garis={w.abayaBayang}
       manset={w.abayaAksen}
+      pegang={kanan ? bendaDipegang({ ...r, aksi: r.aksi === 'bermain' ? 'memegang' : r.aksi }) : undefined}
     />
   );
 
@@ -117,9 +137,9 @@ export const Ibu: React.FC<PropsRig> = (r) => {
       <ellipse cx={100 + (r.jalan !== null ? Math.sin(r.jalan) * 8 : 0)} cy={394} rx={16} ry={7} fill={w.sepatu} />
       <ellipse cx={140 - (r.jalan !== null ? Math.sin(r.jalan) * 8 : 0)} cy={394} rx={16} ry={7} fill={w.sepatu} />
 
-      {/* lengan keluar dari bawah kerudung */}
-      {tangan(false)}
-      {tangan(true)}
+      {/* lengan keluar dari bawah kerudung (saat beraksi, tangan di depan kerudung) */}
+      {tanganDepan ? null : tangan(false)}
+      {tanganDepan ? null : tangan(true)}
 
       {/* kepala + kerudung */}
       <g transform={`translate(0 ${turun}) rotate(${miring} 120 180) translate(120 180) scale(1.12) translate(-120 -180)`}>
@@ -149,11 +169,19 @@ export const Ibu: React.FC<PropsRig> = (r) => {
             mulut={r.mulut}
             bicara={bicara}
             lihatX={r.lihatX}
-            lihatY={0.6}
+            lihatY={r.aksi === 'membaca-quran' ? 1 : 0.6}
             alisNaik={alisNaik}
           />
         </g>
       </g>
+
+      {tanganDepan ? tangan(false) : null}
+      {tanganDepan ? tangan(true) : null}
+      {r.aksi === 'membaca-quran' ? (
+        <g transform={`translate(120 ${258 + Math.sin(f / 30) * 1.5}) scale(1.3)`}>
+          <Quran buka />
+        </g>
+      ) : null}
     </g>
   );
 };

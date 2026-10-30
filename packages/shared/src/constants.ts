@@ -17,6 +17,10 @@ export const LATAR = [
   'halaman-rumah',
   'perpustakaan',
   'tempat-wudhu',
+  'dalam-masjid',
+  'taman-bermain',
+  'pasar',
+  'toko',
 ] as const;
 
 /** Gerak suasana tambahan di atas latar (dipakai video hafalan). */
@@ -31,6 +35,29 @@ export const JENIS_KONTEN = ['cerita', 'hafalan'] as const;
 export const KARAKTER = ['mamas', 'ibu', 'mochi'] as const;
 
 export const EKSPRESI = ['senang', 'sedih', 'berpikir', 'kaget', 'tenang'] as const;
+
+/** Benda kecil yang bisa dipegang tokoh (juga bisa diletakkan di adegan). */
+export const BENDA = ['quran', 'apel', 'pisang', 'kurma', 'kue', 'gelas-susu', 'bola', 'mobil-mainan', 'boneka', 'buku', 'bunga'] as const;
+
+/** Properti pendukung di adegan (diletakkan di lantai/meja kecil di sekitar tokoh). */
+export const PROPERTI = [
+  ...BENDA,
+  'piring-buah',
+  'piring-nasi',
+  'keranjang-buah',
+  'balok-mainan',
+  'kotak-mainan',
+  'pohon-pot',
+  'sajadah',
+  'rehal-quran',
+  'bantal',
+] as const;
+
+/**
+ * Aksi tokoh di satu adegan. Mamas/Ibu: memegang (benda), membaca-quran, berdoa, makan (benda),
+ * bermain (bola/mainan). Mochi: tidur, bermain (gulungan benang).
+ */
+export const AKSI = ['memegang', 'membaca-quran', 'berdoa', 'makan', 'bermain', 'tidur'] as const;
 
 export const JENIS_ADEGAN = ['cerita', 'doa', 'pertanyaan'] as const;
 

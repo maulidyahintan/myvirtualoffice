@@ -502,6 +502,244 @@ const TempatWudhu = () => {
   );
 };
 
+const DalamMasjid = () => {
+  const frame = useCurrentFrame();
+  return (
+    <>
+      <rect width={W} height={H} fill="#F4ECDC" />
+      {/* lengkung-lengkung dinding & jendela kaca warna */}
+      {[160, 560, 1360, 1760].map((x, i) => (
+        <g key={x}>
+          <path d={`M${x - 130} 760 L${x - 130} 330 Q${x} 150 ${x + 130} 330 L${x + 130} 760`} fill="#EADDC4" stroke="#C9A86A" strokeWidth={8} />
+          <path d={`M${x - 60} 520 L${x - 60} 360 Q${x} 280 ${x + 60} 360 L${x + 60} 520 Z`} fill={i % 2 ? '#9FD3E0' : '#B7E0C9'} stroke="#FFFFFF" strokeWidth={6} />
+          <path d={`M${x} 300 L${x} 520 M${x - 60} 430 L${x + 60} 430`} stroke="#FFFFFF" strokeWidth={4} />
+          <SinarJendela x={x - 60} y={520} lebar={120} tinggi={260} />
+        </g>
+      ))}
+      {/* mihrab */}
+      <path d="M800 780 L800 360 Q960 160 1120 360 L1120 780 Z" fill="#2F6F5E" stroke="#C9A86A" strokeWidth={12} />
+      <path d="M850 780 L850 390 Q960 240 1070 390 L1070 780 Z" fill="#3F8C7A" />
+      {Array.from({ length: 5 }, (_, i) => (
+        <path key={i} d={`M${880 + i * 40} 420 l20 20 l-20 20 l-20 -20 Z`} fill="#E8B04A" opacity={0.85} />
+      ))}
+      <text x={960} y={560} textAnchor="middle" fontSize={64} fill="#F4E3B0" fontFamily='"Noto Naskh Arabic", serif' fontWeight={700}>
+        الله
+      </text>
+      {/* lampu gantung */}
+      {[520, 1400].map((x, i) => {
+        const ayun = Math.sin(frame / 60 + i) * 3;
+        return (
+          <g key={x} transform={`rotate(${ayun} ${x} 0)`}>
+            <line x1={x} y1={0} x2={x} y2={150} stroke="#8A6A3A" strokeWidth={4} />
+            <circle cx={x} cy={200} r={110} fill="#FFE2A6" opacity={0.15} />
+            <path d={`M${x - 70} 170 L${x + 70} 170 L${x + 40} 230 L${x - 40} 230 Z`} fill="#E8B04A" />
+            {[-45, -15, 15, 45].map((dx) => (
+              <circle key={dx} cx={x + dx} cy={240} r={9} fill="#FFF0B8" />
+            ))}
+          </g>
+        );
+      })}
+      {/* karpet bergaris shaf */}
+      <rect y={760} width={W} height={320} fill="#A8323E" />
+      {Array.from({ length: 7 }, (_, i) => (
+        <rect key={i} y={790 + i * 44} width={W} height={10} fill="#C9A86A" opacity={0.55 - i * 0.05} />
+      ))}
+      <Debu jumlah={12} x={300} y={320} lebar={1300} tinggi={420} />
+    </>
+  );
+};
+
+const TamanBermain = () => {
+  const frame = useCurrentFrame();
+  const ayun = Math.sin(frame / 22) * 18;
+  const jungkat = Math.sin(frame / 35) * 8;
+  return (
+    <>
+      <defs>
+        <linearGradient id="langitBermain" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#8FD3F4" />
+          <stop offset="1" stopColor="#E3F5FC" />
+        </linearGradient>
+      </defs>
+      <rect width={W} height={H} fill="url(#langitBermain)" />
+      <circle cx={260} cy={150} r={80} fill="#FFE08A" />
+      <Awan y={130} skala={0.9} kecepatan={0.3} awal={700} />
+      <Awan y={230} skala={0.6} kecepatan={0.2} awal={1500} />
+      {/* pepohonan di belakang */}
+      {[120, 420, 1560, 1840].map((x, i) => (
+        <g key={x}>
+          <rect x={x - 18} y={480} width={36} height={300} fill="#8A6440" />
+          <circle cx={x} cy={440} r={110 + (i % 2) * 20} fill={i % 2 ? '#5FA35A' : '#6DB566'} />
+        </g>
+      ))}
+      <rect y={760} width={W} height={320} fill="#8FCB7C" />
+      {/* bak pasir */}
+      <ellipse cx={980} cy={840} rx={300} ry={50} fill="#F2D59A" stroke="#D9B26A" strokeWidth={8} />
+      {/* ayunan */}
+      <g>
+        <path d="M480 760 L560 380 L640 760 M840 760 L760 380 L680 760" stroke="#D9634F" strokeWidth={18} fill="none" strokeLinejoin="round" />
+        <rect x={550} y={370} width={220} height={22} rx={8} fill="#D9634F" />
+        <g transform={`rotate(${ayun} 660 392)`}>
+          <line x1={630} y1={392} x2={630} y2={640} stroke="#5A4A3A" strokeWidth={4} />
+          <line x1={690} y1={392} x2={690} y2={640} stroke="#5A4A3A" strokeWidth={4} />
+          <rect x={612} y={636} width={96} height={16} rx={6} fill="#F5C842" />
+        </g>
+      </g>
+      {/* perosotan */}
+      <g>
+        <rect x={1240} y={420} width={20} height={340} fill="#4F8FD9" />
+        <rect x={1340} y={420} width={20} height={340} fill="#4F8FD9" />
+        {[480, 560, 640, 720].map((y) => (
+          <rect key={y} x={1240} y={y} width={120} height={10} fill="#3A6EAE" />
+        ))}
+        <rect x={1230} y={400} width={140} height={30} rx={8} fill="#F28C6B" />
+        <path d="M1360 420 Q1420 430 1470 600 Q1500 720 1580 750 L1580 770 Q1480 760 1450 640 Q1410 470 1360 450 Z" fill="#F5C842" stroke="#D9A82A" strokeWidth={4} />
+      </g>
+      {/* jungkat-jungkit */}
+      <g>
+        <path d="M200 770 L240 700 L280 770 Z" fill="#8A6440" />
+        <g transform={`rotate(${jungkat} 240 700)`}>
+          <rect x={60} y={690} width={360} height={20} rx={8} fill="#5BAE7A" />
+          <rect x={80} y={660} width={14} height={34} fill="#3E8A5C" />
+          <rect x={386} y={660} width={14} height={34} fill="#3E8A5C" />
+        </g>
+      </g>
+      {[880, 1100, 1700].map((x, i) => (
+        <BungaGoyang key={x} x={x} y={930 + (i % 2) * 30} warnaKelopak={i % 2 ? '#F7A6C1' : '#FFD36E'} i={i} />
+      ))}
+      <KupuKupu seed={9} y={600} warnaSayap="#FFD36E" />
+      <Burung seed={12} y={170} skala={0.8} />
+    </>
+  );
+};
+
+/** Lapak pasar dengan atap terpal & dagangan. */
+const Lapak: React.FC<{ x: number; terpal: string; isi: 'buah' | 'sayur' | 'kue' }> = ({ x, terpal, isi }) => (
+  <g>
+    <rect x={x + 10} y={330} width={14} height={430} fill="#8A6440" />
+    <rect x={x + 376} y={330} width={14} height={430} fill="#8A6440" />
+    {/* atap terpal bergelombang */}
+    <path d={`M${x - 20} 330 L${x + 420} 330 L${x + 400} 250 L${x} 250 Z`} fill={terpal} />
+    <path
+      d={`M${x - 20} 330 ${Array.from({ length: 8 }, (_, i) => `q${27.5} 34 55 0`).join(' ')}`}
+      fill={terpal}
+      stroke="rgba(0,0,0,0.12)"
+      strokeWidth={3}
+    />
+    {Array.from({ length: 4 }, (_, i) => (
+      <path key={i} d={`M${x + 30 + i * 110} 252 L${x + 22 + i * 110} 330`} stroke="#FFFFFF" strokeWidth={14} opacity={0.5} />
+    ))}
+    {/* meja & dagangan */}
+    <rect x={x - 10} y={560} width={420} height={30} rx={6} fill="#B98A5E" />
+    <rect x={x} y={590} width={400} height={170} fill="#9A6B47" />
+    {Array.from({ length: 4 }, (_, i) => {
+      const cx = x + 55 + i * 100;
+      return (
+        <g key={i}>
+          <path d={`M${cx - 45} 560 L${cx + 45} 560 L${cx + 35} 520 L${cx - 35} 520 Z`} fill="#C8925E" />
+          {isi === 'buah'
+            ? [-22, 0, 22, -11, 11].map((dx, j) => (
+                <circle key={j} cx={cx + dx} cy={j < 3 ? 512 : 494} r={14} fill={['#E0504A', '#F2A33A', '#F5D547', '#5FA35A'][(i + j) % 4]} />
+              ))
+            : isi === 'sayur'
+              ? [-20, 0, 20].map((dx, j) => (
+                  <ellipse key={j} cx={cx + dx} cy={506} rx={16} ry={20} fill={['#5FA35A', '#7CC46E', '#E07A3A'][(i + j) % 3]} />
+                ))
+              : [-22, 0, 22].map((dx, j) => <rect key={j} x={cx + dx - 14} y={496} width={28} height={20} rx={5} fill={['#F7A6C1', '#F2C48D', '#A6D8F7'][(i + j) % 3]} />)}
+        </g>
+      );
+    })}
+  </g>
+);
+
+const Pasar = () => (
+  <>
+    <defs>
+      <linearGradient id="langitPasar" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#A7DDF7" />
+        <stop offset="1" stopColor="#F4F9FB" />
+      </linearGradient>
+    </defs>
+    <rect width={W} height={H} fill="url(#langitPasar)" />
+    <Awan y={120} skala={0.8} kecepatan={0.25} awal={300} />
+    {/* bangunan ruko di belakang */}
+    {[0, 480, 960, 1440].map((x, i) => (
+      <g key={x}>
+        <rect x={x} y={140} width={480} height={640} fill={['#F6E1C3', '#EFD3B0', '#F3E8D2', '#EAD6BC'][i]} stroke="#D9C2A0" strokeWidth={4} />
+        <rect x={x + 60} y={180} width={110} height={90} rx={6} fill="#BFE3F5" stroke="#FFFFFF" strokeWidth={6} />
+        <rect x={x + 310} y={180} width={110} height={90} rx={6} fill="#BFE3F5" stroke="#FFFFFF" strokeWidth={6} />
+      </g>
+    ))}
+    {/* untaian bendera kecil */}
+    <path d="M0 120 Q480 180 960 120 Q1440 180 1920 120" stroke="#8A6A5A" strokeWidth={3} fill="none" />
+    {Array.from({ length: 24 }, (_, i) => {
+      const x = i * 80 + 20;
+      const y = 120 + Math.sin((x / 960) * Math.PI) * 40 * (x > 960 ? 1 : 1);
+      return <path key={i} d={`M${x} ${y} l20 0 l-10 26 Z`} fill={['#E0504A', '#F5C842', '#4F8FD9', '#5BAE7A'][i % 4]} />;
+    })}
+    <Lapak x={60} terpal="#E86A5A" isi="buah" />
+    <Lapak x={760} terpal="#4F9ED9" isi="sayur" />
+    <Lapak x={1460} terpal="#5BAE7A" isi="kue" />
+    <rect y={760} width={W} height={320} fill="#C9B79A" />
+    {Array.from({ length: 10 }, (_, i) => (
+      <line key={i} x1={i * 220} y1={760} x2={i * 220 - 120} y2={1080} stroke="#B8A585" strokeWidth={4} />
+    ))}
+    <Burung seed={14} y={90} skala={0.6} />
+  </>
+);
+
+const Toko = () => (
+  <>
+    <rect width={W} height={H} fill="#F3F6F8" />
+    <rect y={0} width={W} height={60} fill="#E6EDF2" />
+    {[300, 960, 1620].map((x) => (
+      <rect key={x} x={x - 160} y={20} width={320} height={16} rx={8} fill="#FFFFFF" opacity={0.9} />
+    ))}
+    {/* rak-rak berisi barang warna-warni */}
+    {[60, 1300].map((rx) => (
+      <g key={rx}>
+        <rect x={rx} y={160} width={560} height={620} rx={10} fill="#D9E2E8" stroke="#BFCBD3" strokeWidth={6} />
+        {[300, 440, 580, 720].map((y, r) => (
+          <g key={y}>
+            {Array.from({ length: 8 }, (_, i) => {
+              const tinggi = 70 + ((i + r) % 3) * 18;
+              return (
+                <rect
+                  key={i}
+                  x={rx + 24 + i * 66}
+                  y={y - tinggi}
+                  width={54}
+                  height={tinggi}
+                  rx={8}
+                  fill={['#E0504A', '#4F8FD9', '#F5C842', '#5BAE7A', '#F28C6B', '#A06BC8'][(i + r * 2) % 6]}
+                />
+              );
+            })}
+            <rect x={rx} y={y} width={560} height={14} fill="#AAB8C2" />
+          </g>
+        ))}
+      </g>
+    ))}
+    {/* papan nama toko & kasir */}
+    <rect x={720} y={110} width={480} height={110} rx={20} fill="#2F6F5E" />
+    <text x={960} y={186} textAnchor="middle" fontSize={64} fontFamily="Fredoka, sans-serif" fontWeight={700} fill="#FFF3C4">
+      TOKO
+    </text>
+    <rect x={760} y={560} width={400} height={200} rx={16} fill="#B98A5E" />
+    <rect x={740} y={540} width={440} height={34} rx={10} fill="#D9A066" />
+    <rect x={1040} y={460} width={100} height={80} rx={8} fill="#5A6479" />
+    <rect x={1052} y={472} width={76} height={40} rx={4} fill="#9FE0C9" />
+    {/* keranjang belanja */}
+    <path d="M800 540 L900 540 L890 500 L810 500 Z" fill="#E0504A" />
+    <path d="M812 500 Q850 460 888 500" stroke="#E0504A" strokeWidth={6} fill="none" />
+    <rect y={780} width={W} height={300} fill="#E4E9EC" />
+    {Array.from({ length: 12 }, (_, i) => (
+      <line key={i} x1={i * 170} y1={780} x2={i * 170 - 90} y2={1080} stroke="#D2D9DE" strokeWidth={4} />
+    ))}
+    <line x1={0} y1={900} x2={W} y2={900} stroke="#D2D9DE" strokeWidth={4} />
+  </>
+);
+
 /** Lapisan gerak suasana tambahan di atas latar (video hafalan). */
 export const LapisanSuasana: React.FC<{ suasana: SuasanaId[] }> = ({ suasana }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
@@ -541,6 +779,10 @@ export const Latar: React.FC<{ id: LatarId }> = ({ id }) => (
     {id === 'halaman-rumah' && <HalamanRumah />}
     {id === 'perpustakaan' && <Perpustakaan />}
     {id === 'tempat-wudhu' && <TempatWudhu />}
+    {id === 'dalam-masjid' && <DalamMasjid />}
+    {id === 'taman-bermain' && <TamanBermain />}
+    {id === 'pasar' && <Pasar />}
+    {id === 'toko' && <Toko />}
   </svg>
 );
 

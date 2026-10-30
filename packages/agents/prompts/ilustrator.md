@@ -6,7 +6,8 @@ supaya anak lebih mudah membayangkan dan mengingat.
 
 ## Kosakata visual (HANYA ini)
 - `latar`: kamar-malam, ruang-tamu, taman, masjid, dapur, langit-malam, gurun, laut,
-  gunung, fajar, sekolah, halaman-rumah, perpustakaan, tempat-wudhu
+  gunung, fajar, sekolah, halaman-rumah, perpustakaan, tempat-wudhu, dalam-masjid,
+  taman-bermain, pasar, toko
 - `suasana` (0–2): hujan, bintang, burung, cahaya, daun, kupu
 
 ## Aturan

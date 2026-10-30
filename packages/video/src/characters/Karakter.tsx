@@ -1,7 +1,7 @@
 import React from 'react';
 import { Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import type { Ekspresi, Karakter as KarakterId } from '@kantor/shared/types';
-import { kelopak, mulutBicara, type PropsRig } from './gerak';
+import type { Aksi, Benda, Ekspresi, Karakter as KarakterId } from '@kantor/shared/types';
+import { faseMakan, kelopak, mulutBicara, type Mulut, type PropsRig } from './gerak';
 import { Ibu } from './Ibu';
 import { Mamas } from './Mamas';
 import { Mochi } from './Mochi';
@@ -24,6 +24,8 @@ interface Props {
   masuk?: CaraMasuk;
   /** tanpa animasi masuk (untuk thumbnail / gambar diam) */
   diam?: boolean;
+  aksi?: Aksi;
+  benda?: Benda;
 }
 
 const SEED: Record<KarakterId, number> = { mamas: 1, ibu: 2, mochi: 3 };
@@ -39,6 +41,8 @@ export const Karakter: React.FC<Props> = ({
   lihatX = 0,
   masuk = 'muncul',
   diam,
+  aksi,
+  benda,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -86,7 +90,7 @@ export const Karakter: React.FC<Props> = ({
       naik += Math.sin(t * Math.PI) * 30;
       regang += Math.sin(t * Math.PI) * 0.08;
     }
-    if (id === 'mamas' && ekspresi === 'senang' && !bicara) {
+    if (id === 'mamas' && ekspresi === 'senang' && !bicara && !aksi) {
       const p = (f % 50) / 50;
       if (p < 0.4) {
         const t = p / 0.4;
@@ -106,10 +110,12 @@ export const Karakter: React.FC<Props> = ({
     lambai,
     f,
     tutup: kelopak(f, seed),
-    mulut: bicara && id !== 'mochi' ? mulutBicara(f, seed) : { buka: 0, bulat: 0 },
+    mulut: bicara && id !== 'mochi' ? mulutBicara(f, seed) : aksi === 'makan' ? mulutMakan(f) : { buka: 0, bulat: 0 },
     lihatX: lihat,
     seed,
     jalan,
+    aksi,
+    benda,
   };
 
   return (
@@ -132,6 +138,14 @@ export const Karakter: React.FC<Props> = ({
     </svg>
   );
 };
+
+/** Mulut saat makan: terbuka menyambut makanan, lalu mengunyah. */
+function mulutMakan(f: number): Mulut {
+  const p = (f % 72) / 72;
+  if (faseMakan(f) > 0.6) return { buka: 0.55, bulat: 1 };
+  if (p >= 0.6) return { buka: Math.max(0, Math.sin(f / 2.5)) * 0.3, bulat: 0 };
+  return { buka: 0, bulat: 0 };
+}
 
 /** Tinggi relatif tiap karakter supaya proporsinya masuk akal. */
 export const SKALA: Record<KarakterId, number> = { mamas: 0.82, ibu: 1.22, mochi: 0.5 };

@@ -1,4 +1,4 @@
-import type { Ekspresi } from '@kantor/shared/types';
+import type { Aksi, Benda, Ekspresi } from '@kantor/shared/types';
 
 // Alat bantu animasi karakter. Semua fungsi deterministik (bergantung frame saja),
 // jadi hasil render selalu sama dan aman dirender paralel oleh Remotion.
@@ -79,4 +79,25 @@ export interface PropsRig {
   seed: number;
   /** fase langkah saat berjalan masuk; null = berdiri */
   jalan: number | null;
+  /** sedang melakukan apa (memegang benda, membaca Al-Qur'an, tidur, ...) */
+  aksi?: Aksi;
+  benda?: Benda;
 }
+
+/**
+ * Fase gerak makan 0..1 (0 = benda di depan dada, 1 = di mulut). Siklus ±2,4 detik:
+ * mengangkat, menggigit sebentar, menurunkan, lalu mengunyah.
+ */
+export function faseMakan(f: number): number {
+  const p = (f % 72) / 72;
+  if (p < 0.25) return Math.sin((p / 0.25) * (Math.PI / 2));
+  if (p < 0.4) return 1;
+  if (p < 0.6) return Math.cos(((p - 0.4) / 0.2) * (Math.PI / 2));
+  return 0;
+}
+
+/** Tinggi pantulan bola saat dipantulkan (0 = di lantai, 1 = di tangan), siklus ±1 detik. */
+export const pantulBola = (f: number) => Math.abs(Math.cos((f / 30) * Math.PI));
+
+/** Pose lengan antara dua pose. */
+export const campurPose = (a: PoseLengan, b: PoseLengan, t: number): PoseLengan => ({ bahu: lerp(a.bahu, b.bahu, t), siku: lerp(a.siku, b.siku, t) });

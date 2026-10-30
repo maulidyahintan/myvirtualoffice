@@ -100,6 +100,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
       );
     case 'taman':
     case 'halaman-rumah':
+    case 'taman-bermain':
       return (
         <>
           <Semak x={150} y={1000} r={150} warna="#4F9450" terang="#7CC46E" />
@@ -207,6 +208,48 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <rect x={1660} y={300} width={40} height={800} fill="#B9C4CC" />
           <rect x={1600} y={420} width={140} height={34} rx={12} fill="#C9D3DA" />
           <Semak x={1830} y={1040} r={100} warna="#4F9450" terang="#7CC46E" />
+        </>
+      );
+    case 'dalam-masjid':
+      return (
+        <>
+          {/* tiang masjid & rak Al-Qur'an */}
+          <rect x={-40} y={0} width={170} height={1080} fill="#E2D2B4" />
+          <rect x={-60} y={0} width={210} height={60} fill="#C9A86A" />
+          <rect x={1640} y={800} width={320} height={300} rx={12} fill="#8A5E3C" />
+          {[0, 1, 2, 3, 4].map((i) => (
+            <rect key={i} x={1660 + i * 52} y={720} width={42} height={84} rx={4} fill="#2F6F5E" stroke="#E8B04A" strokeWidth={3} />
+          ))}
+        </>
+      );
+    case 'pasar':
+      return (
+        <>
+          {/* tumpukan keranjang & karung di depan */}
+          <rect x={-40} y={880} width={360} height={220} rx={30} fill="#C8925E" />
+          {[40, 120, 200, 280].map((x, i) => (
+            <circle key={x} cx={x} cy={870} r={34} fill={['#E0504A', '#F2A33A', '#5FA35A', '#F5D547'][i]} />
+          ))}
+          <path d="M1600 1100 Q1580 880 1700 860 Q1820 840 1900 880 Q1960 1000 1940 1100 Z" fill="#D9C29A" />
+          <path d="M1680 870 Q1760 840 1860 870" stroke="#B89E72" strokeWidth={8} fill="none" />
+        </>
+      );
+    case 'toko':
+      return (
+        <>
+          {/* troli belanja & ujung rak */}
+          <rect x={-60} y={820} width={360} height={280} rx={16} fill="#C9D6DE" />
+          {[0, 1, 2, 3].map((i) => (
+            <rect key={i} x={-40 + i * 80} y={760} width={64} height={70} rx={8} fill={['#F5C842', '#E0504A', '#4F8FD9', '#5BAE7A'][i]} />
+          ))}
+          <g>
+            <path d="M1600 840 L1880 840 L1850 980 L1630 980 Z" fill="none" stroke="#7A8B96" strokeWidth={10} />
+            {[1660, 1720, 1780, 1840].map((x) => (
+              <line key={x} x1={x} y1={840} x2={x - 6} y2={980} stroke="#7A8B96" strokeWidth={5} />
+            ))}
+            <circle cx={1660} cy={1020} r={26} fill="#4A5560" />
+            <circle cx={1840} cy={1020} r={26} fill="#4A5560" />
+          </g>
         </>
       );
     default:

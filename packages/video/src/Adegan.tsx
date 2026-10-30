@@ -3,6 +3,7 @@ import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoCon
 import type { Adegan as AdeganData, Karakter as KarakterId } from '@kantor/shared/types';
 import { Latar, LATAR_GELAP } from './backgrounds/Latar';
 import { LatarDepan } from './backgrounds/LatarDepan';
+import { PropertiAdegan } from './properti/Properti';
 import { Karakter, SKALA, type CaraMasuk } from './characters/Karakter';
 import { noiseS } from './characters/gerak';
 import { EfekEkspresi } from './Efek';
@@ -431,9 +432,11 @@ function gerakHidup(
   id: KarakterId,
   i: number,
   frame: number,
-  s: { bicara: boolean; mendengar: boolean; lihatX: number },
+  s: { bicara: boolean; mendengar: boolean; lihatX: number; beraksi: boolean },
 ): { x: number; y: number; miring: number; skala: number; lihatX?: number } {
   const f = frame + i * 53;
+  // tokoh yang sedang tidur/membaca/bermain tetap di tempatnya
+  if (s.beraksi) return { x: 0, y: 0, miring: id === 'mochi' ? 0 : Math.sin(f / 60) * 0.8, skala: 1 };
   if (id === 'mochi') {
     // berjalan bolak-balik pelan; melompat-lompat kecil saat berpindah
     const x = noiseS(f / 110, 9 + i) * 110;
@@ -542,6 +545,20 @@ export const Adegan: React.FC<{
 
   const pTransisi = transisi > 0 ? interpolate(frame, [0, transisi], [0, 1], { extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) }) : 1;
 
+  const propertiAdegan = (lapisan: 'bawah' | 'belakang') =>
+    isDoa ? null : (
+      <PropertiAdegan
+        properti={data.properti ?? []}
+        aksi={data.aksi ?? []}
+        urut={urut}
+        xs={xs}
+        lantai={lantai}
+        skala={((vertikal ? 470 : TINGGI_DASAR) / 400) * 1.15}
+        vertikal={vertikal}
+        lapisan={lapisan}
+      />
+    );
+
   // siapa yang diberi efek ekspresi: pembicara, atau tokoh manusia pertama
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
 
@@ -563,6 +580,8 @@ export const Adegan: React.FC<{
         {isDoa ? <AbsoluteFill style={{ backgroundColor: 'rgba(20,20,40,0.35)' }} /> : null}
 
         <div style={gayaPanggung(kam, fw, fh)}>
+          {propertiAdegan('bawah')}
+          {propertiAdegan('belakang')}
           {urut.map((id: KarakterId, i) => {
             const tinggi = tinggiDari(id);
             const lebar = (tinggi * 240) / 400;
@@ -570,7 +589,8 @@ export const Adegan: React.FC<{
             let lihatX = iPembicara >= 0 && iPembicara !== i ? Math.sign(xs[iPembicara] - xs[i]) : 0;
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
             const masuk: CaraMasuk = sebelumnya.includes(id) ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
-            const gaya = gerakHidup(id, i, frame, { bicara: data.pembicara === id, mendengar: i !== iPembicara && iPembicara >= 0, lihatX });
+            const aksiIni = data.aksi?.find((a) => a.karakter === id);
+            const gaya = gerakHidup(id, i, frame, { bicara: data.pembicara === id, mendengar: i !== iPembicara && iPembicara >= 0, lihatX, beraksi: !!aksiIni });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
             return (
               <div
@@ -585,7 +605,17 @@ export const Adegan: React.FC<{
                   opacity: lensa.bahu === i ? 0 : 1,
                 }}
               >
-                <Karakter id={id} ekspresi={data.ekspresi} bicara={data.pembicara === id} tinggi={tinggi} offset={i * 37} lihatX={lihatX} masuk={masuk} />
+                <Karakter
+                  id={id}
+                  ekspresi={data.ekspresi}
+                  bicara={data.pembicara === id}
+                  tinggi={tinggi}
+                  offset={i * 37}
+                  lihatX={lihatX}
+                  masuk={masuk}
+                  aksi={aksiIni?.aksi}
+                  benda={aksiIni?.benda}
+                />
               </div>
             );
           })}

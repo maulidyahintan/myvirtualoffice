@@ -289,7 +289,11 @@ export async function sutradarai(id: string) {
     const a = adegan.adegan[i] ?? adegan.adegan.at(-1)!;
     const karakter = a.karakter.slice();
     if (n.pembicara !== 'narator' && !karakter.includes(n.pembicara)) karakter.push(n.pembicara);
-    return { ...a, jenis: n.jenis, pembicara: n.pembicara, narasi: n.narasi, karakter };
+    // aksi hanya untuk tokoh yang tampil, dan yang masuk akal (Mochi: tidur/bermain; Mamas/Ibu: selain tidur)
+    const aksi = a.aksi?.filter(
+      (x) => karakter.includes(x.karakter) && (x.karakter === 'mochi' ? x.aksi === 'tidur' || x.aksi === 'bermain' : x.aksi !== 'tidur'),
+    );
+    return { ...a, jenis: n.jenis, pembicara: n.pembicara, narasi: n.narasi, karakter, aksi: aksi?.length ? aksi : undefined };
   });
 
   updateEpisode(id, (e) => {

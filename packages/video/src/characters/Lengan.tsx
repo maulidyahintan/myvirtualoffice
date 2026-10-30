@@ -22,7 +22,9 @@ export const Lengan: React.FC<{
   lenganBaju?: { panjang: number; warna: string; garis: string };
   /** manset di ujung lengan bawah */
   manset?: string;
-}> = ({ x, y, cermin, pose, atas, bawah, tebal, warnaAtas, warnaBawah, warnaTangan, garis, lenganBaju, manset }) => {
+  /** benda di genggaman (digambar tegak, tidak ikut berputar bersama lengan) */
+  pegang?: React.ReactNode;
+}> = ({ x, y, cermin, pose, atas, bawah, tebal, warnaAtas, warnaBawah, warnaTangan, garis, lenganBaju, manset, pegang }) => {
   const t2 = tebal / 2;
   const tb = tebal * 0.88;
   const rTangan = tebal * 0.58;
@@ -35,6 +37,10 @@ export const Lengan: React.FC<{
         {/* tangan + ibu jari */}
         <ellipse cx={tebal * 0.32} cy={bawah + rTangan * 0.2} rx={rTangan * 0.42} ry={rTangan * 0.6} fill={warnaTangan} stroke={garis} strokeWidth={2} transform={`rotate(-25 ${tebal * 0.32} ${bawah})`} />
         <ellipse cx={0} cy={bawah + rTangan * 0.55} rx={rTangan * 0.92} ry={rTangan} fill={warnaTangan} stroke={garis} strokeWidth={2.5} />
+        {pegang ? (
+          // benda di depan telapak, tetap tegak walau lengan berputar
+          <g transform={`translate(0 ${bawah + rTangan * 0.3}) rotate(${-(pose.bahu + pose.siku)}) scale(${cermin ? -1 : 1} 1)`}>{pegang}</g>
+        ) : null}
       </g>
       {lenganBaju ? (
         <path

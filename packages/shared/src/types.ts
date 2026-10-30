@@ -2,6 +2,9 @@ import type {
   EKSPRESI,
   EpisodeStatus,
   AGEN_CHAT,
+  AKSI,
+  BENDA,
+  PROPERTI,
   FORMAT,
   JENIS_KONTEN,
   SUASANA,
@@ -18,6 +21,9 @@ export type Ekspresi = (typeof EKSPRESI)[number];
 export type JenisAdegan = (typeof JENIS_ADEGAN)[number];
 export type Usia = (typeof USIA)[number];
 export type Format = (typeof FORMAT)[number];
+export type Benda = (typeof BENDA)[number];
+export type Properti = (typeof PROPERTI)[number];
+export type Aksi = (typeof AKSI)[number];
 export type JenisKonten = (typeof JENIS_KONTEN)[number];
 export type AgenChat = (typeof AGEN_CHAT)[number];
 
@@ -123,6 +129,17 @@ export interface Adegan {
   teksLayar?: string;
   /** Untuk adegan doa: teks Arab + latin + arti. */
   doa?: { arab: string; latin: string; arti: string };
+  /** Properti pendukung di sekitar tokoh (maks. 3). */
+  properti?: Properti[];
+  /** Apa yang sedang dilakukan tokoh tertentu (memegang benda, membaca Al-Qur'an, tidur, ...). */
+  aksi?: AksiTokoh[];
+}
+
+export interface AksiTokoh {
+  karakter: Karakter;
+  aksi: Aksi;
+  /** benda yang dipegang/dimakan/dimainkan */
+  benda?: Benda;
 }
 
 export interface MetadataYouTube {
