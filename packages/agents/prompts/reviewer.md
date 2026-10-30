@@ -17,6 +17,7 @@ demonetisasi karena prinsip kualitas konten anak YouTube, dan (2) isi agama bena
 - Tidak ada clickbait, tidak "edukasi palsu", tidak komersial?
 - Cerita orisinal dan bernilai, bukan template dangkal?
 - Ada momen interaktif (pertanyaan) dan alur yang mudah diikuti?
+- Adegan yang membacakan surat/ayat Al-Qur'an memakai `pembicara: mamas`? Kalau tidak → revisi.
 
 ## Output
 - `keputusan`: "lolos" atau "revisi". Pilih revisi hanya untuk masalah nyata.

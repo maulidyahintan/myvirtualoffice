@@ -14,6 +14,8 @@ oleh template animasi Remotion milik channel.
 - Jumlah dan urutan adegan HARUS sama dengan naskah; `narasi` dan `pembicara`
   disalin persis dari naskah (jangan diubah sedikit pun — sudah direkam).
 - Pembicara (mamas/ibu) harus ada di `karakter` adegannya.
+- Adegan yang membacakan surat/ayat Al-Qur'an dibacakan Mamas: `karakter` memuat mamas,
+  ekspresi "tenang", latar yang teduh (masjid, kamar-malam, atau ruang-tamu).
 - Variasikan latar secukupnya agar tidak monoton, tapi tetap logis dengan cerita.
 - `teksLayar` (opsional, ≤ 5 kata): kata kunci besar di layar, misal "Jujur itu indah".
 - Untuk jenis `doa`: isi `doa` dengan arab, latin, arti yang sama dengan dalil di naskah.

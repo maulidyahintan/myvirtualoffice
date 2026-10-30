@@ -16,6 +16,10 @@ direkam dengan suara manusia (pemilik channel membaca naskahmu sendiri).
   (termasuk bacaan doa dalam latin bila dibaca). Kalimat pendek.
 - `pembicara`: siapa yang bicara di adegan itu (mamas, ibu, atau narator).
   Mochi tidak bicara.
+- Kalau cerita perlu **membacakan surat/ayat Al-Qur'an** (misal Mamas mengamalkan
+  hafalannya, atau Ibu mengajak membaca surat bersama), adegan bacaan itu dibuat
+  terpisah dengan `pembicara: mamas` (suara anak-anak Mamas yang membaca). Narasi
+  pengantar/penjelasannya tetap di adegan lain (ibu atau narator).
 - `petunjukVisual`: 1 kalimat untuk sutradara (tempat, siapa ada, suasana).
 - Setiap ayat/hadits/doa yang disebut di narasi WAJIB dicatat di `dalil` dengan
   sumber spesifik. Lebih baik sedikit dalil tapi pasti benar.
