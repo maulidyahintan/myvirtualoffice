@@ -1,0 +1,44 @@
+[
+  {
+    "waktu": "2026-10-30T05:21:34.286Z",
+    "dari": "saya",
+    "teks": "pada setiap akhir video tulisannya wassallamualaikum ya bukan assalamualaikum"
+  },
+  {
+    "waktu": "2026-10-30T05:21:46.285Z",
+    "dari": "agen",
+    "teks": "Siap, dicatat! Penutup video pakai **\"Wassalamu'alaikum\"**, bukan \"Assalamu'alaikum\".\n\nDari chat aku belum bisa mengubahnya langsung. Ini yang bisa dilakukan:\n\n- **Episode yang sudah ada:** buka halaman episode, tekan **\"Minta revisi\"**. Tulis catatan: *\"Adegan terakhir: teksLayar diganti 'Wassalamu'alaikum'.\"*\n- **Kalau narasinya juga mengucap \"Assalamu'alaikum\":** naskahnya perlu direvisi Chimi dan direkam ulang. Narasi wajib kusalin persis dari naskah, jadi aku tidak boleh mengubahnya sendiri.\n- **Supaya berlaku untuk semua episode:** tambahkan aturan ini ke Pedoman Channel. Contohnya di bagian Gaya bahasa: *\"Salam penutup video selalu 'Wassalamu'alaikum warahmatullahi wabarakatuh'.\"* Pedoman dibaca semua agen, jadi Chimi dan aku akan konsisten.\n\nEjaan yang umum dipakai adalah **\"Wassalamu'alaikum\"** (s dobel, l tunggal). Mau versi pendek saja, atau lengkap sampai \"warahmatullahi wabarakatuh\"?"
+  },
+  {
+    "waktu": "2026-10-30T05:22:47.685Z",
+    "dari": "saya",
+    "teks": "di closing itu teks dari chimi ? closing video"
+  },
+  {
+    "waktu": "2026-10-30T05:22:57.174Z",
+    "dari": "agen",
+    "teks": "Tulisan di closing bisa berasal dari tiga tempat:\n\n1. **Narasi (suara yang diucapkan):** dari naskah **Chimi**. Kalau suaranya bilang \"Assalamu'alaikum\", berarti salah di naskah. Perbaikannya lewat Chimi, lalu direkam ulang.\n2. **`teksLayar` (tulisan besar di adegan terakhir):** ini dariku (**Momo**). Biasanya aku isi pesan moral, bukan salam. Tapi kalau salamnya muncul di sini, itu tanggung jawabku.\n3. **End card bawaan template Remotion:** kalau tulisan salam selalu sama di semua video dan tidak tercantum di daftar adegan, kemungkinan tulisannya tertanam di template. Ini bukan dari Chimi maupun aku, jadi perlu diubah di kode template.\n\nCara cepat mengeceknya: buka halaman episode, lalu lihat adegan terakhir di daftar adegan.\n- Kalau \"Assalamu'alaikum\" ada di kolom **narasi**, berarti dari Chimi.\n- Kalau ada di kolom **teksLayar**, berarti dariku.\n- Kalau tidak ada di keduanya, berarti dari template.\n\nBegitu ketemu sumbernya, tekan **\"Minta revisi\"** dengan catatan yang sesuai. Aturannya juga sebaiknya ditambahkan ke Pedoman Channel supaya ke depannya konsisten."
+  },
+  {
+    "waktu": "2026-10-30T05:25:54.332Z",
+    "dari": "saya",
+    "teks": "tidak ada di narasi adegan, itu ada di closing video"
+  },
+  {
+    "waktu": "2026-10-30T05:26:04.178Z",
+    "dari": "agen",
+    "teks": "Kalau tidak ada di narasi maupun di `teksLayar`, berarti tulisan itu **tertanam di template Remotion** (end card/closing bawaan). Template itu bukan buatan Chimi atau aku. Itu sebabnya tulisannya selalu sama di setiap video.\n\nCara memperbaikinya:\n- **Ubah di kode template.** Ini tidak bisa lewat tombol \"Minta revisi\" karena bukan bagian dari naskah atau daftar adegan. Minta developer yang memegang kode, atau buka sendiri folder template Remotion di proyek `kantor-ai-islami`. Cari teks `Assalamu` di semua file, kemungkinan besar ada di komponen bernama *Closing*, *Outro*, atau *EndCard*. Ganti tulisannya menjadi **\"Wassalamu'alaikum\"** (atau versi lengkapnya).\n- **Render ulang** episode yang sudah jadi supaya closing-nya ikut berubah. Narasi tidak perlu direkam ulang karena suaranya tidak berubah.\n- **Cek audio closing.** Kalau di closing juga ada suara salam yang terekam, file audio itu juga bagian dari template dan perlu diganti.\n\nSatu hal yang perlu dicek: setelah diganti, pastikan ejaannya konsisten dengan yang ditulis di Pedoman Channel, supaya teks di layar dan ucapan narator sama."
+  },
+  {
+    "waktu": "2026-10-30T05:28:53.489Z",
+    "dari": "saya",
+    "teks": "kalau di perubahan teks outro bisa dirender ulang tanpa harus record suara lagi ga ?",
+    "episodeId": "asbabun-nuzul-surat-an-nas-surat-perlind-a203"
+  },
+  {
+    "waktu": "2026-10-30T05:29:01.310Z",
+    "dari": "agen",
+    "teks": "**Bisa.** Kalau yang diubah hanya **tulisan** di outro, cukup ganti teksnya di template lalu **render ulang**. Suara tidak perlu direkam lagi. Remotion menggabungkan visual dan audio saat render, jadi file rekaman narasi yang lama tetap dipakai apa adanya.\n\nAda dua hal yang perlu dicek:\n- **Apakah outro punya suara salam sendiri?** Kalau di closing ada suara \"Assalamu'alaikum\" yang terdengar, itu file audio terpisah di template. Teksnya bisa diganti, tapi suaranya tetap bilang \"Assalamu'alaikum\" sampai file audionya diganti. Kalau outro-nya hanya tulisan (atau hanya efek suara ringan), aman.\n- **Panjang tulisan.** \"Wassalamu'alaikum warahmatullahi wabarakatuh\" jauh lebih panjang dari \"Assalamu'alaikum\". Setelah render, cek apakah tulisannya masih muat dan tidak terpotong, terutama di format Shorts yang layarnya sempit.\n\nSesudah render ulang, tonton bagian closing-nya sekali sebelum menekan approve di halaman episode.",
+    "episodeId": "asbabun-nuzul-surat-an-nas-surat-perlind-a203"
+  }
+]

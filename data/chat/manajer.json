@@ -1,0 +1,48 @@
+[
+  {
+    "waktu": "2026-10-29T08:25:19.631Z",
+    "dari": "saya",
+    "teks": "ini masih sangat ga pas suara dan videonya",
+    "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
+  },
+  {
+    "waktu": "2026-10-29T08:25:36.800Z",
+    "dari": "agen",
+    "teks": "Waduh, maaf ya, Bu. Saya tidak bisa menonton hasil rendernya, jadi saya perlu tahu dulu bagian mana yang tidak pas. Biasanya masalahnya salah satu dari ini:\n\n1. **Suara dan gambar tidak sinkron.** Gambar sudah pindah ke adegan berikutnya, tapi suaranya masih di adegan sebelumnya, atau sebaliknya. Ini biasanya karena rekaman per adegan tertukar, ada yang terlewat, atau jumlahnya tidak sama dengan jumlah adegan. Naskah ini punya **16 adegan**. Coba cek apakah rekamannya juga pas 16 dan urutannya benar.\n2. **Gambar tidak sesuai isi suara.** Contohnya, Ibu sedang bicara tapi yang tampil hanya Mamas dan Mochi, atau ekspresinya masih \"kaget\" padahal ceritanya sudah tenang. Dari data adegan yang bisa saya lihat, adegan 3 (narator: lampu padam, Mochi melompat) dan adegan 4 (Mamas takut) sudah benar. Sisanya terpotong di layar saya, jadi belum bisa saya cek.\n3. **Ada jeda yang aneh.** Misalnya di adegan pertanyaan, tanda \"...\" belum diganti jadi jeda 3 detik seperti saran Choki. Akibatnya bisa terlalu cepat atau malah diam terlalu lama.\n4. **Efek suaranya mengganggu.** Bunyi angin terlalu keras atau bayangannya tampil terlalu lama.\n\nBoleh Ibu ceritakan sedikit? Misalnya: \"mulai menit sekian suaranya telat\", atau \"adegan Ibu mengajarkan tiga Qul gambarnya salah\". Nanti saya bantu tentukan apa yang perlu diperbaiki: rekamannya diulang, adegannya disusun ulang oleh Momo, atau cukup di-render ulang.\n\nSatu lagi: kalau nanti adegannya mau diubah, perbaiki juga catatan Choki yang belum dikerjakan, yaitu arti \"Ilahin nas\" dan jeda di adegan pertanyaan. Dengan begitu cukup sekali rekam ulang.",
+    "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
+  },
+  {
+    "waktu": "2026-10-29T13:35:52.236Z",
+    "dari": "saya",
+    "teks": "test"
+  },
+  {
+    "waktu": "2026-10-29T13:35:58.223Z",
+    "dari": "agen",
+    "teks": "Halo, Bu! Chatnya sudah masuk dengan baik, jadi aman. 😊\n\nKalau sudah sempat, ceritakan sedikit bagian mana dari video tadi yang belum pas, ya. Contohnya suara yang telat, gambar yang tidak cocok dengan isi cerita, atau jeda yang terasa aneh. Nanti saya bantu tentukan perbaikannya: cukup di-render ulang, adegannya disusun ulang oleh Momo, atau perlu rekam ulang."
+  },
+  {
+    "waktu": "2026-10-30T05:30:10.547Z",
+    "dari": "saya",
+    "teks": "mau ganti outro bisa diedit dulu ga ?",
+    "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
+  },
+  {
+    "waktu": "2026-10-30T05:30:21.928Z",
+    "dari": "agen",
+    "teks": "Bisa, Bu. Tapi saya tidak bisa mengubahnya langsung dari chat, jadi perubahannya dikerjakan lewat dashboard. Karena status episode ini sudah **scheduled**, sebaiknya jadwal tayangnya ditunda dulu supaya video lama tidak keburu tayang.\n\nSaya perlu tahu dulu outro yang mana yang mau diganti:\n\n1. **Adegan penutup cerita (adegan 16).** Ini narator yang bilang \"Selamat tidur, Mamas... Wassalamu'alaikum.\" Caranya:\n   - Buka halaman episode, lalu tekan **\"Minta revisi\"** dan tulis outro yang Ibu mau.\n   - Setelah naskahnya disetujui, rekam ulang adegan itu saja, lalu render ulang.\n2. **Outro tetap channel.** Ini penutup yang sama di semua video, misalnya bumper atau end screen. Mengubah ini berarti mengubah template, jadi semua episode berikutnya ikut berubah, bukan hanya episode ini.\n\nKalau mau, ceritakan saja outro seperti apa yang Ibu inginkan. Nanti saya bantu rapikan kalimatnya supaya pendek, hangat, dan tidak mendesak anak untuk subscribe.\n\nSekalian revisi, sebaiknya catatan Choki yang belum dikerjakan ikut dimasukkan: arti \"Ilahin nas\" dan jeda 3 detik di adegan pertanyaan. Dengan begitu cukup sekali rekam ulang.",
+    "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
+  },
+  {
+    "waktu": "2026-10-30T05:31:31.040Z",
+    "dari": "saya",
+    "teks": "bagaimana cara memindahkan atau edit video ini lagi",
+    "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
+  },
+  {
+    "waktu": "2026-10-30T05:31:45.341Z",
+    "dari": "agen",
+    "teks": "Bisa, Bu. Saya tidak bisa memindahkan atau mengubahnya dari chat, jadi langkahnya lewat dashboard. Saya juga tidak tahu persis tombol apa saja yang ada di halaman episode, jadi langkah yang saya tidak yakin saya tandai \"(cek)\":\n\n**Kalau mau mengedit isi videonya (naskah, outro, suara):**\n1. **Tunda jadwal dulu.** Videonya sudah terjadwal, jadi ini paling penting supaya versi lama tidak keburu tayang. Buka halaman episode dan cari pengaturan jadwal (cek). Kalau di dashboard tidak ada, batalkan atau ubah jadwalnya langsung di YouTube Studio.\n2. Tekan **\"Minta revisi\"** di halaman episode, lalu tulis bagian yang mau diubah.\n3. Ikuti alurnya lagi: naskah diperiksa, Ibu setujui, adegan disusun, rekam ulang bagian yang berubah, lalu render ulang.\n4. Tonton hasilnya, lalu jadwalkan lagi.\n\n**Kalau maksudnya memindahkan jadwal tayang saja:** ubah tanggalnya di pengaturan jadwal halaman episode (cek), atau di YouTube Studio.\n\n**Kalau maksudnya memindahkan kartu di Papan Kerja ke tahap sebelumnya:** biasanya kartunya otomatis kembali ke tahap revisi setelah Ibu menekan \"Minta revisi\" (cek).\n\nBoleh Ibu ceritakan \"memindahkan\" yang Ibu maksud yang mana? Kalau ada tombol di halaman episode yang membingungkan, sebutkan saja namanya, nanti saya bantu jelaskan fungsinya. Kalau jadi revisi, masukkan juga catatan Choki tentang arti \"Ilahin nas\" dan jeda 3 detik di adegan pertanyaan, supaya cukup sekali rekam ulang.",
+    "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
+  }
+]

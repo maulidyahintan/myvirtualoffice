@@ -1,8 +1,8 @@
 {
   "id": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a",
   "dibuat": "2026-10-28T10:20:42.356Z",
-  "diubah": "2026-10-29T13:06:39.337Z",
-  "status": "needs_video_approval",
+  "diubah": "2026-10-30T05:04:46.070Z",
+  "status": "scheduled",
   "ide": {
     "judul": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
     "seri": "kisah-sebelum-tidur",
@@ -137,9 +137,119 @@
       "waktu": "2026-10-29T13:11:29.000Z",
       "oleh": "sistem",
       "pesan": "Efek suara karakter dinyalakan lagi, nada episode dikembalikan ke asli"
+    },
+    {
+      "waktu": "2026-10-30T04:43:04.724Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 1 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:43:25.990Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 2 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:43:54.987Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 3 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:44:28.856Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 4 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:44:55.219Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 5 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:45:20.573Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 6 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:45:39.229Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 7 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:46:05.411Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 8 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:46:31.103Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 9 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:47:26.503Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 10 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:47:38.893Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 11 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:48:22.685Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 12 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:48:51.162Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 13 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:49:18.157Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 14 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:49:51.179Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 15 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:50:15.159Z",
+      "oleh": "pemilik",
+      "pesan": "Rekaman adegan 16 diupload"
+    },
+    {
+      "waktu": "2026-10-30T04:52:38.398Z",
+      "oleh": "pemilik",
+      "pesan": "Mulai render"
+    },
+    {
+      "waktu": "2026-10-30T04:52:39.424Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T04:55:12.621Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T05:04:26.761Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui"
+    },
+    {
+      "waktu": "2026-10-30T05:04:27.689Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-30T05:04:46.070Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-10-30T09:30:00.000Z"
     }
   ],
-  "catatanStatus": "Video siap ditonton & disetujui",
+  "catatanStatus": "Terjadwal tayang 2026-10-30T09:30:00.000Z",
   "naskah": {
     "judul": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
     "ringkasan": "Lampu kamar dimatikan. Angin berbunyi \"wuuush\", dan ada bayangan besar di dinding. Mamas dan Mochi sama-sama ketakutan. Ternyata bayangan itu cuma sarung Ayah yang tergantung. Ibu menenangkan Mamas: Allah tidak pernah tidur dan selalu menjaga kita. Lalu Ibu mengajarkan sunnah Rasulullah ﷺ sebelum tidur. Caranya: baca Al-Ikhlas, Al-Falaq, dan An-Nas ke telapak tangan, lalu usapkan ke badan. Mamas juga belajar arti Surat An-Nas, yaitu kita meminta perlindungan kepada Allah. Episode ditutup dengan doa sebelum tidur.",
@@ -516,108 +626,113 @@
   "render": {
     "video": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a.mp4",
     "thumbnail": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a.png",
-    "waktu": "2026-10-29T08:20:58.449Z",
     "adegan": [
       {
         "mulai": 10,
-        "durasi": 24.466666666666665
+        "durasi": 24.2
       },
       {
-        "mulai": 34.46666666666667,
-        "durasi": 9.8
+        "mulai": 34.2,
+        "durasi": 11.166666666666666
       },
       {
-        "mulai": 44.266666666666666,
-        "durasi": 19.566666666666666
+        "mulai": 45.36666666666667,
+        "durasi": 20.6
       },
       {
-        "mulai": 63.833333333333336,
-        "durasi": 11.433333333333334
+        "mulai": 65.96666666666667,
+        "durasi": 10.933333333333334
       },
       {
-        "mulai": 75.26666666666667,
-        "durasi": 17.133333333333333
+        "mulai": 76.9,
+        "durasi": 19.733333333333334
       },
       {
-        "mulai": 92.4,
-        "durasi": 18.766666666666666
+        "mulai": 96.63333333333334,
+        "durasi": 19.533333333333335
       },
       {
-        "mulai": 111.16666666666667,
-        "durasi": 11.433333333333334
+        "mulai": 116.16666666666667,
+        "durasi": 11.466666666666667
       },
       {
-        "mulai": 122.6,
-        "durasi": 20.4
+        "mulai": 127.63333333333334,
+        "durasi": 22.4
       },
       {
-        "mulai": 143,
-        "durasi": 18.766666666666666
+        "mulai": 150.03333333333333,
+        "durasi": 22.4
       },
       {
-        "mulai": 161.76666666666668,
-        "durasi": 42.4
+        "mulai": 172.43333333333334,
+        "durasi": 45.833333333333336
       },
       {
-        "mulai": 204.16666666666666,
-        "durasi": 5.7
+        "mulai": 218.26666666666668,
+        "durasi": 6.4
       },
       {
-        "mulai": 209.86666666666667,
-        "durasi": 35.06666666666667
+        "mulai": 224.66666666666666,
+        "durasi": 38.266666666666666
       },
       {
-        "mulai": 244.93333333333334,
-        "durasi": 18.766666666666666
+        "mulai": 262.93333333333334,
+        "durasi": 19.766666666666666
       },
       {
-        "mulai": 263.7,
-        "durasi": 17.933333333333334
+        "mulai": 282.7,
+        "durasi": 19.133333333333333
       },
       {
-        "mulai": 281.6333333333333,
-        "durasi": 16.3
+        "mulai": 301.8333333333333,
+        "durasi": 13.466666666666667
       },
       {
-        "mulai": 297.93333333333334,
-        "durasi": 16.3
+        "mulai": 315.3,
+        "durasi": 17.433333333333334
       }
-    ]
+    ],
+    "waktu": "2026-10-30T04:55:12.620Z"
   },
   "audioPerAdegan": [
-    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-1-mvtaueeq.webm",
-    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-2-mvtauxnc.webm",
-    null,
-    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-4-mvtb4pd6.webm",
-    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-5-mvtk3e7i.webm",
-    null,
-    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-7-mvtb5qar.webm",
-    null,
-    null,
-    null,
-    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-11-mvtk44rx.webm",
-    null,
-    null,
-    null,
-    null,
-    null
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-1-mvuhl2tr.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-2-mvuhlj8h.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-3-mvuhm5m0.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-4-mvuhmvqt.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-5-mvuhng32.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-6-mvuhnznf.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-7-mvuhoe1l.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-8-mvuhoy8x.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-9-mvuhpi2m.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-10-mvuhqoth.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-11-mvuhqydm.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-12-mvuhrw62.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-13-mvuhsi54.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-14-mvuht2z0.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-15-mvuhtsg7.webm",
+    "audio/mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a-adegan-16-mvuhuayc.webm"
   ],
   "offsetAdegan": [
-    null,
-    null,
-    null,
-    2.15,
-    2.129,
-    null,
-    2.15,
-    null,
-    null,
-    null,
+    2.131,
+    2.135,
+    2.13,
+    2.131,
+    2.135,
+    2.133,
+    2.134,
+    2.134,
+    2.141,
+    2.133,
     2.128,
-    null,
-    null,
-    null,
-    null,
-    null
-  ]
+    2.132,
+    2.136,
+    2.134,
+    2.134,
+    2.136
+  ],
+  "youtube": {
+    "videoId": "pJZphm-yEbs",
+    "url": "https://www.youtube.com/watch?v=pJZphm-yEbs",
+    "jadwalTayang": "2026-10-30T09:30:00.000Z"
+  }
 }
