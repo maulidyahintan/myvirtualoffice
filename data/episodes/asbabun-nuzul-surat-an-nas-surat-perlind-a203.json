@@ -1,8 +1,8 @@
 {
   "id": "asbabun-nuzul-surat-an-nas-surat-perlind-a203",
   "dibuat": "2026-10-28T10:20:42.355Z",
-  "diubah": "2026-10-30T05:30:11.542Z",
-  "status": "rendering",
+  "diubah": "2026-10-30T08:35:46.830Z",
+  "status": "scheduled",
   "ide": {
     "judul": "Asbabun Nuzul Surat An-Nas: Surat Perlindungan yang Istimewa",
     "seri": "asbabun-nuzul",
@@ -204,9 +204,29 @@
       "waktu": "2026-10-30T05:29:41.197Z",
       "oleh": "video-creator",
       "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T05:33:04.860Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T08:35:21.331Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui"
+    },
+    {
+      "waktu": "2026-10-30T08:35:22.169Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-30T08:35:46.830Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-10-31T09:30:00.000Z"
     }
   ],
-  "catatanStatus": "Render dengan rekaman suara",
+  "catatanStatus": "Terjadwal tayang 2026-10-31T09:30:00.000Z",
   "naskah": {
     "judul": "Mengenal Surat An-Nas: Surat Perlindungan yang Istimewa",
     "ringkasan": "Malam hari, Mamas bertanya tentang surat yang dibaca Ayah saat shalat Isya. Ibu mengenalkan An-Nas, surat ke-114 dan surat terakhir di mushaf. Ibu juga meluruskan bahwa surat ini istimewa karena isinya, bukan karena letaknya paling akhir. Narator bercerita tentang malam turunnya surat ini. Rasulullah ﷺ memuji Al-Falaq dan An-Nas sebagai ayat-ayat yang belum pernah terlihat semisalnya (HR. Muslim 814). Narator juga menceritakan bahwa beliau dulu berlindung dari gangguan jin dan pandangan mata manusia. Setelah kedua surat ini turun, keduanya menjadi bacaan perlindungan utama beliau (HR. Tirmidzi 2058). Ibu menjelaskan makna enam ayatnya dengan contoh sehari-hari, termasuk bahwa bisikan jahat mundur kalau kita ingat Allah. Mamas lalu mengaku bahwa tadi sore ia diam saja dan lari main lagi, padahal mainannya belum dirapikan. Ia akhirnya jujur dan membereskan baloknya. Ibu mengajarkan ta'awwudz saat ada bisikan jahat (QS. Al-A'raf: 200). Malam itu mereka latihan membaca An-Nas bersama. Setelah itu, Mamas mengamalkan sunnah sebelum tidur secara lengkap. Ia meniup telapak tangan, membaca Al-Ikhlas, Al-Falaq, dan An-Nas, lalu mengusap badan tiga kali (HR. Bukhari 5017). Kisah sihir tidak dipakai. Nabi ﷺ tidak digambar dan tidak diberi dialog karangan.",
@@ -692,6 +712,11 @@
         "durasi": 36.1
       }
     ],
-    "waktu": "2026-10-30T05:20:43.172Z"
+    "waktu": "2026-10-30T05:33:04.859Z"
+  },
+  "youtube": {
+    "videoId": "vwc_5hP5TIk",
+    "url": "https://www.youtube.com/watch?v=vwc_5hP5TIk",
+    "jadwalTayang": "2026-10-31T09:30:00.000Z"
   }
 }
