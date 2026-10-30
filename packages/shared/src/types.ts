@@ -147,6 +147,10 @@ export interface Episode {
   ide: Ide;
   /** Episode kembaran dari ide yang sama dengan format lain (video biasa ↔ Shorts). */
   pasangan?: string;
+  /** Shorts potongan: episode asal & indeks adegan asal yang dipakai. */
+  asal?: { id: string; adegan: number[] };
+  /** Shorts yang dipotong dari episode ini. */
+  turunan?: string[];
   naskah?: Naskah;
   review?: Review;
   jumlahRevisi: number;

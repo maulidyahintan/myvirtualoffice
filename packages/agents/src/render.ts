@@ -40,7 +40,7 @@ function jalankan(args: string[], onLine?: (s: string) => void): Promise<void> {
 }
 
 /** Jalankan ffmpeg bawaan Remotion dan kembalikan seluruh output (stderr berisi hasil analisis). */
-function ffmpeg(args: string[]): Promise<string> {
+export function ffmpeg(args: string[]): Promise<string> {
   return new Promise((resolve, reject) => {
     const p = spawn('npx', ['--no-install', 'remotion', 'ffmpeg', ...args], {
       cwd: paths.videoPkg(),
@@ -99,7 +99,7 @@ function durasiDariOutput(out: string): number {
  * Lama audio (detik). Rekaman browser (webm) sering tanpa info durasi di header,
  * jadi kalau kosong file dibaca sampai habis.
  */
-async function durasiAudio(lokasi: string): Promise<number> {
+export async function durasiAudio(lokasi: string): Promise<number> {
   const dariHeader = durasiDariOutput(await ffmpeg(['-hide_banner', '-i', lokasi]));
   if (dariHeader > 0) return dariHeader;
   const waktu = [...(await ffmpeg(['-hide_banner', '-i', lokasi, '-f', 'null', '-'])).matchAll(/time=(\d+):(\d+):([\d.]+)/g)].at(-1);

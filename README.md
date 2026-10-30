@@ -162,6 +162,14 @@ revisi**: pilih **Edit video** (rekam ulang / render ulang) atau **Minta revisi 
 bisa mengganti file video, jadi hasil edit diupload sebagai video baru dan video lama dijadikan
 **private** (tidak dihapus), langsung atau setelah versi baru naik.
 
+**Satu materi, format lain.** Dari episode yang sudah jadi: **🔁 Buat versi Shorts / video biasa**
+membuat episode kembaran (🔗) dengan naskah, adegan, metadata, dan rekaman yang sama, langsung
+dirender ke format lain. Untuk video biasa cerita yang panjang, **✂️ Pecah jadi beberapa Shorts**:
+Sutradara memilih adegan yang paling penting & bermakna untuk 1–5 Shorts (masing-masing < 60 detik,
+utuh bisa dipahami sendiri, lengkap dengan judulnya). Rekaman dipakai apa adanya (rekaman berurutan
+dipotong di jeda antar adegan), jadi tidak perlu rekam ulang. Tiap Shorts jadi episode baru (✂️)
+yang ditonton dulu sebelum dijadwalkan.
+
 Semua juga bisa lewat terminal:
 ```bash
 npm run kantor -- riset "fokus adab untuk usia 4-6"

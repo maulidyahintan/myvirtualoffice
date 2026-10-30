@@ -2,8 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FORMAT_LABEL, getEpisode, loadConfig, paths, STATUS_SIBUK, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, type Episode } from '@kantor/shared';
+import { FORMAT_LABEL, getEpisode, loadConfig, paths, sedangSibuk, STATUS_SIBUK, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, type Episode } from '@kantor/shared';
 import {
+  buatVersiLain,
+  pecahShorts,
   editUlang,
   hapusRekaman,
   ubahModeRekam,
@@ -437,6 +439,8 @@ function PanelAksi({ ep }: { ep: Episode }) {
               })}
             </div>
           ) : null}
+          <VersiLain ep={ep} />
+          <PecahShorts ep={ep} />
           <EditUlang ep={ep} />
         </div>
       );
@@ -454,6 +458,99 @@ function PanelAksi({ ep }: { ep: Episode }) {
         </div>
       );
   }
+}
+
+/** Buat versi format lain (Shorts ↔ video biasa) dengan materi & rekaman yang sama. */
+function VersiLain({ ep }: { ep: Episode }) {
+  const short = ep.ide.format === 'short';
+  let adaPasangan = false;
+  try {
+    adaPasangan = Boolean(ep.pasangan && getEpisode(ep.pasangan));
+  } catch {
+    /* episode kembaran sudah dihapus */
+  }
+  if (adaPasangan || !ep.render) return null;
+  // perkiraan panjang versi baru dari waktu adegan hasil render (intro/outro sedikit berbeda)
+  const akhir = ep.render.adegan?.at(-1);
+  const isi = akhir ? akhir.mulai + akhir.durasi - (ep.render.adegan?.[0]?.mulai ?? 0) : undefined;
+  const menit = (d: number) => `${Math.floor(d / 60)}:${String(Math.round(d % 60)).padStart(2, '0')}`;
+  return (
+    <form action={buatVersiLain} className="stack" style={{ gap: 6 }}>
+      <Id id={ep.id} />
+      <button type="submit" className="sekunder">
+        🔁 Buat versi {short ? 'video biasa (16:9)' : 'Shorts (vertikal)'} dari materi ini
+      </button>
+      <span className="kecil muted">
+        Naskah, adegan, judul & deskripsi, dan rekaman suaranya sama; langsung dirender ke format {short ? 'video biasa' : 'Shorts'} tanpa
+        rekam ulang. Hasilnya jadi episode baru yang tertaut (🔗) dan bisa ditonton dulu sebelum dijadwalkan.
+        {isi !== undefined ? ` Isi video ±${menit(isi)}.` : ''}
+      </span>
+      {!short && isi !== undefined && isi > 170 ? (
+        <span className="peringatan kecil">
+          Video ini lebih dari ±3 menit. YouTube hanya menganggap video vertikal sampai 3 menit sebagai Shorts; yang lebih panjang tayang
+          sebagai video biasa vertikal.
+        </span>
+      ) : null}
+    </form>
+  );
+}
+
+/** Video biasa cerita → beberapa Shorts dari adegan yang paling penting (rekaman sama, tanpa rekam ulang). */
+function PecahShorts({ ep }: { ep: Episode }) {
+  if (ep.ide.format === 'short' || ep.ide.jenis === 'hafalan' || !ep.render) return null;
+  const turunan = (ep.turunan ?? []).flatMap((t) => {
+    try {
+      return [getEpisode(t)];
+    } catch {
+      return [];
+    }
+  });
+  const sibuk = sedangSibuk(`shorts-${ep.id}`);
+  return (
+    <details open={sibuk || turunan.length > 0}>
+      <summary>✂️ Pecah jadi beberapa Shorts (adegan penting saja)</summary>
+      <div className="stack" style={{ marginTop: 10 }}>
+        {turunan.length ? (
+          <div className="kecil">
+            Shorts dari video ini:
+            <ul style={{ margin: '4px 0 0', paddingLeft: 18 }}>
+              {turunan.map((t) => (
+                <li key={t.id}>
+                  <Link href={`/episode/${t.id}`}>{t.naskah?.judul ?? t.ide.judul}</Link> <Badge status={t.status} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {sibuk ? (
+          <p className="kecil">⏳ Sutradara sedang memilih adegan & menyiapkan Shorts… Shorts muncul di papan kerja lalu dirender satu per satu.</p>
+        ) : (
+          <form action={pecahShorts} className="stack" style={{ gap: 8 }}>
+            <Id id={ep.id} />
+            <p className="kecil muted" style={{ margin: 0 }}>
+              Sutradara memilih adegan yang paling penting & bermakna untuk tiap Shorts (masing-masing &lt; 60 detik dan utuh bisa dipahami
+              sendiri), lengkap dengan judulnya. Narasi & rekaman suaramu dipakai apa adanya, jadi tidak perlu rekam ulang. Tiap Shorts jadi
+              episode baru yang bisa ditonton dulu sebelum dijadwalkan.
+            </p>
+            <label className="kecil">
+              Jumlah Shorts{' '}
+              <select name="jumlah" defaultValue="3">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <textarea name="arahan" rows={2} placeholder="Arahan (opsional), misal: satu Shorts khusus tentang doa sebelum tidur" />
+            <button type="submit" className="sekunder">
+              ✂️ Buat Shorts dari adegan penting
+            </button>
+          </form>
+        )}
+      </div>
+    </details>
+  );
 }
 
 /** Minta revisi / edit ulang video yang sudah terjadwal atau tayang. */
@@ -554,6 +651,11 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
             <span>
               {seri} · usia {ep.ide.usia} · {FORMAT_LABEL[ep.ide.format ?? 'biasa']}
             </span>
+            {ep.asal ? (
+              <Link href={`/episode/${ep.asal.id}`} className="kecil">
+                ✂️ Potongan dari video asal (adegan {ep.asal.adegan.map((i) => i + 1).join(', ')})
+              </Link>
+            ) : null}
             {ep.pasangan ? (
               <Link href={`/episode/${ep.pasangan}`} className="kecil">
                 🔗 Lihat versi {ep.ide.format === 'short' ? 'video biasa' : 'Shorts'}
@@ -564,7 +666,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
         </div>
         <div className="row">
           <TombolTanyaAgen />
-          <AutoRefresh aktif={STATUS_SIBUK.includes(ep.status)} />
+          <AutoRefresh aktif={STATUS_SIBUK.includes(ep.status) || sedangSibuk(`shorts-${ep.id}`)} />
         </div>
       </div>
 

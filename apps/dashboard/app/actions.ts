@@ -5,6 +5,7 @@ import path from 'node:path';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
+  addLog,
   createEpisodeFromIdea,
   getEpisode,
   loadConfig,
@@ -16,6 +17,7 @@ import {
   NADA_MAKS,
   BATAS_NADA_KARAKTER,
   PEMBICARA,
+  FORMAT_LABEL,
   PILIHAN_FORMAT,
   USIA,
   type PilihanFormat,
@@ -243,6 +245,68 @@ export async function editUlang(form: FormData) {
     setStatus(id, 'needs_video_approval', 'pemilik', 'Edit ulang video');
   }
   if (lama && form.get('tarik') === 'on') jalankanKantor(['tarik', id], `${id}-tarik`);
+  segarkan(id);
+}
+
+/**
+ * Buat versi format lain (Shorts ↔ video biasa) dari episode yang sudah jadi: naskah, adegan,
+ * metadata, dan rekaman yang sama, langsung dirender. File rekaman disalin supaya episode
+ * kembaran bisa direkam ulang/dihapus tanpa mengganggu aslinya.
+ */
+export async function buatVersiLain(form: FormData) {
+  const id = teks(form, 'id');
+  const ep = getEpisode(id);
+  if (!ep.adegan || !ep.render) throw new Error('Episode belum punya video yang jadi');
+  const format = (ep.ide.format ?? 'biasa') === 'short' ? 'biasa' : 'short';
+  const baru = createEpisodeFromIdea({ ...ep.ide, format }, 'pemilik');
+
+  const pub = path.join(paths.videoPkg(), 'public');
+  const salinan = new Map<string, string>();
+  const salin = (rel: string | null | undefined) => {
+    if (!rel) return rel ?? undefined;
+    if (!salinan.has(rel)) {
+      const nama = path.basename(rel);
+      const tujuan = `${path.dirname(rel)}/${nama.startsWith(id) ? baru.id + nama.slice(id.length) : `${baru.id}-${nama}`}`;
+      if (fs.existsSync(path.join(pub, rel))) fs.copyFileSync(path.join(pub, rel), path.join(pub, tujuan));
+      salinan.set(rel, tujuan);
+    }
+    return salinan.get(rel);
+  };
+
+  updateEpisode(baru.id, (e) => {
+    const asal = structuredClone(ep);
+    e.pasangan = id;
+    e.naskah = asal.naskah;
+    e.review = asal.review;
+    e.adegan = asal.adegan;
+    e.metadata = asal.metadata;
+    e.hafalan = asal.hafalan;
+    e.modeRekam = asal.modeRekam;
+    e.fileAudio = salin(asal.fileAudio);
+    e.bagianAudio = asal.bagianAudio?.map((f) => salin(f)!);
+    e.audioPerAdegan = asal.audioPerAdegan?.map((f) => salin(f) ?? null);
+    e.offsetAdegan = asal.offsetAdegan;
+    e.nadaSuara = asal.nadaSuara;
+    e.efekKarakter = asal.efekKarakter;
+    e.log.push({ waktu: new Date().toISOString(), oleh: 'pemilik', pesan: `Versi ${FORMAT_LABEL[format]} dari episode ${id} (materi & rekaman sama)` });
+  });
+  updateEpisode(id, (e) => {
+    e.pasangan = baru.id;
+    e.log.push({ waktu: new Date().toISOString(), oleh: 'pemilik', pesan: `Dibuat versi ${FORMAT_LABEL[format]}: ${baru.id}` });
+  });
+  setStatus(baru.id, 'rendering', 'pemilik', `Render versi ${FORMAT_LABEL[format]}`);
+  jalankanKantor(['render', baru.id], baru.id);
+  segarkan(id);
+  redirect(`/episode/${baru.id}`);
+}
+
+/** Pecah video biasa yang sudah jadi menjadi beberapa Shorts dari adegan-adegan pentingnya. */
+export async function pecahShorts(form: FormData) {
+  const id = teks(form, 'id');
+  const jumlah = Math.min(5, Math.max(1, Number(teks(form, 'jumlah')) || 3));
+  const arahan = teks(form, 'arahan');
+  addLog(id, 'pemilik', `Minta ${jumlah} Shorts dari adegan penting${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
+  jalankanKantor(['shorts', id, String(jumlah), ...(arahan ? [arahan] : [])], `${id}-shorts`);
   segarkan(id);
 }
 

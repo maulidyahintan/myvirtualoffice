@@ -54,6 +54,7 @@ export default function PapanKerja() {
                   <div className="kecil muted" style={{ marginBottom: 6 }}>
                     {e.ide.format === 'short' ? '📱 Shorts · ' : ''}
                     {e.pasangan ? '🔗 ' : ''}
+                    {e.asal ? '✂️ ' : ''}
                     {namaSeri(e.ide.seri)} · usia {e.ide.usia}
                   </div>
                   <Badge status={e.status} />
