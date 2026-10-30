@@ -1,5 +1,6 @@
 import { loadConfig, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, USIA } from '@kantor/shared';
 import { buatIdeManual } from '../actions';
+import { Tombol } from '@/components/Tombol';
 
 export default function IdeBaru() {
   const cfg = loadConfig();
@@ -44,7 +45,7 @@ export default function IdeBaru() {
         Pesan moral
         <textarea name="pesanMoral" required placeholder="contoh: sabar menunggu giliran itu disukai Allah" />
       </label>
-      <button type="submit">Simpan ide</button>
+      <Tombol type="submit" teksProses="Menyimpan…">Simpan ide</Tombol>
     </form>
   );
 }

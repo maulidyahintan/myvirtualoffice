@@ -41,6 +41,7 @@ import {
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Badge } from '@/components/Badge';
 import { TombolTanyaAgen } from '@/components/TombolTanyaAgen';
+import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
@@ -68,11 +69,11 @@ function PilihModeRekam({ ep }: { ep: Episode }) {
           <form key={p.mode} action={ubahModeRekam} style={{ flex: '1 1 220px' }}>
             <Id id={ep.id} />
             <input type="hidden" name="mode" value={p.mode} />
-            <button type="submit" className={mode === p.mode ? '' : 'sekunder'} style={{ width: '100%', textAlign: 'left' }}>
+            <Tombol type="submit" className={mode === p.mode ? '' : 'sekunder'} style={{ width: '100%', textAlign: 'left' }}>
               {p.label}
               <br />
               <span style={{ fontWeight: 400, fontSize: 13 }}>{p.ket}</span>
-            </button>
+            </Tombol>
           </form>
         ))}
       </div>
@@ -142,26 +143,26 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
           >
             <input type="hidden" name="adegan" value={i} />
             <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" required style={{ flex: '1 1 200px' }} />
-            <button type="submit" className="sekunder">
+            <Tombol teksProses="Mengupload…" type="submit" className="sekunder">
               {per[i] ? 'Ganti' : 'Upload'}
-            </button>
+            </Tombol>
           </form>
         </div>
       ))}
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <form action={renderVideo}>
           <Id id={ep.id} />
-          <button type="submit" disabled={sudah < daftar.length}>
+          <Tombol type="submit" disabled={sudah < daftar.length} teksProses="Memulai render…">
             🎬{' '}
             {sudah < daftar.length ? `Render (kurang ${daftar.length - sudah} ${satuan.toLowerCase()})` : 'Semua lengkap, render sekarang'}
-          </button>
+          </Tombol>
         </form>
         {sudah ? (
           <form action={hapusRekaman}>
             <Id id={ep.id} />
-            <button type="submit" className="bahaya">
+            <Tombol type="submit" className="bahaya" teksProses="Menghapus…">
               🗑️ Hapus semua rekaman
-            </button>
+            </Tombol>
           </form>
         ) : null}
       </div>
@@ -193,25 +194,25 @@ function RekamanBagian({ ep }: { ep: Episode }) {
           Boleh pilih beberapa file sekaligus; diurutkan menurut nama file (1, 2, 3…).
         </span>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <button type="submit" name="render" value="1">
+          <Tombol type="submit" name="render" value="1" teksProses="Mengupload…">
             ⬆️ Upload & render
-          </button>
-          <button type="submit" name="render" value="0" className="sekunder">
+          </Tombol>
+          <Tombol type="submit" name="render" value="0" className="sekunder" teksProses="Mengupload…">
             ➕ Upload, masih ada bagian berikutnya
-          </button>
+          </Tombol>
         </div>
       </form>
       {bagian.length ? (
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <form action={renderVideo}>
             <Id id={ep.id} />
-            <button type="submit">🎬 Sudah lengkap, render sekarang</button>
+            <Tombol type="submit" teksProses="Memulai render…">🎬 Sudah lengkap, render sekarang</Tombol>
           </form>
           <form action={hapusRekaman}>
             <Id id={ep.id} />
-            <button type="submit" className="bahaya">
+            <Tombol type="submit" className="bahaya" teksProses="Menghapus…">
               🗑️ Hapus semua bagian
-            </button>
+            </Tombol>
           </form>
         </div>
       ) : null}
@@ -293,7 +294,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
             <span className="kecil muted">
               Pilih <b>Keduanya</b> untuk membuat dua episode sekaligus dari materi ini: video biasa dan Shorts, dikerjakan bersamaan.
             </span>
-            <button type="submit">{ep.ide.jenis === 'hafalan' ? '📖 Setujui & ambil teks surat' : '✍️ Setujui & tugaskan Penulis + Reviewer'}</button>
+            <Tombol type="submit">{ep.ide.jenis === 'hafalan' ? '📖 Setujui & ambil teks surat' : '✍️ Setujui & tugaskan Penulis + Reviewer'}</Tombol>
           </form>
           <FormTolak id={ep.id} />
         </div>
@@ -328,7 +329,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
               <input type="checkbox" name="dalilDicek" required />
               Saya sudah memverifikasi semua ayat, hadits & doa (teks dan sumbernya).
             </label>
-            <button type="submit">✅ Setujui naskah → Sutradara</button>
+            <Tombol type="submit" teksProses="Menyimpan…">✅ Setujui naskah → Sutradara</Tombol>
           </form>
           {ep.ide.jenis === 'hafalan' ? null : (
             <form action={mintaRevisi} className="stack">
@@ -341,9 +342,9 @@ function PanelAksi({ ep }: { ep: Episode }) {
                   required
                 />
               </label>
-              <button type="submit" className="sekunder">
+              <Tombol type="submit" className="sekunder">
                 🔁 Kirim ke Penulis
-              </button>
+              </Tombol>
             </form>
           )}
           <FormTolak id={ep.id} />
@@ -392,9 +393,9 @@ function PanelAksi({ ep }: { ep: Episode }) {
           {ep.modeRekam === 'per-adegan' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
           <form action={renderVideo}>
             <Id id={ep.id} />
-            <button type="submit" className="sekunder">
+            <Tombol type="submit" className="sekunder" teksProses="Memulai render…">
               👀 Render pratinjau tanpa suara
-            </button>
+            </Tombol>
           </form>
         </div>
       );
@@ -409,13 +410,13 @@ function PanelAksi({ ep }: { ep: Episode }) {
           <form action={setujuiVideo} className="stack">
             <Id id={ep.id} />
             <JadwalTayang ep={ep} />
-            <button type="submit">🚀 Setujui & jadwalkan di YouTube</button>
+            <Tombol type="submit" teksProses="Mengupload ke YouTube…">🚀 Setujui & jadwalkan di YouTube</Tombol>
           </form>
           <form action={setujuiVideo}>
             <Id id={ep.id} />
-            <button type="submit" className="sekunder">
+            <Tombol type="submit" className="sekunder" teksProses="Mengupload…">
               Upload sebagai private saja (atur di Studio)
-            </button>
+            </Tombol>
           </form>
           <VideoLama ep={ep} />
           {!ep.fileAudio ? <p className="peringatan kecil">Ini masih pratinjau tanpa suara. Upload rekaman dulu sebelum tayang.</p> : null}
@@ -430,9 +431,9 @@ function PanelAksi({ ep }: { ep: Episode }) {
                   lagi.
                 </p>
                 <input type="text" name="waktu" defaultValue={ep.hafalan?.mulaiSegmen?.map((t) => t.toFixed(1)).join(', ') ?? ''} />
-                <button type="submit" className="sekunder">
+                <Tombol type="submit" className="sekunder" teksProses="Menyimpan…">
                   💾 Simpan & render ulang
-                </button>
+                </Tombol>
               </form>
             </details>
           ) : null}
@@ -451,9 +452,9 @@ function PanelAksi({ ep }: { ep: Episode }) {
                 <input type="hidden" name="mode" value="ganti" />
                 <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" multiple required />
                 <span className="kecil muted">Boleh pilih beberapa file sekaligus; diurutkan menurut nama file (1, 2, 3…).</span>
-                <button type="submit" className="sekunder">
+                <Tombol type="submit" className="sekunder" teksProses="Mengupload…">
                   ⬆️ Upload rekaman baru
-                </button>
+                </Tombol>
               </form>
             )}
           </details>
@@ -495,7 +496,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
           {ep.catatanStatus ? <p className="peringatan">{ep.catatanStatus}</p> : null}
           <form action={pulihkan}>
             <Id id={ep.id} />
-            <button type="submit">↩️ Kembalikan ke langkah terakhir yang berhasil</button>
+            <Tombol type="submit">↩️ Kembalikan ke langkah terakhir yang berhasil</Tombol>
           </form>
         </div>
       );
@@ -518,9 +519,9 @@ function CekMetadata({ ep }: { ep: Episode }) {
       {bolehUbah ? (
         <form action={buatUlangMetadata}>
           <Id id={ep.id} />
-          <button type="submit" className="sekunder" disabled={sibuk}>
+          <Tombol type="submit" className="sekunder" disabled={sibuk}>
             {sibuk ? '⏳ Channel Manager sedang menulis…' : `✍️ Buat ulang metadata ${ep.ide.format === 'short' ? 'Shorts' : 'video biasa'} (SEO)`}
-          </button>
+          </Tombol>
         </form>
       ) : null}
     </>
@@ -553,9 +554,9 @@ function VersiLain({ ep }: { ep: Episode }) {
   return (
     <form action={buatVersiLain} className="stack" style={{ gap: 6 }}>
       <Id id={ep.id} />
-      <button type="submit" className="sekunder">
+      <Tombol type="submit" className="sekunder">
         🔁 Buat versi {short ? 'video biasa (16:9)' : 'Shorts (vertikal)'} dari materi ini
-      </button>
+      </Tombol>
       <span className="kecil muted">
         Naskah, adegan, dan rekaman suaranya sama; langsung dirender ke format {short ? 'video biasa' : 'Shorts'} tanpa rekam ulang (judul &
         deskripsi dibuat ulang sesuai format). Hasilnya jadi episode baru yang tertaut (🔗) dan bisa ditonton dulu sebelum dijadwalkan.
@@ -614,9 +615,9 @@ function PecahShorts({ ep }: { ep: Episode }) {
               </select>
             </label>
             <textarea name="arahan" rows={2} placeholder="Arahan (opsional), misal: satu Shorts khusus tentang doa sebelum tidur" />
-            <button type="submit" className="sekunder">
+            <Tombol type="submit" className="sekunder">
               ✂️ Buat Shorts dari adegan penting
-            </button>
+            </Tombol>
           </form>
         )}
       </div>
@@ -646,18 +647,18 @@ function EditUlang({ ep }: { ep: Episode }) {
           <Id id={ep.id} />
           <input type="hidden" name="tujuan" value="video" />
           {tarik}
-          <button type="submit" className="sekunder">
+          <Tombol type="submit" className="sekunder">
             🎬 Edit video: rekam ulang / render ulang
-          </button>
+          </Tombol>
         </form>
         <form action={editUlang} className="stack" style={{ gap: 8 }}>
           <Id id={ep.id} />
           <input type="hidden" name="tujuan" value="naskah" />
           <textarea name="feedback" rows={3} placeholder="Apa yang perlu direvisi di naskah? (penulis akan menulis ulang, lalu rekam ulang)" required />
           {tarik}
-          <button type="submit" className="sekunder">
+          <Tombol type="submit" className="sekunder">
             📝 Minta revisi naskah
-          </button>
+          </Tombol>
         </form>
       </div>
     </details>
@@ -690,9 +691,9 @@ function FormTolak({ id }: { id: string }) {
       <form action={tolak} className="row" style={{ marginTop: 8 }}>
         <Id id={id} />
         <input type="text" name="alasan" placeholder="alasan (opsional)" style={{ flex: 1 }} />
-        <button type="submit" className="bahaya">
+        <Tombol type="submit" className="bahaya" teksProses="Menolak…">
           Tolak
-        </button>
+        </Tombol>
       </form>
     </details>
   );
@@ -807,9 +808,9 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
               <form action={simpanNaskahManual} className="stack" style={{ marginTop: 10 }}>
                 <Id id={ep.id} />
                 <textarea className="kode" name="naskah" defaultValue={JSON.stringify(ep.naskah, null, 2)} />
-                <button type="submit" className="sekunder">
+                <Tombol type="submit" className="sekunder" teksProses="Menyimpan…">
                   💾 Simpan naskah
-                </button>
+                </Tombol>
               </form>
             </details>
           ) : null}

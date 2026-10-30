@@ -17,6 +17,7 @@ import {
   suaraPembicara,
 } from '@kantor/shared';
 import { hapusMusik, masukkanSemuaKePlaylist, simpanMusik, simpanPlaylist, simpanRisetHarian, simpanSuaraKarakter } from '../actions';
+import { Tombol } from '@/components/Tombol';
 
 const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', hafalan: '🕌 Bacaan hafalan' } as const;
 
@@ -50,7 +51,7 @@ export default function Pengaturan() {
               <audio controls src={`/api/musik/${jenis}?v=${encodeURIComponent(musik[jenis]!)}`} style={{ width: '100%' }} />
               <form action={hapusMusik}>
                 <input type="hidden" name="jenis" value={jenis} />
-                <button className="bahaya">Hapus musik {jenis}</button>
+                <Tombol className="bahaya" teksProses="Menghapus…">Hapus musik {jenis}</Tombol>
               </form>
             </>
           ) : (
@@ -58,7 +59,7 @@ export default function Pengaturan() {
           )}
           <form action={`/api/musik/${jenis}`} method="post" encType="multipart/form-data" className="stack">
             <input type="file" name="musik" accept=".mp3,.m4a,.wav,.aac,.ogg" required />
-            <button className="sekunder">{musik?.[jenis] ? 'Ganti' : 'Upload'} musik {jenis}</button>
+            <Tombol className="sekunder">{musik?.[jenis] ? 'Ganti' : 'Upload'} musik {jenis}</Tombol>
           </form>
         </section>
       ))}
@@ -73,7 +74,7 @@ export default function Pengaturan() {
           <input type="checkbox" name="diShorts" defaultChecked={musik?.diShorts ?? true} />
           Pakai juga di Shorts
         </label>
-        <button>Simpan</button>
+        <Tombol teksProses="Menyimpan…">Simpan</Tombol>
       </form>
 
       <form action={simpanSuaraKarakter} className="panel stack">
@@ -114,7 +115,7 @@ export default function Pengaturan() {
             </div>
           );
         })}
-        <button>Simpan pengaturan suara</button>
+        <Tombol teksProses="Menyimpan…">Simpan pengaturan suara</Tombol>
       </form>
 
       <PengaturanPlaylist />
@@ -145,7 +146,7 @@ function PengaturanPlaylist() {
             <input type="text" name={`playlist-${s.id}`} defaultValue={s.playlist ?? ''} placeholder={playlistSeri(s.id, tanpaSetelan)} />
           </label>
         ))}
-        <button className="sekunder">Simpan playlist</button>
+        <Tombol className="sekunder" teksProses="Menyimpan…">Simpan playlist</Tombol>
       </form>
       <div className="kecil">
         {dipakai.map((nama) => {
@@ -168,7 +169,7 @@ function PengaturanPlaylist() {
         <p className="kecil">⏳ Memasukkan video ke playlist…</p>
       ) : belum ? (
         <form action={masukkanSemuaKePlaylist}>
-          <button className="sekunder">📂 Masukkan {belum} video yang sudah diupload ke playlist</button>
+          <Tombol className="sekunder" teksProses="Memproses…">📂 Masukkan {belum} video yang sudah diupload ke playlist</Tombol>
         </form>
       ) : (
         <p className="kecil muted" style={{ margin: 0 }}>
@@ -216,7 +217,7 @@ function PengaturanRisetHarian() {
           </div>
         ) : null}
       </div>
-      <button className="sekunder">Simpan riset otomatis</button>
+      <Tombol className="sekunder" teksProses="Menyimpan…">Simpan riset otomatis</Tombol>
     </form>
   );
 }

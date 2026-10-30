@@ -15,6 +15,7 @@ import {
 import { mintaRencanaTayang, simpanRencanaTayang } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Badge } from '@/components/Badge';
+import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
@@ -127,7 +128,7 @@ export default function HalamanJadwal() {
             ) : (
               <form action={mintaRencanaTayang} className="stack" style={{ gap: 8 }}>
                 <textarea name="arahan" rows={2} placeholder="Arahan (opsional), misal: fokus Shorts dulu, Jumat libur" />
-                <button type="submit">🧑‍💼 Minta Channel Manager menyusun rencana</button>
+                <Tombol type="submit">🧑‍💼 Minta Channel Manager menyusun rencana</Tombol>
               </form>
             )}
           </div>
@@ -160,7 +161,7 @@ export default function HalamanJadwal() {
                 </div>
               ))}
             </div>
-            <button className="sekunder">Simpan rencana</button>
+            <Tombol className="sekunder" teksProses="Menyimpan…">Simpan rencana</Tombol>
           </form>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { FASE, listEpisodes, loadConfig, sedangSibuk, STATUS_SIBUK } from '@kant
 import { mulaiRiset } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Badge } from '@/components/Badge';
+import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,9 +36,9 @@ export default function PapanKerja() {
             <input type="text" name="arahan" placeholder="contoh: fokus persiapan Ramadhan untuk usia 4-6" />
           </label>
         </div>
-        <button type="submit" disabled={risetJalan}>
+        <Tombol type="submit" disabled={risetJalan}>
           {risetJalan ? 'Riset sedang berjalan…' : '🔎 Cari ide baru'}
-        </button>
+        </Tombol>
       </form>
 
       <div className="board">

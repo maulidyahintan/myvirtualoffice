@@ -1,5 +1,6 @@
 import { PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, USIA } from '@kantor/shared';
 import { buatHafalan } from '../actions';
+import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
@@ -86,7 +87,7 @@ export default async function HafalanBaru() {
           ))}
         </select>
       </label>
-      <button type="submit">Buat & ambil teks surat</button>
+      <Tombol type="submit">Buat & ambil teks surat</Tombol>
     </form>
   );
 }

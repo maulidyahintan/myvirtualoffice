@@ -241,3 +241,11 @@ details summary { cursor: pointer; font-weight: 700; color: var(--hijau); }
 .judul-tayang { font-weight: 800; line-height: 1.3; color: var(--ink); text-decoration: none; }
 .judul-tayang:hover { text-decoration: underline; }
 .terkait { background: var(--hijau-muda); border-radius: 8px; padding: 6px 10px; display: grid; gap: 2px; }
+
+/* tombol sedang memproses (components/Tombol.tsx) */
+button[data-proses] { cursor: progress; opacity: 0.85; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+button:disabled { cursor: not-allowed; opacity: 0.6; }
+button[data-proses]:disabled { cursor: progress; opacity: 0.85; }
+.putar { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; display: inline-block; animation: putar 0.7s linear infinite; flex: none; }
+@keyframes putar { to { transform: rotate(360deg); } }
+button[data-selesai] { background: var(--hijau-muda); color: var(--hijau); border: 1.5px solid var(--hijau); }

@@ -80,6 +80,7 @@ export function StudioRekam({
   const [take, setTake] = useState<Record<number, Take>>({});
   const [tersimpan, setTersimpan] = useState(() => bagian.map((b) => b.tersimpan));
   const [status, setStatus] = useState<Status>('siap');
+  const [mulaiRender, setMulaiRender] = useState(false);
   const [hitung, setHitung] = useState(0);
   const [detik, setDetik] = useState(0);
   const [nada, setNada] = useState(nadaAwal);
@@ -339,10 +340,16 @@ export function StudioRekam({
   }
 
   async function render() {
+    setMulaiRender(true);
     const fd = new FormData();
     fd.append('id', id);
-    await renderVideo(fd);
-    router.push(`/episode/${id}`);
+    try {
+      await renderVideo(fd);
+      router.push(`/episode/${id}`);
+    } catch (e) {
+      setMulaiRender(false);
+      throw e;
+    }
   }
 
   // Spasi = mulai/berhenti rekam
@@ -562,8 +569,15 @@ export function StudioRekam({
             </span>
           </button>
         ))}
-        <button type="button" onClick={() => void render()} disabled={!lengkap || sibuk} style={{ marginTop: 8 }}>
-          🎬 {lengkap ? 'Render dengan rekaman ini' : `Render (kurang ${tersimpan.filter((s) => !s).length} ${satuan})`}
+        <button type="button" onClick={() => void render()} disabled={!lengkap || sibuk || mulaiRender} data-proses={mulaiRender || undefined} style={{ marginTop: 8 }}>
+          {mulaiRender ? (
+            <>
+              <span className="putar" aria-hidden />
+              Memulai render…
+            </>
+          ) : (
+            <>🎬 {lengkap ? 'Render dengan rekaman ini' : `Render (kurang ${tersimpan.filter((s) => !s).length} ${satuan})`}</>
+          )}
         </button>
         <span className="kecil muted">🟡 = sudah direkam tapi belum disimpan</span>
       </div>

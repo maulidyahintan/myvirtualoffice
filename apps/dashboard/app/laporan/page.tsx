@@ -1,6 +1,7 @@
 import { latestFile, paths, sedangSibuk } from '@kantor/shared';
 import { buatLaporan } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
+import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,9 +25,9 @@ export default function HalamanLaporan() {
         <div className="panel stack">
           <h2>Laporan performa {laporan ? <span className="muted kecil">({tanggal(laporan.file)})</span> : null}</h2>
           <form action={buatLaporan}>
-            <button type="submit" disabled={sedangSibuk('laporan')}>
+            <Tombol type="submit" disabled={sedangSibuk('laporan')} teksProses="Meminta laporan…">
               📊 Minta laporan dari Channel Manager
-            </button>
+            </Tombol>
           </form>
           {laporan ? (
             <pre className="md">{laporan.isi}</pre>

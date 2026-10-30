@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FORMAT_LABEL, listEpisodes, loadConfig, namaPlaylist, sedangSibuk, type Episode } from '@kantor/shared';
 import { masukkanSemuaKePlaylist } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
+import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
@@ -133,7 +134,7 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
           </select>
         </label>
         <div className="row" style={{ alignSelf: 'end' }}>
-          <button type="submit">Terapkan</button>
+          <Tombol type="submit" teksProses="Memuat…">Terapkan</Tombol>
           {adaFilter ? (
             <Link href="/tayang" className="kecil">
               Reset
@@ -150,7 +151,7 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
           </span>
         ) : belumPlaylist ? (
           <form action={masukkanSemuaKePlaylist}>
-            <button className="sekunder">📂 Masukkan {belumPlaylist} video ke playlist</button>
+            <Tombol className="sekunder" teksProses="Memproses…">📂 Masukkan {belumPlaylist} video ke playlist</Tombol>
           </form>
         ) : null}
       </div>
