@@ -48,7 +48,7 @@
       "tempo": 1
     },
     "ibu": {
-      "nada": -3,
+      "nada": -2.5,
       "tempo": 0.95
     },
     "mamas": {
@@ -59,5 +59,39 @@
       "nada": 4,
       "tempo": 1.05
     }
+  },
+  "suaraHafalan": {
+    "nada": 3,
+    "tempo": 0.85
+  },
+  "playlistYoutube": {
+    "Hafalan": "PLQpeKIzmWSxQ",
+    "Asbabun Nuzul": "PLD-usmJsNuYc",
+    "Obrolan Islami Anak": "PLUgYsxxA9xw8"
+  },
+  "rencanaTayang": {
+    "videoPerHari": 2,
+    "hari": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "slot": [
+      {
+        "jam": "16:00",
+        "format": "short"
+      },
+      {
+        "jam": "18:30",
+        "format": "biasa"
+      }
+    ],
+    "alasan": "Rutin setiap hari: 1 Shorts + 1 video biasa.\n\n- **Shorts 16.00**: anak pulang sekolah/selesai tidur siang, jam ramai menonton Shorts.\n- **Video biasa 18.30**: selepas Maghrib, orang tua punya waktu mendampingi menonton video yang lebih panjang.\n\nTinjau ulang setelah 2–4 minggu dengan data Analytics (jam penonton paling aktif).",
+    "oleh": "pemilik",
+    "diubah": "2026-10-30T11:55:31.913Z"
   }
 }
