@@ -1,7 +1,7 @@
 {
   "id": "hafalan-surat-al-ikhlas-f603",
   "dibuat": "2026-10-29T07:23:38.619Z",
-  "diubah": "2026-10-30T08:26:47.546Z",
+  "diubah": "2026-10-30T11:52:39.848Z",
   "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat Al-Ikhlas",
@@ -122,6 +122,16 @@
       "waktu": "2026-10-30T08:26:47.546Z",
       "oleh": "channel-manager",
       "pesan": "Terjadwal tayang 2026-10-31T09:30:00.000Z"
+    },
+    {
+      "waktu": "2026-10-30T11:11:41.536Z",
+      "oleh": "channel-manager",
+      "pesan": "Dimasukkan ke playlist \"Hafalan\""
+    },
+    {
+      "waktu": "2026-10-30T11:52:39.848Z",
+      "oleh": "pemilik",
+      "pesan": "Dibuat versi YouTube Shorts: hafalan-surat-al-ikhlas-2f69"
     }
   ],
   "catatanStatus": "Terjadwal tayang 2026-10-31T09:30:00.000Z",
@@ -392,6 +402,11 @@
   "youtube": {
     "videoId": "Vg5pe5aPgpU",
     "url": "https://www.youtube.com/watch?v=Vg5pe5aPgpU",
-    "jadwalTayang": "2026-10-31T09:30:00.000Z"
-  }
+    "jadwalTayang": "2026-10-31T09:30:00.000Z",
+    "playlist": {
+      "nama": "Hafalan",
+      "id": "PLQpeKIzmWSxQ"
+    }
+  },
+  "pasangan": "hafalan-surat-al-ikhlas-2f69"
 }

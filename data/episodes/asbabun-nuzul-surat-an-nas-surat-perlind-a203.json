@@ -1,7 +1,7 @@
 {
   "id": "asbabun-nuzul-surat-an-nas-surat-perlind-a203",
   "dibuat": "2026-10-28T10:20:42.355Z",
-  "diubah": "2026-10-30T08:35:46.830Z",
+  "diubah": "2026-10-30T11:53:04.377Z",
   "status": "scheduled",
   "ide": {
     "judul": "Asbabun Nuzul Surat An-Nas: Surat Perlindungan yang Istimewa",
@@ -224,6 +224,16 @@
       "waktu": "2026-10-30T08:35:46.830Z",
       "oleh": "channel-manager",
       "pesan": "Terjadwal tayang 2026-10-31T09:30:00.000Z"
+    },
+    {
+      "waktu": "2026-10-30T11:11:39.948Z",
+      "oleh": "channel-manager",
+      "pesan": "Gagal memasukkan ke playlist: The playlist identified with the request's <code>playlistId</code> parameter cannot be found."
+    },
+    {
+      "waktu": "2026-10-30T11:53:04.377Z",
+      "oleh": "pemilik",
+      "pesan": "Dibuat versi YouTube Shorts: asbabun-nuzul-surat-an-nas-surat-perlind-d6ba"
     }
   ],
   "catatanStatus": "Terjadwal tayang 2026-10-31T09:30:00.000Z",
@@ -718,5 +728,6 @@
     "videoId": "vwc_5hP5TIk",
     "url": "https://www.youtube.com/watch?v=vwc_5hP5TIk",
     "jadwalTayang": "2026-10-31T09:30:00.000Z"
-  }
+  },
+  "pasangan": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba"
 }

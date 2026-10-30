@@ -1,8 +1,8 @@
 {
   "id": "dengar-ulangi-bareng-mamas-hafalan-surat-241c",
   "dibuat": "2026-10-28T13:38:37.875Z",
-  "diubah": "2026-10-28T13:38:37.876Z",
-  "status": "idea",
+  "diubah": "2026-10-30T10:56:25.008Z",
+  "status": "rejected",
   "ide": {
     "judul": "Dengar & Ulangi Bareng Mamas: Hafalan Surat An-Nas Pelan-Pelan",
     "seri": "doa-harian",
@@ -22,6 +22,12 @@
       "waktu": "2026-10-28T13:38:37.875Z",
       "oleh": "riset",
       "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-30T10:56:25.008Z",
+      "oleh": "pemilik",
+      "pesan": "takut salah suara ngajinya, jangan ini dulu"
     }
-  ]
+  ],
+  "catatanStatus": "takut salah suara ngajinya, jangan ini dulu"
 }

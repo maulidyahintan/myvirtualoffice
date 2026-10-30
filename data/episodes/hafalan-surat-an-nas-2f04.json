@@ -1,8 +1,8 @@
 {
   "id": "hafalan-surat-an-nas-2f04",
   "dibuat": "2026-10-30T08:38:36.341Z",
-  "diubah": "2026-10-30T08:39:15.931Z",
-  "status": "needs_video_approval",
+  "diubah": "2026-10-30T11:11:38.023Z",
+  "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat An-Nas",
     "seri": "hafalan",
@@ -47,6 +47,116 @@
       "waktu": "2026-10-30T08:39:15.931Z",
       "oleh": "video-creator",
       "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T10:38:53.782Z",
+      "oleh": "pemilik",
+      "pesan": "Bagian 1 rekaman diupload (0.8 MB), total 1 bagian"
+    },
+    {
+      "waktu": "2026-10-30T10:38:54.784Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T10:39:41.767Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T10:41:39.921Z",
+      "oleh": "pemilik",
+      "pesan": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "waktu": "2026-10-30T10:41:40.807Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T10:42:16.321Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T10:46:13.944Z",
+      "oleh": "pemilik",
+      "pesan": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "waktu": "2026-10-30T10:46:14.566Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T10:46:49.032Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T10:52:09.891Z",
+      "oleh": "pemilik",
+      "pesan": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "waktu": "2026-10-30T10:52:10.705Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T10:52:44.841Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T10:55:26.338Z",
+      "oleh": "pemilik",
+      "pesan": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "waktu": "2026-10-30T10:55:27.170Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T10:56:00.548Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T11:01:49.123Z",
+      "oleh": "pemilik",
+      "pesan": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "waktu": "2026-10-30T11:01:49.713Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T11:02:22.557Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T11:03:41.072Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui, tayang 2026-11-01 16:30"
+    },
+    {
+      "waktu": "2026-10-30T11:03:41.720Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-30T11:03:51.521Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-11-01T09:30:00.000Z"
+    },
+    {
+      "waktu": "2026-10-30T11:11:38.022Z",
+      "oleh": "channel-manager",
+      "pesan": "Gagal memasukkan ke playlist: The playlist identified with the request's <code>playlistId</code> parameter cannot be found."
     }
   ],
   "pasangan": "hafalan-surat-an-nas-4d50",
@@ -345,43 +455,62 @@
         ]
       }
     ],
-    "efekSegmen": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476"
+    "efekSegmen": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476",
+    "mulaiSegmen": [
+      0,
+      5,
+      13,
+      17,
+      21,
+      29,
+      37
+    ]
   },
-  "fileAudio": "audio/hafalan-surat-an-nas-2f04.m4a",
-  "catatanStatus": "Video siap ditonton & disetujui",
+  "fileAudio": "audio/hafalan-surat-an-nas-2f04-mvuuanv7-1.mp3",
+  "catatanStatus": "Terjadwal tayang 2026-11-01T09:30:00.000Z",
   "render": {
     "video": "hafalan-surat-an-nas-2f04.mp4",
     "thumbnail": "hafalan-surat-an-nas-2f04.png",
     "adegan": [
       {
         "mulai": 10,
-        "durasi": 11.4
+        "durasi": 5
       },
       {
-        "mulai": 21.4,
-        "durasi": 8.4
+        "mulai": 15,
+        "durasi": 8
       },
       {
-        "mulai": 29.8,
-        "durasi": 4.8
+        "mulai": 23,
+        "durasi": 4
       },
       {
-        "mulai": 34.6,
-        "durasi": 4.8
+        "mulai": 27,
+        "durasi": 4
       },
       {
-        "mulai": 39.4,
-        "durasi": 10.8
+        "mulai": 31,
+        "durasi": 8
       },
       {
-        "mulai": 50.2,
-        "durasi": 12
+        "mulai": 39,
+        "durasi": 8
       },
       {
-        "mulai": 62.2,
-        "durasi": 8.4
+        "mulai": 47,
+        "durasi": 16.333333333333332
       }
     ],
-    "waktu": "2026-10-30T08:39:15.931Z"
+    "waktu": "2026-10-30T11:02:22.556Z"
+  },
+  "modeRekam": "urut",
+  "bagianAudio": [
+    "audio/hafalan-surat-an-nas-2f04-mvuuanv7-1.mp3"
+  ],
+  "jadwalDipilih": "2026-11-01T09:30:00.000Z",
+  "youtube": {
+    "videoId": "O-1K2YAEzHw",
+    "url": "https://www.youtube.com/watch?v=O-1K2YAEzHw",
+    "jadwalTayang": "2026-11-01T09:30:00.000Z"
   }
 }

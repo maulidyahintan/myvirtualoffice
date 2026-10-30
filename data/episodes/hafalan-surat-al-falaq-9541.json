@@ -1,0 +1,414 @@
+{
+  "id": "hafalan-surat-al-falaq-9541",
+  "dibuat": "2026-10-30T11:53:38.371Z",
+  "diubah": "2026-10-30T12:02:05.868Z",
+  "status": "scheduled",
+  "ide": {
+    "judul": "Hafalan Surat Al-Falaq",
+    "seri": "hafalan",
+    "usia": "1-10",
+    "pesanMoral": "Menghafal Surat Al-Falaq (Subuh)",
+    "jenis": "hafalan",
+    "hafalan": {
+      "surat": 113,
+      "namaSurat": "Al-Falaq",
+      "ayatDari": 1,
+      "ayatSampai": 5,
+      "ulang": 1,
+      "basmalah": true
+    },
+    "alasan": "Ide hafalan dari pemilik channel",
+    "referensi": [],
+    "format": "short"
+  },
+  "jumlahRevisi": 0,
+  "log": [
+    {
+      "waktu": "2026-10-30T11:53:38.371Z",
+      "oleh": "pemilik",
+      "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-30T11:53:38.372Z",
+      "oleh": "pemilik",
+      "pesan": "Kembaran Shorts dari episode hafalan-surat-al-falaq-fac3"
+    },
+    {
+      "waktu": "2026-10-30T11:53:38.373Z",
+      "oleh": "pemilik",
+      "pesan": "Mengambil teks surat"
+    },
+    {
+      "waktu": "2026-10-30T11:53:40.362Z",
+      "oleh": "orchestrator",
+      "pesan": "Mengambil teks Surat Al-Falaq dari equran.id"
+    },
+    {
+      "waktu": "2026-10-30T11:53:40.735Z",
+      "oleh": "orchestrator",
+      "pesan": "Teks surat siap dicek pemilik channel"
+    },
+    {
+      "waktu": "2026-10-30T11:54:21.344Z",
+      "oleh": "pemilik",
+      "pesan": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "waktu": "2026-10-30T11:54:27.916Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih latar sesuai arti ayat & menyusun metadata"
+    },
+    {
+      "waktu": "2026-10-30T11:54:34.861Z",
+      "oleh": "sutradara",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T11:54:40.273Z",
+      "oleh": "channel-manager",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T11:54:40.928Z",
+      "oleh": "orchestrator",
+      "pesan": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    },
+    {
+      "waktu": "2026-10-30T11:56:58.180Z",
+      "oleh": "pemilik",
+      "pesan": "Bagian 1 rekaman diupload (0.7 MB), total 1 bagian"
+    },
+    {
+      "waktu": "2026-10-30T11:57:04.752Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T11:58:34.341Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T12:01:59.569Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui, tayang 2026-11-02 16:00"
+    },
+    {
+      "waktu": "2026-10-30T12:02:00.195Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-30T12:02:05.867Z",
+      "oleh": "channel-manager",
+      "pesan": "Dimasukkan ke playlist \"Hafalan\""
+    },
+    {
+      "waktu": "2026-10-30T12:02:05.868Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-11-02T09:00:00.000Z"
+    }
+  ],
+  "pasangan": "hafalan-surat-al-falaq-fac3",
+  "catatanStatus": "Terjadwal tayang 2026-11-02T09:00:00.000Z",
+  "hafalan": {
+    "namaSurat": "Al-Falaq",
+    "artiSurat": "Subuh",
+    "ayat": [
+      {
+        "nomor": 0,
+        "arab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "arti": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya"
+        ]
+      },
+      {
+        "nomor": 1,
+        "arab": "قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ",
+        "latin": "Qul a‘ūżu birabbil-falaq(i).",
+        "arti": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan yang (menjaga) fajar (subuh)",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya",
+          "burung"
+        ]
+      },
+      {
+        "nomor": 2,
+        "arab": "مِنْ شَرِّ مَا خَلَقَۙ",
+        "latin": "Min syarri mā khalaq(a).",
+        "arti": "dari kejahatan (makhluk yang) Dia ciptakan,",
+        "latar": "fajar",
+        "suasana": [
+          "cahaya"
+        ]
+      },
+      {
+        "nomor": 3,
+        "arab": "وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ",
+        "latin": "Wa min syarri gāsiqin iżā waqab(a).",
+        "arti": "dari kejahatan malam apabila telah gelap gulita,",
+        "latar": "langit-malam",
+        "suasana": []
+      },
+      {
+        "nomor": 4,
+        "arab": "وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِۙ",
+        "latin": "Wa min syarrin-naffāṡāti fil-‘uqad(i).",
+        "arti": "dari kejahatan perempuan-perempuan (penyihir) yang meniup pada buhul-buhul (talinya),",
+        "latar": "langit-malam",
+        "suasana": []
+      },
+      {
+        "nomor": 5,
+        "arab": "وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ ࣖ",
+        "latin": "Wa min syarri ḥāsidin iżā ḥasad(a).",
+        "arti": "dan dari kejahatan orang yang dengki apabila dia dengki.”",
+        "latar": "langit-malam",
+        "suasana": []
+      }
+    ],
+    "efekSegmen": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476"
+  },
+  "naskah": {
+    "judul": "Hafalan Surat Al-Falaq",
+    "ringkasan": "Surat ke-113 (Subuh), 5 ayat. Tiap ayat dibaca 1x.",
+    "adegan": [
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "petunjukVisual": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Qul a‘ūżu birabbil-falaq(i).",
+        "petunjukVisual": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan yang (menjaga) fajar (subuh)"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Min syarri mā khalaq(a).",
+        "petunjukVisual": "dari kejahatan (makhluk yang) Dia ciptakan,"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Wa min syarri gāsiqin iżā waqab(a).",
+        "petunjukVisual": "dari kejahatan malam apabila telah gelap gulita,"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Wa min syarrin-naffāṡāti fil-‘uqad(i).",
+        "petunjukVisual": "dari kejahatan perempuan-perempuan (penyihir) yang meniup pada buhul-buhul (talinya),"
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Wa min syarri ḥāsidin iżā ḥasad(a).",
+        "petunjukVisual": "dan dari kejahatan orang yang dengki apabila dia dengki.”"
+      }
+    ],
+    "dalil": [
+      {
+        "jenis": "ayat",
+        "teksArab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "terjemah": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "sumber": "Basmalah"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ",
+        "latin": "Qul a‘ūżu birabbil-falaq(i).",
+        "terjemah": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan yang (menjaga) fajar (subuh)",
+        "sumber": "QS. Al-Falaq: 1"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "مِنْ شَرِّ مَا خَلَقَۙ",
+        "latin": "Min syarri mā khalaq(a).",
+        "terjemah": "dari kejahatan (makhluk yang) Dia ciptakan,",
+        "sumber": "QS. Al-Falaq: 2"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ",
+        "latin": "Wa min syarri gāsiqin iżā waqab(a).",
+        "terjemah": "dari kejahatan malam apabila telah gelap gulita,",
+        "sumber": "QS. Al-Falaq: 3"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِۙ",
+        "latin": "Wa min syarrin-naffāṡāti fil-‘uqad(i).",
+        "terjemah": "dari kejahatan perempuan-perempuan (penyihir) yang meniup pada buhul-buhul (talinya),",
+        "sumber": "QS. Al-Falaq: 4"
+      },
+      {
+        "jenis": "ayat",
+        "teksArab": "وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ ࣖ",
+        "latin": "Wa min syarri ḥāsidin iżā ḥasad(a).",
+        "terjemah": "dan dari kejahatan orang yang dengki apabila dia dengki.”",
+        "sumber": "QS. Al-Falaq: 5"
+      }
+    ]
+  },
+  "review": {
+    "keputusan": "lolos",
+    "skor": 10,
+    "catatan": [
+      "Teks diambil otomatis dari equran.id (Kemenag RI), tidak ditulis AI."
+    ],
+    "cekManusia": [
+      "Cocokkan teks Arab & harakat dengan mushaf kamu.",
+      "Pastikan rentang ayat sesuai yang ingin dihafalkan."
+    ]
+  },
+  "adegan": [
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Bismillāhir-raḥmānir-raḥīm(i).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "arti": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Qul a‘ūżu birabbil-falaq(i).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِۙ",
+        "latin": "Qul a‘ūżu birabbil-falaq(i).",
+        "arti": "Katakanlah (Nabi Muhammad), “Aku berlindung kepada Tuhan yang (menjaga) fajar (subuh)"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Min syarri mā khalaq(a).",
+      "latar": "fajar",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "مِنْ شَرِّ مَا خَلَقَۙ",
+        "latin": "Min syarri mā khalaq(a).",
+        "arti": "dari kejahatan (makhluk yang) Dia ciptakan,"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Wa min syarri gāsiqin iżā waqab(a).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ",
+        "latin": "Wa min syarri gāsiqin iżā waqab(a).",
+        "arti": "dari kejahatan malam apabila telah gelap gulita,"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Wa min syarrin-naffāṡāti fil-‘uqad(i).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِۙ",
+        "latin": "Wa min syarrin-naffāṡāti fil-‘uqad(i).",
+        "arti": "dari kejahatan perempuan-perempuan (penyihir) yang meniup pada buhul-buhul (talinya),"
+      }
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Wa min syarri ḥāsidin iżā ḥasad(a).",
+      "latar": "langit-malam",
+      "karakter": [],
+      "ekspresi": "tenang",
+      "doa": {
+        "arab": "وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ ࣖ",
+        "latin": "Wa min syarri ḥāsidin iżā ḥasad(a).",
+        "arti": "dan dari kejahatan orang yang dengki apabila dia dengki.”"
+      }
+    }
+  ],
+  "metadata": {
+    "judul": "Hafalan Surat Al-Falaq untuk Anak | 5 Ayat Mudah",
+    "deskripsi": "Yuk hafalan Surat Al-Falaq (Waktu Subuh, 5 ayat) bersama adik-adik! Surat ini mengajarkan kita memohon perlindungan kepada Allah dari segala kejahatan. Teks & terjemah: Kemenag RI via equran.id. Ayah Bunda, dampingi si kecil mengulang tiap ayat ya.\n\n#Shorts #HafalanSurat #JuzAmma",
+    "tags": [
+      "hafalan surat al falaq",
+      "surat al falaq untuk anak",
+      "hafalan juz amma anak",
+      "murottal anak al falaq",
+      "belajar mengaji anak",
+      "hafalan surat pendek",
+      "shorts islami anak",
+      "surat al falaq 5 ayat",
+      "tasnie office"
+    ],
+    "teksThumbnail": "Al-Falaq"
+  },
+  "modeRekam": "urut",
+  "bagianAudio": [
+    "audio/hafalan-surat-al-falaq-9541-mvux32dd-1.mp3"
+  ],
+  "fileAudio": "audio/hafalan-surat-al-falaq-9541-mvux32dd-1.mp3",
+  "render": {
+    "video": "hafalan-surat-al-falaq-9541.mp4",
+    "adegan": [
+      {
+        "mulai": 1.5,
+        "durasi": 8.533333333333333
+      },
+      {
+        "mulai": 10.033333333333333,
+        "durasi": 6.3
+      },
+      {
+        "mulai": 16.333333333333332,
+        "durasi": 4.033333333333333
+      },
+      {
+        "mulai": 20.366666666666667,
+        "durasi": 6.733333333333333
+      },
+      {
+        "mulai": 27.1,
+        "durasi": 8.1
+      },
+      {
+        "mulai": 35.2,
+        "durasi": 7.2
+      }
+    ],
+    "waktu": "2026-10-30T11:58:34.341Z"
+  },
+  "jadwalDipilih": "2026-11-02T09:00:00.000Z",
+  "youtube": {
+    "videoId": "4rCruYNcCro",
+    "url": "https://www.youtube.com/watch?v=4rCruYNcCro",
+    "jadwalTayang": "2026-11-02T09:00:00.000Z",
+    "playlist": {
+      "nama": "Hafalan",
+      "id": "PLQpeKIzmWSxQ"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "id": "ayo-sambung-ayat-mamas-dan-ibu-main-teba-e3a7",
   "dibuat": "2026-10-28T13:38:37.876Z",
-  "diubah": "2026-10-28T13:38:37.876Z",
-  "status": "idea",
+  "diubah": "2026-10-30T10:56:44.304Z",
+  "status": "rejected",
   "ide": {
     "judul": "Ayo Sambung Ayat! Mamas dan Ibu Main Tebak Ayat An-Nas Sebelum Tidur",
     "seri": "kisah-sebelum-tidur",
@@ -21,6 +21,12 @@
       "waktu": "2026-10-28T13:38:37.876Z",
       "oleh": "riset",
       "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-30T10:56:44.304Z",
+      "oleh": "pemilik",
+      "pesan": "jangan yg begini, jangan yg banyak ngaji"
     }
-  ]
+  ],
+  "catatanStatus": "jangan yg begini, jangan yg banyak ngaji"
 }

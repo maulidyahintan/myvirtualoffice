@@ -1,8 +1,8 @@
 {
   "id": "tiup-usap-bobo-tiga-qul-sebelum-tidur-be-8db6",
   "dibuat": "2026-10-28T10:20:42.356Z",
-  "diubah": "2026-10-28T10:20:42.356Z",
-  "status": "idea",
+  "diubah": "2026-10-30T10:55:53.191Z",
+  "status": "rejected",
   "ide": {
     "judul": "Tiup, Usap, Bobo! Tiga Qul Sebelum Tidur Bersama Mamas",
     "seri": "doa-harian",
@@ -22,6 +22,12 @@
       "waktu": "2026-10-28T10:20:42.356Z",
       "oleh": "riset",
       "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-30T10:55:53.191Z",
+      "oleh": "pemilik",
+      "pesan": "sudah ada episode yg bahas 3 qul ini"
     }
-  ]
+  ],
+  "catatanStatus": "sudah ada episode yg bahas 3 qul ini"
 }
