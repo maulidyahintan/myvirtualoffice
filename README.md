@@ -155,6 +155,11 @@ three.js (React Three Fiber), jadi tanpa aset berbayar. Ganti nama, warna, atau 
    ikut terekam. Agar video bisa diputar per adegan, render pratinjau tanpa suara dulu.
 5. Tonton → **Setujui & jadwalkan**. Selesai.
 
+Sudah terjadwal atau tayang tapi ada yang perlu diubah? Buka episode → **✏️ Edit ulang / minta
+revisi**: pilih **Edit video** (rekam ulang / render ulang) atau **Minta revisi naskah**. YouTube tidak
+bisa mengganti file video, jadi hasil edit diupload sebagai video baru dan video lama dijadikan
+**private** (tidak dihapus), langsung atau setelah versi baru naik.
+
 Semua juga bisa lewat terminal:
 ```bash
 npm run kantor -- riset "fokus adab untuk usia 4-6"

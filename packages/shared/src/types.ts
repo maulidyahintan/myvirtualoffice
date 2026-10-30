@@ -177,6 +177,11 @@ export interface Episode {
   /** false = rekaman per adegan tanpa efek suara karakter (default: pakai efek). */
   efekKarakter?: boolean;
   youtube?: { videoId: string; url: string; jadwalTayang?: string };
+  /**
+   * Upload sebelumnya yang diganti karena video diedit ulang. Video lama dijadikan private
+   * (`ditarik` = waktu diprivatkan), tidak dihapus.
+   */
+  youtubeLama?: { videoId: string; url: string; jadwalTayang?: string; ditarik?: string }[];
   log: LogEntry[];
 }
 

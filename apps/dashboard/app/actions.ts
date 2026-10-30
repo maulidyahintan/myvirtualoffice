@@ -217,6 +217,35 @@ export async function tolak(form: FormData) {
   segarkan(id);
 }
 
+/**
+ * Edit ulang episode yang sudah terjadwal/tayang. Upload lama dipindah ke `youtubeLama`
+ * (versi baru nanti diupload sebagai video baru, karena YouTube tidak bisa mengganti file video).
+ * tujuan=video  → kembali ke persetujuan video (rekam ulang / render ulang)
+ * tujuan=naskah → penulis merevisi naskah sesuai catatan
+ * tarik=on      → video lama langsung dijadikan private (jadwal tayang batal); kalau tidak,
+ *                 ditarik otomatis setelah versi baru diupload.
+ */
+export async function editUlang(form: FormData) {
+  const id = teks(form, 'id');
+  const naskah = teks(form, 'tujuan') === 'naskah';
+  const feedback = teks(form, 'feedback');
+  if (naskah && !feedback) throw new Error('Tulis dulu apa yang perlu direvisi');
+  const lama = getEpisode(id).youtube;
+  updateEpisode(id, (e) => {
+    if (e.youtube) e.youtubeLama = [...(e.youtubeLama ?? []), e.youtube];
+    e.youtube = undefined;
+    if (naskah) e.feedbackManusia = feedback;
+  });
+  if (naskah) {
+    setStatus(id, 'writing', 'pemilik', `Edit ulang, minta revisi naskah: ${feedback.slice(0, 80)}`);
+    jalankanKantor(['tulis', id], id);
+  } else {
+    setStatus(id, 'needs_video_approval', 'pemilik', 'Edit ulang video');
+  }
+  if (lama && form.get('tarik') === 'on') jalankanKantor(['tarik', id], `${id}-tarik`);
+  segarkan(id);
+}
+
 /** Pulihkan episode yang error / ditolak ke langkah yang masuk akal. */
 export async function pulihkan(form: FormData) {
   const id = teks(form, 'id');

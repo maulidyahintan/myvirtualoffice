@@ -8,6 +8,18 @@ export interface OpsiUpload {
   jadwalTayang?: string;
 }
 
+/** Jadikan video private (jadwal tayang ikut batal). Video tidak dihapus. */
+export async function privatkanVideo(videoId: string) {
+  await youtubeWrite().videos.update({
+    part: ['status'],
+    requestBody: {
+      id: videoId,
+      // status ditimpa seluruhnya → setelan Made for Kids & embed ikut dikirim lagi
+      status: { privacyStatus: 'private', selfDeclaredMadeForKids: true, embeddable: true },
+    },
+  });
+}
+
 export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
   if (!ep.render?.video || !ep.metadata) throw new Error('Episode belum dirender / belum punya metadata');
   const yt = youtubeWrite();

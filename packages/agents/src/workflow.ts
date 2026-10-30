@@ -27,7 +27,7 @@ import {
 } from './schemas.ts';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
 import { renderEpisode } from './render.ts';
-import { uploadEpisode } from './youtube/upload.ts';
+import { privatkanVideo, uploadEpisode } from './youtube/upload.ts';
 
 const log = (id: string | undefined, oleh: string) => (pesan: string) => {
   console.log(`[${oleh}] ${pesan}`);
@@ -312,6 +312,25 @@ export async function upload(id: string, jadwalTayang?: string) {
     'channel-manager',
     jadwalTayang ? `Terjadwal tayang ${jadwalTayang}` : 'Terupload sebagai PRIVATE — atur tayang di YouTube Studio',
   );
+  // versi baru sudah naik → upload lama (sebelum diedit) disembunyikan
+  await tarikVideoLama(id);
+}
+
+/** Jadikan private upload lama episode ini yang belum ditarik. Gagal → dicatat di log, tidak menghentikan proses. */
+export async function tarikVideoLama(id: string) {
+  for (const v of getEpisode(id).youtubeLama ?? []) {
+    if (v.ditarik) continue;
+    try {
+      await privatkanVideo(v.videoId);
+      updateEpisode(id, (e: Episode) => {
+        const x = e.youtubeLama?.find((y) => y.videoId === v.videoId);
+        if (x) x.ditarik = new Date().toISOString();
+      });
+      log(id, 'channel-manager')(`Video lama ${v.url} dijadikan private${v.jadwalTayang ? ' (jadwal tayang dibatalkan)' : ''}`);
+    } catch (e) {
+      log(id, 'channel-manager')(`Gagal menjadikan private video lama ${v.url}: ${(e as Error).message}. Atur manual di YouTube Studio.`);
+    }
+  }
 }
 
 // ---------------------------------------------------------------- LAPORAN

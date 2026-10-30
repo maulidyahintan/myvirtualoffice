@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FORMAT_LABEL, getEpisode, loadConfig, paths, STATUS_SIBUK, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, type Episode } from '@kantor/shared';
 import {
+  editUlang,
   hapusRekaman,
   ubahModeRekam,
   mintaRevisi,
@@ -372,6 +373,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
               Upload sebagai private saja (atur di Studio)
             </button>
           </form>
+          <VideoLama ep={ep} />
           {!ep.fileAudio ? <p className="peringatan kecil">Ini masih pratinjau tanpa suara. Upload rekaman dulu sebelum tayang.</p> : null}
           {ep.ide.jenis === 'hafalan' && ep.fileAudio ? (
             <details>
@@ -435,6 +437,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
               })}
             </div>
           ) : null}
+          <EditUlang ep={ep} />
         </div>
       );
 
@@ -451,6 +454,65 @@ function PanelAksi({ ep }: { ep: Episode }) {
         </div>
       );
   }
+}
+
+/** Minta revisi / edit ulang video yang sudah terjadwal atau tayang. */
+function EditUlang({ ep }: { ep: Episode }) {
+  const terjadwal = ep.status === 'scheduled';
+  const tarik = (
+    <label className="kecil row" style={{ gap: 6 }}>
+      <input type="checkbox" name="tarik" defaultChecked={terjadwal} />
+      {terjadwal ? 'Batalkan jadwal tayang sekarang (video lama jadi private)' : 'Sembunyikan video lama sekarang (jadi private)'}
+    </label>
+  );
+  return (
+    <details>
+      <summary>✏️ Edit ulang / minta revisi</summary>
+      <div className="stack" style={{ marginTop: 10 }}>
+        <p className="kecil muted" style={{ margin: 0 }}>
+          YouTube tidak bisa mengganti file video yang sudah diupload, jadi hasil edit diupload sebagai <b>video baru</b>. Video lama
+          dijadikan <b>private</b> (tidak dihapus){terjadwal ? '' : '; penonton & komentarnya tetap ada di video lama'}. Kalau tidak
+          dicentang, video lama baru disembunyikan setelah versi baru diupload.
+        </p>
+        <form action={editUlang} className="stack" style={{ gap: 8 }}>
+          <Id id={ep.id} />
+          <input type="hidden" name="tujuan" value="video" />
+          {tarik}
+          <button type="submit" className="sekunder">
+            🎬 Edit video: rekam ulang / render ulang
+          </button>
+        </form>
+        <form action={editUlang} className="stack" style={{ gap: 8 }}>
+          <Id id={ep.id} />
+          <input type="hidden" name="tujuan" value="naskah" />
+          <textarea name="feedback" rows={3} placeholder="Apa yang perlu direvisi di naskah? (penulis akan menulis ulang, lalu rekam ulang)" required />
+          {tarik}
+          <button type="submit" className="sekunder">
+            📝 Minta revisi naskah
+          </button>
+        </form>
+      </div>
+    </details>
+  );
+}
+
+/** Upload lama dari episode yang diedit ulang. */
+function VideoLama({ ep }: { ep: Episode }) {
+  if (!ep.youtubeLama?.length) return null;
+  return (
+    <div className="kecil muted">
+      Versi sebelumnya di YouTube:{' '}
+      {ep.youtubeLama.map((v, i) => (
+        <span key={v.videoId}>
+          {i ? ', ' : ''}
+          <a href={v.url} target="_blank" rel="noreferrer">
+            {v.videoId}
+          </a>{' '}
+          ({v.ditarik ? 'sudah private' : 'akan dijadikan private setelah versi baru diupload'})
+        </span>
+      ))}
+    </div>
+  );
 }
 
 function FormTolak({ id }: { id: string }) {

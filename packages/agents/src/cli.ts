@@ -5,13 +5,14 @@
 //   npm run kantor -- sutradara <id>
 //   npm run kantor -- render <id>
 //   npm run kantor -- upload <id> [2026-11-01T16:30:00+07:00]
+//   npm run kantor -- tarik <id>        (jadikan private upload lama episode yang diedit ulang)
 //   npm run kantor -- chat <agen>       (agen membalas pesan terakhir di kolom chat)
 //   npm run kantor -- laporan
 //   npm run kantor -- status
 import './env.ts';
 import { AGEN_CHAT, listEpisodes, setStatus, STATUS_LABEL, tandaiSelesai, tandaiSibuk, tambahChat, type AgenChat } from '@kantor/shared';
 import { balasChat } from './chat.ts';
-import { laporan, render, riset, siapkanHafalan, sutradarai, tulisNaskah, upload } from './workflow.ts';
+import { laporan, render, riset, siapkanHafalan, sutradarai, tarikVideoLama, tulisNaskah, upload } from './workflow.ts';
 
 const [cmd, arg1, arg2] = process.argv.slice(2);
 
@@ -34,6 +35,8 @@ async function main() {
       return render(need(arg1));
     case 'upload':
       return upload(need(arg1), arg2 ? new Date(arg2).toISOString() : undefined);
+    case 'tarik':
+      return tarikVideoLama(need(arg1));
     case 'chat': {
       const agen = need(arg1) as AgenChat;
       if (!AGEN_CHAT.includes(agen)) throw new Error(`Agen tidak dikenal: ${agen}`);
@@ -60,7 +63,7 @@ async function main() {
       }
       return;
     default:
-      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | laporan | status');
+      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | tarik <id> | laporan | status');
   }
 }
 
