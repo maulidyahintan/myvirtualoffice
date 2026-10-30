@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/">Papan Kerja</Link>
             <Link href="/kantor">Kantor 3D</Link>
             <Link href="/jadwal">Jadwal Tayang</Link>
+            <Link href="/tayang">Video Tayang</Link>
             <Link href="/laporan">Riset & Laporan</Link>
             <Link href="/ide-baru">+ Ide Manual</Link>
             <Link href="/hafalan-baru">+ Hafalan</Link>
