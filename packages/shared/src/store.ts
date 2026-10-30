@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import type { AgenChat, Episode, EpisodeStatus, Ide, KantorConfig, PesanChat } from './types.ts';
-import { SUARA_KARAKTER_BAWAAN, type PEMBICARA } from './constants.ts';
+import { filterSuara, SUARA_HAFALAN_BAWAAN, SUARA_KARAKTER_BAWAAN, type PEMBICARA } from './constants.ts';
 
 let rootCache: string | undefined;
 
@@ -50,6 +50,16 @@ export function suaraPembicara(pembicara: string, cfg: KantorConfig = loadConfig
   const p = pembicara as (typeof PEMBICARA)[number];
   const bawaan = SUARA_KARAKTER_BAWAAN[p] ?? SUARA_KARAKTER_BAWAAN.narator;
   return { nada: bawaan.nada, tempo: bawaan.tempo, ...cfg.suaraKarakter?.[p] };
+}
+
+/** Pengaturan suara bacaan hafalan: dari kantor.config.json, atau bawaan. */
+export function suaraHafalan(cfg: KantorConfig = loadConfig()): { nada: number; tempo: number } {
+  return { nada: SUARA_HAFALAN_BAWAAN.nada, tempo: SUARA_HAFALAN_BAWAAN.tempo, ...cfg.suaraHafalan };
+}
+
+/** Filter efek suara seluruh rekaman video hafalan (undefined = suara asli). */
+export function filterHafalan(ep: Episode, cfg: KantorConfig = loadConfig()): string | undefined {
+  return ep.ide.jenis === 'hafalan' && ep.efekKarakter !== false ? filterSuara(suaraHafalan(cfg)) : undefined;
 }
 
 export function saveConfig(cfg: KantorConfig) {

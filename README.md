@@ -150,7 +150,9 @@ three.js (React Three Fiber), jadi tanpa aset berbayar. Ganti nama, warna, atau 
    **🎭 Efek suara karakter**: tiap adegan diberi efek sesuai pembicaranya — Narator suara
    asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria, Mochi kecil &
    menggemaskan. Kekuatan efek (nada & tempo) diatur di **Pengaturan**, dan bisa dimatikan per
-   episode di Studio. Bacaan hafalan selalu suara asli. Ada juga pengatur **nada suara** (±4 semiton,
+   episode di Studio. **Video hafalan** otomatis diberi suara anak-anak (nada naik) dengan tempo
+   lebih pelan supaya mudah diikuti, untuk rekaman berurutan maupun per ayat; atur di **Pengaturan**
+   atau matikan per episode di Studio. Waktu tiap bacaan dideteksi setelah efek diterapkan. Ada juga pengatur **nada suara** (±4 semiton,
    kecepatan bicara tetap) yang diterapkan saat render. Pakai headset supaya suara video tidak
    ikut terekam. Agar video bisa diputar per adegan, render pratinjau tanpa suara dulu.
 5. Tonton → **Setujui & jadwalkan**. Selesai.

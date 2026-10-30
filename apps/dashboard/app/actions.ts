@@ -290,14 +290,20 @@ export async function simpanEfekKarakter(id: string, aktif: boolean) {
 
 export async function simpanSuaraKarakter(form: FormData) {
   const cfg = loadConfig();
+  const baca = (p: string) =>
+    form.get(`${p}-reset`) === 'on'
+      ? undefined
+      : {
+          nada: Math.max(BATAS_NADA_KARAKTER.min, Math.min(BATAS_NADA_KARAKTER.maks, Number(teks(form, `${p}-nada`)) || 0)),
+          tempo: Math.max(70, Math.min(140, Number(teks(form, `${p}-tempo`)) || 100)) / 100,
+        };
   const suara: NonNullable<typeof cfg.suaraKarakter> = {};
   for (const p of PEMBICARA) {
-    if (form.get(`${p}-reset`) === 'on') continue;
-    const nada = Math.max(BATAS_NADA_KARAKTER.min, Math.min(BATAS_NADA_KARAKTER.maks, Number(teks(form, `${p}-nada`)) || 0));
-    const tempo = Math.max(70, Math.min(140, Number(teks(form, `${p}-tempo`)) || 100)) / 100;
-    suara[p] = { nada, tempo };
+    const s = baca(p);
+    if (s) suara[p] = s;
   }
   cfg.suaraKarakter = suara;
+  cfg.suaraHafalan = baca('hafalan');
   saveConfig(cfg);
   revalidatePath('/pengaturan');
 }

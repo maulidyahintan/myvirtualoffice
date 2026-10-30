@@ -78,6 +78,8 @@ export const SUARA_KARAKTER_BAWAAN: Record<(typeof PEMBICARA)[number], { nada: n
   mochi: { nada: 4, tempo: 1.05, ket: 'kecil & menggemaskan' },
 };
 export const BATAS_NADA_KARAKTER = { min: -6, maks: 9 };
+/** Suara bacaan video hafalan: lebih tinggi seperti anak-anak & lebih pelan supaya mudah diikuti. */
+export const SUARA_HAFALAN_BAWAAN = { nada: 3, tempo: 0.85, ket: 'seperti anak-anak, lebih pelan' };
 
 export const JENIS_MUSIK = ['pembuka', 'penutup'] as const;
 export type JenisMusik = (typeof JENIS_MUSIK)[number];

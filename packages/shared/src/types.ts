@@ -154,7 +154,14 @@ export interface Episode {
   adegan?: Adegan[];
   metadata?: MetadataYouTube;
   /** Teks ayat + visual (hanya untuk jenis hafalan) */
-  hafalan?: { namaSurat: string; artiSurat: string; ayat: AyatHafalan[]; mulaiSegmen?: number[] };
+  hafalan?: {
+    namaSurat: string;
+    artiSurat: string;
+    ayat: AyatHafalan[];
+    mulaiSegmen?: number[];
+    /** filter efek suara yang berlaku saat mulaiSegmen dihitung; berubah → deteksi ulang (tempo menggeser waktu). */
+    efekSegmen?: string;
+  };
   /** Path relatif ke packages/video/public, contoh "audio/abc.mp3" */
   fileAudio?: string;
   /** Rekaman yang dikirim per bagian (berurutan); digabung jadi fileAudio saat render. */
@@ -174,7 +181,7 @@ export interface Episode {
   };
   /** Geser nada rekaman (semiton, + lebih tinggi, − lebih rendah); kecepatan bicara tetap. */
   nadaSuara?: number;
-  /** false = rekaman per adegan tanpa efek suara karakter (default: pakai efek). */
+  /** false = tanpa efek suara (cerita: efek karakter per adegan, hafalan: suara anak-anak). Default: pakai efek. */
   efekKarakter?: boolean;
   youtube?: { videoId: string; url: string; jadwalTayang?: string };
   /**
@@ -235,6 +242,8 @@ export interface KantorConfig {
   zonaWaktu: string;
   /** Efek suara per pembicara (menimpa SUARA_KARAKTER_BAWAAN). */
   suaraKarakter?: Partial<Record<'narator' | 'ibu' | 'mamas' | 'mochi', { nada: number; tempo: number }>>;
+  /** Efek suara bacaan video hafalan (menimpa SUARA_HAFALAN_BAWAAN). */
+  suaraHafalan?: { nada: number; tempo: number };
   musik?: MusikVideo & {
     /** dipakai juga di Shorts (intro/outro Shorts dibatasi supaya tetap < 60 detik) */
     diShorts: boolean;

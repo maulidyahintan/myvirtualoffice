@@ -89,6 +89,7 @@ export function StudioRekam({
   const [level, setLevel] = useState(0);
   const [sisaHening, setSisaHening] = useState<number | null>(null);
   const [efek, setEfek] = useState(efekAwal ?? false);
+  const hafalan = satuan === 'ayat';
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -402,7 +403,7 @@ export function StudioRekam({
           {b.catatan ? <div className="kecil muted">{b.catatan}</div> : null}
           {b.suara && efekAwal !== undefined ? (
             <div className="kecil">
-              🎭 <b>{efek ? b.suara : 'Efek karakter mati: suara asli'}</b>
+              🎭 <b>{efek ? b.suara : 'Efek suara mati: suara asli'}</b>
             </div>
           ) : null}
 
@@ -489,7 +490,7 @@ export function StudioRekam({
 
         {efekAwal !== undefined ? (
           <div className="panel stack" style={{ gap: 8 }}>
-            <b>🎭 Efek suara karakter</b>
+            <b>🎭 {hafalan ? 'Efek suara hafalan' : 'Efek suara karakter'}</b>
             <label className="kecil" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <input
                 type="checkbox"
@@ -499,11 +500,14 @@ export function StudioRekam({
                   void simpanEfekKarakter(id, e.target.checked);
                 }}
               />
-              Pakai efek suara per pembicara di episode ini
+              {hafalan ? 'Bacaan bersuara anak-anak & lebih pelan di episode ini' : 'Pakai efek suara per pembicara di episode ini'}
             </label>
             <div className="kecil muted">
-              Narator memakai suara asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria. Efek diterapkan saat render dan
-              sudah terdengar lewat tombol &quot;Dengar…&quot;. Atur kekuatan efek tiap karakter di halaman <a href="/pengaturan">Pengaturan</a>.
+              {hafalan
+                ? 'Nada dinaikkan seperti suara anak-anak dan tempo diperlambat supaya mudah diikuti. '
+                : 'Narator memakai suara asli, Ibu lebih berat & kalem, Mamas seperti anak kecil yang ceria. '}
+              Efek diterapkan saat render dan sudah terdengar lewat tombol &quot;Dengar…&quot;. Atur kekuatannya di halaman{' '}
+              <a href="/pengaturan">Pengaturan</a>.
             </div>
           </div>
         ) : null}
@@ -512,7 +516,7 @@ export function StudioRekam({
           <b>🎚️ Nada suara</b>
           {efekAwal !== undefined && efek ? (
             <div className="kecil muted">
-              Tidak dipakai selama efek suara karakter aktif: nada tiap karakter diatur di <a href="/pengaturan">Pengaturan</a>.
+              Tidak dipakai selama efek suara aktif: nadanya diatur di <a href="/pengaturan">Pengaturan</a>.
             </div>
           ) : null}
           <label className="kecil" style={efekAwal !== undefined && efek ? { opacity: 0.5 } : undefined}>

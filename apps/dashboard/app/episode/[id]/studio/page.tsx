@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getEpisode, hitungKata, loadConfig, NADA_MAKS, SUARA_KARAKTER_BAWAAN, suaraPembicara, type Episode } from '@kantor/shared';
+import { getEpisode, hitungKata, loadConfig, NADA_MAKS, SUARA_HAFALAN_BAWAAN, SUARA_KARAKTER_BAWAAN, suaraHafalan, suaraPembicara, type Episode } from '@kantor/shared';
 import { StudioRekam, type BagianStudio } from '@/components/StudioRekam';
 
 export const dynamic = 'force-dynamic';
@@ -15,8 +15,15 @@ function ketSuara(pembicara: string): string {
   return `${NAMA_PEMBICARA[pembicara] ?? pembicara}: ${asli ? 'suara asli' : `${ket} (nada ${s.nada > 0 ? '+' : ''}${s.nada}, tempo ${Math.round(s.tempo * 100)}%)`}`;
 }
 
+/** Keterangan efek suara bacaan hafalan, misal "Suara hafalan: seperti anak-anak, lebih pelan (nada +3, tempo 85%)". */
+function ketHafalan(): string {
+  const s = suaraHafalan(loadConfig());
+  return `Suara hafalan: ${SUARA_HAFALAN_BAWAAN.ket} (nada ${s.nada > 0 ? '+' : ''}${s.nada}, tempo ${Math.round(s.tempo * 100)}%)`;
+}
+
 function daftarBagian(ep: Episode): BagianStudio[] {
   const waktu = ep.render?.adegan;
+  const suaraAyat = ep.ide.jenis === 'hafalan' ? ketHafalan() : undefined;
   const ulang = ep.ide.hafalan?.ulang ?? 1;
   const bagian: Omit<BagianStudio, 'mulai' | 'durasi' | 'tersimpan'>[] =
     ep.ide.jenis === 'hafalan'
@@ -29,6 +36,7 @@ function daftarBagian(ep: Episode): BagianStudio[] {
           heningStop: a.nomor > 0 && ulang > 1 ? 3.5 : 2.5,
           // ±5 huruf per detik, dikali jumlah bacaan
           perkiraan: (a.arab.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\s]/g, '').length / 5) * (a.nomor > 0 ? ulang : 1),
+          suara: suaraAyat,
         }))
       : (ep.adegan ?? []).map((a, i) => ({
           judul: `Adegan ${i + 1} · ${NAMA_PEMBICARA[a.pembicara] ?? a.pembicara}`,
@@ -78,7 +86,7 @@ export default async function HalamanStudio({ params }: { params: Promise<{ id: 
         bagian={daftarBagian(ep)}
         nadaAwal={ep.nadaSuara ?? 0}
         nadaMaks={NADA_MAKS}
-        efekAwal={ep.ide.jenis === 'hafalan' ? undefined : ep.efekKarakter !== false}
+        efekAwal={ep.efekKarakter !== false}
         satuan={ep.ide.jenis === 'hafalan' ? 'ayat' : 'adegan'}
       />
     </div>

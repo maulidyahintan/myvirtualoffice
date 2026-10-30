@@ -1,8 +1,8 @@
 {
   "id": "hafalan-surat-al-ikhlas-f603",
   "dibuat": "2026-10-29T07:23:38.619Z",
-  "diubah": "2026-10-29T08:32:32.876Z",
-  "status": "needs_video_approval",
+  "diubah": "2026-10-30T08:26:47.546Z",
+  "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat Al-Ikhlas",
     "seri": "hafalan",
@@ -82,9 +82,49 @@
       "waktu": "2026-10-29T08:20:32.276Z",
       "oleh": "video-creator",
       "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T05:38:14.623Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T05:38:51.714Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T07:58:47.938Z",
+      "oleh": "pemilik",
+      "pesan": "Bagian 1 rekaman diupload (0.5 MB), total 1 bagian"
+    },
+    {
+      "waktu": "2026-10-30T07:58:48.987Z",
+      "oleh": "video-creator",
+      "pesan": "Render dengan rekaman suara"
+    },
+    {
+      "waktu": "2026-10-30T07:59:14.995Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T08:26:37.861Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui"
+    },
+    {
+      "waktu": "2026-10-30T08:26:38.796Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-30T08:26:47.546Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-10-31T09:30:00.000Z"
     }
   ],
-  "catatanStatus": "Video siap ditonton & disetujui",
+  "catatanStatus": "Terjadwal tayang 2026-10-31T09:30:00.000Z",
   "hafalan": {
     "namaSurat": "Al-Ikhlas",
     "artiSurat": "Ikhlas",
@@ -142,7 +182,8 @@
           "bintang"
         ]
       }
-    ]
+    ],
+    "efekSegmen": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476"
   },
   "naskah": {
     "judul": "Hafalan Surat Al-Ikhlas",
@@ -318,34 +359,39 @@
   },
   "modeRekam": "urut",
   "bagianAudio": [
-    "audio/hafalan-surat-al-ikhlas-f603-mvt9vj6m-1.m4a"
+    "audio/hafalan-surat-al-ikhlas-f603-mvuokry9-1.mp3"
   ],
-  "fileAudio": "audio/hafalan-surat-al-ikhlas-f603-mvt9vj6m-1.m4a",
+  "fileAudio": "audio/hafalan-surat-al-ikhlas-f603-mvuokry9-1.mp3",
   "render": {
     "video": "hafalan-surat-al-ikhlas-f603.mp4",
     "thumbnail": "hafalan-surat-al-ikhlas-f603.png",
-    "waktu": "2026-10-29T08:20:32.275Z",
     "adegan": [
       {
         "mulai": 10,
-        "durasi": 14.633333333333333
+        "durasi": 8.333333333333334
       },
       {
-        "mulai": 24.633333333333333,
-        "durasi": 8.466666666666667
+        "mulai": 18.333333333333332,
+        "durasi": 4.833333333333333
       },
       {
-        "mulai": 33.1,
-        "durasi": 6.933333333333334
+        "mulai": 23.166666666666668,
+        "durasi": 3.933333333333333
       },
       {
-        "mulai": 40.03333333333333,
-        "durasi": 9.233333333333333
+        "mulai": 27.1,
+        "durasi": 5.266666666666667
       },
       {
-        "mulai": 49.266666666666666,
-        "durasi": 12.333333333333334
+        "mulai": 32.36666666666667,
+        "durasi": 7
       }
-    ]
+    ],
+    "waktu": "2026-10-30T07:59:14.995Z"
+  },
+  "youtube": {
+    "videoId": "Vg5pe5aPgpU",
+    "url": "https://www.youtube.com/watch?v=Vg5pe5aPgpU",
+    "jadwalTayang": "2026-10-31T09:30:00.000Z"
   }
 }

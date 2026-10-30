@@ -9,6 +9,7 @@ import {
   getEpisode,
   paths,
   setStatus,
+  suaraHafalan,
   suaraPembicara,
   updateEpisode,
   type Episode,
@@ -27,16 +28,18 @@ const TIPE: Record<string, string> = {
 const EKSTENSI = Object.keys(TIPE);
 
 /**
- * Filter pratinjau satu rekaman, sama seperti hasil render: efek suara karakter sesuai
- * pembicara adegan; nada episode hanya dipakai kalau efek karakter tidak aktif
- * (supaya tidak menumpuk, misal Ibu jadi ikut tinggi).
+ * Filter pratinjau satu rekaman, sama seperti hasil render: cerita → efek suara karakter
+ * sesuai pembicara adegan, hafalan → suara anak-anak. Nada episode hanya dipakai kalau
+ * efek tidak aktif (supaya tidak menumpuk, misal Ibu jadi ikut tinggi).
  */
 function filterPratinjau(ep: Episode, adegan: number | undefined, opsi: { efek: boolean; nada: number; offset: number }) {
-  const pembicara = adegan !== undefined && opsi.efek && ep.ide.jenis !== 'hafalan' ? ep.adegan?.[adegan]?.pembicara : undefined;
+  const pembicara = adegan !== undefined && ep.ide.jenis !== 'hafalan' ? ep.adegan?.[adegan]?.pembicara : undefined;
+  const efek = !opsi.efek ? undefined : ep.ide.jenis === 'hafalan' ? filterSuara(suaraHafalan()) : pembicara ? filterSuara(suaraPembicara(pembicara)) : undefined;
+  const pakaiEfek = opsi.efek && (ep.ide.jenis === 'hafalan' || pembicara);
   return [
     // rekaman Studio: mulai dari saat video mulai (lewati hitung mundur), sama seperti render
     opsi.offset > 0.05 ? `atrim=start=${opsi.offset.toFixed(3)},asetpts=PTS-STARTPTS` : undefined,
-    pembicara ? filterSuara(suaraPembicara(pembicara)) : filterNada(opsi.nada),
+    pakaiEfek ? efek : filterNada(opsi.nada),
   ]
     .filter(Boolean)
     .join(',');

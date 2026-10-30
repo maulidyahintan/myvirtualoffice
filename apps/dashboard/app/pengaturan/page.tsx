@@ -1,7 +1,17 @@
-import { BATAS_NADA_KARAKTER, JENIS_MUSIK, loadConfig, PEMBICARA, SPEK_FORMAT, SUARA_KARAKTER_BAWAAN, suaraPembicara } from '@kantor/shared';
+import {
+  BATAS_NADA_KARAKTER,
+  JENIS_MUSIK,
+  loadConfig,
+  PEMBICARA,
+  SPEK_FORMAT,
+  SUARA_HAFALAN_BAWAAN,
+  SUARA_KARAKTER_BAWAAN,
+  suaraHafalan,
+  suaraPembicara,
+} from '@kantor/shared';
 import { hapusMusik, simpanMusik, simpanSuaraKarakter } from '../actions';
 
-const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi' } as const;
+const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', hafalan: '🕌 Bacaan hafalan' } as const;
 
 export const dynamic = 'force-dynamic';
 
@@ -60,19 +70,20 @@ export default function Pengaturan() {
       </form>
 
       <form action={simpanSuaraKarakter} className="panel stack">
-        <h2>🎭 Suara karakter</h2>
+        <h2>🎭 Suara karakter & hafalan</h2>
         <p className="muted kecil" style={{ margin: 0 }}>
-          Dipakai saat merekam <b>per adegan</b> (Studio Rekam): tiap adegan diberi efek sesuai pembicaranya. <b>Nada</b> dalam semiton:
-          + terdengar lebih kecil seperti anak-anak, − lebih berat. <b>Tempo</b> 100% = kecepatan bicaramu. Bacaan hafalan Al-Qur&apos;an
-          selalu memakai suara asli.
+          Cerita yang direkam <b>per adegan</b> (Studio Rekam): tiap adegan diberi efek sesuai pembicaranya. Video <b>hafalan</b>: seluruh
+          bacaan diberi efek suara anak-anak, lebih pelan (otomatis, bisa dimatikan per episode di Studio). <b>Nada</b> dalam semiton: +
+          terdengar lebih kecil seperti anak-anak, − lebih berat. <b>Tempo</b> 100% = kecepatan bicaramu, di bawah 100% lebih pelan.
         </p>
-        {PEMBICARA.map((p) => {
-          const s = suaraPembicara(p, cfg);
+        {[...PEMBICARA, 'hafalan' as const].map((p) => {
+          const s = p === 'hafalan' ? suaraHafalan(cfg) : suaraPembicara(p, cfg);
+          const ket = p === 'hafalan' ? SUARA_HAFALAN_BAWAAN.ket : SUARA_KARAKTER_BAWAAN[p].ket;
           return (
             <div key={p} className="row" style={{ flexWrap: 'wrap', gap: 12, alignItems: 'end' }}>
               <div style={{ minWidth: 150 }}>
                 <b>{NAMA_PEMBICARA[p]}</b>
-                <div className="kecil muted">bawaan: {SUARA_KARAKTER_BAWAAN[p].ket}</div>
+                <div className="kecil muted">bawaan: {ket}</div>
               </div>
               <label className="kecil">
                 Nada
@@ -96,7 +107,7 @@ export default function Pengaturan() {
             </div>
           );
         })}
-        <button>Simpan suara karakter</button>
+        <button>Simpan pengaturan suara</button>
       </form>
     </div>
   );
