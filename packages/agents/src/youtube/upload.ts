@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadConfig, paths, rapikanMetadata, type Episode } from '@kantor/shared';
+import { paths, rapikanMetadata, type Episode } from '@kantor/shared';
 import { youtubeWrite } from './client.ts';
+import { masukkanKePlaylist } from './playlist.ts';
 
 export interface OpsiUpload {
   /** ISO datetime. Kosong = disimpan private (tidak tayang) */
@@ -69,17 +70,14 @@ export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
     }
   }
 
-  const playlistId = loadConfig().seri.find((s) => s.id === ep.ide.seri)?.playlistId;
-  if (playlistId) {
-    try {
-      await yt.playlistItems.insert({
-        part: ['snippet'],
-        requestBody: { snippet: { playlistId, resourceId: { kind: 'youtube#video', videoId } } },
-      });
-    } catch (e) {
-      peringatan.push(`Gagal menambah ke playlist: ${(e as Error).message}`);
-    }
+  let playlist: { nama: string; id: string } | undefined;
+  try {
+    const hasil = await masukkanKePlaylist(ep, videoId);
+    playlist = { nama: hasil.nama, id: hasil.id };
+    peringatan.push(hasil.pesan);
+  } catch (e) {
+    peringatan.push(`Gagal memasukkan ke playlist: ${(e as Error).message}`);
   }
 
-  return { videoId, url: `https://www.youtube.com/watch?v=${videoId}`, peringatan };
+  return { videoId, url: `https://www.youtube.com/watch?v=${videoId}`, peringatan, playlist };
 }

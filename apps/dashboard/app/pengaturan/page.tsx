@@ -6,10 +6,13 @@ import {
   SPEK_FORMAT,
   SUARA_HAFALAN_BAWAAN,
   SUARA_KARAKTER_BAWAAN,
+  listEpisodes,
+  playlistSeri,
+  sedangSibuk,
   suaraHafalan,
   suaraPembicara,
 } from '@kantor/shared';
-import { hapusMusik, simpanMusik, simpanSuaraKarakter } from '../actions';
+import { hapusMusik, masukkanSemuaKePlaylist, simpanMusik, simpanPlaylist, simpanSuaraKarakter } from '../actions';
 
 const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', hafalan: '🕌 Bacaan hafalan' } as const;
 
@@ -109,6 +112,63 @@ export default function Pengaturan() {
         })}
         <button>Simpan pengaturan suara</button>
       </form>
+
+      <PengaturanPlaylist />
     </div>
+  );
+}
+
+/** Playlist YouTube tujuan tiap seri. Video otomatis dimasukkan saat diupload. */
+function PengaturanPlaylist() {
+  const cfg = loadConfig();
+  const tanpaSetelan = { ...cfg, seri: cfg.seri.map(({ playlist: _, ...s }) => s) };
+  const belum = listEpisodes().filter((e) => e.youtube && !e.youtube.playlist).length;
+  const sibuk = sedangSibuk('playlist');
+  const dipakai = [...new Set(cfg.seri.map((s) => playlistSeri(s.id, cfg)))];
+  return (
+    <section className="panel stack">
+      <h2>📂 Playlist YouTube</h2>
+      <p className="muted kecil" style={{ margin: 0 }}>
+        Setiap video yang diupload langsung dimasukkan ke playlist sesuai seri/tipenya (video biasa & Shorts). Playlist dicari berdasarkan
+        nama di channel; kalau belum ada, dibuat otomatis (publik). Kosongkan untuk memakai bawaan.
+      </p>
+      <form action={simpanPlaylist} className="stack" style={{ gap: 8 }}>
+        {cfg.seri.map((s) => (
+          <label key={s.id} className="kecil">
+            {s.nama}
+            <input type="text" name={`playlist-${s.id}`} defaultValue={s.playlist ?? ''} placeholder={playlistSeri(s.id, tanpaSetelan)} />
+          </label>
+        ))}
+        <button className="sekunder">Simpan playlist</button>
+      </form>
+      <div className="kecil">
+        {dipakai.map((nama) => {
+          const id = cfg.playlistYoutube?.[nama];
+          return (
+            <div key={nama}>
+              {nama}:{' '}
+              {id ? (
+                <a href={`https://www.youtube.com/playlist?list=${id}`} target="_blank" rel="noreferrer">
+                  buka playlist ↗
+                </a>
+              ) : (
+                <span className="muted">dibuat saat video pertama diupload</span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {sibuk ? (
+        <p className="kecil">⏳ Memasukkan video ke playlist…</p>
+      ) : belum ? (
+        <form action={masukkanSemuaKePlaylist}>
+          <button className="sekunder">📂 Masukkan {belum} video yang sudah diupload ke playlist</button>
+        </form>
+      ) : (
+        <p className="kecil muted" style={{ margin: 0 }}>
+          Semua video yang sudah diupload sudah masuk playlist.
+        </p>
+      )}
+    </section>
   );
 }

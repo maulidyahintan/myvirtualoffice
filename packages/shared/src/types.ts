@@ -204,14 +204,14 @@ export interface Episode {
   nadaSuara?: number;
   /** false = tanpa efek suara (cerita: efek karakter per adegan, hafalan: suara anak-anak). Default: pakai efek. */
   efekKarakter?: boolean;
-  youtube?: { videoId: string; url: string; jadwalTayang?: string };
+  youtube?: { videoId: string; url: string; jadwalTayang?: string; playlist?: { nama: string; id: string } };
   /** Jadwal tayang yang dipilih saat video disetujui (ISO); menahan slot selama upload berjalan. */
   jadwalDipilih?: string;
   /**
    * Upload sebelumnya yang diganti karena video diedit ulang. Video lama dijadikan private
    * (`ditarik` = waktu diprivatkan), tidak dihapus.
    */
-  youtubeLama?: { videoId: string; url: string; jadwalTayang?: string; ditarik?: string }[];
+  youtubeLama?: { videoId: string; url: string; jadwalTayang?: string; ditarik?: string; playlist?: { nama: string; id: string } }[];
   log: LogEntry[];
 }
 
@@ -278,7 +278,17 @@ export interface RencanaTayang {
 export interface KantorConfig {
   namaChannel: string;
   bahasa: string;
-  seri: { id: string; nama: string; usia: Usia; playlistId?: string }[];
+  seri: {
+    id: string;
+    nama: string;
+    usia: Usia;
+    /** ID playlist YouTube langsung (lama); kalau kosong dipakai `playlist` (nama). */
+    playlistId?: string;
+    /** Nama playlist tujuan; kosong = bawaan (lihat namaPlaylist). */
+    playlist?: string;
+  }[];
+  /** Cache nama playlist → ID playlist YouTube (diisi otomatis saat playlist ditemukan/dibuat). */
+  playlistYoutube?: Record<string, string>;
   maksRevisiOtomatis: number;
   jamTayangDefault: string;
   zonaWaktu: string;

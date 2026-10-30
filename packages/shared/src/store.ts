@@ -62,6 +62,24 @@ export function filterHafalan(ep: Episode, cfg: KantorConfig = loadConfig()): st
   return ep.ide.jenis === 'hafalan' && ep.efekKarakter !== false ? filterSuara(suaraHafalan(cfg)) : undefined;
 }
 
+/** Playlist bawaan: hafalan → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", seri lain → "Obrolan Islami Anak". */
+export const PLAYLIST_BAWAAN = ['Hafalan', 'Asbabun Nuzul', 'Obrolan Islami Anak'] as const;
+
+/** Nama playlist YouTube tujuan sebuah episode (bisa diatur per seri di Pengaturan). */
+export function namaPlaylist(ep: Episode, cfg: KantorConfig = loadConfig()): string {
+  if (ep.ide.jenis === 'hafalan' && ep.ide.seri !== 'hafalan') return playlistSeri('hafalan', cfg);
+  return playlistSeri(ep.ide.seri, cfg);
+}
+
+/** Nama playlist untuk satu seri: diatur di Pengaturan, atau bawaan. */
+export function playlistSeri(seri: string, cfg: KantorConfig = loadConfig()): string {
+  const atur = cfg.seri.find((s) => s.id === seri)?.playlist?.trim();
+  if (atur) return atur;
+  if (seri === 'hafalan') return 'Hafalan';
+  if (seri === 'asbabun-nuzul') return 'Asbabun Nuzul';
+  return 'Obrolan Islami Anak';
+}
+
 export function saveConfig(cfg: KantorConfig) {
   fs.writeFileSync(path.join(rootDir(), 'kantor.config.json'), JSON.stringify(cfg, null, 2) + '\n');
 }

@@ -33,6 +33,7 @@ import {
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
 import { renderEpisode } from './render.ts';
 import { privatkanVideo, uploadEpisode } from './youtube/upload.ts';
+import { keluarkanDariPlaylist, masukkanKePlaylist } from './youtube/playlist.ts';
 
 const log = (id: string | undefined, oleh: string) => (pesan: string) => {
   console.log(`[${oleh}] ${pesan}`);
@@ -329,7 +330,7 @@ export async function upload(id: string, jadwalTayang?: string) {
   setStatus(id, 'uploading', 'channel-manager', 'Upload ke YouTube');
   const hasil = await uploadEpisode(ep, { jadwalTayang });
   updateEpisode(id, (e: Episode) => {
-    e.youtube = { videoId: hasil.videoId, url: hasil.url, jadwalTayang };
+    e.youtube = { videoId: hasil.videoId, url: hasil.url, jadwalTayang, playlist: hasil.playlist };
   });
   hasil.peringatan.forEach(log(id, 'channel-manager'));
   setStatus(
@@ -340,6 +341,30 @@ export async function upload(id: string, jadwalTayang?: string) {
   );
   // versi baru sudah naik → upload lama (sebelum diedit) disembunyikan
   await tarikVideoLama(id);
+}
+
+/**
+ * Masukkan video yang sudah diupload ke playlist sesuai tipenya. Tanpa id: semua video yang
+ * sudah diupload tapi belum tercatat masuk playlist.
+ */
+export async function masukkanPlaylist(id?: string) {
+  const daftar = id ? [getEpisode(id)] : listEpisodes().filter((e) => e.youtube && !e.youtube.playlist);
+  for (const ep of daftar) {
+    if (!ep.youtube) {
+      log(ep.id, 'channel-manager')('Belum diupload ke YouTube, belum bisa dimasukkan ke playlist');
+      continue;
+    }
+    try {
+      const hasil = await masukkanKePlaylist(ep, ep.youtube.videoId);
+      updateEpisode(ep.id, (e) => {
+        if (e.youtube) e.youtube.playlist = { nama: hasil.nama, id: hasil.id };
+      });
+      log(ep.id, 'channel-manager')(hasil.pesan);
+    } catch (e) {
+      log(ep.id, 'channel-manager')(`Gagal memasukkan ke playlist: ${(e as Error).message}`);
+    }
+  }
+  console.log(`✅ Playlist: ${daftar.length} video diproses`);
 }
 
 /** Jadikan private upload lama episode ini yang belum ditarik. Gagal → dicatat di log, tidak menghentikan proses. */
@@ -353,6 +378,14 @@ export async function tarikVideoLama(id: string) {
         if (x) x.ditarik = new Date().toISOString();
       });
       log(id, 'channel-manager')(`Video lama ${v.url} dijadikan private${v.jadwalTayang ? ' (jadwal tayang dibatalkan)' : ''}`);
+      if (v.playlist) {
+        try {
+          await keluarkanDariPlaylist(v.playlist.id, v.videoId);
+          log(id, 'channel-manager')(`Video lama dikeluarkan dari playlist "${v.playlist.nama}"`);
+        } catch (e) {
+          log(id, 'channel-manager')(`Gagal mengeluarkan video lama dari playlist: ${(e as Error).message}`);
+        }
+      }
     } catch (e) {
       log(id, 'channel-manager')(`Gagal menjadikan private video lama ${v.url}: ${(e as Error).message}. Atur manual di YouTube Studio.`);
     }

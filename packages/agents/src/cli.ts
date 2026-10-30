@@ -8,6 +8,7 @@
 //   npm run kantor -- shorts <id> [jumlah] ["arahan"]  (pecah video biasa jadi beberapa Shorts)
 //   npm run kantor -- metadata <id> [render]  (buat ulang judul/deskripsi sesuai format, lalu render)
 //   npm run kantor -- rencana ["arahan"]  (Channel Manager menyusun rencana jadwal tayang)
+//   npm run kantor -- playlist [id]    (masukkan video ke playlist sesuai tipenya; tanpa id: semua yang belum)
 //   npm run kantor -- tarik <id>        (jadikan private upload lama episode yang diedit ulang)
 //   npm run kantor -- chat <agen>       (agen membalas pesan terakhir di kolom chat)
 //   npm run kantor -- laporan
@@ -19,6 +20,7 @@ import { pecahJadiShorts } from './shorts.ts';
 import {
   buatUlangMetadata,
   laporan,
+  masukkanPlaylist,
   render,
   riset,
   siapkanHafalan,
@@ -76,6 +78,13 @@ async function main() {
       } finally {
         tandaiSelesai('rencana');
       }
+    case 'playlist':
+      tandaiSibuk('playlist');
+      try {
+        return await masukkanPlaylist(arg1);
+      } finally {
+        tandaiSelesai('playlist');
+      }
     case 'tarik':
       return tarikVideoLama(need(arg1));
     case 'chat': {
@@ -104,7 +113,7 @@ async function main() {
       }
       return;
     default:
-      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | metadata <id> [render] | rencana [arahan] | tarik <id> | laporan | status');
+      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | metadata <id> [render] | rencana [arahan] | playlist [id] | tarik <id> | laporan | status');
   }
 }
 

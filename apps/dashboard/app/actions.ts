@@ -360,6 +360,25 @@ export async function simpanRencanaTayang(form: FormData) {
   revalidatePath('/episode/[id]', 'page');
 }
 
+/** Nama playlist tujuan per seri (kosong = bawaan). */
+export async function simpanPlaylist(form: FormData) {
+  const cfg = loadConfig();
+  cfg.seri = cfg.seri.map((s) => {
+    const nama = teks(form, `playlist-${s.id}`);
+    const { playlist: _, ...lain } = s;
+    return nama ? { ...lain, playlist: nama } : lain;
+  });
+  saveConfig(cfg);
+  revalidatePath('/pengaturan');
+}
+
+/** Masukkan video yang sudah diupload tapi belum masuk playlist. */
+export async function masukkanSemuaKePlaylist() {
+  jalankanKantor(['playlist']);
+  revalidatePath('/tayang');
+  revalidatePath('/pengaturan');
+}
+
 /** Pulihkan episode yang error / ditolak ke langkah yang masuk akal. */
 export async function pulihkan(form: FormData) {
   const id = teks(form, 'id');

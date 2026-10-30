@@ -9,6 +9,7 @@ import {
   listEpisodes,
   loadConfig,
   NAMA_HARI,
+  namaPlaylist,
   paths,
   rekomendasiJadwal,
   sedangSibuk,
@@ -400,7 +401,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
         <div className="panel aksi stack">
           <h2>Tonton & setujui video</h2>
           <p className="kecil muted">
-            Video diupload sebagai <b>Made for Kids</b>, kategori Pendidikan. Dengan jadwal, video tayang otomatis.
+            Video diupload sebagai <b>Made for Kids</b>, kategori Pendidikan, dan langsung masuk playlist <b>{namaPlaylist(ep, cfg)}</b>. Dengan jadwal, video tayang otomatis.
           </p>
           <form action={setujuiVideo} className="stack">
             <Id id={ep.id} />
