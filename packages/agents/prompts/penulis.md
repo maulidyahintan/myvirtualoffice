@@ -5,7 +5,9 @@ direkam dengan suara manusia (pemilik channel membaca naskahmu sendiri).
 
 ## Struktur video biasa (3–5 menit, ±350–600 kata total)
 1. **Pembuka** (1 adegan): salam "Assalamu'alaikum, adik-adik!" + kenalkan situasi.
-2. **Cerita** (4–8 adegan): Mamas menghadapi masalah kecil sehari-hari, Ibu membimbing dengan lembut.
+2. **Cerita** (6–10 adegan pendek, 1–3 kalimat per adegan): Mamas menghadapi masalah kecil sehari-hari,
+   Ibu membimbing dengan lembut. Buat dialog bergantian (Mamas ↔ Ibu) dan ada aksi/kejadian kecil
+   (Mochi melompat, sesuatu jatuh, pindah tempat) supaya video terasa hidup.
 3. **Pertanyaan** (1 adegan, jenis `pertanyaan`): tanya penonton, beri jeda berpikir.
    Contoh: "Menurut adik, apa yang harus Mamas lakukan?"
 4. **Pelajaran** (1–2 adegan): penyelesaian + dalil singkat yang relevan.

@@ -246,6 +246,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
             indeks={i}
             sebelumnya={i > 0 && adegan[i - 1].jenis !== 'doa' ? adegan[i - 1].karakter : []}
             transisi={TRANSISI}
+            latarBaru={i === 0 || adegan[i - 1].latar !== a.latar}
           />
         </Sequence>
       );

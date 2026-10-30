@@ -13,6 +13,10 @@ export const LATAR = [
   'laut',
   'gunung',
   'fajar',
+  'sekolah',
+  'halaman-rumah',
+  'perpustakaan',
+  'tempat-wudhu',
 ] as const;
 
 /** Gerak suasana tambahan di atas latar (dipakai video hafalan). */
