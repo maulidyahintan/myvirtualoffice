@@ -170,6 +170,17 @@ utuh bisa dipahami sendiri, lengkap dengan judulnya). Rekaman dipakai apa adanya
 dipotong di jeda antar adegan), jadi tidak perlu rekam ulang. Tiap Shorts jadi episode baru (✂️)
 yang ditonton dulu sebelum dijadwalkan.
 
+**Jadwal tayang mengikuti rencana Channel Manager.** Di **Jadwal Tayang**, Channel Manager menyusun
+rencana dari statistik channel & stok video: berapa video per hari, hari tayang, dan jam tayang per
+format (Shorts / video biasa), lengkap dengan alasannya. Saat menyetujui video, jadwalnya otomatis
+terisi slot kosong berikutnya dari rencana itu (video yang lebih dulu siap dapat slot lebih awal, slot
+yang sudah terisi dilewati), dan tetap bisa diganti tanggal & jamnya. Rencana juga bisa diubah sendiri.
+
+**Metadata sesuai format.** Judul, deskripsi, dan tags dibuat terpisah untuk Shorts (singkat,
+diakhiri `#Shorts`) dan video biasa (deskripsi SEO lengkap, tanpa `#Shorts`). Versi format lain
+dibuatkan metadata baru (tidak disalin), dan saat upload metadata dirapikan lagi sesuai format.
+Halaman episode memperingatkan kalau metadata tertukar, dengan tombol **Buat ulang metadata**.
+
 Semua juga bisa lewat terminal:
 ```bash
 npm run kantor -- riset "fokus adab untuk usia 4-6"
@@ -178,6 +189,8 @@ npm run kantor -- tulis <id-episode>
 npm run kantor -- sutradara <id-episode>
 npm run kantor -- render <id-episode>
 npm run kantor -- upload <id-episode> 2026-11-01T16:30:00+07:00
+npm run kantor -- rencana "fokus Shorts dulu"   # rencana jadwal tayang
+npm run kantor -- metadata <id-episode>         # buat ulang metadata sesuai format
 npm run kantor -- laporan
 ```
 

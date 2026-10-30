@@ -6,6 +6,8 @@
 //   npm run kantor -- render <id>
 //   npm run kantor -- upload <id> [2026-11-01T16:30:00+07:00]
 //   npm run kantor -- shorts <id> [jumlah] ["arahan"]  (pecah video biasa jadi beberapa Shorts)
+//   npm run kantor -- metadata <id> [render]  (buat ulang judul/deskripsi sesuai format, lalu render)
+//   npm run kantor -- rencana ["arahan"]  (Channel Manager menyusun rencana jadwal tayang)
 //   npm run kantor -- tarik <id>        (jadikan private upload lama episode yang diedit ulang)
 //   npm run kantor -- chat <agen>       (agen membalas pesan terakhir di kolom chat)
 //   npm run kantor -- laporan
@@ -14,7 +16,18 @@ import './env.ts';
 import { AGEN_CHAT, listEpisodes, setStatus, STATUS_LABEL, tandaiSelesai, tandaiSibuk, tambahChat, type AgenChat } from '@kantor/shared';
 import { balasChat } from './chat.ts';
 import { pecahJadiShorts } from './shorts.ts';
-import { laporan, render, riset, siapkanHafalan, sutradarai, tarikVideoLama, tulisNaskah, upload } from './workflow.ts';
+import {
+  buatUlangMetadata,
+  laporan,
+  render,
+  riset,
+  siapkanHafalan,
+  susunRencanaTayang,
+  sutradarai,
+  tarikVideoLama,
+  tulisNaskah,
+  upload,
+} from './workflow.ts';
 
 const [cmd, arg1, arg2, arg3] = process.argv.slice(2);
 
@@ -46,6 +59,23 @@ async function main() {
         tandaiSelesai(`shorts-${id}`);
       }
     }
+    case 'metadata': {
+      const id = need(arg1);
+      tandaiSibuk(`${id}-metadata`);
+      try {
+        await buatUlangMetadata(id);
+      } finally {
+        tandaiSelesai(`${id}-metadata`);
+      }
+      return arg2 === 'render' ? render(id) : undefined;
+    }
+    case 'rencana':
+      tandaiSibuk('rencana');
+      try {
+        return await susunRencanaTayang(arg1);
+      } finally {
+        tandaiSelesai('rencana');
+      }
     case 'tarik':
       return tarikVideoLama(need(arg1));
     case 'chat': {
@@ -74,7 +104,7 @@ async function main() {
       }
       return;
     default:
-      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | tarik <id> | laporan | status');
+      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | metadata <id> [render] | rencana [arahan] | tarik <id> | laporan | status');
   }
 }
 

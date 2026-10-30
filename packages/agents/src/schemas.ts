@@ -70,6 +70,21 @@ export const MetadataSchema = z.object({
   teksThumbnail: z.string(),
 });
 
+export const RencanaTayangSchema = z.object({
+  videoPerHari: z.number().int().min(1).max(6).describe('maksimal video tayang per hari, semua format'),
+  hari: z.array(z.number().int().min(0).max(6)).min(1).describe('hari tayang, 0 = Minggu … 6 = Sabtu'),
+  slot: z
+    .array(
+      z.object({
+        jam: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('HH:mm, zona waktu channel'),
+        format: z.enum(['biasa', 'short', 'semua']),
+      }),
+    )
+    .min(1)
+    .max(8),
+  alasan: z.string().describe('penjelasan untuk pemilik channel, Markdown'),
+});
+
 export const LaporanSchema = z.object({
   laporan: z.string().describe('laporan performa dalam Markdown'),
 });

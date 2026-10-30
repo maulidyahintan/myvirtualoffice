@@ -4,9 +4,13 @@ import {
   addLog,
   createEpisodeFromIdea,
   getEpisode,
+  isoKeLokal,
   latestFile,
+  listEpisodes,
   loadConfig,
   paths,
+  rapikanMetadata,
+  saveConfig,
   setStatus,
   updateEpisode,
   writeDated,
@@ -21,6 +25,7 @@ import {
   LaporanSchema,
   MetadataSchema,
   NaskahSchema,
+  RencanaTayangSchema,
   ReviewSchema,
   RisetSchema,
   SutradaraSchema,
@@ -198,13 +203,7 @@ async function sutradaraiHafalan(ep: Episode) {
         2,
       )}`,
     }),
-    runAgent({
-      peran: 'channel-manager',
-      schema: MetadataSchema,
-      maxTurns: 4,
-      onProgress: log(id, 'channel-manager'),
-      prompt: `${infoFormat(ep)}\nJENIS: video hafalan surat.\nNama channel: ${loadConfig().namaChannel}\nUsia: ${ep.ide.usia}\nSurat ${hafalan.namaSurat} (${hafalan.artiSurat}), ${hafalan.ayat.filter((a) => a.nomor > 0).length} ayat, tiap ayat diulang ${ep.ide.hafalan?.ulang ?? 1}x.\n\nBuat metadata YouTube untuk video ini.`,
-    }),
+    mintaMetadata(ep),
   ]);
   const ayat = hafalan.ayat.map((a, i) => {
     const v = ilustrasi.visual.find((x) => x.nomor === a.nomor) ?? ilustrasi.visual[i];
@@ -234,6 +233,35 @@ async function sutradaraiHafalan(ep: Episode) {
   );
 }
 
+// ---------------------------------------------------------------- METADATA
+/** Metadata YouTube dari Channel Manager, sesuai format episode (Shorts / video biasa). */
+async function mintaMetadata(ep: Episode) {
+  const format = ep.ide.format ?? 'biasa';
+  const isi = ep.hafalan
+    ? `JENIS: video hafalan surat.\nSurat ${ep.hafalan.namaSurat} (${ep.hafalan.artiSurat}), ${ep.hafalan.ayat.filter((a) => a.nomor > 0).length} ayat, tiap ayat diulang ${ep.ide.hafalan?.ulang ?? 1}x.`
+    : `Seri: ${ep.ide.seri}\n\nNaskah:\n${JSON.stringify(ep.naskah, null, 2)}`;
+  const metadata = await runAgent({
+    peran: 'channel-manager',
+    schema: MetadataSchema,
+    maxTurns: 4,
+    onProgress: log(ep.id, 'channel-manager'),
+    prompt: `${infoFormat(ep)}\nNama channel: ${loadConfig().namaChannel}\nUsia: ${ep.ide.usia}\n${isi}\n\nBuat metadata YouTube untuk ${format === 'short' ? 'Shorts' : 'video biasa'} ini, sesuai aturan format ${format === 'short' ? 'Shorts' : 'video biasa'} di peranmu.`,
+  });
+  return rapikanMetadata(metadata, format);
+}
+
+/** Buat ulang metadata (judul, deskripsi, tags) sesuai format episode, misal untuk episode versi format lain. */
+export async function buatUlangMetadata(id: string) {
+  const ep = getEpisode(id);
+  if (!ep.naskah && !ep.hafalan) throw new Error('Episode belum punya naskah');
+  log(id, 'channel-manager')(`Menyusun metadata ${ep.ide.format === 'short' ? 'Shorts' : 'video biasa'}`);
+  const metadata = await mintaMetadata(ep);
+  updateEpisode(id, (e) => {
+    e.metadata = metadata;
+  });
+  log(id, 'channel-manager')(`Metadata baru: "${metadata.judul}"`);
+}
+
 // ---------------------------------------------------------------- SUTRADARA + METADATA
 export async function sutradarai(id: string) {
   const ep = getEpisode(id);
@@ -252,13 +280,7 @@ export async function sutradarai(id: string) {
       onProgress: log(id, 'sutradara'),
       prompt: `${infoFormat(ep)}\n\nNaskah yang sudah disetujui:\n${JSON.stringify(ep.naskah, null, 2)}\n\nSusun adegannya.`,
     }),
-    runAgent({
-      peran: 'channel-manager',
-      schema: MetadataSchema,
-      maxTurns: 4,
-      onProgress: log(id, 'channel-manager'),
-      prompt: `${infoFormat(ep)}\nNama channel: ${loadConfig().namaChannel}\nSeri: ${ep.ide.seri}\nUsia: ${ep.ide.usia}\n\nNaskah:\n${JSON.stringify(ep.naskah, null, 2)}\n\nBuat metadata YouTube untuk episode ini.`,
-    }),
+    mintaMetadata(ep),
   ]);
 
   // Pengaman: narasi harus persis sama dengan naskah (karena sudah/akan direkam)
@@ -331,6 +353,51 @@ export async function tarikVideoLama(id: string) {
       log(id, 'channel-manager')(`Gagal menjadikan private video lama ${v.url}: ${(e as Error).message}. Atur manual di YouTube Studio.`);
     }
   }
+}
+
+// ---------------------------------------------------------------- RENCANA JADWAL TAYANG
+export async function susunRencanaTayang(arahan?: string) {
+  const cfg = loadConfig();
+  const episodes = listEpisodes();
+  const hitung = (f: (e: Episode) => boolean) => {
+    const xs = episodes.filter(f);
+    return `${xs.length} (${xs.filter((e) => e.ide.format === 'short').length} Shorts, ${xs.filter((e) => e.ide.format !== 'short').length} video biasa)`;
+  };
+  const terjadwal = episodes
+    .filter((e) => e.status === 'scheduled' && e.youtube?.jadwalTayang)
+    .map((e) => `- ${isoKeLokal(e.youtube!.jadwalTayang!, cfg.zonaWaktu)} · ${e.ide.format === 'short' ? 'Shorts' : 'video biasa'} · ${e.metadata?.judul ?? e.ide.judul}`);
+  const hasil = await runAgent({
+    peran: 'channel-manager',
+    schema: RencanaTayangSchema,
+    mcpServers: { kantor: kantorTools },
+    mcpTools: TOOL_LAPORAN,
+    maxTurns: 8,
+    onProgress: log(undefined, 'channel-manager'),
+    prompt: [
+      `Sekarang: ${isoKeLokal(new Date().toISOString(), cfg.zonaWaktu)} (${cfg.zonaWaktu}).`,
+      `Video siap tayang (menunggu persetujuan): ${hitung((e) => e.status === 'needs_video_approval')}`,
+      `Sedang diproduksi: ${hitung((e) => !['needs_video_approval', 'scheduled', 'published', 'rejected', 'error', 'idea'].includes(e.status))}`,
+      `Sudah tayang: ${hitung((e) => e.status === 'published')}`,
+      terjadwal.length ? `Sudah terjadwal:\n${terjadwal.join('\n')}` : 'Belum ada video terjadwal.',
+      cfg.rencanaTayang ? `Rencana saat ini:\n${JSON.stringify({ ...cfg.rencanaTayang, alasan: undefined }, null, 2)}` : '',
+      arahan ? `Arahan pemilik channel: ${arahan}` : '',
+      'Susun rencana jadwal tayang channel.',
+    ]
+      .filter(Boolean)
+      .join('\n\n'),
+  });
+  saveConfig({
+    ...loadConfig(),
+    rencanaTayang: {
+      videoPerHari: hasil.videoPerHari,
+      hari: [...new Set(hasil.hari)].sort(),
+      slot: hasil.slot,
+      alasan: hasil.alasan,
+      oleh: 'channel-manager',
+      diubah: new Date().toISOString(),
+    },
+  });
+  console.log(`✅ Rencana tayang: ${hasil.videoPerHari} video/hari, slot ${hasil.slot.map((s) => `${s.jam} ${s.format}`).join(', ')}`);
 }
 
 // ---------------------------------------------------------------- LAPORAN

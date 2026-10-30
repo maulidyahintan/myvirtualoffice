@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadConfig, paths, type Episode } from '@kantor/shared';
+import { loadConfig, paths, rapikanMetadata, type Episode } from '@kantor/shared';
 import { youtubeWrite } from './client.ts';
 
 export interface OpsiUpload {
@@ -24,19 +24,18 @@ export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
   if (!ep.render?.video || !ep.metadata) throw new Error('Episode belum dirender / belum punya metadata');
   const yt = youtubeWrite();
   const file = path.join(paths.renders(), ep.render.video);
-  // Shorts dikenali otomatis dari video vertikal < 3 menit; tagar #Shorts membantu penemuan
-  const short = ep.ide.format === 'short';
-  const deskripsi =
-    short && !/#shorts/i.test(`${ep.metadata.judul} ${ep.metadata.deskripsi}`) ? `${ep.metadata.deskripsi}\n\n#Shorts` : ep.metadata.deskripsi;
+  // Shorts dikenali otomatis dari video vertikal < 3 menit; tagar #Shorts membantu penemuan.
+  // Video biasa dibersihkan dari #Shorts (misal metadata tersalin dari versi Shorts-nya).
+  const meta = rapikanMetadata(ep.metadata, ep.ide.format);
 
   const res = await yt.videos.insert({
     part: ['snippet', 'status'],
     notifySubscribers: true,
     requestBody: {
       snippet: {
-        title: ep.metadata.judul.slice(0, 100),
-        description: deskripsi,
-        tags: ep.metadata.tags,
+        title: meta.judul,
+        description: meta.deskripsi,
+        tags: meta.tags,
         categoryId: '27', // Education
         defaultLanguage: 'id',
         defaultAudioLanguage: 'id',

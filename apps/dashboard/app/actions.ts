@@ -17,8 +17,12 @@ import {
   NADA_MAKS,
   BATAS_NADA_KARAKTER,
   PEMBICARA,
+  FORMAT,
   FORMAT_LABEL,
+  JEDA_MINIMAL_MENIT,
   PILIHAN_FORMAT,
+  rencanaTayang,
+  type SlotTayang,
   USIA,
   type PilihanFormat,
   type JenisMusik,
@@ -201,14 +205,19 @@ export async function setujuiVideo(form: FormData) {
   const id = teks(form, 'id');
   const jadwal = teks(form, 'jadwal');
   const args = ['upload', id];
+  let iso: string | undefined;
   if (jadwal) {
-    const iso = lokalKeIso(jadwal, loadConfig().zonaWaktu);
-    if (new Date(iso).getTime() < Date.now() + 15 * 60_000) {
-      throw new Error('Jadwal tayang minimal 15 menit dari sekarang');
+    iso = lokalKeIso(jadwal, loadConfig().zonaWaktu);
+    if (new Date(iso).getTime() < Date.now() + JEDA_MINIMAL_MENIT * 60_000) {
+      throw new Error(`Jadwal tayang minimal ${JEDA_MINIMAL_MENIT} menit dari sekarang`);
     }
     args.push(iso);
   }
-  setStatus(id, 'uploading', 'pemilik', 'Video disetujui');
+  // tahan slot ini selama upload berjalan, supaya rekomendasi video berikutnya tidak bentrok
+  updateEpisode(id, (e) => {
+    e.jadwalDipilih = iso;
+  });
+  setStatus(id, 'uploading', 'pemilik', iso ? `Video disetujui, tayang ${jadwal.replace('T', ' ')}` : 'Video disetujui');
   jalankanKantor(args, id);
   segarkan(id);
 }
@@ -279,7 +288,7 @@ export async function buatVersiLain(form: FormData) {
     e.naskah = asal.naskah;
     e.review = asal.review;
     e.adegan = asal.adegan;
-    e.metadata = asal.metadata;
+    // metadata TIDAK disalin: Shorts & video biasa beda judul/deskripsi/tagar (dibuat ulang sebelum render)
     e.hafalan = asal.hafalan;
     e.modeRekam = asal.modeRekam;
     e.fileAudio = salin(asal.fileAudio);
@@ -294,8 +303,8 @@ export async function buatVersiLain(form: FormData) {
     e.pasangan = baru.id;
     e.log.push({ waktu: new Date().toISOString(), oleh: 'pemilik', pesan: `Dibuat versi ${FORMAT_LABEL[format]}: ${baru.id}` });
   });
-  setStatus(baru.id, 'rendering', 'pemilik', `Render versi ${FORMAT_LABEL[format]}`);
-  jalankanKantor(['render', baru.id], baru.id);
+  setStatus(baru.id, 'rendering', 'pemilik', `Metadata & render versi ${FORMAT_LABEL[format]}`);
+  jalankanKantor(['metadata', baru.id, 'render'], baru.id);
   segarkan(id);
   redirect(`/episode/${baru.id}`);
 }
@@ -308,6 +317,47 @@ export async function pecahShorts(form: FormData) {
   addLog(id, 'pemilik', `Minta ${jumlah} Shorts dari adegan penting${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
   jalankanKantor(['shorts', id, String(jumlah), ...(arahan ? [arahan] : [])], `${id}-shorts`);
   segarkan(id);
+}
+
+/** Channel Manager membuat ulang judul, deskripsi & tags sesuai format episode. */
+export async function buatUlangMetadata(form: FormData) {
+  const id = teks(form, 'id');
+  jalankanKantor(['metadata', id], `${id}-metadata`);
+  segarkan(id);
+}
+
+/** Minta Channel Manager menyusun rencana jadwal tayang. */
+export async function mintaRencanaTayang(form: FormData) {
+  const arahan = teks(form, 'arahan');
+  jalankanKantor(arahan ? ['rencana', arahan] : ['rencana']);
+  revalidatePath('/jadwal');
+}
+
+/** Pemilik mengubah rencana jadwal tayang secara manual. */
+export async function simpanRencanaTayang(form: FormData) {
+  const cfg = loadConfig();
+  const lama = rencanaTayang(cfg);
+  const slot = form
+    .getAll('jam')
+    .map((j, i) => ({ jam: String(j).trim(), format: String(form.getAll('formatSlot')[i] ?? 'semua') }))
+    .filter((s) => /^([01]\d|2[0-3]):[0-5]\d$/.test(s.jam) && ['semua', ...FORMAT].includes(s.format)) as SlotTayang[];
+  const hari = form
+    .getAll('hari')
+    .map(Number)
+    .filter((h) => h >= 0 && h <= 6);
+  if (!slot.length) throw new Error('Isi minimal satu jam tayang');
+  if (!hari.length) throw new Error('Pilih minimal satu hari tayang');
+  cfg.rencanaTayang = {
+    videoPerHari: Math.min(6, Math.max(1, Number(teks(form, 'videoPerHari')) || 1)),
+    hari: hari.sort(),
+    slot: [...new Map(slot.map((s) => [`${s.jam}-${s.format}`, s])).values()].sort((a, b) => a.jam.localeCompare(b.jam)),
+    alasan: lama.alasan,
+    oleh: 'pemilik',
+    diubah: new Date().toISOString(),
+  };
+  saveConfig(cfg);
+  revalidatePath('/jadwal');
+  revalidatePath('/episode/[id]', 'page');
 }
 
 /** Pulihkan episode yang error / ditolak ke langkah yang masuk akal. */

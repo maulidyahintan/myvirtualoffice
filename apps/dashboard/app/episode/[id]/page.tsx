@@ -2,8 +2,23 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FORMAT_LABEL, getEpisode, loadConfig, paths, sedangSibuk, STATUS_SIBUK, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, type Episode } from '@kantor/shared';
 import {
+  cekMetadata,
+  FORMAT_LABEL,
+  getEpisode,
+  listEpisodes,
+  loadConfig,
+  NAMA_HARI,
+  paths,
+  rekomendasiJadwal,
+  sedangSibuk,
+  STATUS_SIBUK,
+  PILIHAN_FORMAT,
+  PILIHAN_FORMAT_LABEL,
+  type Episode,
+} from '@kantor/shared';
+import {
+  buatUlangMetadata,
   buatVersiLain,
   pecahShorts,
   editUlang,
@@ -214,6 +229,32 @@ function besokJamTayang(jam: string) {
   return `${tgl}T${jam}`;
 }
 
+/** Input jadwal tayang, terisi rekomendasi Channel Manager (slot kosong berikutnya); tetap bisa diganti. */
+function JadwalTayang({ ep }: { ep: Episode }) {
+  const cfg = loadConfig();
+  const saran = rekomendasiJadwal(listEpisodes(), cfg).get(ep.id);
+  const [tgl, jam] = saran?.lokal.split('T') ?? [];
+  const tanggal = tgl ? new Date(`${tgl}T00:00:00Z`) : undefined;
+  return (
+    <label>
+      Jadwal tayang ({cfg.zonaWaktu})
+      <input type="datetime-local" name="jadwal" defaultValue={saran?.lokal ?? besokJamTayang(cfg.jamTayangDefault)} required />
+      <span className="kecil muted" style={{ fontWeight: 'normal' }}>
+        {saran && tanggal ? (
+          <>
+            📅 Rekomendasi Channel Manager: <b>{NAMA_HARI[tanggal.getUTCDay()]}, {tanggal.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', timeZone: 'UTC' })} pukul {jam}</b>{' '}
+            (slot kosong berikutnya di <Link href="/jadwal">rencana tayang</Link>). Boleh diganti sesukamu.
+          </>
+        ) : (
+          <>
+            Belum ada slot kosong di <Link href="/jadwal">rencana tayang</Link>; diisi jam tayang bawaan.
+          </>
+        )}
+      </span>
+    </label>
+  );
+}
+
 const Id = ({ id }: { id: string }) => <input type="hidden" name="id" value={id} />;
 
 function PanelAksi({ ep }: { ep: Episode }) {
@@ -363,10 +404,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
           </p>
           <form action={setujuiVideo} className="stack">
             <Id id={ep.id} />
-            <label>
-              Jadwal tayang ({cfg.zonaWaktu})
-              <input type="datetime-local" name="jadwal" defaultValue={besokJamTayang(cfg.jamTayangDefault)} required />
-            </label>
+            <JadwalTayang ep={ep} />
             <button type="submit">🚀 Setujui & jadwalkan di YouTube</button>
           </form>
           <form action={setujuiVideo}>
@@ -458,6 +496,31 @@ function PanelAksi({ ep }: { ep: Episode }) {
         </div>
       );
   }
+}
+
+/** Peringatan metadata yang tidak cocok dengan format video + tombol buat ulang. */
+function CekMetadata({ ep }: { ep: Episode }) {
+  if (!ep.metadata) return null;
+  const masalah = cekMetadata(ep.metadata, ep.ide.format);
+  const sibuk = sedangSibuk(`${ep.id}-metadata`) || ep.status === 'rendering';
+  const bolehUbah = !['uploading', 'scheduled', 'published'].includes(ep.status);
+  return (
+    <>
+      {masalah.map((m) => (
+        <p key={m} className="peringatan kecil" style={{ margin: 0 }}>
+          {m}
+        </p>
+      ))}
+      {bolehUbah ? (
+        <form action={buatUlangMetadata}>
+          <Id id={ep.id} />
+          <button type="submit" className="sekunder" disabled={sibuk}>
+            {sibuk ? '⏳ Channel Manager sedang menulis…' : `✍️ Buat ulang metadata ${ep.ide.format === 'short' ? 'Shorts' : 'video biasa'} (SEO)`}
+          </button>
+        </form>
+      ) : null}
+    </>
+  );
 }
 
 /** Buat versi format lain (Shorts ↔ video biasa) dengan materi & rekaman yang sama. */
@@ -666,7 +729,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
         </div>
         <div className="row">
           <TombolTanyaAgen />
-          <AutoRefresh aktif={STATUS_SIBUK.includes(ep.status) || sedangSibuk(`shorts-${ep.id}`)} />
+          <AutoRefresh aktif={STATUS_SIBUK.includes(ep.status) || sedangSibuk(`shorts-${ep.id}`) || sedangSibuk(`${ep.id}-metadata`)} />
         </div>
       </div>
 
@@ -789,6 +852,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
               </div>
               <pre className="md kecil">{ep.metadata.deskripsi}</pre>
               <div className="kecil muted">{ep.metadata.tags.map((t) => `#${t}`).join(' ')}</div>
+              <CekMetadata ep={ep} />
             </div>
           ) : null}
 

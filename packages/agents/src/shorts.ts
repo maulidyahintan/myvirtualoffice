@@ -10,6 +10,7 @@ import {
   getEpisode,
   hitungFrameAdegan,
   paths,
+  rapikanMetadata,
   setStatus,
   updateEpisode,
   type Episode,
@@ -138,7 +139,7 @@ Aturan:
 - Pilih adegan yang paling penting, menyentuh, atau berisi pelajaran/dalil; lewati adegan pengantar & transisi yang kurang perlu.
 - Adegan boleh dilompati, tapi urutannya tetap sesuai cerita (nomor naik). Jangan memotong dialog sehingga jawaban muncul tanpa pertanyaannya.
 - Tiap Shorts sebaiknya membahas sisi yang berbeda; satu adegan boleh dipakai di lebih dari satu Shorts kalau memang perlu.
-- Buat juga judul (menarik, untuk anak & orang tua), deskripsi singkat, tags, dan teksThumbnail (≤ 3 kata) untuk tiap Shorts.
+- Buat juga metadata YouTube Shorts untuk tiap Shorts (SEO, jangan pakai gaya video biasa): judul ≤ 60 karakter dengan kata kunci utama di depan (menarik untuk anak & orang tua); deskripsi 1–2 kalimat berisi kata kunci + sumber dalil singkat, diakhiri baris \`#Shorts\` dan 1–2 tagar topik; 5–10 tags relevan; teksThumbnail ≤ 3 kata.
 ${arahan ? `\nArahan dari pemilik channel: ${arahan}\n` : ''}
 Daftar adegan (detik = lama di video):
 ${JSON.stringify(daftar, null, 2)}`,
@@ -160,7 +161,7 @@ ${JSON.stringify(daftar, null, 2)}`,
       e.naskah = { ...asal.naskah!, judul: s.judul, adegan: idx.map((i) => asal.naskah!.adegan[i]).filter(Boolean) };
       e.review = asal.review;
       e.adegan = idx.map((i) => asal.adegan![i]);
-      e.metadata = { judul: s.judul, deskripsi: s.deskripsi, tags: s.tags, teksThumbnail: s.teksThumbnail };
+      e.metadata = rapikanMetadata({ judul: s.judul, deskripsi: s.deskripsi, tags: s.tags, teksThumbnail: s.teksThumbnail }, 'short');
       e.modeRekam = 'per-adegan';
       e.audioPerAdegan = salin;
       e.offsetAdegan = idx.map((i) => potongan[i].offset);

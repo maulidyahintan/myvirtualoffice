@@ -188,6 +188,8 @@ export interface Episode {
   /** false = tanpa efek suara (cerita: efek karakter per adegan, hafalan: suara anak-anak). Default: pakai efek. */
   efekKarakter?: boolean;
   youtube?: { videoId: string; url: string; jadwalTayang?: string };
+  /** Jadwal tayang yang dipilih saat video disetujui (ISO); menahan slot selama upload berjalan. */
+  jadwalDipilih?: string;
   /**
    * Upload sebelumnya yang diganti karena video diedit ulang. Video lama dijadikan private
    * (`ditarik` = waktu diprivatkan), tidak dihapus.
@@ -237,6 +239,25 @@ export interface ThumbnailProps {
   ekspresi: Ekspresi;
 }
 
+/** Satu jam tayang dalam sehari, untuk format tertentu atau semua. */
+export interface SlotTayang {
+  /** "HH:mm" di zona waktu channel */
+  jam: string;
+  format: Format | 'semua';
+}
+
+export interface RencanaTayang {
+  /** maksimal video tayang per hari (semua format) */
+  videoPerHari: number;
+  /** hari tayang, 0 = Minggu … 6 = Sabtu */
+  hari: number[];
+  slot: SlotTayang[];
+  /** penjelasan Channel Manager (Markdown) */
+  alasan?: string;
+  oleh: 'channel-manager' | 'pemilik';
+  diubah: string;
+}
+
 export interface KantorConfig {
   namaChannel: string;
   bahasa: string;
@@ -244,6 +265,8 @@ export interface KantorConfig {
   maksRevisiOtomatis: number;
   jamTayangDefault: string;
   zonaWaktu: string;
+  /** Rencana jadwal tayang dari Channel Manager (bisa diubah pemilik); dasar jadwal bawaan saat menyetujui video. */
+  rencanaTayang?: RencanaTayang;
   /** Efek suara per pembicara (menimpa SUARA_KARAKTER_BAWAAN). */
   suaraKarakter?: Partial<Record<'narator' | 'ibu' | 'mamas' | 'mochi', { nada: number; tempo: number }>>;
   /** Efek suara bacaan video hafalan (menimpa SUARA_HAFALAN_BAWAAN). */

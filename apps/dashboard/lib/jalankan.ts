@@ -38,14 +38,4 @@ export function jalankanKantor(args: string[], episodeId?: string) {
   child.unref();
 }
 
-/** "2026-11-01T16:30" (jam lokal di zona tertentu) → ISO UTC */
-export function lokalKeIso(lokal: string, zona: string): string {
-  const kiraUtc = new Date(`${lokal}:00Z`);
-  const offsetTeks =
-    new Intl.DateTimeFormat('en-US', { timeZone: zona, timeZoneName: 'longOffset' })
-      .formatToParts(kiraUtc)
-      .find((p) => p.type === 'timeZoneName')?.value ?? 'GMT';
-  const m = offsetTeks.match(/GMT([+-])(\d{2}):(\d{2})/);
-  const menit = m ? (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3])) : 0;
-  return new Date(kiraUtc.getTime() - menit * 60_000).toISOString();
-}
+export { lokalKeIso } from '@kantor/shared';
