@@ -1,7 +1,7 @@
 {
   "id": "hafalan-surat-an-nas-4d50",
   "dibuat": "2026-10-29T02:20:03.145Z",
-  "diubah": "2026-10-29T08:32:33.254Z",
+  "diubah": "2026-10-30T08:38:36.348Z",
   "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat An-Nas",
@@ -142,6 +142,11 @@
       "waktu": "2026-10-29T07:27:22.689Z",
       "oleh": "channel-manager",
       "pesan": "Terjadwal tayang 2026-10-30T09:30:00.000Z"
+    },
+    {
+      "waktu": "2026-10-30T08:38:36.348Z",
+      "oleh": "pemilik",
+      "pesan": "Dibuat versi Video biasa: hafalan-surat-an-nas-2f04"
     }
   ],
   "catatanStatus": "Terjadwal tayang 2026-10-30T09:30:00.000Z",
@@ -480,5 +485,6 @@
     "videoId": "kxu5wXHQtQk",
     "url": "https://www.youtube.com/watch?v=kxu5wXHQtQk",
     "jadwalTayang": "2026-10-30T09:30:00.000Z"
-  }
+  },
+  "pasangan": "hafalan-surat-an-nas-2f04"
 }
