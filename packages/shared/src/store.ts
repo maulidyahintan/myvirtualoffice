@@ -1,9 +1,10 @@
 // Penyimpanan sederhana berbasis file JSON di folder data/.
 // Sengaja tanpa database supaya gratis, mudah dibaca, dan bisa di-commit ke git.
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import type { AgenChat, Episode, EpisodeStatus, Ide, KantorConfig, PesanChat } from './types.ts';
+import type { AgenChat, Episode, EpisodeStatus, Ide, KantorConfig, PesanChat, RisetHarian } from './types.ts';
 import { filterSuara, SUARA_HAFALAN_BAWAAN, SUARA_KARAKTER_BAWAAN, type PEMBICARA } from './constants.ts';
 
 let rootCache: string | undefined;
@@ -60,6 +61,39 @@ export function suaraHafalan(cfg: KantorConfig = loadConfig()): { nada: number; 
 /** Filter efek suara seluruh rekaman video hafalan (undefined = suara asli). */
 export function filterHafalan(ep: Episode, cfg: KantorConfig = loadConfig()): string | undefined {
   return ep.ide.jenis === 'hafalan' && ep.efekKarakter !== false ? filterSuara(suaraHafalan(cfg)) : undefined;
+}
+
+export const RISET_HARIAN_BAWAAN: RisetHarian = { aktif: true, jam: '07:00', jumlahIde: 4 };
+
+export function risetHarian(cfg: KantorConfig = loadConfig()): RisetHarian {
+  return { ...RISET_HARIAN_BAWAAN, ...cfg.risetHarian };
+}
+
+/** Catatan riset otomatis terakhir (data/otomatis.json). */
+export interface CatatanOtomatis {
+  /** tanggal lokal "YYYY-MM-DD" riset harian terakhir dicoba */
+  tanggal?: string;
+  percobaan?: number;
+  hasil?: 'jalan' | 'ok' | 'gagal';
+  pesan?: string;
+  waktu?: string;
+}
+
+/** File penjadwal launchd (macOS) untuk riset harian. */
+export const filePenjadwalHarian = () => path.join(os.homedir(), 'Library', 'LaunchAgents', 'com.tasnie.kantor.riset-harian.plist');
+
+const fileOtomatis = () => path.join(paths.data(), 'otomatis.json');
+
+export function bacaOtomatis(): CatatanOtomatis {
+  try {
+    return JSON.parse(fs.readFileSync(fileOtomatis(), 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+export function simpanOtomatis(c: CatatanOtomatis) {
+  fs.writeFileSync(fileOtomatis(), JSON.stringify(c, null, 2) + '\n');
 }
 
 /** Playlist bawaan: hafalan → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", seri lain → "Obrolan Islami Anak". */

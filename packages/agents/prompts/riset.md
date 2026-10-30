@@ -20,7 +20,7 @@ yang (1) dicari orang tua & anak Indonesia, (2) belum banyak dibuat dengan baik,
 ## Output
 - `laporan`: ringkasan riset dalam Markdown (temuan utama, tabel kata kunci & sinyal
   permintaan, rekomendasi strategi minggu ini). Maksimal ±400 kata.
-- `ide`: 3–5 ide episode. Setiap ide harus punya seri yang ada di daftar seri,
+- `ide`: sejumlah ide yang diminta (biasanya 3–5; riset harian minimal 4). Setiap ide harus punya seri yang ada di daftar seri,
   usia target, pesan moral yang konkret, alasan berbasis data, dan referensi
   (judul/URL video pembanding atau sumber).
 

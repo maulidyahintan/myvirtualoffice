@@ -275,6 +275,14 @@ export interface RencanaTayang {
   diubah: string;
 }
 
+export interface RisetHarian {
+  aktif: boolean;
+  /** "HH:mm" di zona waktu channel; riset jalan pertama kali setelah jam ini */
+  jam: string;
+  /** minimal ide per hari */
+  jumlahIde: number;
+}
+
 export interface KantorConfig {
   namaChannel: string;
   bahasa: string;
@@ -292,6 +300,8 @@ export interface KantorConfig {
   maksRevisiOtomatis: number;
   jamTayangDefault: string;
   zonaWaktu: string;
+  /** Content Research mencari ide sendiri setiap hari (lihat `npm run kantor -- harian`). */
+  risetHarian?: RisetHarian;
   /** Rencana jadwal tayang dari Channel Manager (bisa diubah pemilik); dasar jadwal bawaan saat menyetujui video. */
   rencanaTayang?: RencanaTayang;
   /** Efek suara per pembicara (menimpa SUARA_KARAKTER_BAWAAN). */

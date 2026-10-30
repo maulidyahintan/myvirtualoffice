@@ -9,5 +9,6 @@ dist
 data/secrets/
 data/logs/
 data/renders/
+data/otomatis.json
 packages/video/public/audio/*
 !packages/video/public/audio/.gitkeep

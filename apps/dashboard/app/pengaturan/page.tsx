@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import {
   BATAS_NADA_KARAKTER,
   JENIS_MUSIK,
@@ -6,13 +7,16 @@ import {
   SPEK_FORMAT,
   SUARA_HAFALAN_BAWAAN,
   SUARA_KARAKTER_BAWAAN,
+  bacaOtomatis,
+  filePenjadwalHarian,
   listEpisodes,
   playlistSeri,
+  risetHarian,
   sedangSibuk,
   suaraHafalan,
   suaraPembicara,
 } from '@kantor/shared';
-import { hapusMusik, masukkanSemuaKePlaylist, simpanMusik, simpanPlaylist, simpanSuaraKarakter } from '../actions';
+import { hapusMusik, masukkanSemuaKePlaylist, simpanMusik, simpanPlaylist, simpanRisetHarian, simpanSuaraKarakter } from '../actions';
 
 const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', hafalan: '🕌 Bacaan hafalan' } as const;
 
@@ -114,6 +118,8 @@ export default function Pengaturan() {
       </form>
 
       <PengaturanPlaylist />
+
+      <PengaturanRisetHarian />
     </div>
   );
 }
@@ -170,5 +176,47 @@ function PengaturanPlaylist() {
         </p>
       )}
     </section>
+  );
+}
+
+/** Content Research mencari ide sendiri setiap hari. */
+function PengaturanRisetHarian() {
+  const cfg = loadConfig();
+  const atur = risetHarian(cfg);
+  const terpasang = fs.existsSync(filePenjadwalHarian());
+  const c = bacaOtomatis();
+  const HASIL = { ok: '✅ berhasil', gagal: '❌ gagal', jalan: '⏳ sedang berjalan' } as const;
+  return (
+    <form action={simpanRisetHarian} className="panel stack">
+      <h2>🔎 Riset ide otomatis</h2>
+      <p className="muted kecil" style={{ margin: 0 }}>
+        Content Research mencari ide sendiri setiap hari, pertama kali setelah jam yang diatur. Ide baru muncul di kolom Ide di Papan Kerja.
+        Kalau komputer sedang tidur pada jam itu, riset jalan begitu komputer menyala lagi (sekali per hari). Komputer harus menyala dan
+        login supaya riset bisa jalan.
+      </p>
+      <label style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <input type="checkbox" name="aktif" defaultChecked={atur.aktif && terpasang} /> Aktif
+      </label>
+      <div className="row" style={{ gap: 12 }}>
+        <label className="kecil">
+          Jam ({cfg.zonaWaktu})
+          <input type="time" name="jam" defaultValue={atur.jam} style={{ width: 120 }} />
+        </label>
+        <label className="kecil">
+          Minimal ide per hari
+          <input type="number" name="jumlahIde" min={1} max={8} defaultValue={atur.jumlahIde} style={{ width: 80 }} />
+        </label>
+      </div>
+      <div className="kecil">
+        Penjadwal: {terpasang ? '🟢 terpasang' : '⚪ belum terpasang (centang Aktif lalu Simpan)'}
+        {c.tanggal ? (
+          <div className="muted">
+            Riset otomatis terakhir: {c.tanggal} · {c.hasil ? HASIL[c.hasil] : ''}
+            {c.pesan ? ` · ${c.pesan}` : ''}
+          </div>
+        ) : null}
+      </div>
+      <button className="sekunder">Simpan riset otomatis</button>
+    </form>
   );
 }

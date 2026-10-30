@@ -380,6 +380,19 @@ export async function masukkanSemuaKePlaylist() {
   revalidatePath('/pengaturan');
 }
 
+/** Pengaturan riset harian otomatis + pasang/lepas penjadwal macOS. */
+export async function simpanRisetHarian(form: FormData) {
+  const cfg = loadConfig();
+  const aktif = form.get('aktif') === 'on';
+  const jam = /^([01]\d|2[0-3]):[0-5]\d$/.test(teks(form, 'jam')) ? teks(form, 'jam') : '07:00';
+  const jumlahIde = Math.min(8, Math.max(1, Number(teks(form, 'jumlahIde')) || 4));
+  cfg.risetHarian = { aktif, jam, jumlahIde };
+  saveConfig(cfg);
+  // penjadwal ikut dipasang/dilepas, supaya cukup satu tombol
+  jalankanKantor([aktif ? 'harian-pasang' : 'harian-lepas']);
+  revalidatePath('/pengaturan');
+}
+
 /** Pulihkan episode yang error / ditolak ke langkah yang masuk akal. */
 export async function pulihkan(form: FormData) {
   const id = teks(form, 'id');

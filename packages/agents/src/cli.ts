@@ -11,11 +11,14 @@
 //   npm run kantor -- playlist [id]    (masukkan video ke playlist sesuai tipenya; tanpa id: semua yang belum)
 //   npm run kantor -- tarik <id>        (jadikan private upload lama episode yang diedit ulang)
 //   npm run kantor -- chat <agen>       (agen membalas pesan terakhir di kolom chat)
+//   npm run kantor -- harian           (riset harian kalau sudah waktunya; dipanggil penjadwal)
+//   npm run kantor -- harian-pasang    (pasang penjadwal macOS) | harian-lepas
 //   npm run kantor -- laporan
 //   npm run kantor -- status
 import './env.ts';
 import { AGEN_CHAT, listEpisodes, setStatus, STATUS_LABEL, tandaiSelesai, tandaiSibuk, tambahChat, type AgenChat } from '@kantor/shared';
 import { balasChat } from './chat.ts';
+import { lepasPenjadwal, pasangPenjadwal, risetHarianJikaPerlu } from './otomatis.ts';
 import { pecahJadiShorts } from './shorts.ts';
 import {
   buatUlangMetadata,
@@ -42,6 +45,12 @@ async function main() {
       } finally {
         tandaiSelesai('riset');
       }
+    case 'harian':
+      return risetHarianJikaPerlu();
+    case 'harian-pasang':
+      return pasangPenjadwal();
+    case 'harian-lepas':
+      return lepasPenjadwal();
     case 'tulis':
       return tulisNaskah(need(arg1));
     case 'hafalan':
@@ -113,7 +122,7 @@ async function main() {
       }
       return;
     default:
-      console.log('Perintah: riset | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | metadata <id> [render] | rencana [arahan] | playlist [id] | tarik <id> | laporan | status');
+      console.log('Perintah: riset | harian | harian-pasang | harian-lepas | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | metadata <id> [render] | rencana [arahan] | playlist [id] | tarik <id> | laporan | status');
   }
 }
 

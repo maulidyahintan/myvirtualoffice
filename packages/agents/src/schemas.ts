@@ -13,10 +13,12 @@ export const IdeSchema = z.object({
   referensi: z.array(z.string()),
 });
 
-export const RisetSchema = z.object({
-  laporan: z.string().describe('laporan riset dalam Markdown'),
-  ide: z.array(IdeSchema).min(1).max(5),
-});
+/** Hasil riset dengan minimal `minIde` ide. */
+export const risetSchema = (minIde = 3) =>
+  z.object({
+    laporan: z.string().describe('laporan riset dalam Markdown'),
+    ide: z.array(IdeSchema).min(minIde).max(Math.max(5, minIde + 2)),
+  });
 
 export const DalilSchema = z.object({
   jenis: z.enum(['ayat', 'hadits', 'doa', 'atsar']),

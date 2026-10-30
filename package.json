@@ -14,6 +14,8 @@
   "scripts": {
     "dev": "npm run dev -w @kantor/dashboard",
     "kantor": "node --import tsx packages/agents/src/cli.ts",
+    "harian:pasang": "node --import tsx packages/agents/src/cli.ts harian-pasang",
+    "harian:lepas": "node --import tsx packages/agents/src/cli.ts harian-lepas",
     "auth:youtube": "node --import tsx packages/agents/src/youtube/auth.ts",
     "studio": "npm run studio -w @kantor/video",
     "typecheck": "npm run typecheck --workspaces --if-present"

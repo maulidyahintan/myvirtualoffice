@@ -27,7 +27,7 @@ import {
   NaskahSchema,
   RencanaTayangSchema,
   ReviewSchema,
-  RisetSchema,
+  risetSchema,
   SutradaraSchema,
 } from './schemas.ts';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
@@ -60,11 +60,11 @@ function daftarSeri() {
 }
 
 // ---------------------------------------------------------------- RISET
-export async function riset(arahan?: string) {
+export async function riset(arahan?: string, minIde = 3) {
   const laporanLama = latestFile(paths.laporan())?.isi;
   const hasil = await runAgent({
     peran: 'riset',
-    schema: RisetSchema,
+    schema: risetSchema(minIde),
     tools: ['WebSearch', 'WebFetch'],
     mcpServers: { kantor: kantorTools },
     mcpTools: TOOL_RISET,
@@ -75,7 +75,7 @@ export async function riset(arahan?: string) {
       `Seri yang tersedia:\n${daftarSeri()}`,
       laporanLama ? `Laporan performa terakhir dari Channel Manager:\n${laporanLama}` : '',
       arahan ? `Arahan khusus dari pemilik channel: ${arahan}` : '',
-      'Lakukan riset dan usulkan ide episode.',
+      `Lakukan riset dan usulkan minimal ${minIde} ide episode.`,
     ]
       .filter(Boolean)
       .join('\n\n'),

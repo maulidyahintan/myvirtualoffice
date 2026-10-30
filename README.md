@@ -194,10 +194,20 @@ npm run kantor -- metadata <id-episode>         # buat ulang metadata sesuai for
 npm run kantor -- laporan
 ```
 
-### Otomatis tiap minggu (opsional)
-Supaya riset & laporan jalan sendiri, pasang cron (macOS/Linux) — contoh Senin 07.00:
+### Ide baru setiap hari (otomatis)
+Content Research mencari ide sendiri setiap hari (bawaan: minimal 4 ide, mulai jam 07.00).
+Atur & aktifkan di **Pengaturan → Riset ide otomatis**, atau lewat terminal (macOS):
+```bash
+npm run harian:pasang   # pasang penjadwal launchd (cek tiap 30 menit, riset sekali per hari)
+npm run harian:lepas    # matikan
 ```
-0 7 * * 1  cd /path/ke/kantor-ai-islami && npm run kantor -- laporan && npm run kantor -- riset
+Kalau komputer tidur pada jam itu, riset jalan begitu komputer menyala lagi. Hasil terakhir
+dicatat di `data/otomatis.json`, log di `data/logs/harian.log`.
+
+### Laporan tiap minggu (opsional)
+Supaya laporan jalan sendiri, pasang cron (macOS/Linux) — contoh Senin 07.00:
+```
+0 7 * * 1  cd /path/ke/kantor-ai-islami && npm run kantor -- laporan
 ```
 Windows: pakai Task Scheduler dengan perintah yang sama. Gerbang persetujuan tetap di kamu.
 
