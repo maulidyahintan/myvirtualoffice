@@ -10,14 +10,18 @@
   },
   "dependencies": {
     "@kantor/shared": "*",
+    "@react-three/fiber": "^9.8.2",
     "@remotion/cli": "4.0.539",
     "@remotion/fonts": "4.0.539",
     "@remotion/media-utils": "4.0.539",
+    "@remotion/three": "4.0.539",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "remotion": "4.0.539"
+    "remotion": "4.0.539",
+    "three": "^0.186.1"
   },
   "devDependencies": {
-    "@types/react": "^19.2.0"
+    "@types/react": "^19.2.0",
+    "@types/three": "^0.186.0"
   }
 }

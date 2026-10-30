@@ -3,6 +3,7 @@ import { Composition, Still } from 'remotion';
 import { FPS } from '@kantor/shared/constants';
 import { Episode, hitungMetadataEpisode } from './Episode';
 import { Thumbnail } from './Thumbnail';
+import { DURASI_PROTOTIPE_3D, Prototipe3D } from './Prototipe3D';
 import { Avatar, Banner, IkonStill, LogoStill } from './brand/Branding';
 import { LogoAnimasi } from './brand/LogoAnimasi';
 import { contohEpisode, contohHafalan, contohShort, contohThumbnail } from './contoh';
@@ -40,6 +41,8 @@ export const Root: React.FC = () => (
       defaultProps={contohHafalan}
       calculateMetadata={hitungMetadataEpisode}
     />
+    {/* prototipe tokoh 3D */}
+    <Composition id="Prototipe3D" component={Prototipe3D} width={1920} height={1080} fps={FPS} durationInFrames={DURASI_PROTOTIPE_3D} />
     <Still id="Thumbnail" component={Thumbnail} width={1280} height={720} defaultProps={contohThumbnail} />
     {/* branding channel */}
     <Composition id="LogoAnimasi" component={LogoAnimasi} width={1920} height={1080} fps={FPS} durationInFrames={FPS * 3} />
