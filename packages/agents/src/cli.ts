@@ -16,7 +16,7 @@
 //   npm run kantor -- laporan
 //   npm run kantor -- status
 import './env.ts';
-import { AGEN_CHAT, listEpisodes, setStatus, STATUS_LABEL, tandaiSelesai, tandaiSibuk, tambahChat, type AgenChat } from '@kantor/shared';
+import { AGEN_CHAT, durasiIsi, getEpisode, jumlahShortsOtomatis, listEpisodes, setStatus, STATUS_LABEL, tandaiSelesai, tandaiSibuk, tambahChat, type AgenChat } from '@kantor/shared';
 import { balasChat } from './chat.ts';
 import { lepasPenjadwal, pasangPenjadwal, risetHarianJikaPerlu } from './otomatis.ts';
 import { pecahJadiShorts } from './shorts.ts';
@@ -65,7 +65,8 @@ async function main() {
       const id = need(arg1);
       tandaiSibuk(`shorts-${id}`);
       try {
-        return void (await pecahJadiShorts(id, Math.min(5, Math.max(1, Number(arg2) || 3)), arg3, render));
+        const jumlah = Math.min(5, Math.max(1, Number(arg2) || jumlahShortsOtomatis(durasiIsi(getEpisode(id)))));
+        return void (await pecahJadiShorts(id, jumlah, arg3, render));
       } finally {
         tandaiSelesai(`shorts-${id}`);
       }

@@ -96,6 +96,21 @@ export function simpanOtomatis(c: CatatanOtomatis) {
   fs.writeFileSync(fileOtomatis(), JSON.stringify(c, null, 2) + '\n');
 }
 
+/** Batas panjang video vertikal supaya masih dianggap Shorts oleh YouTube (3 menit, dengan cadangan). */
+export const BATAS_SHORTS_DETIK = 170;
+
+/** Lama isi video (adegan, tanpa intro/outro) dari hasil render, dalam detik. */
+export function durasiIsi(ep: Episode): number | undefined {
+  const a = ep.render?.adegan;
+  if (!a?.length) return undefined;
+  return a.at(-1)!.mulai + a.at(-1)!.durasi - a[0].mulai;
+}
+
+/** Jumlah Shorts bawaan dari video panjang: ±1 per 3 menit, 1–3 Shorts (8 menit → 3, 5 menit → 2). */
+export function jumlahShortsOtomatis(detik: number | undefined): number {
+  return Math.min(3, Math.max(1, Math.round((detik ?? 180) / 180)));
+}
+
 /** Playlist bawaan: hafalan → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", seri lain → "Obrolan Islami Anak". */
 export const PLAYLIST_BAWAAN = ['Hafalan', 'Asbabun Nuzul', 'Obrolan Islami Anak'] as const;
 

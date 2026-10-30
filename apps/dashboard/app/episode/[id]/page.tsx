@@ -3,7 +3,10 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  BATAS_SHORTS_DETIK,
   cekMetadata,
+  durasiIsi,
+  jumlahShortsOtomatis,
   FORMAT_LABEL,
   getEpisode,
   listEpisodes,
@@ -535,9 +538,18 @@ function VersiLain({ ep }: { ep: Episode }) {
   }
   if (adaPasangan || !ep.render) return null;
   // perkiraan panjang versi baru dari waktu adegan hasil render (intro/outro sedikit berbeda)
-  const akhir = ep.render.adegan?.at(-1);
-  const isi = akhir ? akhir.mulai + akhir.durasi - (ep.render.adegan?.[0]?.mulai ?? 0) : undefined;
+  const isi = durasiIsi(ep);
   const menit = (d: number) => `${Math.floor(d / 60)}:${String(Math.round(d % 60)).padStart(2, '0')}`;
+  // video panjang tidak disalin utuh jadi Shorts: YouTube hanya menganggap video vertikal ≤ 3 menit sebagai Shorts
+  if (!short && isi !== undefined && isi > BATAS_SHORTS_DETIK) {
+    return (
+      <span className="kecil muted">
+        📱 Video ini ±{menit(isi)}, terlalu panjang untuk disalin utuh jadi Shorts (YouTube hanya menganggap video vertikal sampai 3 menit
+        sebagai Shorts).{' '}
+        {ep.ide.jenis === 'hafalan' ? '' : `Pakai "✂️ Pecah jadi beberapa Shorts" di bawah: diambil inti pembicaraannya saja.`}
+      </span>
+    );
+  }
   return (
     <form action={buatVersiLain} className="stack" style={{ gap: 6 }}>
       <Id id={ep.id} />
@@ -545,16 +557,10 @@ function VersiLain({ ep }: { ep: Episode }) {
         🔁 Buat versi {short ? 'video biasa (16:9)' : 'Shorts (vertikal)'} dari materi ini
       </button>
       <span className="kecil muted">
-        Naskah, adegan, judul & deskripsi, dan rekaman suaranya sama; langsung dirender ke format {short ? 'video biasa' : 'Shorts'} tanpa
-        rekam ulang. Hasilnya jadi episode baru yang tertaut (🔗) dan bisa ditonton dulu sebelum dijadwalkan.
+        Naskah, adegan, dan rekaman suaranya sama; langsung dirender ke format {short ? 'video biasa' : 'Shorts'} tanpa rekam ulang (judul &
+        deskripsi dibuat ulang sesuai format). Hasilnya jadi episode baru yang tertaut (🔗) dan bisa ditonton dulu sebelum dijadwalkan.
         {isi !== undefined ? ` Isi video ±${menit(isi)}.` : ''}
       </span>
-      {!short && isi !== undefined && isi > 170 ? (
-        <span className="peringatan kecil">
-          Video ini lebih dari ±3 menit. YouTube hanya menganggap video vertikal sampai 3 menit sebagai Shorts; yang lebih panjang tayang
-          sebagai video biasa vertikal.
-        </span>
-      ) : null}
     </form>
   );
 }
@@ -592,13 +598,14 @@ function PecahShorts({ ep }: { ep: Episode }) {
           <form action={pecahShorts} className="stack" style={{ gap: 8 }}>
             <Id id={ep.id} />
             <p className="kecil muted" style={{ margin: 0 }}>
-              Sutradara memilih adegan yang paling penting & bermakna untuk tiap Shorts (masing-masing &lt; 60 detik dan utuh bisa dipahami
-              sendiri), lengkap dengan judulnya. Narasi & rekaman suaramu dipakai apa adanya, jadi tidak perlu rekam ulang. Tiap Shorts jadi
+              Sutradara mengambil inti pembicaraannya saja: adegan yang paling penting & bermakna untuk tiap Shorts (masing-masing &lt; 60
+              detik dan utuh bisa dipahami sendiri), lengkap dengan judulnya. Narasi & rekaman suaramu dipakai apa adanya, jadi tidak perlu rekam ulang. Tiap Shorts jadi
               episode baru yang bisa ditonton dulu sebelum dijadwalkan.
             </p>
             <label className="kecil">
               Jumlah Shorts{' '}
-              <select name="jumlah" defaultValue="3">
+              <select name="jumlah" defaultValue="">
+                <option value="">Otomatis ({jumlahShortsOtomatis(durasiIsi(ep))} Shorts untuk video ±{Math.round((durasiIsi(ep) ?? 0) / 60)} menit)</option>
                 {[1, 2, 3, 4, 5].map((n) => (
                   <option key={n} value={n}>
                     {n}

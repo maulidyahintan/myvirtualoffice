@@ -136,7 +136,8 @@ Pilih adegan untuk ${jumlah} YouTube Shorts dari video ini. Narasi & rekamannya 
 Aturan:
 - Tiap Shorts total "detik" adegannya maksimal ${BATAS_ISI_SHORTS} detik.
 - Tiap Shorts harus utuh & bisa dipahami sendiri tanpa menonton video aslinya: ada pembuka yang menarik, inti, dan pesan/penutup yang bermakna.
-- Pilih adegan yang paling penting, menyentuh, atau berisi pelajaran/dalil; lewati adegan pengantar & transisi yang kurang perlu.
+- Ambil INTI pembicaraannya saja, jangan menyalin seluruh cerita: pilih adegan yang paling penting, menyentuh, atau berisi pelajaran/dalil; lewati salam, pengantar, transisi, dan pengulangan.
+- Buat maksimal ${jumlah} Shorts. Kalau bagian yang benar-benar penting hanya cukup untuk lebih sedikit, buat lebih sedikit (jangan mengisi dengan bagian yang kurang bermakna).
 - Adegan boleh dilompati, tapi urutannya tetap sesuai cerita (nomor naik). Jangan memotong dialog sehingga jawaban muncul tanpa pertanyaannya.
 - Tiap Shorts sebaiknya membahas sisi yang berbeda; satu adegan boleh dipakai di lebih dari satu Shorts kalau memang perlu.
 - Buat juga metadata YouTube Shorts untuk tiap Shorts (SEO, jangan pakai gaya video biasa): judul ≤ 60 karakter dengan kata kunci utama di depan (menarik untuk anak & orang tua); deskripsi 1–2 kalimat berisi kata kunci + sumber dalil singkat, diakhiri baris \`#Shorts\` dan 1–2 tagar topik; 5–10 tags relevan; teksThumbnail ≤ 3 kata.

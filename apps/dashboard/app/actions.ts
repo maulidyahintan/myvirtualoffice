@@ -17,8 +17,11 @@ import {
   NADA_MAKS,
   BATAS_NADA_KARAKTER,
   PEMBICARA,
+  BATAS_SHORTS_DETIK,
+  durasiIsi,
   FORMAT,
   FORMAT_LABEL,
+  jumlahShortsOtomatis,
   JEDA_MINIMAL_MENIT,
   PILIHAN_FORMAT,
   rencanaTayang,
@@ -268,6 +271,13 @@ export async function buatVersiLain(form: FormData) {
   const ep = getEpisode(id);
   if (!ep.adegan || !ep.render) throw new Error('Episode belum punya video yang jadi');
   const format = (ep.ide.format ?? 'biasa') === 'short' ? 'biasa' : 'short';
+  // video panjang tidak disalin utuh jadi Shorts (tidak akan dianggap Shorts oleh YouTube):
+  // cerita dipecah jadi beberapa Shorts dari adegan intinya
+  const isi = durasiIsi(ep);
+  if (format === 'short' && isi !== undefined && isi > BATAS_SHORTS_DETIK) {
+    if (ep.ide.jenis === 'hafalan') throw new Error('Video hafalan ini terlalu panjang untuk Shorts (lebih dari 3 menit)');
+    return mulaiPecahShorts(id, jumlahShortsOtomatis(isi));
+  }
   const baru = createEpisodeFromIdea({ ...ep.ide, format }, 'pemilik');
 
   const pub = path.join(paths.videoPkg(), 'public');
@@ -313,9 +323,13 @@ export async function buatVersiLain(form: FormData) {
 /** Pecah video biasa yang sudah jadi menjadi beberapa Shorts dari adegan-adegan pentingnya. */
 export async function pecahShorts(form: FormData) {
   const id = teks(form, 'id');
-  const jumlah = Math.min(5, Math.max(1, Number(teks(form, 'jumlah')) || 3));
-  const arahan = teks(form, 'arahan');
-  addLog(id, 'pemilik', `Minta ${jumlah} Shorts dari adegan penting${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
+  // 'otomatis' (atau kosong) = sesuai panjang video
+  const jumlah = Math.min(5, Math.max(1, Number(teks(form, 'jumlah')) || jumlahShortsOtomatis(durasiIsi(getEpisode(id)))));
+  mulaiPecahShorts(id, jumlah, teks(form, 'arahan'));
+}
+
+function mulaiPecahShorts(id: string, jumlah: number, arahan = '') {
+  addLog(id, 'pemilik', `Minta ${jumlah} Shorts dari inti video${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
   jalankanKantor(['shorts', id, String(jumlah), ...(arahan ? [arahan] : [])], `${id}-shorts`);
   segarkan(id);
 }
