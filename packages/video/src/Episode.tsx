@@ -145,9 +145,6 @@ const Outro: React.FC = () => {
         <div style={{ fontFamily: fontJudul, fontWeight: 700, fontSize: 96, color: '#FFF3C4', transform: `scale(${s}) rotate(${Math.sin(frame / 14) * 2}deg)` }}>
           Sampai jumpa!
         </div>
-        <div style={{ fontFamily: fontTeks, fontWeight: 800, fontSize: 48, color: '#FFF3C4', marginTop: 16, opacity: s }}>
-          Assalamu&apos;alaikum, adik-adik
-        </div>
         {vertikal ? (
           <div style={{ marginTop: 40, opacity: s }}>
             <Logo tinggi={60} />
