@@ -53,14 +53,32 @@ export async function masukkanKePlaylist(ep: Episode, videoId: string): Promise<
   const nama = namaPlaylist(ep, cfg);
   const { id, baru } = manual ? { id: manual, baru: false } : await idPlaylist(nama);
 
-  const ada = await yt.playlistItems.list({ part: ['id'], playlistId: id, videoId, maxResults: 1 });
-  if (ada.data.items?.length) return { nama, id, pesan: `Sudah ada di playlist "${nama}"` };
+  return cobaUlang(async () => {
+    const ada = await yt.playlistItems.list({ part: ['id'], playlistId: id, videoId, maxResults: 1 });
+    if (ada.data.items?.length) return { nama, id, pesan: `Sudah ada di playlist "${nama}"` };
 
-  await yt.playlistItems.insert({
-    part: ['snippet'],
-    requestBody: { snippet: { playlistId: id, resourceId: { kind: 'youtube#video', videoId } } },
+    await yt.playlistItems.insert({
+      part: ['snippet'],
+      requestBody: { snippet: { playlistId: id, resourceId: { kind: 'youtube#video', videoId } } },
+    });
+    return { nama, id, pesan: `Dimasukkan ke playlist "${nama}"${baru ? ' (playlist baru dibuat)' : ''}` };
   });
-  return { nama, id, pesan: `Dimasukkan ke playlist "${nama}"${baru ? ' (playlist baru dibuat)' : ''}` };
+}
+
+/**
+ * Playlist yang baru dibuat butuh beberapa detik sebelum bisa dipakai ("playlist cannot be found"),
+ * jadi kesalahan itu dicoba ulang dengan jeda yang makin panjang (±2, 4, 6, 8, 10 detik).
+ */
+async function cobaUlang<T>(kerja: () => Promise<T>): Promise<T> {
+  for (let i = 1; ; i++) {
+    try {
+      return await kerja();
+    } catch (e) {
+      const belumAda = /playlistNotFound|playlist identified .* cannot be found/i.test(String((e as Error).message));
+      if (!belumAda || i > 5) throw e;
+      await new Promise((r) => setTimeout(r, i * 2000));
+    }
+  }
 }
 
 /** Keluarkan video dari playlist (misal video lama yang dijadikan private setelah diedit ulang). */
