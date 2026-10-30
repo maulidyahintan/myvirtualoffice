@@ -707,7 +707,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
     <div className="stack">
       <div className="row" style={{ justifyContent: 'space-between' }}>
         <div>
-          <Link href="/" className="kecil">
+          <Link href="/papan-kerja" className="kecil">
             ← Papan kerja
           </Link>
           <h1>{ep.naskah?.judul ?? ep.ide.judul}</h1>

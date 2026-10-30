@@ -36,6 +36,7 @@ const teks = (f: FormData, k: string) => String(f.get(k) ?? '').trim();
 
 function segarkan(id?: string) {
   revalidatePath('/');
+  revalidatePath('/papan-kerja');
   if (id) revalidatePath(`/episode/${id}`);
 }
 

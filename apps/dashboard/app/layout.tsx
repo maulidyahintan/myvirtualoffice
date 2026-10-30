@@ -24,8 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <LogoTasnie keterangan={cfg.namaChannel.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />
           </Link>
           <nav>
-            <Link href="/">Papan Kerja</Link>
-            <Link href="/kantor">Kantor 3D</Link>
+            <Link href="/papan-kerja">Papan Kerja</Link>
             <Link href="/jadwal">Jadwal Tayang</Link>
             <Link href="/tayang">Video Tayang</Link>
             <Link href="/laporan">Riset & Laporan</Link>

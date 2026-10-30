@@ -100,10 +100,10 @@ cp .env.example .env
 
 ### 4. Jalankan kantor
 ```bash
-npm run dev        # buka http://localhost:3000
+npm run dev        # buka http://localhost:3000 (halaman utama: Kantor 3D)
 ```
 
-Ada **episode contoh** "Bismillah Sebelum Makan" di papan kerja. Klik → **Render pratinjau
+Ada **episode contoh** "Bismillah Sebelum Makan" di **Papan Kerja** (`/papan-kerja`). Klik → **Render pratinjau
 tanpa suara** untuk mencoba mesin video tanpa memakai Claude sama sekali.
 
 > Render pertama mengunduh Chrome headless (±100 MB) secara otomatis. Font sudah ada di
@@ -111,7 +111,7 @@ tanpa suara** untuk mencoba mesin video tanpa memakai Claude sama sekali.
 
 ---
 
-## Kantor 3D (`/kantor`)
+## Kantor 3D (halaman utama `/`)
 
 Tampilan kantor isometrik: setiap agen punya meja dan karakter sendiri (Farhan si Manajer di
 ruang kaca, Rani, Salma, Hafiz, Dimas, Nadia). Yang terjadi di layar mengikuti pekerjaan
