@@ -1,109 +1,109 @@
 import { z } from 'zod';
-import { AKSI, BENDA, EKSPRESI, FORMAT, JENIS_ADEGAN, KARAKTER, LATAR, PROPERTI, SUASANA, USIA } from '@kantor/shared/constants';
+import { ACTIONS, HELD_ITEMS, EXPRESSIONS, FORMATS, SCENE_TYPES, CHARACTERS, BACKGROUNDS, SCENE_PROPS, MOODS, AGE_GROUPS } from '@kantor/shared/constants';
 
-const pembicara = z.enum([...KARAKTER, 'narator']);
+const speaker = z.enum([...CHARACTERS, 'narrator']);
 
-export const IdeSchema = z.object({
-  judul: z.string(),
-  seri: z.string().describe('id seri dari kantor.config.json'),
-  usia: z.enum(USIA),
-  pesanMoral: z.string(),
-  format: z.enum(FORMAT).describe("'biasa' = video 16:9 3–5 menit, 'short' = YouTube Shorts vertikal < 60 detik"),
-  alasan: z.string().describe('alasan berbasis data riset'),
-  referensi: z.array(z.string()),
+export const IdeaSchema = z.object({
+  title: z.string(),
+  series: z.string().describe('series id from kantor.config.json'),
+  age: z.enum(AGE_GROUPS),
+  moralMessage: z.string(),
+  format: z.enum(FORMATS).describe("'standard' = 16:9 video 3–5 minutes, 'short' = vertical YouTube Shorts < 60 seconds"),
+  reason: z.string().describe('reason based on research data'),
+  references: z.array(z.string()),
 });
 
-/** Hasil riset dengan minimal `minIde` ide. */
-export const risetSchema = (minIde = 3) =>
+/** Research result with at least `minIdeas` ideas. */
+export const researchSchema = (minIdeas = 3) =>
   z.object({
-    laporan: z.string().describe('laporan riset dalam Markdown'),
-    ide: z.array(IdeSchema).min(minIde).max(Math.max(5, minIde + 2)),
+    report: z.string().describe('research report in Markdown'),
+    ideas: z.array(IdeaSchema).min(minIdeas).max(Math.max(5, minIdeas + 2)),
   });
 
-export const DalilSchema = z.object({
-  jenis: z.enum(['ayat', 'hadits', 'doa', 'atsar']),
-  teksArab: z.string().optional(),
+export const EvidenceSchema = z.object({
+  type: z.enum(['ayat', 'hadits', 'doa', 'atsar']),
+  arabicText: z.string().optional(),
   latin: z.string().optional(),
-  terjemah: z.string(),
-  sumber: z.string(),
+  translation: z.string(),
+  source: z.string(),
 });
 
-export const NaskahSchema = z.object({
-  judul: z.string(),
-  ringkasan: z.string(),
-  adegan: z
+export const ScriptSchema = z.object({
+  title: z.string(),
+  summary: z.string(),
+  scenes: z
     .array(
       z.object({
-        jenis: z.enum(JENIS_ADEGAN),
-        pembicara,
-        narasi: z.string(),
-        petunjukVisual: z.string(),
+        type: z.enum(SCENE_TYPES),
+        speaker,
+        narration: z.string(),
+        visualDirection: z.string(),
       }),
     )
     .min(3)
     .max(16),
-  dalil: z.array(DalilSchema),
+  evidences: z.array(EvidenceSchema),
 });
 
 export const ReviewSchema = z.object({
-  keputusan: z.enum(['lolos', 'revisi']),
-  skor: z.number().min(1).max(10),
-  catatan: z.array(z.string()),
-  cekManusia: z.array(z.string()),
+  decision: z.enum(['approved', 'needs_revision']),
+  score: z.number().min(1).max(10),
+  notes: z.array(z.string()),
+  humanCheck: z.array(z.string()),
 });
 
-export const AdeganSchema = z.object({
-  jenis: z.enum(JENIS_ADEGAN),
-  pembicara,
-  narasi: z.string(),
-  latar: z.enum(LATAR),
-  karakter: z.array(z.enum(KARAKTER)).max(3),
-  ekspresi: z.enum(EKSPRESI),
-  teksLayar: z.string().optional(),
-  doa: z.object({ arab: z.string(), latin: z.string(), arti: z.string() }).optional(),
-  properti: z.array(z.enum(PROPERTI)).max(3).optional().describe('properti pendukung di sekitar tokoh'),
-  aksi: z
-    .array(z.object({ karakter: z.enum(KARAKTER), aksi: z.enum(AKSI), benda: z.enum(BENDA).optional() }))
+export const SceneSchema = z.object({
+  type: z.enum(SCENE_TYPES),
+  speaker,
+  narration: z.string(),
+  background: z.enum(BACKGROUNDS),
+  characters: z.array(z.enum(CHARACTERS)).max(3),
+  expression: z.enum(EXPRESSIONS),
+  screenText: z.string().optional(),
+  prayer: z.object({ arabic: z.string(), latin: z.string(), meaning: z.string() }).optional(),
+  props: z.array(z.enum(SCENE_PROPS)).max(3).optional().describe('supporting props around characters'),
+  actions: z
+    .array(z.object({ character: z.enum(CHARACTERS), action: z.enum(ACTIONS), heldItem: z.enum(HELD_ITEMS).optional() }))
     .max(3)
     .optional()
-    .describe('apa yang sedang dilakukan tokoh di adegan ini'),
+    .describe('what characters are doing in this scene'),
 });
 
-export const SutradaraSchema = z.object({ adegan: z.array(AdeganSchema) });
+export const DirectorSchema = z.object({ scenes: z.array(SceneSchema) });
 
 export const MetadataSchema = z.object({
-  judul: z.string().max(100),
-  deskripsi: z.string(),
+  title: z.string().max(100),
+  description: z.string(),
   tags: z.array(z.string()),
-  teksThumbnail: z.string(),
+  thumbnailText: z.string(),
 });
 
-export const RencanaTayangSchema = z.object({
-  videoPerHari: z.number().int().min(1).max(6).describe('maksimal video tayang per hari, semua format'),
-  hari: z.array(z.number().int().min(0).max(6)).min(1).describe('hari tayang, 0 = Minggu … 6 = Sabtu'),
-  slot: z
+export const PublishPlanSchema = z.object({
+  videosPerDay: z.number().int().min(1).max(6).describe('maximum videos published per day, all formats'),
+  days: z.array(z.number().int().min(0).max(6)).min(1).describe('publish days, 0 = Sunday … 6 = Saturday'),
+  slots: z
     .array(
       z.object({
-        jam: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('HH:mm, zona waktu channel'),
-        format: z.enum(['biasa', 'short', 'semua']),
+        time: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('HH:mm, channel timezone'),
+        format: z.enum(['standard', 'short', 'all']),
       }),
     )
     .min(1)
     .max(8),
-  alasan: z.string().describe('penjelasan untuk pemilik channel, Markdown'),
+  reason: z.string().describe('explanation for channel owner, Markdown'),
 });
 
-export const LaporanSchema = z.object({
-  laporan: z.string().describe('laporan performa dalam Markdown'),
+export const ReportSchema = z.object({
+  report: z.string().describe('performance report in Markdown'),
 });
 
-/** Ilustrator hafalan: memilih latar & suasana yang sesuai arti tiap ayat. */
-export const IlustratorSchema = z.object({
-  visual: z.array(
+/** Memorization illustrator: choose backgrounds & moods matching each verse meaning. */
+export const IllustratorSchema = z.object({
+  visuals: z.array(
     z.object({
-      nomor: z.number().describe('nomor ayat (0 = basmalah)'),
-      latar: z.enum(LATAR),
-      suasana: z.array(z.enum(SUASANA)).max(2),
+      number: z.number().describe('verse number (0 = basmalah)'),
+      background: z.enum(BACKGROUNDS),
+      moods: z.array(z.enum(MOODS)).max(2),
     }),
   ),
 });

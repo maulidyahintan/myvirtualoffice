@@ -1,15 +1,15 @@
-// Penyimpanan sederhana berbasis file JSON di folder data/.
-// Sengaja tanpa database supaya gratis, mudah dibaca, dan bisa di-commit ke git.
+// Simple file-based JSON storage in data/ folder.
+// Intentionally no database to be free, easy to read, and can be committed to git.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import type { AgenChat, Episode, EpisodeStatus, Ide, KantorConfig, PesanChat, RisetHarian } from './types.ts';
-import { filterSuara, SUARA_HAFALAN_BAWAAN, SUARA_KARAKTER_BAWAAN, type PEMBICARA } from './constants.ts';
+import type { ChatAgent, Episode, EpisodeStatus, Idea, AppConfig, ChatMessage, DailyResearch } from './types.ts';
+import { voiceFilter, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
 
 let rootCache: string | undefined;
 
-/** Cari folder root proyek (yang berisi kantor.config.json). */
+/** Find project root folder (containing kantor.config.json). */
 export function rootDir(): string {
   if (rootCache) return rootCache;
   if (process.env.KANTOR_ROOT) return (rootCache = process.env.KANTOR_ROOT);
@@ -17,7 +17,7 @@ export function rootDir(): string {
   for (;;) {
     if (fs.existsSync(path.join(dir, 'kantor.config.json'))) return (rootCache = dir);
     const parent = path.dirname(dir);
-    if (parent === dir) throw new Error('kantor.config.json tidak ditemukan. Jalankan dari dalam folder proyek.');
+    if (parent === dir) throw new Error('kantor.config.json not found. Run from within project folder.');
     dir = parent;
   }
 }
@@ -42,99 +42,99 @@ function ensure(dir: string) {
   return dir;
 }
 
-export function loadConfig(): KantorConfig {
+export function loadConfig(): AppConfig {
   return JSON.parse(fs.readFileSync(path.join(rootDir(), 'kantor.config.json'), 'utf8'));
 }
 
-/** Pengaturan suara satu pembicara: dari kantor.config.json, atau bawaan. */
-export function suaraPembicara(pembicara: string, cfg: KantorConfig = loadConfig()): { nada: number; tempo: number } {
-  const p = pembicara as (typeof PEMBICARA)[number];
-  const bawaan = SUARA_KARAKTER_BAWAAN[p] ?? SUARA_KARAKTER_BAWAAN.narator;
-  return { nada: bawaan.nada, tempo: bawaan.tempo, ...cfg.suaraKarakter?.[p] };
+/** Voice settings for one speaker: from kantor.config.json, or default. */
+export function speakerVoice(speaker: string, cfg: AppConfig = loadConfig()): { pitch: number; tempo: number } {
+  const p = speaker as (typeof SPEAKERS)[number];
+  const def = DEFAULT_CHARACTER_VOICE[p] ?? DEFAULT_CHARACTER_VOICE.narrator;
+  return { pitch: def.pitch, tempo: def.tempo, ...cfg.characterVoices?.[p] };
 }
 
-/** Pengaturan suara bacaan hafalan: dari kantor.config.json, atau bawaan. */
-export function suaraHafalan(cfg: KantorConfig = loadConfig()): { nada: number; tempo: number } {
-  return { nada: SUARA_HAFALAN_BAWAAN.nada, tempo: SUARA_HAFALAN_BAWAAN.tempo, ...cfg.suaraHafalan };
+/** Voice settings for memorization recitation: from kantor.config.json, or default. */
+export function memorizationVoice(cfg: AppConfig = loadConfig()): { pitch: number; tempo: number } {
+  return { pitch: DEFAULT_MEMORIZATION_VOICE.pitch, tempo: DEFAULT_MEMORIZATION_VOICE.tempo, ...cfg.memorizationVoice };
 }
 
-/** Filter efek suara seluruh rekaman video hafalan (undefined = suara asli). */
-export function filterHafalan(ep: Episode, cfg: KantorConfig = loadConfig()): string | undefined {
-  return ep.ide.jenis === 'hafalan' && ep.efekKarakter !== false ? filterSuara(suaraHafalan(cfg)) : undefined;
+/** Voice effect filter for entire memorization video recording (undefined = original voice). */
+export function memorizationFilter(ep: Episode, cfg: AppConfig = loadConfig()): string | undefined {
+  return ep.idea.type === 'memorization' && ep.characterEffects !== false ? voiceFilter(memorizationVoice(cfg)) : undefined;
 }
 
-export const RISET_HARIAN_BAWAAN: RisetHarian = { aktif: true, jam: '07:00', jumlahIde: 4 };
+export const DEFAULT_DAILY_RESEARCH: DailyResearch = { active: true, time: '07:00', ideaCount: 4 };
 
-export function risetHarian(cfg: KantorConfig = loadConfig()): RisetHarian {
-  return { ...RISET_HARIAN_BAWAAN, ...cfg.risetHarian };
+export function dailyResearchSettings(cfg: AppConfig = loadConfig()): DailyResearch {
+  return { ...DEFAULT_DAILY_RESEARCH, ...cfg.dailyResearch };
 }
 
-/** Catatan riset otomatis terakhir (data/otomatis.json). */
-export interface CatatanOtomatis {
-  /** tanggal lokal "YYYY-MM-DD" riset harian terakhir dicoba */
-  tanggal?: string;
-  percobaan?: number;
-  hasil?: 'jalan' | 'ok' | 'gagal';
-  pesan?: string;
-  waktu?: string;
+/** Last automation research note (data/otomatis.json). */
+export interface AutomationState {
+  /** Local date "YYYY-MM-DD" of last daily research attempt */
+  date?: string;
+  attempts?: number;
+  result?: 'running' | 'ok' | 'failed';
+  message?: string;
+  time?: string;
 }
 
-/** File penjadwal launchd (macOS) untuk riset harian. */
-export const filePenjadwalHarian = () => path.join(os.homedir(), 'Library', 'LaunchAgents', 'com.tasnie.kantor.riset-harian.plist');
+/** Launchd scheduler file (macOS) for daily research. */
+export const dailySchedulerFile = () => path.join(os.homedir(), 'Library', 'LaunchAgents', 'com.tasnie.kantor.riset-harian.plist');
 
-const fileOtomatis = () => path.join(paths.data(), 'otomatis.json');
+const automationFile = () => path.join(paths.data(), 'otomatis.json');
 
-export function bacaOtomatis(): CatatanOtomatis {
+export function readAutomationState(): AutomationState {
   try {
-    return JSON.parse(fs.readFileSync(fileOtomatis(), 'utf8'));
+    return JSON.parse(fs.readFileSync(automationFile(), 'utf8'));
   } catch {
     return {};
   }
 }
 
-export function simpanOtomatis(c: CatatanOtomatis) {
-  fs.writeFileSync(fileOtomatis(), JSON.stringify(c, null, 2) + '\n');
+export function saveAutomationState(c: AutomationState) {
+  fs.writeFileSync(automationFile(), JSON.stringify(c, null, 2) + '\n');
 }
 
-/** Batas panjang video vertikal supaya masih dianggap Shorts oleh YouTube (3 menit, dengan cadangan). */
-export const BATAS_SHORTS_DETIK = 170;
+/** Vertical video length limit to still be considered Shorts by YouTube (3 minutes, with buffer). */
+export const SHORTS_LIMIT_SECONDS = 170;
 
-/** Lama isi video (adegan, tanpa intro/outro) dari hasil render, dalam detik. */
-export function durasiIsi(ep: Episode): number | undefined {
-  const a = ep.render?.adegan;
+/** Content duration (scenes, without intro/outro) from render result, in seconds. */
+export function contentDuration(ep: Episode): number | undefined {
+  const a = ep.render?.scenes;
   if (!a?.length) return undefined;
-  return a.at(-1)!.mulai + a.at(-1)!.durasi - a[0].mulai;
+  return a.at(-1)!.start + a.at(-1)!.duration - a[0].start;
 }
 
-/** Jumlah Shorts bawaan dari video panjang: ±1 per 3 menit, 1–3 Shorts (8 menit → 3, 5 menit → 2). */
-export function jumlahShortsOtomatis(detik: number | undefined): number {
-  return Math.min(3, Math.max(1, Math.round((detik ?? 180) / 180)));
+/** Default number of Shorts from long video: ±1 per 3 minutes, 1–3 Shorts (8 min → 3, 5 min → 2). */
+export function autoShortsCount(seconds: number | undefined): number {
+  return Math.min(3, Math.max(1, Math.round((seconds ?? 180) / 180)));
 }
 
-/** Playlist bawaan: hafalan → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", seri lain → "Obrolan Islami Anak". */
-export const PLAYLIST_BAWAAN = ['Hafalan', 'Asbabun Nuzul', 'Obrolan Islami Anak'] as const;
+/** Default playlists: memorization → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", other series → "Obrolan Islami Anak". */
+export const DEFAULT_PLAYLISTS = ['Hafalan', 'Asbabun Nuzul', 'Obrolan Islami Anak'] as const;
 
-/** Nama playlist YouTube tujuan sebuah episode (bisa diatur per seri di Pengaturan). */
-export function namaPlaylist(ep: Episode, cfg: KantorConfig = loadConfig()): string {
-  if (ep.ide.jenis === 'hafalan' && ep.ide.seri !== 'hafalan') return playlistSeri('hafalan', cfg);
-  return playlistSeri(ep.ide.seri, cfg);
+/** YouTube playlist name destination for an episode (can be configured per series in Settings). */
+export function playlistName(ep: Episode, cfg: AppConfig = loadConfig()): string {
+  if (ep.idea.type === 'memorization' && ep.idea.series !== 'hafalan') return seriesPlaylist('hafalan', cfg);
+  return seriesPlaylist(ep.idea.series, cfg);
 }
 
-/** Nama playlist untuk satu seri: diatur di Pengaturan, atau bawaan. */
-export function playlistSeri(seri: string, cfg: KantorConfig = loadConfig()): string {
-  const atur = cfg.seri.find((s) => s.id === seri)?.playlist?.trim();
-  if (atur) return atur;
-  if (seri === 'hafalan') return 'Hafalan';
-  if (seri === 'asbabun-nuzul') return 'Asbabun Nuzul';
+/** Playlist name for one series: configured in Settings, or default. */
+export function seriesPlaylist(series: string, cfg: AppConfig = loadConfig()): string {
+  const custom = cfg.series.find((s) => s.id === series)?.playlist?.trim();
+  if (custom) return custom;
+  if (series === 'hafalan') return 'Hafalan';
+  if (series === 'asbabun-nuzul') return 'Asbabun Nuzul';
   return 'Obrolan Islami Anak';
 }
 
-export function saveConfig(cfg: KantorConfig) {
+export function saveConfig(cfg: AppConfig) {
   fs.writeFileSync(path.join(rootDir(), 'kantor.config.json'), JSON.stringify(cfg, null, 2) + '\n');
 }
 
 function fileOf(id: string) {
-  if (!/^[a-z0-9-]+$/.test(id)) throw new Error(`ID episode tidak valid: ${id}`);
+  if (!/^[a-z0-9-]+$/.test(id)) throw new Error(`Invalid episode ID: ${id}`);
   return path.join(ensure(paths.episodes()), `${id}.json`);
 }
 
@@ -144,21 +144,21 @@ export function listEpisodes(): Episode[] {
     .readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) as Episode)
-    .sort((a, b) => b.diubah.localeCompare(a.diubah));
+    .sort((a, b) => b.modified.localeCompare(a.modified));
 }
 
 export function getEpisode(id: string): Episode {
   const f = fileOf(id);
-  if (!fs.existsSync(f)) throw new Error(`Episode ${id} tidak ditemukan`);
+  if (!fs.existsSync(f)) throw new Error(`Episode ${id} not found`);
   return JSON.parse(fs.readFileSync(f, 'utf8'));
 }
 
 export function saveEpisode(ep: Episode): Episode {
-  ep.diubah = new Date().toISOString();
+  ep.modified = new Date().toISOString();
   const f = fileOf(ep.id);
   const tmp = `${f}.tmp`;
   fs.writeFileSync(tmp, JSON.stringify(ep, null, 2));
-  fs.renameSync(tmp, f); // tulis atomik supaya dashboard tidak membaca file setengah jadi
+  fs.renameSync(tmp, f); // Atomic write so dashboard doesn't read half-written file
   return ep;
 }
 
@@ -168,17 +168,17 @@ export function updateEpisode(id: string, fn: (ep: Episode) => void): Episode {
   return saveEpisode(ep);
 }
 
-export function setStatus(id: string, status: EpisodeStatus, oleh: string, pesan?: string): Episode {
+export function setStatus(id: string, status: EpisodeStatus, by: string, message?: string): Episode {
   return updateEpisode(id, (ep) => {
     ep.status = status;
-    ep.catatanStatus = pesan;
-    ep.log.push({ waktu: new Date().toISOString(), oleh, pesan: pesan ?? `Status → ${status}` });
+    ep.statusNote = message;
+    ep.log.push({ time: new Date().toISOString(), by, message: message ?? `Status → ${status}` });
   });
 }
 
-export function addLog(id: string, oleh: string, pesan: string) {
+export function addLog(id: string, by: string, message: string) {
   updateEpisode(id, (ep) => {
-    ep.log.push({ waktu: new Date().toISOString(), oleh, pesan });
+    ep.log.push({ time: new Date().toISOString(), by, message });
   });
 }
 
@@ -191,17 +191,17 @@ function slug(s: string) {
     .slice(0, 40);
 }
 
-export function createEpisodeFromIdea(ide: Ide, oleh = 'riset'): Episode {
+export function createEpisodeFromIdea(idea: Idea, by = 'riset'): Episode {
   const now = new Date().toISOString();
-  const id = `${slug(ide.judul) || 'episode'}-${crypto.randomBytes(2).toString('hex')}`;
+  const id = `${slug(idea.title) || 'episode'}-${crypto.randomBytes(2).toString('hex')}`;
   return saveEpisode({
     id,
-    dibuat: now,
-    diubah: now,
+    created: now,
+    modified: now,
     status: 'idea',
-    ide,
-    jumlahRevisi: 0,
-    log: [{ waktu: now, oleh, pesan: 'Ide dibuat' }],
+    idea,
+    revisionCount: 0,
+    log: [{ time: now, by, message: 'Idea created' }],
   });
 }
 
@@ -224,23 +224,23 @@ export function latestFile(dir: string): { file: string; isi: string } | undefin
 
 export { ensure as ensureDir };
 
-// ---- penanda pekerjaan tanpa episode (riset/laporan) yang sedang berjalan ----
-const penanda = (nama: string) => path.join(ensure(paths.logs()), `${nama}.running`);
+// ---- Busy markers for non-episode work (research/reports) that is running ----
+const markerFile = (name: string) => path.join(ensure(paths.logs()), `${name}.running`);
 
-export function tandaiSibuk(nama: string) {
-  fs.writeFileSync(penanda(nama), String(process.pid));
+export function markBusy(name: string) {
+  fs.writeFileSync(markerFile(name), String(process.pid));
 }
 
-export function tandaiSelesai(nama: string) {
-  fs.rmSync(penanda(nama), { force: true });
+export function markDone(name: string) {
+  fs.rmSync(markerFile(name), { force: true });
 }
 
-export function sedangSibuk(nama: string): boolean {
-  const f = penanda(nama);
+export function isBusy(name: string): boolean {
+  const f = markerFile(name);
   if (!fs.existsSync(f)) return false;
   const pid = Number(fs.readFileSync(f, 'utf8'));
   try {
-    process.kill(pid, 0); // cek proses masih hidup
+    process.kill(pid, 0); // Check if process still alive
     return true;
   } catch {
     fs.rmSync(f, { force: true });
@@ -248,20 +248,20 @@ export function sedangSibuk(nama: string): boolean {
   }
 }
 
-// ---- percakapan pemilik channel dengan tiap agen (data/chat/<agen>.json) ----
-const fileChat = (agen: AgenChat) => path.join(ensure(paths.chat()), `${agen}.json`);
+// ---- Channel owner conversation with each agent (data/chat/<agent>.json) ----
+const chatFile = (agent: ChatAgent) => path.join(ensure(paths.chat()), `${agent}.json`);
 
-export function bacaChat(agen: AgenChat): PesanChat[] {
-  const f = fileChat(agen);
-  return fs.existsSync(f) ? (JSON.parse(fs.readFileSync(f, 'utf8')) as PesanChat[]) : [];
+export function readChat(agent: ChatAgent): ChatMessage[] {
+  const f = chatFile(agent);
+  return fs.existsSync(f) ? (JSON.parse(fs.readFileSync(f, 'utf8')) as ChatMessage[]) : [];
 }
 
-export function tambahChat(agen: AgenChat, pesan: Omit<PesanChat, 'waktu'>): PesanChat {
-  const baru = { waktu: new Date().toISOString(), ...pesan };
-  fs.writeFileSync(fileChat(agen), JSON.stringify([...bacaChat(agen), baru], null, 2));
-  return baru;
+export function addChatMessage(agent: ChatAgent, message: Omit<ChatMessage, 'time'>): ChatMessage {
+  const newMsg = { time: new Date().toISOString(), ...message };
+  fs.writeFileSync(chatFile(agent), JSON.stringify([...readChat(agent), newMsg], null, 2));
+  return newMsg;
 }
 
-export function hapusChat(agen: AgenChat) {
-  fs.rmSync(fileChat(agen), { force: true });
+export function deleteChat(agent: ChatAgent) {
+  fs.rmSync(chatFile(agent), { force: true });
 }

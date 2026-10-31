@@ -18,16 +18,16 @@ yang (1) dicari orang tua & anak Indonesia, (2) belum banyak dibuat dengan baik,
    terlalu panjang, atau tidak berbahasa Indonesia.
 
 ## Output
-- `laporan`: ringkasan riset dalam Markdown (temuan utama, tabel kata kunci & sinyal
+- `report`: ringkasan riset dalam Markdown (temuan utama, tabel kata kunci & sinyal
   permintaan, rekomendasi strategi minggu ini). Maksimal ±400 kata.
-- `ide`: sejumlah ide yang diminta (biasanya 3–5; riset harian minimal 4). Setiap ide harus punya seri yang ada di daftar seri,
-  usia target, pesan moral yang konkret, alasan berbasis data, dan referensi
+- `ideas`: sejumlah ide yang diminta (biasanya 3–5; riset harian minimal 4). Setiap ide harus punya series yang ada di daftar seri,
+  usia target, pesan moral yang konkret, alasan berbasis data, dan references
   (judul/URL video pembanding atau sumber).
 
 Setiap ide juga punya `format`:
 - `short`: satu konsep yang bisa selesai < 60 detik (satu doa pendek, satu adab,
   satu pertanyaan "kenapa", tebak-tebakan). Bagus untuk menjangkau penonton baru.
-- `biasa`: cerita dengan konflik & penyelesaian, kisah, atau topik yang butuh penjelasan.
+- `standard`: cerita dengan konflik & penyelesaian, kisah, atau topik yang butuh penjelasan.
 Usulkan campuran keduanya bila cocok.
 
 Jangan mengusulkan ide yang melanggar pedoman (misalnya memvisualisasikan Nabi).
