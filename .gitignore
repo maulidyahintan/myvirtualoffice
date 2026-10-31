@@ -12,3 +12,4 @@ data/renders/
 data/otomatis.json
 packages/video/public/audio/*
 !packages/video/public/audio/.gitkeep
+.claude/worktrees/
