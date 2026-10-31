@@ -1,13 +1,13 @@
 import React from 'react';
 import { Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { Action, HeldItem, Expression, Character as KarakterId } from '@kantor/shared/types';
-import { faseMakan, kelopak, mulutBicara, type Mulut, type PropsRig } from './gerak';
-import { Ibu } from './Ibu';
+import { eatingPhase, eyelid, talkingMouth, type Mouth, type RigProps } from './motion';
+import { Mother } from './Mother';
 import { Mamas } from './Mamas';
 import { Mochi } from './Mochi';
 
 /** Cara karakter muncul di adegan. */
-export type CaraMasuk = 'kiri' | 'kanan' | 'muncul' | 'ada';
+export type Entrance = 'kiri' | 'kanan' | 'muncul' | 'ada';
 
 interface Props {
   id: KarakterId;
@@ -21,7 +21,7 @@ interface Props {
   /** arah pandang -1 (kiri layar) .. 1 (kanan layar), misal ke arah yang sedang bicara */
   lihatX?: number;
   /** kiri/kanan = berjalan masuk dari sisi layar, muncul = pegas, ada = langsung tampil */
-  masuk?: CaraMasuk;
+  masuk?: Entrance;
   /** tanpa animasi masuk (untuk thumbnail / gambar diam) */
   diam?: boolean;
   action?: Action;
@@ -48,7 +48,7 @@ export const CharacterFigure: React.FC<Props> = ({
   const { fps } = useVideoConfig();
   const f = frame + offset;
   const seed = SEED[id] ?? 0;
-  const cara: CaraMasuk = diam ? 'ada' : masuk;
+  const cara: Entrance = diam ? 'ada' : masuk;
 
   // --- masuk: berjalan dari sisi layar atau pop dengan pegas
   let geserMasuk = 0;
@@ -104,13 +104,13 @@ export const CharacterFigure: React.FC<Props> = ({
   const sy = (1 + napas * 0.01 + tekanBicara + regang) * skalaMuncul;
   const sx = (1 - napas * 0.006 + tekanBicara * 0.5 - regang * 0.6) * skalaMuncul;
 
-  const rig: PropsRig = {
+  const rig: RigProps = {
     expression,
     bicara,
     lambai,
     f,
-    tutup: kelopak(f, seed),
-    mulut: bicara && id !== 'mochi' ? mulutBicara(f, seed) : action === 'eating' ? mulutMakan(f) : { buka: 0, bulat: 0 },
+    tutup: eyelid(f, seed),
+    mulut: bicara && id !== 'mochi' ? talkingMouth(f, seed) : action === 'eating' ? mulutMakan(f) : { buka: 0, bulat: 0 },
     lihatX: lihat,
     seed,
     jalan,
@@ -132,20 +132,20 @@ export const CharacterFigure: React.FC<Props> = ({
       <ellipse cx={120} cy={392} rx={(78 + napas * 2) * (1 - naik / 120)} ry={10} fill="rgba(0,0,0,0.15)" />
       <g transform={`translate(${goyang} ${-naik}) translate(120 392) scale(${sx} ${sy}) translate(-120 -392)`}>
         {id === 'mamas' && <Mamas {...rig} />}
-        {id === 'mother' && <Ibu {...rig} />}
+        {id === 'mother' && <Mother {...rig} />}
         {id === 'mochi' && <Mochi {...rig} />}
       </g>
     </svg>
   );
 };
 
-/** Mulut saat makan: terbuka menyambut makanan, lalu mengunyah. */
-function mulutMakan(f: number): Mulut {
+/** Mouth saat makan: terbuka menyambut makanan, lalu mengunyah. */
+function mulutMakan(f: number): Mouth {
   const p = (f % 72) / 72;
-  if (faseMakan(f) > 0.6) return { buka: 0.55, bulat: 1 };
+  if (eatingPhase(f) > 0.6) return { buka: 0.55, bulat: 1 };
   if (p >= 0.6) return { buka: Math.max(0, Math.sin(f / 2.5)) * 0.3, bulat: 0 };
   return { buka: 0, bulat: 0 };
 }
 
 /** Tinggi relatif tiap karakter supaya proporsinya masuk akal. */
-export const SKALA: Record<KarakterId, number> = { mamas: 0.82, mother: 1.22, mochi: 0.5 };
+export const CHARACTER_SCALE: Record<KarakterId, number> = { mamas: 0.82, mother: 1.22, mochi: 0.5 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { MemorizationVerse } from '@kantor/shared/types';
-import { Backdrop, LATAR_GELAP, LapisanSuasana } from './backgrounds/Latar';
-import { gayaPanggung, gayaTransisi, jepit } from './Adegan';
-import { CharacterFigure } from './characters/Karakter';
-import { fontArab, fontJudul, fontTeks, warna } from './theme';
+import { Backdrop, DARK_BACKGROUNDS, AmbienceLayer } from './backgrounds/Backdrop';
+import { stageStyle, transitionStyle, clampCamera } from './SceneView';
+import { CharacterFigure } from './characters/CharacterFigure';
+import { arabicFont, titleFont, textFont, warna } from './theme';
 
 // Satu ayat dalam video hafalan. Ayat bisa dibaca berulang (ulang),
 // latar tetap sama selama pengulangan, hanya penanda bacaan yang berganti.
@@ -24,13 +24,13 @@ const NomorAyat: React.FC<{ number: number; ukuran: number }> = ({ number, ukura
       fill={warna.emas}
     />
     <circle cx={50} cy={50} r={30} fill="#FFFBF0" stroke="#2F6F5E" strokeWidth={4} />
-    <text x={50} y={62} textAnchor="middle" fontFamily={fontJudul} fontWeight={700} fontSize={number > 99 ? 26 : 34} fill="#2F6F5E">
+    <text x={50} y={62} textAnchor="middle" fontFamily={titleFont} fontWeight={700} fontSize={number > 99 ? 26 : 34} fill="#2F6F5E">
       {number}
     </text>
   </svg>
 );
 
-export const AyatHafalanView: React.FC<{
+export const VerseView: React.FC<{
   verse: MemorizationVerse;
   surahName: string;
   /** urutan ayat (bukan basmalah) & jumlah ayat yang dihafal */
@@ -48,7 +48,7 @@ export const AyatHafalanView: React.FC<{
   const { fps, width: fw, height: fh } = useVideoConfig();
   const vertikal = fh > fw;
   const isi = frame - transisi;
-  const gelap = LATAR_GELAP.includes(verse.background);
+  const gelap = DARK_BACKGROUNDS.includes(verse.background);
   const basmalah = verse.number === 0;
 
   // bacaan ke berapa sekarang
@@ -62,13 +62,13 @@ export const AyatHafalanView: React.FC<{
 
   // kamera pelan mendekat sepanjang ayat
   const t = interpolate(frame, [0, durasi], [0, 1], { easing: Easing.inOut(Easing.sin) });
-  const kam = jepit({ x: 960 + (indeks % 2 ? 1 : -1) * 80 * t, y: 540, z: 1.04 + t * 0.08 }, fw, fh);
+  const kam = clampCamera({ x: 960 + (indeks % 2 ? 1 : -1) * 80 * t, y: 540, z: 1.04 + t * 0.08 }, fw, fh);
   const pTransisi = transisi > 0 ? interpolate(frame, [0, transisi], [0, 1], { extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) }) : 1;
   const progresKini = interpolate(frame, [0, durasi], progres, { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
   const lebarKartu = vertikal ? 960 : 1500;
   const pil: React.CSSProperties = {
-    fontFamily: fontTeks,
+    fontFamily: textFont,
     fontWeight: 800,
     fontSize: vertikal ? 38 : 34,
     color: '#2F6F5E',
@@ -79,10 +79,10 @@ export const AyatHafalanView: React.FC<{
   };
 
   return (
-    <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...gayaTransisi(indeks, pTransisi) }}>
-      <div style={gayaPanggung(kam, fw, fh)}>
+    <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...transitionStyle(indeks, pTransisi) }}>
+      <div style={stageStyle(kam, fw, fh)}>
         <Backdrop id={verse.background} />
-        <LapisanSuasana moods={verse.moods} />
+        <AmbienceLayer moods={verse.moods} />
       </div>
       {/* lapisan lembut supaya text mudah dibaca */}
       <AbsoluteFill
@@ -133,7 +133,7 @@ export const AyatHafalanView: React.FC<{
           <div
             dir="rtl"
             style={{
-              fontFamily: fontArab,
+              fontFamily: arabicFont,
               fontWeight: 700,
               fontSize: ukuranArab(verse.arabic, vertikal),
               lineHeight: 1.75,
@@ -143,17 +143,17 @@ export const AyatHafalanView: React.FC<{
           >
             {verse.arabic}
           </div>
-          <div style={{ fontFamily: fontTeks, fontStyle: 'italic', fontWeight: 700, fontSize: vertikal ? 38 : 36, color: '#5A5470', marginTop: 12 }}>
+          <div style={{ fontFamily: textFont, fontStyle: 'italic', fontWeight: 700, fontSize: vertikal ? 38 : 36, color: '#5A5470', marginTop: 12 }}>
             {verse.latin}
           </div>
-          <div style={{ fontFamily: fontTeks, fontWeight: 700, fontSize: vertikal ? 36 : 32, color: '#2F6F5E', marginTop: 12, lineHeight: 1.35 }}>
+          <div style={{ fontFamily: textFont, fontWeight: 700, fontSize: vertikal ? 36 : 32, color: '#2F6F5E', marginTop: 12, lineHeight: 1.35 }}>
             “{verse.meaning}”
           </div>
 
           {/* penanda bacaan berulang */}
           {mulaiBacaan.length > 1 ? (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, marginTop: 20 }}>
-              <span style={{ fontFamily: fontTeks, fontWeight: 800, fontSize: 28, color: '#8A7F6A' }}>Ulangi:</span>
+              <span style={{ fontFamily: textFont, fontWeight: 800, fontSize: 28, color: '#8A7F6A' }}>Ulangi:</span>
               {mulaiBacaan.map((_, i) => (
                 <div
                   key={i}

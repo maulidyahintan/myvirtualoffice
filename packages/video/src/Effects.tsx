@@ -1,7 +1,7 @@
 import React from 'react';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { Expression } from '@kantor/shared/types';
-import { fontJudul, warna } from './theme';
+import { titleFont, warna } from './theme';
 
 // Efek kecil di atas kepala karakter supaya emosi terbaca anak-anak.
 // Semua gerak pelan & lembut (pedoman: tidak overstimulating).
@@ -14,7 +14,7 @@ const Kilau: React.FC<{ r: number; warnaIsi: string }> = ({ r, warnaIsi }) => (
   <path d={`M0 ${-r} Q${r * 0.2} ${-r * 0.2} ${r} 0 Q${r * 0.2} ${r * 0.2} 0 ${r} Q${-r * 0.2} ${r * 0.2} ${-r} 0 Q${-r * 0.2} ${-r * 0.2} 0 ${-r} Z`} fill={warnaIsi} />
 );
 
-export const EfekEkspresi: React.FC<{ expression: Expression; x: number; y: number; mulai?: number }> = ({ expression, x, y, mulai = 0 }) => {
+export const ExpressionEffect: React.FC<{ expression: Expression; x: number; y: number; mulai?: number }> = ({ expression, x, y, mulai = 0 }) => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame() - mulai;
   if (frame < 0) return null;
@@ -38,7 +38,7 @@ export const EfekEkspresi: React.FC<{ expression: Expression; x: number; y: numb
         {[-50, -20, 20, 50].map((a) => (
           <line key={a} x1={0} y1={-56} x2={0} y2={-80} transform={`rotate(${a} 0 0)`} stroke={warna.emas} strokeWidth={7} strokeLinecap="round" />
         ))}
-        <text x={0} y={10} textAnchor="middle" fontFamily={fontJudul} fontWeight={700} fontSize={78} fill="#F06A5A" stroke="#fff" strokeWidth={6} paintOrder="stroke">
+        <text x={0} y={10} textAnchor="middle" fontFamily={titleFont} fontWeight={700} fontSize={78} fill="#F06A5A" stroke="#fff" strokeWidth={6} paintOrder="stroke">
           !
         </text>
       </g>
@@ -51,7 +51,7 @@ export const EfekEkspresi: React.FC<{ expression: Expression; x: number; y: numb
         <circle cx={-18} cy={4} r={11 * muncul(1)} fill="#fff" stroke="#B9C4D6" strokeWidth={3} />
         <g transform={`translate(18 -46) scale(${muncul(2)}) rotate(${Math.sin(frame / 10) * 8})`}>
           <ellipse cx={0} cy={0} rx={44} ry={36} fill="#fff" stroke="#B9C4D6" strokeWidth={3} />
-          <text x={0} y={20} textAnchor="middle" fontFamily={fontJudul} fontWeight={700} fontSize={56} fill="#5B7FC7">
+          <text x={0} y={20} textAnchor="middle" fontFamily={titleFont} fontWeight={700} fontSize={56} fill="#5B7FC7">
             ?
           </text>
         </g>

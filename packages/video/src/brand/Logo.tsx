@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { fontJudul } from '../theme';
+import { titleFont } from '../theme';
 
 // Logo channel: bulan sabit tersenyum + tulisan "Tasnie" warna-warni.
 // Dipakai di intro/outro video, avatar, dan banner YouTube.
@@ -76,7 +76,7 @@ export const TulisanLogo: React.FC<{ tinggi: number; text?: string; animasi?: bo
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-end', fontFamily: fontJudul, fontWeight: 700, fontSize: tinggi, lineHeight: 1 }}>
+    <div style={{ display: 'flex', alignItems: 'flex-end', fontFamily: titleFont, fontWeight: 700, fontSize: tinggi, lineHeight: 1 }}>
       {text.split('').map((h, i) => {
         const s = animasi ? spring({ frame: frame - mulai - i * 3, fps, config: { damping: 9, stiffness: 170 } }) : 1;
         const ayun = animasi ? Math.sin(frame / 14 + i * 0.9) * 3 : 0;

@@ -257,7 +257,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
   }
 };
 
-export const LatarDepan: React.FC<{ id: LatarId }> = ({ id }) => (
+export const Foreground: React.FC<{ id: LatarId }> = ({ id }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible' }}>
     <Isi id={id} />
   </svg>

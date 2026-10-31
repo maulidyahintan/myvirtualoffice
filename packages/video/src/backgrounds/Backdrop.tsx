@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import type { Background as LatarId, Mood as SuasanaId } from '@kantor/shared/types';
-import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, SinarJendela, Uap } from './Suasana';
+import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, SinarJendela, Uap } from './Ambience';
 
 const W = 1920;
 const H = 1080;
@@ -741,7 +741,7 @@ const Toko = () => (
 );
 
 /** Lapisan gerak moods tambahan di atas latar (video hafalan). */
-export const LapisanSuasana: React.FC<{ moods: SuasanaId[] }> = ({ moods }) => (
+export const AmbienceLayer: React.FC<{ moods: SuasanaId[] }> = ({ moods }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
     {moods.includes('light') && <Cahaya />}
     {moods.includes('stars') && <BintangKelip />}
@@ -787,4 +787,4 @@ export const Backdrop: React.FC<{ id: LatarId }> = ({ id }) => (
 );
 
 /** Latar gelap → text dibuat terang. */
-export const LATAR_GELAP: LatarId[] = ['bedroom-night', 'night-sky', 'dawn'];
+export const DARK_BACKGROUNDS: LatarId[] = ['bedroom-night', 'night-sky', 'dawn'];

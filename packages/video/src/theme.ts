@@ -13,9 +13,9 @@ font('Nunito', 'nunito-latin-800-normal.woff2', '800');
 font('Noto Naskh Arabic', 'noto-naskh-arabic-arabic-500-normal.woff2', '500');
 font('Noto Naskh Arabic', 'noto-naskh-arabic-arabic-700-normal.woff2', '700');
 
-export const fontJudul = 'Fredoka, sans-serif';
-export const fontTeks = 'Nunito, sans-serif';
-export const fontArab = '"Noto Naskh Arabic", serif';
+export const titleFont = 'Fredoka, sans-serif';
+export const textFont = 'Nunito, sans-serif';
+export const arabicFont = '"Noto Naskh Arabic", serif';
 
 // Palet lembut (tidak menyilaukan, ramah mata anak)
 export const warna = {

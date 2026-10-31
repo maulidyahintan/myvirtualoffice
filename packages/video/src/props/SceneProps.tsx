@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import type { CharacterAction, Character, SceneProp as PropertiId } from '@kantor/shared/types';
-import { diMeja, MejaMakanan, PropertiLantai } from './Benda';
+import { isTableFood, FoodTable, FloorProp } from './ItemArt';
 
 // Menata properti adegan di lantai panggung (koordinat 1920x1080): makanan dikumpulkan di satu
 // meja kecil, sajadah di bawah tokoh, sisanya mengisi ruang kosong di samping tokoh.
@@ -18,7 +18,7 @@ function cariTempat(lebar: number, xs: number[], terpakai: Letak[], vertikal: bo
   );
 }
 
-export const PropertiAdegan: React.FC<{
+export const ScenePropsLayer: React.FC<{
   props: PropertiId[];
   actions: CharacterAction[];
   urut: Character[];
@@ -41,7 +41,7 @@ export const PropertiAdegan: React.FC<{
       const x = iTokoh >= 0 ? xs[iTokoh] : xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 960;
       isi.push(
         <g key="prayer-mat" transform={`translate(${x} ${lantai + 24 * skala}) scale(${skala})`}>
-          <PropertiLantai id="prayer-mat" frame={frame} />
+          <FloorProp id="prayer-mat" frame={frame} />
         </g>,
       );
     }
@@ -50,13 +50,13 @@ export const PropertiAdegan: React.FC<{
     if (iMochi >= 0 && actions.some((a) => a.character === 'mochi' && a.action === 'sleeping')) {
       isi.push(
         <g key="pillow" transform={`translate(${xs[iMochi]} ${lantai + 10}) scale(${skala * 0.9})`}>
-          <PropertiLantai id="pillow" frame={frame} />
+          <FloorProp id="pillow" frame={frame} />
         </g>,
       );
     }
   } else {
     const terpakai: Letak[] = [];
-    const makanan = unik.filter(diMeja);
+    const makanan = unik.filter(isTableFood);
     if (makanan.length) {
       const lebar = Math.max(170, makanan.length * 100 + 40) * skala;
       const x = cariTempat(lebar, xs, terpakai, vertikal);
@@ -66,13 +66,13 @@ export const PropertiAdegan: React.FC<{
           lebar,
           isi: (
             <g key="meja" transform={`translate(${x} ${lantai}) scale(${skala})`}>
-              <MejaMakanan isi={makanan} />
+              <FoodTable isi={makanan} />
             </g>
           ),
         });
       }
     }
-    for (const p of unik.filter((p) => !diMeja(p) && p !== 'prayer-mat' && p !== 'pillow')) {
+    for (const p of unik.filter((p) => !isTableFood(p) && p !== 'prayer-mat' && p !== 'pillow')) {
       const lebar = (p === 'potted-tree' ? 200 : p === 'toy-box' ? 150 : p === 'quran-stand' ? 140 : 110) * skala;
       const x = cariTempat(lebar, xs, terpakai, vertikal);
       if (x === undefined) continue;
@@ -81,7 +81,7 @@ export const PropertiAdegan: React.FC<{
         lebar,
         isi: (
           <g key={p} transform={`translate(${x} ${lantai}) scale(${skala})`}>
-            <PropertiLantai id={p} frame={frame} />
+            <FloorProp id={p} frame={frame} />
           </g>
         ),
       });

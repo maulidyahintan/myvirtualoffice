@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
 import type { Expression } from '@kantor/shared/types';
-import { kelopak, mulutBicara, noiseS } from '../characters/gerak';
+import { eyelid, talkingMouth, noiseS } from '../characters/motion';
 
 // PROTOTIPE: Mamas versi 3D dari bentuk dasar three.js, mengikuti desain 2D
 // (kepala chibi besar, peci rajut biru, koko putih berkerah abu-abu, panel motif, celana abu, sepatu putih).
@@ -150,9 +150,9 @@ export const Mamas3D: React.FC<{
   const tolehY = lihatX * 0.35 + (expression === 'thinking' ? 0.15 : 0);
 
   // --- wajah
-  const tutup = kelopak(f, 1);
+  const tutup = eyelid(f, 1);
   const mataTinggi = Math.max(0.08, 1 - tutup) * (expression === 'surprised' ? 1.12 : 1);
-  const mulut = bicara ? mulutBicara(f, 1) : { buka: expression === 'surprised' ? 0.7 : 0, bulat: expression === 'surprised' ? 1 : 0 };
+  const mulut = bicara ? talkingMouth(f, 1) : { buka: expression === 'surprised' ? 0.7 : 0, bulat: expression === 'surprised' ? 1 : 0 };
   const mataSenyum = senang && !bicara;
 
   // --- lengan: pivot di bahu. z = ayun depan/belakang, x = buka ke samping

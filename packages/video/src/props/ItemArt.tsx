@@ -145,10 +145,10 @@ const Piring: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
 );
 
 const MAKANAN: PropertiId[] = ['apple', 'banana', 'date', 'cake', 'milk-glass', 'fruit-plate', 'rice-plate'];
-export const diMeja = (p: PropertiId) => MAKANAN.includes(p);
+export const isTableFood = (p: PropertiId) => MAKANAN.includes(p);
 
 /** Isi meja makan (dipanggil sekali untuk semua properti makanan sebuah adegan). */
-export const MejaMakanan: React.FC<{ isi: PropertiId[] }> = ({ isi }) => {
+export const FoodTable: React.FC<{ isi: PropertiId[] }> = ({ isi }) => {
   const lebar = Math.max(170, isi.length * 100 + 40);
   return (
     <MejaKecil lebar={lebar}>
@@ -189,7 +189,7 @@ export const MejaMakanan: React.FC<{ isi: PropertiId[] }> = ({ isi }) => {
 };
 
 /** Properti lantai (bukan makanan). Alas di y = 0, ukuran di koordinat panggung 1920x1080. */
-export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id, frame }) => {
+export const FloorProp: React.FC<{ id: PropertiId; frame: number }> = ({ id, frame }) => {
   switch (id) {
     case 'fruit-basket':
       return (

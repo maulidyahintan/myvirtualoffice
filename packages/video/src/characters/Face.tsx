@@ -1,22 +1,22 @@
 import React, { useId } from 'react';
 import type { Expression } from '@kantor/shared/types';
-import type { Mulut } from './gerak';
+import type { Mouth } from './motion';
 
 /**
- * Wajah gaya chibi lembut untuk Mamas & Ibu: mata besar dengan iris gelap
+ * Face gaya chibi lembut untuk Mamas & Mother: mata besar dengan iris gelap
  * yang hampir memenuhi mata dan kilau besar, alis tipis yang tinggi,
  * pipi merona, hidung mungil, tanpa garis tepi gelap.
  * Koordinat relatif terhadap pusat wajah (0,0).
  * Kelopak mata digambar sebagai "tirai" warna kulit di dalam bentuk mata,
  * jadi kedip, mata sayu, dan mata tersenyum memakai mekanisme yang sama.
  */
-export const Wajah: React.FC<{
+export const Face: React.FC<{
   expression: Expression;
   gaya: 'anak' | 'mother';
   kulit: string;
   /** 0 = terbuka, 1 = tertutup (kedip) */
   tutup: number;
-  mulut: Mulut;
+  mulut: Mouth;
   bicara: boolean;
   /** arah pandang -1..1 */
   lihatX: number;
@@ -34,7 +34,7 @@ export const Wajah: React.FC<{
   const berpikir = expression === 'thinking';
   const garisMata = '#2A1A14';
 
-  // kelopak atas (0..1) & pipi naik dari bawah (0..1) per expression
+  // eyelid atas (0..1) & pipi naik dari bawah (0..1) per expression
   let kelopakAtas = 0;
   let pipiNaik = 0;
   if (expression === 'sad') kelopakAtas = 0.22;
@@ -98,11 +98,11 @@ export const Wajah: React.FC<{
           <ellipse cx={x + px + sx * 0.32} cy={mataY + py - sy * 0.34} rx={sx * 0.36} ry={sy * 0.32} fill="#FFFFFF" />
           <circle cx={x + px - sx * 0.34} cy={mataY + py + sy * 0.38} r={sx * 0.13} fill="#FFFFFF" opacity={0.9} />
           <ellipse cx={x + px} cy={mataY + py + sy * 0.6} rx={sx * 0.5} ry={sy * 0.18} fill="#C88A60" opacity={0.35} />
-          {/* tirai kelopak */}
+          {/* tirai eyelid */}
           {tirai > 0.5 ? <rect x={x - sx - 2} y={top - 2} width={sx * 2 + 4} height={tirai + 2} fill={kulit} /> : null}
           {pipiNaik > 0 ? <ellipse cx={x} cy={mataY + sy * 1.75 - pipiNaik * sy} rx={sx * 1.3} ry={sy} fill={kulit} /> : null}
         </g>
-        {/* garis kelopak atas yang tebal & lembut */}
+        {/* garis eyelid atas yang tebal & lembut */}
         <path
           d={`M${x - sx * 1.02} ${mataY - sy * 0.15 + tirai * 0.85} Q${x - sx * 0.6} ${top - 1 + tirai} ${x} ${top - 1 + tirai} Q${x + sx * 0.6} ${top - 1 + tirai} ${x + sx * 1.02} ${mataY - sy * 0.15 + tirai * 0.85}`}
           stroke={garisMata}

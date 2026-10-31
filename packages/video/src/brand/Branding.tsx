@@ -1,7 +1,7 @@
 import React from 'react';
 import { AbsoluteFill } from 'remotion';
-import { CharacterFigure } from '../characters/Karakter';
-import { fontTeks } from '../theme';
+import { CharacterFigure } from '../characters/CharacterFigure';
+import { textFont } from '../theme';
 import { IkonBulan, Logo, WARNA_BRAND } from './Logo';
 
 // Aset branding YouTube. Render dengan:
@@ -112,7 +112,7 @@ export const Banner: React.FC = () => (
         style={{
           marginTop: 20,
           marginLeft: 12,
-          fontFamily: fontTeks,
+          fontFamily: textFont,
           fontWeight: 800,
           fontSize: 40,
           whiteSpace: 'nowrap',

@@ -1,11 +1,11 @@
 import React, { useId } from 'react';
-import { campurPose, faseMakan, noise, noiseS, type PoseLengan, type PropsRig } from './gerak';
-import { Quran } from '../properti/Benda';
-import { bendaDipegang } from './Mamas';
-import { Lengan } from './Lengan';
-import { Wajah } from './Wajah';
+import { mixPose, eatingPhase, noise, noiseS, type ArmPose, type RigProps } from './motion';
+import { Quran } from '../props/ItemArt';
+import { heldItemArt } from './Mamas';
+import { Arm } from './Arm';
+import { Face } from './Face';
 
-// Ibu: kerudung pink panjang menutup dada, abaya navy sampai mata kaki.
+// Mother: kerudung pink panjang menutup dada, abaya navy sampai mata kaki.
 const w = {
   kulit: '#F7CFB4',
   kerudung: '#F3A9C2',
@@ -19,11 +19,11 @@ const w = {
   garis: '#4A3A40',
 };
 
-function poseIbu(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
+function poseIbu(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
   // posisi dasar: kedua tangan bertaut lembut di depan
   const taut = Math.sin(f / 30) * 2;
-  const bertaut: PoseLengan = { bahu: -12 + taut, siku: -42 };
+  const bertaut: ArmPose = { bahu: -12 + taut, siku: -42 };
   if (r.jalan !== null) {
     const s = Math.sin(r.jalan) * 12;
     return { kiri: { bahu: 4 + s, siku: 10 }, kanan: { bahu: 4 - s, siku: 10 } };
@@ -31,8 +31,8 @@ function poseIbu(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
   if (lambai) {
     return { kiri: { bahu: 140, siku: 20 + Math.sin(f / 5) * 20 }, kanan: { bahu: -12 - taut, siku: -42 } };
   }
-  const pegang: PoseLengan = { bahu: 8 + taut, siku: -88 };
-  const kiriAksi: PoseLengan = bicara ? { bahu: 6 + noise(f / 24, r.seed + 5) * 22, siku: 30 + noise(f / 24, r.seed + 5) * 60 } : bertaut;
+  const pegang: ArmPose = { bahu: 8 + taut, siku: -88 };
+  const kiriAksi: ArmPose = bicara ? { bahu: 6 + noise(f / 24, r.seed + 5) * 22, siku: 30 + noise(f / 24, r.seed + 5) * 60 } : bertaut;
   switch (r.action) {
     case 'reading-quran':
       return { kiri: { bahu: -16, siku: -70 }, kanan: { bahu: -16, siku: -70 } };
@@ -41,7 +41,7 @@ function poseIbu(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
       return { kiri: { bahu: 20 + s, siku: -140 }, kanan: { bahu: 20 + s, siku: -140 } };
     }
     case 'eating':
-      return { kiri: kiriAksi, kanan: campurPose(pegang, { bahu: -30, siku: -132 }, faseMakan(f)) };
+      return { kiri: kiriAksi, kanan: mixPose(pegang, { bahu: -30, siku: -132 }, eatingPhase(f)) };
     case 'holding':
     case 'playing':
       return { kiri: kiriAksi, kanan: pegang };
@@ -63,7 +63,7 @@ function poseIbu(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
   return { kiri: bertaut, kanan: { bahu: -12 - taut, siku: -42 } };
 }
 
-export const Ibu: React.FC<PropsRig> = (r) => {
+export const Mother: React.FC<RigProps> = (r) => {
   const id = useId().replace(/:/g, '');
   const { f, expression, bicara } = r;
   const pose = poseIbu(r);
@@ -86,7 +86,7 @@ export const Ibu: React.FC<PropsRig> = (r) => {
   const alisNaik = bicara ? Math.max(0, noiseS(f / 11, r.seed + 7)) : 0;
 
   const tangan = (kanan: boolean) => (
-    <Lengan
+    <Arm
       x={kanan ? 166 : 74}
       y={196}
       cermin={kanan}
@@ -99,7 +99,7 @@ export const Ibu: React.FC<PropsRig> = (r) => {
       warnaTangan={w.kulit}
       garis={w.abayaBayang}
       manset={w.abayaAksen}
-      pegang={kanan ? bendaDipegang({ ...r, action: r.action === 'playing' ? 'holding' : r.action }) : undefined}
+      pegang={kanan ? heldItemArt({ ...r, action: r.action === 'playing' ? 'holding' : r.action }) : undefined}
     />
   );
 
@@ -161,7 +161,7 @@ export const Ibu: React.FC<PropsRig> = (r) => {
         <path d="M76 98 Q78 52 120 50 Q162 52 164 98 Q150 72 120 70 Q90 72 76 98 Z" fill="#F6B3CA" />
         <path d="M80 86 Q120 60 160 86" stroke={w.ciput} strokeWidth={4} fill="none" strokeLinecap="round" />
         <g transform="translate(120 108)">
-          <Wajah
+          <Face
             expression={expression}
             gaya="mother"
             kulit="#F7CFB4"

@@ -1,7 +1,7 @@
 import type { EpisodeVideoProps, ThumbnailProps } from '@kantor/shared/types';
 
 // Data contoh untuk pratinjau di Remotion Studio (npm run studio).
-export const contohEpisode: EpisodeVideoProps = {
+export const sampleEpisode: EpisodeVideoProps = {
   channelName: 'Tasnie Office',
   seriesName: 'Doa Harian Mamas',
   title: 'Bismillah Sebelum Makan',
@@ -66,7 +66,7 @@ export const contohEpisode: EpisodeVideoProps = {
 };
 
 // Contoh Shorts: cerita yang sama dipadatkan jadi < 60 detik.
-export const contohShort: EpisodeVideoProps = {
+export const sampleShort: EpisodeVideoProps = {
   channelName: 'Tasnie Office',
   seriesName: '',
   title: 'Bismillah Dulu!',
@@ -96,7 +96,7 @@ export const contohShort: EpisodeVideoProps = {
       characters: [],
       expression: 'calm',
       screenText: 'Doa Sebelum Makan',
-      prayer: contohEpisode.scenes[4].prayer,
+      prayer: sampleEpisode.scenes[4].prayer,
     },
     {
       type: 'story',
@@ -111,7 +111,7 @@ export const contohShort: EpisodeVideoProps = {
 };
 
 // Contoh memorization: Surat Al-Ikhlas (text dari equran.id / Kemenag RI), tiap ayat 3x.
-export const contohHafalan: EpisodeVideoProps = {
+export const sampleMemorization: EpisodeVideoProps = {
   channelName: 'Tasnie Office',
   seriesName: 'Hafalan Surat',
   title: 'Hafalan Surat Al-Ikhlas',
@@ -165,7 +165,7 @@ export const contohHafalan: EpisodeVideoProps = {
   },
 };
 
-export const contohThumbnail: ThumbnailProps = {
+export const sampleThumbnail: ThumbnailProps = {
   text: 'Bismillah Dulu, Ya!',
   background: 'kitchen',
   characters: ['mother', 'mamas'],

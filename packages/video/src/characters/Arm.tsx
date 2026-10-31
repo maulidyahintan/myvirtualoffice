@@ -1,16 +1,16 @@
 import React from 'react';
-import type { PoseLengan } from './gerak';
+import type { ArmPose } from './motion';
 
 /**
- * Lengan dua ruas (lengan atas + lengan bawah) dengan tangan.
- * Digambar menggantung ke bawah dari titik bahu (x, y). Lengan kanan layar
+ * Arm dua ruas (lengan atas + lengan bawah) dengan tangan.
+ * Digambar menggantung ke bawah dari titik bahu (x, y). Arm kanan layar
  * memakai `cermin`, sehingga sudut positif selalu berarti "menjauh dari badan".
  */
-export const Lengan: React.FC<{
+export const Arm: React.FC<{
   x: number;
   y: number;
   cermin?: boolean;
-  pose: PoseLengan;
+  pose: ArmPose;
   atas: number;
   bawah: number;
   tebal: number;

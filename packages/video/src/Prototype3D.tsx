@@ -3,9 +3,9 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Easing } fr
 import { ThreeCanvas } from '@remotion/three';
 import { useThree } from '@react-three/fiber';
 import type { Expression } from '@kantor/shared/types';
-import { Backdrop } from './backgrounds/Latar';
+import { Backdrop } from './backgrounds/Backdrop';
 import { Mamas3D } from './characters3d/Mamas3D';
-import { fontJudul, warna } from './theme';
+import { titleFont, warna } from './theme';
 
 // PROTOTIPE: Mamas 3D di depan latar 2D yang sudah ada, untuk menilai arah gaya 3D.
 // Urutan: berputar (turntable) sambil melambai → bicara sambil kamera mengorbit → kaget → berpikir → senang.
@@ -17,9 +17,9 @@ const BABAK: { sampai: number; expression: Expression; bicara: boolean; lambai: 
   { sampai: 320, expression: 'thinking', bicara: false, lambai: false, label: 'Berpikir' },
   { sampai: 390, expression: 'happy', bicara: false, lambai: false, label: 'Senang (melompat)' },
 ];
-export const DURASI_PROTOTIPE_3D = BABAK.at(-1)!.sampai;
+export const PROTOTYPE_3D_DURATION = BABAK.at(-1)!.sampai;
 
-export const Prototipe3D: React.FC = () => {
+export const Prototype3D: React.FC = () => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const babak = BABAK.find((b) => frame < b.sampai) ?? BABAK.at(-1)!;
@@ -52,7 +52,7 @@ export const Prototipe3D: React.FC = () => {
           position: 'absolute',
           left: 60,
           top: 50,
-          fontFamily: fontJudul,
+          fontFamily: titleFont,
           fontSize: 44,
           color: warna.teksGelap,
           background: 'rgba(255,255,255,0.85)',

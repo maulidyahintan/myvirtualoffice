@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
-import { acak } from '../characters/gerak';
+import { random } from '../characters/motion';
 
 // Gerak moods di latar supaya adegan tidak terasa diam.
 // Semua pelan & lembut, tidak ada kedip cepat.
@@ -41,9 +41,9 @@ export const DaunJatuh: React.FC<{ jumlah: number; warnaDaun: string; seed?: num
   return (
     <>
       {Array.from({ length: jumlah }, (_, i) => {
-        const periode = 260 + acak(i + seed) * 160;
-        const p = ((frame + acak(i * 3 + seed) * periode) % periode) / periode;
-        const x = acak(i * 7 + seed) * W + Math.sin(p * Math.PI * 4 + i) * 60;
+        const periode = 260 + random(i + seed) * 160;
+        const p = ((frame + random(i * 3 + seed) * periode) % periode) / periode;
+        const x = random(i * 7 + seed) * W + Math.sin(p * Math.PI * 4 + i) * 60;
         const y = -40 + p * 1000;
         return (
           <g key={i} transform={`translate(${x} ${y}) rotate(${Math.sin(p * 12 + i) * 70})`} opacity={Math.min(1, (1 - p) * 4)}>
@@ -69,11 +69,11 @@ export const Debu: React.FC<{ jumlah: number; x: number; y: number; lebar: numbe
   return (
     <>
       {Array.from({ length: jumlah }, (_, i) => {
-        const periode = 300 + acak(i) * 200;
-        const p = ((frame + acak(i * 5) * periode) % periode) / periode;
-        const px = x + acak(i * 11) * lebar + Math.sin(p * 6 + i) * 20;
+        const periode = 300 + random(i) * 200;
+        const p = ((frame + random(i * 5) * periode) % periode) / periode;
+        const px = x + random(i * 11) * lebar + Math.sin(p * 6 + i) * 20;
         const py = y + tinggi - p * tinggi;
-        return <circle key={i} cx={px} cy={py} r={2 + acak(i * 13) * 3} fill={warnaDebu} opacity={Math.sin(p * Math.PI) * 0.8} />;
+        return <circle key={i} cx={px} cy={py} r={2 + random(i * 13) * 3} fill={warnaDebu} opacity={Math.sin(p * Math.PI) * 0.8} />;
       })}
     </>
   );
@@ -120,8 +120,8 @@ export const KunangKunang: React.FC<{ jumlah: number; tinggiMaks: number; seed?:
   return (
     <>
       {Array.from({ length: jumlah }, (_, i) => {
-        const bx = acak(i * 3 + seed) * W;
-        const by = 300 + acak(i * 7 + seed) * (tinggiMaks - 300);
+        const bx = random(i * 3 + seed) * W;
+        const by = 300 + random(i * 7 + seed) * (tinggiMaks - 300);
         const x = bx + Math.sin(frame / (40 + i * 3) + i) * 60;
         const y = by + Math.cos(frame / (50 + i * 2) + i) * 40;
         const op = 0.4 + 0.6 * Math.max(0, Math.sin(frame / 25 + i * 2));
@@ -141,8 +141,8 @@ export const BintangJatuh: React.FC<{ periode?: number }> = ({ periode = 200 }) 
   const k = Math.floor(frame / periode);
   const t = (frame % periode) / 40;
   if (t > 1) return null;
-  const x0 = 300 + acak(k) * 1100;
-  const y0 = 60 + acak(k + 9) * 180;
+  const x0 = 300 + random(k) * 1100;
+  const y0 = 60 + random(k + 9) * 180;
   const x = x0 + t * 420;
   const y = y0 + t * 200;
   return (
@@ -198,9 +198,9 @@ export const Hujan: React.FC<{ jumlah?: number }> = ({ jumlah = 70 }) => {
   return (
     <g opacity={0.55}>
       {Array.from({ length: jumlah }, (_, i) => {
-        const periode = 40 + acak(i) * 20;
-        const p = ((frame + acak(i * 3) * periode) % periode) / periode;
-        const x = acak(i * 7) * (W + 200) - 100 + p * 60;
+        const periode = 40 + random(i) * 20;
+        const p = ((frame + random(i * 3) * periode) % periode) / periode;
+        const x = random(i * 7) * (W + 200) - 100 + p * 60;
         const y = -60 + p * 1180;
         return <line key={i} x1={x} y1={y} x2={x + 10} y2={y + 34} stroke="#E8F4FF" strokeWidth={3} strokeLinecap="round" />;
       })}
@@ -214,10 +214,10 @@ export const BintangKelip: React.FC<{ jumlah?: number }> = ({ jumlah = 40 }) => 
   return (
     <>
       {Array.from({ length: jumlah }, (_, i) => {
-        const x = acak(i * 5 + 1) * W;
-        const y = acak(i * 9 + 2) * 620;
+        const x = random(i * 5 + 1) * W;
+        const y = random(i * 9 + 2) * 620;
         const op = 0.35 + 0.55 * Math.max(0, Math.sin(frame / 30 + i * 1.7));
-        const r = 3 + acak(i) * 5;
+        const r = 3 + random(i) * 5;
         return (
           <path
             key={i}

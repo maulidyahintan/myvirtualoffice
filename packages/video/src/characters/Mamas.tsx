@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
-import { campurPose, faseMakan, noise, noiseS, pantulBola, type PoseLengan, type PropsRig } from './gerak';
-import { ItemArt, Quran } from '../properti/Benda';
-import { Lengan } from './Lengan';
-import { Wajah } from './Wajah';
+import { mixPose, eatingPhase, noise, noiseS, ballBounce, type ArmPose, type RigProps } from './motion';
+import { ItemArt, Quran } from '../props/ItemArt';
+import { Arm } from './Arm';
+import { Face } from './Face';
 
 // Mamas: anak laki-laki ±4 tahun. Peci rajut biru, baju koko putih
 // berkerah abu-abu, kancing kayu, panel bawah abu-abu bermotif, saku di dada.
@@ -25,10 +25,10 @@ const k = {
   garis: 'rgba(150, 95, 70, 0.35)',
 };
 
-function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
+function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
   const ayun = Math.sin(f / 26) * 3;
-  const diam: PoseLengan = { bahu: 7 + ayun, siku: 6 };
+  const diam: ArmPose = { bahu: 7 + ayun, siku: 6 };
   if (r.jalan !== null) {
     const s = Math.sin(r.jalan) * 22;
     return { kiri: { bahu: 10 + s, siku: 14 }, kanan: { bahu: 10 - s, siku: 14 } };
@@ -37,8 +37,8 @@ function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
     return { kiri: { bahu: 150, siku: 18 + Math.sin(f / 4) * 24 }, kanan: { bahu: 8 - ayun, siku: 4 } };
   }
   // actions: tangan kanan layar yang memegang/memainkan benda
-  const pegang: PoseLengan = { bahu: 16 + ayun, siku: -96 };
-  const kiriAksi: PoseLengan = bicara ? { bahu: 10 + noise(f / 22, r.seed + 5) * 30, siku: 20 + noise(f / 22, r.seed + 5) * 70 } : diam;
+  const pegang: ArmPose = { bahu: 16 + ayun, siku: -96 };
+  const kiriAksi: ArmPose = bicara ? { bahu: 10 + noise(f / 22, r.seed + 5) * 30, siku: 20 + noise(f / 22, r.seed + 5) * 70 } : diam;
   switch (r.action) {
     case 'reading-quran':
       return { kiri: { bahu: -14, siku: -74 }, kanan: { bahu: -14, siku: -74 } };
@@ -48,12 +48,12 @@ function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
       return { kiri: { bahu: 18 + s, siku: -140 }, kanan: { bahu: 18 + s, siku: -140 } };
     }
     case 'eating':
-      return { kiri: kiriAksi, kanan: campurPose(pegang, { bahu: -26, siku: -142 }, faseMakan(f)) };
+      return { kiri: kiriAksi, kanan: mixPose(pegang, { bahu: -26, siku: -142 }, eatingPhase(f)) };
     case 'playing':
       return r.heldItem === 'toy-car' || r.heldItem === 'doll'
         ? { kiri: kiriAksi, kanan: { bahu: 24 + Math.sin(f / 12) * 18, siku: -50 + Math.sin(f / 12) * 20 } }
         : // memantulkan bola: telapak menepuk bola dari atas
-          { kiri: kiriAksi, kanan: { bahu: 36, siku: 30 - pantulBola(f) * 34 } };
+          { kiri: kiriAksi, kanan: { bahu: 36, siku: 30 - ballBounce(f) * 34 } };
     case 'holding':
       return { kiri: kiriAksi, kanan: pegang };
   }
@@ -83,7 +83,7 @@ function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
   return { kiri: diam, kanan: { bahu: 7 - ayun, siku: 6 } };
 }
 
-export const Mamas: React.FC<PropsRig> = (r) => {
+export const Mamas: React.FC<RigProps> = (r) => {
   const id = useId().replace(/:/g, '');
   const { f, expression, bicara } = r;
   const pose = poseMamas(r);
@@ -108,7 +108,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
   const langkah = r.jalan !== null ? Math.sin(r.jalan) * 20 : 0;
 
   const tangan = (kanan: boolean) => (
-    <Lengan
+    <Arm
       x={kanan ? 164 : 76}
       y={216}
       cermin={kanan}
@@ -121,7 +121,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
       warnaTangan={k.kulit}
       garis={k.garis}
       lenganBaju={{ panjang: 36, warna: '#F7F5EE', garis: k.bajuGaris }}
-      pegang={kanan ? bendaDipegang(r) : undefined}
+      pegang={kanan ? heldItemArt(r) : undefined}
     />
   );
 
@@ -246,7 +246,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
         <path d="M78 56 Q104 42 132 42" stroke="#FFFFFF" strokeWidth={5} fill="none" opacity={0.35} strokeLinecap="round" />
         <path d="M58 96 Q120 84 182 96 L182 90 Q120 77 58 90 Z" fill={k.peciGelap} />
         <g transform="translate(120 132)">
-          <Wajah
+          <Face
             expression={expression}
             gaya="anak"
             kulit="#F6CBAE"
@@ -270,7 +270,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
       ) : null}
       {/* bola yang dipantulkan */}
       {r.action === 'playing' && (r.heldItem ?? 'ball') === 'ball' ? (
-        <g transform={`translate(212 ${362 - pantulBola(f) * 56})`}>
+        <g transform={`translate(212 ${362 - ballBounce(f) * 56})`}>
           <ItemArt id="ball" skala={1.5} />
         </g>
       ) : null}
@@ -279,7 +279,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
 };
 
 /** Benda di tangan kanan layar sesuai aksi (bola yang dipantulkan digambar terpisah). */
-export function bendaDipegang(r: PropsRig): React.ReactNode {
+export function heldItemArt(r: RigProps): React.ReactNode {
   if (r.action === 'holding' || r.action === 'eating') return <ItemArt id={r.heldItem ?? 'apple'} skala={1.35} />;
   if (r.action === 'playing' && r.heldItem && r.heldItem !== 'ball') return <ItemArt id={r.heldItem} skala={1.35} />;
   return null;

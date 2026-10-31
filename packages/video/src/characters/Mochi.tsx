@@ -1,6 +1,6 @@
 import React from 'react';
 import { warna } from '../theme';
-import { acak, noiseS, type PropsRig } from './gerak';
+import { random, noiseS, type RigProps } from './motion';
 
 /** Ekor dari beberapa ruas yang bergelombang seperti ekor kucing sungguhan. */
 function jalurEkor(f: number, tegak: boolean): string {
@@ -77,7 +77,7 @@ const GulunganBenang: React.FC<{ f: number }> = ({ f }) => {
   );
 };
 
-export const Mochi: React.FC<PropsRig> = (r) => {
+export const Mochi: React.FC<RigProps> = (r) => {
   const { f, expression, tutup } = r;
   if (r.action === 'sleeping') return <MochiTidur f={f} />;
   const main = r.action === 'playing';
@@ -89,7 +89,7 @@ export const Mochi: React.FC<PropsRig> = (r) => {
   // telinga sesekali berkedut
   const kedut = (s: number) => {
     const t = f % 90;
-    return acak(Math.floor(f / 90) + s) > 0.5 && t < 8 ? Math.sin((t / 8) * Math.PI) * 14 : 0;
+    return random(Math.floor(f / 90) + s) > 0.5 && t < 8 ? Math.sin((t / 8) * Math.PI) * 14 : 0;
   };
   const miring = noiseS(f / 40, r.seed) * 6 + (expression === 'thinking' ? 12 : 0);
   // sesekali melompat kecil kalau senang

@@ -14,13 +14,13 @@ import { getAudioDurationInSeconds } from '@remotion/media-utils';
 import type { EpisodeVideoProps, MemorizationVideo } from '@kantor/shared/types';
 import { FPS, FORMAT_SPEC } from '@kantor/shared/constants';
 import { introOutroFrames, sceneFrames, memorizationFrames, memorizationSegments, totalFrames } from '@kantor/shared/timing';
-import { SceneView, gayaPanggung, jepit } from './Adegan';
-import { AyatHafalanView } from './Hafalan';
-import { Backdrop } from './backgrounds/Latar';
-import { CharacterFigure } from './characters/Karakter';
-import { EfekEkspresi } from './Efek';
+import { SceneView, stageStyle, clampCamera } from './SceneView';
+import { VerseView } from './Memorization';
+import { Backdrop } from './backgrounds/Backdrop';
+import { CharacterFigure } from './characters/CharacterFigure';
+import { ExpressionEffect } from './Effects';
 import { Logo } from './brand/Logo';
-import { fontJudul, fontTeks, warna } from './theme';
+import { titleFont, textFont, warna } from './theme';
 
 /** Judul yang muncul kata per kata dengan pantulan. */
 const JudulMemantul: React.FC<{ text: string; mulai: number }> = ({ text, mulai }) => {
@@ -50,7 +50,7 @@ const JudulMemantul: React.FC<{ text: string; mulai: number }> = ({ text, mulai 
 /** Panggung 1920x1080 yang otomatis dipotong pas untuk frame biasa maupun Shorts. */
 const Panggung: React.FC<{ children: React.ReactNode; zoom?: number }> = ({ children, zoom = 1 }) => {
   const { width, height } = useVideoConfig();
-  return <div style={gayaPanggung(jepit({ x: 975, y: 540, z: zoom }, width, height), width, height)}>{children}</div>;
+  return <div style={stageStyle(clampCamera({ x: 975, y: 540, z: zoom }, width, height), width, height)}>{children}</div>;
 };
 
 /** Posisi karakter di intro/outro: [kiri, tinggi] per karakter, beda untuk 16:9 dan 9:16. */
@@ -86,7 +86,7 @@ const Intro: React.FC<{ seriesName: string; title: string; durasi: number }> = (
           <div
             style={{
               marginTop: 10,
-              fontFamily: fontTeks,
+              fontFamily: textFont,
               fontWeight: 800,
               fontSize: 36,
               color: '#2F6F5E',
@@ -102,7 +102,7 @@ const Intro: React.FC<{ seriesName: string; title: string; durasi: number }> = (
         <div
           style={{
             marginTop: 24,
-            fontFamily: fontJudul,
+            fontFamily: titleFont,
             fontWeight: 700,
             fontSize: vertikal ? 92 : 100,
             color: warna.teksGelap,
@@ -139,10 +139,10 @@ const Outro: React.FC = () => {
         <div style={{ position: 'absolute', left: susun.mochi[0], top: 980 - susun.mochi[1] }}>
           <CharacterFigure id="mochi" expression="happy" bicara={false} tinggi={susun.mochi[1]} offset={40} masuk="ada" />
         </div>
-        <EfekEkspresi expression="happy" x={vertikal ? 1000 : 1080} y={520} />
+        <ExpressionEffect expression="happy" x={vertikal ? 1000 : 1080} y={520} />
       </Panggung>
       <AbsoluteFill style={{ alignItems: 'center', paddingTop: vertikal ? 260 : 130 }}>
-        <div style={{ fontFamily: fontJudul, fontWeight: 700, fontSize: 96, color: '#FFF3C4', transform: `scale(${s}) rotate(${Math.sin(frame / 14) * 2}deg)` }}>
+        <div style={{ fontFamily: titleFont, fontWeight: 700, fontSize: 96, color: '#FFF3C4', transform: `scale(${s}) rotate(${Math.sin(frame / 14) * 2}deg)` }}>
           Sampai jumpa!
         </div>
         {vertikal ? (
@@ -219,7 +219,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
       lewat += g.durasi;
       return (
         <Sequence key={i} from={dari - TRANSISI} durationInFrames={g.durasi + TRANSISI} name={a.number ? `Ayat ${a.number}` : 'Basmalah'}>
-          <AyatHafalanView
+          <VerseView
             verse={a}
             surahName={memorization.surahName}
             keAyat={keAyat}
@@ -285,7 +285,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
   );
 };
 
-export const hitungMetadataEpisode: CalculateMetadataFunction<EpisodeVideoProps> = async ({ props }) => {
+export const calculateEpisodeMetadata: CalculateMetadataFunction<EpisodeVideoProps> = async ({ props }) => {
   const durasiAudio = props.audioFile ? await getAudioDurationInSeconds(staticFile(props.audioFile)) : undefined;
   const sceneFrameCounts = props.memorization
     ? memorizationFrames(props.memorization.verses, props.memorization.repetitions, durasiAudio, props.memorization.segmentStarts)

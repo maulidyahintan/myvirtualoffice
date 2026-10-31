@@ -1,13 +1,13 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
-import { Backdrop, LATAR_GELAP } from './backgrounds/Latar';
-import { LatarDepan } from './backgrounds/LatarDepan';
-import { PropertiAdegan } from './properti/Properti';
-import { CharacterFigure, SKALA, type CaraMasuk } from './characters/Karakter';
-import { noiseS } from './characters/gerak';
-import { EfekEkspresi } from './Efek';
-import { fontArab, fontJudul, fontTeks, warna } from './theme';
+import { Backdrop, DARK_BACKGROUNDS } from './backgrounds/Backdrop';
+import { Foreground } from './backgrounds/Foreground';
+import { ScenePropsLayer } from './props/SceneProps';
+import { CharacterFigure, CHARACTER_SCALE, type Entrance } from './characters/CharacterFigure';
+import { noiseS } from './characters/motion';
+import { ExpressionEffect } from './Effects';
+import { arabicFont, titleFont, textFont, warna } from './theme';
 
 const W = 1920;
 const H = 1080;
@@ -53,7 +53,7 @@ export interface Kamera {
  * `k.z` adalah faktor zoom relatif; di frame vertikal (Shorts) zoom dasarnya
  * sudah besar supaya panggung menutupi layar, jadi faktornya diperhalus.
  */
-export function jepit(k: Kamera, fw = W, fh = H): Kamera {
+export function clampCamera(k: Kamera, fw = W, fh = H): Kamera {
   const zMin = Math.max(fw / W, fh / H);
   const z = zMin * (zMin > 1 ? Math.pow(Math.max(1, k.z), 0.35) : Math.max(1, k.z));
   const bx = fw / 2 / z;
@@ -65,7 +65,7 @@ export function jepit(k: Kamera, fw = W, fh = H): Kamera {
 export const transformKamera = (k: Kamera, fw = W, fh = H) => `translate(${fw / 2 - k.x * k.z}px, ${fh / 2 - k.y * k.z}px) scale(${k.z})`;
 
 /** Wadah panggung 1920x1080 (koordinat dunia) yang dilihat lewat kamera. */
-export const gayaPanggung = (k: Kamera, fw: number, fh: number): React.CSSProperties => ({
+export const stageStyle = (k: Kamera, fw: number, fh: number): React.CSSProperties => ({
   position: 'absolute',
   left: 0,
   top: 0,
@@ -120,7 +120,7 @@ function hitungLensa(shot: Shot, t: number, c: KonteksShot, frame: number, fw: n
   const bicara = c.wajah[c.iPembicara] ?? c.tengah;
   const dengar = c.wajah[c.iPendengar] ?? c.tengah;
   const arah = Math.sign(bicara.x - c.tengah.x) || 1;
-  const k = (z: number, x: number, y: number) => jepit({ z, x: x + gx, y: y + gy }, fw, fh);
+  const k = (z: number, x: number, y: number) => clampCamera({ z, x: x + gx, y: y + gy }, fw, fh);
   switch (shot) {
     case 'dekat':
       return { kam: k(1.32 + t * 0.14, bicara.x, bicara.y), putarY: -arah * (2 + t * 2), putarX: 0, blurLatar: 3, depan: 0 };
@@ -243,7 +243,7 @@ const Subtitle: React.FC<{ text: string; durasi: number; speaker: string; mulai:
               left: 28,
               background: label.warna,
               color: '#fff',
-              fontFamily: fontJudul,
+              fontFamily: titleFont,
               fontWeight: 700,
               fontSize: 34,
               padding: '4px 24px',
@@ -259,7 +259,7 @@ const Subtitle: React.FC<{ text: string; durasi: number; speaker: string; mulai:
             background: 'rgba(255, 251, 242, 0.95)',
             borderRadius: 36,
             padding: '20px 44px',
-            fontFamily: fontTeks,
+            fontFamily: textFont,
             fontWeight: 800,
             fontSize: vertikal ? 56 : 50,
             lineHeight: 1.25,
@@ -316,7 +316,7 @@ const TeksLayar: React.FC<{ text: string; gelap: boolean; besar?: boolean }> = (
     >
       <div
         style={{
-          fontFamily: fontJudul,
+          fontFamily: titleFont,
           fontWeight: 700,
           fontSize: besar ? 84 : 64,
           color: gelap ? '#FFF3C4' : warna.teksGelap,
@@ -374,13 +374,13 @@ const KartuDoa: React.FC<{ prayer: NonNullable<AdeganData['prayer']>; title?: st
         }}
       >
         {title ? (
-          <div style={{ fontFamily: fontJudul, fontSize: 52, fontWeight: 700, color: '#2F6F5E', marginBottom: 20 }}>{title}</div>
+          <div style={{ fontFamily: titleFont, fontSize: 52, fontWeight: 700, color: '#2F6F5E', marginBottom: 20 }}>{title}</div>
         ) : null}
-        <div dir="rtl" style={{ fontFamily: fontArab, fontSize: vertikal ? 64 : 76, lineHeight: 1.7, color: warna.teksGelap, fontWeight: 700 }}>
+        <div dir="rtl" style={{ fontFamily: arabicFont, fontSize: vertikal ? 64 : 76, lineHeight: 1.7, color: warna.teksGelap, fontWeight: 700 }}>
           {prayer.arabic}
         </div>
-        <div style={{ fontFamily: fontTeks, fontStyle: 'italic', fontSize: 40, color: '#5A5470', marginTop: 18 }}>{prayer.latin}</div>
-        <div style={{ fontFamily: fontTeks, fontWeight: 700, fontSize: 40, color: '#2F6F5E', marginTop: 18 }}>“{prayer.meaning}”</div>
+        <div style={{ fontFamily: textFont, fontStyle: 'italic', fontSize: 40, color: '#5A5470', marginTop: 18 }}>{prayer.latin}</div>
+        <div style={{ fontFamily: textFont, fontWeight: 700, fontSize: 40, color: '#2F6F5E', marginTop: 18 }}>“{prayer.meaning}”</div>
       </div>
     </AbsoluteFill>
   );
@@ -414,7 +414,7 @@ const TitikBerpikir: React.FC<{ mulai: number; gelap: boolean }> = ({ mulai, gel
 // ---------------------------------------------------------------- transisi
 
 /** Bentuk transisi masuk adegan, bergantian supaya tidak monoton. */
-export function gayaTransisi(indeks: number, p: number): React.CSSProperties {
+export function transitionStyle(indeks: number, p: number): React.CSSProperties {
   if (p >= 1) return {};
   const jenis = indeks % 3;
   if (jenis === 0) return { clipPath: `circle(${p * 80}% at 50% 55%)` };
@@ -499,15 +499,15 @@ export const SceneView: React.FC<{
   const vertikal = fh > fw;
   // di Shorts karakter berdiri sedikit lebih tinggi supaya subtitle di bawah tidak menutupi badan
   const lantai = vertikal ? 820 : LANTAI;
-  const gelap = LATAR_GELAP.includes(data.background);
+  const gelap = DARK_BACKGROUNDS.includes(data.background);
   const isDoa = data.type === 'prayer' && data.prayer;
   const durasiIsi = durasi - transisi;
 
   // abaikan id karakter lama yang sudah tidak ada (misal dari episode sebelum konsep berubah)
-  const urut = isDoa ? [] : data.characters.filter((id) => id in SKALA);
+  const urut = isDoa ? [] : data.characters.filter((id) => id in CHARACTER_SCALE);
   const xs = posisiX(urut.length, vertikal);
   const iPembicara = urut.findIndex((id) => id === data.speaker);
-  const tinggiDari = (id: KarakterId) => (vertikal ? 470 : TINGGI_DASAR) * SKALA[id];
+  const tinggiDari = (id: KarakterId) => (vertikal ? 470 : TINGGI_DASAR) * CHARACTER_SCALE[id];
 
   // titik wajah tiap karakter & tengah rombongan, untuk membidik kamera
   const wajah = urut.map((id, i) => ({ x: xs[i], y: lantai - tinggiDari(id) * 0.62 }));
@@ -537,8 +537,8 @@ export const SceneView: React.FC<{
   // latar bergerak lebih sedikit dari karakter → kesan kedalaman (parallax)
   const zDasar = Math.max(fw / W, fh / H);
   const zRel = kam.z / zDasar;
-  const kamLatar = jepit({ z: 1 + (zRel - 1) * 0.75, x: 960 + (kam.x - 960) * 0.75, y: 540 + (kam.y - 540) * 0.75 }, fw, fh);
-  // jepit() memperhalus zoom di frame vertikal; latar tidak perlu dihaluskan dua kali
+  const kamLatar = clampCamera({ z: 1 + (zRel - 1) * 0.75, x: 960 + (kam.x - 960) * 0.75, y: 540 + (kam.y - 540) * 0.75 }, fw, fh);
+  // clampCamera() memperhalus zoom di frame vertikal; latar tidak perlu dihaluskan dua kali
   if (zDasar > 1) kamLatar.z = Math.max(zDasar, kamLatar.z);
   // lapisan depan bergerak lebih cepat dari karakter
   const kamDepan = { z: kam.z * 1.12, x: 960 + (kam.x - 960) * 1.35, y: kam.y };
@@ -547,7 +547,7 @@ export const SceneView: React.FC<{
 
   const propertiAdegan = (lapisan: 'bawah' | 'belakang') =>
     isDoa ? null : (
-      <PropertiAdegan
+      <ScenePropsLayer
         props={data.props ?? []}
         actions={data.actions ?? []}
         urut={urut}
@@ -563,7 +563,7 @@ export const SceneView: React.FC<{
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
 
   return (
-    <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...gayaTransisi(indeks, pTransisi) }}>
+    <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...transitionStyle(indeks, pTransisi) }}>
       <AbsoluteFill style={{ transform: `scale(${hentak})` }}>
         {/* background: bidang belakang yang ikut berputar sedikit & kabur saat close-up (2.5D) */}
         <AbsoluteFill
@@ -572,14 +572,14 @@ export const SceneView: React.FC<{
             filter: lensa.blurLatar > 0.2 && !isDoa ? `blur(${lensa.blurLatar}px)` : undefined,
           }}
         >
-          <div style={gayaPanggung(kamLatar, fw, fh)}>
+          <div style={stageStyle(kamLatar, fw, fh)}>
             <Backdrop id={data.background} />
           </div>
         </AbsoluteFill>
 
         {isDoa ? <AbsoluteFill style={{ backgroundColor: 'rgba(20,20,40,0.35)' }} /> : null}
 
-        <div style={gayaPanggung(kam, fw, fh)}>
+        <div style={stageStyle(kam, fw, fh)}>
           {propertiAdegan('bawah')}
           {propertiAdegan('belakang')}
           {urut.map((id: KarakterId, i) => {
@@ -588,7 +588,7 @@ export const SceneView: React.FC<{
             // yang mendengarkan menoleh ke speaker; speaker menatap penonton
             let lihatX = iPembicara >= 0 && iPembicara !== i ? Math.sign(xs[iPembicara] - xs[i]) : 0;
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
-            const masuk: CaraMasuk = sebelumnya.includes(id) ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
+            const masuk: Entrance = sebelumnya.includes(id) ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
             const aksiIni = data.actions?.find((a) => a.character === id);
             const gaya = gerakHidup(id, i, frame, { bicara: data.speaker === id, mendengar: i !== iPembicara && iPembicara >= 0, lihatX, beraksi: !!aksiIni });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
@@ -620,7 +620,7 @@ export const SceneView: React.FC<{
             );
           })}
           {iEfek >= 0 && data.type !== 'question' ? (
-            <EfekEkspresi
+            <ExpressionEffect
               expression={data.expression}
               x={xs[iEfek] + tinggiDari(urut[iEfek]) * 0.22}
               y={lantai - tinggiDari(urut[iEfek]) * 1.02}
@@ -631,8 +631,8 @@ export const SceneView: React.FC<{
 
         {/* lapisan depan: perabot/tanaman kabur yang menyapu cepat saat kamera bergerak */}
         {lensa.depan > 0.05 && !isDoa ? (
-          <div style={{ ...gayaPanggung(jepit(kamDepan, fw, fh), fw, fh), opacity: lensa.depan, filter: 'blur(5px)' }}>
-            <LatarDepan id={data.background} />
+          <div style={{ ...stageStyle(clampCamera(kamDepan, fw, fh), fw, fh), opacity: lensa.depan, filter: 'blur(5px)' }}>
+            <Foreground id={data.background} />
           </div>
         ) : null}
 
