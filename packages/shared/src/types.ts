@@ -1,315 +1,315 @@
 import type {
-  EKSPRESI,
+  EXPRESSIONS,
   EpisodeStatus,
-  AGEN_CHAT,
-  AKSI,
-  BENDA,
-  PROPERTI,
-  FORMAT,
-  JENIS_KONTEN,
-  SUASANA,
-  JENIS_ADEGAN,
-  KARAKTER,
-  LATAR,
-  USIA,
+  CHAT_AGENTS,
+  ACTIONS,
+  HELD_ITEMS,
+  SCENE_PROPS,
+  FORMATS,
+  CONTENT_TYPES,
+  MOODS,
+  SCENE_TYPES,
+  CHARACTERS,
+  BACKGROUNDS,
+  AGE_GROUPS,
 } from './constants.ts';
 
 export type { EpisodeStatus };
-export type Latar = (typeof LATAR)[number];
-export type Karakter = (typeof KARAKTER)[number];
-export type Ekspresi = (typeof EKSPRESI)[number];
-export type JenisAdegan = (typeof JENIS_ADEGAN)[number];
-export type Usia = (typeof USIA)[number];
-export type Format = (typeof FORMAT)[number];
-export type Benda = (typeof BENDA)[number];
-export type Properti = (typeof PROPERTI)[number];
-export type Aksi = (typeof AKSI)[number];
-export type JenisKonten = (typeof JENIS_KONTEN)[number];
-export type AgenChat = (typeof AGEN_CHAT)[number];
+export type Background = (typeof BACKGROUNDS)[number];
+export type Character = (typeof CHARACTERS)[number];
+export type Expression = (typeof EXPRESSIONS)[number];
+export type SceneType = (typeof SCENE_TYPES)[number];
+export type AgeGroup = (typeof AGE_GROUPS)[number];
+export type Format = (typeof FORMATS)[number];
+export type HeldItem = (typeof HELD_ITEMS)[number];
+export type SceneProp = (typeof SCENE_PROPS)[number];
+export type Action = (typeof ACTIONS)[number];
+export type ContentType = (typeof CONTENT_TYPES)[number];
+export type ChatAgent = (typeof CHAT_AGENTS)[number];
 
-/** Satu pesan di percakapan pemilik channel ↔ agen. */
-export interface PesanChat {
-  waktu: string;
-  dari: 'saya' | 'agen';
-  teks: string;
-  /** episode yang sedang dibahas (opsional) */
+/** Single message in the channel owner ↔ agent conversation. */
+export interface ChatMessage {
+  time: string;
+  from: 'owner' | 'agent';
+  text: string;
+  /** Episode being discussed (optional) */
   episodeId?: string;
 }
-export type Suasana = (typeof SUASANA)[number];
+export type Mood = (typeof MOODS)[number];
 
-/** Pengaturan video hafalan surat. */
-export interface InfoHafalan {
-  /** nomor surat 1–114 */
-  surat: number;
-  namaSurat: string;
-  ayatDari: number;
-  ayatSampai: number;
-  /** berapa kali tiap ayat dibaca berulang di rekaman */
-  ulang: number;
-  /** basmalah dibaca di awal (tidak untuk Al-Fatihah & At-Taubah) */
+/** Settings for Quranic memorization video. */
+export interface MemorizationInfo {
+  /** Surah number 1–114 */
+  surah: number;
+  surahName: string;
+  verseFrom: number;
+  verseTo: number;
+  /** How many times each verse is repeated in the recording */
+  repetitions: number;
+  /** Basmalah read at beginning (not for Al-Fatihah & At-Taubah) */
   basmalah: boolean;
 }
 
-/** Satu ayat (atau basmalah, nomor 0) beserta visual latarnya. */
-export interface AyatHafalan {
-  nomor: number;
-  arab: string;
+/** Single verse (or basmalah, number 0) with its background visuals. */
+export interface MemorizationVerse {
+  number: number;
+  arabic: string;
   latin: string;
-  arti: string;
-  latar: Latar;
-  suasana: Suasana[];
+  meaning: string;
+  background: Background;
+  moods: Mood[];
 }
 
-/** Data video hafalan yang dikirim ke Remotion. */
-export interface HafalanVideo {
-  namaSurat: string;
-  artiSurat: string;
-  ayat: AyatHafalan[];
-  ulang: number;
-  /** detik mulai tiap segmen di rekaman (hasil deteksi jeda); kosong = dibagi rata */
-  mulaiSegmen?: number[];
+/** Memorization video data sent to Remotion. */
+export interface MemorizationVideo {
+  surahName: string;
+  surahMeaning: string;
+  verses: MemorizationVerse[];
+  repetitions: number;
+  /** Second where each segment starts in the recording (pause detection result); empty = evenly divided */
+  segmentStarts?: number[];
 }
 
-export interface Ide {
-  judul: string;
-  seri: string;
-  usia: Usia;
-  pesanMoral: string;
-  /** Kosong = 'biasa' (episode lama sebelum ada pilihan format). */
+export interface Idea {
+  title: string;
+  series: string;
+  age: AgeGroup;
+  moralMessage: string;
+  /** Empty = 'standard' (old episodes before format choice existed). */
   format?: Format;
-  /** Kosong = 'cerita'. */
-  jenis?: JenisKonten;
-  hafalan?: InfoHafalan;
-  alasan: string;
-  referensi: string[];
+  /** Empty = 'story'. */
+  type?: ContentType;
+  memorization?: MemorizationInfo;
+  reason: string;
+  references: string[];
 }
 
-export interface Dalil {
-  jenis: 'ayat' | 'hadits' | 'doa' | 'atsar';
-  teksArab?: string;
+export interface Evidence {
+  type: 'ayat' | 'hadits' | 'doa' | 'atsar';
+  arabicText?: string;
   latin?: string;
-  terjemah: string;
-  /** Contoh: "QS. Al-Baqarah: 286" atau "HR. Bukhari no. 6114" */
-  sumber: string;
+  translation: string;
+  /** Example: "QS. Al-Baqarah: 286" or "HR. Bukhari no. 6114" */
+  source: string;
 }
 
-export interface AdeganNaskah {
-  jenis: JenisAdegan;
-  pembicara: Karakter | 'narator';
-  /** Teks yang DIBACA saat rekaman suara. */
-  narasi: string;
-  /** Petunjuk visual singkat untuk Sutradara. */
-  petunjukVisual: string;
+export interface ScriptScene {
+  type: SceneType;
+  speaker: Character | 'narrator';
+  /** Text that is READ during voice recording. */
+  narration: string;
+  /** Brief visual direction for Director. */
+  visualDirection: string;
 }
 
-export interface Naskah {
-  judul: string;
-  ringkasan: string;
-  adegan: AdeganNaskah[];
-  dalil: Dalil[];
+export interface Script {
+  title: string;
+  summary: string;
+  scenes: ScriptScene[];
+  evidences: Evidence[];
 }
 
 export interface Review {
-  keputusan: 'lolos' | 'revisi';
-  skor: number;
-  catatan: string[];
-  /** Hal yang WAJIB dicek manusia sebelum approve (dalil, fakta sejarah, dll). */
-  cekManusia: string[];
+  decision: 'approved' | 'needs_revision';
+  score: number;
+  notes: string[];
+  /** Items that MUST be checked by human before approval (evidence, historical facts, etc). */
+  humanCheck: string[];
 }
 
-/** Adegan yang sudah "disutradarai" dan siap dirender. */
-export interface Adegan {
-  jenis: JenisAdegan;
-  pembicara: Karakter | 'narator';
-  narasi: string;
-  latar: Latar;
-  karakter: Karakter[];
-  ekspresi: Ekspresi;
-  /** Teks besar di layar (opsional), misal nama doa. */
-  teksLayar?: string;
-  /** Untuk adegan doa: teks Arab + latin + arti. */
-  doa?: { arab: string; latin: string; arti: string };
-  /** Properti pendukung di sekitar tokoh (maks. 3). */
-  properti?: Properti[];
-  /** Apa yang sedang dilakukan tokoh tertentu (memegang benda, membaca Al-Qur'an, tidur, ...). */
-  aksi?: AksiTokoh[];
+/** Scene that has been "directed" and is ready to render. */
+export interface Scene {
+  type: SceneType;
+  speaker: Character | 'narrator';
+  narration: string;
+  background: Background;
+  characters: Character[];
+  expression: Expression;
+  /** Large on-screen text (optional), e.g. prayer name. */
+  screenText?: string;
+  /** For prayer scenes: Arabic text + latin + meaning. */
+  prayer?: { arabic: string; latin: string; meaning: string };
+  /** Supporting props around characters (max 3). */
+  props?: SceneProp[];
+  /** What specific characters are doing (holding items, reading Quran, sleeping, ...). */
+  actions?: CharacterAction[];
 }
 
-export interface AksiTokoh {
-  karakter: Karakter;
-  aksi: Aksi;
-  /** benda yang dipegang/dimakan/dimainkan */
-  benda?: Benda;
+export interface CharacterAction {
+  character: Character;
+  action: Action;
+  /** Item being held/eaten/played with */
+  heldItem?: HeldItem;
 }
 
-export interface MetadataYouTube {
-  judul: string;
-  deskripsi: string;
+export interface YouTubeMetadata {
+  title: string;
+  description: string;
   tags: string[];
-  teksThumbnail: string;
+  thumbnailText: string;
 }
 
 export interface LogEntry {
-  waktu: string;
-  oleh: string;
-  pesan: string;
+  time: string;
+  by: string;
+  message: string;
 }
 
 export interface Episode {
   id: string;
-  dibuat: string;
-  diubah: string;
+  created: string;
+  modified: string;
   status: EpisodeStatus;
-  catatanStatus?: string;
-  ide: Ide;
-  /** Episode kembaran dari ide yang sama dengan format lain (video biasa ↔ Shorts). */
-  pasangan?: string;
-  /** Shorts potongan: episode asal & indeks adegan asal yang dipakai. */
-  asal?: { id: string; adegan: number[] };
-  /** Shorts yang dipotong dari episode ini. */
-  turunan?: string[];
-  naskah?: Naskah;
+  statusNote?: string;
+  idea: Idea;
+  /** Twin episode from same idea with different format (standard video ↔ Shorts). */
+  twin?: string;
+  /** Clip shorts: source episode & source scene indices used. */
+  source?: { id: string; scenes: number[] };
+  /** Shorts clipped from this episode. */
+  derivatives?: string[];
+  script?: Script;
   review?: Review;
-  jumlahRevisi: number;
-  feedbackManusia?: string;
-  adegan?: Adegan[];
-  metadata?: MetadataYouTube;
-  /** Teks ayat + visual (hanya untuk jenis hafalan) */
-  hafalan?: {
-    namaSurat: string;
-    artiSurat: string;
-    ayat: AyatHafalan[];
-    mulaiSegmen?: number[];
-    /** filter efek suara yang berlaku saat mulaiSegmen dihitung; berubah → deteksi ulang (tempo menggeser waktu). */
-    efekSegmen?: string;
+  revisionCount: number;
+  humanFeedback?: string;
+  scenes?: Scene[];
+  metadata?: YouTubeMetadata;
+  /** Verse text + visuals (only for memorization type) */
+  memorization?: {
+    surahName: string;
+    surahMeaning: string;
+    verses: MemorizationVerse[];
+    segmentStarts?: number[];
+    /** Audio effect filter active when segmentStarts was calculated; changes → re-detect (tempo shifts timing). */
+    segmentEffect?: string;
   };
-  /** Path relatif ke packages/video/public, contoh "audio/abc.mp3" */
-  fileAudio?: string;
-  /** Rekaman yang dikirim per bagian (berurutan); digabung jadi fileAudio saat render. */
-  bagianAudio?: string[];
-  /** 'urut' (default): satu rekaman/bagian berurutan. 'per-adegan': satu file per adegan (hafalan: per ayat). */
-  modeRekam?: ModeRekam;
-  /** Rekaman per adegan/ayat, sesuai indeks adegan (cerita) atau ayat (hafalan). */
-  audioPerAdegan?: (string | null)[];
-  /** Detik di rekaman per adegan saat video mulai (Studio merekam sejak hitung mundur). */
-  offsetAdegan?: (number | null)[];
+  /** Path relative to packages/video/public, example "audio/abc.mp3" */
+  audioFile?: string;
+  /** Recordings sent in parts (sequential); merged into audioFile during render. */
+  audioParts?: string[];
+  /** 'sequential' (default): one recording/part sequentially. 'per-scene': one file per scene (memorization: per verse). */
+  recordingMode?: RecordingMode;
+  /** Per-scene/verse recordings, matching scene (story) or verse (memorization) index. */
+  audioPerScene?: (string | null)[];
+  /** Seconds into per-scene recording when video starts (Studio records from countdown). */
+  sceneOffsets?: (number | null)[];
   render?: {
     video: string;
     thumbnail?: string;
-    waktu: string;
-    /** Detik mulai & lama tiap adegan (hafalan: tiap ayat) di video hasil render, untuk Studio Rekam. */
-    adegan?: { mulai: number; durasi: number }[];
+    time: string;
+    /** Start second & duration of each scene (memorization: each verse) in rendered video, for Recording Studio. */
+    scenes?: { start: number; duration: number }[];
   };
-  /** Geser nada rekaman (semiton, + lebih tinggi, − lebih rendah); kecepatan bicara tetap. */
-  nadaSuara?: number;
-  /** false = tanpa efek suara (cerita: efek karakter per adegan, hafalan: suara anak-anak). Default: pakai efek. */
-  efekKarakter?: boolean;
-  youtube?: { videoId: string; url: string; jadwalTayang?: string; playlist?: { nama: string; id: string } };
-  /** Jadwal tayang yang dipilih saat video disetujui (ISO); menahan slot selama upload berjalan. */
-  jadwalDipilih?: string;
+  /** Shift recording pitch (semitones, + higher, − lower); speech speed stays same. */
+  voicePitch?: number;
+  /** false = no voice effects (story: character effects per scene, memorization: children's voice). Default: use effects. */
+  characterEffects?: boolean;
+  youtube?: { videoId: string; url: string; publishTime?: string; playlist?: { name: string; id: string } };
+  /** Publish time selected when video was approved (ISO); holds slot during upload. */
+  selectedSchedule?: string;
   /**
-   * Upload sebelumnya yang diganti karena video diedit ulang. Video lama dijadikan private
-   * (`ditarik` = waktu diprivatkan), tidak dihapus.
+   * Previous upload replaced because video was re-edited. Old video made private
+   * (`withdrawn` = time made private), not deleted.
    */
-  youtubeLama?: { videoId: string; url: string; jadwalTayang?: string; ditarik?: string; playlist?: { nama: string; id: string } }[];
+  youtubeHistory?: { videoId: string; url: string; publishTime?: string; withdrawn?: string; playlist?: { name: string; id: string } }[];
   log: LogEntry[];
 }
 
-/** Props yang dikirim ke komposisi Remotion. */
+/** Props sent to Remotion composition. */
 export interface EpisodeVideoProps {
   [key: string]: unknown;
-  namaChannel: string;
-  judul: string;
-  namaSeri: string;
-  adegan: Adegan[];
-  fileAudio?: string;
-  /** Detik mulai tiap adegan di fileAudio (rekaman per adegan); durasi adegan ikut persis. */
-  mulaiAdegan?: number[];
+  channelName: string;
+  title: string;
+  seriesName: string;
+  scenes: Scene[];
+  audioFile?: string;
+  /** Start second of each scene in audioFile (per-scene recording); scene duration matches exactly. */
+  sceneStarts?: number[];
   format?: Format;
-  /** Diisi untuk video hafalan; adegan cerita diabaikan. */
-  hafalan?: HafalanVideo;
-  /** Musik pembuka & penutup dari pengaturan channel. */
-  musik?: MusikVideo;
-  /** Diisi otomatis oleh calculateMetadata. */
-  frameAdegan?: number[];
-  frameIntro?: number;
-  frameOutro?: number;
+  /** Filled for memorization video; story scenes ignored. */
+  memorization?: MemorizationVideo;
+  /** Intro & outro music from channel settings. */
+  music?: VideoMusic;
+  /** Filled automatically by calculateMetadata. */
+  sceneFrames?: number[];
+  introFrame?: number;
+  outroFrame?: number;
 }
 
-export type ModeRekam = 'urut' | 'per-adegan';
+export type RecordingMode = 'sequential' | 'per-scene';
 
-export interface MusikVideo {
-  /** path di packages/video/public, misal musik/pembuka.mp3 */
-  pembuka?: string;
-  penutup?: string;
+export interface VideoMusic {
+  /** path in packages/video/public, e.g. musik/pembuka.mp3 */
+  intro?: string;
+  outro?: string;
   /** 0..1 */
   volume: number;
 }
 
 export interface ThumbnailProps {
   [key: string]: unknown;
-  teks: string;
-  /** label kecil di atas teks, misal "Hafalan Surat" */
-  subjudul?: string;
-  latar: Latar;
-  karakter: Karakter[];
-  ekspresi: Ekspresi;
+  text: string;
+  /** Small label above text, e.g. "Surah Memorization" */
+  subtitle?: string;
+  background: Background;
+  characters: Character[];
+  expression: Expression;
 }
 
-/** Satu jam tayang dalam sehari, untuk format tertentu atau semua. */
-export interface SlotTayang {
-  /** "HH:mm" di zona waktu channel */
-  jam: string;
-  format: Format | 'semua';
+/** Single publish time in a day, for specific format or all. */
+export interface PublishSlot {
+  /** "HH:mm" in channel timezone */
+  time: string;
+  format: Format | 'all';
 }
 
-export interface RencanaTayang {
-  /** maksimal video tayang per hari (semua format) */
-  videoPerHari: number;
-  /** hari tayang, 0 = Minggu … 6 = Sabtu */
-  hari: number[];
-  slot: SlotTayang[];
-  /** penjelasan Channel Manager (Markdown) */
-  alasan?: string;
-  oleh: 'channel-manager' | 'pemilik';
-  diubah: string;
+export interface PublishPlan {
+  /** Maximum videos published per day (all formats) */
+  videosPerDay: number;
+  /** Publish days, 0 = Sunday … 6 = Saturday */
+  days: number[];
+  slots: PublishSlot[];
+  /** Channel Manager explanation (Markdown) */
+  reason?: string;
+  by: 'channel-manager' | 'owner';
+  modified: string;
 }
 
-export interface RisetHarian {
-  aktif: boolean;
-  /** "HH:mm" di zona waktu channel; riset jalan pertama kali setelah jam ini */
-  jam: string;
-  /** minimal ide per hari */
-  jumlahIde: number;
+export interface DailyResearch {
+  active: boolean;
+  /** "HH:mm" in channel timezone; research runs first time after this hour */
+  time: string;
+  /** Minimum ideas per day */
+  ideaCount: number;
 }
 
-export interface KantorConfig {
-  namaChannel: string;
-  bahasa: string;
-  seri: {
+export interface AppConfig {
+  channelName: string;
+  language: string;
+  series: {
     id: string;
-    nama: string;
-    usia: Usia;
-    /** ID playlist YouTube langsung (lama); kalau kosong dipakai `playlist` (nama). */
+    name: string;
+    age: AgeGroup;
+    /** Direct YouTube playlist ID (legacy); if empty uses `playlist` (name). */
     playlistId?: string;
-    /** Nama playlist tujuan; kosong = bawaan (lihat namaPlaylist). */
+    /** Target playlist name; empty = default (see playlistName). */
     playlist?: string;
   }[];
-  /** Cache nama playlist → ID playlist YouTube (diisi otomatis saat playlist ditemukan/dibuat). */
-  playlistYoutube?: Record<string, string>;
-  maksRevisiOtomatis: number;
-  jamTayangDefault: string;
-  zonaWaktu: string;
-  /** Content Research mencari ide sendiri setiap hari (lihat `npm run kantor -- harian`). */
-  risetHarian?: RisetHarian;
-  /** Rencana jadwal tayang dari Channel Manager (bisa diubah pemilik); dasar jadwal bawaan saat menyetujui video. */
-  rencanaTayang?: RencanaTayang;
-  /** Efek suara per pembicara (menimpa SUARA_KARAKTER_BAWAAN). */
-  suaraKarakter?: Partial<Record<'narator' | 'ibu' | 'mamas' | 'mochi', { nada: number; tempo: number }>>;
-  /** Efek suara bacaan video hafalan (menimpa SUARA_HAFALAN_BAWAAN). */
-  suaraHafalan?: { nada: number; tempo: number };
-  musik?: MusikVideo & {
-    /** dipakai juga di Shorts (intro/outro Shorts dibatasi supaya tetap < 60 detik) */
-    diShorts: boolean;
+  /** Cache playlist name → YouTube playlist ID (filled automatically when playlist found/created). */
+  youtubePlaylists?: Record<string, string>;
+  maxAutoRevisions: number;
+  defaultPublishTime: string;
+  timeZone: string;
+  /** Content Research finds ideas itself every day (see `npm run kantor -- harian`). */
+  dailyResearch?: DailyResearch;
+  /** Publish schedule plan from Channel Manager (owner can edit); basis for default schedule when approving video. */
+  publishPlan?: PublishPlan;
+  /** Voice effect per speaker (overrides DEFAULT_CHARACTER_VOICE). */
+  characterVoices?: Partial<Record<'narrator' | 'mother' | 'mamas' | 'mochi', { pitch: number; tempo: number }>>;
+  /** Voice effect for memorization video recitation (overrides DEFAULT_MEMORIZATION_VOICE). */
+  memorizationVoice?: { pitch: number; tempo: number };
+  music?: VideoMusic & {
+    /** Also used in Shorts (Shorts intro/outro limited to keep < 60 seconds) */
+    inShorts: boolean;
   };
 }

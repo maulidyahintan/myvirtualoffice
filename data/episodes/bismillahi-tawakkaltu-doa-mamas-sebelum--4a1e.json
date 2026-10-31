@@ -1,28 +1,28 @@
 {
   "id": "bismillahi-tawakkaltu-doa-mamas-sebelum--4a1e",
-  "dibuat": "2026-10-31T00:41:04.251Z",
-  "diubah": "2026-10-31T00:41:04.252Z",
+  "created": "2026-10-31T00:41:04.251Z",
+  "modified": "2026-10-31T00:41:04.252Z",
   "status": "idea",
-  "ide": {
-    "judul": "Bismillahi Tawakkaltu! Doa Mamas Sebelum Keluar Rumah",
-    "seri": "doa-harian",
-    "usia": "1-3",
-    "pesanMoral": "Sebelum keluar rumah, kita titipkan diri kepada Allah: \"Bismillahi tawakkaltu 'alallah, la haula wa la quwwata illa billah\" (HR. Abu Dawud no. 5095; HR. Tirmidzi no. 3426, hasan shahih). Mamas memakai sandal, berhenti di pintu, lalu berdoa bersama Ibu. Mochi mengantar sampai pintu.",
+  "idea": {
+    "title": "Bismillahi Tawakkaltu! Doa Mamas Sebelum Keluar Rumah",
+    "series": "doa-harian",
+    "age": "1-3",
+    "moralMessage": "Sebelum keluar rumah, kita titipkan diri kepada Allah: \"Bismillahi tawakkaltu 'alallah, la haula wa la quwwata illa billah\" (HR. Abu Dawud no. 5095; HR. Tirmidzi no. 3426, hasan shahih). Mamas memakai sandal, berhenti di pintu, lalu berdoa bersama Ibu. Mochi mengantar sampai pintu.",
     "format": "short",
-    "alasan": "Pesaing sedikit dan kualitasnya rendah, rata-rata 2–5 rb views/hari dari channel kecil atau AI, banyak yang tidak mencantumkan sumber. Ini peluang cepat masuk ke pencarian doa harian yang dicari setiap hari oleh orang tua PAUD/TK.",
-    "referensi": [
+    "reason": "Pesaing sedikit dan kualitasnya rendah, rata-rata 2–5 rb views/hari dari channel kecil atau AI, banyak yang tidak mencantumkan sumber. Ini peluang cepat masuk ke pencarian doa harian yang dicari setiap hari oleh orang tua PAUD/TK.",
+    "references": [
       "Mau pergi? Jangan lupa doa dulu! — ALFATIH AFC https://www.youtube.com/watch?v=SDIfwZzehzE",
       "JANGAN LUPA DOA KELUAR RUMAH! — Ruang Belajar https://www.youtube.com/watch?v=jQvr8sOAEMQ",
       "Kucing Mau Keluar Rumah! — Fieza Studio Ai https://www.youtube.com/watch?v=YRvLcZ4x-Ds",
       "Dalil: HR. Abu Dawud no. 5095, HR. Tirmidzi no. 3426"
     ]
   },
-  "jumlahRevisi": 0,
+  "revisionCount": 0,
   "log": [
     {
-      "waktu": "2026-10-31T00:41:04.251Z",
-      "oleh": "riset",
-      "pesan": "Ide dibuat"
+      "time": "2026-10-31T00:41:04.251Z",
+      "by": "riset",
+      "message": "Ide dibuat"
     }
   ]
 }

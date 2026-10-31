@@ -1,97 +1,97 @@
-import { FPS, SPEK_FORMAT } from './constants.ts';
-import type { Adegan, AyatHafalan, Format } from './types.ts';
+import { FPS, FORMAT_SPEC } from './constants.ts';
+import type { Scene, MemorizationVerse, Format } from './types.ts';
 
-const KATA_PER_DETIK = 2.1; // tempo membaca cerita anak yang pelan & jelas
-const JEDA_PERTANYAAN_DETIK = 3; // anak diberi waktu berpikir
+const WORDS_PER_SECOND = 2.1; // Slow & clear children's story reading tempo
+const QUESTION_PAUSE_SECONDS = 3; // Child given time to think
 
-export function hitungKata(teks: string): number {
-  return teks.trim().split(/\s+/).filter(Boolean).length;
+export function countWords(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
-/** Bobot setiap adegan, sebanding dengan panjang narasinya. */
-function bobot(a: Adegan): number {
-  return Math.max(4, hitungKata(a.narasi));
+/** Weight of each scene, proportional to its narration length. */
+function weight(s: Scene): number {
+  return Math.max(4, countWords(s.narration));
 }
 
-/** Frame tiap potongan dari detik mulai masing-masing di rekaman (+1 detik napas di akhir). */
-function frameDariMulai(mulai: number[], durasiAudioDetik: number): number[] {
-  const batas = [...mulai.slice(1), durasiAudioDetik + 1];
-  let sebelum = 0;
-  return batas.map((t) => {
-    const f = Math.max(FPS, Math.round(t * FPS) - sebelum);
-    sebelum += f;
+/** Frames for each segment from their start seconds in recording (+1 second breath at end). */
+function framesFromStarts(starts: number[], audioDurationSeconds: number): number[] {
+  const ends = [...starts.slice(1), audioDurationSeconds + 1];
+  let prev = 0;
+  return ends.map((t) => {
+    const f = Math.max(FPS, Math.round(t * FPS) - prev);
+    prev += f;
     return f;
   });
 }
 
 /**
- * Hitung durasi (frame) setiap adegan.
- * - Tanpa audio: perkiraan dari jumlah kata.
- * - Rekaman per adegan (`mulaiAdegan`): tiap adegan persis sepanjang rekamannya.
- * - Dengan audio: durasi audio dibagi proporsional sesuai panjang narasi,
- *   jadi teks di layar kurang lebih ikut suara kamu.
+ * Calculate duration (frames) of each scene.
+ * - Without audio: estimate from word count.
+ * - Per-scene recording (`sceneStarts`): each scene exactly matches its recording.
+ * - With audio: audio duration divided proportionally by narration length,
+ *   so on-screen text roughly follows your voice.
  */
-export function hitungFrameAdegan(adegan: Adegan[], durasiAudioDetik?: number, mulaiAdegan?: number[]): number[] {
-  if (adegan.length === 0) return [];
-  if (durasiAudioDetik && mulaiAdegan?.length === adegan.length) return frameDariMulai(mulaiAdegan, durasiAudioDetik);
-  if (durasiAudioDetik && durasiAudioDetik > 0) {
-    const total = adegan.reduce((s, a) => s + bobot(a), 0);
-    const totalFrame = Math.ceil(durasiAudioDetik * FPS) + FPS; // +1 detik napas di akhir
-    const hasil = adegan.map((a) => Math.max(FPS * 2, Math.round((bobot(a) / total) * totalFrame)));
-    return hasil;
+export function sceneFrames(scenes: Scene[], audioDurationSeconds?: number, sceneStarts?: number[]): number[] {
+  if (scenes.length === 0) return [];
+  if (audioDurationSeconds && sceneStarts?.length === scenes.length) return framesFromStarts(sceneStarts, audioDurationSeconds);
+  if (audioDurationSeconds && audioDurationSeconds > 0) {
+    const total = scenes.reduce((s, a) => s + weight(a), 0);
+    const totalFrames = Math.ceil(audioDurationSeconds * FPS) + FPS; // +1 second breath at end
+    const result = scenes.map((a) => Math.max(FPS * 2, Math.round((weight(a) / total) * totalFrames)));
+    return result;
   }
-  return adegan.map((a) => {
-    const detik = hitungKata(a.narasi) / KATA_PER_DETIK + 1 + (a.jenis === 'pertanyaan' ? JEDA_PERTANYAAN_DETIK : 0);
-    return Math.round(Math.max(3, detik) * FPS);
+  return scenes.map((a) => {
+    const seconds = countWords(a.narration) / WORDS_PER_SECOND + 1 + (a.type === 'question' ? QUESTION_PAUSE_SECONDS : 0);
+    return Math.round(Math.max(3, seconds) * FPS);
   });
 }
 
-/** Panjang intro/outro: bawaan format, diperpanjang mengikuti musik (dibatasi maksimum format). */
-export function frameIntroOutro(format: Format = 'biasa', detikPembuka?: number, detikPenutup?: number) {
-  const spek = SPEK_FORMAT[format];
-  const ikut = (bawaan: number, maks: number, musik?: number) => Math.round(Math.min(maks, Math.max(bawaan, musik ?? 0)) * FPS);
+/** Intro/outro length: format default, extended to match music (limited to format maximum). */
+export function introOutroFrames(format: Format = 'standard', introSeconds?: number, outroSeconds?: number) {
+  const spec = FORMAT_SPEC[format];
+  const match = (def: number, max: number, music?: number) => Math.round(Math.min(max, Math.max(def, music ?? 0)) * FPS);
   return {
-    intro: ikut(spek.introDetik, spek.introMaksDetik, detikPembuka),
-    outro: ikut(spek.outroDetik, spek.outroMaksDetik, detikPenutup),
+    intro: match(spec.introSeconds, spec.maxIntroSeconds, introSeconds),
+    outro: match(spec.outroSeconds, spec.maxOutroSeconds, outroSeconds),
   };
 }
 
-export function totalFrame(frameAdegan: number[], format: Format = 'biasa', intro?: number, outro?: number): number {
-  const bawaan = frameIntroOutro(format);
-  return (intro ?? bawaan.intro) + frameAdegan.reduce((s, f) => s + f, 0) + (outro ?? bawaan.outro);
+export function totalFrames(sceneFrames: number[], format: Format = 'standard', intro?: number, outro?: number): number {
+  const def = introOutroFrames(format);
+  return (intro ?? def.intro) + sceneFrames.reduce((s, f) => s + f, 0) + (outro ?? def.outro);
 }
 
-/** Urutan segmen hafalan: tiap ayat diulang `ulang` kali (basmalah sekali saja). */
-export function segmenHafalan(ayat: AyatHafalan[], ulang: number): { ayat: number; ulangKe: number }[] {
-  const hasil: { ayat: number; ulangKe: number }[] = [];
-  ayat.forEach((a, i) => {
-    const n = a.nomor === 0 ? 1 : Math.max(1, ulang);
-    for (let k = 1; k <= n; k++) hasil.push({ ayat: i, ulangKe: k });
+/** Memorization segment order: each verse repeated `repetitions` times (basmalah only once). */
+export function memorizationSegments(verses: MemorizationVerse[], repetitions: number): { verse: number; repetition: number }[] {
+  const result: { verse: number; repetition: number }[] = [];
+  verses.forEach((v, i) => {
+    const n = v.number === 0 ? 1 : Math.max(1, repetitions);
+    for (let k = 1; k <= n; k++) result.push({ verse: i, repetition: k });
   });
-  return hasil;
+  return result;
 }
 
 /**
- * Durasi (frame) tiap segmen hafalan.
- * - Ada `mulaiSegmen` (hasil deteksi jeda di rekaman): pakai waktu itu persis.
- * - Ada durasi audio saja: dibagi sesuai panjang teks Arab.
- * - Tanpa audio: perkiraan tempo membaca pelan.
+ * Duration (frames) of each memorization segment.
+ * - Has `segmentStarts` (pause detection result in recording): use that timing exactly.
+ * - Has audio duration only: divide by Arabic text length.
+ * - Without audio: estimate slow reading tempo.
  */
-export function hitungFrameHafalan(
-  ayat: AyatHafalan[],
-  ulang: number,
-  durasiAudioDetik?: number,
-  mulaiSegmen?: number[],
+export function memorizationFrames(
+  verses: MemorizationVerse[],
+  repetitions: number,
+  audioDurationSeconds?: number,
+  segmentStarts?: number[],
 ): number[] {
-  const segmen = segmenHafalan(ayat, ulang);
-  if (segmen.length === 0) return [];
-  if (durasiAudioDetik && mulaiSegmen && mulaiSegmen.length === segmen.length) return frameDariMulai(mulaiSegmen, durasiAudioDetik);
-  const panjang = segmen.map((s) => Math.max(8, ayat[s.ayat].arab.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\s]/g, '').length));
-  if (durasiAudioDetik && durasiAudioDetik > 0) {
-    const total = panjang.reduce((a, b) => a + b, 0);
-    const totalF = Math.ceil(durasiAudioDetik * FPS) + FPS;
-    return panjang.map((p) => Math.max(FPS * 2, Math.round((p / total) * totalF)));
+  const segments = memorizationSegments(verses, repetitions);
+  if (segments.length === 0) return [];
+  if (audioDurationSeconds && segmentStarts && segmentStarts.length === segments.length) return framesFromStarts(segmentStarts, audioDurationSeconds);
+  const lengths = segments.map((s) => Math.max(8, verses[s.verse].arabic.replace(/[ً-ٰٟۖ-ۭ\s]/g, '').length));
+  if (audioDurationSeconds && audioDurationSeconds > 0) {
+    const total = lengths.reduce((a, b) => a + b, 0);
+    const totalF = Math.ceil(audioDurationSeconds * FPS) + FPS;
+    return lengths.map((p) => Math.max(FPS * 2, Math.round((p / total) * totalF)));
   }
-  // ±6 huruf per detik untuk anak menirukan, plus jeda 1,5 detik
-  return panjang.map((p) => Math.round((p / 6 + 1.5) * FPS));
+  // ±6 letters per second for child to imitate, plus 1.5 second pause
+  return lengths.map((p) => Math.round((p / 6 + 1.5) * FPS));
 }

@@ -1,27 +1,27 @@
 {
   "id": "mamas-lagi-seru-main-balok-tiba-tiba-adz-d462",
-  "dibuat": "2026-10-31T00:41:04.252Z",
-  "diubah": "2026-10-31T00:41:04.252Z",
+  "created": "2026-10-31T00:41:04.252Z",
+  "modified": "2026-10-31T00:41:04.252Z",
   "status": "idea",
-  "ide": {
-    "judul": "Mamas Lagi Seru Main Balok, Tiba-Tiba Adzan!",
-    "seri": "kisah-sebelum-tidur",
-    "usia": "4-6",
-    "pesanMoral": "Kalau adzan terdengar, kita berhenti sebentar, mendengarkan, dan menirukan ucapan muadzin (HR. Bukhari no. 611; HR. Muslim no. 383). Konfliknya: Mamas ingin menyelesaikan menara balok dan pura-pura tidak dengar. Ibu mengajak berhenti dengan lembut. Mamas menjawab adzan, lalu menara diselesaikan setelah shalat. Pelajarannya: panggilan Allah didahulukan, dan main tetap bisa dilanjutkan sesudahnya. Ayah yang berangkat ke masjid cukup disebut di narasi.",
-    "format": "biasa",
-    "alasan": "Shorts 'Lagi Seru Main Bola, Tiba-Tiba Adzan!' meraih 1,7 jt views (23 rb/hari). Itu bukti konflik main lawan adzan sangat dekat dengan pengalaman orang tua. Belum ada versi cerita utuh 3–5 menit. Video Kabi terlalu panjang (10–38 menit) untuk usia 4–6.",
-    "referensi": [
+  "idea": {
+    "title": "Mamas Lagi Seru Main Balok, Tiba-Tiba Adzan!",
+    "series": "kisah-sebelum-tidur",
+    "age": "4-6",
+    "moralMessage": "Kalau adzan terdengar, kita berhenti sebentar, mendengarkan, dan menirukan ucapan muadzin (HR. Bukhari no. 611; HR. Muslim no. 383). Konfliknya: Mamas ingin menyelesaikan menara balok dan pura-pura tidak dengar. Ibu mengajak berhenti dengan lembut. Mamas menjawab adzan, lalu menara diselesaikan setelah shalat. Pelajarannya: panggilan Allah didahulukan, dan main tetap bisa dilanjutkan sesudahnya. Ayah yang berangkat ke masjid cukup disebut di narasi.",
+    "format": "standard",
+    "reason": "Shorts 'Lagi Seru Main Bola, Tiba-Tiba Adzan!' meraih 1,7 jt views (23 rb/hari). Itu bukti konflik main lawan adzan sangat dekat dengan pengalaman orang tua. Belum ada versi cerita utuh 3–5 menit. Video Kabi terlalu panjang (10–38 menit) untuk usia 4–6.",
+    "references": [
       "Lagi Seru Main Bola, Tiba-Tiba Adzan! — Petualangan Akhlak Anak Muslim https://www.youtube.com/watch?v=aZhkfxLbh5M",
       "Kabi & Bica (pembanding durasi panjang) https://www.youtube.com/watch?v=JMXsGakpKDk",
       "Dalil menjawab adzan: HR. Bukhari no. 611, HR. Muslim no. 383"
     ]
   },
-  "jumlahRevisi": 0,
+  "revisionCount": 0,
   "log": [
     {
-      "waktu": "2026-10-31T00:41:04.252Z",
-      "oleh": "riset",
-      "pesan": "Ide dibuat"
+      "time": "2026-10-31T00:41:04.252Z",
+      "by": "riset",
+      "message": "Ide dibuat"
     }
   ]
 }

@@ -1,119 +1,119 @@
-// Kosakata visual yang dipahami template Remotion.
-// Kalau menambah latar/karakter baru di packages/video, tambahkan juga di sini
-// supaya agen Sutradara boleh memakainya.
+// Visual vocabulary understood by Remotion template.
+// When adding new backgrounds/characters in packages/video, add them here too
+// so Director agent can use them.
 
-export const LATAR = [
-  'kamar-malam',
-  'ruang-tamu',
-  'taman',
-  'masjid',
-  'dapur',
-  'langit-malam',
-  'gurun',
-  'laut',
-  'gunung',
-  'fajar',
-  'sekolah',
-  'halaman-rumah',
-  'perpustakaan',
-  'tempat-wudhu',
-  'dalam-masjid',
-  'taman-bermain',
-  'pasar',
-  'toko',
+export const BACKGROUNDS = [
+  'bedroom-night',
+  'living-room',
+  'garden',
+  'mosque',
+  'kitchen',
+  'night-sky',
+  'desert',
+  'ocean',
+  'mountain',
+  'dawn',
+  'school',
+  'yard',
+  'library',
+  'ablution',
+  'inside-mosque',
+  'playground',
+  'market',
+  'store',
 ] as const;
 
-/** Gerak suasana tambahan di atas latar (dipakai video hafalan). */
-export const SUASANA = ['hujan', 'bintang', 'burung', 'cahaya', 'daun', 'kupu'] as const;
+/** Additional mood animations on top of background (used in memorization videos). */
+export const MOODS = ['rain', 'stars', 'birds', 'light', 'leaves', 'butterflies'] as const;
 
-/** Pegawai yang bisa diajak ngobrol di halaman Chat (id sama dengan pegawai Kantor 3D). */
-export const AGEN_CHAT = ['manajer', 'riset', 'penulis', 'reviewer', 'sutradara', 'channel'] as const;
+/** Agents that can be chatted with on Chat page (id same as Kantor 3D employees). */
+export const CHAT_AGENTS = ['manajer', 'riset', 'penulis', 'reviewer', 'sutradara', 'channel'] as const;
 
-/** Jenis konten: cerita (naskah + karakter) atau hafalan (bacaan surat Al-Qur'an). */
-export const JENIS_KONTEN = ['cerita', 'hafalan'] as const;
+/** Content type: story (script + characters) or memorization (Quranic recitation). */
+export const CONTENT_TYPES = ['story', 'memorization'] as const;
 
-export const KARAKTER = ['mamas', 'ibu', 'mochi'] as const;
+export const CHARACTERS = ['mamas', 'mother', 'mochi'] as const;
 
-export const EKSPRESI = ['senang', 'sedih', 'berpikir', 'kaget', 'tenang'] as const;
+export const EXPRESSIONS = ['happy', 'sad', 'thinking', 'surprised', 'calm'] as const;
 
-/** Benda kecil yang bisa dipegang tokoh (juga bisa diletakkan di adegan). */
-export const BENDA = ['quran', 'apel', 'pisang', 'kurma', 'kue', 'gelas-susu', 'bola', 'mobil-mainan', 'boneka', 'buku', 'bunga'] as const;
+/** Small items that characters can hold (can also be placed in scene). */
+export const HELD_ITEMS = ['quran', 'apple', 'banana', 'date', 'cake', 'milk-glass', 'ball', 'toy-car', 'doll', 'book', 'flower'] as const;
 
-/** Properti pendukung di adegan (diletakkan di lantai/meja kecil di sekitar tokoh). */
-export const PROPERTI = [
-  ...BENDA,
-  'piring-buah',
-  'piring-nasi',
-  'keranjang-buah',
-  'balok-mainan',
-  'kotak-mainan',
-  'pohon-pot',
-  'sajadah',
-  'rehal-quran',
-  'bantal',
+/** Supporting props in scene (placed on floor/small table around characters). */
+export const SCENE_PROPS = [
+  ...HELD_ITEMS,
+  'fruit-plate',
+  'rice-plate',
+  'fruit-basket',
+  'building-blocks',
+  'toy-box',
+  'potted-tree',
+  'prayer-mat',
+  'quran-stand',
+  'pillow',
 ] as const;
 
 /**
- * Aksi tokoh di satu adegan. Mamas/Ibu: memegang (benda), membaca-quran, berdoa, makan (benda),
- * bermain (bola/mainan). Mochi: tidur, bermain (gulungan benang).
+ * Character action in one scene. Mamas/Mother: holding (item), reading-quran, praying, eating (item),
+ * playing (ball/toy). Mochi: sleeping, playing (yarn ball).
  */
-export const AKSI = ['memegang', 'membaca-quran', 'berdoa', 'makan', 'bermain', 'tidur'] as const;
+export const ACTIONS = ['holding', 'reading-quran', 'praying', 'eating', 'playing', 'sleeping'] as const;
 
-export const JENIS_ADEGAN = ['cerita', 'doa', 'pertanyaan'] as const;
+export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
 
-export const USIA = ['1-3', '4-6', '7-10', '1-10'] as const;
+export const AGE_GROUPS = ['1-3', '4-6', '7-10', '1-10'] as const;
 
-/** Format video: biasa (16:9, 3–5 menit) atau YouTube Shorts (9:16, < 60 detik). */
-export const FORMAT = ['biasa', 'short'] as const;
+/** Video format: standard (16:9, 3–5 minutes) or YouTube Shorts (9:16, < 60 seconds). */
+export const FORMATS = ['standard', 'short'] as const;
 
-export const FORMAT_LABEL = { biasa: 'Video biasa', short: 'YouTube Shorts' } as const;
+export const FORMAT_LABEL = { standard: 'Video biasa', short: 'YouTube Shorts' } as const;
 
-/** Pilihan saat menyetujui materi: 'keduanya' memecah satu ide jadi dua episode (video biasa + Shorts). */
-export const PILIHAN_FORMAT = [...FORMAT, 'keduanya'] as const;
-export type PilihanFormat = (typeof PILIHAN_FORMAT)[number];
-export const PILIHAN_FORMAT_LABEL: Record<PilihanFormat, string> = { ...FORMAT_LABEL, keduanya: 'Keduanya (Video + Shorts)' };
+/** Choice when approving material: 'both' splits one idea into two episodes (standard video + Shorts). */
+export const FORMAT_CHOICES = [...FORMATS, 'both'] as const;
+export type FormatChoice = (typeof FORMAT_CHOICES)[number];
+export const FORMAT_CHOICE_LABEL: Record<FormatChoice, string> = { ...FORMAT_LABEL, both: 'Keduanya (Video + Shorts)' };
 
-/** Ukuran & durasi pembuka/penutup per format. */
-export const SPEK_FORMAT = {
-  biasa: { lebar: 1920, tinggi: 1080, introDetik: 3, outroDetik: 4, introMaksDetik: 10, outroMaksDetik: 12 },
-  short: { lebar: 1080, tinggi: 1920, introDetik: 1.5, outroDetik: 2, introMaksDetik: 3, outroMaksDetik: 4 },
+/** Size & intro/outro duration per format. */
+export const FORMAT_SPEC = {
+  standard: { width: 1920, height: 1080, introSeconds: 3, outroSeconds: 4, maxIntroSeconds: 10, maxOutroSeconds: 12 },
+  short: { width: 1080, height: 1920, introSeconds: 1.5, outroSeconds: 2, maxIntroSeconds: 3, maxOutroSeconds: 4 },
 } as const;
 
-/** Batas geser nada suara (semiton). Lebih dari ini suara mulai terdengar tidak alami. */
-export const NADA_MAKS = 4;
+/** Voice pitch shift limit (semitones). Beyond this voice starts sounding unnatural. */
+export const MAX_PITCH = 4;
 
 /**
- * Filter ffmpeg pengubah suara. `nada` (semiton) menggeser nada sekaligus warna suara
- * (+ terdengar lebih kecil/anak-anak, − lebih berat); `tempo` 1 = kecepatan bicara asli.
+ * FFmpeg voice transformation filter. `pitch` (semitones) shifts pitch and timbre
+ * (+ sounds younger/childlike, − heavier); `tempo` 1 = original speech speed.
  */
-export function filterSuara({ nada = 0, tempo = 1 }: { nada?: number; tempo?: number }): string | undefined {
-  const st = Math.round(nada * 2) / 2;
+export function voiceFilter({ pitch = 0, tempo = 1 }: { pitch?: number; tempo?: number }): string | undefined {
+  const st = Math.round(pitch * 2) / 2;
   const tp = Math.max(0.7, Math.min(1.4, tempo));
   if (!st && Math.abs(tp - 1) < 0.005) return undefined;
   const f = 2 ** (st / 12);
   return `aresample=48000,asetrate=${(48000 * f).toFixed(0)},aresample=48000,atempo=${(tp / f).toFixed(5)}`;
 }
 
-/** Geser nada seluruh rekaman episode tanpa mengubah tempo (0 = tanpa filter). */
-export function filterNada(semiton: number): string | undefined {
-  return filterSuara({ nada: Math.max(-NADA_MAKS, Math.min(NADA_MAKS, semiton)) });
+/** Shift pitch of entire episode recording without changing tempo (0 = no filter). */
+export function pitchFilter(semitones: number): string | undefined {
+  return voiceFilter({ pitch: Math.max(-MAX_PITCH, Math.min(MAX_PITCH, semitones)) });
 }
 
-/** Suara per pembicara di rekaman per adegan. Bisa diubah di halaman Pengaturan. */
-export const PEMBICARA = ['narator', 'ibu', 'mamas', 'mochi'] as const;
-export const SUARA_KARAKTER_BAWAAN: Record<(typeof PEMBICARA)[number], { nada: number; tempo: number; ket: string }> = {
-  narator: { nada: 0, tempo: 1, ket: 'suara asli' },
-  // geseran nada kecil saja: makin jauh digeser, makin terdengar seperti robot/chipmunk
-  ibu: { nada: -1.5, tempo: 0.96, ket: 'sedikit lebih berat, kalem & pelan' },
-  mamas: { nada: 2.5, tempo: 1.04, ket: 'lebih muda & ceria, tetap natural' },
-  mochi: { nada: 4, tempo: 1.05, ket: 'kecil & menggemaskan' },
+/** Voice per speaker in per-scene recording. Can be changed in Settings page. */
+export const SPEAKERS = ['narrator', 'mother', 'mamas', 'mochi'] as const;
+export const DEFAULT_CHARACTER_VOICE: Record<(typeof SPEAKERS)[number], { pitch: number; tempo: number; note: string }> = {
+  narrator: { pitch: 0, tempo: 1, note: 'suara asli' },
+  // Small pitch shifts only: too much shift sounds like robot/chipmunk
+  mother: { pitch: -1.5, tempo: 0.96, note: 'sedikit lebih berat, kalem & pelan' },
+  mamas: { pitch: 2.5, tempo: 1.04, note: 'lebih muda & ceria, tetap natural' },
+  mochi: { pitch: 4, tempo: 1.05, note: 'kecil & menggemaskan' },
 };
-export const BATAS_NADA_KARAKTER = { min: -6, maks: 9 };
-/** Suara bacaan video hafalan: lebih tinggi seperti anak-anak & lebih pelan supaya mudah diikuti. */
-export const SUARA_HAFALAN_BAWAAN = { nada: 3, tempo: 0.85, ket: 'seperti anak-anak, lebih pelan' };
+export const CHARACTER_PITCH_LIMITS = { min: -6, max: 9 };
+/** Memorization video recitation voice: higher like children & slower for easy following. */
+export const DEFAULT_MEMORIZATION_VOICE = { pitch: 3, tempo: 0.85, note: 'seperti anak-anak, lebih pelan' };
 
-export const JENIS_MUSIK = ['pembuka', 'penutup'] as const;
-export type JenisMusik = (typeof JENIS_MUSIK)[number];
+export const MUSIC_TYPES = ['intro', 'outro'] as const;
+export type MusicType = (typeof MUSIC_TYPES)[number];
 
 export const STATUS_LABEL = {
   idea: 'Ide',
@@ -133,8 +133,8 @@ export const STATUS_LABEL = {
 
 export type EpisodeStatus = keyof typeof STATUS_LABEL;
 
-/** Status ketika ada agen yang sedang bekerja (dashboard akan auto-refresh). */
-export const STATUS_SIBUK: EpisodeStatus[] = [
+/** Statuses when an agent is working (dashboard will auto-refresh). */
+export const BUSY_STATUSES: EpisodeStatus[] = [
   'writing',
   'reviewing',
   'directing',
@@ -142,14 +142,45 @@ export const STATUS_SIBUK: EpisodeStatus[] = [
   'uploading',
 ];
 
-/** Kolom papan dashboard. */
-export const FASE: { judul: string; status: EpisodeStatus[] }[] = [
-  { judul: 'Ide', status: ['idea'] },
-  { judul: 'Naskah', status: ['writing', 'reviewing', 'needs_script_approval'] },
-  { judul: 'Rekam Suara', status: ['directing', 'needs_audio'] },
-  { judul: 'Video', status: ['rendering', 'needs_video_approval', 'uploading'] },
-  { judul: 'Tayang', status: ['scheduled', 'published'] },
-  { judul: 'Arsip', status: ['rejected', 'error'] },
+/** Dashboard board columns. */
+export const PHASES: { title: string; statuses: EpisodeStatus[] }[] = [
+  { title: 'Ide', statuses: ['idea'] },
+  { title: 'Naskah', statuses: ['writing', 'reviewing', 'needs_script_approval'] },
+  { title: 'Rekam Suara', statuses: ['directing', 'needs_audio'] },
+  { title: 'Video', statuses: ['rendering', 'needs_video_approval', 'uploading'] },
+  { title: 'Tayang', statuses: ['scheduled', 'published'] },
+  { title: 'Arsip', statuses: ['rejected', 'error'] },
 ];
 
 export const FPS = 30;
+
+/** Indonesian display labels for code-level enum values (the UI stays Indonesian). */
+export const SPEAKER_LABEL: Record<(typeof SPEAKERS)[number], string> = { narrator: 'Narator', mother: 'Ibu', mamas: 'Mamas', mochi: 'Mochi' };
+export const SCENE_TYPE_LABEL: Record<(typeof SCENE_TYPES)[number], string> = { story: 'cerita', prayer: 'doa', question: 'pertanyaan' };
+export const EXPRESSION_LABEL: Record<(typeof EXPRESSIONS)[number], string> = {
+  happy: 'senang',
+  sad: 'sedih',
+  thinking: 'berpikir',
+  surprised: 'kaget',
+  calm: 'tenang',
+};
+export const BACKGROUND_LABEL: Record<(typeof BACKGROUNDS)[number], string> = {
+  'bedroom-night': 'kamar malam',
+  'living-room': 'ruang tamu',
+  garden: 'taman',
+  mosque: 'masjid',
+  kitchen: 'dapur',
+  'night-sky': 'langit malam',
+  desert: 'gurun',
+  ocean: 'laut',
+  mountain: 'gunung',
+  dawn: 'fajar',
+  school: 'sekolah',
+  yard: 'halaman rumah',
+  library: 'perpustakaan',
+  ablution: 'tempat wudhu',
+  'inside-mosque': 'dalam masjid',
+  playground: 'taman bermain',
+  market: 'pasar',
+  store: 'toko',
+};

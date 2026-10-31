@@ -1,16 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { paths, rapikanMetadata, type Episode } from '@kantor/shared';
+import { paths, normalizeMetadata, type Episode } from '@kantor/shared';
 import { youtubeWrite } from './client.ts';
-import { masukkanKePlaylist } from './playlist.ts';
+import { addToPlaylist } from './playlist.ts';
 
-export interface OpsiUpload {
-  /** ISO datetime. Kosong = disimpan private (tidak tayang) */
-  jadwalTayang?: string;
+export interface UploadOptions {
+  /** ISO datetime. Empty = stored private (not published) */
+  publishTime?: string;
 }
 
 /** Jadikan video private (jadwal tayang ikut batal). Video tidak dihapus. */
-export async function privatkanVideo(videoId: string) {
+export async function makePrivate(videoId: string) {
   await youtubeWrite().videos.update({
     part: ['status'],
     requestBody: {
@@ -21,21 +21,21 @@ export async function privatkanVideo(videoId: string) {
   });
 }
 
-export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
+export async function uploadEpisode(ep: Episode, opsi: UploadOptions) {
   if (!ep.render?.video || !ep.metadata) throw new Error('Episode belum dirender / belum punya metadata');
   const yt = youtubeWrite();
   const file = path.join(paths.renders(), ep.render.video);
   // Shorts dikenali otomatis dari video vertikal < 3 menit; tagar #Shorts membantu penemuan.
   // Video biasa dibersihkan dari #Shorts (misal metadata tersalin dari versi Shorts-nya).
-  const meta = rapikanMetadata(ep.metadata, ep.ide.format);
+  const meta = normalizeMetadata(ep.metadata, ep.idea.format);
 
   const res = await yt.videos.insert({
     part: ['snippet', 'status'],
     notifySubscribers: true,
     requestBody: {
       snippet: {
-        title: meta.judul,
-        description: meta.deskripsi,
+        title: meta.title,
+        description: meta.description,
         tags: meta.tags,
         categoryId: '27', // Education
         defaultLanguage: 'id',
@@ -43,7 +43,7 @@ export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
       },
       status: {
         privacyStatus: 'private', // jadwal tayang wajib private + publishAt
-        publishAt: opsi.jadwalTayang,
+        publishAt: opsi.publishTime,
         selfDeclaredMadeForKids: true, // konten untuk anak (COPPA)
         // Animasi kartun bukan "konten sintetis realistis", jadi tidak wajib label AI.
         // Ubah ke true kalau suatu saat memakai visual/suara AI yang realistis.
@@ -55,7 +55,7 @@ export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
   });
 
   const videoId = res.data.id!;
-  const peringatan: string[] = [];
+  const warnings: string[] = [];
 
   if (ep.render.thumbnail) {
     try {
@@ -64,20 +64,20 @@ export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
         media: { mimeType: 'image/png', body: fs.createReadStream(path.join(paths.renders(), ep.render.thumbnail)) },
       });
     } catch (e) {
-      peringatan.push(
+      warnings.push(
         `Thumbnail gagal diupload (channel perlu verifikasi nomor HP di YouTube untuk thumbnail kustom): ${(e as Error).message}`,
       );
     }
   }
 
-  let playlist: { nama: string; id: string } | undefined;
+  let playlist: { name: string; id: string } | undefined;
   try {
-    const hasil = await masukkanKePlaylist(ep, videoId);
-    playlist = { nama: hasil.nama, id: hasil.id };
-    peringatan.push(hasil.pesan);
+    const result = await addToPlaylist(ep, videoId);
+    playlist = { name: result.name, id: result.id };
+    warnings.push(result.message);
   } catch (e) {
-    peringatan.push(`Gagal memasukkan ke playlist: ${(e as Error).message}`);
+    warnings.push(`Gagal memasukkan ke playlist: ${(e as Error).message}`);
   }
 
-  return { videoId, url: `https://www.youtube.com/watch?v=${videoId}`, peringatan, playlist };
+  return { videoId, url: `https://www.youtube.com/watch?v=${videoId}`, warnings, playlist };
 }

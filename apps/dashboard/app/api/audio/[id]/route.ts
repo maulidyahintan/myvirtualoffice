@@ -4,18 +4,18 @@ import path from 'node:path';
 import {
   addLog,
   ensureDir,
-  filterNada,
-  filterSuara,
+  pitchFilter,
+  voiceFilter,
   getEpisode,
   paths,
   setStatus,
-  suaraHafalan,
-  suaraPembicara,
+  memorizationVoice,
+  speakerVoice,
   updateEpisode,
   type Episode,
 } from '@kantor/shared';
-import { olahAudio } from '@/lib/ffmpeg';
-import { jalankanKantor } from '@/lib/jalankan';
+import { processAudio } from '@/lib/ffmpeg';
+import { runOfficeCommand } from '@/lib/runner';
 
 const TIPE: Record<string, string> = {
   '.mp3': 'audio/mpeg',
@@ -29,17 +29,17 @@ const EKSTENSI = Object.keys(TIPE);
 
 /**
  * Filter pratinjau satu rekaman, sama seperti hasil render: cerita → efek suara karakter
- * sesuai pembicara adegan, hafalan → suara anak-anak. Nada episode hanya dipakai kalau
+ * sesuai pembicara scenes, memorization → suara anak-anak. Nada episode hanya dipakai kalau
  * efek tidak aktif (supaya tidak menumpuk, misal Ibu jadi ikut tinggi).
  */
-function filterPratinjau(ep: Episode, adegan: number | undefined, opsi: { efek: boolean; nada: number; offset: number }) {
-  const pembicara = adegan !== undefined && ep.ide.jenis !== 'hafalan' ? ep.adegan?.[adegan]?.pembicara : undefined;
-  const efek = !opsi.efek ? undefined : ep.ide.jenis === 'hafalan' ? filterSuara(suaraHafalan()) : pembicara ? filterSuara(suaraPembicara(pembicara)) : undefined;
-  const pakaiEfek = opsi.efek && (ep.ide.jenis === 'hafalan' || pembicara);
+function filterPratinjau(ep: Episode, adegan: number | undefined, opsi: { efek: boolean;  pitch: number; offset: number }) {
+  const pembicara = adegan !== undefined && ep.idea.type !== 'memorization' ? ep.scenes?.[adegan]?.speaker : undefined;
+  const efek = !opsi.efek ? undefined : ep.idea.type === 'memorization' ? voiceFilter(memorizationVoice()) : pembicara ? voiceFilter(speakerVoice(pembicara)) : undefined;
+  const pakaiEfek = opsi.efek && (ep.idea.type === 'memorization' || pembicara);
   return [
     // rekaman Studio: mulai dari saat video mulai (lewati hitung mundur), sama seperti render
     opsi.offset > 0.05 ? `atrim=start=${opsi.offset.toFixed(3)},asetpts=PTS-STARTPTS` : undefined,
-    pakaiEfek ? efek : filterNada(opsi.nada),
+    pakaiEfek ? efek : pitchFilter(opsi.pitch),
   ]
     .filter(Boolean)
     .join(',');
@@ -55,15 +55,15 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
   const ep = getEpisode(id);
   const q = new URL(req.url).searchParams;
   const adegan = q.has('adegan') ? Number(q.get('adegan')) : undefined;
-  const file = adegan !== undefined ? ep.audioPerAdegan?.[adegan] : ep.bagianAudio?.[Number(q.get('bagian'))];
+  const file = adegan !== undefined ? ep.audioPerScene?.[adegan] : ep.audioParts?.[Number(q.get('bagian'))];
   const lokasi = file ? path.join(paths.videoPkg(), 'public', file) : '';
   if (!file || !fs.existsSync(lokasi)) return new Response('Tidak ditemukan', { status: 404 });
   const filter = filterPratinjau(ep, adegan, {
     efek: q.get('efek') === '1',
-    nada: Number(q.get('nada')) || 0,
-    offset: adegan !== undefined ? (ep.offsetAdegan?.[adegan] ?? 0) : 0,
+     pitch: Number(q.get('nada')) || 0,
+    offset: adegan !== undefined ? (ep.sceneOffsets?.[adegan] ?? 0) : 0,
   });
-  if (filter) return new Response(new Uint8Array(await olahAudio(lokasi, filter)), { headers: WAV });
+  if (filter) return new Response(new Uint8Array(await processAudio(lokasi, filter)), { headers: WAV });
   return new Response(fs.readFileSync(lokasi), {
     headers: { 'Content-Type': TIPE[path.extname(lokasi)] ?? 'application/octet-stream', 'Cache-Control': 'no-store' },
   });
@@ -78,7 +78,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
 export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const { id } = await ctx.params;
   const ep = getEpisode(id);
-  if (!ep.adegan) return Response.json({ error: 'Episode belum disutradarai' }, { status: 400 });
+  if (!ep.scenes) return Response.json({ error: 'Episode belum disutradarai' }, { status: 400 });
 
   const form = await req.formData();
 
@@ -91,10 +91,10 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     try {
       const filter = filterPratinjau(ep, Number(form.get('adegan')), {
         efek: form.get('efek') === '1',
-        nada: Number(form.get('nada')) || 0,
+         pitch: Number(form.get('nada')) || 0,
         offset: Math.max(0, Number(form.get('offset')) || 0),
       });
-      return new Response(new Uint8Array(await olahAudio(sementara, filter || 'anull')), { headers: WAV });
+      return new Response(new Uint8Array(await processAudio(sementara, filter || 'anull')), { headers: WAV });
     } finally {
       fs.rmSync(sementara, { force: true });
     }
@@ -114,33 +114,33 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   const dir = ensureDir(paths.audio());
   const pub = path.join(paths.videoPkg(), 'public');
 
-  // rekaman per adegan (hafalan: per ayat): satu file untuk satu slot, tidak langsung render
+  // rekaman per adegan (memorization: per verse): satu file untuk satu slot, tidak langsung render
   if (form.has('adegan')) {
     const i = Number(form.get('adegan'));
-    const jumlah = ep.ide.jenis === 'hafalan' ? (ep.hafalan?.ayat.length ?? 0) : ep.adegan.length;
+    const jumlah = ep.idea.type === 'memorization' ? (ep.memorization?.verses.length ?? 0) : ep.scenes.length;
     if (!Number.isInteger(i) || i < 0 || i >= jumlah) return Response.json({ error: 'Nomor adegan tidak valid' }, { status: 400 });
     const nama = `${id}-adegan-${i + 1}-${Date.now().toString(36)}${path.extname(files[0].name).toLowerCase()}`;
     fs.writeFileSync(path.join(dir, nama), Buffer.from(await files[0].arrayBuffer()));
     updateEpisode(id, (e) => {
-      const per = Array.from({ length: jumlah }, (_, k) => e.audioPerAdegan?.[k] ?? null);
+      const per = Array.from({ length: jumlah }, (_, k) => e.audioPerScene?.[k] ?? null);
       if (per[i]) fs.rmSync(path.join(pub, per[i]!), { force: true });
       per[i] = `audio/${nama}`;
-      e.audioPerAdegan = per;
-      const offset = Array.from({ length: jumlah }, (_, k) => e.offsetAdegan?.[k] ?? null);
+      e.audioPerScene = per;
+      const offset = Array.from({ length: jumlah }, (_, k) => e.sceneOffsets?.[k] ?? null);
       offset[i] = Math.max(0, Number(form.get('offset')) || 0) || null;
-      e.offsetAdegan = offset;
-      e.modeRekam = 'per-adegan';
-      if (e.hafalan) e.hafalan.mulaiSegmen = undefined;
+      e.sceneOffsets = offset;
+      e.recordingMode = 'per-scene';
+      if (e.memorization) e.memorization.segmentStarts = undefined;
     });
-    addLog(id, 'pemilik', `Rekaman ${ep.ide.jenis === 'hafalan' ? 'ayat' : 'adegan'} ${i + 1} diupload`);
+    addLog(id, 'pemilik', `Rekaman ${ep.idea.type === 'memorization' ? 'ayat' : 'adegan'} ${i + 1} diupload`);
     if (new URL(req.url).searchParams.has('json')) return Response.json({ ok: true });
     return Response.redirect(new URL(`/episode/${id}#adegan-${i + 1}`, req.url), 303);
   }
 
   const lanjut = form.get('mode') === 'lanjut';
-  let bagian = lanjut ? [...(ep.bagianAudio ?? [])] : [];
+  let bagian = lanjut ? [...(ep.audioParts ?? [])] : [];
   if (!lanjut) {
-    for (const lama of [...(ep.bagianAudio ?? []), ep.fileAudio]) if (lama) fs.rmSync(path.join(pub, lama), { force: true });
+    for (const lama of [...(ep.audioParts ?? []), ep.audioFile]) if (lama) fs.rmSync(path.join(pub, lama), { force: true });
   }
 
   const stempel = Date.now().toString(36);
@@ -151,11 +151,11 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   }
 
   updateEpisode(id, (e) => {
-    e.modeRekam = 'urut';
-    e.bagianAudio = bagian;
-    e.fileAudio = bagian.length === 1 ? bagian[0] : undefined;
-    // rekaman berubah → waktu tiap bacaan hafalan dideteksi ulang
-    if (e.hafalan) e.hafalan.mulaiSegmen = undefined;
+    e.recordingMode = 'sequential';
+    e.audioParts = bagian;
+    e.audioFile = bagian.length === 1 ? bagian[0] : undefined;
+    // rekaman berubah → waktu tiap bacaan memorization dideteksi ulang
+    if (e.memorization) e.memorization.segmentStarts = undefined;
   });
 
   const mb = (files.reduce((s, f) => s + f.size, 0) / 1e6).toFixed(1);
@@ -164,7 +164,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     addLog(id, 'pemilik', `${pesan}, menunggu bagian berikutnya`);
   } else {
     setStatus(id, 'rendering', 'pemilik', pesan);
-    jalankanKantor(['render', id], id);
+    runOfficeCommand(['render', id], id);
   }
 
   return Response.redirect(new URL(`/episode/${id}`, req.url), 303);

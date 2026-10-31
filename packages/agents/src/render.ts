@@ -4,23 +4,23 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 import {
   ensureDir,
-  filterHafalan,
-  filterNada,
-  filterSuara,
+  memorizationFilter,
+  pitchFilter,
+  voiceFilter,
   FPS,
-  frameIntroOutro,
-  hitungFrameAdegan,
-  hitungFrameHafalan,
+  introOutroFrames,
+  sceneFrames,
+  memorizationFrames,
   loadConfig,
   paths,
-  segmenHafalan,
-  suaraPembicara,
+  memorizationSegments,
+  speakerVoice,
   updateEpisode,
   type Episode,
   type EpisodeVideoProps,
   type Format,
-  type KantorConfig,
-  type MusikVideo,
+  type AppConfig,
+  type VideoMusic,
   type ThumbnailProps,
 } from '@kantor/shared';
 
@@ -111,44 +111,44 @@ function durasiFile(rel: string): Promise<number> {
   return durasiAudio(path.join(paths.videoPkg(), 'public', rel));
 }
 
-/** Rekaman diolah dengan filter suara → file baru `audio/<id>-<nama>.wav` (rekaman asli tidak diubah). */
-async function olahSuara(id: string, fileAudio: string, filter: string, nama: string): Promise<string> {
+/** Recording processed with voice filter → new file `audio/<id>-<name>.wav` (original recording unchanged). */
+async function processAudio(id: string, audioFile: string, filter: string, name: string): Promise<string> {
   const pub = path.join(paths.videoPkg(), 'public');
-  const hasil = `audio/${id}-${nama}.wav`;
-  fs.rmSync(path.join(pub, hasil), { force: true });
-  const out = await ffmpeg(['-hide_banner', '-y', '-i', path.join(pub, fileAudio), '-af', filter, path.join(pub, hasil)]);
-  if (!fs.existsSync(path.join(pub, hasil))) throw new Error(`Gagal mengolah suara:\n${out.slice(-600)}`);
-  return hasil;
+  const outputPath = `audio/${id}-${name}.wav`;
+  fs.rmSync(path.join(pub, outputPath), { force: true });
+  const out = await ffmpeg(['-hide_banner', '-y', '-i', path.join(pub, audioFile), '-af', filter, path.join(pub, outputPath)]);
+  if (!fs.existsSync(path.join(pub, outputPath))) throw new Error(`Gagal mengolah suara:\n${out.slice(-600)}`);
+  return outputPath;
 }
 
-/** Rekaman dengan nada digeser (file baru, rekaman asli tidak diubah). */
-async function geserNada(id: string, fileAudio: string, semiton: number, onLine?: (s: string) => void): Promise<string> {
-  const filter = filterNada(semiton);
-  if (!filter) return fileAudio;
-  const hasil = await olahSuara(id, fileAudio, filter, 'nada');
-  onLine?.(`Nada suara digeser ${semiton > 0 ? '+' : ''}${semiton} semiton`);
-  return hasil;
+/** Recording with shifted pitch (new file, original recording unchanged). */
+async function shiftPitch(id: string, audioFile: string, semitones: number, onLine?: (s: string) => void): Promise<string> {
+  const filter = pitchFilter(semitones);
+  if (!filter) return audioFile;
+  const outputPath = await processAudio(id, audioFile, filter, 'nada');
+  onLine?.(`Nada suara digeser ${semitones > 0 ? '+' : ''}${semitones} semiton`);
+  return outputPath;
 }
 
 /**
- * Detik mulai & lama tiap adegan (hafalan: tiap ayat) di video, dihitung dengan rumus
+ * Detik mulai & lama tiap adegan (memorization: tiap ayat) di video, dihitung dengan rumus
  * yang sama seperti calculateMetadata komposisi Episode.
  */
-export async function waktuAdegan(props: EpisodeVideoProps): Promise<{ mulai: number; durasi: number }[]> {
-  const durasiAudio = props.fileAudio ? await durasiFile(props.fileAudio) : undefined;
-  const { intro } = frameIntroOutro(
+export async function waktuScene(props: EpisodeVideoProps): Promise<{ mulai: number; durasi: number }[]> {
+  const durasiAudio = props.audioFile ? await durasiFile(props.audioFile) : undefined;
+  const { intro } = introOutroFrames(
     props.format,
-    props.musik?.pembuka ? await durasiFile(props.musik.pembuka) : undefined,
-    props.musik?.penutup ? await durasiFile(props.musik.penutup) : undefined,
+    props.music?.intro ? await durasiFile(props.music.intro) : undefined,
+    props.music?.outro ? await durasiFile(props.music.outro) : undefined,
   );
   let frames: number[];
-  if (props.hafalan) {
-    const h = props.hafalan;
-    const perSegmen = hitungFrameHafalan(h.ayat, h.ulang, durasiAudio, h.mulaiSegmen);
-    frames = h.ayat.map(() => 0);
-    segmenHafalan(h.ayat, h.ulang).forEach((s, i) => (frames[s.ayat] += perSegmen[i] ?? 0));
+  if (props.memorization) {
+    const h = props.memorization;
+    const perSegmen = memorizationFrames(h.verses, h.repetitions, durasiAudio, h.segmentStarts);
+    frames = h.verses.map(() => 0);
+    memorizationSegments(h.verses, h.repetitions).forEach((s, i) => (frames[s.verse] += perSegmen[i] ?? 0));
   } else {
-    frames = hitungFrameAdegan(props.adegan, durasiAudio, props.mulaiAdegan);
+    frames = sceneFrames(props.scenes, durasiAudio, props.sceneStarts);
   }
   let f = intro;
   return frames.map((n) => {
@@ -160,7 +160,7 @@ export async function waktuAdegan(props: EpisodeVideoProps): Promise<{ mulai: nu
 
 /**
  * Potongan rekaman yang berisi suara: hening di awal (sisakan 0,2 dtk) & akhir
- * (sisakan 0,4 dtk, supaya ujung kata yang lirih tidak terpotong) dibuang. Kembalikan filter atrim, atau undefined kalau tidak perlu.
+ * (sisakan 0,4 dtk, supaya ujung kata yang lirih tidak terpotong) dmotherang. Kembalikan filter atrim, atau undefined kalau tidak perlu.
  */
 async function filterRapikan(lokasi: string): Promise<string | undefined> {
   const durasi = await durasiAudio(lokasi);
@@ -213,8 +213,8 @@ export async function gabungAudio(
   const jeda = files.map((_, i) => opsi.jeda?.[i] ?? 0);
   const mulai = durasi.map((_, i) => durasi.slice(0, i).reduce((s, d, k) => s + d + jeda[k], 0));
 
-  const hasil = `audio/${id}-gabung.wav`;
-  fs.rmSync(path.join(pub, hasil), { force: true });
+  const result = `audio/${id}-gabung.wav`;
+  fs.rmSync(path.join(pub, result), { force: true });
   const beriJeda = olahan.map((_, i) => `[${i}:a]${jeda[i] ? `apad=pad_dur=${jeda[i]}` : 'anull'}[a${i}]`).join(';');
   const sambung = `${olahan.map((_, i) => `[a${i}]`).join('')}concat=n=${olahan.length}:v=0:a=1[out]`;
   const out = await ffmpeg([
@@ -225,11 +225,11 @@ export async function gabungAudio(
     `${beriJeda};${sambung}`,
     '-map',
     '[out]',
-    path.join(pub, hasil),
+    path.join(pub, result),
   ]);
-  if (!fs.existsSync(path.join(pub, hasil))) throw new Error(`Gagal menggabungkan rekaman:\n${out.slice(-600)}`);
+  if (!fs.existsSync(path.join(pub, result))) throw new Error(`Gagal menggabungkan rekaman:\n${out.slice(-600)}`);
   onLine?.(`${files.length} rekaman digabung`);
-  return { file: hasil, mulai, durasi, olahan };
+  return { file: result, mulai, durasi, olahan };
 }
 
 function hapusOlahan(olahan: string[]) {
@@ -239,37 +239,37 @@ function hapusOlahan(olahan: string[]) {
 /** Jeda berpikir untuk anak setelah adegan pertanyaan (rekaman per adegan tidak perlu menunggu). */
 const JEDA_PERTANYAAN = 3;
 
-/** Rekaman per adegan/ayat → satu file + detik mulai tiap adegan (hafalan: tiap bacaan). */
-async function siapkanAudioPerAdegan(ep: Episode, onLine?: (s: string) => void) {
-  const hafal = ep.ide.jenis === 'hafalan' ? ep.hafalan : undefined;
-  const jumlah = hafal ? hafal.ayat.length : (ep.adegan?.length ?? 0);
-  const per = ep.audioPerAdegan ?? [];
+/** Rekaman per adegan/ayat → satu file + detik mulai tiap adegan (memorization: tiap bacaan). */
+async function siapkanAudioPerScene(ep: Episode, onLine?: (s: string) => void) {
+  const hafal = ep.idea.type === 'memorization' ? ep.memorization : undefined;
+  const jumlah = hafal ? hafal.verses.length : (ep.scenes?.length ?? 0);
+  const per = ep.audioPerScene ?? [];
   const kosong = Array.from({ length: jumlah }, (_, i) => i).filter((i) => !per[i]);
   if (kosong.length) {
     throw new Error(`Rekaman ${hafal ? 'ayat' : 'adegan'} ke-${kosong.map((i) => i + 1).join(', ')} belum diupload`);
   }
   const files = per.slice(0, jumlah) as string[];
-  const jeda = files.map((_, i) => JEDA_PER_ADEGAN + (!hafal && ep.adegan?.[i]?.jenis === 'pertanyaan' ? JEDA_PERTANYAAN : 0));
-  // cerita: efek suara per pembicara (Ibu, Mamas, …); hafalan: satu efek suara anak-anak untuk semua ayat
+  const jeda = files.map((_, i) => JEDA_PER_ADEGAN + (!hafal && ep.scenes?.[i]?.type === 'question' ? JEDA_PERTANYAAN : 0));
+  // cerita: efek suara per pembicara (Ibu, Mamas, …); memorization: satu efek suara anak-anak untuk semua ayat
   const cfg = loadConfig();
-  const efekHafalan = filterHafalan(ep, cfg);
+  const memorizationEffect = memorizationFilter(ep, cfg);
   const efek = files.map((_, i) =>
     hafal
-      ? efekHafalan
-      : ep.efekKarakter !== false && ep.adegan?.[i]
-        ? filterSuara(suaraPembicara(ep.adegan[i].pembicara, cfg))
+      ? memorizationEffect
+      : ep.characterEffects !== false && ep.scenes?.[i]
+        ? voiceFilter(speakerVoice(ep.scenes[i].speaker, cfg))
         : undefined,
   );
-  const { file, mulai, durasi, olahan } = await gabungAudio(ep.id, files, { jeda, rapikan: true, efek, mulaiDari: ep.offsetAdegan }, onLine);
-  ep.fileAudio = file;
+  const { file, mulai, durasi, olahan } = await gabungAudio(ep.id, files, { jeda, rapikan: true, efek, mulaiDari: ep.sceneOffsets }, onLine);
+  ep.audioFile = file;
 
   let mulaiSegmen: number[] | undefined;
-  if (hafal && (!hafal.mulaiSegmen || (hafal.efekSegmen ?? '') !== (efekHafalan ?? ''))) {
+  if (hafal && (!hafal.segmentStarts || (hafal.segmentEffect ?? '') !== (memorizationEffect ?? ''))) {
     // tiap file ayat bisa berisi beberapa bacaan ulang → cari jedanya di dalam file itu
-    const segmen = segmenHafalan(hafal.ayat, ep.ide.hafalan?.ulang ?? 1);
+    const segmen = memorizationSegments(hafal.verses, ep.idea.memorization?.repetitions ?? 1);
     mulaiSegmen = [];
     for (const [i, f] of olahan.entries()) {
-      const n = segmen.filter((s) => s.ayat === i).length;
+      const n = segmen.filter((s) => s.verse === i).length;
       // jeda tidak jelas → bacaan dibagi rata dalam file ayat itu
       const dalam =
         n > 1
@@ -277,101 +277,101 @@ async function siapkanAudioPerAdegan(ep: Episode, onLine?: (s: string) => void) 
           : [0];
       mulaiSegmen.push(...dalam.map((t) => mulai[i] + t));
     }
-    hafal.mulaiSegmen = mulaiSegmen;
+    hafal.segmentStarts = mulaiSegmen;
   }
   hapusOlahan(olahan);
   updateEpisode(ep.id, (e) => {
-    e.fileAudio = file;
-    if (mulaiSegmen && e.hafalan) {
-      e.hafalan.mulaiSegmen = mulaiSegmen;
-      e.hafalan.efekSegmen = efekHafalan;
+    e.audioFile = file;
+    if (mulaiSegmen && e.memorization) {
+      e.memorization.segmentStarts = mulaiSegmen;
+      e.memorization.segmentEffect = memorizationEffect;
     }
   });
   return hafal ? undefined : mulai;
 }
 
 /** Musik pembuka/penutup dari pengaturan; file yang hilang dilewati. */
-function musikVideo(cfg: KantorConfig, format: Format): MusikVideo | undefined {
-  const m = cfg.musik;
-  if (!m || (format === 'short' && !m.diShorts)) return undefined;
+function musikVideo(cfg: AppConfig, format: Format): VideoMusic | undefined {
+  const m = cfg.music;
+  if (!m || (format === 'short' && !m.inShorts)) return undefined;
   const ada = (f?: string) => (f && fs.existsSync(path.join(paths.videoPkg(), 'public', f)) ? f : undefined);
-  const hasil = { pembuka: ada(m.pembuka), penutup: ada(m.penutup), volume: m.volume };
-  return hasil.pembuka || hasil.penutup ? hasil : undefined;
+  const result = { intro: ada(m.intro), outro: ada(m.outro), volume: m.volume };
+  return result.intro || result.outro ? result : undefined;
 }
 
 export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
-  if (!ep.adegan?.length) throw new Error('Episode belum punya adegan dari Sutradara');
+  if (!ep.scenes?.length) throw new Error('Episode belum punya adegan dari Sutradara');
   const cfg = loadConfig();
   const dir = ensureDir(paths.renders());
 
-  let mulaiAdegan: number[] | undefined;
-  if (ep.modeRekam === 'per-adegan') {
-    mulaiAdegan = await siapkanAudioPerAdegan(ep, onLine);
-  } else if ((ep.bagianAudio?.length ?? 0) > 1) {
-    const { file, olahan } = await gabungAudio(ep.id, ep.bagianAudio!, {}, onLine);
+  let mulaiScene: number[] | undefined;
+  if (ep.recordingMode === 'per-scene') {
+    mulaiScene = await siapkanAudioPerScene(ep, onLine);
+  } else if ((ep.audioParts?.length ?? 0) > 1) {
+    const { file, olahan } = await gabungAudio(ep.id, ep.audioParts!, {}, onLine);
     hapusOlahan(olahan);
-    ep.fileAudio = file;
+    ep.audioFile = file;
     updateEpisode(ep.id, (e) => {
-      e.fileAudio = file;
+      e.audioFile = file;
     });
   }
 
-  if (ep.fileAudio && !fs.existsSync(path.join(paths.videoPkg(), 'public', ep.fileAudio))) {
-    throw new Error(`File audio ${ep.fileAudio} tidak ditemukan`);
+  if (ep.audioFile && !fs.existsSync(path.join(paths.videoPkg(), 'public', ep.audioFile))) {
+    throw new Error(`File audio ${ep.audioFile} tidak ditemukan`);
   }
 
   // hafalan berurutan: efek suara anak-anak diterapkan ke seluruh rekaman sebelum jeda dideteksi
-  // (tempo lebih pelan menggeser waktu tiap bacaan); per ayat sudah diolah di siapkanAudioPerAdegan
-  const efekHafalan = filterHafalan(ep, cfg);
-  let audioRender = ep.fileAudio;
-  if (audioRender && efekHafalan && ep.modeRekam !== 'per-adegan') {
-    audioRender = await olahSuara(ep.id, audioRender, efekHafalan, 'hafalan');
+  // (tempo lebih pelan menggeser waktu tiap bacaan); per ayat sudah diolah di siapkanAudioPerScene
+  const memorizationEffect = memorizationFilter(ep, cfg);
+  let audioRender = ep.audioFile;
+  if (audioRender && memorizationEffect && ep.recordingMode !== 'per-scene') {
+    audioRender = await processAudio(ep.id, audioRender, memorizationEffect, 'memorization');
     onLine?.('Efek suara hafalan diterapkan (nada naik, tempo lebih pelan)');
   }
 
-  let hafalan: EpisodeVideoProps['hafalan'];
-  if (ep.ide.jenis === 'hafalan' && ep.hafalan) {
-    const ulang = ep.ide.hafalan?.ulang ?? 1;
-    let mulaiSegmen = ep.hafalan.mulaiSegmen;
-    const jumlah = segmenHafalan(ep.hafalan.ayat, ulang).length;
-    const efekBerubah = (ep.hafalan.efekSegmen ?? '') !== (efekHafalan ?? '');
-    if (audioRender && (!mulaiSegmen || mulaiSegmen.length !== jumlah || efekBerubah)) {
-      mulaiSegmen = await deteksiSegmen(path.join(paths.videoPkg(), 'public', audioRender), jumlah);
-      onLine?.(mulaiSegmen ? `Jeda antar bacaan terdeteksi (${jumlah} bacaan)` : 'Jeda antar bacaan tidak cukup jelas — durasi dibagi sesuai panjang ayat');
+  let memorization: EpisodeVideoProps['memorization'];
+  if (ep.idea.type === 'memorization' && ep.memorization) {
+    const reps = ep.idea.memorization?.repetitions ?? 1;
+    let starts = ep.memorization.segmentStarts;
+    const segmentCount = memorizationSegments(ep.memorization.verses, reps).length;
+    const effectChanged = (ep.memorization.segmentEffect ?? '') !== (memorizationEffect ?? '');
+    if (audioRender && (!starts || starts.length !== segmentCount || effectChanged)) {
+      starts = await deteksiSegmen(path.join(paths.videoPkg(), 'public', audioRender), segmentCount);
+      onLine?.(starts ? `Jeda antar bacaan terdeteksi (${segmentCount} bacaan)` : 'Jeda antar bacaan tidak cukup jelas — durasi dibagi sesuai panjang ayat');
       updateEpisode(ep.id, (e) => {
-        if (e.hafalan) {
-          e.hafalan.mulaiSegmen = mulaiSegmen;
-          e.hafalan.efekSegmen = efekHafalan;
+        if (e.memorization) {
+          e.memorization.segmentStarts = starts;
+          e.memorization.segmentEffect = memorizationEffect;
         }
       });
     }
-    hafalan = { namaSurat: ep.hafalan.namaSurat, artiSurat: ep.hafalan.artiSurat, ayat: ep.hafalan.ayat, ulang, mulaiSegmen };
+    memorization = { surahName: ep.memorization.surahName, surahMeaning: ep.memorization.surahMeaning, verses: ep.memorization.verses, repetitions: reps, segmentStarts: starts };
   }
 
   // efek karakter / efek hafalan sudah mengatur nada → nada episode tidak ditumpuk lagi
-  const pakaiEfek = ep.efekKarakter !== false && (ep.ide.jenis === 'hafalan' || ep.modeRekam === 'per-adegan');
-  const nada = pakaiEfek ? 0 : (ep.nadaSuara ?? 0);
+  const pakaiEfek = ep.characterEffects !== false && (ep.idea.type === 'memorization' || ep.recordingMode === 'per-scene');
+  const nada = pakaiEfek ? 0 : (ep.voicePitch ?? 0);
   const props: EpisodeVideoProps = {
-    namaChannel: cfg.namaChannel,
-    judul: ep.naskah?.judul ?? ep.ide.judul,
-    namaSeri: cfg.seri.find((s) => s.id === ep.ide.seri)?.nama ?? '',
-    adegan: ep.adegan,
-    fileAudio: audioRender && nada ? await geserNada(ep.id, audioRender, nada, onLine) : audioRender,
-    mulaiAdegan,
-    format: ep.ide.format ?? 'biasa',
-    hafalan,
-    musik: musikVideo(cfg, ep.ide.format ?? 'biasa'),
+    channelName: cfg.channelName,
+    title: ep.script?.title ?? ep.idea.title,
+    seriesName: cfg.series.find((s) => s.id === ep.idea.series)?.name ?? '',
+    scenes: ep.scenes,
+    fileAudio: audioRender && nada ? await shiftPitch(ep.id, audioRender, nada, onLine) : audioRender,
+    mulaiScene,
+    format: ep.idea.format ?? 'standard',
+    memorization,
+    musik: musikVideo(cfg, ep.idea.format ?? 'standard'),
   };
   const propsFile = path.join(dir, `${ep.id}.props.json`);
   fs.writeFileSync(propsFile, JSON.stringify(props));
 
-  const pertama = ep.adegan.find((a) => a.karakter.length > 0) ?? ep.adegan[0];
+  const pertama = ep.scenes.find((a) => a.characters.length > 0) ?? ep.scenes[0];
   const thumbProps: ThumbnailProps = {
-    teks: ep.metadata?.teksThumbnail ?? props.judul,
-    latar: pertama.latar,
-    karakter: pertama.karakter.length ? pertama.karakter : ['ibu', 'mamas'],
-    ...(hafalan ? { subjudul: 'Hafalan Surat' } : {}),
-    ekspresi: 'senang',
+    text: ep.metadata?.thumbnailText ?? props.title,
+    background: pertama.background,
+    characters: pertama.characters.length ? pertama.characters : ['mother', 'mamas'],
+    ...(memorization ? { subtitle: 'Hafalan Surat' } : {}),
+    expression: 'happy',
   };
   const thumbPropsFile = path.join(dir, `${ep.id}.thumb.json`);
   fs.writeFileSync(thumbPropsFile, JSON.stringify(thumbProps));
@@ -380,7 +380,7 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
   const video = `${ep.id}.mp4`;
   await jalankan(['render', 'src/index.ts', 'Episode', path.join(dir, video), `--props=${propsFile}`], onLine);
   // Shorts tidak memakai thumbnail kustom (YouTube memilih frame dari video)
-  const adegan = await waktuAdegan(props);
+  const adegan = await waktuScene(props);
   if (props.format === 'short') return { video, thumbnail: undefined, adegan };
   const thumbnail = `${ep.id}.png`;
   await jalankan(['still', 'src/index.ts', 'Thumbnail', path.join(dir, thumbnail), `--props=${thumbPropsFile}`], onLine);

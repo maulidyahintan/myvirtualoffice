@@ -6,7 +6,7 @@ import { spawn } from 'node:child_process';
 import { paths } from '@kantor/shared';
 
 /** Olah audio dengan ffmpeg bawaan Remotion; kembalikan hasilnya sebagai wav. */
-export function olahAudio(masuk: string, filter: string): Promise<Buffer> {
+export function processAudio(masuk: string, filter: string): Promise<Buffer> {
   const keluar = path.join(os.tmpdir(), `kantor-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}.wav`);
   return new Promise((resolve, reject) => {
     const p = spawn('npx', ['--no-install', 'remotion', 'ffmpeg', '-hide_banner', '-y', '-i', masuk, '-af', filter, keluar], {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AbsoluteFill } from 'remotion';
-import { Karakter } from '../characters/Karakter';
-import { fontTeks } from '../theme';
+import { CharacterFigure } from '../characters/CharacterFigure';
+import { textFont } from '../theme';
 import { IkonBulan, Logo, WARNA_BRAND } from './Logo';
 
 // Aset branding YouTube. Render dengan:
@@ -112,7 +112,7 @@ export const Banner: React.FC = () => (
         style={{
           marginTop: 20,
           marginLeft: 12,
-          fontFamily: fontTeks,
+          fontFamily: textFont,
           fontWeight: 800,
           fontSize: 40,
           whiteSpace: 'nowrap',
@@ -127,13 +127,13 @@ export const Banner: React.FC = () => (
       </div>
     </div>
     <div style={{ position: 'absolute', left: 1500, top: 931 - 410 }}>
-      <Karakter id="ibu" ekspresi="senang" bicara={false} tinggi={410} lihatX={1} diam />
+      <CharacterFigure id="mother" expression="happy" bicara={false} tinggi={410} lihatX={1} diam />
     </div>
     <div style={{ position: 'absolute', left: 1745, top: 931 - 290 }}>
-      <Karakter id="mamas" ekspresi="senang" bicara={false} tinggi={290} lambai diam />
+      <CharacterFigure id="mamas" expression="happy" bicara={false} tinggi={290} lambai diam />
     </div>
     <div style={{ position: 'absolute', left: 1915, top: 931 - 160 }}>
-      <Karakter id="mochi" ekspresi="senang" bicara={false} tinggi={160} lihatX={-1} diam />
+      <CharacterFigure id="mochi" expression="happy" bicara={false} tinggi={160} lihatX={-1} diam />
     </div>
   </AbsoluteFill>
 );

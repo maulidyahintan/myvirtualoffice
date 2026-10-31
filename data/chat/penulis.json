@@ -1,12 +1,12 @@
 [
   {
-    "waktu": "2026-10-29T13:39:53.682Z",
-    "dari": "saya",
-    "teks": "chimi, tolong dong jangan terlalu banyak adegan mochinya. jadi kurang natural"
+    "time": "2026-10-29T13:39:53.682Z",
+    "from": "owner",
+    "text": "chimi, tolong dong jangan terlalu banyak adegan mochinya. jadi kurang natural"
   },
   {
-    "waktu": "2026-10-29T13:40:04.598Z",
-    "dari": "agen",
-    "teks": "Siap, makasih masukannya! Memang kalau Mochi muncul terus, ceritanya jadi terasa dipaksakan. Mulai sekarang aku pegang patokan ini:\n\n- **Mochi cukup 1–2 momen per episode** (Shorts maksimal 1), dan hanya kalau memang pas dengan kejadiannya.\n- **Lucunya juga bisa dari Mamas sendiri**, misalnya pertanyaan polosnya atau salah pahamnya yang khas anak 4 tahun.\n- **Fokus utama tetap obrolan Mamas dan Ibu**, supaya suasananya lebih natural seperti di rumah.\n\nDari chat aku belum bisa mengubah naskah yang sudah jadi. Ada dua cara supaya masukan ini terpakai:\n1. **Untuk episode yang sudah ada:** buka halaman episodenya, tekan **\"Minta revisi\"**, lalu tulis misalnya \"Kurangi adegan Mochi, maksimal 1–2 momen saja.\"\n2. **Supaya berlaku permanen:** di instruksiku saat ini tertulis \"lelucon kecil (biasanya dari Mochi)\". Kalimat itu sebaiknya diganti di pengaturan prompt atau Pedoman Channel, misalnya jadi \"lelucon kecil yang natural, boleh dari Mamas atau Mochi; Mochi maksimal 1–2 momen\". Dengan begitu semua episode berikutnya otomatis mengikuti, dan Choki juga bisa ikut mengecek saat review."
+    "time": "2026-10-29T13:40:04.598Z",
+    "from": "agent",
+    "text": "Siap, makasih masukannya! Memang kalau Mochi muncul terus, ceritanya jadi terasa dipaksakan. Mulai sekarang aku pegang patokan ini:\n\n- **Mochi cukup 1–2 momen per episode** (Shorts maksimal 1), dan hanya kalau memang pas dengan kejadiannya.\n- **Lucunya juga bisa dari Mamas sendiri**, misalnya pertanyaan polosnya atau salah pahamnya yang khas anak 4 tahun.\n- **Fokus utama tetap obrolan Mamas dan Ibu**, supaya suasananya lebih natural seperti di rumah.\n\nDari chat aku belum bisa mengubah naskah yang sudah jadi. Ada dua cara supaya masukan ini terpakai:\n1. **Untuk episode yang sudah ada:** buka halaman episodenya, tekan **\"Minta revisi\"**, lalu tulis misalnya \"Kurangi adegan Mochi, maksimal 1–2 momen saja.\"\n2. **Supaya berlaku permanen:** di instruksiku saat ini tertulis \"lelucon kecil (biasanya dari Mochi)\". Kalimat itu sebaiknya diganti di pengaturan prompt atau Pedoman Channel, misalnya jadi \"lelucon kecil yang natural, boleh dari Mamas atau Mochi; Mochi maksimal 1–2 momen\". Dengan begitu semua episode berikutnya otomatis mengikuti, dan Choki juga bisa ikut mengecek saat review."
   }
 ]

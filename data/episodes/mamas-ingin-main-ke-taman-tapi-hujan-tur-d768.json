@@ -1,28 +1,28 @@
 {
   "id": "mamas-ingin-main-ke-taman-tapi-hujan-tur-d768",
-  "dibuat": "2026-10-30T11:52:32.593Z",
-  "diubah": "2026-10-30T11:52:32.593Z",
+  "created": "2026-10-30T11:52:32.593Z",
+  "modified": "2026-10-30T11:52:32.593Z",
   "status": "idea",
-  "ide": {
-    "judul": "Mamas Ingin Main ke Taman, Tapi Hujan Turun",
-    "seri": "kisah-sebelum-tidur",
-    "usia": "4-6",
-    "pesanMoral": "Kalau rencana kita batal karena hujan, kita tidak menggerutu. Hujan adalah rahmat Allah. Kita bisa bersabar, berdoa, dan mencari kegiatan baik di rumah.",
-    "format": "biasa",
-    "alasan": "Konfliknya kecil dan sangat dekat dengan anak usia 4–6 di musim hujan: Mamas kecewa dan cemberut karena batal ke taman. Ibu lalu mengajaknya mengamati hujan, membaca doa saat hujan (HR. Bukhari no. 1032), dan setelah hujan reda mengucapkan \"Muthirna bifadhlillahi wa rahmatih\" (HR. Bukhari no. 846, Muslim no. 71). Ibu juga mengajak bersyukur karena tanaman dan hewan butuh air. Cerita Islami bertema perasaan anak di channel Kabi meraih 8–18 ribu views per hari, tapi durasinya 10–14 menit. Versi hangat 3–5 menit untuk pengantar tidur masih kosong. Episode ini juga membawa topik baru di luar An-Nas.",
-    "referensi": [
+  "idea": {
+    "title": "Mamas Ingin Main ke Taman, Tapi Hujan Turun",
+    "series": "kisah-sebelum-tidur",
+    "age": "4-6",
+    "moralMessage": "Kalau rencana kita batal karena hujan, kita tidak menggerutu. Hujan adalah rahmat Allah. Kita bisa bersabar, berdoa, dan mencari kegiatan baik di rumah.",
+    "format": "standard",
+    "reason": "Konfliknya kecil dan sangat dekat dengan anak usia 4–6 di musim hujan: Mamas kecewa dan cemberut karena batal ke taman. Ibu lalu mengajaknya mengamati hujan, membaca doa saat hujan (HR. Bukhari no. 1032), dan setelah hujan reda mengucapkan \"Muthirna bifadhlillahi wa rahmatih\" (HR. Bukhari no. 846, Muslim no. 71). Ibu juga mengajak bersyukur karena tanaman dan hewan butuh air. Cerita Islami bertema perasaan anak di channel Kabi meraih 8–18 ribu views per hari, tapi durasinya 10–14 menit. Versi hangat 3–5 menit untuk pengantar tidur masih kosong. Episode ini juga membawa topik baru di luar An-Nas.",
+    "references": [
       "https://www.youtube.com/watch?v=8QcOO47bo9w (Nussa & Rarra: Hujan, 11,9 rb views/hari)",
       "https://www.youtube.com/watch?v=gx2kh3vCeVA (Kabi – Tidak Takut Lagi, 10,8 menit)",
       "HR. Bukhari no. 1032",
       "HR. Bukhari no. 846; HR. Muslim no. 71"
     ]
   },
-  "jumlahRevisi": 0,
+  "revisionCount": 0,
   "log": [
     {
-      "waktu": "2026-10-30T11:52:32.593Z",
-      "oleh": "riset",
-      "pesan": "Ide dibuat"
+      "time": "2026-10-30T11:52:32.593Z",
+      "by": "riset",
+      "message": "Ide dibuat"
     }
   ]
 }

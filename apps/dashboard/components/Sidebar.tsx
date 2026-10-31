@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, type ReactNode } from 'react';
 
-export interface ItemMenu {
+export interface MenuItem {
   href: string;
   ikon: string;
   label: string;
@@ -12,16 +12,16 @@ export interface ItemMenu {
   badge?: number;
 }
 
-export interface GrupMenu {
-  judul: string;
-  item: ItemMenu[];
+export interface MenuGroup {
+  title: string;
+  item: MenuItem[];
 }
 
 /**
  * Navigasi utama: menu dikelompokkan per fungsi, kartu "Butuh kamu" di atas sebagai fungsi
  * paling utama. Di layar kecil menjadi laci yang dibuka lewat tombol ☰.
  */
-export function Sidebar({ logo, grup, butuhKamu }: { logo: ReactNode; grup: GrupMenu[]; butuhKamu: number }) {
+export function Sidebar({ logo, grup, butuhKamu }: { logo: ReactNode; grup: MenuGroup[]; butuhKamu: number }) {
   const path = usePathname();
   const [buka, setBuka] = useState(false);
   // tutup laci setiap pindah halaman
@@ -45,7 +45,7 @@ export function Sidebar({ logo, grup, butuhKamu }: { logo: ReactNode; grup: Grup
           {logo}
         </Link>
 
-        <Link href="/papan-kerja" className={`kartu-butuh ${butuhKamu ? 'ada' : ''}`}>
+        <Link href="/board" className={`kartu-butuh ${butuhKamu ? 'ada' : ''}`}>
           <span className="kartu-butuh-angka">{butuhKamu}</span>
           <span>
             <b>{butuhKamu ? 'Butuh kamu' : 'Semua beres'}</b>
@@ -55,8 +55,8 @@ export function Sidebar({ logo, grup, butuhKamu }: { logo: ReactNode; grup: Grup
 
         <nav className="sidebar-nav">
           {grup.map((g) => (
-            <div key={g.judul} className="sidebar-grup">
-              <div className="sidebar-judul">{g.judul}</div>
+            <div key={g.title} className="sidebar-grup">
+              <div className="sidebar-judul">{g.title}</div>
               {g.item.map((m) => (
                 <Link key={m.href} href={m.href} className={`sidebar-item ${aktif(m.href) ? 'aktif' : ''}`} aria-current={aktif(m.href) ? 'page' : undefined}>
                   <span className="sidebar-ikon" aria-hidden>

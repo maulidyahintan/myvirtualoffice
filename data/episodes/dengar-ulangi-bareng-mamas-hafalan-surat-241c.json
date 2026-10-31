@@ -1,33 +1,33 @@
 {
   "id": "dengar-ulangi-bareng-mamas-hafalan-surat-241c",
-  "dibuat": "2026-10-28T13:38:37.875Z",
-  "diubah": "2026-10-30T10:56:25.008Z",
+  "created": "2026-10-28T13:38:37.875Z",
+  "modified": "2026-10-30T10:56:25.008Z",
   "status": "rejected",
-  "ide": {
-    "judul": "Dengar & Ulangi Bareng Mamas: Hafalan Surat An-Nas Pelan-Pelan",
-    "seri": "doa-harian",
-    "usia": "1-3",
-    "pesanMoral": "Menghafal Al-Qur'an itu mudah kalau sedikit-sedikit dan diulang. Ibu membaca satu ayat, Mamas menirukan, lalu adik-adik ikut menirukan saat ada jeda. Ditutup dengan ajakan membaca An-Nas sebelum bobo.",
+  "statusNote": "takut salah suara ngajinya, jangan ini dulu",
+  "idea": {
+    "title": "Dengar & Ulangi Bareng Mamas: Hafalan Surat An-Nas Pelan-Pelan",
+    "series": "doa-harian",
+    "age": "1-3",
+    "moralMessage": "Menghafal Al-Qur'an itu mudah kalau sedikit-sedikit dan diulang. Ibu membaca satu ayat, Mamas menirukan, lalu adik-adik ikut menirukan saat ada jeda. Ditutup dengan ajakan membaca An-Nas sebelum bobo.",
     "format": "short",
-    "alasan": "Kata kunci 'hafalan surat an nas anak' dipimpin Short berdurasi ±36 detik dengan 160 ribu views/hari dan 6,7 juta views dalam 6 minggu. Semua pemenang berupa rekaman anak tanpa karakter dan tidak ditandai made for kids. Animasi berkarakter yang memakai metode talqin (dengar → jeda → ulangi) untuk balita belum ada. Untuk usia 1–3: satu konsep, banyak pengulangan, dan 6 ayat An-Nas yang pendek muat dalam 60 detik.",
-    "referensi": [
+    "reason": "Kata kunci 'hafalan surat an nas anak' dipimpin Short berdurasi ±36 detik dengan 160 ribu views/hari dan 6,7 juta views dalam 6 minggu. Semua pemenang berupa rekaman anak tanpa karakter dan tidak ditandai made for kids. Animasi berkarakter yang memakai metode talqin (dengar → jeda → ulangi) untuk balita belum ada. Untuk usia 1–3: satu konsep, banyak pengulangan, dan 6 ayat An-Nas yang pendek muat dalam 60 detik.",
+    "references": [
       "Hafalan surat annas — Roudhotul Faizah (160.275 views/hari) https://www.youtube.com/watch?v=zUF8WzwvpzA",
       "Baca surat annas — Gilangityangbiru (95.626 views/hari) https://www.youtube.com/watch?v=QQ1mbAeBeH4",
       "QS. An-Nas 114:1–6, teks & terjemah Al-Qur'an Kemenag RI"
     ]
   },
-  "jumlahRevisi": 0,
+  "revisionCount": 0,
   "log": [
     {
-      "waktu": "2026-10-28T13:38:37.875Z",
-      "oleh": "riset",
-      "pesan": "Ide dibuat"
+      "time": "2026-10-28T13:38:37.875Z",
+      "by": "riset",
+      "message": "Ide dibuat"
     },
     {
-      "waktu": "2026-10-30T10:56:25.008Z",
-      "oleh": "pemilik",
-      "pesan": "takut salah suara ngajinya, jangan ini dulu"
+      "time": "2026-10-30T10:56:25.008Z",
+      "by": "pemilik",
+      "message": "takut salah suara ngajinya, jangan ini dulu"
     }
-  ],
-  "catatanStatus": "takut salah suara ngajinya, jangan ini dulu"
+  ]
 }

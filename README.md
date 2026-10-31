@@ -103,7 +103,7 @@ cp .env.example .env
 npm run dev        # buka http://localhost:3000 (halaman utama: Kantor 3D)
 ```
 
-Ada **episode contoh** "Bismillah Sebelum Makan" di **Papan Kerja** (`/papan-kerja`). Klik → **Render pratinjau
+Ada **episode contoh** "Bismillah Sebelum Makan" di **Papan Kerja** (`/board`). Klik → **Render pratinjau
 tanpa suara** untuk mencoba mesin video tanpa memakai Claude sama sekali.
 
 > Render pertama mengunduh Chrome headless (±100 MB) secara otomatis. Font sudah ada di
@@ -125,7 +125,7 @@ yang sedang berjalan:
 
 Status diperbarui tiap 3 detik. Semua furnitur & karakter dibuat dari bentuk dasar
 three.js (React Three Fiber), jadi tanpa aset berbayar. Ganti nama, warna, atau posisi meja di
-`apps/dashboard/components/kantor/pegawai.ts`; furnitur di `Furnitur.tsx`.
+`apps/dashboard/components/office/staff.ts`; furnitur di `Furniture.tsx`.
 
 ## Pemakaian harian
 

@@ -1,14 +1,14 @@
 [
   {
-    "waktu": "2026-10-30T08:40:08.945Z",
-    "dari": "saya",
-    "teks": "kamu ga buat jadwal posting ? kenapa jadwal postingnya sama semua ? harusnya disetel sesuai jam yg baik untuk posting dong",
+    "time": "2026-10-30T08:40:08.945Z",
+    "from": "owner",
+    "text": "kamu ga buat jadwal posting ? kenapa jadwal postingnya sama semua ? harusnya disetel sesuai jam yg baik untuk posting dong",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T08:40:32.300Z",
-    "dari": "agen",
-    "teks": "Maaf, tadinya saya belum mengatur jamnya. Ini yang saya temukan:\n\n**Kenapa jadwalnya sama semua**\n- Di daftar episode ada 4 episode berstatus \"scheduled\", tapi dari sini saya tidak bisa melihat jam tayangnya. Kemungkinan besar semuanya tersimpan dengan jam bawaan.\n- Saya juga belum punya data kapan penonton kita aktif. Channel ini belum punya video anak yang sudah tayang. Video di 28 hari terakhir isinya AC/Shopee, dan penontonnya jelas berbeda dengan penonton kita nanti.\n\n**Saran jam tayang (perkiraan umum, belum dari data kita)**\nPenonton kita itu orang tua yang menyalakan video untuk anaknya. Jadi jam ini paling masuk akal:\n- **18.30–19.30 WIB** (habis Maghrib, menjelang tidur): cocok untuk *Mamas Takut Gelap* dan hafalan.\n- **15.00–16.30 WIB** (sore, habis tidur siang/pulang sekolah): cocok untuk *Mengenal Surat An-Nas* (7–10 th).\n- **07.00–09.00 WIB di akhir pekan**: cocok untuk hafalan/murojaah.\n\n**Usul urutan, selang 2 hari:**\n1. Hafalan Al-Ikhlas: Jumat 31 Okt, 18.30\n2. Hafalan An-Nas: Minggu 2 Nov, 08.00\n3. Mamas Takut Gelap: Selasa 4 Nov, 19.00\n4. Mengenal Surat An-Nas: Kamis 6 Nov, 16.00\n\nSaya tidak bisa mengubah jadwal dari chat. Silakan setel di halaman tiap episode, di bagian jadwal tayang. Setelah 3–4 minggu tayang, cek **YouTube Studio → Analytics → Audiens → \"Kapan penonton Anda ada di YouTube\"**. Dari situ jamnya bisa kita sesuaikan pakai data asli.\n\n**Satu catatan untuk episode ini:** formatnya video biasa, tapi deskripsinya masih ada `#Shorts` dan tag \"shorts islami anak\". Itu sisa salinan dari versi Shorts. Sebaiknya tekan **\"Minta revisi\"** di metadata supaya keduanya dihapus sebelum disetujui.",
+    "time": "2026-10-30T08:40:32.300Z",
+    "from": "agent",
+    "text": "Maaf, tadinya saya belum mengatur jamnya. Ini yang saya temukan:\n\n**Kenapa jadwalnya sama semua**\n- Di daftar episode ada 4 episode berstatus \"scheduled\", tapi dari sini saya tidak bisa melihat jam tayangnya. Kemungkinan besar semuanya tersimpan dengan jam bawaan.\n- Saya juga belum punya data kapan penonton kita aktif. Channel ini belum punya video anak yang sudah tayang. Video di 28 hari terakhir isinya AC/Shopee, dan penontonnya jelas berbeda dengan penonton kita nanti.\n\n**Saran jam tayang (perkiraan umum, belum dari data kita)**\nPenonton kita itu orang tua yang menyalakan video untuk anaknya. Jadi jam ini paling masuk akal:\n- **18.30–19.30 WIB** (habis Maghrib, menjelang tidur): cocok untuk *Mamas Takut Gelap* dan hafalan.\n- **15.00–16.30 WIB** (sore, habis tidur siang/pulang sekolah): cocok untuk *Mengenal Surat An-Nas* (7–10 th).\n- **07.00–09.00 WIB di akhir pekan**: cocok untuk hafalan/murojaah.\n\n**Usul urutan, selang 2 hari:**\n1. Hafalan Al-Ikhlas: Jumat 31 Okt, 18.30\n2. Hafalan An-Nas: Minggu 2 Nov, 08.00\n3. Mamas Takut Gelap: Selasa 4 Nov, 19.00\n4. Mengenal Surat An-Nas: Kamis 6 Nov, 16.00\n\nSaya tidak bisa mengubah jadwal dari chat. Silakan setel di halaman tiap episode, di bagian jadwal tayang. Setelah 3–4 minggu tayang, cek **YouTube Studio → Analytics → Audiens → \"Kapan penonton Anda ada di YouTube\"**. Dari situ jamnya bisa kita sesuaikan pakai data asli.\n\n**Satu catatan untuk episode ini:** formatnya video biasa, tapi deskripsinya masih ada `#Shorts` dan tag \"shorts islami anak\". Itu sisa salinan dari versi Shorts. Sebaiknya tekan **\"Minta revisi\"** di metadata supaya keduanya dihapus sebelum disetujui.",
     "episodeId": "hafalan-surat-an-nas-2f04"
   }
 ]

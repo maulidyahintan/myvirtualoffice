@@ -1,34 +1,34 @@
-import { bacaChat, getEpisode, hapusChat, sedangSibuk, tambahChat, type AgenChat } from '@kantor/shared';
-import { AGEN_CHAT } from '@kantor/shared/constants';
-import { jalankanKantor } from '@/lib/jalankan';
+import { readChat, getEpisode, deleteChat, isBusy, addChatMessage, type ChatAgent } from '@kantor/shared';
+import { CHAT_AGENTS } from '@kantor/shared/constants';
+import { runOfficeCommand } from '@/lib/runner';
 
 export const dynamic = 'force-dynamic';
 
-function agenDari(nilai: unknown): AgenChat | null {
-  return typeof nilai === 'string' && (AGEN_CHAT as readonly string[]).includes(nilai) ? (nilai as AgenChat) : null;
+function agenDari(nilai: unknown): ChatAgent | null {
+  return typeof nilai === 'string' && (CHAT_AGENTS as readonly string[]).includes(nilai) ? (nilai as ChatAgent) : null;
 }
 
 /** Tambahkan judul episode ke pesan supaya widget bisa menampilkannya. */
-function denganJudul(agen: AgenChat) {
-  return bacaChat(agen).map((p) => {
+function denganJudul(agen: ChatAgent) {
+  return readChat(agen).map((p) => {
     if (!p.episodeId) return p;
     try {
       const ep = getEpisode(p.episodeId);
-      return { ...p, judulEpisode: ep.naskah?.judul ?? ep.ide.judul };
+      return { ...p, episodeTitle: ep.script?.title ?? ep.idea.title };
     } catch {
       return p;
     }
   });
 }
 
-const sedangMengetik = (agen: AgenChat) => sedangSibuk(`chat-${agen}`) || bacaChat(agen).at(-1)?.dari === 'saya';
+const sedangMengetik = (agen: ChatAgent) => isBusy(`chat-${agen}`) || readChat(agen).at(-1)?.from === 'owner';
 
 /** GET ?agen=x → isi percakapan. Tanpa agen → ringkasan semua agen (pesan terakhir). */
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const agen = agenDari(url.searchParams.get('agen'));
   if (agen) return Response.json({ pesan: denganJudul(agen), mengetik: sedangMengetik(agen) });
-  const ringkasan = AGEN_CHAT.map((a) => ({ agen: a, terakhir: bacaChat(a).at(-1) ?? null, mengetik: sedangMengetik(a) }));
+  const ringkasan = CHAT_AGENTS.map((a) => ({ agen: a, terakhir: readChat(a).at(-1) ?? null, mengetik: sedangMengetik(a) }));
   return Response.json({ ringkasan });
 }
 
@@ -46,8 +46,8 @@ export async function POST(req: Request) {
       episodeId = undefined;
     }
   }
-  tambahChat(agen, { dari: 'saya', teks, episodeId });
-  jalankanKantor(['chat', agen]);
+  addChatMessage(agen, { from: 'owner', text: teks, episodeId });
+  runOfficeCommand(['chat', agen]);
   return Response.json({ pesan: denganJudul(agen), mengetik: true });
 }
 
@@ -55,6 +55,6 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   const agen = agenDari(new URL(req.url).searchParams.get('agen'));
   if (!agen) return Response.json({ error: 'Agen tidak dikenal' }, { status: 400 });
-  hapusChat(agen);
+  deleteChat(agen);
   return Response.json({ pesan: [], mengetik: false });
 }

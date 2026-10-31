@@ -1,27 +1,27 @@
 {
   "id": "kenapa-ya-kita-harus-ketuk-pintu-dan-sal-813a",
-  "dibuat": "2026-10-31T00:41:04.252Z",
-  "diubah": "2026-10-31T00:41:04.252Z",
+  "created": "2026-10-31T00:41:04.252Z",
+  "modified": "2026-10-31T00:41:04.252Z",
   "status": "idea",
-  "ide": {
-    "judul": "Kenapa Ya Kita Harus Ketuk Pintu dan Salam Dulu?",
-    "seri": "kenapa-ya",
-    "usia": "7-10",
-    "pesanMoral": "Allah mengajarkan kita meminta izin dan memberi salam sebelum masuk rumah orang lain (QS. An-Nur: 27). Kalau sudah tiga kali minta izin dan belum dijawab, kita pulang dengan baik tanpa marah (HR. Bukhari no. 6245; HR. Muslim no. 2153). Mamas menyelonong masuk kamar Ibu yang sedang memakai kerudung. Ibu menjelaskan pentingnya menjaga privasi. Penutupnya diskusi: kenapa privasi itu penting, dan apa yang dilakukan kalau tidak dibukakan pintu.",
-    "format": "biasa",
-    "alasan": "Shorts 'Adab Meminta Izin' mencapai 919 rb views (15 rb/hari), dan lagu 'Adab dalam Islam' 113–158 rb/hari. Itu tanda topik adab sedang naik. Belum ada yang menjelaskan alasannya beserta ayat dan hadits untuk usia 7–10. Momennya pas dengan Hari Anak Sedunia (20 Nov), sekaligus memberi variasi seri kenapa-ya yang saat ini hanya berisi tema An-Nas dan bersin.",
-    "referensi": [
+  "idea": {
+    "title": "Kenapa Ya Kita Harus Ketuk Pintu dan Salam Dulu?",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Allah mengajarkan kita meminta izin dan memberi salam sebelum masuk rumah orang lain (QS. An-Nur: 27). Kalau sudah tiga kali minta izin dan belum dijawab, kita pulang dengan baik tanpa marah (HR. Bukhari no. 6245; HR. Muslim no. 2153). Mamas menyelonong masuk kamar Ibu yang sedang memakai kerudung. Ibu menjelaskan pentingnya menjaga privasi. Penutupnya diskusi: kenapa privasi itu penting, dan apa yang dilakukan kalau tidak dibukakan pintu.",
+    "format": "standard",
+    "reason": "Shorts 'Adab Meminta Izin' mencapai 919 rb views (15 rb/hari), dan lagu 'Adab dalam Islam' 113–158 rb/hari. Itu tanda topik adab sedang naik. Belum ada yang menjelaskan alasannya beserta ayat dan hadits untuk usia 7–10. Momennya pas dengan Hari Anak Sedunia (20 Nov), sekaligus memberi variasi seri kenapa-ya yang saat ini hanya berisi tema An-Nas dan bersin.",
+    "references": [
       "Jangan Langsung Masuk! Adab Meminta Izin — Petualangan Akhlak Anak Muslim https://www.youtube.com/watch?v=y5dcRNcx_9c",
       "Adab dalam Islam — Ahmad & Siti https://www.youtube.com/watch?v=5xLBeujnDwo",
       "Dalil: QS. An-Nur: 27; HR. Bukhari no. 6245; HR. Muslim no. 2153"
     ]
   },
-  "jumlahRevisi": 0,
+  "revisionCount": 0,
   "log": [
     {
-      "waktu": "2026-10-31T00:41:04.252Z",
-      "oleh": "riset",
-      "pesan": "Ide dibuat"
+      "time": "2026-10-31T00:41:04.252Z",
+      "by": "riset",
+      "message": "Ide dibuat"
     }
   ]
 }

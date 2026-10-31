@@ -1,108 +1,81 @@
 {
   "id": "arti-surat-an-nas-3-nama-allah-untuk-ana-d47d",
-  "dibuat": "2026-10-30T12:12:06.793Z",
-  "diubah": "2026-10-30T12:15:08.823Z",
+  "created": "2026-10-30T12:12:06.793Z",
+  "modified": "2026-10-30T12:15:08.823Z",
   "status": "needs_video_approval",
-  "ide": {
-    "judul": "Arti Surat An-Nas: 3 Nama Allah untuk Anak",
-    "seri": "asbabun-nuzul",
-    "usia": "7-10",
-    "pesanMoral": "Saat takut atau digoda berbuat buruk, kita berlindung kepada Allah, Rabb, Raja, dan Ilah seluruh manusia, dengan membaca An-Nas seperti yang diajarkan Rasulullah ﷺ.",
-    "alasan": "Ini arahan pemilik channel. Pencarian 'asbabun nuzul an nas' hanya menghasilkan video dewasa dengan permintaan kecil tapi tetap ada (Sandal Muslim 215 views/hari, 0,6 menit). Tidak ada versi animasi anak yang sumbernya rapi. Pencarian 'arti surat an nas untuk anak cerita' = 0 hasil. Konten: (1) Narator menjelaskan bahwa An-Nas surat ke-114 dan surat terakhir di mushaf. (2) Hadits Uqbah bin Amir: Nabi ﷺ menyebut Al-Falaq & An-Nas sebagai ayat yang belum pernah terlihat semisalnya (HR. Muslim 814). (3) Nabi ﷺ biasa berlindung dari gangguan jin dan 'ain, lalu setelah turun Al-Mu'awwidzatain beliau memakai keduanya (HR. Tirmidzi 2058, hasan). (4) Makna 6 ayat dengan contoh sehari-hari, Mamas dan Ibu berdiskusi. Kisah sihir Labid TIDAK dipakai sebagai sebab turun karena sanad yang mengaitkannya diperselisihkan dan tidak cocok untuk anak. Nabi ﷺ tidak digambar; visual hanya langit malam, cahaya, dan mushaf. Reviewer wajib memverifikasi nomor hadits.",
-    "referensi": [
+  "statusNote": "Video siap ditonton & disetujui",
+  "idea": {
+    "title": "Arti Surat An-Nas: 3 Nama Allah untuk Anak",
+    "series": "asbabun-nuzul",
+    "age": "7-10",
+    "moralMessage": "Saat takut atau digoda berbuat buruk, kita berlindung kepada Allah, Rabb, Raja, dan Ilah seluruh manusia, dengan membaca An-Nas seperti yang diajarkan Rasulullah ﷺ.",
+    "format": "short",
+    "reason": "Ini arahan pemilik channel. Pencarian 'asbabun nuzul an nas' hanya menghasilkan video dewasa dengan permintaan kecil tapi tetap ada (Sandal Muslim 215 views/hari, 0,6 menit). Tidak ada versi animasi anak yang sumbernya rapi. Pencarian 'arti surat an nas untuk anak cerita' = 0 hasil. Konten: (1) Narator menjelaskan bahwa An-Nas surat ke-114 dan surat terakhir di mushaf. (2) Hadits Uqbah bin Amir: Nabi ﷺ menyebut Al-Falaq & An-Nas sebagai ayat yang belum pernah terlihat semisalnya (HR. Muslim 814). (3) Nabi ﷺ biasa berlindung dari gangguan jin dan 'ain, lalu setelah turun Al-Mu'awwidzatain beliau memakai keduanya (HR. Tirmidzi 2058, hasan). (4) Makna 6 ayat dengan contoh sehari-hari, Mamas dan Ibu berdiskusi. Kisah sihir Labid TIDAK dipakai sebagai sebab turun karena sanad yang mengaitkannya diperselisihkan dan tidak cocok untuk anak. Nabi ﷺ tidak digambar; visual hanya langit malam, cahaya, dan mushaf. Reviewer wajib memverifikasi nomor hadits.",
+    "references": [
       "https://www.youtube.com/watch?v=MFD60m5yNw4 (Sandal Muslim – Sebab Turunnya Surah Al-Falaq & An-Nas, 215 views/hari)",
       "https://www.youtube.com/watch?v=UFMArcDjrcQ (Mutiara Hati – Asbabun Nuzul Surah An-Nas, 3 views/hari)",
       "https://www.youtube.com/watch?v=GZ1cOdROgzk (Kak Yuda – An-Nas surat ke-114, 1.067 views/hari)",
       "QS. An-Nas 114:1-6",
       "HR. Muslim no. 814; HR. Tirmidzi no. 2058",
       "https://tafsiralquran.id/surat-al-muawwidzatain-dan-memahami-kisah-disihirnya-nabi-muhammad/"
-    ],
-    "format": "short"
+    ]
   },
-  "jumlahRevisi": 0,
-  "log": [
-    {
-      "waktu": "2026-10-30T12:12:06.793Z",
-      "oleh": "sutradara",
-      "pesan": "Ide dibuat"
-    },
-    {
-      "waktu": "2026-10-30T12:12:06.793Z",
-      "oleh": "sutradara",
-      "pesan": "Shorts 2 dari episode asbabun-nuzul-surat-an-nas-surat-perlind-a203: adegan 8. Inti isi An-Nas: Allah disebut Rabb, Malik, dan Ilah seluruh manusia, dijelaskan dengan bahasa sederhana untuk anak."
-    },
-    {
-      "waktu": "2026-10-30T12:12:06.793Z",
-      "oleh": "sutradara",
-      "pesan": "Menunggu giliran render"
-    },
-    {
-      "waktu": "2026-10-30T12:14:05.232Z",
-      "oleh": "video-creator",
-      "pesan": "Render pratinjau tanpa suara"
-    },
-    {
-      "waktu": "2026-10-30T12:15:08.823Z",
-      "oleh": "video-creator",
-      "pesan": "Video siap ditonton & disetujui"
-    }
-  ],
-  "asal": {
+  "source": {
     "id": "asbabun-nuzul-surat-an-nas-surat-perlind-a203",
-    "adegan": [
+    "scenes": [
       7
     ]
   },
-  "naskah": {
-    "judul": "Arti Surat An-Nas: 3 Nama Allah untuk Anak",
-    "ringkasan": "Malam hari, Mamas bertanya tentang surat yang dibaca Ayah saat shalat Isya. Ibu mengenalkan An-Nas, surat ke-114 dan surat terakhir di mushaf. Ibu juga meluruskan bahwa surat ini istimewa karena isinya, bukan karena letaknya paling akhir. Narator bercerita tentang malam turunnya surat ini. Rasulullah ﷺ memuji Al-Falaq dan An-Nas sebagai ayat-ayat yang belum pernah terlihat semisalnya (HR. Muslim 814). Narator juga menceritakan bahwa beliau dulu berlindung dari gangguan jin dan pandangan mata manusia. Setelah kedua surat ini turun, keduanya menjadi bacaan perlindungan utama beliau (HR. Tirmidzi 2058). Ibu menjelaskan makna enam ayatnya dengan contoh sehari-hari, termasuk bahwa bisikan jahat mundur kalau kita ingat Allah. Mamas lalu mengaku bahwa tadi sore ia diam saja dan lari main lagi, padahal mainannya belum dirapikan. Ia akhirnya jujur dan membereskan baloknya. Ibu mengajarkan ta'awwudz saat ada bisikan jahat (QS. Al-A'raf: 200). Malam itu mereka latihan membaca An-Nas bersama. Setelah itu, Mamas mengamalkan sunnah sebelum tidur secara lengkap. Ia meniup telapak tangan, membaca Al-Ikhlas, Al-Falaq, dan An-Nas, lalu mengusap badan tiga kali (HR. Bukhari 5017). Kisah sihir tidak dipakai. Nabi ﷺ tidak digambar dan tidak diberi dialog karangan.",
-    "adegan": [
+  "script": {
+    "title": "Arti Surat An-Nas: 3 Nama Allah untuk Anak",
+    "summary": "Malam hari, Mamas bertanya tentang surat yang dibaca Ayah saat shalat Isya. Ibu mengenalkan An-Nas, surat ke-114 dan surat terakhir di mushaf. Ibu juga meluruskan bahwa surat ini istimewa karena isinya, bukan karena letaknya paling akhir. Narator bercerita tentang malam turunnya surat ini. Rasulullah ﷺ memuji Al-Falaq dan An-Nas sebagai ayat-ayat yang belum pernah terlihat semisalnya (HR. Muslim 814). Narator juga menceritakan bahwa beliau dulu berlindung dari gangguan jin dan pandangan mata manusia. Setelah kedua surat ini turun, keduanya menjadi bacaan perlindungan utama beliau (HR. Tirmidzi 2058). Ibu menjelaskan makna enam ayatnya dengan contoh sehari-hari, termasuk bahwa bisikan jahat mundur kalau kita ingat Allah. Mamas lalu mengaku bahwa tadi sore ia diam saja dan lari main lagi, padahal mainannya belum dirapikan. Ia akhirnya jujur dan membereskan baloknya. Ibu mengajarkan ta'awwudz saat ada bisikan jahat (QS. Al-A'raf: 200). Malam itu mereka latihan membaca An-Nas bersama. Setelah itu, Mamas mengamalkan sunnah sebelum tidur secara lengkap. Ia meniup telapak tangan, membaca Al-Ikhlas, Al-Falaq, dan An-Nas, lalu mengusap badan tiga kali (HR. Bukhari 5017). Kisah sihir tidak dipakai. Nabi ﷺ tidak digambar dan tidak diberi dialog karangan.",
+    "scenes": [
       {
-        "jenis": "cerita",
-        "pembicara": "ibu",
-        "narasi": "Mas, An-Nas mengajak kita berlindung kepada Allah. Allah disebut dengan tiga nama. Pertama, Rabbin naas. Allah yang merawat semua manusia. Dia memberi kita makan, napas, dan tidur yang nyenyak. Kedua, Malikin naas. Allah Raja semua manusia. Dia lebih berkuasa dari raja mana pun. Ketiga, Ilaahin naas. Hanya Allah yang pantas kita sembah.",
-        "petunjukVisual": "Ibu menghitung dengan tiga jari, Mamas ikut mengangkat jarinya satu per satu; gelembung ilustrasi lembut berisi gambar makanan, matahari, dan sajadah."
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Mas, An-Nas mengajak kita berlindung kepada Allah. Allah disebut dengan tiga nama. Pertama, Rabbin naas. Allah yang merawat semua manusia. Dia memberi kita makan, napas, dan tidur yang nyenyak. Kedua, Malikin naas. Allah Raja semua manusia. Dia lebih berkuasa dari raja mana pun. Ketiga, Ilaahin naas. Hanya Allah yang pantas kita sembah.",
+        "visualDirection": "Ibu menghitung dengan tiga jari, Mamas ikut mengangkat jarinya satu per satu; gelembung ilustrasi lembut berisi gambar makanan, matahari, dan sajadah."
       }
     ],
-    "dalil": [
+    "evidences": [
       {
-        "jenis": "ayat",
-        "teksArab": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ",
+        "type": "ayat",
+        "arabicText": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ",
         "latin": "Qul a'uudzu birabbin naas. Malikin naas. Ilaahin naas. Min syarril waswaasil khannaas. Alladzii yuwaswisu fii shuduurin naas. Minal jinnati wan naas.",
-        "terjemah": "Katakanlah, 'Aku berlindung kepada Tuhan (Rabb) manusia, Raja manusia, Sembahan (Ilah) manusia, dari kejahatan (bisikan) setan yang bersembunyi, yang membisikkan (kejahatan) ke dalam dada manusia, dari (golongan) jin dan manusia.'",
-        "sumber": "QS. An-Nas [114]: 1–6"
+        "translation": "Katakanlah, 'Aku berlindung kepada Tuhan (Rabb) manusia, Raja manusia, Sembahan (Ilah) manusia, dari kejahatan (bisikan) setan yang bersembunyi, yang membisikkan (kejahatan) ke dalam dada manusia, dari (golongan) jin dan manusia.'",
+        "source": "QS. An-Nas [114]: 1–6"
       },
       {
-        "jenis": "ayat",
-        "teksArab": "وَإِمَّا يَنزَغَنَّكَ مِنَ الشَّيْطَانِ نَزْغٌ فَاسْتَعِذْ بِاللَّهِ ۚ إِنَّهُ سَمِيعٌ عَلِيمٌ",
+        "type": "ayat",
+        "arabicText": "وَإِمَّا يَنزَغَنَّكَ مِنَ الشَّيْطَانِ نَزْغٌ فَاسْتَعِذْ بِاللَّهِ ۚ إِنَّهُ سَمِيعٌ عَلِيمٌ",
         "latin": "Wa immaa yanzaghannaka minasy syaithaani nazghun fasta'idz billaah, innahuu samii'un 'aliim.",
-        "terjemah": "Dan jika setan datang menggodamu, maka berlindunglah kepada Allah. Sungguh, Dia Maha Mendengar, Maha Mengetahui.",
-        "sumber": "QS. Al-A'raf [7]: 200"
+        "translation": "Dan jika setan datang menggodamu, maka berlindunglah kepada Allah. Sungguh, Dia Maha Mendengar, Maha Mengetahui.",
+        "source": "QS. Al-A'raf [7]: 200"
       },
       {
-        "jenis": "hadits",
-        "teksArab": "عَنْ عُقْبَةَ بْنِ عَامِرٍ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «أَلَمْ تَرَ آيَاتٍ أُنْزِلَتِ اللَّيْلَةَ لَمْ يُرَ مِثْلُهُنَّ قَطُّ: قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، وَقُلْ أَعُوذُ بِرَبِّ النَّاسِ»",
-        "terjemah": "Dari Uqbah bin Amir, ia berkata: Rasulullah ﷺ bersabda, 'Tidakkah engkau lihat ayat-ayat yang diturunkan malam ini? Belum pernah terlihat yang semisal dengannya sama sekali, yaitu Qul a'udzu birabbil falaq dan Qul a'udzu birabbin nas.'",
-        "sumber": "HR. Muslim no. 814 (Kitab Shalat al-Musafirin)"
+        "type": "hadits",
+        "arabicText": "عَنْ عُقْبَةَ بْنِ عَامِرٍ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «أَلَمْ تَرَ آيَاتٍ أُنْزِلَتِ اللَّيْلَةَ لَمْ يُرَ مِثْلُهُنَّ قَطُّ: قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، وَقُلْ أَعُوذُ بِرَبِّ النَّاسِ»",
+        "translation": "Dari Uqbah bin Amir, ia berkata: Rasulullah ﷺ bersabda, 'Tidakkah engkau lihat ayat-ayat yang diturunkan malam ini? Belum pernah terlihat yang semisal dengannya sama sekali, yaitu Qul a'udzu birabbil falaq dan Qul a'udzu birabbin nas.'",
+        "source": "HR. Muslim no. 814 (Kitab Shalat al-Musafirin)"
       },
       {
-        "jenis": "hadits",
-        "teksArab": "عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ قَالَ: كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم يَتَعَوَّذُ مِنَ الْجَانِّ وَعَيْنِ الإِنْسَانِ، حَتَّى نَزَلَتِ الْمُعَوِّذَتَانِ، فَلَمَّا نَزَلَتَا أَخَذَ بِهِمَا وَتَرَكَ مَا سِوَاهُمَا",
-        "terjemah": "Dari Abu Sa'id Al-Khudri, ia berkata: Dulu Rasulullah ﷺ berlindung (kepada Allah) dari gangguan jin dan 'ain (pandangan mata) manusia, hingga turunlah Al-Mu'awwidzatain. Setelah keduanya turun, beliau memakai keduanya dan meninggalkan yang lainnya.",
-        "sumber": "HR. At-Tirmidzi no. 2058 (hasan gharib menurut At-Tirmidzi); juga Ibnu Majah no. 3511 dan An-Nasa'i no. 5494."
+        "type": "hadits",
+        "arabicText": "عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ قَالَ: كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم يَتَعَوَّذُ مِنَ الْجَانِّ وَعَيْنِ الإِنْسَانِ، حَتَّى نَزَلَتِ الْمُعَوِّذَتَانِ، فَلَمَّا نَزَلَتَا أَخَذَ بِهِمَا وَتَرَكَ مَا سِوَاهُمَا",
+        "translation": "Dari Abu Sa'id Al-Khudri, ia berkata: Dulu Rasulullah ﷺ berlindung (kepada Allah) dari gangguan jin dan 'ain (pandangan mata) manusia, hingga turunlah Al-Mu'awwidzatain. Setelah keduanya turun, beliau memakai keduanya dan meninggalkan yang lainnya.",
+        "source": "HR. At-Tirmidzi no. 2058 (hasan gharib menurut At-Tirmidzi); juga Ibnu Majah no. 3511 dan An-Nasa'i no. 5494."
       },
       {
-        "jenis": "hadits",
-        "teksArab": "عَنْ عَائِشَةَ أَنَّ النَّبِيَّ صلى الله عليه وسلم كَانَ إِذَا أَوَى إِلَى فِرَاشِهِ كُلَّ لَيْلَةٍ جَمَعَ كَفَّيْهِ ثُمَّ نَفَثَ فِيهِمَا فَقَرَأَ فِيهِمَا: قُلْ هُوَ اللَّهُ أَحَدٌ، وَقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، وَقُلْ أَعُوذُ بِرَبِّ النَّاسِ، ثُمَّ يَمْسَحُ بِهِمَا مَا اسْتَطَاعَ مِنْ جَسَدِهِ، يَبْدَأُ بِهِمَا عَلَى رَأْسِهِ وَوَجْهِهِ وَمَا أَقْبَلَ مِنْ جَسَدِهِ، يَفْعَلُ ذَلِكَ ثَلَاثَ مَرَّاتٍ",
-        "terjemah": "Dari Aisyah: Setiap malam, ketika hendak tidur, Nabi ﷺ menyatukan kedua telapak tangannya lalu meniupnya. Beliau membaca Qul huwallahu ahad, Qul a'udzu birabbil falaq, dan Qul a'udzu birabbin nas. Kemudian beliau mengusapkan kedua tangannya ke tubuh sebisanya, mulai dari kepala, wajah, dan bagian depan tubuh. Beliau melakukannya tiga kali.",
-        "sumber": "HR. Al-Bukhari no. 5017 (Kitab Fadha'il Al-Qur'an)"
+        "type": "hadits",
+        "arabicText": "عَنْ عَائِشَةَ أَنَّ النَّبِيَّ صلى الله عليه وسلم كَانَ إِذَا أَوَى إِلَى فِرَاشِهِ كُلَّ لَيْلَةٍ جَمَعَ كَفَّيْهِ ثُمَّ نَفَثَ فِيهِمَا فَقَرَأَ فِيهِمَا: قُلْ هُوَ اللَّهُ أَحَدٌ، وَقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، وَقُلْ أَعُوذُ بِرَبِّ النَّاسِ، ثُمَّ يَمْسَحُ بِهِمَا مَا اسْتَطَاعَ مِنْ جَسَدِهِ، يَبْدَأُ بِهِمَا عَلَى رَأْسِهِ وَوَجْهِهِ وَمَا أَقْبَلَ مِنْ جَسَدِهِ، يَفْعَلُ ذَلِكَ ثَلَاثَ مَرَّاتٍ",
+        "translation": "Dari Aisyah: Setiap malam, ketika hendak tidur, Nabi ﷺ menyatukan kedua telapak tangannya lalu meniupnya. Beliau membaca Qul huwallahu ahad, Qul a'udzu birabbil falaq, dan Qul a'udzu birabbin nas. Kemudian beliau mengusapkan kedua tangannya ke tubuh sebisanya, mulai dari kepala, wajah, dan bagian depan tubuh. Beliau melakukannya tiga kali.",
+        "source": "HR. Al-Bukhari no. 5017 (Kitab Fadha'il Al-Qur'an)"
       }
     ]
   },
   "review": {
-    "keputusan": "lolos",
-    "skor": 8.5,
-    "catatan": [
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
       "Secara syariat naskah ini aman. Nabi ﷺ, sahabat, dan jin tidak digambar. Visual adegan hadits hanya simbol (langit, cahaya, mushaf). Tidak ada dialog Nabi yang dikarang, karena semua sabda beliau disampaikan narator sebagai parafrase hadits. Kisah sihir sudah sengaja tidak dipakai, dan itu keputusan yang tepat.",
       "Bagian kualitas konten anak juga kuat. Salah paham 'terakhir = paling istimewa' diluruskan dengan baik. Kesalahan Mamas (diam lalu kabur dari tanggung jawab) punya penyelesaian nyata: ia jujur lalu membereskan balok, dan ada sedikit konsekuensi (tidurnya jadi lebih malam). Ada jeda pertanyaan interaktif. Takut monster dijawab dengan menenangkan, tidak menakut-nakuti.",
       "Saran kecil di adegan 13: kalimat 'Itu tandanya Mas melawan bisikan jahat' kurang tepat. Tadi sore Mamas justru kabur, belum melawan. Usul diganti: 'Sekarang Mas sudah menang melawan bisikan jahat, karena Mas memilih jujur.'",
@@ -111,7 +84,7 @@
       "Soal durasi: naskah sekitar 700+ kata, ditambah bacaan Arab yang pelan dan jeda 5 detik. Dengan tempo cerita sebelum tidur, durasinya bisa lewat 5 menit. Kalau perlu memangkas, ringkas adegan 7. Kalimat penjelasan 'Al-Mu'awwidzatain' bisa dipadatkan jadi dua kalimat.",
       "Opsional di adegan 10: kalimat 'Bisikan itu mundur kalau kita ingat Allah' berasal dari tafsir (atsar Ibnu Abbas tentang makna al-khannas, dikutip Tafsir Ibnu Katsir), bukan dari teks ayat. Supaya patuh aturan 'setiap klaim ada dasarnya', boleh ditambah 'kata para ulama tafsir'."
     ],
-    "cekManusia": [
+    "humanCheck": [
       "Dalil 1: QS. An-Nas [114]: 1–6. Cocokkan teks Arab, latin, dan terjemah dengan mushaf/Kemenag. Bacaan Ibu di adegan 15 juga harus sama persis dengan teks ini, termasuk basmalah di awal.",
       "Dalil 2: QS. Al-A'raf [7]: 200, 'وَإِمَّا يَنزَغَنَّكَ مِنَ الشَّيْطَانِ نَزْغٌ فَاسْتَعِذْ بِاللَّهِ ۚ إِنَّهُ سَمِيعٌ عَلِيمٌ'. Cocokkan teks dan terjemah Kemenag ('Dan jika setan datang menggodamu...').",
       "Dalil 3: HR. Muslim no. 814 (Kitab Shalat al-Musafirin), dari Uqbah bin Amir: 'أَلَمْ تَرَ آيَاتٍ أُنْزِلَتِ اللَّيْلَةَ لَمْ يُرَ مِثْلُهُنَّ قَطُّ...'. Cek nomor (penomoran Fuad Abdul Baqi) dan redaksi Arabnya.",
@@ -123,23 +96,24 @@
       "Cek durasi hasil rekaman akhir, harus tetap 3–5 menit."
     ]
   },
-  "adegan": [
+  "revisionCount": 0,
+  "scenes": [
     {
-      "jenis": "cerita",
-      "pembicara": "ibu",
-      "narasi": "Mas, An-Nas mengajak kita berlindung kepada Allah. Allah disebut dengan tiga nama. Pertama, Rabbin naas. Allah yang merawat semua manusia. Dia memberi kita makan, napas, dan tidur yang nyenyak. Kedua, Malikin naas. Allah Raja semua manusia. Dia lebih berkuasa dari raja mana pun. Ketiga, Ilaahin naas. Hanya Allah yang pantas kita sembah.",
-      "latar": "kamar-malam",
-      "karakter": [
-        "ibu",
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mas, An-Nas mengajak kita berlindung kepada Allah. Allah disebut dengan tiga nama. Pertama, Rabbin naas. Allah yang merawat semua manusia. Dia memberi kita makan, napas, dan tidur yang nyenyak. Kedua, Malikin naas. Allah Raja semua manusia. Dia lebih berkuasa dari raja mana pun. Ketiga, Ilaahin naas. Hanya Allah yang pantas kita sembah.",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
         "mamas"
       ],
-      "ekspresi": "tenang",
-      "teksLayar": "Rabb, Malik, Ilah"
+      "expression": "calm",
+      "screenText": "Rabb, Malik, Ilah"
     }
   ],
   "metadata": {
-    "judul": "Arti Surat An-Nas: 3 Nama Allah untuk Anak",
-    "deskripsi": "Belajar arti Surat An-Nas ayat 1–3 (QS. An-Nas: 1–3): Allah Rabb, Raja, dan Ilah seluruh manusia. Penjelasan lembut dari Ibu untuk Mamas.\n#Shorts #SuratAnNas #BelajarQuranAnak",
+    "title": "Arti Surat An-Nas: 3 Nama Allah untuk Anak",
+    "description": "Belajar arti Surat An-Nas ayat 1–3 (QS. An-Nas: 1–3): Allah Rabb, Raja, dan Ilah seluruh manusia. Penjelasan lembut dari Ibu untuk Mamas.\n#Shorts #SuratAnNas #BelajarQuranAnak",
     "tags": [
       "arti surat an nas",
       "surat an nas",
@@ -150,25 +124,51 @@
       "kartun islami anak",
       "juz amma"
     ],
-    "teksThumbnail": "Rabb, Raja, Ilah"
+    "thumbnailText": "Rabb, Raja, Ilah"
   },
-  "modeRekam": "per-adegan",
-  "audioPerAdegan": [
+  "audioFile": "audio/arti-surat-an-nas-3-nama-allah-untuk-ana-d47d-gabung.wav",
+  "recordingMode": "per-scene",
+  "audioPerScene": [
     "audio/arti-surat-an-nas-3-nama-allah-untuk-ana-d47d-adegan-1.webm"
   ],
-  "offsetAdegan": [
+  "sceneOffsets": [
     2.137
   ],
-  "catatanStatus": "Video siap ditonton & disetujui",
-  "fileAudio": "audio/arti-surat-an-nas-3-nama-allah-untuk-ana-d47d-gabung.wav",
   "render": {
     "video": "arti-surat-an-nas-3-nama-allah-untuk-ana-d47d.mp4",
-    "adegan": [
+    "time": "2026-10-30T12:15:08.821Z",
+    "scenes": [
       {
-        "mulai": 1.5,
-        "durasi": 41.8
+        "start": 1.5,
+        "duration": 41.8
       }
-    ],
-    "waktu": "2026-10-30T12:15:08.821Z"
-  }
+    ]
+  },
+  "log": [
+    {
+      "time": "2026-10-30T12:12:06.793Z",
+      "by": "sutradara",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-10-30T12:12:06.793Z",
+      "by": "sutradara",
+      "message": "Shorts 2 dari episode asbabun-nuzul-surat-an-nas-surat-perlind-a203: adegan 8. Inti isi An-Nas: Allah disebut Rabb, Malik, dan Ilah seluruh manusia, dijelaskan dengan bahasa sederhana untuk anak."
+    },
+    {
+      "time": "2026-10-30T12:12:06.793Z",
+      "by": "sutradara",
+      "message": "Menunggu giliran render"
+    },
+    {
+      "time": "2026-10-30T12:14:05.232Z",
+      "by": "video-creator",
+      "message": "Render pratinjau tanpa suara"
+    },
+    {
+      "time": "2026-10-30T12:15:08.823Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    }
+  ]
 }

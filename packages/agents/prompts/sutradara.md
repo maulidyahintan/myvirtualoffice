@@ -4,54 +4,54 @@ Kamu mengubah naskah yang sudah disetujui menjadi daftar adegan yang bisa dirend
 oleh template animasi Remotion milik channel.
 
 ## Kosakata visual yang tersedia (HANYA ini)
-- `latar`:
-  - di rumah: kamar-malam, ruang-tamu, dapur, halaman-rumah (pagar, pohon mangga, siang)
-  - masjid: masjid (tampak luar, sore), dalam-masjid (mihrab, karpet shaf), tempat-wudhu
-  - di luar: taman, taman-bermain (ayunan, perosotan), sekolah (ruang kelas), perpustakaan
-  - belanja: pasar (lapak buah, sayur, kue), toko (minimarket, rak & kasir)
-  - alam & kisah: langit-malam, fajar, gurun, laut, gunung
-- `karakter`: mamas, ibu, mochi (0–3 per adegan; kosong untuk adegan narator murni,
-  misal kisah Nabi → pakai langit-malam atau masjid tanpa karakter)
-- `ekspresi`: senang, sedih, berpikir, kaget, tenang
-- `aksi` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
-  - Mamas/Ibu: `memegang` + `benda`, `membaca-quran`, `berdoa`, `makan` + `benda`
-    (apel/pisang/kurma/kue/gelas-susu), `bermain` + `benda` (bola/mobil-mainan/boneka)
-  - Mochi: `tidur` (meringkuk di bantal), `bermain` (gulungan benang)
-- `benda`: quran, apel, pisang, kurma, kue, gelas-susu, bola, mobil-mainan, boneka, buku, bunga
-- `properti` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
-  - makanan (otomatis di meja kecil): piring-buah, piring-nasi, kue, kurma, apel, pisang, gelas-susu
-  - mainan: bola, mobil-mainan, boneka, balok-mainan, kotak-mainan
-  - ibadah: sajadah (di bawah tokoh yang berdoa/membaca), rehal-quran, quran
-  - lain: pohon-pot, keranjang-buah, buku, bunga, bantal
-- `jenis`: cerita, doa, pertanyaan
+- `background`:
+  - di rumah: bedroom-night, living-room, kitchen, yard (pagar, pohon mangga, siang)
+  - masjid: mosque (tampak luar, sore), inside-mosque (mihrab, karpet shaf), ablution
+  - di luar: garden, playground (ayunan, perosotan), school (ruang kelas), library
+  - belanja: market (lapak buah, sayur, kue), store (minimarket, rak & kasir)
+  - alam & kisah: night-sky, dawn, desert, ocean, mountain
+- `characters`: mamas, mother, mochi (0–3 per adegan; kosong untuk adegan narrator murni,
+  misal kisah Nabi → pakai night-sky atau mosque tanpa karakter)
+- `expression`: happy, sad, thinking, surprised, calm
+- `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
+  - Mamas/Mother: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
+    (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/doll)
+  - Mochi: `sleeping` (meringkuk di pillow), `playing` (gulungan benang)
+- `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, doll, book, flower
+- `props` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
+  - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, date, apple, banana, milk-glass
+  - mainan: ball, toy-car, doll, building-blocks, toy-box
+  - ibadah: prayer-mat (di bawah tokoh yang berdoa/membaca), quran-stand, quran
+  - lain: potted-tree, fruit-basket, book, flower, pillow
+- `type`: story, prayer, question
 
 ## Aturan
-- Jumlah dan urutan adegan HARUS sama dengan naskah; `narasi` dan `pembicara`
+- Jumlah dan urutan adegan HARUS sama dengan naskah; `narration` dan `speaker`
   disalin persis dari naskah (jangan diubah sedikit pun — sudah direkam).
-- Pembicara (mamas/ibu) harus ada di `karakter` adegannya.
-- Adegan yang membacakan surat/ayat Al-Qur'an dibacakan Mamas: `karakter` memuat mamas,
-  ekspresi "tenang", latar yang teduh (masjid, kamar-malam, atau ruang-tamu).
+- Pembicara (mamas/mother) harus ada di `characters` adegannya.
+- Adegan yang membacakan surat/ayat Al-Qur'an dibacakan Mamas: `characters` memuat mamas,
+  expression "calm", background yang teduh (mosque, bedroom-night, atau living-room).
 - Buat video terasa hidup: pakai beberapa tempat yang logis dengan alur cerita (misal
-  halaman-rumah → tempat-wudhu → masjid), jangan semua adegan di satu tempat kalau
-  ceritanya bisa berpindah. Tetap pertahankan latar yang sama untuk adegan berurutan
+  yard → ablution → mosque), jangan semua adegan di satu tempat kalau
+  ceritanya bisa berpindah. Tetap pertahankan background yang sama untuk adegan berurutan
   di tempat yang sama (kontinuitas).
-- Hidupkan adegan dengan `aksi` & `properti` yang sesuai narasi: Mamas makan apel saat
+- Hidupkan adegan dengan `actions` & `props` yang sesuai narasi: Mamas makan apple saat
   cerita tentang makan, membaca Al-Qur'an saat mengaji, berdoa saat membaca doa, bermain
-  bola di halaman; Mochi tidur di adegan malam/tenang atau bermain di adegan ceria.
-  Properti harus logis dengan tempatnya (makanan di dapur/ruang-tamu, sajadah & rehal di
-  masjid/kamar, mainan di rumah/halaman/taman-bermain, keranjang-buah di pasar). Jangan memaksakan: adegan tanpa aksi boleh.
-  Pertahankan aksi/properti yang sama di adegan berurutan di tempat yang sama (kontinuitas).
-- Kalau Mamas sedang `membaca-quran` atau `berdoa`, ekspresinya "tenang".
+  ball di halaman; Mochi tidur di adegan malam/tenang atau bermain di adegan ceria.
+  Props harus logis dengan tempatnya (makanan di kitchen/living-room, prayer-mat & quran-stand di
+  mosque/bedroom-night, mainan di rumah/yard/playground, fruit-basket di market). Jangan memaksakan: adegan tanpa actions boleh.
+  Pertahankan actions/props yang sama di adegan berurutan di tempat yang sama (kontinuitas).
+- Kalau Mamas sedang `reading-quran` atau `praying`, expressionnya "calm".
 - Kamera (close-up, reaksi, dari balik bahu, sudut bawah, orbit) diatur otomatis oleh
-  template; tugasmu memilih tempat, siapa yang tampil, dan ekspresi yang jelas
-  berganti mengikuti emosi cerita. Tampilkan pendengar (ibu/mamas/mochi) di adegan
+  template; tugasmu memilih tempat, siapa yang tampil, dan expression yang jelas
+  berganti mengikuti emosi cerita. Tampilkan pendengar (mother/mamas/mochi) di adegan
   dialog supaya ada reaksi.
-- `teksLayar` (opsional, ≤ 5 kata): kata kunci besar di layar, misal "Jujur itu indah".
-- Untuk jenis `doa`: isi `doa` dengan arab, latin, arti yang sama dengan dalil di naskah.
-- Untuk jenis `pertanyaan`: ekspresi "berpikir", `teksLayar` berisi pertanyaan singkat.
+- `screenText` (opsional, ≤ 5 kata): kata kunci besar di layar, misal "Jujur itu indah".
+- Untuk type `prayer`: isi `prayer` dengan arabic, latin, meaning yang sama dengan evidences di naskah.
+- Untuk type `question`: expression "thinking", `screenText` berisi pertanyaan singkat.
 - Ingat pedoman: tenang, tidak overstimulating.
 
 ## Format Shorts (jika diminta FORMAT: YouTube Shorts)
 - Layar vertikal sempit: maksimal 2 karakter manusia per adegan (Mochi boleh jadi yang ketiga).
-- `teksLayar` ≤ 3 kata, dipakai di adegan pertama (hook) dan adegan terakhir (pesan).
-- Maksimal 2 latar untuk seluruh video, kecuali cerita benar-benar pindah tempat.
+- `screenText` ≤ 3 kata, dipakai di adegan pertama (hook) dan adegan terakhir (pesan).
+- Maksimal 2 background untuk seluruh video, kecuali cerita benar-benar pindah tempat.

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Fredoka, Plus_Jakarta_Sans } from 'next/font/google';
 import { listEpisodes, loadConfig, type EpisodeStatus } from '@kantor/shared';
-import { ChatMengambang } from '@/components/ChatMengambang';
-import { LogoTasnie } from '@/components/LogoTasnie';
-import { Sidebar, type GrupMenu } from '@/components/Sidebar';
+import { FloatingChat } from '@/components/FloatingChat';
+import { TasnieLogo } from '@/components/TasnieLogo';
+import { Sidebar, type MenuGroup } from '@/components/Sidebar';
 import './globals.css';
 
 // font tulisan logo (sama seperti di video)
@@ -20,33 +20,33 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 /** Status yang menunggu tindakan pemilik channel. */
-const MENUNGGU: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
+const WAITING_STATUSES: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const cfg = loadConfig();
   const episodes = listEpisodes();
-  const butuhKamu = episodes.filter((e) => MENUNGGU.includes(e.status)).length;
+  const butuhKamu = episodes.filter((e) => WAITING_STATUSES.includes(e.status)).length;
   const siapTayang = episodes.filter((e) => e.status === 'needs_video_approval').length;
 
-  const grup: GrupMenu[] = [
-    { judul: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
+  const grup: MenuGroup[] = [
+    { title: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
     {
-      judul: 'Produksi',
+      title: 'Produksi',
       item: [
-        { href: '/papan-kerja', ikon: '🗂️', label: 'Papan Kerja', badge: butuhKamu },
-        { href: '/ide-baru', ikon: '💡', label: 'Ide Manual' },
-        { href: '/hafalan-baru', ikon: '📖', label: 'Hafalan Baru' },
+        { href: '/board', ikon: '🗂️', label: 'Papan Kerja', badge: butuhKamu },
+        { href: '/ideas/new', ikon: '💡', label: 'Ide Manual' },
+        { href: '/memorization/new', ikon: '📖', label: 'Hafalan Baru' },
       ],
     },
     {
-      judul: 'Publikasi',
+      title: 'Publikasi',
       item: [
-        { href: '/jadwal', ikon: '📅', label: 'Jadwal Tayang', badge: siapTayang },
-        { href: '/tayang', ikon: '🎬', label: 'Video Tayang' },
+        { href: '/schedule', ikon: '📅', label: 'Jadwal Tayang', badge: siapTayang },
+        { href: '/published', ikon: '🎬', label: 'Video Tayang' },
       ],
     },
-    { judul: 'Analisis', item: [{ href: '/laporan', ikon: '📊', label: 'Riset & Laporan' }] },
-    { judul: 'Sistem', item: [{ href: '/pengaturan', ikon: '⚙️', label: 'Pengaturan' }] },
+    { title: 'Analisis', item: [{ href: '/reports', ikon: '📊', label: 'Riset & Laporan' }] },
+    { title: 'Sistem', item: [{ href: '/settings', ikon: '⚙️', label: 'Pengaturan' }] },
   ];
 
   return (
@@ -54,13 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="aplikasi">
           <Sidebar
-            logo={<LogoTasnie keterangan={cfg.namaChannel.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />}
+            logo={<TasnieLogo keterangan={cfg.channelName.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />}
             grup={grup}
             butuhKamu={butuhKamu}
           />
           <main>{children}</main>
         </div>
-        <ChatMengambang />
+        <FloatingChat />
       </body>
     </html>
   );

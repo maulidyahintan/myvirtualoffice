@@ -1,12 +1,12 @@
 import React from 'react';
 import { Composition, Still } from 'remotion';
 import { FPS } from '@kantor/shared/constants';
-import { Episode, hitungMetadataEpisode } from './Episode';
+import { Episode, calculateEpisodeMetadata } from './Episode';
 import { Thumbnail } from './Thumbnail';
-import { DURASI_PROTOTIPE_3D, Prototipe3D } from './Prototipe3D';
+import { PROTOTYPE_3D_DURATION, Prototype3D } from './Prototype3D';
 import { Avatar, Banner, IkonStill, LogoStill } from './brand/Branding';
 import { LogoAnimasi } from './brand/LogoAnimasi';
-import { contohEpisode, contohHafalan, contohShort, contohThumbnail } from './contoh';
+import { sampleEpisode, sampleMemorization, sampleShort, sampleThumbnail } from './samples';
 
 export const Root: React.FC = () => (
   <>
@@ -17,8 +17,8 @@ export const Root: React.FC = () => (
       height={1080}
       fps={FPS}
       durationInFrames={300}
-      defaultProps={contohEpisode}
-      calculateMetadata={hitungMetadataEpisode}
+      defaultProps={sampleEpisode}
+      calculateMetadata={calculateEpisodeMetadata}
     />
     {/* pratinjau YouTube Shorts (komposisi yang sama, ukuran mengikuti props.format) */}
     <Composition
@@ -28,8 +28,8 @@ export const Root: React.FC = () => (
       height={1920}
       fps={FPS}
       durationInFrames={300}
-      defaultProps={contohShort}
-      calculateMetadata={hitungMetadataEpisode}
+      defaultProps={sampleShort}
+      calculateMetadata={calculateEpisodeMetadata}
     />
     <Composition
       id="Hafalan"
@@ -38,12 +38,12 @@ export const Root: React.FC = () => (
       height={1080}
       fps={FPS}
       durationInFrames={300}
-      defaultProps={contohHafalan}
-      calculateMetadata={hitungMetadataEpisode}
+      defaultProps={sampleMemorization}
+      calculateMetadata={calculateEpisodeMetadata}
     />
     {/* prototipe tokoh 3D */}
-    <Composition id="Prototipe3D" component={Prototipe3D} width={1920} height={1080} fps={FPS} durationInFrames={DURASI_PROTOTIPE_3D} />
-    <Still id="Thumbnail" component={Thumbnail} width={1280} height={720} defaultProps={contohThumbnail} />
+    <Composition id="Prototipe3D" component={Prototype3D} width={1920} height={1080} fps={FPS} durationInFrames={PROTOTYPE_3D_DURATION} />
+    <Still id="Thumbnail" component={Thumbnail} width={1280} height={720} defaultProps={sampleThumbnail} />
     {/* branding channel */}
     <Composition id="LogoAnimasi" component={LogoAnimasi} width={1920} height={1080} fps={FPS} durationInFrames={FPS * 3} />
     <Still id="Logo" component={LogoStill} width={1600} height={600} />
