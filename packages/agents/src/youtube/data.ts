@@ -46,7 +46,7 @@ const tgl = (hariLalu: number) => new Date(Date.now() - hariLalu * 86400_000).to
 export async function statistikChannel() {
   const ya = analytics();
   if (!ya) {
-    return { terhubung: false, pesan: 'Channel belum terhubung (npm run auth:youtube). Lanjutkan tanpa data channel.' };
+    return { terhubung: false, message: 'Channel belum terhubung (npm run auth:youtube). Lanjutkan tanpa data channel.' };
   }
   const yt = youtubeRead();
   const channel = await yt.channels.list({ part: ['statistics', 'snippet'], mine: true });

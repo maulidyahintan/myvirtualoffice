@@ -1,5 +1,5 @@
-// Ngobrol langsung dengan satu agen. Agen menjawab dengan peran & pedomannya sendiri,
-// tapi TIDAK mengubah data apa pun (hanya menjawab). Pekerjaan tetap lewat tombol dashboard.
+// Direct chat with one agent. Agent answers with its own role & guidelines,
+// but does NOT modify any data (only answers). Work still goes through dashboard buttons.
 import fs from 'node:fs';
 import path from 'node:path';
 import { query } from '@anthropic-ai/claude-agent-sdk';
@@ -26,15 +26,15 @@ Sekarang kamu sedang mengobrol langsung dengan pemilik channel lewat kolom chat.
 - Kalau pertanyaan di luar bidangmu, jawab sebisanya lalu sarankan pegawai yang tepat
   (Miku = riset, Chimi = penulis, Choki = reviewer, Momo = sutradara, Lulu = channel manager).`;
 
-function bacaPrompt(nama: string) {
-  return fs.readFileSync(path.join(paths.prompts(), `${nama}.md`), 'utf8');
+function readPrompt(name: string) {
+  return fs.readFileSync(path.join(paths.prompts(), `${name}.md`), 'utf8');
 }
 
-/** Ringkas episode supaya muat sebagai konteks obrolan. */
-function konteksEpisode(id: string): string {
+/** Summarize episode to fit as chat context. */
+function episodeContext(id: string): string {
   try {
     const ep = getEpisode(id);
-    const ringkas = {
+    const summary = {
       id: ep.id,
       status: ep.status,
       idea: ep.idea,
@@ -42,31 +42,31 @@ function konteksEpisode(id: string): string {
       review: ep.review,
       scenes: ep.scenes?.map((a) => ({ background: a.background, characters: a.characters, expression: a.expression, screenText: a.screenText })),
       metadata: ep.metadata,
-      logTerakhir: ep.log.slice(-8),
+      recentLog: ep.log.slice(-8),
     };
-    return `Episode yang sedang dibahas:\n${JSON.stringify(ringkas, null, 2).slice(0, 15000)}`;
+    return `Episode yang sedang dibahas:\n${JSON.stringify(summary, null, 2).slice(0, 15000)}`;
   } catch {
     return '';
   }
 }
 
-/** Jawab pesan terakhir dari pemilik di percakapan dengan agen ini. */
-export async function balasChat(agen: ChatAgent) {
-  const riwayat = readChat(agen);
-  const terakhir = riwayat.at(-1);
-  if (!terakhir || terakhir.from !== 'owner') return;
-  const peran = PERAN[agen];
+/** Reply to last message from owner in conversation with this agent. */
+export async function replyToChat(agent: ChatAgent) {
+  const history = readChat(agent);
+  const last = history.at(-1);
+  if (!last || last.from !== 'owner') return;
+  const role = PERAN[agent];
 
-  const transkrip = riwayat
+  const transcript = history
     .slice(-20, -1)
-    .map((p) => `${p.from === 'owner' ? 'Pemilik' : 'Kamu'}: ${p.text}`)
+    .map((m) => `${m.from === 'owner' ? 'Pemilik' : 'Kamu'}: ${m.text}`)
     .join('\n\n');
 
   const prompt = [
     `Tanggal hari ini: ${new Date().toISOString().slice(0, 10)}.`,
-    terakhir.episodeId ? konteksEpisode(terakhir.episodeId) : '',
-    transkrip ? `Percakapan sebelumnya:\n${transkrip}` : '',
-    `Pesan baru dari pemilik:\n${terakhir.text}`,
+    last.episodeId ? episodeContext(last.episodeId) : '',
+    transcript ? `Percakapan sebelumnya:\n${transcript}` : '',
+    `Pesan baru dari pemilik:\n${last.text}`,
   ]
     .filter(Boolean)
     .join('\n\n');
@@ -74,22 +74,22 @@ export async function balasChat(agen: ChatAgent) {
   const q = query({
     prompt,
     options: {
-      systemPrompt: [bacaPrompt(peran.prompt), '---', bacaPrompt('pedoman-channel'), '---', MODE_CHAT].join('\n\n'),
+      systemPrompt: [readPrompt(role.prompt), '---', readPrompt('pedoman-channel'), '---', MODE_CHAT].join('\n\n'),
       model: process.env.KANTOR_MODEL || undefined,
-      tools: peran.tools,
-      allowedTools: [...peran.tools, ...peran.mcpTools],
+      tools: role.tools,
+      allowedTools: [...role.tools, ...role.mcpTools],
       permissionMode: 'dontAsk',
-      mcpServers: peran.mcpTools.length ? { kantor: kantorTools } : undefined,
+      mcpServers: role.mcpTools.length ? { kantor: kantorTools } : undefined,
       maxTurns: 12,
       settingSources: [],
     },
   });
 
-  let jawaban = '';
+  let answer = '';
   for await (const msg of q) {
     if (msg.type === 'result') {
-      jawaban = msg.subtype === 'success' ? String(msg.result ?? '').trim() : `Maaf, aku gagal menjawab (${msg.subtype}).`;
+      answer = msg.subtype === 'success' ? String(msg.result ?? '').trim() : `Maaf, aku gagal menjawab (${msg.subtype}).`;
     }
   }
-  addChatMessage(agen, { from: 'agent', text: jawaban || 'Maaf, aku belum bisa menjawab. Coba tanya lagi ya.', episodeId: terakhir.episodeId });
+  addChatMessage(agent, { from: 'agent', text: answer || 'Maaf, aku belum bisa menjawab. Coba tanya lagi ya.', episodeId: last.episodeId });
 }

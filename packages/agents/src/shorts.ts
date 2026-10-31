@@ -20,19 +20,19 @@ import { durasiAudio, ffmpeg } from './render.ts';
 
 /** Batas isi (adegan) satu Shorts; ditambah intro/outro Shorts tetap di bawah 60 detik. */
 export const BATAS_ISI_SHORTS = 52;
-/** Jeda yang ditambahkan render per adegan (lihat siapkanAudioPerAdegan). */
+/** Jeda yang ditambahkan render per adegan (lihat siapkanAudioPerScene). */
 const JEDA_ADEGAN = 0.6;
 const JEDA_PERTANYAAN = 3;
 
 const PotonganSchema = z.object({
   shorts: z.array(
     z.object({
-      adegan: z.array(z.number().int()).describe('nomor adegan (mulai 1) yang dipakai, urut naik'),
+      scenes: z.array(z.number().int()).describe('nomor adegan (mulai 1) yang dipakai, urut naik'),
       alasan: z.string().describe('kenapa potongan ini penting & bermakna, 1 kalimat'),
-      judul: z.string().max(100),
-      deskripsi: z.string(),
+      title: z.string().max(100),
+      description: z.string(),
       tags: z.array(z.string()),
-      teksThumbnail: z.string(),
+      thumbnailText: z.string(),
     }),
   ),
 });
@@ -63,21 +63,21 @@ async function titikHening(lokasi: string): Promise<number[]> {
  * Rekaman tiap adegan episode asal. Rekaman per adegan dipakai apa adanya; rekaman berurutan
  * dipotong di batas adegan seperti saat render, digeser ke hening terdekat (maks. 2 dtk).
  */
-export async function rekamanPerAdegan(ep: Episode): Promise<Potongan[]> {
-  const adegan = ep.adegan!;
-  if (ep.modeRekam === 'per-adegan') {
+export async function rekamanPerScene(ep: Episode): Promise<Potongan[]> {
+  const adegan = ep.scenes!;
+  if (ep.recordingMode === 'per-scene') {
     return Promise.all(
       adegan.map(async (a, i) => {
-        const file = ep.audioPerAdegan?.[i];
+        const file = ep.audioPerScene?.[i];
         if (!file) throw new Error(`Rekaman adegan ${i + 1} tidak ada`);
-        const offset = ep.offsetAdegan?.[i] ?? null;
-        const detik = (await durasiAudio(path.join(pub(), file))) - (offset ?? 0) + JEDA_ADEGAN + (a.jenis === 'pertanyaan' ? JEDA_PERTANYAAN : 0);
+        const offset = ep.sceneOffsets?.[i] ?? null;
+        const detik = (await durasiAudio(path.join(pub(), file))) - (offset ?? 0) + JEDA_ADEGAN + (a.type === 'question' ? JEDA_PERTANYAAN : 0);
         return { file, offset, detik };
       }),
     );
   }
-  if (!ep.fileAudio) throw new Error('Episode belum punya rekaman suara');
-  const lokasi = path.join(pub(), ep.fileAudio);
+  if (!ep.audioFile) throw new Error('Episode belum punya rekaman suara');
+  const lokasi = path.join(pub(), ep.audioFile);
   const total = await durasiAudio(lokasi);
   const frames = sceneFrames(adegan, total);
   const hening = await titikHening(lokasi);
@@ -109,28 +109,28 @@ function rapikanPilihan(nomor: number[], potongan: Potongan[]): number[] {
   return idx;
 }
 
-export async function pecahJadiShorts(id: string, jumlah: number, arahan?: string, onRender?: (id: string) => Promise<void>) {
+export async function splitIntoShorts(id: string, jumlah: number, arahan?: string, onRender?: (id: string) => Promise<void>) {
   const ep = getEpisode(id);
-  if (!ep.adegan?.length || !ep.naskah) throw new Error('Episode belum punya adegan');
-  if (ep.ide.jenis === 'hafalan') throw new Error('Video hafalan: pakai "Buat versi Shorts" saja');
-  const catat = (pesan: string) => addLog(id, 'sutradara', pesan);
+  if (!ep.scenes?.length || !ep.script) throw new Error('Episode belum punya adegan');
+  if (ep.idea.type === 'memorization') throw new Error('Video memorization: pakai "Buat versi Shorts" saja');
+  const catat = (message: string) => addLog(id, 'sutradara', message);
 
   catat(`Menyiapkan ${jumlah} Shorts: memotong rekaman per adegan`);
-  const potongan = await rekamanPerAdegan(ep);
-  const daftar = ep.adegan.map((a, i) => ({
+  const potongan = await rekamanPerScene(ep);
+  const daftar = ep.scenes.map((a, i) => ({
     nomor: i + 1,
-    jenis: a.jenis,
-    pembicara: a.pembicara,
-    narasi: a.narasi,
+    jenis: a.type,
+    pembicara: a.speaker,
+    narasi: a.narration,
     detik: Math.round(potongan[i].detik * 10) / 10,
   }));
 
   catat('Memilih adegan yang paling penting & bermakna');
-  const hasil = await runAgent({
+  const result = await runAgent({
     peran: 'sutradara',
     schema: PotonganSchema,
     maxTurns: 4,
-    prompt: `Video biasa "${ep.naskah.judul}" sudah tayang. Pesan moral: ${ep.ide.pesanMoral}
+    prompt: `Video biasa "${ep.script.title}" sudah tayang. Pesan moral: ${ep.idea.moralMessage}
 
 Pilih adegan untuk ${jumlah} YouTube Shorts dari video ini. Narasi & rekamannya TIDAK diubah, kamu hanya memilih adegan.
 Aturan:
@@ -138,7 +138,7 @@ Aturan:
 - Tiap Shorts harus utuh & bisa dipahami sendiri tanpa menonton video aslinya: ada pembuka yang menarik, inti, dan pesan/penutup yang bermakna.
 - Ambil INTI pembicaraannya saja, jangan menyalin seluruh cerita: pilih adegan yang paling penting, menyentuh, atau berisi pelajaran/dalil; lewati salam, pengantar, transisi, dan pengulangan.
 - Buat maksimal ${jumlah} Shorts. Kalau bagian yang benar-benar penting hanya cukup untuk lebih sedikit, buat lebih sedikit (jangan mengisi dengan bagian yang kurang bermakna).
-- Adegan boleh dilompati, tapi urutannya tetap sesuai cerita (nomor naik). Jangan memotong dialog sehingga jawaban muncul tanpa pertanyaannya.
+- Scene boleh dilompati, tapi urutannya tetap sesuai cerita (nomor naik). Jangan memotong dialog sehingga jawaban muncul tanpa pertanyaannya.
 - Tiap Shorts sebaiknya membahas sisi yang berbeda; satu adegan boleh dipakai di lebih dari satu Shorts kalau memang perlu.
 - Buat juga metadata YouTube Shorts untuk tiap Shorts (SEO, jangan pakai gaya video biasa): judul ≤ 60 karakter dengan kata kunci utama di depan (menarik untuk anak & orang tua); deskripsi 1–2 kalimat berisi kata kunci + sumber dalil singkat, diakhiri baris \`#Shorts\` dan 1–2 tagar topik; 5–10 tags relevan; teksThumbnail ≤ 3 kata.
 ${arahan ? `\nArahan dari pemilik channel: ${arahan}\n` : ''}
@@ -146,11 +146,11 @@ Daftar adegan (detik = lama di video):
 ${JSON.stringify(daftar, null, 2)}`,
   });
 
-  const dibuat: string[] = [];
-  for (const [k, s] of hasil.shorts.slice(0, jumlah).entries()) {
-    const idx = rapikanPilihan(s.adegan, potongan);
+  const dmotherat: string[] = [];
+  for (const [k, s] of result.shorts.slice(0, jumlah).entries()) {
+    const idx = rapikanPilihan(s.scenes, potongan);
     if (!idx.length) continue;
-    const baru = createEpisodeFromIdea({ ...ep.ide, judul: s.judul, format: 'short' }, 'sutradara');
+    const baru = createEpisodeFromIdea({ ...ep.idea, title: s.title, format: 'short' }, 'sutradara');
     const salin = idx.map((i, n) => {
       const tujuan = `audio/${baru.id}-adegan-${n + 1}${path.extname(potongan[i].file)}`;
       fs.copyFileSync(path.join(pub(), potongan[i].file), path.join(pub(), tujuan));
@@ -158,39 +158,39 @@ ${JSON.stringify(daftar, null, 2)}`,
     });
     updateEpisode(baru.id, (e) => {
       const asal = structuredClone(ep);
-      e.asal = { id, adegan: idx };
-      e.naskah = { ...asal.naskah!, judul: s.judul, adegan: idx.map((i) => asal.naskah!.adegan[i]).filter(Boolean) };
+      e.source = { id, scenes: idx };
+      e.script = { ...asal.script!, title: s.title, scenes: idx.map((i) => asal.script!.scenes[i]).filter(Boolean) };
       e.review = asal.review;
-      e.adegan = idx.map((i) => asal.adegan![i]);
-      e.metadata = normalizeMetadata({ judul: s.judul, deskripsi: s.deskripsi, tags: s.tags, teksThumbnail: s.teksThumbnail }, 'short');
-      e.modeRekam = 'per-adegan';
-      e.audioPerAdegan = salin;
-      e.offsetAdegan = idx.map((i) => potongan[i].offset);
+      e.scenes = idx.map((i) => asal.scenes![i]);
+      e.metadata = normalizeMetadata({ title: s.title, description: s.description, tags: s.tags, thumbnailText: s.thumbnailText }, 'short');
+      e.recordingMode = 'per-scene';
+      e.audioPerScene = salin;
+      e.sceneOffsets = idx.map((i) => potongan[i].offset);
       // rekaman berurutan direkam tanpa efek karakter → tetap suara yang sama dengan video asal
-      e.efekKarakter = ep.modeRekam === 'per-adegan' ? asal.efekKarakter : false;
-      e.nadaSuara = asal.nadaSuara;
+      e.characterEffects = ep.recordingMode === 'per-scene' ? asal.characterEffects : false;
+      e.voicePitch = asal.voicePitch;
       e.log.push({
-        waktu: new Date().toISOString(),
-        oleh: 'sutradara',
-        pesan: `Shorts ${k + 1} dari episode ${id}: adegan ${idx.map((i) => i + 1).join(', ')}. ${s.alasan}`,
+        time: new Date().toISOString(),
+        by: 'sutradara',
+        message: `Shorts ${k + 1} dari episode ${id}: adegan ${idx.map((i) => i + 1).join(', ')}. ${s.alasan}`,
       });
     });
     setStatus(baru.id, 'rendering', 'sutradara', 'Menunggu giliran render');
-    dibuat.push(baru.id);
+    dmotherat.push(baru.id);
   }
-  if (ep.modeRekam !== 'per-adegan') for (const p of potongan) fs.rmSync(path.join(pub(), p.file), { force: true });
+  if (ep.recordingMode !== 'per-scene') for (const p of potongan) fs.rmSync(path.join(pub(), p.file), { force: true });
   updateEpisode(id, (e) => {
-    e.turunan = [...(e.turunan ?? []), ...dibuat];
+    e.derivatives = [...(e.derivatives ?? []), ...dmotherat];
   });
-  catat(`${dibuat.length} Shorts dibuat: ${dibuat.join(', ')}`);
+  catat(`${dmotherat.length} Shorts dmotherat: ${dmotherat.join(', ')}`);
 
   // render satu per satu; satu gagal tidak menghentikan yang lain
-  for (const b of dibuat) {
+  for (const b of dmotherat) {
     try {
       await onRender?.(b);
     } catch (e) {
       setStatus(b, 'error', 'video-creator', (e as Error).message);
     }
   }
-  return dibuat;
+  return dmotherat;
 }

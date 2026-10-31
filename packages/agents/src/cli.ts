@@ -17,20 +17,20 @@
 //   npm run kantor -- status
 import './env.ts';
 import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent } from '@kantor/shared';
-import { balasChat } from './chat.ts';
-import { lepasPenjadwal, pasangPenjadwal, dailyResearchSettingsJikaPerlu } from './otomatis.ts';
-import { pecahJadiShorts } from './shorts.ts';
+import { replyToChat } from './chat.ts';
+import { uninstallScheduler, installScheduler, runDailyResearchIfDue } from './automation.ts';
+import { splitIntoShorts } from './shorts.ts';
 import {
-  buatUlangMetadata,
-  laporan,
-  masukkanPlaylist,
+  regenerateMetadata,
+  report,
+  addToPlaylists,
   render,
-  riset,
-  siapkanHafalan,
-  susunRencanaTayang,
-  sutradarai,
-  tarikVideoLama,
-  tulisNaskah,
+  research,
+  prepareMemorization,
+  buildPublishPlan,
+  direct,
+  withdrawOldVideos,
+  writeScript,
   upload,
 } from './workflow.ts';
 
@@ -38,25 +38,37 @@ const [cmd, arg1, arg2, arg3] = process.argv.slice(2);
 
 async function main() {
   switch (cmd) {
+    // Research - English + Indonesian alias
+    case 'research':
     case 'riset':
       markBusy('riset');
       try {
-        return void (await riset(arg1));
+        return void (await research(arg1));
       } finally {
         markDone('riset');
       }
+    // Daily research - English + Indonesian alias
+    case 'daily':
     case 'harian':
-      return dailyResearchSettingsJikaPerlu();
+      return runDailyResearchIfDue();
+    case 'daily-install':
     case 'harian-pasang':
-      return pasangPenjadwal();
+      return installScheduler();
+    case 'daily-uninstall':
     case 'harian-lepas':
-      return lepasPenjadwal();
+      return uninstallScheduler();
+    // Write script - English + Indonesian alias
+    case 'write':
     case 'tulis':
-      return tulisNaskah(need(arg1));
+      return writeScript(need(arg1));
+    // Memorization - English + Indonesian alias
+    case 'memorization':
     case 'hafalan':
-      return siapkanHafalan(need(arg1));
+      return prepareMemorization(need(arg1));
+    // Direct - English + Indonesian alias
+    case 'direct':
     case 'sutradara':
-      return sutradarai(need(arg1));
+      return direct(need(arg1));
     case 'render':
       return render(need(arg1));
     case 'upload':
@@ -65,8 +77,8 @@ async function main() {
       const id = need(arg1);
       markBusy(`shorts-${id}`);
       try {
-        const jumlah = Math.min(5, Math.max(1, Number(arg2) || autoShortsCount(contentDuration(getEpisode(id)))));
-        return void (await pecahJadiShorts(id, jumlah, arg3, render));
+        const count = Math.min(5, Math.max(1, Number(arg2) || autoShortsCount(contentDuration(getEpisode(id)))));
+        return void (await splitIntoShorts(id, count, arg3, render));
       } finally {
         markDone(`shorts-${id}`);
       }
@@ -75,55 +87,61 @@ async function main() {
       const id = need(arg1);
       markBusy(`${id}-metadata`);
       try {
-        await buatUlangMetadata(id);
+        await regenerateMetadata(id);
       } finally {
         markDone(`${id}-metadata`);
       }
       return arg2 === 'render' ? render(id) : undefined;
     }
+    // Publish plan - English + Indonesian alias
+    case 'plan':
     case 'rencana':
       markBusy('rencana');
       try {
-        return await susunRencanaTayang(arg1);
+        return await buildPublishPlan(arg1);
       } finally {
         markDone('rencana');
       }
     case 'playlist':
       markBusy('playlist');
       try {
-        return await masukkanPlaylist(arg1);
+        return await addToPlaylists(arg1);
       } finally {
         markDone('playlist');
       }
+    // Withdraw - English + Indonesian alias
+    case 'withdraw':
     case 'tarik':
-      return tarikVideoLama(need(arg1));
+      return withdrawOldVideos(need(arg1));
     case 'chat': {
-      const agen = need(arg1) as ChatAgent;
-      if (!CHAT_AGENTS.includes(agen)) throw new Error(`Agen tidak dikenal: ${agen}`);
-      markBusy(`chat-${agen}`);
+      const agent = need(arg1) as ChatAgent;
+      if (!CHAT_AGENTS.includes(agent)) throw new Error(`Agen tidak dikenal: ${agent}`);
+      markBusy(`chat-${agent}`);
       try {
-        return await balasChat(agen);
+        return await replyToChat(agent);
       } catch (e) {
-        addChatMessage(agen, { from: 'agen', text: `Maaf, ada masalah: ${(e as Error).message}` });
+        addChatMessage(agent, { from: 'agent', text: `Maaf, ada masalah: ${(e as Error).message}` });
         throw e;
       } finally {
-        markDone(`chat-${agen}`);
+        markDone(`chat-${agent}`);
       }
     }
+    // Report - English + Indonesian alias
+    case 'report':
     case 'laporan':
       markBusy('laporan');
       try {
-        return void (await laporan());
+        return void (await report());
       } finally {
         markDone('laporan');
       }
     case 'status':
       for (const e of listEpisodes()) {
-        console.log(`${e.id.padEnd(48)} ${STATUS_LABEL[e.status]}  — ${e.script?.judul ?? e.idea.judul}`);
+        console.log(`${e.id.padEnd(48)} ${STATUS_LABEL[e.status]}  — ${e.script?.title ?? e.idea.title}`);
       }
       return;
     default:
-      console.log('Perintah: riset | harian | harian-pasang | harian-lepas | chat <agen> | tulis <id> | hafalan <id> | sutradara <id> | render <id> | upload <id> [jadwal] | shorts <id> [jumlah] | metadata <id> [render] | rencana [arahan] | playlist [id] | tarik <id> | laporan | status');
+      console.log('Commands: research|riset | daily|harian | daily-install|harian-pasang | daily-uninstall|harian-lepas | chat <agent> | write|tulis <id> | memorization|hafalan <id> | direct|sutradara <id> | render <id> | upload <id> [schedule] | shorts <id> [count] | metadata <id> [render] | plan|rencana [guidance] | playlist [id] | withdraw|tarik <id> | report|laporan | status');
   }
 }
 

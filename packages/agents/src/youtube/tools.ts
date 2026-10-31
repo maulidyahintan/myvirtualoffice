@@ -45,12 +45,12 @@ export const kantorTools = createSdkMcpServer({
     tool('daftar_episode', 'Daftar episode yang sudah ada di kantor (judul, seri, format, status, jadwal tayang).', {}, async () =>
       json(
         listEpisodes().map((e) => ({
-          judul: e.script?.judul ?? e.idea.judul,
-          seri: e.idea.seri,
-          usia: e.idea.usia,
+          judul: e.script?.title ?? e.idea.title,
+          seri: e.idea.series,
+          usia: e.idea.age,
           format: e.idea.format ?? 'biasa',
           status: e.status,
-          jadwalTayang: e.youtube?.jadwalTayang,
+          jadwalTayang: e.youtube?.publishTime,
         })),
       ),
     ),
