@@ -43,7 +43,14 @@ function ensure(dir: string) {
 }
 
 export function loadConfig(): AppConfig {
-  return JSON.parse(fs.readFileSync(path.join(rootDir(), 'kantor.config.json'), 'utf8'));
+  const file = path.join(rootDir(), 'kantor.config.json');
+  const text = fs.readFileSync(file, 'utf8');
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    const conflict = text.includes('<<<<<<<') ? ' File berisi penanda konflik git (<<<<<<<); selesaikan dulu konfliknya.' : '';
+    throw new Error(`kantor.config.json tidak bisa dibaca (JSON tidak valid): ${(e as Error).message}.${conflict}`);
+  }
 }
 
 /** Voice settings for one speaker: from kantor.config.json, or default. */
@@ -93,7 +100,7 @@ export function readAutomationState(): AutomationState {
 }
 
 export function saveAutomationState(c: AutomationState) {
-  fs.writeFileSync(automationFile(), JSON.stringify(c, null, 2) + '\n');
+  writeJsonAtomic(automationFile(), c);
 }
 
 /** Vertical video length limit to still be considered Shorts by YouTube (3 minutes, with buffer). */
@@ -130,7 +137,18 @@ export function seriesPlaylist(series: string, cfg: AppConfig = loadConfig()): s
 }
 
 export function saveConfig(cfg: AppConfig) {
-  fs.writeFileSync(path.join(rootDir(), 'kantor.config.json'), JSON.stringify(cfg, null, 2) + '\n');
+  writeJsonAtomic(path.join(rootDir(), 'kantor.config.json'), cfg);
+}
+
+/**
+ * Write JSON via a temp file + rename, so a process reading at the same moment (the dashboard while
+ * an agent saves, or vice versa) never sees a half-written file. The temp name is per-process so
+ * concurrent writers don't clobber each other's temp file.
+ */
+export function writeJsonAtomic(file: string, data: unknown) {
+  const tmp = `${file}.${process.pid}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2) + '\n');
+  fs.renameSync(tmp, file);
 }
 
 function fileOf(id: string) {
@@ -155,10 +173,7 @@ export function getEpisode(id: string): Episode {
 
 export function saveEpisode(ep: Episode): Episode {
   ep.modified = new Date().toISOString();
-  const f = fileOf(ep.id);
-  const tmp = `${f}.tmp`;
-  fs.writeFileSync(tmp, JSON.stringify(ep, null, 2));
-  fs.renameSync(tmp, f); // Atomic write so dashboard doesn't read half-written file
+  writeJsonAtomic(fileOf(ep.id), ep);
   return ep;
 }
 
@@ -258,7 +273,7 @@ export function readChat(agent: ChatAgent): ChatMessage[] {
 
 export function addChatMessage(agent: ChatAgent, message: Omit<ChatMessage, 'time'>): ChatMessage {
   const newMsg = { time: new Date().toISOString(), ...message };
-  fs.writeFileSync(chatFile(agent), JSON.stringify([...readChat(agent), newMsg], null, 2));
+  writeJsonAtomic(chatFile(agent), [...readChat(agent), newMsg]);
   return newMsg;
 }
 
