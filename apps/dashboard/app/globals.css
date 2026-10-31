@@ -324,3 +324,22 @@ button[data-proses]:disabled { cursor: progress; opacity: 0.85; }
 .putar { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; display: inline-block; animation: putar 0.7s linear infinite; flex: none; }
 @keyframes putar { to { transform: rotate(360deg); } }
 button[data-selesai] { background: var(--hijau-muda); color: var(--hijau); border: 1.5px solid var(--hijau); }
+
+/* ---------- halaman Pengaturan (satu kolom) & panel lipat ---------- */
+.daftar-pengaturan { max-width: 880px; gap: 12px; }
+.bagian-lipat { padding: 0; overflow: hidden; }
+.bagian-lipat > summary {
+  list-style: none; display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none;
+  color: var(--ink); font-weight: 400; transition: background 0.12s ease;
+}
+.bagian-lipat > summary::-webkit-details-marker { display: none; }
+.bagian-lipat > summary:hover { background: #fcfaf5; }
+.bagian-judul { font-weight: 800; font-size: 16px; }
+.bagian-ringkas { margin-left: auto; font-size: 12.5px; color: var(--muted); background: #f6f1e7; border-radius: 99px; padding: 3px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+.bagian-panah { flex: none; width: 28px; height: 28px; border-radius: 9px; background: var(--hijau-muda); position: relative; transition: transform 0.2s ease; }
+.bagian-panah::before { content: ''; position: absolute; left: 50%; top: 45%; width: 8px; height: 8px; border-right: 2.5px solid var(--hijau); border-bottom: 2.5px solid var(--hijau); transform: translate(-50%, -50%) rotate(45deg); }
+.bagian-lipat[open] .bagian-panah { transform: rotate(180deg); }
+.bagian-lipat[open] > summary { border-bottom: 1px solid var(--line); }
+.bagian-isi { padding: 16px 20px 20px; }
+.baris-suara { display: grid; gap: 6px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.baris-suara:last-of-type { border-bottom: 0; }

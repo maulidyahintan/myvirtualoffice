@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { BagianLipat } from '@/components/BagianLipat';
 import { useEffect, useRef, useState } from 'react';
 import type { RefGelembung } from './Scene';
 import { PEGAWAI, type DataKantor, type PegawaiId } from './pegawai';
@@ -80,39 +81,46 @@ export function KantorView({ awal }: { awal: DataKantor }) {
       </div>
 
       <aside className="stack">
-        <div className="panel">
-          <h2>Tim hari ini</h2>
-          <div className="kecil muted" style={{ marginBottom: 10 }}>
-            {bekerja} dari {PEGAWAI.length} sedang bekerja
-          </div>
-          {PEGAWAI.map((p) => {
-            const s = data.pegawai.find((x) => x.id === p.id);
-            return (
-              <button
-                key={p.id}
-                type="button"
-                className={`baris-pegawai ${terpilih === p.id ? 'aktif' : ''}`}
-                onClick={() => setTerpilih(terpilih === p.id ? null : p.id)}
-              >
-                <span className="avatar" style={{ background: p.warnaBaju }}>
-                  {p.nama[0]}
-                </span>
-                <span style={{ flex: 1, textAlign: 'left' }}>
-                  <b>{p.nama}</b> <span className="muted kecil">· {p.peran}</span>
-                  <span className="kecil" style={{ display: 'block' }}>
-                    <span className={`titik ${s?.keadaan}`} /> {s?.pesan}
+        <BagianLipat id="kantor-tim" judul="👥 Tim hari ini" ringkasan={`${bekerja} dari ${PEGAWAI.length} sedang bekerja`} bawaanBuka>
+          <div>
+            {PEGAWAI.map((p) => {
+              const s = data.pegawai.find((x) => x.id === p.id);
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  className={`baris-pegawai ${terpilih === p.id ? 'aktif' : ''}`}
+                  onClick={() => setTerpilih(terpilih === p.id ? null : p.id)}
+                >
+                  <span className="avatar" style={{ background: p.warnaBaju }}>
+                    {p.nama[0]}
                   </span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
+                  <span style={{ flex: 1, textAlign: 'left' }}>
+                    <b>{p.nama}</b> <span className="muted kecil">· {p.peran}</span>
+                    <span className="kecil" style={{ display: 'block' }}>
+                      <span className={`titik ${s?.keadaan}`} /> {s?.pesan}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </BagianLipat>
 
         {def && st ? (
-          <div className="panel stack">
-            <h2>
-              {def.nama} <span className="muted kecil">· {def.peran}</span>
-            </h2>
+          // muncul saat pegawai diklik, jadi langsung terbuka
+          <BagianLipat
+            key={def.id}
+            id="kantor-detail"
+            judul={
+              <>
+                {def.nama} <span className="muted kecil">· {def.peran}</span>
+              </>
+            }
+            ringkasan={LABEL[st.keadaan]}
+            bawaanBuka
+            ingat={false}
+          >
             <div>
               <span className={`titik ${st.keadaan}`} /> <b>{LABEL[st.keadaan]}</b> — {st.pesan}
             </div>
@@ -132,11 +140,14 @@ export function KantorView({ awal }: { awal: DataKantor }) {
                 <div className="kecil muted">Belum ada aktivitas.</div>
               )}
             </div>
-          </div>
+          </BagianLipat>
         ) : null}
 
-        <div className="panel">
-          <h2>Menunggu kamu</h2>
+        <BagianLipat
+          id="kantor-menunggu"
+          judul="⏳ Menunggu kamu"
+          ringkasan={data.menungguKamu.length ? `${data.menungguKamu.length} pekerjaan` : 'tidak ada'}
+        >
           {data.menungguKamu.length ? (
             <ul className="kecil" style={{ paddingLeft: 18, margin: 0 }}>
               {data.menungguKamu.map((m) => (
@@ -148,7 +159,7 @@ export function KantorView({ awal }: { awal: DataKantor }) {
           ) : (
             <div className="kecil muted">Tidak ada. Tim sedang aman.</div>
           )}
-        </div>
+        </BagianLipat>
       </aside>
     </div>
   );
