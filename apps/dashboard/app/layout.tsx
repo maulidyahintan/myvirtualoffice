@@ -1,39 +1,62 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Fredoka } from 'next/font/google';
-import { loadConfig } from '@kantor/shared';
+import { listEpisodes, loadConfig, type EpisodeStatus } from '@kantor/shared';
 import { ChatMengambang } from '@/components/ChatMengambang';
 import { LogoTasnie } from '@/components/LogoTasnie';
+import { Sidebar, type GrupMenu } from '@/components/Sidebar';
 import './globals.css';
 
-// font tulisan logo, sama seperti di video
-const fredoka = Fredoka({ subsets: ['latin'], weight: ['600', '700'] });
+// font tulisan logo & judul halaman, sama seperti di video
+const fredoka = Fredoka({ subsets: ['latin'], weight: ['600', '700'], variable: '--font-judul' });
 
 export const metadata: Metadata = {
   title: 'Kantor AI · Tasnie',
   description: 'Kantor AI untuk channel YouTube cerita islami anak',
 };
 
+export const dynamic = 'force-dynamic';
+
+/** Status yang menunggu tindakan pemilik channel. */
+const MENUNGGU: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const cfg = loadConfig();
+  const episodes = listEpisodes();
+  const butuhKamu = episodes.filter((e) => MENUNGGU.includes(e.status)).length;
+  const siapTayang = episodes.filter((e) => e.status === 'needs_video_approval').length;
+
+  const grup: GrupMenu[] = [
+    { judul: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
+    {
+      judul: 'Produksi',
+      item: [
+        { href: '/papan-kerja', ikon: '🗂️', label: 'Papan Kerja', badge: butuhKamu },
+        { href: '/ide-baru', ikon: '💡', label: 'Ide Manual' },
+        { href: '/hafalan-baru', ikon: '📖', label: 'Hafalan Baru' },
+      ],
+    },
+    {
+      judul: 'Publikasi',
+      item: [
+        { href: '/jadwal', ikon: '📅', label: 'Jadwal Tayang', badge: siapTayang },
+        { href: '/tayang', ikon: '🎬', label: 'Video Tayang' },
+      ],
+    },
+    { judul: 'Analisis', item: [{ href: '/laporan', ikon: '📊', label: 'Riset & Laporan' }] },
+    { judul: 'Sistem', item: [{ href: '/pengaturan', ikon: '⚙️', label: 'Pengaturan' }] },
+  ];
+
   return (
-    <html lang="id">
+    <html lang="id" className={fredoka.variable}>
       <body>
-        <header className="topbar">
-          <Link href="/" aria-label={cfg.namaChannel} style={{ textDecoration: 'none' }}>
-            <LogoTasnie keterangan={cfg.namaChannel.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />
-          </Link>
-          <nav>
-            <Link href="/papan-kerja">Papan Kerja</Link>
-            <Link href="/jadwal">Jadwal Tayang</Link>
-            <Link href="/tayang">Video Tayang</Link>
-            <Link href="/laporan">Riset & Laporan</Link>
-            <Link href="/ide-baru">+ Ide Manual</Link>
-            <Link href="/hafalan-baru">+ Hafalan</Link>
-            <Link href="/pengaturan">Pengaturan</Link>
-          </nav>
-        </header>
-        <main>{children}</main>
+        <div className="aplikasi">
+          <Sidebar
+            logo={<LogoTasnie keterangan={cfg.namaChannel.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />}
+            grup={grup}
+            butuhKamu={butuhKamu}
+          />
+          <main>{children}</main>
+        </div>
         <ChatMengambang />
       </body>
     </html>
