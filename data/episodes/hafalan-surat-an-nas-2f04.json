@@ -1,7 +1,7 @@
 {
   "id": "hafalan-surat-an-nas-2f04",
   "dibuat": "2026-10-30T08:38:36.341Z",
-  "diubah": "2026-10-30T11:11:38.023Z",
+  "diubah": "2026-10-30T12:33:56.983Z",
   "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat An-Nas",
@@ -157,6 +157,11 @@
       "waktu": "2026-10-30T11:11:38.022Z",
       "oleh": "channel-manager",
       "pesan": "Gagal memasukkan ke playlist: The playlist identified with the request's <code>playlistId</code> parameter cannot be found."
+    },
+    {
+      "waktu": "2026-10-30T12:33:56.983Z",
+      "oleh": "channel-manager",
+      "pesan": "Dimasukkan ke playlist \"Hafalan\""
     }
   ],
   "pasangan": "hafalan-surat-an-nas-4d50",
@@ -511,6 +516,10 @@
   "youtube": {
     "videoId": "O-1K2YAEzHw",
     "url": "https://www.youtube.com/watch?v=O-1K2YAEzHw",
-    "jadwalTayang": "2026-11-01T09:30:00.000Z"
+    "jadwalTayang": "2026-11-01T09:30:00.000Z",
+    "playlist": {
+      "nama": "Hafalan",
+      "id": "PLQpeKIzmWSxQ"
+    }
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "mamas-takut-gelap-ibu-ajak-baca-surat-an-b0d4",
   "dibuat": "2026-10-30T11:52:52.840Z",
-  "diubah": "2026-10-30T11:58:51.271Z",
-  "status": "needs_video_approval",
+  "diubah": "2026-10-30T12:09:58.231Z",
+  "status": "rejected",
   "ide": {
     "judul": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
     "seri": "kisah-sebelum-tidur",
@@ -58,6 +58,11 @@
       "waktu": "2026-10-30T11:58:51.271Z",
       "oleh": "video-creator",
       "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T12:09:58.231Z",
+      "oleh": "pemilik",
+      "pesan": "kepanjangan"
     }
   ],
   "pasangan": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a",
@@ -449,7 +454,7 @@
     2.134,
     2.136
   ],
-  "catatanStatus": "Video siap ditonton & disetujui",
+  "catatanStatus": "kepanjangan",
   "metadata": {
     "judul": "Takut Gelap? Baca An-Nas Sebelum Tidur bersama Mamas",
     "deskripsi": "Mamas takut gelap sebelum tidur, lalu Ibu mengajaknya membaca Al-Ikhlas, Al-Falaq, dan An-Nas, ditutup dengan doa sebelum tidur. Sumber: QS. Al-Baqarah 2:255, QS. An-Nas 114:1-6, HR. Bukhari no. 5017 & 6324.\n#Shorts #DoaSebelumTidur #CeritaIslamiAnak",

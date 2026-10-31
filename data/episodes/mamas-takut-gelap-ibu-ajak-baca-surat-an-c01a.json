@@ -1,7 +1,7 @@
 {
   "id": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a",
   "dibuat": "2026-10-28T10:20:42.356Z",
-  "diubah": "2026-10-30T11:52:52.916Z",
+  "diubah": "2026-10-30T12:33:54.007Z",
   "status": "scheduled",
   "ide": {
     "judul": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
@@ -257,6 +257,51 @@
       "waktu": "2026-10-30T11:52:52.916Z",
       "oleh": "pemilik",
       "pesan": "Dibuat versi YouTube Shorts: mamas-takut-gelap-ibu-ajak-baca-surat-an-b0d4"
+    },
+    {
+      "waktu": "2026-10-30T12:10:44.302Z",
+      "oleh": "pemilik",
+      "pesan": "Minta 2 Shorts dari inti video: yg penting penting saja, dan menarik"
+    },
+    {
+      "waktu": "2026-10-30T12:10:44.948Z",
+      "oleh": "sutradara",
+      "pesan": "Menyiapkan 2 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "waktu": "2026-10-30T12:10:46.609Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "waktu": "2026-10-30T12:10:48.076Z",
+      "oleh": "pemilik",
+      "pesan": "Minta 2 Shorts dari inti video"
+    },
+    {
+      "waktu": "2026-10-30T12:10:48.700Z",
+      "oleh": "sutradara",
+      "pesan": "Menyiapkan 2 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "waktu": "2026-10-30T12:10:50.422Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "waktu": "2026-10-30T12:11:05.814Z",
+      "oleh": "sutradara",
+      "pesan": "2 Shorts dibuat: takut-gelap-ingat-allah-tidak-pernah-tid-a5e7, baca-3-qul-sebelum-tidur-kebiasaan-rasul-aa1c"
+    },
+    {
+      "waktu": "2026-10-30T12:11:11.384Z",
+      "oleh": "sutradara",
+      "pesan": "2 Shorts dibuat: takut-gelap-ingat-allah-tidak-pernah-tid-183d, baca-3-qul-sebelum-tidur-sunnah-rasulull-d0b0"
+    },
+    {
+      "waktu": "2026-10-30T12:33:54.007Z",
+      "oleh": "channel-manager",
+      "pesan": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
     }
   ],
   "catatanStatus": "Terjadwal tayang 2026-10-30T09:30:00.000Z",
@@ -743,7 +788,17 @@
   "youtube": {
     "videoId": "pJZphm-yEbs",
     "url": "https://www.youtube.com/watch?v=pJZphm-yEbs",
-    "jadwalTayang": "2026-10-30T09:30:00.000Z"
+    "jadwalTayang": "2026-10-30T09:30:00.000Z",
+    "playlist": {
+      "nama": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
   },
-  "pasangan": "mamas-takut-gelap-ibu-ajak-baca-surat-an-b0d4"
+  "pasangan": "mamas-takut-gelap-ibu-ajak-baca-surat-an-b0d4",
+  "turunan": [
+    "takut-gelap-ingat-allah-tidak-pernah-tid-a5e7",
+    "baca-3-qul-sebelum-tidur-kebiasaan-rasul-aa1c",
+    "takut-gelap-ingat-allah-tidak-pernah-tid-183d",
+    "baca-3-qul-sebelum-tidur-sunnah-rasulull-d0b0"
+  ]
 }

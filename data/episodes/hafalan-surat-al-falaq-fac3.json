@@ -1,8 +1,8 @@
 {
   "id": "hafalan-surat-al-falaq-fac3",
   "dibuat": "2026-10-30T11:53:38.371Z",
-  "diubah": "2026-10-30T12:04:47.631Z",
-  "status": "needs_video_approval",
+  "diubah": "2026-10-30T12:08:04.882Z",
+  "status": "scheduled",
   "ide": {
     "judul": "Hafalan Surat Al-Falaq",
     "seri": "hafalan",
@@ -102,10 +102,30 @@
       "waktu": "2026-10-30T12:04:47.631Z",
       "oleh": "video-creator",
       "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T12:07:50.940Z",
+      "oleh": "pemilik",
+      "pesan": "Video disetujui, tayang 2026-11-02 18:30"
+    },
+    {
+      "waktu": "2026-10-30T12:07:51.553Z",
+      "oleh": "channel-manager",
+      "pesan": "Upload ke YouTube"
+    },
+    {
+      "waktu": "2026-10-30T12:08:04.881Z",
+      "oleh": "channel-manager",
+      "pesan": "Dimasukkan ke playlist \"Hafalan\""
+    },
+    {
+      "waktu": "2026-10-30T12:08:04.882Z",
+      "oleh": "channel-manager",
+      "pesan": "Terjadwal tayang 2026-11-02T11:30:00.000Z"
     }
   ],
   "pasangan": "hafalan-surat-al-falaq-9541",
-  "catatanStatus": "Video siap ditonton & disetujui",
+  "catatanStatus": "Terjadwal tayang 2026-11-02T11:30:00.000Z",
   "hafalan": {
     "namaSurat": "Al-Falaq",
     "artiSurat": "Subuh",
@@ -413,5 +433,15 @@
       }
     ],
     "waktu": "2026-10-30T12:04:47.631Z"
+  },
+  "jadwalDipilih": "2026-11-02T11:30:00.000Z",
+  "youtube": {
+    "videoId": "cWUJnY57WPw",
+    "url": "https://www.youtube.com/watch?v=cWUJnY57WPw",
+    "jadwalTayang": "2026-11-02T11:30:00.000Z",
+    "playlist": {
+      "nama": "Hafalan",
+      "id": "PLQpeKIzmWSxQ"
+    }
   }
 }

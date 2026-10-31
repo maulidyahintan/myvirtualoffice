@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-kita-bilang-alhamdulillah-saat-eb93",
   "dibuat": "2026-10-30T11:52:32.594Z",
-  "diubah": "2026-10-30T11:52:32.594Z",
-  "status": "idea",
+  "diubah": "2026-10-31T00:37:15.557Z",
+  "status": "needs_video_approval",
   "ide": {
     "judul": "Kenapa Ya Kita Bilang \"Alhamdulillah\" Saat Bersin?",
     "seri": "kenapa-ya",
@@ -18,12 +18,684 @@
       "HR. Abu Dawud no. 5029; HR. Tirmidzi no. 2745"
     ]
   },
-  "jumlahRevisi": 0,
+  "jumlahRevisi": 1,
   "log": [
     {
       "waktu": "2026-10-30T11:52:32.594Z",
       "oleh": "riset",
       "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-30T12:42:21.658Z",
+      "oleh": "dashboard",
+      "pesan": "Penulis mulai bekerja"
+    },
+    {
+      "waktu": "2026-10-30T12:42:22.493Z",
+      "oleh": "penulis",
+      "pesan": "Mulai menulis naskah"
+    },
+    {
+      "waktu": "2026-10-30T12:43:19.173Z",
+      "oleh": "penulis",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T12:43:19.589Z",
+      "oleh": "reviewer",
+      "pesan": "Memeriksa naskah"
+    },
+    {
+      "waktu": "2026-10-30T12:44:01.890Z",
+      "oleh": "reviewer",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T12:44:02.292Z",
+      "oleh": "penulis",
+      "pesan": "Revisi otomatis ke-1"
+    },
+    {
+      "waktu": "2026-10-30T12:44:58.709Z",
+      "oleh": "penulis",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T12:44:59.182Z",
+      "oleh": "reviewer",
+      "pesan": "Memeriksa naskah"
+    },
+    {
+      "waktu": "2026-10-30T12:45:39.339Z",
+      "oleh": "reviewer",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T12:45:39.881Z",
+      "oleh": "orchestrator",
+      "pesan": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "waktu": "2026-10-31T00:33:19.182Z",
+      "oleh": "pemilik",
+      "pesan": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "waktu": "2026-10-31T00:33:20.091Z",
+      "oleh": "sutradara",
+      "pesan": "Menyusun adegan & metadata"
+    },
+    {
+      "waktu": "2026-10-31T00:33:36.917Z",
+      "oleh": "channel-manager",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-31T00:33:50.885Z",
+      "oleh": "sutradara",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-31T00:33:51.430Z",
+      "oleh": "orchestrator",
+      "pesan": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "waktu": "2026-10-31T00:33:57.724Z",
+      "oleh": "pemilik",
+      "pesan": "Mulai render"
+    },
+    {
+      "waktu": "2026-10-31T00:33:58.514Z",
+      "oleh": "video-creator",
+      "pesan": "Render pratinjau tanpa suara"
+    },
+    {
+      "waktu": "2026-10-31T00:37:15.557Z",
+      "oleh": "video-creator",
+      "pesan": "Video siap ditonton & disetujui"
     }
-  ]
+  ],
+  "catatanStatus": "Video siap ditonton & disetujui",
+  "naskah": {
+    "judul": "Kenapa Ya Kita Bilang \"Alhamdulillah\" Saat Bersin?",
+    "ringkasan": "Bulu Mochi membuat Mamas bersin. Mochi sampai melompat kaget. Mamas lupa jawaban balasannya, lalu bertanya kenapa bersin harus dibalas \"Alhamdulillah\", padahal bersin bukan hadiah. Ibu menjelaskan bahwa bersin adalah cara tubuh membuang debu dan bulu dari hidung. Itu nikmat dari Allah. Ibu lalu mengajarkan tiga kalimat bersin dari Rasulullah ﷺ, adab menutup mulut, dan adab memelankan suara. Saat Mochi bersin, Ibu meluruskan dengan lembut bahwa \"Yarhamukallah\" diucapkan untuk orang yang bersin lalu bilang Alhamdulillah. Episode ditutup dengan latihan percakapan tiga kalimat bersama. Pesannya: saat bersin kita bersyukur, saat teman bersin kita mendoakannya, dan adab kecil ini membuat kita saling sayang.",
+    "adegan": [
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Assalamu'alaikum, adik-adik! Sore ini Mamas bermain di ruang tengah. Siapa yang menemaninya? Tentu saja Mochi, si kucing oranye yang bulunya lembut sekali.",
+        "petunjukVisual": "Ruang tengah rumah yang hangat di sore hari, Mamas duduk di karpet memeluk Mochi, cahaya jingga lembut dari jendela."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Mochi, sini, aku elus-elus. Wah, bulumu beterbangan! Eh... hidungku geli... haa... haaa...",
+        "petunjukVisual": "Close-up beberapa helai bulu Mochi melayang pelan di depan hidung Mamas, Mamas mengernyit lucu menahan geli."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Haa-ciih! Alhamdulillah!",
+        "petunjukVisual": "Mamas bersin dengan efek suara sedang (tidak keras) sambil menutup mulut dengan siku, Mochi melompat kaget ke atas sofa dengan ekor mengembang, gerakan lucu tapi tenang; teks layar: \"Alhamdulillah\"."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Yarhamukallah, Mas. Semoga Allah menyayangimu. Lho, Mamas tidak membalas Ibu?",
+        "petunjukVisual": "Ibu datang dari dapur sambil tersenyum, Mochi mengintip dari balik bantal sofa; teks layar: \"Yarhamukallah\"."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Hehe, aku lupa balasannya, Bu. Tapi Ibu, kenapa ya kita bilang Alhamdulillah saat bersin? Bersin kan bukan hadiah.",
+        "petunjukVisual": "Mamas menggaruk kepala di balik peci biru rajutnya, wajah bingung dan penasaran, Ibu duduk di sebelahnya."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Pertanyaan bagus, Mas. Tadi ada bulu Mochi masuk ke hidung, kan? Bersin itu cara tubuh membuang debu dan bulu dari hidung. Allah yang membuat tubuh kita bisa membersihkan dirinya sendiri. Itu nikmat, jadi kita bersyukur.",
+        "petunjukVisual": "Ibu menunjuk hidung Mamas dengan lembut, lalu ilustrasi sederhana sehelai bulu kecil keluar dari hidung kartun yang lucu."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Rasulullah ﷺ mengajarkan tiga kalimat. Yang bersin bilang, Alhamdulillah. Yang mendengar menjawab, Yarhamukallah. Lalu yang bersin membalas, Yahdikumullah wa yushlihu balakum. Artinya, semoga Allah memberimu petunjuk dan memperbaiki keadaanmu.",
+        "petunjukVisual": "Tiga gelembung kata muncul bergantian dengan teks layar besar dan jelas: \"Alhamdulillah\", \"Yarhamukallah\", \"Yahdikumullah wa yushlihu balakum\"; Mamas menghitung dengan jarinya: satu, dua, tiga."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Wah, jadi kita saling mendoakan, ya? Aku yang bersin, Ibu mendoakan aku, lalu aku mendoakan Ibu balik!",
+        "petunjukVisual": "Mamas tersenyum lebar dan bertepuk tangan kecil, Mochi turun dari sofa dan mendekat."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Tiba-tiba terdengar suara kecil. Hcih! Ternyata Mochi yang bersin! Mamas cepat-cepat berkata, Yarhamukallah, Mochi!",
+        "petunjukVisual": "Mochi bersin mungil sampai kumisnya bergetar, efek suara pelan, Mamas menunjuk Mochi dengan semangat."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Hihi, Mas. Yarhamukallah itu untuk orang yang bersin, lalu bilang Alhamdulillah. Mochi itu kucing. Jadi cukup dielus saja, ya.",
+        "petunjukVisual": "Ibu tertawa kecil sambil menutup mulut, lalu mengelus Mochi; Mamas ikut mengelus Mochi sambil mengangguk paham."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Satu lagi, Mas. Tadi Mamas menutup mulut saat bersin. Itu juga adab dari Rasulullah ﷺ. Beliau menutup mulut dengan tangan atau kain. Beliau juga merendahkan suaranya. Jadi lain kali, suaranya dipelankan juga, ya. Supaya percikan bersin tidak mengenai orang lain.",
+        "petunjukVisual": "Ibu memperagakan bersin pelan sambil menutup mulut dengan tisu, Mamas menirukan dengan siku sambil berbisik \"hcih\" pelan."
+      },
+      {
+        "jenis": "pertanyaan",
+        "pembicara": "ibu",
+        "narasi": "Nah, teman-teman, coba jawab, ya. Kalau temanmu bersin dan bilang Alhamdulillah, kamu jawab apa? Lalu temanmu membalas apa lagi? Ayo, coba diingat-ingat dulu.",
+        "petunjukVisual": "Ibu menatap penonton dengan senyum hangat, Mamas dan Mochi ikut menatap sambil menunggu, jeda tenang beberapa detik."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Aku tahu! Kita jawab, Yarhamukallah. Lalu teman kita membalas, Yahdikumullah wa yushlihu balakum!",
+        "petunjukVisual": "Mamas mengangkat tangan dengan bangga; teks layar muncul berurutan: \"Alhamdulillah\", \"Yarhamukallah\", \"Yahdikumullah wa yushlihu balakum\"."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Pintar sekali! Rasulullah ﷺ bersabda, Allah menyukai bersin. Karena itu, orang yang bersin lalu bersyukur, kita doakan. Jadi saat bersin, kita bersyukur. Saat teman bersin, kita mendoakannya. Adab kecil ini membuat kita saling sayang.",
+        "petunjukVisual": "Ibu memeluk Mamas di sofa, Mochi bergelung di pangkuan mereka, suasana tenang dan hangat."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "narator",
+        "narasi": "Yuk, kita latihan bersama Ibu dan Mamas! Ibu pura-pura bersin pelan. Hcih. Alhamdulillah. Ibu kan perempuan, jadi Mamas menjawab, Yarhamukillah. Lalu Ibu membalas, Yahdikumullah wa yushlihu balakum. Adik-adik, ayo ikut ucapkan, ya!",
+        "petunjukVisual": "Ibu dan Mamas duduk berhadapan bermain peran: Ibu pura-pura bersin pelan sambil menutup mulut dengan ujung kerudung, Mamas menjawab dengan gembira, Ibu membalas sambil tersenyum; teks layar berurutan: \"Alhamdulillah\", \"Yarhamukillah\", \"Yahdikumullah wa yushlihu balakum\"."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Adik-adik, mulai hari ini, ingat adab bersin, ya. Tutup mulut, pelankan suara, bersyukur, lalu saling mendoakan. Sampai jumpa lagi. Wassalamu'alaikum warahmatullahi wabarakatuh!",
+        "petunjukVisual": "Mamas melambaikan tangan ke arah penonton, Mochi menguap di sebelahnya, cahaya senja perlahan meredup."
+      }
+    ],
+    "dalil": [
+      {
+        "jenis": "hadits",
+        "teksArab": "إِذَا عَطَسَ أَحَدُكُمْ فَلْيَقُلِ: الْحَمْدُ لِلَّهِ، وَلْيَقُلْ لَهُ أَخُوهُ أَوْ صَاحِبُهُ: يَرْحَمُكَ اللَّهُ، فَإِذَا قَالَ لَهُ: يَرْحَمُكَ اللَّهُ، فَلْيَقُلْ: يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ",
+        "latin": "Idza 'athasa ahadukum falyaqul: Alhamdulillah. Walyaqul lahu akhuhu aw shahibuhu: Yarhamukallah. Fa idza qala lahu: Yarhamukallah, falyaqul: Yahdikumullah wa yushlihu balakum.",
+        "terjemah": "Jika salah seorang dari kalian bersin, hendaklah ia mengucapkan 'Alhamdulillah'. Hendaklah saudaranya atau temannya mengucapkan 'Yarhamukallah' (semoga Allah merahmatimu). Jika temannya sudah mengucapkan 'Yarhamukallah', hendaklah ia membalas 'Yahdikumullah wa yushlihu balakum' (semoga Allah memberimu petunjuk dan memperbaiki keadaanmu). Catatan: untuk perempuan, kata ganti disesuaikan menjadi 'Yarhamukillah'.",
+        "sumber": "HR. Bukhari no. 6224, dari Abu Hurairah radhiyallahu 'anhu"
+      },
+      {
+        "jenis": "hadits",
+        "teksArab": "إِنَّ اللَّهَ يُحِبُّ الْعُطَاسَ وَيَكْرَهُ التَّثَاؤُبَ، فَإِذَا عَطَسَ فَحَمِدَ اللَّهَ فَحَقٌّ عَلَى كُلِّ مُسْلِمٍ سَمِعَهُ أَنْ يُشَمِّتَهُ ...",
+        "latin": "Innallaha yuhibbul-'uthasa wa yakrahut-tatsa'ub. Fa idza 'athasa fahamidallaha fahaqqun 'ala kulli muslimin sami'ahu an yusyammitahu ...",
+        "terjemah": "Sesungguhnya Allah menyukai bersin dan tidak menyukai menguap. Maka jika seseorang bersin lalu memuji Allah (mengucapkan Alhamdulillah), wajib bagi setiap muslim yang mendengarnya untuk mendoakannya (mengucapkan Yarhamukallah) ...",
+        "sumber": "HR. Bukhari no. 6223, dari Abu Hurairah radhiyallahu 'anhu"
+      },
+      {
+        "jenis": "hadits",
+        "teksArab": "كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم إِذَا عَطَسَ وَضَعَ يَدَهُ أَوْ ثَوْبَهُ عَلَى فِيهِ وَخَفَضَ أَوْ غَضَّ بِهَا صَوْتَهُ",
+        "latin": "Kana Rasulullahi shallallahu 'alaihi wa sallam idza 'athasa wadha'a yadahu aw tsaubahu 'ala fihi wa khafadha aw ghadhdha biha shautahu.",
+        "terjemah": "Rasulullah ﷺ jika bersin, beliau meletakkan tangan atau kainnya di mulut beliau dan merendahkan suaranya.",
+        "sumber": "HR. Abu Dawud no. 5029 dan HR. Tirmidzi no. 2745 (Tirmidzi: hasan shahih), dari Abu Hurairah radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "keputusan": "lolos",
+    "skor": 8.5,
+    "catatan": [
+      "Secara umum naskah sudah kuat. Tidak ada visualisasi Nabi atau sahabat. Ketiga dalil masyhur dan sumbernya spesifik. Alurnya jelas: bersin → bertanya → penjelasan → salah kaprah kecil yang diluruskan (Mochi) → pertanyaan → latihan. Bahasa sesuai usia 7–10, dan tidak ada ayat Al-Qur'an sehingga aturan pembicara mamas tidak berlaku. Catatan di bawah ini hanya perbaikan kecil.",
+      "Visual dan dialog sedikit tidak cocok. Di adegan 3 dan 11 Mamas menutup mulut dengan SIKU. Tapi Ibu berkata 'Itu juga adab dari Rasulullah ﷺ. Beliau menutup mulut dengan tangan atau kain.' Siku tidak ada di hadits. Saran: ubah visual adegan 3 jadi Mamas menutup mulut dengan telapak tangan atau ujung lengan baju kokonya (lengan baju = kain). Di adegan 11 Mamas menirukan dengan tisu. Cara lain: tambahkan satu kalimat Ibu, misalnya 'Pakai tangan atau kain, ya. Lengan baju juga boleh.'",
+      "Dalil 1 (Bukhari 6224): kolom 'terjemah' memuat 'Catatan: untuk perempuan, kata ganti disesuaikan menjadi Yarhamukillah'. Itu bukan bagian dari hadits. Pindahkan ke catatan terpisah supaya tidak terkesan sebagai teks hadits.",
+      "Dalil 2 (Bukhari 6223): redaksi Arab yang umum dikenal berbunyi '...فَإِذَا عَطَسَ أَحَدُكُمْ وَحَمِدَ اللَّهَ كَانَ حَقًّا عَلَى كُلِّ مُسْلِمٍ سَمِعَهُ أَنْ يَقُولَ لَهُ: يَرْحَمُكَ اللَّهُ'. Redaksi 'fahaqqun... an yusyammitahu' lebih mirip riwayat lain. Samakan teks Arab dan latin dengan redaksi Shahih Bukhari no. 6223 sebelum tayang. Ini tidak mengubah isi naskah anak.",
+      "Adegan 14: frasa 'Allah menyukai bersin. Karena itu, orang yang bersin lalu bersyukur, kita doakan' memberi kesan ada hubungan sebab-akibat yang tidak persis ada di hadits. Saran: 'Rasulullah ﷺ bersabda, Allah menyukai bersin. Kalau teman bersin lalu bilang Alhamdulillah, kita doakan dia.'",
+      "Adegan 6: penjelasan bahwa bersin membuang debu adalah penalaran Ibu, bukan sabda Nabi. Itu sudah benar dan tidak diatribusikan ke Rasulullah. Pertahankan seperti ini, dan jangan sampai di judul, deskripsi, atau thumbnail ditulis sebagai 'alasan dari hadits'.",
+      "Opsional untuk usia 7–10: tambahkan satu kalimat fakta sederhana sebagai nilai 'kenapa', misalnya 'Bersin itu sangat cepat, jadi kita tutup mulut supaya kuman tidak ke mana-mana.' Hindari angka kecepatan yang belum pasti."
+    ],
+    "cekManusia": [
+      "DALIL 1: HR. Bukhari no. 6224, dari Abu Hurairah. Teks: 'إِذَا عَطَسَ أَحَدُكُمْ فَلْيَقُلِ: الْحَمْدُ لِلَّهِ، وَلْيَقُلْ لَهُ أَخُوهُ أَوْ صَاحِبُهُ: يَرْحَمُكَ اللَّهُ، فَإِذَا قَالَ لَهُ: يَرْحَمُكَ اللَّهُ، فَلْيَقُلْ: يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ'. Cek nomor hadits dan redaksinya di kitab atau aplikasi hadits terpercaya.",
+      "DALIL 2: HR. Bukhari no. 6223, dari Abu Hurairah. Teks di naskah: 'إِنَّ اللَّهَ يُحِبُّ الْعُطَاسَ وَيَكْرَهُ التَّثَاؤُبَ، فَإِذَا عَطَسَ فَحَمِدَ اللَّهَ فَحَقٌّ عَلَى كُلِّ مُسْلِمٍ سَمِعَهُ أَنْ يُشَمِّتَهُ'. Redaksi Bukhari 6223 yang saya kenal sedikit berbeda ('...كَانَ حَقًّا عَلَى كُلِّ مُسْلِمٍ سَمِعَهُ أَنْ يَقُولَ لَهُ يَرْحَمُكَ اللَّهُ'). Mohon cocokkan teks Arab dan latin dengan kitabnya.",
+      "DALIL 2 (terjemah): kata 'haqqun' diterjemahkan 'wajib'. Ulama berbeda pendapat apakah hukumnya fardhu 'ain atau fardhu kifayah. Pertimbangkan diganti 'menjadi hak (kewajiban)' atau 'hendaknya' supaya tidak masuk ke perbedaan pendapat. Naskah video sendiri tidak memakai kata 'wajib', jadi ini hanya untuk teks dalil di deskripsi atau layar.",
+      "DALIL 3: HR. Abu Dawud no. 5029 dan HR. Tirmidzi no. 2745 (Tirmidzi: hasan shahih), dari Abu Hurairah. Teks: 'كَانَ رَسُولُ اللَّهِ ﷺ إِذَا عَطَسَ وَضَعَ يَدَهُ أَوْ ثَوْبَهُ عَلَى فِيهِ وَخَفَضَ أَوْ غَضَّ بِهَا صَوْتَهُ'. Cek nomor hadits di kedua kitab dan penilaian Tirmidzi.",
+      "Ucapan 'Yarhamukillah' untuk perempuan (adegan latihan): ini benar secara bahasa Arab, tapi mohon pastikan Anda nyaman menampilkannya. Balasan 'Yahdikumullah wa yushlihu balakum' tetap dalam bentuk jamak, sesuai lafaz hadits.",
+      "Konsistensi visual: pastikan animator menggambar cara menutup mulut sesuai hadits (tangan atau kain), atau ada penjelasan bahwa lengan baju termasuk kain.",
+      "Durasi: pastikan hasil rekaman suara masuk rentang 3–5 menit. Perkiraan naskah sekitar 3 menit, jadi jeda tenang di adegan pertanyaan dan latihan bisa sedikit diperpanjang."
+    ]
+  },
+  "adegan": [
+    {
+      "jenis": "cerita",
+      "pembicara": "narator",
+      "narasi": "Assalamu'alaikum, adik-adik! Sore ini Mamas bermain di ruang tengah. Siapa yang menemaninya? Tentu saja Mochi, si kucing oranye yang bulunya lembut sekali.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "bermain"
+        }
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "mamas",
+      "narasi": "Mochi, sini, aku elus-elus. Wah, bulumu beterbangan! Eh... hidungku geli... haa... haaa...",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "kaget",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "bermain"
+        }
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "mamas",
+      "narasi": "Haa-ciih! Alhamdulillah!",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "kaget",
+      "teksLayar": "Alhamdulillah",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "ibu",
+      "narasi": "Yarhamukallah, Mas. Semoga Allah menyayangimu. Lho, Mamas tidak membalas Ibu?",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "teksLayar": "Yarhamukallah",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "mamas",
+      "narasi": "Hehe, aku lupa balasannya, Bu. Tapi Ibu, kenapa ya kita bilang Alhamdulillah saat bersin? Bersin kan bukan hadiah.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "ibu",
+        "mochi"
+      ],
+      "ekspresi": "berpikir",
+      "teksLayar": "Kenapa bilang Alhamdulillah?",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "ibu",
+      "narasi": "Pertanyaan bagus, Mas. Tadi ada bulu Mochi masuk ke hidung, kan? Bersin itu cara tubuh membuang debu dan bulu dari hidung. Allah yang membuat tubuh kita bisa membersihkan dirinya sendiri. Itu nikmat, jadi kita bersyukur.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "tenang",
+      "teksLayar": "Bersin itu nikmat",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "ibu",
+      "narasi": "Rasulullah ﷺ mengajarkan tiga kalimat. Yang bersin bilang, Alhamdulillah. Yang mendengar menjawab, Yarhamukallah. Lalu yang bersin membalas, Yahdikumullah wa yushlihu balakum. Artinya, semoga Allah memberimu petunjuk dan memperbaiki keadaanmu.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "tenang",
+      "teksLayar": "Tiga kalimat bersin",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "mamas",
+      "narasi": "Wah, jadi kita saling mendoakan, ya? Aku yang bersin, Ibu mendoakan aku, lalu aku mendoakan Ibu balik!",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "ibu",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "teksLayar": "Saling mendoakan",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "bermain"
+        }
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "narator",
+      "narasi": "Tiba-tiba terdengar suara kecil. Hcih! Ternyata Mochi yang bersin! Mamas cepat-cepat berkata, Yarhamukallah, Mochi!",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "ibu",
+        "mochi"
+      ],
+      "ekspresi": "kaget",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "ibu",
+      "narasi": "Hihi, Mas. Yarhamukallah itu untuk orang yang bersin, lalu bilang Alhamdulillah. Mochi itu kucing. Jadi cukup dielus saja, ya.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "ibu",
+      "narasi": "Satu lagi, Mas. Tadi Mamas menutup mulut saat bersin. Itu juga adab dari Rasulullah ﷺ. Beliau menutup mulut dengan tangan atau kain. Beliau juga merendahkan suaranya. Jadi lain kali, suaranya dipelankan juga, ya. Supaya percikan bersin tidak mengenai orang lain.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "tenang",
+      "teksLayar": "Tutup mulut, pelankan suara",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "tidur"
+        }
+      ]
+    },
+    {
+      "jenis": "pertanyaan",
+      "pembicara": "ibu",
+      "narasi": "Nah, teman-teman, coba jawab, ya. Kalau temanmu bersin dan bilang Alhamdulillah, kamu jawab apa? Lalu temanmu membalas apa lagi? Ayo, coba diingat-ingat dulu.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "berpikir",
+      "teksLayar": "Kamu jawab apa?",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "tidur"
+        }
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "mamas",
+      "narasi": "Aku tahu! Kita jawab, Yarhamukallah. Lalu teman kita membalas, Yahdikumullah wa yushlihu balakum!",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "ibu",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "teksLayar": "Yahdikumullah wa yushlihu balakum",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "bermain"
+        }
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "ibu",
+      "narasi": "Pintar sekali! Rasulullah ﷺ bersabda, Allah menyukai bersin. Karena itu, orang yang bersin lalu bersyukur, kita doakan. Jadi saat bersin, kita bersyukur. Saat teman bersin, kita mendoakannya. Adab kecil ini membuat kita saling sayang.",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "tenang",
+      "teksLayar": "Adab membuat saling sayang",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "tidur"
+        }
+      ]
+    },
+    {
+      "jenis": "doa",
+      "pembicara": "narator",
+      "narasi": "Yuk, kita latihan bersama Ibu dan Mamas! Ibu pura-pura bersin pelan. Hcih. Alhamdulillah. Ibu kan perempuan, jadi Mamas menjawab, Yarhamukillah. Lalu Ibu membalas, Yahdikumullah wa yushlihu balakum. Adik-adik, ayo ikut ucapkan, ya!",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "ibu",
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "teksLayar": "Ayo latihan bersama",
+      "doa": {
+        "arab": "الْحَمْدُ لِلَّهِ — يَرْحَمُكِ اللَّهُ — يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ",
+        "latin": "Alhamdulillah — Yarhamukillah — Yahdikumullah wa yushlihu balakum",
+        "arti": "Segala puji bagi Allah — Semoga Allah merahmatimu — Semoga Allah memberimu petunjuk dan memperbaiki keadaanmu (HR. Bukhari no. 6224)"
+      },
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "tidur"
+        }
+      ]
+    },
+    {
+      "jenis": "cerita",
+      "pembicara": "narator",
+      "narasi": "Adik-adik, mulai hari ini, ingat adab bersin, ya. Tutup mulut, pelankan suara, bersyukur, lalu saling mendoakan. Sampai jumpa lagi. Wassalamu'alaikum warahmatullahi wabarakatuh!",
+      "latar": "ruang-tamu",
+      "karakter": [
+        "mamas",
+        "mochi"
+      ],
+      "ekspresi": "senang",
+      "teksLayar": "Bersyukur dan saling mendoakan",
+      "properti": [
+        "bantal",
+        "boneka",
+        "pohon-pot"
+      ],
+      "aksi": [
+        {
+          "karakter": "mochi",
+          "aksi": "tidur"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "judul": "Adab Bersin untuk Anak | Kenapa Ya Bilang Alhamdulillah?",
+    "deskripsi": "Kenapa kita bilang Alhamdulillah saat bersin? Di seri Kenapa Ya, Mamas belajar adab bersin dan doa bersin untuk anak bersama Ibu.\n\nBulu Mochi bikin Mamas bersin. Mamas lalu bertanya, \"Bersin kan bukan hadiah, kenapa harus bersyukur?\" Ibu menjelaskan bahwa bersin adalah cara tubuh membuang debu dan bulu dari hidung. Itu nikmat dari Allah. Ibu juga mengajarkan tiga kalimat saat bersin. Di akhir video, adik-adik diajak latihan bersama.\n\nPelajaran hari ini:\n• Saat bersin, kita mengucapkan \"Alhamdulillah\" sebagai rasa syukur.\n• Yang mendengar menjawab \"Yarhamukallah\" (untuk perempuan \"Yarhamukillah\"). Lalu yang bersin membalas \"Yahdikumullah wa yushlihu balakum\".\n• Tutup mulut dengan tangan, siku, atau kain, lalu pelankan suara.\n\nDalil:\n• Perintah mengucapkan Alhamdulillah, Yarhamukallah, dan Yahdikumullah wa yushlihu balakum: HR. Bukhari no. 6224, dari Abu Hurairah.\n• \"Sesungguhnya Allah menyukai bersin...\": HR. Bukhari no. 6223, dari Abu Hurairah.\n• Rasulullah ﷺ menutup mulut dan merendahkan suara saat bersin: HR. Abu Dawud no. 5029 dan HR. Tirmidzi no. 2745 (hasan shahih).\n\nAyah dan Bunda, yuk temani si kecil menonton. Setelah itu, coba latihan tiga kalimat bersin bersama di rumah. Tonton juga episode lain dari seri Kenapa Ya.\n\n#CeritaIslamiAnak #AdabIslami #DoaHarian",
+    "tags": [
+      "cerita islami anak",
+      "adab bersin",
+      "adab bersin untuk anak",
+      "doa bersin",
+      "doa bersin untuk anak",
+      "kenapa bilang alhamdulillah saat bersin",
+      "yarhamukallah",
+      "yahdikumullah wa yushlihu balakum",
+      "adab islami anak",
+      "doa harian anak",
+      "belajar adab anak muslim",
+      "video edukasi islami anak",
+      "kenapa ya",
+      "mamas dan ibu",
+      "hadits untuk anak"
+    ],
+    "teksThumbnail": "Bersin, Bilang Apa?"
+  },
+  "render": {
+    "video": "kenapa-ya-kita-bilang-alhamdulillah-saat-eb93.mp4",
+    "thumbnail": "kenapa-ya-kita-bilang-alhamdulillah-saat-eb93.png",
+    "adegan": [
+      {
+        "mulai": 10,
+        "durasi": 11.466666666666667
+      },
+      {
+        "mulai": 21.466666666666665,
+        "durasi": 6.7
+      },
+      {
+        "mulai": 28.166666666666668,
+        "durasi": 3
+      },
+      {
+        "mulai": 31.166666666666668,
+        "durasi": 5.766666666666667
+      },
+      {
+        "mulai": 36.93333333333333,
+        "durasi": 9.566666666666666
+      },
+      {
+        "mulai": 46.5,
+        "durasi": 17.666666666666668
+      },
+      {
+        "mulai": 64.16666666666667,
+        "durasi": 14.8
+      },
+      {
+        "mulai": 78.96666666666667,
+        "durasi": 9.1
+      },
+      {
+        "mulai": 88.06666666666666,
+        "durasi": 7.666666666666667
+      },
+      {
+        "mulai": 95.73333333333333,
+        "durasi": 10.033333333333333
+      },
+      {
+        "mulai": 105.76666666666667,
+        "durasi": 20.033333333333335
+      },
+      {
+        "mulai": 125.8,
+        "durasi": 14.966666666666667
+      },
+      {
+        "mulai": 140.76666666666668,
+        "durasi": 7.2
+      },
+      {
+        "mulai": 147.96666666666667,
+        "durasi": 17.2
+      },
+      {
+        "mulai": 165.16666666666666,
+        "durasi": 16.233333333333334
+      },
+      {
+        "mulai": 181.4,
+        "durasi": 11.466666666666667
+      }
+    ],
+    "waktu": "2026-10-31T00:37:15.556Z"
+  }
 }

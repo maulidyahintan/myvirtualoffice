@@ -1,14 +1,14 @@
 {
   "id": "hujan-turun-mamas-berdoa-allahumma-shayy-d482",
   "dibuat": "2026-10-30T11:52:32.593Z",
-  "diubah": "2026-10-30T11:52:32.593Z",
-  "status": "idea",
+  "diubah": "2026-10-30T12:43:35.736Z",
+  "status": "needs_script_approval",
   "ide": {
     "judul": "Hujan Turun! Mamas Berdoa \"Allahumma Shayyiban Nafi'an\"",
     "seri": "doa-harian",
     "usia": "1-3",
     "pesanMoral": "Hujan adalah rezeki dari Allah. Saat hujan turun, kita berdoa semoga hujannya membawa manfaat.",
-    "format": "short",
+    "format": "biasa",
     "alasan": "Momennya tepat: BMKG memperkirakan musim hujan mulai November 2026 dan memuncak Desember sampai Februari, jadi pencarian akan naik terus. Video teratas (Alula Aisy 17,8 ribu views per hari, Omar & Hana 4 ribu views per hari) berupa lagu dengan musik instrumen, yang tidak sesuai pedoman kita. Shorts suara saja hanya 3,8 ribu sampai 9,7 ribu views per hari, dan belum ada yang menyebut sumber hadits. Dalilnya: HR. Bukhari no. 1032 dari Aisyah radhiyallahu 'anha. Visualnya tenang: rintik hujan di jendela dan Mochi yang memperhatikan tetesan air.",
     "referensi": [
       "https://www.youtube.com/watch?v=51g12nMj_TU (ALFATIH AFC, 9,7 rb views/hari)",
@@ -18,12 +18,174 @@
       "https://nu.or.id/nasional/bmkg-musim-hujan-di-indonesia-diprediksi-mulai-november-2026-zusZQ"
     ]
   },
-  "jumlahRevisi": 0,
+  "jumlahRevisi": 1,
   "log": [
     {
       "waktu": "2026-10-30T11:52:32.593Z",
       "oleh": "riset",
       "pesan": "Ide dibuat"
+    },
+    {
+      "waktu": "2026-10-30T12:42:32.416Z",
+      "oleh": "pemilik",
+      "pesan": "Dibuat juga versi Shorts: hujan-turun-mamas-berdoa-allahumma-shayy-59fa"
+    },
+    {
+      "waktu": "2026-10-30T12:42:32.416Z",
+      "oleh": "dashboard",
+      "pesan": "Penulis mulai bekerja"
+    },
+    {
+      "waktu": "2026-10-30T12:42:33.203Z",
+      "oleh": "penulis",
+      "pesan": "Mulai menulis naskah"
+    },
+    {
+      "waktu": "2026-10-30T12:43:09.086Z",
+      "oleh": "penulis",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T12:43:09.627Z",
+      "oleh": "reviewer",
+      "pesan": "Memeriksa naskah"
+    },
+    {
+      "waktu": "2026-10-30T12:43:35.311Z",
+      "oleh": "reviewer",
+      "pesan": "memakai StructuredOutput"
+    },
+    {
+      "waktu": "2026-10-30T12:43:35.736Z",
+      "oleh": "orchestrator",
+      "pesan": "Naskah siap diperiksa pemilik channel"
     }
-  ]
+  ],
+  "pasangan": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa",
+  "catatanStatus": "Naskah siap diperiksa pemilik channel",
+  "naskah": {
+    "judul": "Hujan Turun! Mamas Berdoa \"Allahumma Shayyiban Nafi'an\"",
+    "ringkasan": "Sore hari hujan turun. Mamas dan Mochi melihat rintik hujan dari jendela. Mochi mencoba menangkap tetesan air di kaca, lalu bersin karena hidungnya kena cipratan. Ibu mengajarkan bahwa hujan adalah rezeki dari Allah. Ibu juga mengajak Mamas membaca doa yang dibaca Rasulullah ﷺ saat melihat hujan: \"Allahumma shayyiban nafi'an\" (HR. Bukhari no. 1032). Mamas mengulang doanya beberapa kali sampai hafal. Setelah hujan reda, Mamas melihat bunga di taman jadi segar. Ternyata hujan memang bermanfaat.",
+    "adegan": [
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Assalamu'alaikum, adik-adik! Sore ini langit mendung. Tik, tik, tik... Dengar, apa itu? Ternyata hujan turun!",
+        "petunjukVisual": "Rumah Mamas di sore hari dengan langit abu-abu lembut, rintik hujan pelan mulai turun di luar jendela."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Ibu! Ibu! Lihat, hujan! Airnya banyak sekali!",
+        "petunjukVisual": "Mamas berdiri di depan jendela ruang tamu sambil menunjuk ke luar, wajahnya senang dan kagum."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Mochi ikut melompat ke dekat jendela. Mochi melihat tetesan air di kaca. Tetesannya turun pelan-pelan. Mochi mau menangkapnya. Tap! Tap! Eh, tidak bisa. Ada kacanya, Mochi!",
+        "petunjukVisual": "Mochi si kucing oranye melompat ke ambang jendela dan menepuk-nepuk kaca dengan kaki depannya, mengikuti tetesan air yang meluncur."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Masyaa Allah, iya, Mas. Hujan turun. Hujan itu dari siapa, ya?",
+        "petunjukVisual": "Ibu datang dan duduk di samping Mamas dekat jendela, tersenyum lembut."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Dari langit, Bu?",
+        "petunjukVisual": "Mamas menengadah ke langit di luar jendela dengan wajah polos dan penasaran."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Turunnya dari langit. Tapi yang menurunkan hujan adalah Allah. Hujan itu rezeki dari Allah, Mas. Hadiah dari Allah.",
+        "petunjukVisual": "Ibu menunjuk lembut ke arah langit, cahaya hangat dari dalam rumah menerangi wajah mereka."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "mamas",
+        "narasi": "Hadiah? Kenapa hujan itu hadiah, Bu?",
+        "petunjukVisual": "Mamas memiringkan kepala, alisnya terangkat karena bingung."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Karena dengan hujan, bunga bisa minum. Pohon bisa minum. Sawah juga bisa minum. Semuanya jadi segar.",
+        "petunjukVisual": "Pemandangan dari jendela: bunga dan pohon di taman basah terkena hujan, daunnya bergoyang pelan."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Mochi menempelkan hidungnya ke jendela yang sedikit terbuka. Ciprat! Ada setetes air kena hidung Mochi. Hatchi! Mochi bersin. Mamas tertawa. Hihihi.",
+        "petunjukVisual": "Mochi mendekatkan hidung ke celah jendela, setetes air kecil jatuh di hidungnya, Mochi bersin lucu dan Mamas tertawa sambil menutup mulut."
+      },
+      {
+        "jenis": "pertanyaan",
+        "pembicara": "ibu",
+        "narasi": "Adik-adik, kalau hujan turun, kita bilang apa, ya? Ayo, coba ingat-ingat dulu.",
+        "petunjukVisual": "Ibu menatap ke arah penonton dengan senyum hangat, Mamas ikut menoleh ke penonton sambil berpikir, jeda tenang beberapa detik."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Kalau Rasulullah shallallahu 'alaihi wa sallam melihat hujan, beliau berdoa. Doanya pendek sekali. Allahumma shayyiban naafi'aa. Artinya, ya Allah, jadikan hujan ini hujan yang bermanfaat. Ayo, Mas, kita baca sama-sama!",
+        "petunjukVisual": "Ibu dan Mamas duduk berhadapan di dekat jendela, Ibu mengangkat kedua tangan untuk berdoa, Mamas meniru."
+      },
+      {
+        "jenis": "doa",
+        "pembicara": "mamas",
+        "narasi": "Allahumma shayyiban naafi'aa. Allahumma shayyiban naafi'aa. Allahumma shayyiban naafi'aa.",
+        "petunjukVisual": "Mamas mengangkat kedua tangan dan berdoa dengan suara kecil yang semangat, Mochi duduk tenang di sampingnya, hujan rintik di belakang jendela."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Masyaa Allah, pintar anak Ibu! Mamas sudah hafal.",
+        "petunjukVisual": "Ibu mengusap kepala Mamas yang memakai peci rajut biru, Mamas tersenyum bangga."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "narator",
+        "narasi": "Tidak lama, hujan reda. Mamas dan Ibu melihat ke taman. Wah, bunganya segar! Daunnya hijau berkilau. Benar kata Ibu, hujan itu bermanfaat. Allah sayang sekali sama kita.",
+        "petunjukVisual": "Mamas, Ibu, dan Mochi berdiri di teras, taman basah dan segar, bunga warna-warni berembun, langit mulai cerah lembut."
+      },
+      {
+        "jenis": "cerita",
+        "pembicara": "ibu",
+        "narasi": "Adik-adik, hujan itu rezeki dari Allah. Kalau hujan turun, jangan lupa berdoa, ya. Allahumma shayyiban naafi'aa. Wassalamu'alaikum, adik-adik!",
+        "petunjukVisual": "Ibu dan Mamas melambaikan tangan ke penonton di teras, Mochi menggoyangkan ekor, setetes air jatuh dari daun dengan tenang."
+      }
+    ],
+    "dalil": [
+      {
+        "jenis": "hadits",
+        "teksArab": "كَانَ إِذَا رَأَى الْمَطَرَ قَالَ: اللَّهُمَّ صَيِّبًا نَافِعًا",
+        "latin": "Allahumma shayyiban naafi'aa",
+        "terjemah": "Dari Aisyah radhiyallahu 'anha: Rasulullah ﷺ apabila melihat hujan, beliau berdoa: \"Ya Allah, jadikanlah hujan ini hujan yang bermanfaat.\"",
+        "sumber": "HR. Bukhari no. 1032, dari Aisyah radhiyallahu 'anha"
+      }
+    ]
+  },
+  "review": {
+    "keputusan": "lolos",
+    "skor": 8.5,
+    "catatan": [
+      "Syariat aman. Rasulullah ﷺ hanya disebut lewat dialog Ibu, tidak digambar. Hanya ada satu dalil, hadits shahih yang masyhur (HR. Bukhari no. 1032). Tidak ada klaim keutamaan yang dikarang.",
+      "Ejaan latin belum seragam. Judul memakai \"Shayyiban Nafi'an\", sedangkan naskah dan dalil memakai \"shayyiban naafi'aa\". Pilih satu ejaan, misalnya \"Allahumma Shayyiban Naafi'an\", lalu pakai di judul, narasi, dan kolom latin. Tulisan berakhiran -an lebih mudah dibaca orang tua. Untuk voice over, ucapkan dengan waqaf (naafi'aa).",
+      "Adegan pertanyaan kurang cocok untuk usia 1–3. Kalimat \"kita bilang apa, ya? Ayo, coba ingat-ingat dulu\" mengandaikan anak sudah tahu doanya, padahal doa baru diajarkan sesudahnya. Ganti dengan pertanyaan yang bisa dijawab, misalnya: \"Adik-adik, hujan itu dari siapa, ya?\" Beri jeda, lalu jawab: \"Dari Allah!\" Pilihan lain: pindahkan pertanyaan doa ke akhir sebagai pengulangan.",
+      "Ada ketidaksesuaian kecil. Di adegan 3 Mochi terhalang kaca (\"Ada kacanya, Mochi!\"), tapi di adegan 9 jendelanya 'sedikit terbuka'. Tambahkan satu kalimat narasi, misalnya \"Ibu membuka jendela sedikit.\" Dengan begitu alurnya logis untuk anak.",
+      "Naskah sekitar 280 kata. Untuk video 3–5 menit, itu cukup hanya kalau tempo bicara sangat pelan dan jedanya panjang. Supaya durasi aman dan pengulangan lebih kuat (sesuai pedoman usia 1–3), tambahkan satu adegan pendek. Contohnya, Mamas mengajak Mochi ikut 'berdoa', lalu doa diulang sekali lagi pelan-pelan bersama Ibu.",
+      "Pilihan opsional: ubah \"Allah sayang sekali sama kita\" menjadi \"Allah sayang sekali kepada kita\". Ini mengikuti gaya bahasa baku yang santai."
+    ],
+    "cekManusia": [
+      "DALIL 1: cek sumber HR. Bukhari no. 1032 dari Aisyah radhiyallahu 'anha, Kitab al-Istisqa', bab 'Ma yuqalu idza amtharat'. Penomoran bisa berbeda antar-edisi, jadi cocokkan dengan edisi yang dipakai (misalnya Fathul Bari atau situs dorar/sunnah.com).",
+      "DALIL 1: cek teks Arab \"كَانَ إِذَا رَأَى الْمَطَرَ قَالَ: اللَّهُمَّ صَيِّبًا نَافِعًا\". Ini kutipan ringkas. Lafaz lengkapnya diawali \"أَنَّ رَسُولَ اللَّهِ ﷺ كَانَ إِذَا رَأَى الْمَطَرَ قَالَ...\". Pastikan harakatnya benar di layar.",
+      "DALIL 1: cek terjemah \"Ya Allah, jadikanlah hujan ini hujan yang bermanfaat.\" Terjemah ini umum dan maknanya tepat. Terjemah harfiahnya \"Ya Allah, (turunkanlah) hujan yang deras dan bermanfaat\". Silakan pilih sesuai preferensi channel.",
+      "Cek pelafalan voice over 'shayyiban naafi'aa'. Huruf ص harus terdengar tebal, dan ya bertasydid (shay-yi-ban).",
+      "Pastikan suara hujan dan efek suara (tik-tik, bersin Mochi) tidak memakai musik instrumen. Volumenya juga harus lembut dan tidak mengagetkan.",
+      "Pastikan visual adegan 'Ibu menunjuk ke langit' tidak menampilkan simbol yang bisa dikira wujud Allah, misalnya cahaya berbentuk sosok. Cukup langit mendung biasa."
+    ]
+  }
 }

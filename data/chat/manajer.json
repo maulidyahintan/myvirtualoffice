@@ -92,5 +92,17 @@
     "dari": "agen",
     "teks": "Maaf, Bu, saya yang keliru. Jadi 10 detik pertama itu opening, dan bacaan Basmalah baru mulai di detik 10 video.\n\nYang perlu dicek sekarang: kolom koreksi waktu itu dihitung dari **awal video** (termasuk opening) atau dari **awal rekaman suara Ibu**. Saya tidak bisa melihat cara kerja kolomnya, jadi belum bisa memastikan. Ini dua pilihannya:\n\n**Kalau dihitung dari awal rekaman (opening tidak ikut dihitung):** semua angka dikurangi 10.\n→ **0, 5, 13, 17, 21, 29, 37**\n\n**Kalau dihitung dari awal video:**\n→ **10, 15, 23, 27, 31, 39, 47**\n\nCara mengujinya: coba isi pilihan pertama (0, 5, 13, …), lalu render dan tonton.\n- Kalau teks sekarang berganti tepat waktu, berarti memang itu cara hitungnya. Selesai.\n- Kalau teks malah berganti sekitar **10 detik terlalu cepat**, pakai pilihan kedua.\n\nSaya curiga koreksi sebelumnya meleset karena angka yang dimasukkan dihitung dari awal video, padahal sistemnya mungkin menghitung dari awal rekaman. Akibatnya teks jadi telat 10 detik. Tapi ini masih dugaan saya, belum pasti.",
     "episodeId": "hafalan-surat-an-nas-2f04"
+  },
+  {
+    "waktu": "2026-10-31T05:47:32.144Z",
+    "dari": "saya",
+    "teks": "The user has exceeded the number of videos they may upload. error ini karena apa ya ?",
+    "episodeId": "surat-an-nas-al-falaq-dua-surat-perlindu-7490"
+  },
+  {
+    "waktu": "2026-10-31T05:47:55.012Z",
+    "dari": "agen",
+    "teks": "Itu bukan error dari kantor kita, Bu. Pesan itu datang langsung dari **YouTube**. Artinya **channel sudah mencapai batas jumlah upload untuk periode ini**, biasanya per 24 jam. Videonya sendiri tidak bermasalah.\n\n**Kenapa bisa kena batas?**\nDari daftar episode, sekarang ada **12 video berstatus scheduled**, dan sebagian besar sepertinya diupload dalam 1–2 hari terakhir. YouTube membatasi jumlah upload harian, apalagi kalau uploadnya lewat sistem otomatis seperti dashboard kita. Batasnya lebih ketat lagi kalau channel belum diverifikasi nomor HP. Upload yang gagal kemungkinan juga ikut dihitung. Jadi menekan \"Dipulihkan\" lalu setujui lagi tidak akan membantu, malah bisa membuat batasnya makin lama terbuka.\n\n**Yang bisa Ibu lakukan:**\n1. **Tunggu sekitar 24 jam** sejak upload terakhir yang berhasil, lalu coba lagi. Jangan dicoba berulang-ulang sebelum itu.\n2. **Verifikasi channel** di youtube.com/verify (pakai nomor HP), kalau belum. Biasanya ini menaikkan batas upload.\n3. **Atur jadwal tayang ulang.** Jadwal 1 Nov 12:00 mungkin masih terkejar, mungkin juga tidak. Kalau besok uploadnya berhasil, jadwalnya bisa digeser sedikit.\n4. **Ke depannya, cukup 1–3 upload per hari.** Jangan sekaligus banyak.\n\n**Satu hal yang perlu Ibu tahu:** di daftar episode ada banyak video An-Nas yang mirip-mirip. Judul \"Surat An-Nas & Al-Falaq: Dua Surat Perlindungan\" ini saja ada dua, satu error dan satu lagi masih menunggu persetujuan. Lalu ada \"Al-Mu'awwidzatain: Dua Surat Perlindungan Rasulullah ﷺ\" yang sudah terjadwal 7 Nov, dan \"Takut Gelap\" yang terjadwal dua kali di hari yang sama. Video yang terlalu mirip bisa dianggap konten berulang oleh YouTube, dan itu juga melanggar pedoman kita sendiri. Saran saya, cek dulu apakah episode ini memang perlu diupload. Kalau isinya sudah tercakup oleh \"Al-Mu'awwidzatain\", lebih baik pakai satu yang terbaik saja.\n\nSatu catatan terakhir: saya tidak bisa melihat angka batas upload channel Ibu. Kalau mau tahu pasti, lihat di YouTube Studio.",
+    "episodeId": "surat-an-nas-al-falaq-dua-surat-perlindu-7490"
   }
 ]

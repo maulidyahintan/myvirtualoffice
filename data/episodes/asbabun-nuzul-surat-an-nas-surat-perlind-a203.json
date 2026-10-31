@@ -1,7 +1,7 @@
 {
   "id": "asbabun-nuzul-surat-an-nas-surat-perlind-a203",
   "dibuat": "2026-10-28T10:20:42.355Z",
-  "diubah": "2026-10-30T11:53:04.377Z",
+  "diubah": "2026-10-30T12:33:53.010Z",
   "status": "scheduled",
   "ide": {
     "judul": "Asbabun Nuzul Surat An-Nas: Surat Perlindungan yang Istimewa",
@@ -234,6 +234,71 @@
       "waktu": "2026-10-30T11:53:04.377Z",
       "oleh": "pemilik",
       "pesan": "Dibuat versi YouTube Shorts: asbabun-nuzul-surat-an-nas-surat-perlind-d6ba"
+    },
+    {
+      "waktu": "2026-10-30T12:11:32.039Z",
+      "oleh": "pemilik",
+      "pesan": "Minta 3 Shorts dari inti video"
+    },
+    {
+      "waktu": "2026-10-30T12:11:34.193Z",
+      "oleh": "pemilik",
+      "pesan": "Minta 3 Shorts dari inti video"
+    },
+    {
+      "waktu": "2026-10-30T12:11:34.993Z",
+      "oleh": "sutradara",
+      "pesan": "Menyiapkan 3 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "waktu": "2026-10-30T12:11:36.529Z",
+      "oleh": "pemilik",
+      "pesan": "Minta 3 Shorts dari inti video"
+    },
+    {
+      "waktu": "2026-10-30T12:11:37.655Z",
+      "oleh": "sutradara",
+      "pesan": "Menyiapkan 3 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "waktu": "2026-10-30T12:11:37.686Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "waktu": "2026-10-30T12:11:39.722Z",
+      "oleh": "sutradara",
+      "pesan": "Menyiapkan 3 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "waktu": "2026-10-30T12:11:41.237Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "waktu": "2026-10-30T12:11:45.420Z",
+      "oleh": "sutradara",
+      "pesan": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "waktu": "2026-10-30T12:11:59.308Z",
+      "oleh": "sutradara",
+      "pesan": "3 Shorts dibuat: surat-an-nas-al-falaq-dua-surat-perlindu-7490, arti-surat-an-nas-tiga-nama-allah-untuk--c501, surat-an-nas-berlindung-dari-bisikan-jah-d6b4"
+    },
+    {
+      "waktu": "2026-10-30T12:12:06.796Z",
+      "oleh": "sutradara",
+      "pesan": "3 Shorts dibuat: surat-an-nas-al-falaq-dua-surat-perlindu-ed24, arti-surat-an-nas-3-nama-allah-untuk-ana-d47d, surat-an-nas-berlindung-dari-bisikan-jah-9ea6"
+    },
+    {
+      "waktu": "2026-10-30T12:12:08.859Z",
+      "oleh": "sutradara",
+      "pesan": "3 Shorts dibuat: surat-an-nas-untuk-anak-3-nama-allah-yan-a324, arti-al-waswas-al-khannas-berlindung-dar-ffe2, al-mu-awwidzatain-dua-surat-perlindungan-89c4"
+    },
+    {
+      "waktu": "2026-10-30T12:33:53.010Z",
+      "oleh": "channel-manager",
+      "pesan": "Dimasukkan ke playlist \"Asbabun Nuzul\""
     }
   ],
   "catatanStatus": "Terjadwal tayang 2026-10-31T09:30:00.000Z",
@@ -727,7 +792,22 @@
   "youtube": {
     "videoId": "vwc_5hP5TIk",
     "url": "https://www.youtube.com/watch?v=vwc_5hP5TIk",
-    "jadwalTayang": "2026-10-31T09:30:00.000Z"
+    "jadwalTayang": "2026-10-31T09:30:00.000Z",
+    "playlist": {
+      "nama": "Asbabun Nuzul",
+      "id": "PLD-usmJsNuYc"
+    }
   },
-  "pasangan": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba"
+  "pasangan": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba",
+  "turunan": [
+    "surat-an-nas-al-falaq-dua-surat-perlindu-7490",
+    "arti-surat-an-nas-tiga-nama-allah-untuk--c501",
+    "surat-an-nas-berlindung-dari-bisikan-jah-d6b4",
+    "surat-an-nas-al-falaq-dua-surat-perlindu-ed24",
+    "arti-surat-an-nas-3-nama-allah-untuk-ana-d47d",
+    "surat-an-nas-berlindung-dari-bisikan-jah-9ea6",
+    "surat-an-nas-untuk-anak-3-nama-allah-yan-a324",
+    "arti-al-waswas-al-khannas-berlindung-dar-ffe2",
+    "al-mu-awwidzatain-dua-surat-perlindungan-89c4"
+  ]
 }

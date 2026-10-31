@@ -1,8 +1,8 @@
 {
   "id": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba",
   "dibuat": "2026-10-30T11:53:04.248Z",
-  "diubah": "2026-10-30T12:00:38.836Z",
-  "status": "needs_video_approval",
+  "diubah": "2026-10-30T12:09:51.294Z",
+  "status": "rejected",
   "ide": {
     "judul": "Asbabun Nuzul Surat An-Nas: Surat Perlindungan yang Istimewa",
     "seri": "asbabun-nuzul",
@@ -60,6 +60,11 @@
       "waktu": "2026-10-30T12:00:38.836Z",
       "oleh": "video-creator",
       "pesan": "Video siap ditonton & disetujui"
+    },
+    {
+      "waktu": "2026-10-30T12:09:51.294Z",
+      "oleh": "pemilik",
+      "pesan": "kepanjangan"
     }
   ],
   "pasangan": "asbabun-nuzul-surat-an-nas-surat-perlind-a203",
@@ -458,7 +463,7 @@
     2.129,
     2.134
   ],
-  "catatanStatus": "Video siap ditonton & disetujui",
+  "catatanStatus": "kepanjangan",
   "metadata": {
     "judul": "Surat An-Nas, Surat Perlindungan | Mamas Belajar Jujur",
     "deskripsi": "Mengenal Surat An-Nas, surat perlindungan dari bisikan jahat, bersama Mamas dan Ibu sebelum tidur. Dalil: QS. An-Nas: 1–6, QS. Al-A'raf: 200, HR. Muslim 814, HR. Bukhari 5017.\n#Shorts #SuratAnNas #CeritaIslamiAnak",
