@@ -1,27 +1,27 @@
 {
   "id": "kenapa-ya-ada-bisikan-yang-menyuruh-kita-7d35",
-  "dibuat": "2026-10-28T10:20:42.356Z",
-  "diubah": "2026-10-28T10:20:42.356Z",
+  "created": "2026-10-28T10:20:42.356Z",
+  "modified": "2026-10-28T10:20:42.356Z",
   "status": "idea",
-  "ide": {
-    "judul": "Kenapa Ya Ada Bisikan yang Menyuruh Kita Bohong?",
-    "seri": "kenapa-ya",
-    "usia": "7-10",
-    "pesanMoral": "Bisikan jahat (waswas) bisa datang ke hati siapa saja. Kita tidak harus menurutinya. Lawan dengan berlindung kepada Allah dan memilih jujur.",
-    "alasan": "Ayat 4–6 An-Nas (al-waswas al-khannas) adalah inti surat, tapi tidak ada video anak berbahasa Indonesia yang menjelaskannya lewat situasi nyata (riset 'arti surat an nas untuk anak' = 0 hasil). Konflik: Mamas tergoda bilang 'bukan aku' setelah menumpahkan susu. Ada konsekuensi: Ibu sedih dan tidak tahu harus mengelap di mana. Lalu Mamas memilih jujur dan membaca A'udzu billah. Setan tidak divisualkan. Format 'kenapa' dengan fakta sederhana: kata 'khannas' berarti yang bersembunyi ketika nama Allah disebut (perlu dicek di tafsir mu'tabar, misalnya Ibnu Katsir, sebelum dinaskahkan).",
-    "referensi": [
+  "idea": {
+    "title": "Kenapa Ya Ada Bisikan yang Menyuruh Kita Bohong?",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Bisikan jahat (waswas) bisa datang ke hati siapa saja. Kita tidak harus menurutinya. Lawan dengan berlindung kepada Allah dan memilih jujur.",
+    "reason": "Ayat 4–6 An-Nas (al-waswas al-khannas) adalah inti surat, tapi tidak ada video anak berbahasa Indonesia yang menjelaskannya lewat situasi nyata (riset 'arti surat an nas untuk anak' = 0 hasil). Konflik: Mamas tergoda bilang 'bukan aku' setelah menumpahkan susu. Ada konsekuensi: Ibu sedih dan tidak tahu harus mengelap di mana. Lalu Mamas memilih jujur dan membaca A'udzu billah. Setan tidak divisualkan. Format 'kenapa' dengan fakta sederhana: kata 'khannas' berarti yang bersembunyi ketika nama Allah disebut (perlu dicek di tafsir mu'tabar, misalnya Ibnu Katsir, sebelum dinaskahkan).",
+    "references": [
       "QS. An-Nas 114:4-6",
       "Tafsir Ibnu Katsir QS. An-Nas (verifikasi makna al-khannas)",
       "https://www.youtube.com/watch?v=4_6hZz1rwho (format akhlak + konsekuensi, 11.724 views/hari)",
       "https://www.youtube.com/watch?v=o_inayo17lc (NAURA PUTRI – 2 surat perlindungan, 70 views/hari)"
     ]
   },
-  "jumlahRevisi": 0,
+  "revisionCount": 0,
   "log": [
     {
-      "waktu": "2026-10-28T10:20:42.356Z",
-      "oleh": "riset",
-      "pesan": "Ide dibuat"
+      "time": "2026-10-28T10:20:42.356Z",
+      "by": "riset",
+      "message": "Ide dibuat"
     }
   ]
 }

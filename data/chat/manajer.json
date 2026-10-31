@@ -1,96 +1,96 @@
 [
   {
-    "waktu": "2026-10-29T08:25:19.631Z",
-    "dari": "saya",
-    "teks": "ini masih sangat ga pas suara dan videonya",
+    "time": "2026-10-29T08:25:19.631Z",
+    "from": "owner",
+    "text": "ini masih sangat ga pas suara dan videonya",
     "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
   },
   {
-    "waktu": "2026-10-29T08:25:36.800Z",
-    "dari": "agen",
-    "teks": "Waduh, maaf ya, Bu. Saya tidak bisa menonton hasil rendernya, jadi saya perlu tahu dulu bagian mana yang tidak pas. Biasanya masalahnya salah satu dari ini:\n\n1. **Suara dan gambar tidak sinkron.** Gambar sudah pindah ke adegan berikutnya, tapi suaranya masih di adegan sebelumnya, atau sebaliknya. Ini biasanya karena rekaman per adegan tertukar, ada yang terlewat, atau jumlahnya tidak sama dengan jumlah adegan. Naskah ini punya **16 adegan**. Coba cek apakah rekamannya juga pas 16 dan urutannya benar.\n2. **Gambar tidak sesuai isi suara.** Contohnya, Ibu sedang bicara tapi yang tampil hanya Mamas dan Mochi, atau ekspresinya masih \"kaget\" padahal ceritanya sudah tenang. Dari data adegan yang bisa saya lihat, adegan 3 (narator: lampu padam, Mochi melompat) dan adegan 4 (Mamas takut) sudah benar. Sisanya terpotong di layar saya, jadi belum bisa saya cek.\n3. **Ada jeda yang aneh.** Misalnya di adegan pertanyaan, tanda \"...\" belum diganti jadi jeda 3 detik seperti saran Choki. Akibatnya bisa terlalu cepat atau malah diam terlalu lama.\n4. **Efek suaranya mengganggu.** Bunyi angin terlalu keras atau bayangannya tampil terlalu lama.\n\nBoleh Ibu ceritakan sedikit? Misalnya: \"mulai menit sekian suaranya telat\", atau \"adegan Ibu mengajarkan tiga Qul gambarnya salah\". Nanti saya bantu tentukan apa yang perlu diperbaiki: rekamannya diulang, adegannya disusun ulang oleh Momo, atau cukup di-render ulang.\n\nSatu lagi: kalau nanti adegannya mau diubah, perbaiki juga catatan Choki yang belum dikerjakan, yaitu arti \"Ilahin nas\" dan jeda di adegan pertanyaan. Dengan begitu cukup sekali rekam ulang.",
+    "time": "2026-10-29T08:25:36.800Z",
+    "from": "agent",
+    "text": "Waduh, maaf ya, Bu. Saya tidak bisa menonton hasil rendernya, jadi saya perlu tahu dulu bagian mana yang tidak pas. Biasanya masalahnya salah satu dari ini:\n\n1. **Suara dan gambar tidak sinkron.** Gambar sudah pindah ke adegan berikutnya, tapi suaranya masih di adegan sebelumnya, atau sebaliknya. Ini biasanya karena rekaman per adegan tertukar, ada yang terlewat, atau jumlahnya tidak sama dengan jumlah adegan. Naskah ini punya **16 adegan**. Coba cek apakah rekamannya juga pas 16 dan urutannya benar.\n2. **Gambar tidak sesuai isi suara.** Contohnya, Ibu sedang bicara tapi yang tampil hanya Mamas dan Mochi, atau ekspresinya masih \"kaget\" padahal ceritanya sudah tenang. Dari data adegan yang bisa saya lihat, adegan 3 (narator: lampu padam, Mochi melompat) dan adegan 4 (Mamas takut) sudah benar. Sisanya terpotong di layar saya, jadi belum bisa saya cek.\n3. **Ada jeda yang aneh.** Misalnya di adegan pertanyaan, tanda \"...\" belum diganti jadi jeda 3 detik seperti saran Choki. Akibatnya bisa terlalu cepat atau malah diam terlalu lama.\n4. **Efek suaranya mengganggu.** Bunyi angin terlalu keras atau bayangannya tampil terlalu lama.\n\nBoleh Ibu ceritakan sedikit? Misalnya: \"mulai menit sekian suaranya telat\", atau \"adegan Ibu mengajarkan tiga Qul gambarnya salah\". Nanti saya bantu tentukan apa yang perlu diperbaiki: rekamannya diulang, adegannya disusun ulang oleh Momo, atau cukup di-render ulang.\n\nSatu lagi: kalau nanti adegannya mau diubah, perbaiki juga catatan Choki yang belum dikerjakan, yaitu arti \"Ilahin nas\" dan jeda di adegan pertanyaan. Dengan begitu cukup sekali rekam ulang.",
     "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
   },
   {
-    "waktu": "2026-10-29T13:35:52.236Z",
-    "dari": "saya",
-    "teks": "test"
+    "time": "2026-10-29T13:35:52.236Z",
+    "from": "owner",
+    "text": "test"
   },
   {
-    "waktu": "2026-10-29T13:35:58.223Z",
-    "dari": "agen",
-    "teks": "Halo, Bu! Chatnya sudah masuk dengan baik, jadi aman. 😊\n\nKalau sudah sempat, ceritakan sedikit bagian mana dari video tadi yang belum pas, ya. Contohnya suara yang telat, gambar yang tidak cocok dengan isi cerita, atau jeda yang terasa aneh. Nanti saya bantu tentukan perbaikannya: cukup di-render ulang, adegannya disusun ulang oleh Momo, atau perlu rekam ulang."
+    "time": "2026-10-29T13:35:58.223Z",
+    "from": "agent",
+    "text": "Halo, Bu! Chatnya sudah masuk dengan baik, jadi aman. 😊\n\nKalau sudah sempat, ceritakan sedikit bagian mana dari video tadi yang belum pas, ya. Contohnya suara yang telat, gambar yang tidak cocok dengan isi cerita, atau jeda yang terasa aneh. Nanti saya bantu tentukan perbaikannya: cukup di-render ulang, adegannya disusun ulang oleh Momo, atau perlu rekam ulang."
   },
   {
-    "waktu": "2026-10-30T05:30:10.547Z",
-    "dari": "saya",
-    "teks": "mau ganti outro bisa diedit dulu ga ?",
+    "time": "2026-10-30T05:30:10.547Z",
+    "from": "owner",
+    "text": "mau ganti outro bisa diedit dulu ga ?",
     "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
   },
   {
-    "waktu": "2026-10-30T05:30:21.928Z",
-    "dari": "agen",
-    "teks": "Bisa, Bu. Tapi saya tidak bisa mengubahnya langsung dari chat, jadi perubahannya dikerjakan lewat dashboard. Karena status episode ini sudah **scheduled**, sebaiknya jadwal tayangnya ditunda dulu supaya video lama tidak keburu tayang.\n\nSaya perlu tahu dulu outro yang mana yang mau diganti:\n\n1. **Adegan penutup cerita (adegan 16).** Ini narator yang bilang \"Selamat tidur, Mamas... Wassalamu'alaikum.\" Caranya:\n   - Buka halaman episode, lalu tekan **\"Minta revisi\"** dan tulis outro yang Ibu mau.\n   - Setelah naskahnya disetujui, rekam ulang adegan itu saja, lalu render ulang.\n2. **Outro tetap channel.** Ini penutup yang sama di semua video, misalnya bumper atau end screen. Mengubah ini berarti mengubah template, jadi semua episode berikutnya ikut berubah, bukan hanya episode ini.\n\nKalau mau, ceritakan saja outro seperti apa yang Ibu inginkan. Nanti saya bantu rapikan kalimatnya supaya pendek, hangat, dan tidak mendesak anak untuk subscribe.\n\nSekalian revisi, sebaiknya catatan Choki yang belum dikerjakan ikut dimasukkan: arti \"Ilahin nas\" dan jeda 3 detik di adegan pertanyaan. Dengan begitu cukup sekali rekam ulang.",
+    "time": "2026-10-30T05:30:21.928Z",
+    "from": "agent",
+    "text": "Bisa, Bu. Tapi saya tidak bisa mengubahnya langsung dari chat, jadi perubahannya dikerjakan lewat dashboard. Karena status episode ini sudah **scheduled**, sebaiknya jadwal tayangnya ditunda dulu supaya video lama tidak keburu tayang.\n\nSaya perlu tahu dulu outro yang mana yang mau diganti:\n\n1. **Adegan penutup cerita (adegan 16).** Ini narator yang bilang \"Selamat tidur, Mamas... Wassalamu'alaikum.\" Caranya:\n   - Buka halaman episode, lalu tekan **\"Minta revisi\"** dan tulis outro yang Ibu mau.\n   - Setelah naskahnya disetujui, rekam ulang adegan itu saja, lalu render ulang.\n2. **Outro tetap channel.** Ini penutup yang sama di semua video, misalnya bumper atau end screen. Mengubah ini berarti mengubah template, jadi semua episode berikutnya ikut berubah, bukan hanya episode ini.\n\nKalau mau, ceritakan saja outro seperti apa yang Ibu inginkan. Nanti saya bantu rapikan kalimatnya supaya pendek, hangat, dan tidak mendesak anak untuk subscribe.\n\nSekalian revisi, sebaiknya catatan Choki yang belum dikerjakan ikut dimasukkan: arti \"Ilahin nas\" dan jeda 3 detik di adegan pertanyaan. Dengan begitu cukup sekali rekam ulang.",
     "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
   },
   {
-    "waktu": "2026-10-30T05:31:31.040Z",
-    "dari": "saya",
-    "teks": "bagaimana cara memindahkan atau edit video ini lagi",
+    "time": "2026-10-30T05:31:31.040Z",
+    "from": "owner",
+    "text": "bagaimana cara memindahkan atau edit video ini lagi",
     "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
   },
   {
-    "waktu": "2026-10-30T05:31:45.341Z",
-    "dari": "agen",
-    "teks": "Bisa, Bu. Saya tidak bisa memindahkan atau mengubahnya dari chat, jadi langkahnya lewat dashboard. Saya juga tidak tahu persis tombol apa saja yang ada di halaman episode, jadi langkah yang saya tidak yakin saya tandai \"(cek)\":\n\n**Kalau mau mengedit isi videonya (naskah, outro, suara):**\n1. **Tunda jadwal dulu.** Videonya sudah terjadwal, jadi ini paling penting supaya versi lama tidak keburu tayang. Buka halaman episode dan cari pengaturan jadwal (cek). Kalau di dashboard tidak ada, batalkan atau ubah jadwalnya langsung di YouTube Studio.\n2. Tekan **\"Minta revisi\"** di halaman episode, lalu tulis bagian yang mau diubah.\n3. Ikuti alurnya lagi: naskah diperiksa, Ibu setujui, adegan disusun, rekam ulang bagian yang berubah, lalu render ulang.\n4. Tonton hasilnya, lalu jadwalkan lagi.\n\n**Kalau maksudnya memindahkan jadwal tayang saja:** ubah tanggalnya di pengaturan jadwal halaman episode (cek), atau di YouTube Studio.\n\n**Kalau maksudnya memindahkan kartu di Papan Kerja ke tahap sebelumnya:** biasanya kartunya otomatis kembali ke tahap revisi setelah Ibu menekan \"Minta revisi\" (cek).\n\nBoleh Ibu ceritakan \"memindahkan\" yang Ibu maksud yang mana? Kalau ada tombol di halaman episode yang membingungkan, sebutkan saja namanya, nanti saya bantu jelaskan fungsinya. Kalau jadi revisi, masukkan juga catatan Choki tentang arti \"Ilahin nas\" dan jeda 3 detik di adegan pertanyaan, supaya cukup sekali rekam ulang.",
+    "time": "2026-10-30T05:31:45.341Z",
+    "from": "agent",
+    "text": "Bisa, Bu. Saya tidak bisa memindahkan atau mengubahnya dari chat, jadi langkahnya lewat dashboard. Saya juga tidak tahu persis tombol apa saja yang ada di halaman episode, jadi langkah yang saya tidak yakin saya tandai \"(cek)\":\n\n**Kalau mau mengedit isi videonya (naskah, outro, suara):**\n1. **Tunda jadwal dulu.** Videonya sudah terjadwal, jadi ini paling penting supaya versi lama tidak keburu tayang. Buka halaman episode dan cari pengaturan jadwal (cek). Kalau di dashboard tidak ada, batalkan atau ubah jadwalnya langsung di YouTube Studio.\n2. Tekan **\"Minta revisi\"** di halaman episode, lalu tulis bagian yang mau diubah.\n3. Ikuti alurnya lagi: naskah diperiksa, Ibu setujui, adegan disusun, rekam ulang bagian yang berubah, lalu render ulang.\n4. Tonton hasilnya, lalu jadwalkan lagi.\n\n**Kalau maksudnya memindahkan jadwal tayang saja:** ubah tanggalnya di pengaturan jadwal halaman episode (cek), atau di YouTube Studio.\n\n**Kalau maksudnya memindahkan kartu di Papan Kerja ke tahap sebelumnya:** biasanya kartunya otomatis kembali ke tahap revisi setelah Ibu menekan \"Minta revisi\" (cek).\n\nBoleh Ibu ceritakan \"memindahkan\" yang Ibu maksud yang mana? Kalau ada tombol di halaman episode yang membingungkan, sebutkan saja namanya, nanti saya bantu jelaskan fungsinya. Kalau jadi revisi, masukkan juga catatan Choki tentang arti \"Ilahin nas\" dan jeda 3 detik di adegan pertanyaan, supaya cukup sekali rekam ulang.",
     "episodeId": "mamas-takut-gelap-ibu-ajak-baca-surat-an-c01a"
   },
   {
-    "waktu": "2026-10-30T10:44:41.664Z",
-    "dari": "saya",
-    "teks": "harusnya teks berubah di detik 0:15, 0:23,  0:27, 0:31, 0:39, 0:47",
+    "time": "2026-10-30T10:44:41.664Z",
+    "from": "owner",
+    "text": "harusnya teks berubah di detik 0:15, 0:23,  0:27, 0:31, 0:39, 0:47",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T10:44:59.951Z",
-    "dari": "agen",
-    "teks": "Siap, Bu, sekarang jelas. Maaf juga, jawaban saya sebelumnya salah episode. Saya sempat membahas \"16 adegan\", \"terjadwal\", dan catatan Choki, padahal episode yang Ibu buka ini **Hafalan An-Nas**. Episode ini punya **7 bagian** (Basmalah + 6 ayat) dan statusnya masih **menunggu persetujuan video**, jadi belum tayang. Aman.\n\nSesuai waktu yang Ibu sebutkan, pembagiannya jadi begini:\n\n| Bagian | Teks | Mulai |\n|---|---|---|\n| 1 | Bismillāhir-raḥmānir-raḥīm | 0:00 |\n| 2 | Qul a'ūżu birabbin-nās | **0:15** |\n| 3 | Malikin-nās | **0:23** |\n| 4 | Ilāhin-nās | **0:27** |\n| 5 | Min syarril-waswāsil-khannās | **0:31** |\n| 6 | Allażī yuwaswisu fī ṣudūrin-nās | **0:39** |\n| 7 | Minal jinnati wan-nās | **0:47** |\n\nDi log terlihat Ibu sudah mengoreksi waktu bacaan secara manual pukul 10:41, lalu videonya di-render ulang. Kalau hasilnya masih meleset, kemungkinan penyebabnya salah satu dari ini:\n\n1. **Waktu yang diisi bergeser satu baris.** Misalnya 0:15 masuk ke baris Basmalah, bukan ke \"Qul a'ūżu\". Akibatnya semua teks berganti satu ayat terlalu cepat atau terlambat.\n2. **Yang diisi waktu selesai, padahal yang diminta waktu mulai** (atau sebaliknya). Coba cek label kolomnya di halaman episode.\n3. **Format angkanya.** Ada kolom yang minta detik saja (15, 23, 27, …), bukan format 0:15.\n\nSaya tidak bisa melihat isi kolom waktu atau menonton videonya. Jadi saran saya: buka lagi koreksi waktu bacaan di halaman episode, cocokkan dengan tabel di atas, lalu render ulang. Kalau masih meleset, kabari saya teksnya terlalu cepat atau terlambat, dan kira-kira berapa detik. Dari situ ketahuan penyebabnya yang mana.\n\nSatu lagi: deskripsi episode ini memakai **#Shorts** dan tag \"shorts islami anak\", padahal formatnya video biasa (16:9). Sebaiknya minta Lulu menghapusnya sebelum dijadwalkan.",
+    "time": "2026-10-30T10:44:59.951Z",
+    "from": "agent",
+    "text": "Siap, Bu, sekarang jelas. Maaf juga, jawaban saya sebelumnya salah episode. Saya sempat membahas \"16 adegan\", \"terjadwal\", dan catatan Choki, padahal episode yang Ibu buka ini **Hafalan An-Nas**. Episode ini punya **7 bagian** (Basmalah + 6 ayat) dan statusnya masih **menunggu persetujuan video**, jadi belum tayang. Aman.\n\nSesuai waktu yang Ibu sebutkan, pembagiannya jadi begini:\n\n| Bagian | Teks | Mulai |\n|---|---|---|\n| 1 | Bismillāhir-raḥmānir-raḥīm | 0:00 |\n| 2 | Qul a'ūżu birabbin-nās | **0:15** |\n| 3 | Malikin-nās | **0:23** |\n| 4 | Ilāhin-nās | **0:27** |\n| 5 | Min syarril-waswāsil-khannās | **0:31** |\n| 6 | Allażī yuwaswisu fī ṣudūrin-nās | **0:39** |\n| 7 | Minal jinnati wan-nās | **0:47** |\n\nDi log terlihat Ibu sudah mengoreksi waktu bacaan secara manual pukul 10:41, lalu videonya di-render ulang. Kalau hasilnya masih meleset, kemungkinan penyebabnya salah satu dari ini:\n\n1. **Waktu yang diisi bergeser satu baris.** Misalnya 0:15 masuk ke baris Basmalah, bukan ke \"Qul a'ūżu\". Akibatnya semua teks berganti satu ayat terlalu cepat atau terlambat.\n2. **Yang diisi waktu selesai, padahal yang diminta waktu mulai** (atau sebaliknya). Coba cek label kolomnya di halaman episode.\n3. **Format angkanya.** Ada kolom yang minta detik saja (15, 23, 27, …), bukan format 0:15.\n\nSaya tidak bisa melihat isi kolom waktu atau menonton videonya. Jadi saran saya: buka lagi koreksi waktu bacaan di halaman episode, cocokkan dengan tabel di atas, lalu render ulang. Kalau masih meleset, kabari saya teksnya terlalu cepat atau terlambat, dan kira-kira berapa detik. Dari situ ketahuan penyebabnya yang mana.\n\nSatu lagi: deskripsi episode ini memakai **#Shorts** dan tag \"shorts islami anak\", padahal formatnya video biasa (16:9). Sebaiknya minta Lulu menghapusnya sebelum dijadwalkan.",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T10:49:36.257Z",
-    "dari": "saya",
-    "teks": "15, 23, 27, 31, 39, 47",
+    "time": "2026-10-30T10:49:36.257Z",
+    "from": "owner",
+    "text": "15, 23, 27, 31, 39, 47",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T10:49:46.570Z",
-    "dari": "agen",
-    "teks": "Baik, Bu. Ada 7 bagian (Basmalah + 6 ayat), tapi angkanya cuma 6. Jadi cara mengisinya tergantung isi kolom di halaman koreksi waktu bacaan. Saya tidak bisa melihat kolomnya, jadi silakan cocokkan dengan salah satu dari tiga kemungkinan ini:\n\n**A. Kolom \"mulai\" (ada 7 baris):** baris pertama (Basmalah) diisi **0**.\n→ 0, 15, 23, 27, 31, 39, 47\nKalau 15 dimasukkan di baris Basmalah, semua teks bergeser satu ayat. Ini paling sering jadi penyebab teks meleset.\n\n**B. Kolom \"selesai\":** angkanya naik satu baris, dan baris terakhir diisi waktu akhir bacaan.\n→ 15, 23, 27, 31, 39, 47, (akhir An-Nas 6, misalnya 55)\n\n**C. Kolom \"durasi\" per bagian:** isi selisih waktunya.\n→ 15, 8, 4, 4, 8, 8, (sisa durasi ayat 6)\n\nSetelah diisi, render ulang lalu tonton lagi. Kalau teksnya masih berganti satu ayat terlalu cepat atau terlalu lambat, kabari saya ya, Bu. Sebutkan juga nama kolomnya yang tertulis di layar (misalnya \"mulai\", \"selesai\", atau \"durasi\"). Dari situ saya bisa pastikan cara mengisi yang benar.",
+    "time": "2026-10-30T10:49:46.570Z",
+    "from": "agent",
+    "text": "Baik, Bu. Ada 7 bagian (Basmalah + 6 ayat), tapi angkanya cuma 6. Jadi cara mengisinya tergantung isi kolom di halaman koreksi waktu bacaan. Saya tidak bisa melihat kolomnya, jadi silakan cocokkan dengan salah satu dari tiga kemungkinan ini:\n\n**A. Kolom \"mulai\" (ada 7 baris):** baris pertama (Basmalah) diisi **0**.\n→ 0, 15, 23, 27, 31, 39, 47\nKalau 15 dimasukkan di baris Basmalah, semua teks bergeser satu ayat. Ini paling sering jadi penyebab teks meleset.\n\n**B. Kolom \"selesai\":** angkanya naik satu baris, dan baris terakhir diisi waktu akhir bacaan.\n→ 15, 23, 27, 31, 39, 47, (akhir An-Nas 6, misalnya 55)\n\n**C. Kolom \"durasi\" per bagian:** isi selisih waktunya.\n→ 15, 8, 4, 4, 8, 8, (sisa durasi ayat 6)\n\nSetelah diisi, render ulang lalu tonton lagi. Kalau teksnya masih berganti satu ayat terlalu cepat atau terlalu lambat, kabari saya ya, Bu. Sebutkan juga nama kolomnya yang tertulis di layar (misalnya \"mulai\", \"selesai\", atau \"durasi\"). Dari situ saya bisa pastikan cara mengisi yang benar.",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T10:59:48.021Z",
-    "dari": "saya",
-    "teks": "nih ya, naskah 1 mulai dari detik 10 naskah 2 mulai dari 15, naskah 3 mulai dari 23, naskah 4 mulai dari  27, naskah 5 mulai dari  31, naskah 6 mulai dari  39, naskah 7 mulai dari  47",
+    "time": "2026-10-30T10:59:48.021Z",
+    "from": "owner",
+    "text": "nih ya, naskah 1 mulai dari detik 10 naskah 2 mulai dari 15, naskah 3 mulai dari 23, naskah 4 mulai dari  27, naskah 5 mulai dari  31, naskah 6 mulai dari  39, naskah 7 mulai dari  47",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T11:00:02.280Z",
-    "dari": "agen",
-    "teks": "Jadi bacaan baru mulai di detik 10, Bu. Saya tadi salah mengira Basmalah mulai dari 0. Isinya begini:\n\n| Bagian | Teks | Mulai (detik) |\n|---|---|---|\n| 1 | Bismillāhir-raḥmānir-raḥīm | **10** |\n| 2 | Qul a'ūżu birabbin-nās | **15** |\n| 3 | Malikin-nās | **23** |\n| 4 | Ilāhin-nās | **27** |\n| 5 | Min syarril-waswāsil-khannās | **31** |\n| 6 | Allażī yuwaswisu fī ṣudūrin-nās | **39** |\n| 7 | Minal jinnati wan-nās | **47** |\n\nMasukkan angka-angka itu lewat koreksi waktu bacaan di halaman episode, lalu render ulang.\n\nTolong perhatikan 10 detik pertama. Kalau baris Basmalah tidak bisa diisi 10 (misalnya terkunci di 0), berarti sistem menganggap bacaan langsung mulai dari detik 0. Akibatnya teks Basmalah muncul 10 detik lebih awal, dan teks berikutnya bisa ikut meleset. Ada dua cara mengatasinya:\n\n1. **Potong 10 detik hening di awal rekaman, lalu upload ulang.** Ini cara paling rapi. Setelah dipotong, semua angka di atas dikurangi 10: **0, 5, 13, 17, 21, 29, 37**.\n2. Kalau 10 detik awal itu memang bagian intro yang sengaja dibuat, biarkan saja dan isi angka sesuai tabel di atas.\n\nKoreksi saya juga: di log, koreksi manual Ibu tercatat pukul 10:52 dan 10:55, bukan 10:41 seperti yang saya bilang tadi. Kalau setelah render ulang teksnya masih meleset, kabari saya ya, Bu: teksnya berganti terlalu cepat atau terlambat, dan kira-kira berapa detik.",
+    "time": "2026-10-30T11:00:02.280Z",
+    "from": "agent",
+    "text": "Jadi bacaan baru mulai di detik 10, Bu. Saya tadi salah mengira Basmalah mulai dari 0. Isinya begini:\n\n| Bagian | Teks | Mulai (detik) |\n|---|---|---|\n| 1 | Bismillāhir-raḥmānir-raḥīm | **10** |\n| 2 | Qul a'ūżu birabbin-nās | **15** |\n| 3 | Malikin-nās | **23** |\n| 4 | Ilāhin-nās | **27** |\n| 5 | Min syarril-waswāsil-khannās | **31** |\n| 6 | Allażī yuwaswisu fī ṣudūrin-nās | **39** |\n| 7 | Minal jinnati wan-nās | **47** |\n\nMasukkan angka-angka itu lewat koreksi waktu bacaan di halaman episode, lalu render ulang.\n\nTolong perhatikan 10 detik pertama. Kalau baris Basmalah tidak bisa diisi 10 (misalnya terkunci di 0), berarti sistem menganggap bacaan langsung mulai dari detik 0. Akibatnya teks Basmalah muncul 10 detik lebih awal, dan teks berikutnya bisa ikut meleset. Ada dua cara mengatasinya:\n\n1. **Potong 10 detik hening di awal rekaman, lalu upload ulang.** Ini cara paling rapi. Setelah dipotong, semua angka di atas dikurangi 10: **0, 5, 13, 17, 21, 29, 37**.\n2. Kalau 10 detik awal itu memang bagian intro yang sengaja dibuat, biarkan saja dan isi angka sesuai tabel di atas.\n\nKoreksi saya juga: di log, koreksi manual Ibu tercatat pukul 10:52 dan 10:55, bukan 10:41 seperti yang saya bilang tadi. Kalau setelah render ulang teksnya masih meleset, kabari saya ya, Bu: teksnya berganti terlalu cepat atau terlambat, dan kira-kira berapa detik.",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T11:00:41.159Z",
-    "dari": "saya",
-    "teks": "kan 10 detik pertama openingnya, gimana sih",
+    "time": "2026-10-30T11:00:41.159Z",
+    "from": "owner",
+    "text": "kan 10 detik pertama openingnya, gimana sih",
     "episodeId": "hafalan-surat-an-nas-2f04"
   },
   {
-    "waktu": "2026-10-30T11:00:51.779Z",
-    "dari": "agen",
-    "teks": "Maaf, Bu, saya yang keliru. Jadi 10 detik pertama itu opening, dan bacaan Basmalah baru mulai di detik 10 video.\n\nYang perlu dicek sekarang: kolom koreksi waktu itu dihitung dari **awal video** (termasuk opening) atau dari **awal rekaman suara Ibu**. Saya tidak bisa melihat cara kerja kolomnya, jadi belum bisa memastikan. Ini dua pilihannya:\n\n**Kalau dihitung dari awal rekaman (opening tidak ikut dihitung):** semua angka dikurangi 10.\n→ **0, 5, 13, 17, 21, 29, 37**\n\n**Kalau dihitung dari awal video:**\n→ **10, 15, 23, 27, 31, 39, 47**\n\nCara mengujinya: coba isi pilihan pertama (0, 5, 13, …), lalu render dan tonton.\n- Kalau teks sekarang berganti tepat waktu, berarti memang itu cara hitungnya. Selesai.\n- Kalau teks malah berganti sekitar **10 detik terlalu cepat**, pakai pilihan kedua.\n\nSaya curiga koreksi sebelumnya meleset karena angka yang dimasukkan dihitung dari awal video, padahal sistemnya mungkin menghitung dari awal rekaman. Akibatnya teks jadi telat 10 detik. Tapi ini masih dugaan saya, belum pasti.",
+    "time": "2026-10-30T11:00:51.779Z",
+    "from": "agent",
+    "text": "Maaf, Bu, saya yang keliru. Jadi 10 detik pertama itu opening, dan bacaan Basmalah baru mulai di detik 10 video.\n\nYang perlu dicek sekarang: kolom koreksi waktu itu dihitung dari **awal video** (termasuk opening) atau dari **awal rekaman suara Ibu**. Saya tidak bisa melihat cara kerja kolomnya, jadi belum bisa memastikan. Ini dua pilihannya:\n\n**Kalau dihitung dari awal rekaman (opening tidak ikut dihitung):** semua angka dikurangi 10.\n→ **0, 5, 13, 17, 21, 29, 37**\n\n**Kalau dihitung dari awal video:**\n→ **10, 15, 23, 27, 31, 39, 47**\n\nCara mengujinya: coba isi pilihan pertama (0, 5, 13, …), lalu render dan tonton.\n- Kalau teks sekarang berganti tepat waktu, berarti memang itu cara hitungnya. Selesai.\n- Kalau teks malah berganti sekitar **10 detik terlalu cepat**, pakai pilihan kedua.\n\nSaya curiga koreksi sebelumnya meleset karena angka yang dimasukkan dihitung dari awal video, padahal sistemnya mungkin menghitung dari awal rekaman. Akibatnya teks jadi telat 10 detik. Tapi ini masih dugaan saya, belum pasti.",
     "episodeId": "hafalan-surat-an-nas-2f04"
   }
 ]

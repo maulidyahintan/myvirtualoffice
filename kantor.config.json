@@ -1,77 +1,44 @@
 {
-  "namaChannel": "Tasnie Office",
-  "bahasa": "id",
-  "seri": [
+  "channelName": "Tasnie Office",
+  "language": "id",
+  "series": [
     {
       "id": "asbabun-nuzul",
-      "nama": "Asbabun Nuzul",
-      "usia": "0-17",
-      "playlistId": ""
+      "name": "Asbabun Nuzul",
+      "age": "0-17"
     },
     {
       "id": "kisah-sebelum-tidur",
-      "nama": "Kisah Sebelum Tidur",
-      "usia": "4-6",
-      "playlistId": ""
+      "name": "Kisah Sebelum Tidur",
+      "age": "4-6"
     },
     {
       "id": "doa-harian",
-      "nama": "Doa Harian Mamas",
-      "usia": "1-3",
-      "playlistId": ""
+      "name": "Doa Harian Mamas",
+      "age": "1-3"
     },
     {
       "id": "kenapa-ya",
-      "nama": "Kenapa Ya? (Akhlak & Ibadah)",
-      "usia": "7-10",
-      "playlistId": ""
+      "name": "Kenapa Ya? (Akhlak & Ibadah)",
+      "age": "7-10"
     },
     {
       "id": "hafalan",
-      "nama": "Hafalan Surat",
-      "usia": "1-10",
-      "playlistId": ""
+      "name": "Hafalan Surat",
+      "age": "1-10"
     }
   ],
-  "maksRevisiOtomatis": 2,
-  "jamTayangDefault": "16:30",
-  "zonaWaktu": "Asia/Jakarta",
-  "musik": {
-    "volume": 1,
-    "diShorts": false,
-    "pembuka": "musik/pembuka.m4a",
-    "penutup": "musik/penutup.m4a"
-  },
-  "suaraKarakter": {
-    "narator": {
-      "nada": 0,
-      "tempo": 1
-    },
-    "ibu": {
-      "nada": -2.5,
-      "tempo": 0.95
-    },
-    "mamas": {
-      "nada": 4,
-      "tempo": 1.1
-    },
-    "mochi": {
-      "nada": 4,
-      "tempo": 1.05
-    }
-  },
-  "suaraHafalan": {
-    "nada": 3,
-    "tempo": 0.85
-  },
-  "playlistYoutube": {
+  "youtubePlaylists": {
     "Hafalan": "PLQpeKIzmWSxQ",
     "Asbabun Nuzul": "PLD-usmJsNuYc",
     "Obrolan Islami Anak": "PLUgYsxxA9xw8"
   },
-  "rencanaTayang": {
-    "videoPerHari": 2,
-    "hari": [
+  "maxAutoRevisions": 2,
+  "defaultPublishTime": "16:30",
+  "timeZone": "Asia/Jakarta",
+  "publishPlan": {
+    "videosPerDay": 2,
+    "days": [
       0,
       1,
       2,
@@ -80,18 +47,46 @@
       5,
       6
     ],
-    "slot": [
+    "slots": [
       {
-        "jam": "16:00",
+        "time": "16:00",
         "format": "short"
       },
       {
-        "jam": "18:30",
-        "format": "biasa"
+        "time": "18:30",
+        "format": "standard"
       }
     ],
-    "alasan": "Rutin setiap hari: 1 Shorts + 1 video biasa.\n\n- **Shorts 16.00**: anak pulang sekolah/selesai tidur siang, jam ramai menonton Shorts.\n- **Video biasa 18.30**: selepas Maghrib, orang tua punya waktu mendampingi menonton video yang lebih panjang.\n\nTinjau ulang setelah 2–4 minggu dengan data Analytics (jam penonton paling aktif).",
-    "oleh": "pemilik",
-    "diubah": "2026-10-30T11:55:31.913Z"
+    "reason": "Rutin setiap hari: 1 Shorts + 1 video biasa.\n\n- **Shorts 16.00**: anak pulang sekolah/selesai tidur siang, jam ramai menonton Shorts.\n- **Video biasa 18.30**: selepas Maghrib, orang tua punya waktu mendampingi menonton video yang lebih panjang.\n\nTinjau ulang setelah 2–4 minggu dengan data Analytics (jam penonton paling aktif).",
+    "by": "pemilik",
+    "modified": "2026-10-30T11:55:31.913Z"
+  },
+  "characterVoices": {
+    "narrator": {
+      "pitch": 0,
+      "tempo": 1
+    },
+    "mother": {
+      "pitch": -2.5,
+      "tempo": 0.95
+    },
+    "mamas": {
+      "pitch": 4,
+      "tempo": 1.1
+    },
+    "mochi": {
+      "pitch": 4,
+      "tempo": 1.05
+    }
+  },
+  "memorizationVoice": {
+    "pitch": 3,
+    "tempo": 0.85
+  },
+  "music": {
+    "intro": "musik/pembuka.m4a",
+    "outro": "musik/penutup.m4a",
+    "volume": 1,
+    "inShorts": false
   }
 }
