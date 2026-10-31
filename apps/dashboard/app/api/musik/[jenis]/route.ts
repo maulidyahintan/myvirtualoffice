@@ -17,7 +17,7 @@ function bacaJenis(jenis: string): MusicType | undefined {
 
 // Putar musik yang tersimpan (pratinjau di halaman pengaturan).
 export async function GET(_req: Request, ctx: { params: Promise<{ jenis: string }> }) {
-  const jenis = bacaJenis((await ctx.params).type);
+  const jenis = bacaJenis((await ctx.params).jenis);
   const file = jenis ? loadConfig().music?.[jenis] : undefined;
   const lokasi = file ? path.join(paths.videoPkg(), 'public', file) : '';
   if (!file || !fs.existsSync(lokasi)) return new Response('Tidak ditemukan', { status: 404 });
@@ -28,7 +28,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ jenis: string 
 
 // Upload musik pembuka/penutup → packages/video/public/musik/<jenis>.<ext>
 export async function POST(req: Request, ctx: { params: Promise<{ jenis: string }> }) {
-  const jenis = bacaJenis((await ctx.params).type);
+  const jenis = bacaJenis((await ctx.params).jenis);
   if (!jenis) return Response.json({ error: 'Jenis musik tidak dikenal' }, { status: 400 });
 
   const file = (await req.formData()).get('musik');
@@ -42,7 +42,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ jenis: string 
   fs.writeFileSync(path.join(dir, `${jenis}${ext}`), Buffer.from(await file.arrayBuffer()));
 
   const cfg = loadConfig();
-  cfg.music = { volume: 0.7, diShorts: true, ...cfg.music, [jenis]: `musik/${jenis}${ext}` };
+  cfg.music = { volume: 0.7, inShorts: true, ...cfg.music, [jenis]: `musik/${jenis}${ext}` };
   saveConfig(cfg);
 
   return Response.redirect(new URL('/pengaturan', req.url), 303);

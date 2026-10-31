@@ -153,3 +153,34 @@ export const PHASES: { title: string; statuses: EpisodeStatus[] }[] = [
 ];
 
 export const FPS = 30;
+
+/** Indonesian display labels for code-level enum values (the UI stays Indonesian). */
+export const SPEAKER_LABEL: Record<(typeof SPEAKERS)[number], string> = { narrator: 'Narator', mother: 'Ibu', mamas: 'Mamas', mochi: 'Mochi' };
+export const SCENE_TYPE_LABEL: Record<(typeof SCENE_TYPES)[number], string> = { story: 'cerita', prayer: 'doa', question: 'pertanyaan' };
+export const EXPRESSION_LABEL: Record<(typeof EXPRESSIONS)[number], string> = {
+  happy: 'senang',
+  sad: 'sedih',
+  thinking: 'berpikir',
+  surprised: 'kaget',
+  calm: 'tenang',
+};
+export const BACKGROUND_LABEL: Record<(typeof BACKGROUNDS)[number], string> = {
+  'bedroom-night': 'kamar malam',
+  'living-room': 'ruang tamu',
+  garden: 'taman',
+  mosque: 'masjid',
+  kitchen: 'dapur',
+  'night-sky': 'langit malam',
+  desert: 'gurun',
+  ocean: 'laut',
+  mountain: 'gunung',
+  dawn: 'fajar',
+  school: 'sekolah',
+  yard: 'halaman rumah',
+  library: 'perpustakaan',
+  ablution: 'tempat wudhu',
+  'inside-mosque': 'dalam masjid',
+  playground: 'taman bermain',
+  market: 'pasar',
+  store: 'toko',
+};

@@ -3,13 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { CHAT_AGENTS } from '@kantor/shared/constants';
-import type { ChatAgent, PesanChat } from '@kantor/shared/types';
+import type { ChatAgent, ChatMessage } from '@kantor/shared/types';
 import { PEGAWAI } from '@/components/kantor/pegawai';
 
-type Pesan = PesanChat & { judulEpisode?: string };
+type Pesan = ChatMessage & { episodeTitle?: string };
 interface Ringkasan {
   agen: ChatAgent;
-  terakhir: PesanChat | null;
+  terakhir: ChatMessage | null;
   mengetik: boolean;
 }
 
@@ -96,7 +96,7 @@ export function ChatMengambang() {
     if (!agen || !isi.trim() || mengetik) return;
     setTeks('');
     setMengetik(true);
-    setPesan((p) => [...p, { waktu: new Date().toISOString(), dari: 'saya', teks: isi.trim() }]);
+    setPesan((p) => [...p, { time: new Date().toISOString(), from: 'owner', text: isi.trim() }]);
     const r = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -166,11 +166,11 @@ export function ChatMengambang() {
                   </div>
                 ) : null}
                 {pesan.map((p, i) => (
-                  <div key={i} className={`chat-pesan ${p.from}`}>
+                  <div key={i} className={`chat-pesan ${p.from === 'owner' ? 'saya' : 'agen'}`}>
                     {p.episodeId && (i === 0 || pesan[i - 1].episodeId !== p.episodeId) ? (
-                      <div className="kecil muted">📎 {p.titleEpisode ?? 'episode'}</div>
+                      <div className="kecil muted">📎 {p.episodeTitle ?? 'episode'}</div>
                     ) : null}
-                    <div className="chat-pesan-teks">{p.teks}</div>
+                    <div className="chat-pesan-teks">{p.text}</div>
                   </div>
                 ))}
                 {mengetik ? <div className="chat-pesan agen mengetik">mengetik…</div> : null}
@@ -241,7 +241,7 @@ export function ChatMengambang() {
                   <span style={{ minWidth: 0, textAlign: 'left' }}>
                     <b>{pegawai(id).name}</b> <span className="kecil muted">· {pegawai(id).role}</span>
                     <span className="kecil muted chat-cuplikan">
-                      {r?.mengetik ? 'sedang mengetik…' : r?.terakhir ? `${r.terakhir.from === 'saya' ? 'Kamu: ' : ''}${r.terakhir.teks}` : 'Mulai obrolan'}
+                      {r?.mengetik ? 'sedang mengetik…' : r?.terakhir ? `${r.terakhir.from === 'owner' ? 'Kamu: ' : ''}${r.terakhir.text}` : 'Mulai obrolan'}
                     </span>
                   </span>
                 </button>

@@ -5,21 +5,21 @@ import { useRouter } from 'next/navigation';
 import { renderVideo, simpanEfekKarakter, simpanNada } from '@/app/actions';
 
 export interface BagianStudio {
-  judul: string;
-  /** teks yang dibacakan (teleprompter) */
-  teks: string;
-  arab: boolean;
-  catatan: string;
-  /** detik mulai & lama bagian ini di video pratinjau (kalau sudah pernah dirender) */
-  mulai?: number;
-  durasi?: number;
-  tersimpan: boolean;
-  /** lama hening (detik) sebelum rekaman berhenti sendiri; lebih panjang untuk ayat yang dibaca berulang */
-  heningStop: number;
-  /** perkiraan lama membaca (detik); rekaman tidak berhenti otomatis sebelum ±70% dari ini */
-  perkiraan: number;
-  /** keterangan efek suara pembicara (cerita saja) */
-  suara?: string;
+  title: string;
+  /** text read aloud (teleprompter) */
+  text: string;
+  arabic: boolean;
+  notes: string;
+  /** start second & duration of this part in the preview video (if it was rendered before) */
+  start?: number;
+  duration?: number;
+  saved: boolean;
+  /** silence (seconds) before recording stops by itself; longer for verses read repeatedly */
+  silenceStop: number;
+  /** estimated reading time (seconds); recording won't auto-stop before ±70% of this */
+  estimate: number;
+  /** speaker voice-effect description (stories only) */
+  voice?: string;
 }
 
 interface Take {
@@ -68,7 +68,7 @@ export function StudioRekam({
   id: string;
   video?: string;
   vertikal: boolean;
-  part: BagianStudio[];
+  bagian: BagianStudio[];
   nadaAwal: number;
   nadaMaks: number;
   /** undefined = efek karakter tidak berlaku (hafalan) */
@@ -76,9 +76,9 @@ export function StudioRekam({
   satuan: string;
 }) {
   const router = useRouter();
-  const [aktif, setAktif] = useState(() => Math.max(0, bagian.findIndex((b) => !b.tersimpan)));
+  const [aktif, setAktif] = useState(() => Math.max(0, bagian.findIndex((b) => !b.saved)));
   const [take, setTake] = useState<Record<number, Take>>({});
-  const [tersimpan, setTersimpan] = useState(() => bagian.map((b) => b.tersimpan));
+  const [tersimpan, setTersimpan] = useState(() => bagian.map((b) => b.saved));
   const [status, setStatus] = useState<Status>('siap');
   const [mulaiRender, setMulaiRender] = useState(false);
   const [hitung, setHitung] = useState(0);
@@ -104,7 +104,7 @@ export function StudioRekam({
 
   const b = bagian[aktif];
   const t = take[aktif];
-  const hening = batasHening ?? b.heningStop;
+  const hening = batasHening ?? b.silenceStop;
   const adaVideo = Boolean(video && b.start !== undefined);
   const lengkap = tersimpan.every(Boolean);
 
@@ -231,7 +231,7 @@ export function StudioRekam({
     let puncak = 0;
     let sudahBicara = false;
     let suaraTerakhir = performance.now();
-    const minimal = bagian[i].perkiraan * 0.7 * 1000;
+    const minimal = bagian[i].estimate * 0.7 * 1000;
     timerRef.current = window.setInterval(() => {
       const kini = performance.now();
       const keras = kerasSuara(an, buf);
@@ -287,7 +287,7 @@ export function StudioRekam({
 
   /** Rekaman baru: kalau ada efek/nada, olah dulu di server supaya terdengar seperti hasil render. */
   async function dengarBaru(tk: Take) {
-    const pakaiEfek = efek && Boolean(b.suara);
+    const pakaiEfek = efek && Boolean(b.voice);
     if (!pakaiEfek && !nada) return dengar(tk.url, tk.offset);
     setPesan('Menerapkan efek suara…');
     const fd = new FormData();
@@ -405,12 +405,12 @@ export function StudioRekam({
             </span>
           </div>
           <div className={`studio-teks${b.arabic ? ' arab' : ''}`} dir={b.arabic ? 'rtl' : undefined}>
-            {b.teks}
+            {b.text}
           </div>
           {b.notes ? <div className="kecil muted">{b.notes}</div> : null}
-          {b.suara && efekAwal !== undefined ? (
+          {b.voice && efekAwal !== undefined ? (
             <div className="kecil">
-              🎭 <b>{efek ? b.suara : 'Efek suara mati: suara asli'}</b>
+              🎭 <b>{efek ? b.voice : 'Efek suara mati: suara asli'}</b>
             </div>
           ) : null}
 
@@ -453,7 +453,7 @@ export function StudioRekam({
               <>
                 {t ? (
                   <button type="button" className="sekunder" onClick={() => void dengarBaru(t)} disabled={sibuk}>
-                    ▶️ Dengar rekaman baru{efek && b.suara ? ' (dengan efek)' : nada ? ' (dengan nada)' : ''}
+                    ▶️ Dengar rekaman baru{efek && b.voice ? ' (dengan efek)' : nada ? ' (dengan nada)' : ''}
                   </button>
                 ) : null}
                 {tersimpan[aktif] ? (
@@ -463,7 +463,7 @@ export function StudioRekam({
                     onClick={() => void dengar(`/api/audio/${id}?adegan=${aktif}&nada=${nada}&efek=${efek ? 1 : 0}&v=${Date.now()}`)}
                     disabled={sibuk}
                   >
-                    ▶️ Dengar yang tersimpan{efek && b.suara ? ' (dengan efek)' : nada ? ' (dengan nada)' : ''}
+                    ▶️ Dengar yang tersimpan{efek && b.voice ? ' (dengan efek)' : nada ? ' (dengan nada)' : ''}
                   </button>
                 ) : null}
               </>
@@ -477,7 +477,7 @@ export function StudioRekam({
           <label className="kecil" style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
             Berhenti otomatis setelah selesai bicara:
             <select value={hening} onChange={(e) => setBatasHening(Number(e.target.value))}>
-              {[...new Set([2, 2.5, 3, 4, 5, b.heningStop])]
+              {[...new Set([2, 2.5, 3, 4, 5, b.silenceStop])]
                 .sort((x, y) => x - y)
                 .map((d) => (
                   <option key={d} value={d}>
@@ -565,7 +565,7 @@ export function StudioRekam({
             <span>{tersimpan[i] ? '✅' : take[i] ? '🟡' : '⬜'}</span>
             <span className="studio-item-isi">
               <b>{x.title}</b>
-              <span className="muted">{x.teks}</span>
+              <span className="muted">{x.text}</span>
             </span>
           </button>
         ))}

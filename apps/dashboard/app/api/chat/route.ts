@@ -14,14 +14,14 @@ function denganJudul(agen: ChatAgent) {
     if (!p.episodeId) return p;
     try {
       const ep = getEpisode(p.episodeId);
-      return { ...p, judulEpisode: ep.script?.title ?? ep.idea.title };
+      return { ...p, episodeTitle: ep.script?.title ?? ep.idea.title };
     } catch {
       return p;
     }
   });
 }
 
-const sedangMengetik = (agen: ChatAgent) => isBusy(`chat-${agen}`) || readChat(agen).at(-1)?.from === 'saya';
+const sedangMengetik = (agen: ChatAgent) => isBusy(`chat-${agen}`) || readChat(agen).at(-1)?.from === 'owner';
 
 /** GET ?agen=x → isi percakapan. Tanpa agen → ringkasan semua agen (pesan terakhir). */
 export async function GET(req: Request) {
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       episodeId = undefined;
     }
   }
-  addChatMessage(agen, { dari: 'saya', teks, episodeId });
+  addChatMessage(agen, { from: 'owner', text: teks, episodeId });
   jalankanKantor(['chat', agen]);
   return Response.json({ pesan: denganJudul(agen), mengetik: true });
 }

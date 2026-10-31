@@ -3,6 +3,10 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  BACKGROUND_LABEL,
+  EXPRESSION_LABEL,
+  SCENE_TYPE_LABEL,
+  SPEAKER_LABEL,
   SHORTS_LIMIT_SECONDS,
   checkMetadata,
   contentDuration,
@@ -53,12 +57,12 @@ function PilihModeRekam({ ep }: { ep: Episode }) {
     {
       mode: 'sequential',
       label: '📼 Berurutan',
-      ket: 'satu file, atau beberapa bagian (mis. per 2 menit)',
+      note: 'satu file, atau beberapa bagian (mis. per 2 menit)',
     },
     {
       mode: 'per-scene',
       label: `🎬 Per ${satuan}`,
-      ket: `satu file untuk tiap ${satuan}, durasi ${satuan} ikut persis`,
+      note: `satu file untuk tiap ${satuan}, durasi ${satuan} ikut persis`,
     },
   ] as const;
   return (
@@ -88,12 +92,12 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
   const ulang = ep.idea.memorization?.repetitions ?? 1;
   const daftar = hafalan
     ? (ep.memorization?.verses ?? []).map((a) => ({
-        judul: a.number === 0 ? 'Basmalah' : `Ayat ${a.number}${ulang > 1 ? ` (baca ${ulang}x, jeda ±1 detik)` : ''}`,
-        teks: a.latin,
+        title: a.number === 0 ? 'Basmalah' : `Ayat ${a.number}${ulang > 1 ? ` (baca ${ulang}x, jeda ±1 detik)` : ''}`,
+        text: a.latin,
       }))
     : (ep.scenes ?? []).map((a, i) => ({
-        judul: `Adegan ${i + 1}${a.type === 'question' ? ' (jeda berpikir ±3 detik ditambahkan otomatis)' : ''}`,
-        teks: a.narration,
+        title: `Adegan ${i + 1}${a.type === 'question' ? ' (jeda berpikir ±3 detik ditambahkan otomatis)' : ''}`,
+        text: a.narration,
       }));
   const per = ep.audioPerScene ?? [];
   const sudah = daftar.filter((_, i) => per[i]).length;
@@ -119,7 +123,7 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
               {per[i] ? '✅' : '⬜'} {d.title}
             </b>
             <div className="muted" style={{ marginTop: 4 }}>
-              {d.teks}
+              {d.text}
             </div>
           </div>
           {per[i] ? (
@@ -587,7 +591,7 @@ function PecahShorts({ ep }: { ep: Episode }) {
             <ul style={{ margin: '4px 0 0', paddingLeft: 18 }}>
               {turunan.map((t) => (
                 <li key={t.id}>
-                  <Link href={`/episode/${t.id}`}>{t.script?.title ?? t.ide.title}</Link> <Badge status={t.status} />
+                  <Link href={`/episode/${t.id}`}>{t.script?.title ?? t.idea.title}</Link> <Badge status={t.status} />
                 </li>
               ))}
             </ul>
@@ -769,11 +773,13 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
                   <div className="nomor">{i + 1}</div>
                   <div>
                     <div className="kecil">
-                      <span className="pembicara">{a.speaker}</span> · {a.type}
-                      {'latar' in a ? ` · ${a.background} · ${a.characters.join(', ') || 'tanpa karakter'} · ${a.expression}` : ''}
+                      <span className="pembicara">{SPEAKER_LABEL[a.speaker]}</span> · {SCENE_TYPE_LABEL[a.type]}
+                      {'background' in a
+                        ? ` · ${BACKGROUND_LABEL[a.background]} · ${a.characters.map((c) => SPEAKER_LABEL[c]).join(', ') || 'tanpa karakter'} · ${EXPRESSION_LABEL[a.expression]}`
+                        : ''}
                     </div>
                     <div className="narasi-baca">{a.narration}</div>
-                    {'petunjukVisual' in a ? <div className="kecil muted">🎬 {a.petunjukVisual}</div> : null}
+                    {'visualDirection' in a ? <div className="kecil muted">🎬 {a.visualDirection}</div> : null}
                   </div>
                 </div>
               ))}
@@ -790,7 +796,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
                   <div className="kecil">
                     <b>{d.type}</b> · {d.source}
                   </div>
-                  {d.arabicicText ? <div className="arab">{d.arabicicText}</div> : null}
+                  {d.arabicText ? <div className="arab">{d.arabicText}</div> : null}
                   {d.latin ? (
                     <div className="kecil" style={{ fontStyle: 'italic' }}>
                       {d.latin}

@@ -58,7 +58,7 @@ export function statusKantor(): DataKantor {
       return {
         id: p.id,
         keadaan: adaYangKerja ? 'kerja' : 'santai',
-        pesan: adaYangKerja ? 'Menyampaikan arahan ke tim' : 'Semua pekerjaan beres',
+        message: adaYangKerja ? 'Menyampaikan arahan ke tim' : 'Semua pekerjaan beres',
         aktivitas,
       };
     }
@@ -68,7 +68,7 @@ export function statusKantor(): DataKantor {
     return {
       id: p.id,
       keadaan: 'santai',
-      pesan: aktivitas[0] ? `Istirahat · terakhir: ${pendek(aktivitas[0].message, 22)}` : 'Menunggu tugas',
+      message: aktivitas[0] ? `Istirahat · terakhir: ${pendek(aktivitas[0].message, 22)}` : 'Menunggu tugas',
       aktivitas,
     };
   });

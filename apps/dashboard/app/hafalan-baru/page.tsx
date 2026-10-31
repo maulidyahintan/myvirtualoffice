@@ -38,8 +38,8 @@ export default async function HafalanBaru() {
           {surat.length ? (
             <select name="surat" defaultValue="112">
               {surat.map((s) => (
-                <option key={s.number} value={s.number}>
-                  {s.number}. {s.namaLatin} ({s.arti}) · {s.jumlahAyat} ayat
+                <option key={s.nomor} value={s.nomor}>
+                  {s.nomor}. {s.namaLatin} ({s.arti}) · {s.jumlahAyat} ayat
                 </option>
               ))}
             </select>
