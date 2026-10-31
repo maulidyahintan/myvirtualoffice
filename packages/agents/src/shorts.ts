@@ -8,9 +8,9 @@ import {
   createEpisodeFromIdea,
   FPS,
   getEpisode,
-  hitungFrameAdegan,
+  sceneFrames,
   paths,
-  rapikanMetadata,
+  normalizeMetadata,
   setStatus,
   updateEpisode,
   type Episode,
@@ -79,7 +79,7 @@ export async function rekamanPerAdegan(ep: Episode): Promise<Potongan[]> {
   if (!ep.fileAudio) throw new Error('Episode belum punya rekaman suara');
   const lokasi = path.join(pub(), ep.fileAudio);
   const total = await durasiAudio(lokasi);
-  const frames = hitungFrameAdegan(adegan, total);
+  const frames = sceneFrames(adegan, total);
   const hening = await titikHening(lokasi);
   let t = 0;
   const batas = [0];
@@ -162,7 +162,7 @@ ${JSON.stringify(daftar, null, 2)}`,
       e.naskah = { ...asal.naskah!, judul: s.judul, adegan: idx.map((i) => asal.naskah!.adegan[i]).filter(Boolean) };
       e.review = asal.review;
       e.adegan = idx.map((i) => asal.adegan![i]);
-      e.metadata = rapikanMetadata({ judul: s.judul, deskripsi: s.deskripsi, tags: s.tags, teksThumbnail: s.teksThumbnail }, 'short');
+      e.metadata = normalizeMetadata({ judul: s.judul, deskripsi: s.deskripsi, tags: s.tags, teksThumbnail: s.teksThumbnail }, 'short');
       e.modeRekam = 'per-adegan';
       e.audioPerAdegan = salin;
       e.offsetAdegan = idx.map((i) => potongan[i].offset);

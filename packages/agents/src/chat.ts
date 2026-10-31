@@ -3,10 +3,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { query } from '@anthropic-ai/claude-agent-sdk';
-import { bacaChat, getEpisode, paths, tambahChat, type AgenChat } from '@kantor/shared';
+import { readChat, getEpisode, paths, addChatMessage, type ChatAgent } from '@kantor/shared';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
 
-const PERAN: Record<AgenChat, { prompt: string; tools: string[]; mcpTools: string[] }> = {
+const PERAN: Record<ChatAgent, { prompt: string; tools: string[]; mcpTools: string[] }> = {
   manajer: { prompt: 'manajer', tools: [], mcpTools: ['mcp__kantor__daftar_episode'] },
   riset: { prompt: 'riset', tools: ['WebSearch', 'WebFetch'], mcpTools: TOOL_RISET },
   penulis: { prompt: 'penulis', tools: [], mcpTools: [] },
@@ -37,10 +37,10 @@ function konteksEpisode(id: string): string {
     const ringkas = {
       id: ep.id,
       status: ep.status,
-      ide: ep.ide,
-      naskah: ep.naskah,
+      idea: ep.idea,
+      script: ep.script,
       review: ep.review,
-      adegan: ep.adegan?.map((a) => ({ latar: a.latar, karakter: a.karakter, ekspresi: a.ekspresi, teksLayar: a.teksLayar })),
+      scenes: ep.scenes?.map((a) => ({ background: a.background, characters: a.characters, expression: a.expression, screenText: a.screenText })),
       metadata: ep.metadata,
       logTerakhir: ep.log.slice(-8),
     };
@@ -51,22 +51,22 @@ function konteksEpisode(id: string): string {
 }
 
 /** Jawab pesan terakhir dari pemilik di percakapan dengan agen ini. */
-export async function balasChat(agen: AgenChat) {
-  const riwayat = bacaChat(agen);
+export async function balasChat(agen: ChatAgent) {
+  const riwayat = readChat(agen);
   const terakhir = riwayat.at(-1);
-  if (!terakhir || terakhir.dari !== 'saya') return;
+  if (!terakhir || terakhir.from !== 'owner') return;
   const peran = PERAN[agen];
 
   const transkrip = riwayat
     .slice(-20, -1)
-    .map((p) => `${p.dari === 'saya' ? 'Pemilik' : 'Kamu'}: ${p.teks}`)
+    .map((p) => `${p.from === 'owner' ? 'Pemilik' : 'Kamu'}: ${p.text}`)
     .join('\n\n');
 
   const prompt = [
     `Tanggal hari ini: ${new Date().toISOString().slice(0, 10)}.`,
     terakhir.episodeId ? konteksEpisode(terakhir.episodeId) : '',
     transkrip ? `Percakapan sebelumnya:\n${transkrip}` : '',
-    `Pesan baru dari pemilik:\n${terakhir.teks}`,
+    `Pesan baru dari pemilik:\n${terakhir.text}`,
   ]
     .filter(Boolean)
     .join('\n\n');
@@ -91,5 +91,5 @@ export async function balasChat(agen: AgenChat) {
       jawaban = msg.subtype === 'success' ? String(msg.result ?? '').trim() : `Maaf, aku gagal menjawab (${msg.subtype}).`;
     }
   }
-  tambahChat(agen, { dari: 'agen', teks: jawaban || 'Maaf, aku belum bisa menjawab. Coba tanya lagi ya.', episodeId: terakhir.episodeId });
+  addChatMessage(agen, { from: 'agent', text: jawaban || 'Maaf, aku belum bisa menjawab. Coba tanya lagi ya.', episodeId: terakhir.episodeId });
 }

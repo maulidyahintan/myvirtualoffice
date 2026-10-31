@@ -1,5 +1,5 @@
 // Playlist YouTube per tipe video: cari playlist channel berdasarkan nama, buat kalau belum ada,
-// lalu masukkan video (tanpa dobel). ID playlist disimpan di kantor.config.json (playlistYoutube).
+// lalu masukkan video (tanpa dobel). ID playlist disimpan di kantor.config.json (youtubePlaylists).
 import { loadConfig, namaPlaylist, saveConfig, type Episode } from '@kantor/shared';
 import { youtubeWrite } from './client.ts';
 
@@ -12,7 +12,7 @@ const DESKRIPSI: Record<string, string> = {
 /** ID playlist untuk nama ini: dari cache, dari daftar playlist channel, atau dibuat baru. */
 export async function idPlaylist(nama: string): Promise<{ id: string; baru: boolean }> {
   const cfg = loadConfig();
-  const tersimpan = cfg.playlistYoutube?.[nama];
+  const tersimpan = cfg.youtubePlaylists?.[nama];
   if (tersimpan) return { id: tersimpan, baru: false };
 
   const yt = youtubeWrite();
@@ -37,7 +37,7 @@ export async function idPlaylist(nama: string): Promise<{ id: string; baru: bool
     baru = true;
   }
   const terbaru = loadConfig();
-  saveConfig({ ...terbaru, playlistYoutube: { ...terbaru.playlistYoutube, [nama]: id } });
+  saveConfig({ ...terbaru, youtubePlaylists: { ...terbaru.youtubePlaylists, [nama]: id } });
   return { id, baru };
 }
 
@@ -49,7 +49,7 @@ export async function masukkanKePlaylist(ep: Episode, videoId: string): Promise<
   const cfg = loadConfig();
   const yt = youtubeWrite();
   // ID playlist yang diisi manual per seri tetap didahulukan
-  const manual = cfg.seri.find((s) => s.id === ep.ide.seri)?.playlistId?.trim();
+  const manual = cfg.seri.find((s) => s.id === ep.idea.seri)?.playlistId?.trim();
   const nama = namaPlaylist(ep, cfg);
   const { id, baru } = manual ? { id: manual, baru: false } : await idPlaylist(nama);
 

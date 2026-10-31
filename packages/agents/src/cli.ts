@@ -16,9 +16,9 @@
 //   npm run kantor -- laporan
 //   npm run kantor -- status
 import './env.ts';
-import { AGEN_CHAT, durasiIsi, getEpisode, jumlahShortsOtomatis, listEpisodes, setStatus, STATUS_LABEL, tandaiSelesai, tandaiSibuk, tambahChat, type AgenChat } from '@kantor/shared';
+import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent } from '@kantor/shared';
 import { balasChat } from './chat.ts';
-import { lepasPenjadwal, pasangPenjadwal, risetHarianJikaPerlu } from './otomatis.ts';
+import { lepasPenjadwal, pasangPenjadwal, dailyResearchSettingsJikaPerlu } from './otomatis.ts';
 import { pecahJadiShorts } from './shorts.ts';
 import {
   buatUlangMetadata,
@@ -39,14 +39,14 @@ const [cmd, arg1, arg2, arg3] = process.argv.slice(2);
 async function main() {
   switch (cmd) {
     case 'riset':
-      tandaiSibuk('riset');
+      markBusy('riset');
       try {
         return void (await riset(arg1));
       } finally {
-        tandaiSelesai('riset');
+        markDone('riset');
       }
     case 'harian':
-      return risetHarianJikaPerlu();
+      return dailyResearchSettingsJikaPerlu();
     case 'harian-pasang':
       return pasangPenjadwal();
     case 'harian-lepas':
@@ -63,63 +63,63 @@ async function main() {
       return upload(need(arg1), arg2 ? new Date(arg2).toISOString() : undefined);
     case 'shorts': {
       const id = need(arg1);
-      tandaiSibuk(`shorts-${id}`);
+      markBusy(`shorts-${id}`);
       try {
-        const jumlah = Math.min(5, Math.max(1, Number(arg2) || jumlahShortsOtomatis(durasiIsi(getEpisode(id)))));
+        const jumlah = Math.min(5, Math.max(1, Number(arg2) || autoShortsCount(contentDuration(getEpisode(id)))));
         return void (await pecahJadiShorts(id, jumlah, arg3, render));
       } finally {
-        tandaiSelesai(`shorts-${id}`);
+        markDone(`shorts-${id}`);
       }
     }
     case 'metadata': {
       const id = need(arg1);
-      tandaiSibuk(`${id}-metadata`);
+      markBusy(`${id}-metadata`);
       try {
         await buatUlangMetadata(id);
       } finally {
-        tandaiSelesai(`${id}-metadata`);
+        markDone(`${id}-metadata`);
       }
       return arg2 === 'render' ? render(id) : undefined;
     }
     case 'rencana':
-      tandaiSibuk('rencana');
+      markBusy('rencana');
       try {
         return await susunRencanaTayang(arg1);
       } finally {
-        tandaiSelesai('rencana');
+        markDone('rencana');
       }
     case 'playlist':
-      tandaiSibuk('playlist');
+      markBusy('playlist');
       try {
         return await masukkanPlaylist(arg1);
       } finally {
-        tandaiSelesai('playlist');
+        markDone('playlist');
       }
     case 'tarik':
       return tarikVideoLama(need(arg1));
     case 'chat': {
-      const agen = need(arg1) as AgenChat;
-      if (!AGEN_CHAT.includes(agen)) throw new Error(`Agen tidak dikenal: ${agen}`);
-      tandaiSibuk(`chat-${agen}`);
+      const agen = need(arg1) as ChatAgent;
+      if (!CHAT_AGENTS.includes(agen)) throw new Error(`Agen tidak dikenal: ${agen}`);
+      markBusy(`chat-${agen}`);
       try {
         return await balasChat(agen);
       } catch (e) {
-        tambahChat(agen, { dari: 'agen', teks: `Maaf, ada masalah: ${(e as Error).message}` });
+        addChatMessage(agen, { from: 'agen', text: `Maaf, ada masalah: ${(e as Error).message}` });
         throw e;
       } finally {
-        tandaiSelesai(`chat-${agen}`);
+        markDone(`chat-${agen}`);
       }
     }
     case 'laporan':
-      tandaiSibuk('laporan');
+      markBusy('laporan');
       try {
         return void (await laporan());
       } finally {
-        tandaiSelesai('laporan');
+        markDone('laporan');
       }
     case 'status':
       for (const e of listEpisodes()) {
-        console.log(`${e.id.padEnd(48)} ${STATUS_LABEL[e.status]}  — ${e.naskah?.judul ?? e.ide.judul}`);
+        console.log(`${e.id.padEnd(48)} ${STATUS_LABEL[e.status]}  — ${e.script?.judul ?? e.idea.judul}`);
       }
       return;
     default:

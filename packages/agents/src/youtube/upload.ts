@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { paths, rapikanMetadata, type Episode } from '@kantor/shared';
+import { paths, normalizeMetadata, type Episode } from '@kantor/shared';
 import { youtubeWrite } from './client.ts';
 import { masukkanKePlaylist } from './playlist.ts';
 
@@ -27,7 +27,7 @@ export async function uploadEpisode(ep: Episode, opsi: OpsiUpload) {
   const file = path.join(paths.renders(), ep.render.video);
   // Shorts dikenali otomatis dari video vertikal < 3 menit; tagar #Shorts membantu penemuan.
   // Video biasa dibersihkan dari #Shorts (misal metadata tersalin dari versi Shorts-nya).
-  const meta = rapikanMetadata(ep.metadata, ep.ide.format);
+  const meta = normalizeMetadata(ep.metadata, ep.idea.format);
 
   const res = await yt.videos.insert({
     part: ['snippet', 'status'],

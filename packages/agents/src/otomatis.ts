@@ -6,51 +6,51 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import {
-  bacaOtomatis,
-  filePenjadwalHarian,
-  isoKeLokal,
+  readAutomationState,
+  dailySchedulerFile,
+  isoToLocal,
   loadConfig,
   paths,
-  risetHarian,
+  dailyResearchSettings,
   rootDir,
-  sedangSibuk,
-  simpanOtomatis,
-  tandaiSelesai,
-  tandaiSibuk,
+  isBusy,
+  saveAutomationState,
+  markDone,
+  markBusy,
 } from '@kantor/shared';
 import { riset } from './workflow.ts';
 
 const MAKS_PERCOBAAN = 2;
-const filePenjadwal = filePenjadwalHarian;
+const filePenjadwal = dailySchedulerFile;
 const LABEL = path.basename(filePenjadwal(), '.plist');
 
 /** Jalankan riset harian kalau sudah lewat jamnya dan hari ini belum. */
-export async function risetHarianJikaPerlu() {
-  const atur = risetHarian();
-  if (!atur.aktif) return console.log('Riset harian nonaktif');
+export async function dailyResearchSettingsJikaPerlu() {
+  const atur = dailyResearchSettings();
+  if (!atur.active) return console.log('Riset harian nonaktif');
   const cfg = loadConfig();
-  const sekarang = isoKeLokal(new Date().toISOString(), cfg.zonaWaktu);
+  const sekarang = isoToLocal(new Date().toISOString(), cfg.timeZone);
   const [tanggal, jam] = sekarang.split('T');
-  if (jam < atur.jam) return console.log(`Belum jam ${atur.jam}`);
+  if (jam < atur.time) return console.log(`Belum jam ${atur.time}`);
 
-  const c = bacaOtomatis();
-  const hariIni = c.tanggal === tanggal;
+  const c = readAutomationState();
+  const hariIni = c.date === tanggal;
   // 'jalan' tanpa proses riset yang hidup = proses sebelumnya mati di tengah jalan
-  if (hariIni && (c.hasil === 'ok' || (c.hasil === 'jalan' && sedangSibuk('riset')))) return console.log('Riset hari ini sudah jalan');
-  if (hariIni && (c.percobaan ?? 0) >= MAKS_PERCOBAAN) return console.log('Riset hari ini sudah gagal 2x, dicoba lagi besok');
-  if (sedangSibuk('riset')) return console.log('Riset lain sedang berjalan');
+  if (hariIni && (c.result === 'ok' || (c.result === 'jalan' && isBusy('riset')))) return console.log('Riset hari ini sudah jalan');
+  if (hariIni && (c.attempts ?? 0) >= MAKS_PERCOBAAN) return console.log('Riset hari ini sudah gagal 2x, dicoba lagi besok');
+  if (isBusy('riset')) return console.log('Riset lain sedang berjalan');
 
-  const percobaan = hariIni ? (c.percobaan ?? 0) + 1 : 1;
-  simpanOtomatis({ tanggal, percobaan, hasil: 'jalan', waktu: new Date().toISOString() });
-  tandaiSibuk('riset');
+  const percobaan = hariIni ? (c.attempts ?? 0) + 1 : 1;
+  saveAutomationState({ tanggal, percobaan, hasil: 'jalan', waktu: new Date().toISOString() });
+  markBusy('riset');
   try {
-    const { episodes } = await riset(undefined, atur.jumlahIde);
-    simpanOtomatis({ tanggal, percobaan, hasil: 'ok', pesan: `${episodes.length} ide baru`, waktu: new Date().toISOString() });
+    const { episodes } = await riset(undefined, atur.ideaCount);
+    saveAutomationState({ tanggal, percobaan, hasil: 'ok', pesan: `${episodes.length} ide baru`, waktu: new Date().toISOString() });
   } catch (e) {
-    simpanOtomatis({ tanggal, percobaan, hasil: 'gagal', pesan: (e as Error).message.slice(0, 300), waktu: new Date().toISOString() });
+    saveAutomationState({ tanggal, percobaan, hasil: 'gagal', pesan: (e as Error).message.slice(0, 300), waktu: new Date().toISOString() });
     throw e;
   } finally {
-    tandaiSelesai('riset');
+    markDone('riset');
   }
 }
 

@@ -4,12 +4,12 @@ import {
   addLog,
   createEpisodeFromIdea,
   getEpisode,
-  isoKeLokal,
+  isoToLocal,
   latestFile,
   listEpisodes,
   loadConfig,
   paths,
-  rapikanMetadata,
+  normalizeMetadata,
   saveConfig,
   setStatus,
   updateEpisode,
@@ -248,7 +248,7 @@ async function mintaMetadata(ep: Episode) {
     onProgress: log(ep.id, 'channel-manager'),
     prompt: `${infoFormat(ep)}\nNama channel: ${loadConfig().namaChannel}\nUsia: ${ep.ide.usia}\n${isi}\n\nBuat metadata YouTube untuk ${format === 'short' ? 'Shorts' : 'video biasa'} ini, sesuai aturan format ${format === 'short' ? 'Shorts' : 'video biasa'} di peranmu.`,
   });
-  return rapikanMetadata(metadata, format);
+  return normalizeMetadata(metadata, format);
 }
 
 /** Buat ulang metadata (judul, deskripsi, tags) sesuai format episode, misal untuk episode versi format lain. */
@@ -402,7 +402,7 @@ export async function susunRencanaTayang(arahan?: string) {
   };
   const terjadwal = episodes
     .filter((e) => e.status === 'scheduled' && e.youtube?.jadwalTayang)
-    .map((e) => `- ${isoKeLokal(e.youtube!.jadwalTayang!, cfg.zonaWaktu)} · ${e.ide.format === 'short' ? 'Shorts' : 'video biasa'} · ${e.metadata?.judul ?? e.ide.judul}`);
+    .map((e) => `- ${isoToLocal(e.youtube!.jadwalTayang!, cfg.zonaWaktu)} · ${e.ide.format === 'short' ? 'Shorts' : 'video biasa'} · ${e.metadata?.judul ?? e.ide.judul}`);
   const hasil = await runAgent({
     peran: 'channel-manager',
     schema: RencanaTayangSchema,
@@ -411,7 +411,7 @@ export async function susunRencanaTayang(arahan?: string) {
     maxTurns: 8,
     onProgress: log(undefined, 'channel-manager'),
     prompt: [
-      `Sekarang: ${isoKeLokal(new Date().toISOString(), cfg.zonaWaktu)} (${cfg.zonaWaktu}).`,
+      `Sekarang: ${isoToLocal(new Date().toISOString(), cfg.zonaWaktu)} (${cfg.zonaWaktu}).`,
       `Video siap tayang (menunggu persetujuan): ${hitung((e) => e.status === 'needs_video_approval')}`,
       `Sedang diproduksi: ${hitung((e) => !['needs_video_approval', 'scheduled', 'published', 'rejected', 'error', 'idea'].includes(e.status))}`,
       `Sudah tayang: ${hitung((e) => e.status === 'published')}`,
