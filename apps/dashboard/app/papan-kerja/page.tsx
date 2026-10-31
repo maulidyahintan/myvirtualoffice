@@ -18,7 +18,7 @@ export default function PapanKerja() {
   const namaSeri = (id: string) => cfg.seri.find((s) => s.id === id)?.nama ?? id;
 
   return (
-    <div className="stack">
+    <div className="stack halaman-papan">
       <div className="row" style={{ justifyContent: 'space-between' }}>
         <div>
           <h1>Papan Kerja</h1>
@@ -49,19 +49,22 @@ export default function PapanKerja() {
               <h3>
                 {fase.judul} <span>{isi.length}</span>
               </h3>
-              {isi.map((e) => (
-                <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
-                  <div className="judul">{e.naskah?.judul ?? e.ide.judul}</div>
-                  <div className="kecil muted" style={{ marginBottom: 6 }}>
-                    {e.ide.format === 'short' ? '📱 Shorts · ' : ''}
-                    {e.pasangan ? '🔗 ' : ''}
-                    {e.asal ? '✂️ ' : ''}
-                    {namaSeri(e.ide.seri)} · usia {e.ide.usia}
-                  </div>
-                  <Badge status={e.status} />
-                </Link>
-              ))}
-              {isi.length === 0 ? <div className="kecil muted">—</div> : null}
+              {/* tiap kolom bergulir sendiri, papan tetap setinggi layar */}
+              <div className="kolom-isi">
+                {isi.map((e) => (
+                  <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
+                    <div className="judul">{e.naskah?.judul ?? e.ide.judul}</div>
+                    <div className="kecil muted" style={{ marginBottom: 6 }}>
+                      {e.ide.format === 'short' ? '📱 Shorts · ' : ''}
+                      {e.pasangan ? '🔗 ' : ''}
+                      {e.asal ? '✂️ ' : ''}
+                      {namaSeri(e.ide.seri)} · usia {e.ide.usia}
+                    </div>
+                    <Badge status={e.status} />
+                  </Link>
+                ))}
+                {isi.length === 0 ? <div className="kecil muted">—</div> : null}
+              </div>
             </section>
           );
         })}

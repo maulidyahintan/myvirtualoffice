@@ -353,3 +353,11 @@ button[data-selesai] { background: var(--hijau-muda); color: var(--hijau); borde
 .form-lebar.enam .lebar-2 { grid-column: span 2; }
 .form-lebar.enam .lebar-3 { grid-column: span 3; }
 @media (max-width: 900px) { .form-lebar.enam { grid-template-columns: 1fr; } .form-lebar.enam .lebar-2, .form-lebar.enam .lebar-3 { grid-column: 1 / -1; } }
+
+/* Papan Kerja setinggi layar: tiap kolom bergulir sendiri */
+main:has(.halaman-papan) { padding-bottom: 20px; }
+.halaman-papan { height: calc(100dvh - 52px); grid-template-rows: auto auto minmax(0, 1fr); }
+.halaman-papan .board { min-height: 0; height: 100%; overflow-y: hidden; padding-bottom: 4px; }
+.halaman-papan .kolom { display: flex; flex-direction: column; min-height: 0; padding-bottom: 0; }
+.halaman-papan .kolom-isi { flex: 1; min-height: 0; overflow-y: auto; padding: 2px 2px 70px; margin: 0 -2px; scrollbar-width: thin; }
+@media (max-width: 900px) { .halaman-papan { height: calc(100dvh - 62px - 40px); } }
