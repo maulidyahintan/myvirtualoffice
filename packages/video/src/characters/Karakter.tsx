@@ -1,6 +1,6 @@
 import React from 'react';
 import { Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import type { Aksi, Benda, Ekspresi, Karakter as KarakterId } from '@kantor/shared/types';
+import type { Action, HeldItem, Expression, Character as KarakterId } from '@kantor/shared/types';
 import { faseMakan, kelopak, mulutBicara, type Mulut, type PropsRig } from './gerak';
 import { Ibu } from './Ibu';
 import { Mamas } from './Mamas';
@@ -11,7 +11,7 @@ export type CaraMasuk = 'kiri' | 'kanan' | 'muncul' | 'ada';
 
 interface Props {
   id: KarakterId;
-  ekspresi: Ekspresi;
+  expression: Expression;
   bicara: boolean;
   /** tinggi karakter dalam px */
   tinggi: number;
@@ -24,16 +24,16 @@ interface Props {
   masuk?: CaraMasuk;
   /** tanpa animasi masuk (untuk thumbnail / gambar diam) */
   diam?: boolean;
-  aksi?: Aksi;
-  benda?: Benda;
+  action?: Action;
+  heldItem?: HeldItem;
 }
 
-const SEED: Record<KarakterId, number> = { mamas: 1, ibu: 2, mochi: 3 };
+const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3 };
 export const DURASI_JALAN = 34;
 
-export const Karakter: React.FC<Props> = ({
+export const CharacterFigure: React.FC<Props> = ({
   id,
-  ekspresi,
+  expression,
   bicara,
   tinggi,
   offset = 0,
@@ -41,8 +41,8 @@ export const Karakter: React.FC<Props> = ({
   lihatX = 0,
   masuk = 'muncul',
   diam,
-  aksi,
-  benda,
+  action,
+  heldItem,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -85,12 +85,12 @@ export const Karakter: React.FC<Props> = ({
     if ((cara === 'kiri' || cara === 'kanan') && sejakTiba >= 0 && sejakTiba < 10) {
       regang -= Math.sin((sejakTiba / 10) * Math.PI) * 0.06;
     }
-    if (ekspresi === 'kaget' && sejakTiba >= 0 && sejakTiba < 18) {
+    if (expression === 'surprised' && sejakTiba >= 0 && sejakTiba < 18) {
       const t = sejakTiba / 18;
       naik += Math.sin(t * Math.PI) * 30;
       regang += Math.sin(t * Math.PI) * 0.08;
     }
-    if (id === 'mamas' && ekspresi === 'senang' && !bicara && !aksi) {
+    if (id === 'mamas' && expression === 'happy' && !bicara && !action) {
       const p = (f % 50) / 50;
       if (p < 0.4) {
         const t = p / 0.4;
@@ -105,17 +105,17 @@ export const Karakter: React.FC<Props> = ({
   const sx = (1 - napas * 0.006 + tekanBicara * 0.5 - regang * 0.6) * skalaMuncul;
 
   const rig: PropsRig = {
-    ekspresi,
+    expression,
     bicara,
     lambai,
     f,
     tutup: kelopak(f, seed),
-    mulut: bicara && id !== 'mochi' ? mulutBicara(f, seed) : aksi === 'makan' ? mulutMakan(f) : { buka: 0, bulat: 0 },
+    mulut: bicara && id !== 'mochi' ? mulutBicara(f, seed) : action === 'eating' ? mulutMakan(f) : { buka: 0, bulat: 0 },
     lihatX: lihat,
     seed,
     jalan,
-    aksi,
-    benda,
+    action,
+    heldItem,
   };
 
   return (
@@ -132,7 +132,7 @@ export const Karakter: React.FC<Props> = ({
       <ellipse cx={120} cy={392} rx={(78 + napas * 2) * (1 - naik / 120)} ry={10} fill="rgba(0,0,0,0.15)" />
       <g transform={`translate(${goyang} ${-naik}) translate(120 392) scale(${sx} ${sy}) translate(-120 -392)`}>
         {id === 'mamas' && <Mamas {...rig} />}
-        {id === 'ibu' && <Ibu {...rig} />}
+        {id === 'mother' && <Ibu {...rig} />}
         {id === 'mochi' && <Mochi {...rig} />}
       </g>
     </svg>
@@ -148,4 +148,4 @@ function mulutMakan(f: number): Mulut {
 }
 
 /** Tinggi relatif tiap karakter supaya proporsinya masuk akal. */
-export const SKALA: Record<KarakterId, number> = { mamas: 0.82, ibu: 1.22, mochi: 0.5 };
+export const SKALA: Record<KarakterId, number> = { mamas: 0.82, mother: 1.22, mochi: 0.5 };

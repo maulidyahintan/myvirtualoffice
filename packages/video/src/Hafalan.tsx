@@ -1,38 +1,38 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import type { AyatHafalan } from '@kantor/shared/types';
-import { Latar, LATAR_GELAP, LapisanSuasana } from './backgrounds/Latar';
+import type { MemorizationVerse } from '@kantor/shared/types';
+import { Backdrop, LATAR_GELAP, LapisanSuasana } from './backgrounds/Latar';
 import { gayaPanggung, gayaTransisi, jepit } from './Adegan';
-import { Karakter } from './characters/Karakter';
+import { CharacterFigure } from './characters/Karakter';
 import { fontArab, fontJudul, fontTeks, warna } from './theme';
 
 // Satu ayat dalam video hafalan. Ayat bisa dibaca berulang (ulang),
 // latar tetap sama selama pengulangan, hanya penanda bacaan yang berganti.
 
 /** Ukuran huruf Arab menyesuaikan panjang ayat supaya selalu muat. */
-function ukuranArab(teks: string, vertikal: boolean): number {
-  const n = teks.length;
+function ukuranArab(text: string, vertikal: boolean): number {
+  const n = text.length;
   const dasar = n < 40 ? 104 : n < 80 ? 88 : n < 140 ? 72 : n < 220 ? 60 : 50;
   return vertikal ? Math.round(dasar * 0.82) : dasar;
 }
 
-/** Medali nomor ayat (gaya hiasan akhir ayat di mushaf). */
-const NomorAyat: React.FC<{ nomor: number; ukuran: number }> = ({ nomor, ukuran }) => (
+/** Medali number ayat (gaya hiasan akhir ayat di mushaf). */
+const NomorAyat: React.FC<{ number: number; ukuran: number }> = ({ number, ukuran }) => (
   <svg width={ukuran} height={ukuran} viewBox="0 0 100 100">
     <path
       d="M50 4 L61 16 L77 12 L80 28 L95 36 L88 50 L95 64 L80 72 L77 88 L61 84 L50 96 L39 84 L23 88 L20 72 L5 64 L12 50 L5 36 L20 28 L23 12 L39 16 Z"
       fill={warna.emas}
     />
     <circle cx={50} cy={50} r={30} fill="#FFFBF0" stroke="#2F6F5E" strokeWidth={4} />
-    <text x={50} y={62} textAnchor="middle" fontFamily={fontJudul} fontWeight={700} fontSize={nomor > 99 ? 26 : 34} fill="#2F6F5E">
-      {nomor}
+    <text x={50} y={62} textAnchor="middle" fontFamily={fontJudul} fontWeight={700} fontSize={number > 99 ? 26 : 34} fill="#2F6F5E">
+      {number}
     </text>
   </svg>
 );
 
 export const AyatHafalanView: React.FC<{
-  ayat: AyatHafalan;
-  namaSurat: string;
+  verse: MemorizationVerse;
+  surahName: string;
   /** urutan ayat (bukan basmalah) & jumlah ayat yang dihafal */
   keAyat: number;
   totalAyat: number;
@@ -43,13 +43,13 @@ export const AyatHafalanView: React.FC<{
   indeks: number;
   /** progres keseluruhan video hafalan (0..1) di awal & akhir ayat ini */
   progres: [number, number];
-}> = ({ ayat, namaSurat, keAyat, totalAyat, mulaiBacaan, durasi, transisi, indeks, progres }) => {
+}> = ({ verse, surahName, keAyat, totalAyat, mulaiBacaan, durasi, transisi, indeks, progres }) => {
   const frame = useCurrentFrame();
   const { fps, width: fw, height: fh } = useVideoConfig();
   const vertikal = fh > fw;
   const isi = frame - transisi;
-  const gelap = LATAR_GELAP.includes(ayat.latar);
-  const basmalah = ayat.nomor === 0;
+  const gelap = LATAR_GELAP.includes(verse.background);
+  const basmalah = verse.number === 0;
 
   // bacaan ke berapa sekarang
   let bacaan = 0;
@@ -81,10 +81,10 @@ export const AyatHafalanView: React.FC<{
   return (
     <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...gayaTransisi(indeks, pTransisi) }}>
       <div style={gayaPanggung(kam, fw, fh)}>
-        <Latar id={ayat.latar} />
-        <LapisanSuasana suasana={ayat.suasana} />
+        <Backdrop id={verse.background} />
+        <LapisanSuasana moods={verse.moods} />
       </div>
-      {/* lapisan lembut supaya teks mudah dibaca */}
+      {/* lapisan lembut supaya text mudah dibaca */}
       <AbsoluteFill
         style={{
           background: gelap
@@ -106,7 +106,7 @@ export const AyatHafalanView: React.FC<{
           opacity: masuk,
         }}
       >
-        <div style={pil}>📖 Surat {namaSurat}</div>
+        <div style={pil}>📖 Surat {surahName}</div>
         <div style={pil}>{basmalah ? 'Basmalah' : `Ayat ${keAyat} / ${totalAyat}`}</div>
       </div>
 
@@ -127,7 +127,7 @@ export const AyatHafalanView: React.FC<{
         >
           {basmalah ? null : (
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 6 }}>
-              <NomorAyat nomor={ayat.nomor} ukuran={vertikal ? 84 : 76} />
+              <NomorAyat number={verse.number} ukuran={vertikal ? 84 : 76} />
             </div>
           )}
           <div
@@ -135,19 +135,19 @@ export const AyatHafalanView: React.FC<{
             style={{
               fontFamily: fontArab,
               fontWeight: 700,
-              fontSize: ukuranArab(ayat.arab, vertikal),
+              fontSize: ukuranArab(verse.arabic, vertikal),
               lineHeight: 1.75,
               color: warna.teksGelap,
               textShadow: `0 0 ${18 * (1 - denyut)}px rgba(232,176,74,0.9)`,
             }}
           >
-            {ayat.arab}
+            {verse.arabic}
           </div>
           <div style={{ fontFamily: fontTeks, fontStyle: 'italic', fontWeight: 700, fontSize: vertikal ? 38 : 36, color: '#5A5470', marginTop: 12 }}>
-            {ayat.latin}
+            {verse.latin}
           </div>
           <div style={{ fontFamily: fontTeks, fontWeight: 700, fontSize: vertikal ? 36 : 32, color: '#2F6F5E', marginTop: 12, lineHeight: 1.35 }}>
-            “{ayat.arti}”
+            “{verse.meaning}”
           </div>
 
           {/* penanda bacaan berulang */}
@@ -175,7 +175,7 @@ export const AyatHafalanView: React.FC<{
       {/* Mamas ikut menirukan bacaan di pojok (video biasa saja) */}
       {vertikal ? null : (
         <div style={{ position: 'absolute', left: 30, bottom: -20 }}>
-          <Karakter id="mamas" ekspresi="tenang" bicara={bacaan > 0} tinggi={300} masuk="ada" lihatX={1} />
+          <CharacterFigure id="mamas" expression="calm" bicara={bacaan > 0} tinggi={300} masuk="ada" lihatX={1} />
         </div>
       )}
 

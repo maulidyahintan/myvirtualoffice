@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Benda as BendaId, Properti as PropertiId } from '@kantor/shared/types';
+import type { HeldItem as BendaId, SceneProp as PropertiId } from '@kantor/shared/types';
 import { warna } from '../theme';
 
 // Gambar benda & properti. Setiap gambar berpusat di (0,0) dengan alas di y = 0 untuk properti
@@ -32,10 +32,10 @@ export const Quran: React.FC<{ buka?: boolean; lebar?: number }> = ({ buka, leba
     </g>
   );
 
-export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1 }) => (
+export const ItemArt: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1 }) => (
   <g transform={`scale(${skala})`}>
     {id === 'quran' && <Quran />}
-    {id === 'apel' && (
+    {id === 'apple' && (
       <g>
         <circle cx={-7} cy={2} r={15} fill="#E0504A" />
         <circle cx={7} cy={2} r={15} fill="#E0504A" />
@@ -44,20 +44,20 @@ export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1
         <path d="M3 -16 q10 -8 16 -2 q-8 6 -16 2 Z" fill="#5FA35A" />
       </g>
     )}
-    {id === 'pisang' && (
+    {id === 'banana' && (
       <g>
         <path d="M-22 -8 Q-10 22 22 10 Q26 4 20 4 Q-6 12 -14 -12 Z" fill="#F5D547" stroke="#C9A62A" strokeWidth={2} strokeLinejoin="round" />
         <path d="M-22 -8 l-4 -6" stroke="#6B4A2E" strokeWidth={4} strokeLinecap="round" />
       </g>
     )}
-    {id === 'kurma' && (
+    {id === 'date' && (
       <g>
         {[-10, 2, 12].map((x, i) => (
           <ellipse key={x} cx={x} cy={i === 1 ? -6 : 2} rx={7} ry={11} fill="#7A3E22" stroke="#5A2A14" strokeWidth={1.5} transform={`rotate(${(i - 1) * 25} ${x} 0)`} />
         ))}
       </g>
     )}
-    {id === 'kue' && (
+    {id === 'cake' && (
       <g>
         <path d="M-20 14 L-20 -4 L20 -4 L20 14 Z" fill="#F2C48D" stroke="#C9965A" strokeWidth={2} />
         <path d="M-22 -4 Q-14 -16 0 -14 Q14 -16 22 -4 Z" fill="#F7A6C1" />
@@ -65,14 +65,14 @@ export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1
         <path d="M-20 4 L20 4" stroke="#C9965A" strokeWidth={2} />
       </g>
     )}
-    {id === 'gelas-susu' && (
+    {id === 'milk-glass' && (
       <g>
         <path d="M-13 -20 L13 -20 L10 20 L-10 20 Z" fill="#E8F4FA" stroke="#9FC4D6" strokeWidth={2} />
         <path d="M-12 -8 L12 -8 L10 18 L-10 18 Z" fill="#FFFFFF" />
         <ellipse cx={0} cy={-8} rx={12} ry={3} fill="#F4F4F0" />
       </g>
     )}
-    {id === 'bola' && (
+    {id === 'ball' && (
       <g>
         <circle r={20} fill="#F28C6B" />
         <path d="M-20 0 Q0 -12 20 0" stroke="#FFFFFF" strokeWidth={5} fill="none" />
@@ -80,7 +80,7 @@ export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1
         <ellipse cx={-7} cy={-8} rx={6} ry={4} fill="#fff" opacity={0.4} />
       </g>
     )}
-    {id === 'mobil-mainan' && (
+    {id === 'toy-car' && (
       <g>
         <path d="M-26 6 L-26 -4 Q-24 -10 -14 -10 L-8 -20 L10 -20 L18 -10 Q26 -10 26 -2 L26 6 Z" fill="#4F8FD9" stroke="#3A6EAE" strokeWidth={2} strokeLinejoin="round" />
         <path d="M-6 -17 L8 -17 L13 -10 L-10 -10 Z" fill="#BFE3F5" />
@@ -92,7 +92,7 @@ export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1
         ))}
       </g>
     )}
-    {id === 'boneka' && (
+    {id === 'doll' && (
       <g>
         <circle cx={-12} cy={-20} r={7} fill="#B07E52" />
         <circle cx={12} cy={-20} r={7} fill="#B07E52" />
@@ -104,7 +104,7 @@ export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1
         <path d="M-8 2 q8 6 16 0" stroke="#E07A9A" strokeWidth={4} fill="none" strokeLinecap="round" />
       </g>
     )}
-    {id === 'buku' && (
+    {id === 'book' && (
       <g>
         <rect x={-18} y={-24} width={36} height={48} rx={4} fill="#E8B04A" stroke="#C48E2E" strokeWidth={2} />
         <rect x={14} y={-22} width={5} height={44} rx={2} fill="#FFFBF0" />
@@ -112,7 +112,7 @@ export const Benda: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala = 1
         <rect x={-10} y={8} width={20} height={4} rx={2} fill="#FFFFFF" opacity={0.8} />
       </g>
     )}
-    {id === 'bunga' && (
+    {id === 'flower' && (
       <g>
         <path d="M0 22 Q-2 6 0 -6" stroke="#4E9A5A" strokeWidth={4} fill="none" />
         <path d="M0 10 q-12 -4 -14 -12 q10 0 14 12" fill="#5FA35A" />
@@ -144,7 +144,7 @@ const Piring: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   </g>
 );
 
-const MAKANAN: PropertiId[] = ['apel', 'pisang', 'kurma', 'kue', 'gelas-susu', 'piring-buah', 'piring-nasi'];
+const MAKANAN: PropertiId[] = ['apple', 'banana', 'date', 'cake', 'milk-glass', 'fruit-plate', 'rice-plate'];
 export const diMeja = (p: PropertiId) => MAKANAN.includes(p);
 
 /** Isi meja makan (dipanggil sekali untuk semua properti makanan sebuah adegan). */
@@ -154,32 +154,32 @@ export const MejaMakanan: React.FC<{ isi: PropertiId[] }> = ({ isi }) => {
     <MejaKecil lebar={lebar}>
       {isi.map((p, i) => (
         <g key={p} transform={`translate(${(i - (isi.length - 1) / 2) * 96} 0)`}>
-          {p === 'piring-buah' ? (
+          {p === 'fruit-plate' ? (
             <Piring>
               <g transform="translate(-16 -4) scale(0.8)">
-                <Benda id="apel" />
+                <ItemArt id="apple" />
               </g>
               <g transform="translate(16 -2) scale(0.8)">
-                <Benda id="pisang" />
+                <ItemArt id="banana" />
               </g>
               <g transform="translate(0 -14) scale(0.6)">
-                <Benda id="kurma" />
+                <ItemArt id="date" />
               </g>
             </Piring>
-          ) : p === 'piring-nasi' ? (
+          ) : p === 'rice-plate' ? (
             <Piring>
               <ellipse cx={-6} cy={-4} rx={22} ry={13} fill="#FFFFFF" stroke="#E6E2D8" strokeWidth={2} />
               <ellipse cx={18} cy={-2} rx={12} ry={7} fill="#E8B04A" />
               <circle cx={16} cy={-6} r={6} fill="#F2E9A0" />
               <path d="M-26 2 q6 -6 14 -2" stroke="#5FA35A" strokeWidth={5} fill="none" strokeLinecap="round" />
             </Piring>
-          ) : p === 'kue' || p === 'kurma' ? (
+          ) : p === 'cake' || p === 'date' ? (
             <Piring>
-              <Benda id={p} />
+              <ItemArt id={p} />
             </Piring>
           ) : (
             <g transform="translate(0 -22)">
-              <Benda id={p as BendaId} />
+              <ItemArt id={p as BendaId} />
             </g>
           )}
         </g>
@@ -191,17 +191,17 @@ export const MejaMakanan: React.FC<{ isi: PropertiId[] }> = ({ isi }) => {
 /** Properti lantai (bukan makanan). Alas di y = 0, ukuran di koordinat panggung 1920x1080. */
 export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id, frame }) => {
   switch (id) {
-    case 'keranjang-buah':
+    case 'fruit-basket':
       return (
         <g transform="scale(1.4)">
           <g transform="translate(-14 -42) scale(0.8)">
-            <Benda id="apel" />
+            <ItemArt id="apple" />
           </g>
           <g transform="translate(14 -40) scale(0.8)">
-            <Benda id="pisang" />
+            <ItemArt id="banana" />
           </g>
           <g transform="translate(0 -50) scale(0.8)">
-            <Benda id="apel" />
+            <ItemArt id="apple" />
           </g>
           <path d="M-42 -36 L42 -36 L32 0 L-32 0 Z" fill="#C8925E" stroke="#9A6B47" strokeWidth={3} />
           {[-24, -8, 8, 24].map((x) => (
@@ -210,7 +210,7 @@ export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id
           <path d="M-36 -36 Q0 -86 36 -36" stroke="#9A6B47" strokeWidth={5} fill="none" />
         </g>
       );
-    case 'balok-mainan':
+    case 'building-blocks':
       return (
         <g>
           {[
@@ -228,21 +228,21 @@ export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id
           ))}
         </g>
       );
-    case 'kotak-mainan':
+    case 'toy-box':
       return (
         <g>
           <g transform="translate(-30 -96) rotate(-15)">
-            <Benda id="boneka" skala={1.2} />
+            <ItemArt id="doll" skala={1.2} />
           </g>
           <g transform="translate(34 -86) rotate(10)">
-            <Benda id="bola" skala={1.1} />
+            <ItemArt id="ball" skala={1.1} />
           </g>
           <rect x={-70} y={-70} width={140} height={70} rx={10} fill="#F28C6B" stroke="#C86A4C" strokeWidth={3} />
           <rect x={-70} y={-70} width={140} height={14} rx={6} fill="#FFD36E" />
           <circle cx={0} cy={-30} r={14} fill="#FFFFFF" opacity={0.5} />
         </g>
       );
-    case 'pohon-pot': {
+    case 'potted-tree': {
       const ayun = Math.sin(frame / 50) * 2;
       return (
         <g>
@@ -258,7 +258,7 @@ export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id
         </g>
       );
     }
-    case 'sajadah':
+    case 'prayer-mat':
       // dilihat dari depan-atas: trapesium di lantai
       return (
         <g>
@@ -271,7 +271,7 @@ export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id
           ))}
         </g>
       );
-    case 'rehal-quran':
+    case 'quran-stand':
       return (
         <g transform="scale(1.6)">
           <path d="M-40 0 L0 -40 L40 0" stroke="#8A5E3C" strokeWidth={8} fill="none" strokeLinejoin="round" />
@@ -281,7 +281,7 @@ export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id
           </g>
         </g>
       );
-    case 'bantal':
+    case 'pillow':
       return (
         <g>
           <path d="M-80 0 Q-90 -50 -60 -60 Q0 -70 60 -60 Q90 -50 80 0 Q0 10 -80 0 Z" fill="#7FB2D9" stroke="#5E93BC" strokeWidth={3} />
@@ -292,7 +292,7 @@ export const PropertiLantai: React.FC<{ id: PropertiId; frame: number }> = ({ id
       // benda kecil langsung di lantai, sedikit diperbesar
       return (
         <g transform="translate(0 -30) scale(1.5)">
-          <Benda id={id as BendaId} />
+          <ItemArt id={id as BendaId} />
         </g>
       );
   }

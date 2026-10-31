@@ -2,20 +2,20 @@ import React from 'react';
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Easing } from 'remotion';
 import { ThreeCanvas } from '@remotion/three';
 import { useThree } from '@react-three/fiber';
-import type { Ekspresi } from '@kantor/shared/types';
-import { Latar } from './backgrounds/Latar';
+import type { Expression } from '@kantor/shared/types';
+import { Backdrop } from './backgrounds/Latar';
 import { Mamas3D } from './characters3d/Mamas3D';
 import { fontJudul, warna } from './theme';
 
 // PROTOTIPE: Mamas 3D di depan latar 2D yang sudah ada, untuk menilai arah gaya 3D.
 // Urutan: berputar (turntable) sambil melambai → bicara sambil kamera mengorbit → kaget → berpikir → senang.
 
-const BABAK: { sampai: number; ekspresi: Ekspresi; bicara: boolean; lambai: boolean; label: string }[] = [
-  { sampai: 90, ekspresi: 'senang', bicara: false, lambai: true, label: 'Melambai (berputar 360°)' },
-  { sampai: 210, ekspresi: 'senang', bicara: true, lambai: false, label: 'Bicara, kamera mengorbit' },
-  { sampai: 260, ekspresi: 'kaget', bicara: false, lambai: false, label: 'Kaget' },
-  { sampai: 320, ekspresi: 'berpikir', bicara: false, lambai: false, label: 'Berpikir' },
-  { sampai: 390, ekspresi: 'senang', bicara: false, lambai: false, label: 'Senang (melompat)' },
+const BABAK: { sampai: number; expression: Expression; bicara: boolean; lambai: boolean; label: string }[] = [
+  { sampai: 90, expression: 'happy', bicara: false, lambai: true, label: 'Melambai (berputar 360°)' },
+  { sampai: 210, expression: 'happy', bicara: true, lambai: false, label: 'Bicara, kamera mengorbit' },
+  { sampai: 260, expression: 'surprised', bicara: false, lambai: false, label: 'Kaget' },
+  { sampai: 320, expression: 'thinking', bicara: false, lambai: false, label: 'Berpikir' },
+  { sampai: 390, expression: 'happy', bicara: false, lambai: false, label: 'Senang (melompat)' },
 ];
 export const DURASI_PROTOTIPE_3D = BABAK.at(-1)!.sampai;
 
@@ -36,7 +36,7 @@ export const Prototipe3D: React.FC = () => {
   return (
     <AbsoluteFill>
       <AbsoluteFill style={{ filter: 'blur(3px)', transform: 'scale(1.05)' }}>
-        <Latar id="taman" />
+        <Backdrop id="garden" />
       </AbsoluteFill>
       <ThreeCanvas width={width} height={height} camera={{ fov: 30, position: [0, tinggiKam, jarak] }} gl={{ antialias: true }} flat>
         <Kamera posisi={[0, tinggiKam, jarak]} lihatY={0.95} />
@@ -44,7 +44,7 @@ export const Prototipe3D: React.FC = () => {
         <hemisphereLight args={['#FFF6E0', '#7BBE6A', 0.6]} />
         <directionalLight position={[-3, 5, 4]} intensity={1.6} />
         <group position={[0, -0.05, 0]} rotation={[0, putar, 0]}>
-          <Mamas3D frame={frame} ekspresi={babak.ekspresi} bicara={babak.bicara} lambai={babak.lambai} />
+          <Mamas3D frame={frame} expression={babak.expression} bicara={babak.bicara} lambai={babak.lambai} />
         </group>
       </ThreeCanvas>
       <div

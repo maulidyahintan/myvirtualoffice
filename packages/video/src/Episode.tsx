@@ -11,24 +11,24 @@ import {
   type CalculateMetadataFunction,
 } from 'remotion';
 import { getAudioDurationInSeconds } from '@remotion/media-utils';
-import type { EpisodeVideoProps, HafalanVideo } from '@kantor/shared/types';
-import { FPS, SPEK_FORMAT } from '@kantor/shared/constants';
-import { frameIntroOutro, hitungFrameAdegan, hitungFrameHafalan, segmenHafalan, totalFrame } from '@kantor/shared/timing';
-import { Adegan, gayaPanggung, jepit } from './Adegan';
+import type { EpisodeVideoProps, MemorizationVideo } from '@kantor/shared/types';
+import { FPS, FORMAT_SPEC } from '@kantor/shared/constants';
+import { introOutroFrames, sceneFrames, memorizationFrames, memorizationSegments, totalFrames } from '@kantor/shared/timing';
+import { SceneView, gayaPanggung, jepit } from './Adegan';
 import { AyatHafalanView } from './Hafalan';
-import { Latar } from './backgrounds/Latar';
-import { Karakter } from './characters/Karakter';
+import { Backdrop } from './backgrounds/Latar';
+import { CharacterFigure } from './characters/Karakter';
 import { EfekEkspresi } from './Efek';
 import { Logo } from './brand/Logo';
 import { fontJudul, fontTeks, warna } from './theme';
 
 /** Judul yang muncul kata per kata dengan pantulan. */
-const JudulMemantul: React.FC<{ teks: string; mulai: number }> = ({ teks, mulai }) => {
+const JudulMemantul: React.FC<{ text: string; mulai: number }> = ({ text, mulai }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 26px', maxWidth: 1500 }}>
-      {teks.split(' ').map((k, i) => {
+      {text.split(' ').map((k, i) => {
         const s = spring({ frame: frame - mulai - i * 4, fps, config: { damping: 9, stiffness: 160 } });
         return (
           <span
@@ -55,34 +55,34 @@ const Panggung: React.FC<{ children: React.ReactNode; zoom?: number }> = ({ chil
 
 /** Posisi karakter di intro/outro: [kiri, tinggi] per karakter, beda untuk 16:9 dan 9:16. */
 const SUSUNAN = {
-  biasa: { ibu: [560, 640], mamas: [980, 440], mochi: [1280, 260] },
-  short: { ibu: [690, 520], mamas: [960, 360], mochi: [1120, 200] },
+  standard: { mother: [560, 640], mamas: [980, 440], mochi: [1280, 260] },
+  short: { mother: [690, 520], mamas: [960, 360], mochi: [1120, 200] },
 } as const;
 
-const Intro: React.FC<{ namaSeri: string; judul: string; durasi: number }> = ({ namaSeri, judul, durasi }) => {
+const Intro: React.FC<{ seriesName: string; title: string; durasi: number }> = ({ seriesName, title, durasi }) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const vertikal = height > width;
   const a = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: 'clamp' });
   const zoom = interpolate(frame, [0, durasi], [1.08, 1]);
-  const susun = SUSUNAN[vertikal ? 'short' : 'biasa'];
+  const susun = SUSUNAN[vertikal ? 'short' : 'standard'];
   return (
     <AbsoluteFill>
       <Panggung zoom={zoom}>
-        <Latar id="taman" />
-        <div style={{ position: 'absolute', left: susun.ibu[0], top: 980 - susun.ibu[1] }}>
-          <Karakter id="ibu" ekspresi="senang" bicara={false} tinggi={susun.ibu[1]} offset={20} lihatX={1} masuk={vertikal ? 'muncul' : 'kiri'} />
+        <Backdrop id="garden" />
+        <div style={{ position: 'absolute', left: susun.mother[0], top: 980 - susun.mother[1] }}>
+          <CharacterFigure id="mother" expression="happy" bicara={false} tinggi={susun.mother[1]} offset={20} lihatX={1} masuk={vertikal ? 'muncul' : 'kiri'} />
         </div>
         <div style={{ position: 'absolute', left: susun.mamas[0], top: 980 - susun.mamas[1] }}>
-          <Karakter id="mamas" ekspresi="senang" bicara={false} tinggi={susun.mamas[1]} lambai masuk="muncul" />
+          <CharacterFigure id="mamas" expression="happy" bicara={false} tinggi={susun.mamas[1]} lambai masuk="muncul" />
         </div>
         <div style={{ position: 'absolute', left: susun.mochi[0], top: 980 - susun.mochi[1] }}>
-          <Karakter id="mochi" ekspresi="senang" bicara={false} tinggi={susun.mochi[1]} offset={40} lihatX={-1} masuk={vertikal ? 'muncul' : 'kanan'} />
+          <CharacterFigure id="mochi" expression="happy" bicara={false} tinggi={susun.mochi[1]} offset={40} lihatX={-1} masuk={vertikal ? 'muncul' : 'kanan'} />
         </div>
       </Panggung>
       <AbsoluteFill style={{ alignItems: 'center', paddingTop: vertikal ? 170 : 50, paddingLeft: 40, paddingRight: 40 }}>
         <Logo tinggi={vertikal ? 64 : 70} animasi />
-        {namaSeri ? (
+        {seriesName ? (
           <div
             style={{
               marginTop: 10,
@@ -96,7 +96,7 @@ const Intro: React.FC<{ namaSeri: string; judul: string; durasi: number }> = ({ 
               borderRadius: 999,
             }}
           >
-            {namaSeri}
+            {seriesName}
           </div>
         ) : null}
         <div
@@ -112,7 +112,7 @@ const Intro: React.FC<{ namaSeri: string; judul: string; durasi: number }> = ({ 
             paintOrder: 'stroke',
           }}
         >
-          <JudulMemantul teks={judul} mulai={vertikal ? 2 : 6} />
+          <JudulMemantul text={title} mulai={vertikal ? 2 : 6} />
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
@@ -125,21 +125,21 @@ const Outro: React.FC = () => {
   const vertikal = height > width;
   const a = interpolate(frame, [0, 15], [0, 1], { extrapolateRight: 'clamp' });
   const s = spring({ frame: frame - 8, fps, config: { damping: 8, stiffness: 120 } });
-  const susun = SUSUNAN[vertikal ? 'short' : 'biasa'];
+  const susun = SUSUNAN[vertikal ? 'short' : 'standard'];
   return (
     <AbsoluteFill style={{ opacity: a }}>
       <Panggung>
-        <Latar id="langit-malam" />
-        <div style={{ position: 'absolute', left: susun.ibu[0], top: 980 - susun.ibu[1] }}>
-          <Karakter id="ibu" ekspresi="senang" bicara={false} tinggi={susun.ibu[1]} offset={15} lambai masuk="ada" />
+        <Backdrop id="night-sky" />
+        <div style={{ position: 'absolute', left: susun.mother[0], top: 980 - susun.mother[1] }}>
+          <CharacterFigure id="mother" expression="happy" bicara={false} tinggi={susun.mother[1]} offset={15} lambai masuk="ada" />
         </div>
         <div style={{ position: 'absolute', left: susun.mamas[0], top: 980 - susun.mamas[1] }}>
-          <Karakter id="mamas" ekspresi="senang" bicara={false} tinggi={susun.mamas[1]} lambai masuk="ada" />
+          <CharacterFigure id="mamas" expression="happy" bicara={false} tinggi={susun.mamas[1]} lambai masuk="ada" />
         </div>
         <div style={{ position: 'absolute', left: susun.mochi[0], top: 980 - susun.mochi[1] }}>
-          <Karakter id="mochi" ekspresi="senang" bicara={false} tinggi={susun.mochi[1]} offset={40} masuk="ada" />
+          <CharacterFigure id="mochi" expression="happy" bicara={false} tinggi={susun.mochi[1]} offset={40} masuk="ada" />
         </div>
-        <EfekEkspresi ekspresi="senang" x={vertikal ? 1000 : 1080} y={520} />
+        <EfekEkspresi expression="happy" x={vertikal ? 1000 : 1080} y={520} />
       </Panggung>
       <AbsoluteFill style={{ alignItems: 'center', paddingTop: vertikal ? 260 : 130 }}>
         <div style={{ fontFamily: fontJudul, fontWeight: 700, fontSize: 96, color: '#FFF3C4', transform: `scale(${s}) rotate(${Math.sin(frame / 14) * 2}deg)` }}>
@@ -174,54 +174,54 @@ const Musik: React.FC<{ src: string; volume: number; durasi: number }> = ({ src,
   />
 );
 
-/** Susun ayat hafalan: tiap ayat jadi satu sequence berisi semua bacaan ulangnya. */
-function kelompokHafalan(h: HafalanVideo, frames: number[]) {
-  const segmen = segmenHafalan(h.ayat, h.ulang);
+/** Susun ayat memorization: tiap ayat jadi satu sequence berisi semua bacaan ulangnya. */
+function kelompokHafalan(h: MemorizationVideo, frames: number[]) {
+  const segmen = memorizationSegments(h.verses, h.repetitions);
   const total = frames.reduce((a, b) => a + b, 0);
-  const grup = h.ayat.map(() => ({ durasi: 0, mulaiBacaan: [] as number[] }));
+  const grup = h.verses.map(() => ({ durasi: 0, mulaiBacaan: [] as number[] }));
   segmen.forEach((s, i) => {
-    grup[s.ayat].mulaiBacaan.push(grup[s.ayat].durasi);
-    grup[s.ayat].durasi += frames[i] ?? FPS * 3;
+    grup[s.verse].mulaiBacaan.push(grup[s.verse].durasi);
+    grup[s.verse].durasi += frames[i] ?? FPS * 3;
   });
   return { grup, total };
 }
 
 export const Episode: React.FC<EpisodeVideoProps> = ({
-  namaSeri,
-  judul,
-  adegan,
-  fileAudio,
-  frameAdegan,
-  format = 'biasa',
-  hafalan,
-  musik,
-  frameIntro,
-  frameOutro,
+  seriesName,
+  title,
+  scenes,
+  audioFile,
+  sceneFrames: sceneFrameCounts,
+  format = 'standard',
+  memorization,
+  music,
+  introFrame,
+  outroFrame,
 }) => {
-  const frames = frameAdegan ?? (hafalan ? hitungFrameHafalan(hafalan.ayat, hafalan.ulang) : hitungFrameAdegan(adegan));
-  const bawaan = frameIntroOutro(format);
-  const intro = frameIntro ?? bawaan.intro;
-  const outro = (frameOutro ?? bawaan.outro) + TRANSISI;
+  const frames = sceneFrameCounts ?? (memorization ? memorizationFrames(memorization.verses, memorization.repetitions) : sceneFrames(scenes));
+  const bawaan = introOutroFrames(format);
+  const intro = introFrame ?? bawaan.intro;
+  const outro = (outroFrame ?? bawaan.outro) + TRANSISI;
   let mulai = intro;
 
   let isi: React.ReactNode;
-  if (hafalan) {
-    const { grup, total } = kelompokHafalan(hafalan, frames);
-    const totalAyat = hafalan.ayat.filter((a) => a.nomor > 0).length;
+  if (memorization) {
+    const { grup, total } = kelompokHafalan(memorization, frames);
+    const totalAyat = memorization.verses.filter((a) => a.number > 0).length;
     let lewat = 0;
     let keAyat = 0;
-    isi = hafalan.ayat.map((a, i) => {
+    isi = memorization.verses.map((a, i) => {
       const dari = mulai;
       const g = grup[i];
       mulai += g.durasi;
-      if (a.nomor > 0) keAyat += 1;
+      if (a.number > 0) keAyat += 1;
       const progres: [number, number] = [lewat / total, (lewat + g.durasi) / total];
       lewat += g.durasi;
       return (
-        <Sequence key={i} from={dari - TRANSISI} durationInFrames={g.durasi + TRANSISI} name={a.nomor ? `Ayat ${a.nomor}` : 'Basmalah'}>
+        <Sequence key={i} from={dari - TRANSISI} durationInFrames={g.durasi + TRANSISI} name={a.number ? `Ayat ${a.number}` : 'Basmalah'}>
           <AyatHafalanView
-            ayat={a}
-            namaSurat={hafalan.namaSurat}
+            verse={a}
+            surahName={memorization.surahName}
             keAyat={keAyat}
             totalAyat={totalAyat}
             mulaiBacaan={g.mulaiBacaan}
@@ -234,19 +234,19 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
       );
     });
   } else {
-    isi = adegan.map((a, i) => {
+    isi = scenes.map((a, i) => {
       const dari = mulai;
       mulai += frames[i];
       return (
         <Sequence key={i} from={dari - TRANSISI} durationInFrames={frames[i] + TRANSISI} name={`Adegan ${i + 1}`}>
-          <Adegan
+          <SceneView
             data={a}
             durasi={frames[i] + TRANSISI}
             denganSubtitle
             indeks={i}
-            sebelumnya={i > 0 && adegan[i - 1].jenis !== 'doa' ? adegan[i - 1].karakter : []}
+            sebelumnya={i > 0 && scenes[i - 1].type !== 'prayer' ? scenes[i - 1].characters : []}
             transisi={TRANSISI}
-            latarBaru={i === 0 || adegan[i - 1].latar !== a.latar}
+            latarBaru={i === 0 || scenes[i - 1].background !== a.background}
           />
         </Sequence>
       );
@@ -256,7 +256,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: '#000' }}>
       <Sequence durationInFrames={intro} name="Intro">
-        <Intro namaSeri={namaSeri} judul={judul} durasi={intro} />
+        <Intro seriesName={seriesName} title={title} durasi={intro} />
       </Sequence>
 
       {isi}
@@ -265,20 +265,20 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
         <Outro />
       </Sequence>
 
-      {musik?.pembuka ? (
+      {music?.intro ? (
         <Sequence durationInFrames={intro} name="Musik pembuka">
-          <Musik src={musik.pembuka} volume={musik.volume} durasi={intro} />
+          <Musik src={music.intro} volume={music.volume} durasi={intro} />
         </Sequence>
       ) : null}
-      {musik?.penutup ? (
+      {music?.outro ? (
         <Sequence from={mulai - TRANSISI} durationInFrames={outro} name="Musik penutup">
-          <Musik src={musik.penutup} volume={musik.volume} durasi={outro} />
+          <Musik src={music.outro} volume={music.volume} durasi={outro} />
         </Sequence>
       ) : null}
 
-      {fileAudio ? (
+      {audioFile ? (
         <Sequence from={intro} name="Rekaman suara">
-          <Html5Audio src={staticFile(fileAudio)} />
+          <Html5Audio src={staticFile(audioFile)} />
         </Sequence>
       ) : null}
     </AbsoluteFill>
@@ -286,18 +286,18 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
 };
 
 export const hitungMetadataEpisode: CalculateMetadataFunction<EpisodeVideoProps> = async ({ props }) => {
-  const durasiAudio = props.fileAudio ? await getAudioDurationInSeconds(staticFile(props.fileAudio)) : undefined;
-  const frameAdegan = props.hafalan
-    ? hitungFrameHafalan(props.hafalan.ayat, props.hafalan.ulang, durasiAudio, props.hafalan.mulaiSegmen)
-    : hitungFrameAdegan(props.adegan, durasiAudio, props.mulaiAdegan);
-  const format = props.format ?? 'biasa';
+  const durasiAudio = props.audioFile ? await getAudioDurationInSeconds(staticFile(props.audioFile)) : undefined;
+  const sceneFrameCounts = props.memorization
+    ? memorizationFrames(props.memorization.verses, props.memorization.repetitions, durasiAudio, props.memorization.segmentStarts)
+    : sceneFrames(props.scenes, durasiAudio, props.sceneStarts);
+  const format = props.format ?? 'standard';
   const detik = async (m?: string) => (m ? getAudioDurationInSeconds(staticFile(m)) : undefined);
-  const { intro: frameIntro, outro: frameOutro } = frameIntroOutro(format, await detik(props.musik?.pembuka), await detik(props.musik?.penutup));
+  const { intro: introFrame, outro: outroFrame } = introOutroFrames(format, await detik(props.music?.intro), await detik(props.music?.outro));
   return {
-    durationInFrames: totalFrame(frameAdegan, format, frameIntro, frameOutro),
+    durationInFrames: totalFrames(sceneFrameCounts, format, introFrame, outroFrame),
     // ukuran video mengikuti format: 1920x1080 (biasa) atau 1080x1920 (Shorts)
-    width: SPEK_FORMAT[format].lebar,
-    height: SPEK_FORMAT[format].tinggi,
-    props: { ...props, frameAdegan, frameIntro, frameOutro },
+    width: FORMAT_SPEC[format].width,
+    height: FORMAT_SPEC[format].height,
+    props: { ...props, sceneFrames: sceneFrameCounts, introFrame, outroFrame },
   };
 };

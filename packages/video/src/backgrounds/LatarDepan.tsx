@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
-import type { Latar as LatarId } from '@kantor/shared/types';
+import type { Background as LatarId } from '@kantor/shared/types';
 
 // Lapisan paling depan (di depan karakter): perabot & tanaman di tepi bawah layar.
 // Dirender kabur dan bergeser lebih cepat dari karakter, jadi terasa ada ruang 3D.
@@ -77,7 +77,7 @@ const Lentera: React.FC<{ x: number; y: number }> = ({ x, y }) => {
 
 const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
   switch (id) {
-    case 'kamar-malam':
+    case 'bedroom-night':
       return (
         <>
           {/* bantal & boneka di pojok kiri, tumpukan buku di kanan */}
@@ -88,7 +88,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <rect x={1580} y={960} width={380} height={140} rx={16} fill="#5A4A6E" />
         </>
       );
-    case 'ruang-tamu':
+    case 'living-room':
       return (
         <>
           <DaunBesar x={110} arah={1} warna="#4E9A5A" />
@@ -98,9 +98,9 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <rect x={1590} y={900} width={120} height={200} rx={40} fill="#D08F64" />
         </>
       );
-    case 'taman':
-    case 'halaman-rumah':
-    case 'taman-bermain':
+    case 'garden':
+    case 'yard':
+    case 'playground':
       return (
         <>
           <Semak x={150} y={1000} r={150} warna="#4F9450" terang="#7CC46E" />
@@ -109,7 +109,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <Rumput x={1440} lebar={500} tinggi={190} warna="#3F8743" seed={3} />
         </>
       );
-    case 'masjid':
+    case 'mosque':
       return (
         <>
           <Lentera x={1720} y={140} />
@@ -118,7 +118,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <Semak x={1780} y={1030} r={110} warna="#4F9450" terang="#7CC46E" />
         </>
       );
-    case 'dapur':
+    case 'kitchen':
       return (
         <>
           {/* ujung meja dengan mangkuk buah */}
@@ -132,8 +132,8 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <rect x={1640} y={760} width={260} height={50} rx={14} fill="#B07E52" />
         </>
       );
-    case 'langit-malam':
-    case 'fajar':
+    case 'night-sky':
+    case 'dawn':
       return (
         <>
           <ellipse cx={180} cy={1100} rx={420} ry={180} fill="#1E2446" />
@@ -142,7 +142,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <Rumput x={1500} lebar={440} tinggi={160} warna="#252B52" seed={2} />
         </>
       );
-    case 'gurun':
+    case 'desert':
       return (
         <>
           <Batu x={180} y={1090} s={1.6} warna="#C99A62" />
@@ -155,7 +155,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           </g>
         </>
       );
-    case 'laut':
+    case 'ocean':
       return (
         <>
           <Batu x={160} y={1090} s={1.5} warna="#7D8A99" />
@@ -163,7 +163,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <Rumput x={1560} lebar={360} tinggi={150} warna="#9BB86A" />
         </>
       );
-    case 'gunung':
+    case 'mountain':
       return (
         <>
           <Pinus x={120} tinggi={620} warna="#2F6B4A" />
@@ -172,7 +172,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <Rumput x={1520} lebar={420} tinggi={150} warna="#3B7A50" seed={4} />
         </>
       );
-    case 'sekolah':
+    case 'school':
       return (
         <>
           {/* sudut meja dengan buku & pensil, tas di kanan */}
@@ -183,7 +183,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <rect x={1680} y={860} width={140} height={90} rx={20} fill="#C85454" />
         </>
       );
-    case 'perpustakaan':
+    case 'library':
       return (
         <>
           {/* tepi rak buku */}
@@ -199,7 +199,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <DaunBesar x={1800} arah={-1} warna="#4E9A5A" />
         </>
       );
-    case 'tempat-wudhu':
+    case 'ablution':
       return (
         <>
           {/* keran & pipa di kiri, tepi bak di bawah */}
@@ -210,7 +210,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <Semak x={1830} y={1040} r={100} warna="#4F9450" terang="#7CC46E" />
         </>
       );
-    case 'dalam-masjid':
+    case 'inside-mosque':
       return (
         <>
           {/* tiang masjid & rak Al-Qur'an */}
@@ -222,7 +222,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           ))}
         </>
       );
-    case 'pasar':
+    case 'market':
       return (
         <>
           {/* tumpukan keranjang & karung di depan */}
@@ -234,7 +234,7 @@ const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
           <path d="M1680 870 Q1760 840 1860 870" stroke="#B89E72" strokeWidth={8} fill="none" />
         </>
       );
-    case 'toko':
+    case 'store':
       return (
         <>
           {/* troli belanja & ujung rak */}

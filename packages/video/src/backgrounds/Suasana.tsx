@@ -2,7 +2,7 @@ import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import { acak } from '../characters/gerak';
 
-// Gerak suasana di latar supaya adegan tidak terasa diam.
+// Gerak moods di latar supaya adegan tidak terasa diam.
 // Semua pelan & lembut, tidak ada kedip cepat.
 
 const W = 1920;
@@ -208,7 +208,7 @@ export const Hujan: React.FC<{ jumlah?: number }> = ({ jumlah = 70 }) => {
   );
 };
 
-/** Bintang berkelip lembut di seluruh langit (dipakai sebagai lapisan suasana). */
+/** Bintang berkelip lembut di seluruh langit (dipakai sebagai lapisan moods). */
 export const BintangKelip: React.FC<{ jumlah?: number }> = ({ jumlah = 40 }) => {
   const frame = useCurrentFrame();
   return (

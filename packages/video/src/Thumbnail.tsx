@@ -1,18 +1,18 @@
 import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import type { ThumbnailProps } from '@kantor/shared/types';
-import { Latar, LATAR_GELAP } from './backgrounds/Latar';
-import { Karakter, SKALA } from './characters/Karakter';
+import { Backdrop, LATAR_GELAP } from './backgrounds/Latar';
+import { CharacterFigure, SKALA } from './characters/Karakter';
 import { fontJudul } from './theme';
 
-// 1280x720. Teks besar di kiri, karakter di kanan. Jujur: tidak ada efek clickbait.
-export const Thumbnail: React.FC<ThumbnailProps> = ({ teks, subjudul, latar, karakter, ekspresi }) => {
-  const gelap = LATAR_GELAP.includes(latar);
-  const tampil = karakter.filter((id) => id in SKALA).slice(0, 2);
+// 1280x720. Teks besar di kiri, characters di kanan. Jujur: tidak ada efek clickbait.
+export const Thumbnail: React.FC<ThumbnailProps> = ({ text, subtitle, background, characters, expression }) => {
+  const gelap = LATAR_GELAP.includes(background);
+  const tampil = characters.filter((id) => id in SKALA).slice(0, 2);
   return (
     <AbsoluteFill>
       <AbsoluteFill style={{ transform: 'scale(1.15)', transformOrigin: '70% 60%' }}>
-        <Latar id={latar} />
+        <Backdrop id={background} />
       </AbsoluteFill>
       <AbsoluteFill
         style={{
@@ -39,17 +39,17 @@ export const Thumbnail: React.FC<ThumbnailProps> = ({ teks, subjudul, latar, kar
         }}
       >
         <div>
-          {subjudul ? (
-            <div style={{ fontSize: 46, color: gelap ? '#FFE9A0' : '#2F6F5E', marginBottom: 10 }}>{subjudul}</div>
+          {subtitle ? (
+            <div style={{ fontSize: 46, color: gelap ? '#FFE9A0' : '#2F6F5E', marginBottom: 10 }}>{subtitle}</div>
           ) : null}
-          {teks}
+          {text}
         </div>
       </div>
       {tampil.map((id, i) => {
         const tinggi = 520 * SKALA[id];
         return (
           <div key={id} style={{ position: 'absolute', left: 700 + i * 260, top: 700 - tinggi }}>
-            <Karakter id={id} ekspresi={ekspresi} bicara={false} tinggi={tinggi} offset={i * 30} diam />
+            <CharacterFigure id={id} expression={expression} bicara={false} tinggi={tinggi} offset={i * 30} diam />
           </div>
         );
       })}

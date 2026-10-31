@@ -78,12 +78,12 @@ const GulunganBenang: React.FC<{ f: number }> = ({ f }) => {
 };
 
 export const Mochi: React.FC<PropsRig> = (r) => {
-  const { f, ekspresi, tutup } = r;
-  if (r.aksi === 'tidur') return <MochiTidur f={f} />;
-  const main = r.aksi === 'bermain';
+  const { f, expression, tutup } = r;
+  if (r.action === 'sleeping') return <MochiTidur f={f} />;
+  const main = r.action === 'playing';
   const g = warna.garis;
-  const kaget = ekspresi === 'kaget';
-  const senang = ekspresi === 'senang';
+  const kaget = expression === 'surprised';
+  const senang = expression === 'happy';
   const napas = 1 + Math.sin(f / 18) * 0.02;
   const mengembang = kaget ? 1.06 : 1;
   // telinga sesekali berkedut
@@ -91,7 +91,7 @@ export const Mochi: React.FC<PropsRig> = (r) => {
     const t = f % 90;
     return acak(Math.floor(f / 90) + s) > 0.5 && t < 8 ? Math.sin((t / 8) * Math.PI) * 14 : 0;
   };
-  const miring = noiseS(f / 40, r.seed) * 6 + (ekspresi === 'berpikir' ? 12 : 0);
+  const miring = noiseS(f / 40, r.seed) * 6 + (expression === 'thinking' ? 12 : 0);
   // sesekali melompat kecil kalau senang
   const lompat = senang ? -Math.max(0, Math.sin(f / 12)) * 10 : 0;
   const mataBuka = tutup < 0.9;

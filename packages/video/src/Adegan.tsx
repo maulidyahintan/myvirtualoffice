@@ -1,10 +1,10 @@
 import React from 'react';
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import type { Adegan as AdeganData, Karakter as KarakterId } from '@kantor/shared/types';
-import { Latar, LATAR_GELAP } from './backgrounds/Latar';
+import type { Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
+import { Backdrop, LATAR_GELAP } from './backgrounds/Latar';
 import { LatarDepan } from './backgrounds/LatarDepan';
 import { PropertiAdegan } from './properti/Properti';
-import { Karakter, SKALA, type CaraMasuk } from './characters/Karakter';
+import { CharacterFigure, SKALA, type CaraMasuk } from './characters/Karakter';
 import { noiseS } from './characters/gerak';
 import { EfekEkspresi } from './Efek';
 import { fontArab, fontJudul, fontTeks, warna } from './theme';
@@ -23,8 +23,8 @@ function posisiX(jumlah: number, vertikal: boolean): number[] {
 }
 
 /** Bagi narasi jadi potongan pendek (≤ 8 kata) supaya mudah dibaca. */
-function potong(teks: string, maks = 8): string[] {
-  const kata = teks.split(/\s+/).filter(Boolean);
+function potong(text: string, maks = 8): string[] {
+  const kata = text.split(/\s+/).filter(Boolean);
   const hasil: string[] = [];
   let buf: string[] = [];
   for (const k of kata) {
@@ -127,13 +127,13 @@ function hitungLensa(shot: Shot, t: number, c: KonteksShot, frame: number, fw: n
     case 'reaksi':
       return { kam: k(1.38 + t * 0.08, dengar.x, dengar.y), putarY: arah * (2 + t * 2), putarX: 0, blurLatar: 3, depan: 0 };
     case 'bahu':
-      // kamera di balik pendengar: pendengar besar & kabur di sisi depan, pembicara tajam
+      // kamera di balik pendengar: pendengar besar & kabur di sisi depan, speaker tajam
       return { kam: k(1.36 + t * 0.06, bicara.x + arah * 90, bicara.y + 30), putarY: -arah * 5, putarX: 0, blurLatar: 2.5, depan: 0, bahu: c.iPendengar };
     case 'rendah':
       // dari bawah: latar condong menjauh, tokoh terlihat lebih "besar"
       return { kam: k(1.16 + t * 0.06, c.tengah.x + (bicara.x - c.tengah.x) * 0.5, c.tengah.y + 70), putarY: (t - 0.5) * 6, putarX: 7, blurLatar: 1, depan: 0.6 };
     case 'dorong': {
-      // dolly-in pelan ke pembicara / rombongan
+      // dolly-in pelan ke speaker / rombongan
       const e = Easing.inOut(Easing.cubic)(t);
       return { kam: k(1.02 + e * 0.32, c.tengah.x + (bicara.x - c.tengah.x) * e, 540 + (bicara.y - 540) * e), putarY: 0, putarX: 0, blurLatar: e * 2, depan: 1 - e };
     }
@@ -156,11 +156,11 @@ function hitungLensa(shot: Shot, t: number, c: KonteksShot, frame: number, fw: n
 }
 
 /** Lama minimal satu shot (detik). Shorts lebih cepat berganti, tapi tetap tenang untuk anak. */
-const DETIK_SHOT = { biasa: 3.6, short: 2.6 };
+const DETIK_SHOT = { standard: 3.6, short: 2.6 };
 
 /**
- * Rencana shot satu adegan: adegan panjang dipecah jadi beberapa shot (establishing, close-up
- * pembicara, reaksi pendengar, dari balik bahu, sudut bawah, orbit, dolly) supaya terasa hidup.
+ * Rencana shot satu scenes: adegan panjang dipecah jadi beberapa shot (establishing, close-up
+ * speaker, reaksi pendengar, dari balik bahu, sudut bawah, orbit, dolly) supaya terasa hidup.
  */
 function rencanaShot(
   data: AdeganData,
@@ -173,17 +173,17 @@ function rencanaShot(
   // shot dekat (wajah) bergantian dengan shot bergerak (memperlihatkan ruang)
   let dekat: Shot[];
   let gerak: Shot[];
-  if (data.jenis === 'doa' && data.doa) dekat = gerak = ['lebar'];
+  if (data.type === 'prayer' && data.prayer) dekat = gerak = ['lebar'];
   else if (!c.adaKarakter) [dekat, gerak] = [['dorong', 'lebar'], ['geser', 'orbit']];
-  else if (data.jenis === 'pertanyaan') [dekat, gerak] = [['dorong', 'dekat'], ['sedang', 'rendah']];
+  else if (data.type === 'question') [dekat, gerak] = [['dorong', 'dekat'], ['sedang', 'rendah']];
   else if (c.adaPembicara && c.adaPendengar)
     // layar vertikal terlalu sempit untuk shot dari balik bahu
     [dekat, gerak] = [vertikal ? ['dekat', 'reaksi'] : ['dekat', 'bahu', 'reaksi'], ['sedang', 'rendah', 'dorong', 'orbit']];
   else if (c.adaPembicara) [dekat, gerak] = [['dekat', 'rendah'], ['sedang', 'dorong', 'geser']];
   else [dekat, gerak] = [['sedang', 'rendah', 'dorong'], ['geser', 'orbit', 'lebar']];
 
-  const per = Math.round(fps * DETIK_SHOT[vertikal ? 'short' : 'biasa']);
-  const jumlah = data.jenis === 'doa' && data.doa ? 1 : Math.max(1, Math.min(6, Math.floor(durasi / per)));
+  const per = Math.round(fps * DETIK_SHOT[vertikal ? 'short' : 'standard']);
+  const jumlah = data.type === 'prayer' && data.prayer ? 1 : Math.max(1, Math.min(6, Math.floor(durasi / per)));
   const shots = Array.from({ length: jumlah }, (_, i) => {
     const k = indeks + Math.floor(i / 2);
     return i % 2 === 0 ? dekat[k % dekat.length] : gerak[k % gerak.length];
@@ -195,20 +195,20 @@ function rencanaShot(
   return shots.map((shot, i) => ({ shot, mulai: i * panjang, durasi: i === jumlah - 1 ? durasi - i * panjang : panjang }));
 }
 
-// ---------------------------------------------------------------- teks
+// ---------------------------------------------------------------- text
 
 const WARNA_PEMBICARA: Record<string, { nama: string; warna: string }> = {
-  ibu: { nama: 'Ibu', warna: '#E0709A' },
+  mother: { nama: 'Ibu', warna: '#E0709A' },
   mamas: { nama: 'Mamas', warna: '#3E6E9E' },
 };
 
 /** Subtitle ala karaoke: kata muncul satu per satu sesuai perkiraan waktu bicara. */
-const Subtitle: React.FC<{ teks: string; durasi: number; pembicara: string; mulai: number }> = ({ teks, durasi, pembicara, mulai }) => {
+const Subtitle: React.FC<{ text: string; durasi: number; speaker: string; mulai: number }> = ({ text, durasi, speaker, mulai }) => {
   const { fps, width, height } = useVideoConfig();
   const vertikal = height > width;
   const frame = useCurrentFrame() - mulai;
   if (frame < 0) return null;
-  const potongan = potong(teks, vertikal ? 6 : 8);
+  const potongan = potong(text, vertikal ? 6 : 8);
   const total = potongan.reduce((s, p) => s + p.length, 0);
   let acc = 0;
   let aktif = potongan.length - 1;
@@ -228,7 +228,7 @@ const Subtitle: React.FC<{ teks: string; durasi: number; pembicara: string; mula
   const kata = potongan[aktif].split(' ');
   const totalHuruf = kata.reduce((s, k) => s + k.length + 1, 0);
   const pop = spring({ frame: lokal, fps, config: { damping: 14, stiffness: 200 } });
-  const label = WARNA_PEMBICARA[pembicara];
+  const label = WARNA_PEMBICARA[speaker];
 
   let hurufSampai = 0;
   return (
@@ -295,7 +295,7 @@ const Subtitle: React.FC<{ teks: string; durasi: number; pembicara: string; mula
   );
 };
 
-const TeksLayar: React.FC<{ teks: string; gelap: boolean; besar?: boolean }> = ({ teks, gelap, besar }) => {
+const TeksLayar: React.FC<{ text: string; gelap: boolean; besar?: boolean }> = ({ text, gelap, besar }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
   const vertikal = height > width;
@@ -329,13 +329,13 @@ const TeksLayar: React.FC<{ teks: string; gelap: boolean; besar?: boolean }> = (
           boxShadow: '0 10px 0 rgba(0,0,0,0.1)',
         }}
       >
-        {teks}
+        {text}
       </div>
     </div>
   );
 };
 
-const KartuDoa: React.FC<{ doa: NonNullable<AdeganData['doa']>; judul?: string }> = ({ doa, judul }) => {
+const KartuDoa: React.FC<{ prayer: NonNullable<AdeganData['prayer']>; title?: string }> = ({ prayer, title }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
   const vertikal = height > width;
@@ -373,14 +373,14 @@ const KartuDoa: React.FC<{ doa: NonNullable<AdeganData['doa']>; judul?: string }
           boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
         }}
       >
-        {judul ? (
-          <div style={{ fontFamily: fontJudul, fontSize: 52, fontWeight: 700, color: '#2F6F5E', marginBottom: 20 }}>{judul}</div>
+        {title ? (
+          <div style={{ fontFamily: fontJudul, fontSize: 52, fontWeight: 700, color: '#2F6F5E', marginBottom: 20 }}>{title}</div>
         ) : null}
         <div dir="rtl" style={{ fontFamily: fontArab, fontSize: vertikal ? 64 : 76, lineHeight: 1.7, color: warna.teksGelap, fontWeight: 700 }}>
-          {doa.arab}
+          {prayer.arabic}
         </div>
-        <div style={{ fontFamily: fontTeks, fontStyle: 'italic', fontSize: 40, color: '#5A5470', marginTop: 18 }}>{doa.latin}</div>
-        <div style={{ fontFamily: fontTeks, fontWeight: 700, fontSize: 40, color: '#2F6F5E', marginTop: 18 }}>“{doa.arti}”</div>
+        <div style={{ fontFamily: fontTeks, fontStyle: 'italic', fontSize: 40, color: '#5A5470', marginTop: 18 }}>{prayer.latin}</div>
+        <div style={{ fontFamily: fontTeks, fontWeight: 700, fontSize: 40, color: '#2F6F5E', marginTop: 18 }}>“{prayer.meaning}”</div>
       </div>
     </AbsoluteFill>
   );
@@ -425,8 +425,8 @@ export function gayaTransisi(indeks: number, p: number): React.CSSProperties {
 // ---------------------------------------------------------------- gerak tokoh
 
 /**
- * Gerak tubuh tambahan supaya tokoh tidak kaku: pembicara condong & sedikit maju saat menekankan
- * kata, pendengar mengangguk & condong ke pembicara, Mochi berjalan-jalan kecil sambil melompat.
+ * Gerak tubuh tambahan supaya tokoh tidak kaku: speaker condong & sedikit maju saat menekankan
+ * kata, pendengar mengangguk & condong ke speaker, Mochi berjalan-jalan kecil sambil melompat.
  */
 function gerakHidup(
   id: KarakterId,
@@ -450,7 +450,7 @@ function gerakHidup(
     return { x: 0, y: 0, miring: Math.sin(f / 45) * 1.6 + tekan * 1.2, skala: 1 + tekan * 0.035 };
   }
   if (s.mendengar) {
-    // mengangguk tiap ±2 detik & condong ke arah pembicara
+    // mengangguk tiap ±2 detik & condong ke arah speaker
     const p = (f % 62) / 62;
     const angguk = p < 0.25 ? Math.sin((p / 0.25) * Math.PI * 2) : 0;
     return { x: 0, y: Math.max(0, angguk) * 6, miring: s.lihatX * 2.2 + angguk * 0.8, skala: 1 };
@@ -459,7 +459,7 @@ function gerakHidup(
 }
 
 /** Tokoh pendengar besar & kabur di tepi depan layar (shot dari balik bahu). */
-const BahuDepan: React.FC<{ id: KarakterId; kiri: boolean; ekspresi: AdeganData['ekspresi']; fw: number; fh: number }> = ({ id, kiri, ekspresi, fw, fh }) => {
+const BahuDepan: React.FC<{ id: KarakterId; kiri: boolean; expression: AdeganData['expression']; fw: number; fh: number }> = ({ id, kiri, expression, fw, fh }) => {
   const tinggi = fh * (id === 'mochi' ? 0.8 : 1.25);
   const lebar = (tinggi * 240) / 400;
   return (
@@ -474,14 +474,14 @@ const BahuDepan: React.FC<{ id: KarakterId; kiri: boolean; ekspresi: AdeganData[
         transform: `scaleX(${kiri ? 1 : -1})`,
       }}
     >
-      <Karakter id={id} ekspresi={ekspresi} bicara={false} tinggi={tinggi} lihatX={1} masuk="ada" />
+      <CharacterFigure id={id} expression={expression} bicara={false} tinggi={tinggi} lihatX={1} masuk="ada" />
     </div>
   );
 };
 
 // ---------------------------------------------------------------- adegan
 
-export const Adegan: React.FC<{
+export const SceneView: React.FC<{
   data: AdeganData;
   /** total frame sequence, termasuk transisi */
   durasi: number;
@@ -499,21 +499,21 @@ export const Adegan: React.FC<{
   const vertikal = fh > fw;
   // di Shorts karakter berdiri sedikit lebih tinggi supaya subtitle di bawah tidak menutupi badan
   const lantai = vertikal ? 820 : LANTAI;
-  const gelap = LATAR_GELAP.includes(data.latar);
-  const isDoa = data.jenis === 'doa' && data.doa;
+  const gelap = LATAR_GELAP.includes(data.background);
+  const isDoa = data.type === 'prayer' && data.prayer;
   const durasiIsi = durasi - transisi;
 
   // abaikan id karakter lama yang sudah tidak ada (misal dari episode sebelum konsep berubah)
-  const urut = isDoa ? [] : data.karakter.filter((id) => id in SKALA);
+  const urut = isDoa ? [] : data.characters.filter((id) => id in SKALA);
   const xs = posisiX(urut.length, vertikal);
-  const iPembicara = urut.findIndex((id) => id === data.pembicara);
+  const iPembicara = urut.findIndex((id) => id === data.speaker);
   const tinggiDari = (id: KarakterId) => (vertikal ? 470 : TINGGI_DASAR) * SKALA[id];
 
   // titik wajah tiap karakter & tengah rombongan, untuk membidik kamera
   const wajah = urut.map((id, i) => ({ x: xs[i], y: lantai - tinggiDari(id) * 0.62 }));
   const tinggiMaks = urut.length ? Math.max(...urut.map(tinggiDari)) : 0;
   const tengah = urut.length ? { x: xs.reduce((a, b) => a + b, 0) / xs.length, y: lantai - tinggiMaks * 0.55 } : { x: 960, y: 560 };
-  // pendengar: tokoh manusia selain pembicara (Mochi kalau hanya dia)
+  // pendengar: tokoh manusia selain speaker (Mochi kalau hanya dia)
   const lain = urut.map((_, i) => i).filter((i) => i !== iPembicara);
   const iPendengar = iPembicara >= 0 ? (lain.find((i) => urut[i] !== 'mochi') ?? lain[0] ?? -1) : -1;
   const adaYangBaru = urut.some((id) => !sebelumnya.includes(id));
@@ -548,8 +548,8 @@ export const Adegan: React.FC<{
   const propertiAdegan = (lapisan: 'bawah' | 'belakang') =>
     isDoa ? null : (
       <PropertiAdegan
-        properti={data.properti ?? []}
-        aksi={data.aksi ?? []}
+        props={data.props ?? []}
+        actions={data.actions ?? []}
         urut={urut}
         xs={xs}
         lantai={lantai}
@@ -559,13 +559,13 @@ export const Adegan: React.FC<{
       />
     );
 
-  // siapa yang diberi efek ekspresi: pembicara, atau tokoh manusia pertama
+  // siapa yang diberi efek expression: speaker, atau tokoh manusia pertama
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
 
   return (
     <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...gayaTransisi(indeks, pTransisi) }}>
       <AbsoluteFill style={{ transform: `scale(${hentak})` }}>
-        {/* latar: bidang belakang yang ikut berputar sedikit & kabur saat close-up (2.5D) */}
+        {/* background: bidang belakang yang ikut berputar sedikit & kabur saat close-up (2.5D) */}
         <AbsoluteFill
           style={{
             transform: bidangLatar(lensa),
@@ -573,7 +573,7 @@ export const Adegan: React.FC<{
           }}
         >
           <div style={gayaPanggung(kamLatar, fw, fh)}>
-            <Latar id={data.latar} />
+            <Backdrop id={data.background} />
           </div>
         </AbsoluteFill>
 
@@ -585,12 +585,12 @@ export const Adegan: React.FC<{
           {urut.map((id: KarakterId, i) => {
             const tinggi = tinggiDari(id);
             const lebar = (tinggi * 240) / 400;
-            // yang mendengarkan menoleh ke pembicara; pembicara menatap penonton
+            // yang mendengarkan menoleh ke speaker; speaker menatap penonton
             let lihatX = iPembicara >= 0 && iPembicara !== i ? Math.sign(xs[iPembicara] - xs[i]) : 0;
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
             const masuk: CaraMasuk = sebelumnya.includes(id) ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
-            const aksiIni = data.aksi?.find((a) => a.karakter === id);
-            const gaya = gerakHidup(id, i, frame, { bicara: data.pembicara === id, mendengar: i !== iPembicara && iPembicara >= 0, lihatX, beraksi: !!aksiIni });
+            const aksiIni = data.actions?.find((a) => a.character === id);
+            const gaya = gerakHidup(id, i, frame, { bicara: data.speaker === id, mendengar: i !== iPembicara && iPembicara >= 0, lihatX, beraksi: !!aksiIni });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
             return (
               <div
@@ -605,23 +605,23 @@ export const Adegan: React.FC<{
                   opacity: lensa.bahu === i ? 0 : 1,
                 }}
               >
-                <Karakter
+                <CharacterFigure
                   id={id}
-                  ekspresi={data.ekspresi}
-                  bicara={data.pembicara === id}
+                  expression={data.expression}
+                  bicara={data.speaker === id}
                   tinggi={tinggi}
                   offset={i * 37}
                   lihatX={lihatX}
                   masuk={masuk}
-                  aksi={aksiIni?.aksi}
-                  benda={aksiIni?.benda}
+                  action={aksiIni?.action}
+                  heldItem={aksiIni?.heldItem}
                 />
               </div>
             );
           })}
-          {iEfek >= 0 && data.jenis !== 'pertanyaan' ? (
+          {iEfek >= 0 && data.type !== 'question' ? (
             <EfekEkspresi
-              ekspresi={data.ekspresi}
+              expression={data.expression}
               x={xs[iEfek] + tinggiDari(urut[iEfek]) * 0.22}
               y={lantai - tinggiDari(urut[iEfek]) * 1.02}
               mulai={transisi + 6}
@@ -632,28 +632,28 @@ export const Adegan: React.FC<{
         {/* lapisan depan: perabot/tanaman kabur yang menyapu cepat saat kamera bergerak */}
         {lensa.depan > 0.05 && !isDoa ? (
           <div style={{ ...gayaPanggung(jepit(kamDepan, fw, fh), fw, fh), opacity: lensa.depan, filter: 'blur(5px)' }}>
-            <LatarDepan id={data.latar} />
+            <LatarDepan id={data.background} />
           </div>
         ) : null}
 
         {/* dari balik bahu: pendengar tampil besar & kabur di tepi depan */}
         {lensa.bahu !== undefined && lensa.bahu >= 0 ? (
-          <BahuDepan id={urut[lensa.bahu]} kiri={xs[lensa.bahu] < (xs[iPembicara] ?? 960)} ekspresi={data.ekspresi} fw={fw} fh={fh} />
+          <BahuDepan id={urut[lensa.bahu]} kiri={xs[lensa.bahu] < (xs[iPembicara] ?? 960)} expression={data.expression} fw={fw} fh={fh} />
         ) : null}
       </AbsoluteFill>
 
       {/* vinyet lembut: mata tertuju ke tengah, menambah kesan kedalaman */}
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(20,15,40,0.28) 100%)', pointerEvents: 'none' }} />
 
-      {isDoa ? <KartuDoa doa={data.doa!} judul={data.teksLayar} /> : null}
+      {isDoa ? <KartuDoa prayer={data.prayer!} title={data.screenText} /> : null}
 
-      {!isDoa && data.teksLayar ? (
-        <TeksLayar teks={data.teksLayar} gelap={gelap} besar={data.jenis === 'pertanyaan' || urut.length === 0} />
+      {!isDoa && data.screenText ? (
+        <TeksLayar text={data.screenText} gelap={gelap} besar={data.type === 'question' || urut.length === 0} />
       ) : null}
 
-      {data.jenis === 'pertanyaan' ? <TitikBerpikir mulai={durasi - fps * 3} gelap={gelap} /> : null}
+      {data.type === 'question' ? <TitikBerpikir mulai={durasi - fps * 3} gelap={gelap} /> : null}
 
-      {denganSubtitle && !isDoa ? <Subtitle teks={data.narasi} durasi={durasiIsi} pembicara={data.pembicara} mulai={transisi} /> : null}
+      {denganSubtitle && !isDoa ? <Subtitle text={data.narration} durasi={durasiIsi} speaker={data.speaker} mulai={transisi} /> : null}
     </AbsoluteFill>
   );
 };

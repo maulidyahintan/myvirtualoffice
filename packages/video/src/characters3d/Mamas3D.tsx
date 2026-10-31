@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
-import type { Ekspresi } from '@kantor/shared/types';
+import type { Expression } from '@kantor/shared/types';
 import { kelopak, mulutBicara, noiseS } from '../characters/gerak';
 
 // PROTOTIPE: Mamas versi 3D dari bentuk dasar three.js, mengikuti desain 2D
@@ -95,12 +95,12 @@ const diKepala = (x: number, y: number, maju = 0): Vec3 => [x, y, Math.sqrt(Math
 
 export const Mamas3D: React.FC<{
   frame: number;
-  ekspresi: Ekspresi;
+  expression: Expression;
   bicara: boolean;
   lambai: boolean;
   /** -1..1 arah pandang */
   lihatX?: number;
-}> = ({ frame: f, ekspresi, bicara, lambai, lihatX = 0 }) => {
+}> = ({ frame: f, expression, bicara, lambai, lihatX = 0 }) => {
   const g = useGradasiToon();
   const rajut = usePola(
     (c) => {
@@ -139,7 +139,7 @@ export const Mamas3D: React.FC<{
 
   // --- gerak tubuh
   const napas = Math.sin(f / 24);
-  const senang = ekspresi === 'senang';
+  const senang = expression === 'happy';
   let lompat = 0;
   if (senang && !bicara) {
     const p = (f % 50) / 50;
@@ -147,12 +147,12 @@ export const Mamas3D: React.FC<{
   }
   const miring = bicara ? noiseS(f / 30, 7) * 0.12 : Math.sin(f / 70) * 0.06;
   const angguk = bicara ? Math.max(0, Math.sin(f / 9)) * 0.05 : 0;
-  const tolehY = lihatX * 0.35 + (ekspresi === 'berpikir' ? 0.15 : 0);
+  const tolehY = lihatX * 0.35 + (expression === 'thinking' ? 0.15 : 0);
 
   // --- wajah
   const tutup = kelopak(f, 1);
-  const mataTinggi = Math.max(0.08, 1 - tutup) * (ekspresi === 'kaget' ? 1.12 : 1);
-  const mulut = bicara ? mulutBicara(f, 1) : { buka: ekspresi === 'kaget' ? 0.7 : 0, bulat: ekspresi === 'kaget' ? 1 : 0 };
+  const mataTinggi = Math.max(0.08, 1 - tutup) * (expression === 'surprised' ? 1.12 : 1);
+  const mulut = bicara ? mulutBicara(f, 1) : { buka: expression === 'surprised' ? 0.7 : 0, bulat: expression === 'surprised' ? 1 : 0 };
   const mataSenyum = senang && !bicara;
 
   // --- lengan: pivot di bahu. z = ayun depan/belakang, x = buka ke samping
@@ -166,7 +166,7 @@ export const Mamas3D: React.FC<{
     kananBuka = 0.45 + Math.max(0, noiseS(f / 14, 3)) * 0.5;
     kananSiku = -0.4;
   }
-  const kiriBuka = ekspresi === 'berpikir' ? 0.5 : 0.18 - ayun;
+  const kiriBuka = expression === 'thinking' ? 0.5 : 0.18 - ayun;
 
   const mata = (sisi: 1 | -1) => {
     const x = 0.17 * sisi;
@@ -192,7 +192,7 @@ export const Mamas3D: React.FC<{
           </group>
         )}
         {/* alis */}
-        <mesh position={[0, 0.15 + (ekspresi === 'kaget' ? 0.03 : 0), 0.035]} rotation={[0, 0, (ekspresi === 'sedih' ? -0.25 : 0.08) * sisi]}>
+        <mesh position={[0, 0.15 + (expression === 'surprised' ? 0.03 : 0), 0.035]} rotation={[0, 0, (expression === 'sad' ? -0.25 : 0.08) * sisi]}>
           <capsuleGeometry args={[0.012, 0.07, 4, 8]} />
           <meshBasicMaterial color={K.rambut} />
         </mesh>
@@ -249,11 +249,11 @@ export const Mamas3D: React.FC<{
         {/* lengan: [sisi, buka, siku] */}
         {(
           [
-            [-1, kiriBuka, ekspresi === 'berpikir' ? -1.9 : 0],
+            [-1, kiriBuka, expression === 'thinking' ? -1.9 : 0],
             [1, kananBuka, kananSiku],
           ] as const
         ).map(([s, buka, siku]) => (
-          <group key={s} position={[0.27 * s, 0.54, 0]} rotation={[ekspresi === 'berpikir' && s < 0 ? -0.6 : 0, 0, buka * s]}>
+          <group key={s} position={[0.27 * s, 0.54, 0]} rotation={[expression === 'thinking' && s < 0 ? -0.6 : 0, 0, buka * s]}>
             <Bagian gradasi={g} warna={K.baju} posisi={[0, -0.13, 0]}>
               <capsuleGeometry args={[0.07, 0.14, 6, 12]} />
             </Bagian>
@@ -319,8 +319,8 @@ export const Mamas3D: React.FC<{
             </group>
           ) : (
             // senyum tertutup (sedih: melengkung ke bawah)
-            <mesh position={diKepala(0, -0.2, -0.03)} rotation={[0.45, 0, ekspresi === 'sedih' ? 0 : Math.PI]}>
-              <torusGeometry args={[ekspresi === 'sedih' ? 0.04 : 0.055, 0.011, 8, 20, Math.PI]} />
+            <mesh position={diKepala(0, -0.2, -0.03)} rotation={[0.45, 0, expression === 'sad' ? 0 : Math.PI]}>
+              <torusGeometry args={[expression === 'sad' ? 0.04 : 0.055, 0.011, 8, 20, Math.PI]} />
               <meshBasicMaterial color="#7A2E2E" />
             </mesh>
           )}

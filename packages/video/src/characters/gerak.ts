@@ -1,4 +1,4 @@
-import type { Aksi, Benda, Ekspresi } from '@kantor/shared/types';
+import type { Action, HeldItem, Expression } from '@kantor/shared/types';
 
 // Alat bantu animasi karakter. Semua fungsi deterministik (bergantung frame saja),
 // jadi hasil render selalu sama dan aman dirender paralel oleh Remotion.
@@ -67,7 +67,7 @@ export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 /** Data animasi yang sama untuk semua karakter, dihitung sekali per frame di Karakter.tsx. */
 export interface PropsRig {
-  ekspresi: Ekspresi;
+  expression: Expression;
   bicara: boolean;
   lambai: boolean;
   /** frame lokal + offset */
@@ -80,8 +80,8 @@ export interface PropsRig {
   /** fase langkah saat berjalan masuk; null = berdiri */
   jalan: number | null;
   /** sedang melakukan apa (memegang benda, membaca Al-Qur'an, tidur, ...) */
-  aksi?: Aksi;
-  benda?: Benda;
+  action?: Action;
+  heldItem?: HeldItem;
 }
 
 /**

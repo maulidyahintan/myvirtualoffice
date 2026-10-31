@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
-import type { AksiTokoh, Karakter, Properti as PropertiId } from '@kantor/shared/types';
+import type { CharacterAction, Character, SceneProp as PropertiId } from '@kantor/shared/types';
 import { diMeja, MejaMakanan, PropertiLantai } from './Benda';
 
 // Menata properti adegan di lantai panggung (koordinat 1920x1080): makanan dikumpulkan di satu
@@ -19,9 +19,9 @@ function cariTempat(lebar: number, xs: number[], terpakai: Letak[], vertikal: bo
 }
 
 export const PropertiAdegan: React.FC<{
-  properti: PropertiId[];
-  aksi: AksiTokoh[];
-  urut: Karakter[];
+  props: PropertiId[];
+  actions: CharacterAction[];
+  urut: Character[];
   xs: number[];
   lantai: number;
   /** skala properti agar sebanding dengan tinggi tokoh */
@@ -29,28 +29,28 @@ export const PropertiAdegan: React.FC<{
   vertikal: boolean;
   /** 'bawah' = lapisan lantai di bawah tokoh (sajadah, bantal), 'belakang' = sisanya */
   lapisan: 'bawah' | 'belakang';
-}> = ({ properti, aksi, urut, xs, lantai, skala, vertikal, lapisan }) => {
+}> = ({ props: sceneProps, actions, urut, xs, lantai, skala, vertikal, lapisan }) => {
   const frame = useCurrentFrame();
-  const unik = [...new Set(properti)].slice(0, 3);
+  const unik = [...new Set(sceneProps)].slice(0, 3);
   const isi: React.ReactNode[] = [];
 
   if (lapisan === 'bawah') {
-    if (unik.includes('sajadah')) {
+    if (unik.includes('prayer-mat')) {
       // di bawah tokoh yang berdoa/membaca, atau di tengah rombongan
-      const iTokoh = urut.findIndex((id) => aksi.some((a) => a.karakter === id && (a.aksi === 'berdoa' || a.aksi === 'membaca-quran')));
+      const iTokoh = urut.findIndex((id) => actions.some((a) => a.character === id && (a.action === 'praying' || a.action === 'reading-quran')));
       const x = iTokoh >= 0 ? xs[iTokoh] : xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 960;
       isi.push(
-        <g key="sajadah" transform={`translate(${x} ${lantai + 24 * skala}) scale(${skala})`}>
-          <PropertiLantai id="sajadah" frame={frame} />
+        <g key="prayer-mat" transform={`translate(${x} ${lantai + 24 * skala}) scale(${skala})`}>
+          <PropertiLantai id="prayer-mat" frame={frame} />
         </g>,
       );
     }
     // Mochi yang tidur berbaring di bantal
     const iMochi = urut.indexOf('mochi');
-    if (iMochi >= 0 && aksi.some((a) => a.karakter === 'mochi' && a.aksi === 'tidur')) {
+    if (iMochi >= 0 && actions.some((a) => a.character === 'mochi' && a.action === 'sleeping')) {
       isi.push(
-        <g key="bantal" transform={`translate(${xs[iMochi]} ${lantai + 10}) scale(${skala * 0.9})`}>
-          <PropertiLantai id="bantal" frame={frame} />
+        <g key="pillow" transform={`translate(${xs[iMochi]} ${lantai + 10}) scale(${skala * 0.9})`}>
+          <PropertiLantai id="pillow" frame={frame} />
         </g>,
       );
     }
@@ -72,8 +72,8 @@ export const PropertiAdegan: React.FC<{
         });
       }
     }
-    for (const p of unik.filter((p) => !diMeja(p) && p !== 'sajadah' && p !== 'bantal')) {
-      const lebar = (p === 'pohon-pot' ? 200 : p === 'kotak-mainan' ? 150 : p === 'rehal-quran' ? 140 : 110) * skala;
+    for (const p of unik.filter((p) => !diMeja(p) && p !== 'prayer-mat' && p !== 'pillow')) {
+      const lebar = (p === 'potted-tree' ? 200 : p === 'toy-box' ? 150 : p === 'quran-stand' ? 140 : 110) * skala;
       const x = cariTempat(lebar, xs, terpakai, vertikal);
       if (x === undefined) continue;
       terpakai.push({

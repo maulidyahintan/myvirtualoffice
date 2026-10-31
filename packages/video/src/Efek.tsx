@@ -1,6 +1,6 @@
 import React from 'react';
 import { spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import type { Ekspresi } from '@kantor/shared/types';
+import type { Expression } from '@kantor/shared/types';
 import { fontJudul, warna } from './theme';
 
 // Efek kecil di atas kepala karakter supaya emosi terbaca anak-anak.
@@ -14,13 +14,13 @@ const Kilau: React.FC<{ r: number; warnaIsi: string }> = ({ r, warnaIsi }) => (
   <path d={`M0 ${-r} Q${r * 0.2} ${-r * 0.2} ${r} 0 Q${r * 0.2} ${r * 0.2} 0 ${r} Q${-r * 0.2} ${r * 0.2} ${-r} 0 Q${-r * 0.2} ${-r * 0.2} 0 ${-r} Z`} fill={warnaIsi} />
 );
 
-export const EfekEkspresi: React.FC<{ ekspresi: Ekspresi; x: number; y: number; mulai?: number }> = ({ ekspresi, x, y, mulai = 0 }) => {
+export const EfekEkspresi: React.FC<{ expression: Expression; x: number; y: number; mulai?: number }> = ({ expression, x, y, mulai = 0 }) => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame() - mulai;
   if (frame < 0) return null;
 
   let isi: React.ReactNode = null;
-  if (ekspresi === 'senang') {
+  if (expression === 'happy') {
     isi = [0, 1, 2].map((i) => {
       const p = ((frame + i * 26) % 78) / 78;
       const op = Math.sin(p * Math.PI);
@@ -30,7 +30,7 @@ export const EfekEkspresi: React.FC<{ ekspresi: Ekspresi; x: number; y: number; 
         </g>
       );
     });
-  } else if (ekspresi === 'kaget') {
+  } else if (expression === 'surprised') {
     const s = spring({ frame, fps, config: { damping: 8, stiffness: 180 } });
     const goyang = Math.sin(frame / 4) * 6 * Math.max(0, 1 - frame / 40);
     isi = (
@@ -43,7 +43,7 @@ export const EfekEkspresi: React.FC<{ ekspresi: Ekspresi; x: number; y: number; 
         </text>
       </g>
     );
-  } else if (ekspresi === 'berpikir') {
+  } else if (expression === 'thinking') {
     const muncul = (i: number) => spring({ frame: frame - i * 10, fps, config: { damping: 12 } });
     isi = (
       <g>
@@ -57,7 +57,7 @@ export const EfekEkspresi: React.FC<{ ekspresi: Ekspresi; x: number; y: number; 
         </g>
       </g>
     );
-  } else if (ekspresi === 'sedih') {
+  } else if (expression === 'sad') {
     const p = (frame % 70) / 70;
     isi = (
       <g transform={`translate(44 ${30 + p * 26})`} opacity={Math.sin(p * Math.PI)}>

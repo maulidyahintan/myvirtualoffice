@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
-import type { Latar as LatarId, Suasana as SuasanaId } from '@kantor/shared/types';
+import type { Background as LatarId, Mood as SuasanaId } from '@kantor/shared/types';
 import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, SinarJendela, Uap } from './Suasana';
 
 const W = 1920;
@@ -614,7 +614,7 @@ const TamanBermain = () => {
 };
 
 /** Lapak pasar dengan atap terpal & dagangan. */
-const Lapak: React.FC<{ x: number; terpal: string; isi: 'buah' | 'sayur' | 'kue' }> = ({ x, terpal, isi }) => (
+const Lapak: React.FC<{ x: number; terpal: string; isi: 'buah' | 'sayur' | 'cake' }> = ({ x, terpal, isi }) => (
   <g>
     <rect x={x + 10} y={330} width={14} height={430} fill="#8A6440" />
     <rect x={x + 376} y={330} width={14} height={430} fill="#8A6440" />
@@ -679,7 +679,7 @@ const Pasar = () => (
     })}
     <Lapak x={60} terpal="#E86A5A" isi="buah" />
     <Lapak x={760} terpal="#4F9ED9" isi="sayur" />
-    <Lapak x={1460} terpal="#5BAE7A" isi="kue" />
+    <Lapak x={1460} terpal="#5BAE7A" isi="cake" />
     <rect y={760} width={W} height={320} fill="#C9B79A" />
     {Array.from({ length: 10 }, (_, i) => (
       <line key={i} x1={i * 220} y1={760} x2={i * 220 - 120} y2={1080} stroke="#B8A585" strokeWidth={4} />
@@ -740,51 +740,51 @@ const Toko = () => (
   </>
 );
 
-/** Lapisan gerak suasana tambahan di atas latar (video hafalan). */
-export const LapisanSuasana: React.FC<{ suasana: SuasanaId[] }> = ({ suasana }) => (
+/** Lapisan gerak moods tambahan di atas latar (video hafalan). */
+export const LapisanSuasana: React.FC<{ moods: SuasanaId[] }> = ({ moods }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-    {suasana.includes('cahaya') && <Cahaya />}
-    {suasana.includes('bintang') && <BintangKelip />}
-    {suasana.includes('burung') && (
+    {moods.includes('light') && <Cahaya />}
+    {moods.includes('stars') && <BintangKelip />}
+    {moods.includes('birds') && (
       <>
         <Burung seed={11} y={200} />
         <Burung seed={13} y={280} skala={0.7} />
         <Burung seed={17} y={150} skala={0.8} />
       </>
     )}
-    {suasana.includes('kupu') && (
+    {moods.includes('butterflies') && (
       <>
         <KupuKupu seed={21} y={600} warnaSayap="#F7A6C1" />
         <KupuKupu seed={23} y={700} warnaSayap="#FFD36E" />
       </>
     )}
-    {suasana.includes('daun') && <DaunJatuh jumlah={8} warnaDaun="#7CBF6E" seed={31} />}
-    {suasana.includes('hujan') && <Hujan />}
+    {moods.includes('leaves') && <DaunJatuh jumlah={8} warnaDaun="#7CBF6E" seed={31} />}
+    {moods.includes('rain') && <Hujan />}
   </svg>
 );
 
-export const Latar: React.FC<{ id: LatarId }> = ({ id }) => (
+export const Backdrop: React.FC<{ id: LatarId }> = ({ id }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-    {id === 'kamar-malam' && <KamarMalam />}
-    {id === 'ruang-tamu' && <RuangTamu />}
-    {id === 'taman' && <Taman />}
-    {id === 'masjid' && <Masjid />}
-    {id === 'dapur' && <Dapur />}
-    {id === 'langit-malam' && <LangitMalam />}
-    {id === 'gurun' && <Gurun />}
-    {id === 'laut' && <Laut />}
-    {id === 'gunung' && <Gunung />}
-    {id === 'fajar' && <Fajar />}
-    {id === 'sekolah' && <Sekolah />}
-    {id === 'halaman-rumah' && <HalamanRumah />}
-    {id === 'perpustakaan' && <Perpustakaan />}
-    {id === 'tempat-wudhu' && <TempatWudhu />}
-    {id === 'dalam-masjid' && <DalamMasjid />}
-    {id === 'taman-bermain' && <TamanBermain />}
-    {id === 'pasar' && <Pasar />}
-    {id === 'toko' && <Toko />}
+    {id === 'bedroom-night' && <KamarMalam />}
+    {id === 'living-room' && <RuangTamu />}
+    {id === 'garden' && <Taman />}
+    {id === 'mosque' && <Masjid />}
+    {id === 'kitchen' && <Dapur />}
+    {id === 'night-sky' && <LangitMalam />}
+    {id === 'desert' && <Gurun />}
+    {id === 'ocean' && <Laut />}
+    {id === 'mountain' && <Gunung />}
+    {id === 'dawn' && <Fajar />}
+    {id === 'school' && <Sekolah />}
+    {id === 'yard' && <HalamanRumah />}
+    {id === 'library' && <Perpustakaan />}
+    {id === 'ablution' && <TempatWudhu />}
+    {id === 'inside-mosque' && <DalamMasjid />}
+    {id === 'playground' && <TamanBermain />}
+    {id === 'market' && <Pasar />}
+    {id === 'store' && <Toko />}
   </svg>
 );
 
-/** Latar gelap → teks dibuat terang. */
-export const LATAR_GELAP: LatarId[] = ['kamar-malam', 'langit-malam', 'fajar'];
+/** Latar gelap → text dibuat terang. */
+export const LATAR_GELAP: LatarId[] = ['bedroom-night', 'night-sky', 'dawn'];

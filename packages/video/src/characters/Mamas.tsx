@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 import { campurPose, faseMakan, noise, noiseS, pantulBola, type PoseLengan, type PropsRig } from './gerak';
-import { Benda, Quran } from '../properti/Benda';
+import { ItemArt, Quran } from '../properti/Benda';
 import { Lengan } from './Lengan';
 import { Wajah } from './Wajah';
 
@@ -26,7 +26,7 @@ const k = {
 };
 
 function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
-  const { f, ekspresi, bicara, lambai } = r;
+  const { f, expression, bicara, lambai } = r;
   const ayun = Math.sin(f / 26) * 3;
   const diam: PoseLengan = { bahu: 7 + ayun, siku: 6 };
   if (r.jalan !== null) {
@@ -36,37 +36,37 @@ function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
   if (lambai) {
     return { kiri: { bahu: 150, siku: 18 + Math.sin(f / 4) * 24 }, kanan: { bahu: 8 - ayun, siku: 4 } };
   }
-  // aksi: tangan kanan layar yang memegang/memainkan benda
+  // actions: tangan kanan layar yang memegang/memainkan benda
   const pegang: PoseLengan = { bahu: 16 + ayun, siku: -96 };
   const kiriAksi: PoseLengan = bicara ? { bahu: 10 + noise(f / 22, r.seed + 5) * 30, siku: 20 + noise(f / 22, r.seed + 5) * 70 } : diam;
-  switch (r.aksi) {
-    case 'membaca-quran':
+  switch (r.action) {
+    case 'reading-quran':
       return { kiri: { bahu: -14, siku: -74 }, kanan: { bahu: -14, siku: -74 } };
-    case 'berdoa': {
+    case 'praying': {
       // kedua telapak terangkat terpisah di depan dada
       const s = Math.sin(f / 40) * 2;
       return { kiri: { bahu: 18 + s, siku: -140 }, kanan: { bahu: 18 + s, siku: -140 } };
     }
-    case 'makan':
+    case 'eating':
       return { kiri: kiriAksi, kanan: campurPose(pegang, { bahu: -26, siku: -142 }, faseMakan(f)) };
-    case 'bermain':
-      return r.benda === 'mobil-mainan' || r.benda === 'boneka'
+    case 'playing':
+      return r.heldItem === 'toy-car' || r.heldItem === 'doll'
         ? { kiri: kiriAksi, kanan: { bahu: 24 + Math.sin(f / 12) * 18, siku: -50 + Math.sin(f / 12) * 20 } }
         : // memantulkan bola: telapak menepuk bola dari atas
           { kiri: kiriAksi, kanan: { bahu: 36, siku: 30 - pantulBola(f) * 34 } };
-    case 'memegang':
+    case 'holding':
       return { kiri: kiriAksi, kanan: pegang };
   }
-  if (ekspresi === 'kaget') {
+  if (expression === 'surprised') {
     const getar = Math.sin(f / 3) * 2;
     return { kiri: { bahu: 40 + getar, siku: 95 }, kanan: { bahu: 40 - getar, siku: 95 } };
   }
-  if (ekspresi === 'berpikir') {
+  if (expression === 'thinking') {
     // tangan kanan layar menyentuh dagu, tangan lain menyilang
     return { kiri: { bahu: -16, siku: -62 }, kanan: { bahu: -24, siku: -128 + Math.sin(f / 20) * 4 } };
   }
-  if (ekspresi === 'sedih') return { kiri: { bahu: -8, siku: -30 }, kanan: { bahu: -8, siku: -30 } };
-  if (ekspresi === 'tenang') return { kiri: { bahu: -14, siku: -48 }, kanan: { bahu: -14, siku: -48 } };
+  if (expression === 'sad') return { kiri: { bahu: -8, siku: -30 }, kanan: { bahu: -8, siku: -30 } };
+  if (expression === 'calm') return { kiri: { bahu: -14, siku: -48 }, kanan: { bahu: -14, siku: -48 } };
   if (bicara) {
     // gerak tangan saat bercerita, berganti-ganti tangan
     const g1 = noise(f / 22, r.seed + 5);
@@ -76,7 +76,7 @@ function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
       kanan: { bahu: 8 + g2 * 22, siku: 10 + g2 * 55 },
     };
   }
-  if (ekspresi === 'senang') {
+  if (expression === 'happy') {
     const lompat = Math.sin(f / 9) * 6;
     return { kiri: { bahu: 22 + lompat, siku: 18 }, kanan: { bahu: 22 - lompat, siku: 18 } };
   }
@@ -85,7 +85,7 @@ function poseMamas(r: PropsRig): { kiri: PoseLengan; kanan: PoseLengan } {
 
 export const Mamas: React.FC<PropsRig> = (r) => {
   const id = useId().replace(/:/g, '');
-  const { f, ekspresi, bicara } = r;
+  const { f, expression, bicara } = r;
   const pose = poseMamas(r);
 
   // kepala: miring pelan, mengangguk saat bicara, tertunduk saat sedih
@@ -95,14 +95,14 @@ export const Mamas: React.FC<PropsRig> = (r) => {
     miring += noiseS(f / 12, r.seed + 4) * 4;
     turun = r.mulut.buka * 2.5;
   }
-  if (ekspresi === 'sedih') {
+  if (expression === 'sad') {
     miring -= 5;
     turun += 6;
   }
-  if (ekspresi === 'berpikir') miring += 7;
-  if (ekspresi === 'kaget') turun -= 4;
+  if (expression === 'thinking') miring += 7;
+  if (expression === 'surprised') turun -= 4;
   // menunduk membaca / khusyuk berdoa
-  if (r.aksi === 'membaca-quran') turun += 5;
+  if (r.action === 'reading-quran') turun += 5;
   const alisNaik = bicara ? Math.max(0, noiseS(f / 10, r.seed + 7)) : 0;
   const rambutAyun = Math.sin(f / 14) * 1.5;
   const langkah = r.jalan !== null ? Math.sin(r.jalan) * 20 : 0;
@@ -171,7 +171,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
       ))}
 
       {/* lengan di belakang badan saat tangan menyilang */}
-      {ekspresi === 'berpikir' ? tangan(false) : null}
+      {expression === 'thinking' ? tangan(false) : null}
 
       {/* baju koko */}
       <path
@@ -209,7 +209,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
       <rect x={160} y={282} width={8} height={6} fill="#5C5C5C" />
 
       {/* lengan */}
-      {ekspresi === 'berpikir' ? null : tangan(false)}
+      {expression === 'thinking' ? null : tangan(false)}
 
       {/* kepala */}
       <g transform={`translate(0 ${turun}) rotate(${miring} 120 196) translate(120 196) scale(1.14) translate(-120 -196)`}>
@@ -247,14 +247,14 @@ export const Mamas: React.FC<PropsRig> = (r) => {
         <path d="M58 96 Q120 84 182 96 L182 90 Q120 77 58 90 Z" fill={k.peciGelap} />
         <g transform="translate(120 132)">
           <Wajah
-            ekspresi={ekspresi}
+            expression={expression}
             gaya="anak"
             kulit="#F6CBAE"
             tutup={r.tutup}
             mulut={r.mulut}
             bicara={bicara}
             lihatX={r.lihatX}
-            lihatY={ekspresi === 'sedih' || r.aksi === 'membaca-quran' ? 1 : 0}
+            lihatY={expression === 'sad' || r.action === 'reading-quran' ? 1 : 0}
             alisNaik={alisNaik}
           />
         </g>
@@ -263,15 +263,15 @@ export const Mamas: React.FC<PropsRig> = (r) => {
       {tangan(true)}
 
       {/* mushaf terbuka di depan dada, dipegang kedua tangan */}
-      {r.aksi === 'membaca-quran' ? (
+      {r.action === 'reading-quran' ? (
         <g transform={`translate(120 ${262 + Math.sin(f / 30) * 1.5}) scale(1.15)`}>
           <Quran buka />
         </g>
       ) : null}
       {/* bola yang dipantulkan */}
-      {r.aksi === 'bermain' && (r.benda ?? 'bola') === 'bola' ? (
+      {r.action === 'playing' && (r.heldItem ?? 'ball') === 'ball' ? (
         <g transform={`translate(212 ${362 - pantulBola(f) * 56})`}>
-          <Benda id="bola" skala={1.5} />
+          <ItemArt id="ball" skala={1.5} />
         </g>
       ) : null}
     </g>
@@ -280,7 +280,7 @@ export const Mamas: React.FC<PropsRig> = (r) => {
 
 /** Benda di tangan kanan layar sesuai aksi (bola yang dipantulkan digambar terpisah). */
 export function bendaDipegang(r: PropsRig): React.ReactNode {
-  if (r.aksi === 'memegang' || r.aksi === 'makan') return <Benda id={r.benda ?? 'apel'} skala={1.35} />;
-  if (r.aksi === 'bermain' && r.benda && r.benda !== 'bola') return <Benda id={r.benda} skala={1.35} />;
+  if (r.action === 'holding' || r.action === 'eating') return <ItemArt id={r.heldItem ?? 'apple'} skala={1.35} />;
+  if (r.action === 'playing' && r.heldItem && r.heldItem !== 'ball') return <ItemArt id={r.heldItem} skala={1.35} />;
   return null;
 }

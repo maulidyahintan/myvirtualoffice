@@ -67,9 +67,9 @@ export const IkonBulan: React.FC<{ ukuran: number; animasi?: boolean }> = ({ uku
 };
 
 /** Tulisan "Tasnie" warna-warni dengan tepi putih. Bisa memantul huruf demi huruf. */
-export const TulisanLogo: React.FC<{ tinggi: number; teks?: string; animasi?: boolean; mulai?: number }> = ({
+export const TulisanLogo: React.FC<{ tinggi: number; text?: string; animasi?: boolean; mulai?: number }> = ({
   tinggi,
-  teks = 'Tasnie',
+  text = 'Tasnie',
   animasi,
   mulai = 0,
 }) => {
@@ -77,7 +77,7 @@ export const TulisanLogo: React.FC<{ tinggi: number; teks?: string; animasi?: bo
   const { fps } = useVideoConfig();
   return (
     <div style={{ display: 'flex', alignItems: 'flex-end', fontFamily: fontJudul, fontWeight: 700, fontSize: tinggi, lineHeight: 1 }}>
-      {teks.split('').map((h, i) => {
+      {text.split('').map((h, i) => {
         const s = animasi ? spring({ frame: frame - mulai - i * 3, fps, config: { damping: 9, stiffness: 170 } }) : 1;
         const ayun = animasi ? Math.sin(frame / 14 + i * 0.9) * 3 : 0;
         return (
@@ -103,7 +103,7 @@ export const TulisanLogo: React.FC<{ tinggi: number; teks?: string; animasi?: bo
 };
 
 /** Logo lengkap: ikon di kiri, tulisan di kanan. */
-export const Logo: React.FC<{ tinggi: number; animasi?: boolean; mulai?: number; teks?: string }> = ({ tinggi, animasi, mulai = 0, teks }) => {
+export const Logo: React.FC<{ tinggi: number; animasi?: boolean; mulai?: number; text?: string }> = ({ tinggi, animasi, mulai = 0, text }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = animasi ? spring({ frame: frame - mulai, fps, config: { damping: 10, stiffness: 120 } }) : 1;
@@ -112,7 +112,7 @@ export const Logo: React.FC<{ tinggi: number; animasi?: boolean; mulai?: number;
       <div style={{ transform: `scale(${s}) rotate(${(1 - s) * -90}deg)` }}>
         <IkonBulan ukuran={tinggi * 1.25} animasi={animasi} />
       </div>
-      <TulisanLogo tinggi={tinggi} animasi={animasi} mulai={mulai + 6} teks={teks} />
+      <TulisanLogo tinggi={tinggi} animasi={animasi} mulai={mulai + 6} text={text} />
     </div>
   );
 };

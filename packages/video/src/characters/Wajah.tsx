@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import type { Ekspresi } from '@kantor/shared/types';
+import type { Expression } from '@kantor/shared/types';
 import type { Mulut } from './gerak';
 
 /**
@@ -11,8 +11,8 @@ import type { Mulut } from './gerak';
  * jadi kedip, mata sayu, dan mata tersenyum memakai mekanisme yang sama.
  */
 export const Wajah: React.FC<{
-  ekspresi: Ekspresi;
-  gaya: 'anak' | 'ibu';
+  expression: Expression;
+  gaya: 'anak' | 'mother';
   kulit: string;
   /** 0 = terbuka, 1 = tertutup (kedip) */
   tutup: number;
@@ -23,26 +23,26 @@ export const Wajah: React.FC<{
   lihatY: number;
   /** 0..1, alis terangkat saat menekankan kata */
   alisNaik: number;
-}> = ({ ekspresi, gaya, kulit, tutup, mulut, bicara, lihatX, lihatY, alisNaik }) => {
+}> = ({ expression, gaya, kulit, tutup, mulut, bicara, lihatX, lihatY, alisNaik }) => {
   const uid = useId().replace(/:/g, '');
   const anak = gaya === 'anak';
   const mataX = anak ? 31 : 22;
   const mataY = anak ? 12 : 4;
   const rx = anak ? 17 : 12.5;
   const ry = anak ? 19.5 : 14;
-  const kaget = ekspresi === 'kaget';
-  const berpikir = ekspresi === 'berpikir';
+  const kaget = expression === 'surprised';
+  const berpikir = expression === 'thinking';
   const garisMata = '#2A1A14';
 
-  // kelopak atas (0..1) & pipi naik dari bawah (0..1) per ekspresi
+  // kelopak atas (0..1) & pipi naik dari bawah (0..1) per expression
   let kelopakAtas = 0;
   let pipiNaik = 0;
-  if (ekspresi === 'sedih') kelopakAtas = 0.22;
-  if (ekspresi === 'tenang') kelopakAtas = 0.2;
-  if (ekspresi === 'senang' && bicara) pipiNaik = 0.22;
+  if (expression === 'sad') kelopakAtas = 0.22;
+  if (expression === 'calm') kelopakAtas = 0.2;
+  if (expression === 'happy' && bicara) pipiNaik = 0.22;
   const atas = Math.max(kelopakAtas, tutup);
   // mata tersenyum "^^" saat senang & diam
-  const mataSenyum = ekspresi === 'senang' && !bicara;
+  const mataSenyum = expression === 'happy' && !bicara;
 
   // pandangan
   const px = lihatX * rx * 0.22 + (berpikir ? rx * 0.15 : 0);
@@ -121,7 +121,7 @@ export const Wajah: React.FC<{
     const y = mataY - ry - (anak ? 17 : 14) - naik;
     const w = 9;
     // sedih: ujung dalam terangkat (wajah memelas, bukan marah)
-    const dalamNaik = ekspresi === 'sedih' ? 5 : 0;
+    const dalamNaik = expression === 'sad' ? 5 : 0;
     const dx = kiri ? 1 : -1; // arah ke tengah wajah
     const xDalam = x + dx * w;
     const xLuar = x - dx * w;
@@ -153,9 +153,9 @@ export const Wajah: React.FC<{
   if (mulut.buka > 0.06) {
     const w = (mulut.bulat ? 6.5 : 10.5) * (anak ? 1 : 0.85);
     isiMulut = mulutTerbuka(w, 4 + mulut.buka * (anak ? 13 : 10));
-  } else if (ekspresi === 'senang') {
+  } else if (expression === 'happy') {
     isiMulut = mulutTerbuka(anak ? 11 : 9, anak ? 11 : 8);
-  } else if (ekspresi === 'sedih') {
+  } else if (expression === 'sad') {
     isiMulut = <path d={`M-7 ${mulutY + 4} Q0 ${mulutY - 3} 7 ${mulutY + 4}`} stroke="#B05050" strokeWidth={3.2} fill="none" strokeLinecap="round" />;
   } else if (kaget) {
     isiMulut = <ellipse cx={0} cy={mulutY + 4} rx={6.5} ry={8} fill={dalam} />;
