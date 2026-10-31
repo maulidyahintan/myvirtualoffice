@@ -17,7 +17,7 @@ export function rootDir(): string {
   for (;;) {
     if (fs.existsSync(path.join(dir, 'kantor.config.json'))) return (rootCache = dir);
     const parent = path.dirname(dir);
-    if (parent === dir) throw new Error('kantor.config.json not found. Run from within project folder.');
+    if (parent === dir) throw new Error('kantor.config.json tidak ditemukan. Jalankan dari dalam folder proyek.');
     dir = parent;
   }
 }
@@ -134,7 +134,7 @@ export function saveConfig(cfg: AppConfig) {
 }
 
 function fileOf(id: string) {
-  if (!/^[a-z0-9-]+$/.test(id)) throw new Error(`Invalid episode ID: ${id}`);
+  if (!/^[a-z0-9-]+$/.test(id)) throw new Error(`ID episode tidak valid: ${id}`);
   return path.join(ensure(paths.episodes()), `${id}.json`);
 }
 
@@ -149,7 +149,7 @@ export function listEpisodes(): Episode[] {
 
 export function getEpisode(id: string): Episode {
   const f = fileOf(id);
-  if (!fs.existsSync(f)) throw new Error(`Episode ${id} not found`);
+  if (!fs.existsSync(f)) throw new Error(`Episode ${id} tidak ditemukan`);
   return JSON.parse(fs.readFileSync(f, 'utf8'));
 }
 
@@ -201,7 +201,7 @@ export function createEpisodeFromIdea(idea: Idea, by = 'riset'): Episode {
     status: 'idea',
     idea,
     revisionCount: 0,
-    log: [{ time: now, by, message: 'Idea created' }],
+    log: [{ time: now, by, message: 'Ide dibuat' }],
   });
 }
 

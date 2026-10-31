@@ -112,7 +112,7 @@ function rapikanPilihan(nomor: number[], potongan: Potongan[]): number[] {
 export async function splitIntoShorts(id: string, jumlah: number, arahan?: string, onRender?: (id: string) => Promise<void>) {
   const ep = getEpisode(id);
   if (!ep.scenes?.length || !ep.script) throw new Error('Episode belum punya adegan');
-  if (ep.idea.type === 'memorization') throw new Error('Video memorization: pakai "Buat versi Shorts" saja');
+  if (ep.idea.type === 'memorization') throw new Error('Video hafalan: pakai "Buat versi Shorts" saja');
   const catat = (message: string) => addLog(id, 'sutradara', message);
 
   catat(`Menyiapkan ${jumlah} Shorts: memotong rekaman per adegan`);

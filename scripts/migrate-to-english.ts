@@ -239,7 +239,7 @@ function migrateAppConfig(old: AnyObject): AnyObject {
           format: s.format === 'biasa' ? 'standard' : s.format === 'semua' ? 'all' : s.format,
         })),
         ...((old.rencanaTayang as AnyObject).alasan && { reason: (old.rencanaTayang as AnyObject).alasan }),
-        by: (old.rencanaTayang as AnyObject).oleh,
+        by: (old.rencanaTayang as AnyObject).oleh === 'pemilik' ? 'owner' : (old.rencanaTayang as AnyObject).oleh,
         modified: (old.rencanaTayang as AnyObject).diubah,
       },
     }),

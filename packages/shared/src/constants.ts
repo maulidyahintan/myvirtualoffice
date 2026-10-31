@@ -102,15 +102,15 @@ export function pitchFilter(semitones: number): string | undefined {
 /** Voice per speaker in per-scene recording. Can be changed in Settings page. */
 export const SPEAKERS = ['narrator', 'mother', 'mamas', 'mochi'] as const;
 export const DEFAULT_CHARACTER_VOICE: Record<(typeof SPEAKERS)[number], { pitch: number; tempo: number; note: string }> = {
-  narrator: { pitch: 0, tempo: 1, note: 'original voice' },
+  narrator: { pitch: 0, tempo: 1, note: 'suara asli' },
   // Small pitch shifts only: too much shift sounds like robot/chipmunk
-  mother: { pitch: -1.5, tempo: 0.96, note: 'slightly heavier, calm & slower' },
-  mamas: { pitch: 2.5, tempo: 1.04, note: 'younger & cheerful, still natural' },
-  mochi: { pitch: 4, tempo: 1.05, note: 'small & adorable' },
+  mother: { pitch: -1.5, tempo: 0.96, note: 'sedikit lebih berat, kalem & pelan' },
+  mamas: { pitch: 2.5, tempo: 1.04, note: 'lebih muda & ceria, tetap natural' },
+  mochi: { pitch: 4, tempo: 1.05, note: 'kecil & menggemaskan' },
 };
 export const CHARACTER_PITCH_LIMITS = { min: -6, max: 9 };
 /** Memorization video recitation voice: higher like children & slower for easy following. */
-export const DEFAULT_MEMORIZATION_VOICE = { pitch: 3, tempo: 0.85, note: 'like children, slower' };
+export const DEFAULT_MEMORIZATION_VOICE = { pitch: 3, tempo: 0.85, note: 'seperti anak-anak, lebih pelan' };
 
 export const MUSIC_TYPES = ['intro', 'outro'] as const;
 export type MusicType = (typeof MUSIC_TYPES)[number];
