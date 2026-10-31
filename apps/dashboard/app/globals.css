@@ -343,3 +343,13 @@ button[data-selesai] { background: var(--hijau-muda); color: var(--hijau); borde
 .bagian-isi { padding: 16px 20px 20px; }
 .baris-suara { display: grid; gap: 6px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
 .baris-suara:last-of-type { border-bottom: 0; }
+
+/* form selebar halaman: isian pendek berdampingan, isian panjang penuh */
+.form-lebar { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 18px; align-items: end; }
+.form-lebar .penuh { grid-column: 1 / -1; }
+.form-lebar .centang { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.form-lebar input[type='number'] { width: 100%; }
+.form-lebar.enam { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.form-lebar.enam .lebar-2 { grid-column: span 2; }
+.form-lebar.enam .lebar-3 { grid-column: span 3; }
+@media (max-width: 900px) { .form-lebar.enam { grid-template-columns: 1fr; } .form-lebar.enam .lebar-2, .form-lebar.enam .lebar-3 { grid-column: 1 / -1; } }
