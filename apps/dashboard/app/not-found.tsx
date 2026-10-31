@@ -9,7 +9,7 @@ export default function TidakDitemukan() {
         Mungkin episodenya sudah dihapus atau alamatnya salah ketik.
       </p>
       <div className="row" style={{ justifyContent: 'center' }}>
-        <Link href="/papan-kerja" className="tombol">
+        <Link href="/board" className="tombol">
           🗂️ Ke Papan Kerja
         </Link>
       </div>

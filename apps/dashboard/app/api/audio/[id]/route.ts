@@ -14,8 +14,8 @@ import {
   updateEpisode,
   type Episode,
 } from '@kantor/shared';
-import { olahAudio } from '@/lib/ffmpeg';
-import { jalankanKantor } from '@/lib/jalankan';
+import { processAudio } from '@/lib/ffmpeg';
+import { runOfficeCommand } from '@/lib/runner';
 
 const TIPE: Record<string, string> = {
   '.mp3': 'audio/mpeg',
@@ -63,7 +63,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }
      pitch: Number(q.get('nada')) || 0,
     offset: adegan !== undefined ? (ep.sceneOffsets?.[adegan] ?? 0) : 0,
   });
-  if (filter) return new Response(new Uint8Array(await olahAudio(lokasi, filter)), { headers: WAV });
+  if (filter) return new Response(new Uint8Array(await processAudio(lokasi, filter)), { headers: WAV });
   return new Response(fs.readFileSync(lokasi), {
     headers: { 'Content-Type': TIPE[path.extname(lokasi)] ?? 'application/octet-stream', 'Cache-Control': 'no-store' },
   });
@@ -94,7 +94,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
          pitch: Number(form.get('nada')) || 0,
         offset: Math.max(0, Number(form.get('offset')) || 0),
       });
-      return new Response(new Uint8Array(await olahAudio(sementara, filter || 'anull')), { headers: WAV });
+      return new Response(new Uint8Array(await processAudio(sementara, filter || 'anull')), { headers: WAV });
     } finally {
       fs.rmSync(sementara, { force: true });
     }
@@ -164,7 +164,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     addLog(id, 'pemilik', `${pesan}, menunggu bagian berikutnya`);
   } else {
     setStatus(id, 'rendering', 'pemilik', pesan);
-    jalankanKantor(['render', id], id);
+    runOfficeCommand(['render', id], id);
   }
 
   return Response.redirect(new URL(`/episode/${id}`, req.url), 303);

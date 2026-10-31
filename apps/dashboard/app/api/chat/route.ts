@@ -1,6 +1,6 @@
 import { readChat, getEpisode, deleteChat, isBusy, addChatMessage, type ChatAgent } from '@kantor/shared';
 import { CHAT_AGENTS } from '@kantor/shared/constants';
-import { jalankanKantor } from '@/lib/jalankan';
+import { runOfficeCommand } from '@/lib/runner';
 
 export const dynamic = 'force-dynamic';
 
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     }
   }
   addChatMessage(agen, { from: 'owner', text: teks, episodeId });
-  jalankanKantor(['chat', agen]);
+  runOfficeCommand(['chat', agen]);
   return Response.json({ pesan: denganJudul(agen), mengetik: true });
 }
 

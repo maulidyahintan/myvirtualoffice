@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getEpisode, SPEAKER_LABEL, countWords, loadConfig, MAX_PITCH, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, memorizationVoice, speakerVoice, type Episode } from '@kantor/shared';
-import { StudioRekam, type BagianStudio } from '@/components/StudioRekam';
+import { RecordingStudio, type StudioPart } from '@/components/RecordingStudio';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,11 +20,11 @@ function ketHafalan(): string {
   return `Suara hafalan: ${DEFAULT_MEMORIZATION_VOICE.note} (nada ${s.pitch > 0 ? '+' : ''}${s.pitch}, tempo ${Math.round(s.tempo * 100)}%)`;
 }
 
-function daftarBagian(ep: Episode): BagianStudio[] {
+function daftarBagian(ep: Episode): StudioPart[] {
   const waktu = ep.render?.scenes;
   const suaraAyat = ep.idea.type === 'memorization' ? ketHafalan() : undefined;
   const ulang = ep.idea.memorization?.repetitions ?? 1;
-  const bagian: Omit<BagianStudio, 'start' | 'duration' | 'saved'>[] =
+  const bagian: Omit<StudioPart, 'start' | 'duration' | 'saved'>[] =
     ep.idea.type === 'memorization'
       ? (ep.memorization?.verses ?? []).map((a) => ({
           title: a.number === 0 ? 'Basmalah' : `Ayat ${a.number}`,
@@ -78,7 +78,7 @@ export default async function HalamanStudio({ params }: { params: Promise<{ id: 
           rekaman yang disimpan menentukan panjang {ep.idea.type === 'memorization' ? 'ayat' : 'adegan'} itu di video akhir.
         </p>
       </div>
-      <StudioRekam
+      <RecordingStudio
         id={id}
         video={ep.render?.video ? `/api/media/${ep.render.video}?v=${encodeURIComponent(ep.render.time)}` : undefined}
         vertikal={ep.idea.format === 'short'}

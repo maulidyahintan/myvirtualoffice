@@ -33,25 +33,25 @@ import {
   type Script,
   type AgeGroup,
 } from '@kantor/shared';
-import { jalankanKantor, localToIso } from '@/lib/jalankan';
+import { runOfficeCommand, localToIso } from '@/lib/runner';
 
 const teks = (f: FormData, k: string) => String(f.get(k) ?? '').trim();
 
 function segarkan(id?: string) {
   revalidatePath('/');
-  revalidatePath('/papan-kerja');
+  revalidatePath('/board');
   if (id) revalidatePath(`/episode/${id}`);
 }
 
-export async function mulaiRiset(form: FormData) {
+export async function startResearch(form: FormData) {
   const arahan = teks(form, 'arahan');
-  jalankanKantor(arahan ? ['riset', arahan] : ['riset']);
+  runOfficeCommand(arahan ? ['riset', arahan] : ['riset']);
   segarkan();
 }
 
-export async function buatLaporan() {
-  jalankanKantor(['laporan']);
-  revalidatePath('/laporan');
+export async function requestReport() {
+  runOfficeCommand(['laporan']);
+  revalidatePath('/reports');
 }
 
 function bacaFormat(form: FormData): FormatChoice {
@@ -89,15 +89,15 @@ function terapkanFormat(id: string, pilihan: FormatChoice): string[] {
 function mulaiTulis(id: string, oleh: string) {
   if (getEpisode(id).idea.type === 'memorization') {
     setStatus(id, 'writing', oleh, 'Mengambil teks surat');
-    jalankanKantor(['memorization', id], id);
+    runOfficeCommand(['memorization', id], id);
   } else {
     setStatus(id, 'writing', oleh, 'Penulis mulai bekerja');
-    jalankanKantor(['tulis', id], id);
+    runOfficeCommand(['tulis', id], id);
   }
 }
 
 /** Ganti format selama naskah belum ditulis. */
-export async function buatHafalan(form: FormData) {
+export async function createMemorization(form: FormData) {
   const nomor = Number(teks(form, 'surat'));
   if (!Number.isInteger(nomor) || nomor < 1 || nomor > 114) throw new Error('Nomor surat harus 1–114');
   const res = await fetch(`https://equran.id/api/v2/surat/${nomor}`);
@@ -127,7 +127,7 @@ export async function buatHafalan(form: FormData) {
 }
 
 /** Simpan waktu mulai tiap bacaan hafalan (koreksi manual) lalu render ulang. */
-export async function simpanWaktuHafalan(form: FormData) {
+export async function saveMemorizationTiming(form: FormData) {
   const id = teks(form, 'id');
   const angka = teks(form, 'waktu')
     .split(/[\s,;]+/)
@@ -138,11 +138,11 @@ export async function simpanWaktuHafalan(form: FormData) {
     if (e.memorization) e.memorization.segmentStarts = angka.length ? [...angka].sort((a, b) => a - b) : undefined;
   });
   setStatus(id, 'rendering', 'pemilik', angka.length ? 'Waktu bacaan dikoreksi manual' : 'Deteksi jeda otomatis diulang');
-  jalankanKantor(['render', id], id);
+  runOfficeCommand(['render', id], id);
   segarkan(id);
 }
 
-export async function buatIdeManual(form: FormData) {
+export async function createManualIdea(form: FormData) {
   const usia = teks(form, 'usia') as AgeGroup;
   const ep = createEpisodeFromIdea(
     {
@@ -160,14 +160,14 @@ export async function buatIdeManual(form: FormData) {
   redirect(`/episode/${ep.id}`);
 }
 
-export async function tulisNaskah(form: FormData) {
+export async function writeScript(form: FormData) {
   const id = teks(form, 'id');
   const ids = form.has('format') ? terapkanFormat(id, bacaFormat(form)) : [id];
   for (const i of ids) mulaiTulis(i, 'dashboard');
   segarkan(id);
 }
 
-export async function mintaRevisi(form: FormData) {
+export async function requestRevision(form: FormData) {
   const id = teks(form, 'id');
   const feedback = teks(form, 'feedback');
   if (!feedback) return;
@@ -175,11 +175,11 @@ export async function mintaRevisi(form: FormData) {
     e.humanFeedback = feedback;
   });
   setStatus(id, 'writing', 'pemilik', `Minta revisi: ${feedback.slice(0, 80)}`);
-  jalankanKantor(['tulis', id], id);
+  runOfficeCommand(['tulis', id], id);
   segarkan(id);
 }
 
-export async function simpanNaskahManual(form: FormData) {
+export async function saveManualScript(form: FormData) {
   const id = teks(form, 'id');
   const naskah = JSON.parse(teks(form, 'naskah')) as Script;
   if (!Array.isArray(naskah.scenes) || !Array.isArray(naskah.evidences)) throw new Error('Format naskah tidak valid');
@@ -190,22 +190,22 @@ export async function simpanNaskahManual(form: FormData) {
   segarkan(id);
 }
 
-export async function setujuiNaskah(form: FormData) {
+export async function approveScript(form: FormData) {
   const id = teks(form, 'id');
   if (form.get('dalilDicek') !== 'on') throw new Error('Centang konfirmasi pengecekan dalil dulu');
   setStatus(id, 'directing', 'pemilik', 'Naskah disetujui (dalil sudah dicek pemilik)');
-  jalankanKantor(['sutradara', id], id);
+  runOfficeCommand(['sutradara', id], id);
   segarkan(id);
 }
 
 export async function renderVideo(form: FormData) {
   const id = teks(form, 'id');
   setStatus(id, 'rendering', 'pemilik', 'Mulai render');
-  jalankanKantor(['render', id], id);
+  runOfficeCommand(['render', id], id);
   segarkan(id);
 }
 
-export async function setujuiVideo(form: FormData) {
+export async function approveVideo(form: FormData) {
   const id = teks(form, 'id');
   const jadwal = teks(form, 'jadwal');
   const args = ['upload', id];
@@ -222,11 +222,11 @@ export async function setujuiVideo(form: FormData) {
     e.selectedSchedule = iso;
   });
   setStatus(id, 'uploading', 'pemilik', iso ? `Video disetujui, tayang ${jadwal.replace('T', ' ')}` : 'Video disetujui');
-  jalankanKantor(args, id);
+  runOfficeCommand(args, id);
   segarkan(id);
 }
 
-export async function tolak(form: FormData) {
+export async function reject(form: FormData) {
   const id = teks(form, 'id');
   setStatus(id, 'rejected', 'pemilik', teks(form, 'alasan') || 'Ditolak pemilik');
   segarkan(id);
@@ -240,7 +240,7 @@ export async function tolak(form: FormData) {
  * tarik=on      → video lama langsung dijadikan private (jadwal tayang batal); kalau tidak,
  *                 ditarik otomatis setelah versi baru diupload.
  */
-export async function editUlang(form: FormData) {
+export async function reopenForEdit(form: FormData) {
   const id = teks(form, 'id');
   const naskah = teks(form, 'tujuan') === 'naskah';
   const feedback = teks(form, 'feedback');
@@ -253,11 +253,11 @@ export async function editUlang(form: FormData) {
   });
   if (naskah) {
     setStatus(id, 'writing', 'pemilik', `Edit ulang, minta revisi naskah: ${feedback.slice(0, 80)}`);
-    jalankanKantor(['tulis', id], id);
+    runOfficeCommand(['tulis', id], id);
   } else {
     setStatus(id, 'needs_video_approval', 'pemilik', 'Edit ulang video');
   }
-  if (lama && form.get('tarik') === 'on') jalankanKantor(['tarik', id], `${id}-tarik`);
+  if (lama && form.get('tarik') === 'on') runOfficeCommand(['tarik', id], `${id}-tarik`);
   segarkan(id);
 }
 
@@ -266,7 +266,7 @@ export async function editUlang(form: FormData) {
  * metadata, dan rekaman yang sama, langsung dirender. File rekaman disalin supaya episode
  * kembaran bisa direkam ulang/dihapus tanpa mengganggu aslinya.
  */
-export async function buatVersiLain(form: FormData) {
+export async function createAlternateFormat(form: FormData) {
   const id = teks(form, 'id');
   const ep = getEpisode(id);
   if (!ep.scenes || !ep.render) throw new Error('Episode belum punya video yang jadi');
@@ -315,13 +315,13 @@ export async function buatVersiLain(form: FormData) {
     e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: `Dibuat versi ${FORMAT_LABEL[format]}: ${baru.id}` });
   });
   setStatus(baru.id, 'rendering', 'pemilik', `Metadata & render versi ${FORMAT_LABEL[format]}`);
-  jalankanKantor(['metadata', baru.id, 'render'], baru.id);
+  runOfficeCommand(['metadata', baru.id, 'render'], baru.id);
   segarkan(id);
   redirect(`/episode/${baru.id}`);
 }
 
 /** Pecah video biasa yang sudah jadi menjadi beberapa Shorts dari scenes pentingnya. */
-export async function pecahShorts(form: FormData) {
+export async function splitIntoShorts(form: FormData) {
   const id = teks(form, 'id');
   // 'otomatis' (atau kosong) = sesuai panjang video
   const jumlah = Math.min(5, Math.max(1, Number(teks(form, 'jumlah')) || autoShortsCount(contentDuration(getEpisode(id)))));
@@ -330,26 +330,26 @@ export async function pecahShorts(form: FormData) {
 
 function mulaiPecahShorts(id: string, jumlah: number, arahan = '') {
   addLog(id, 'pemilik', `Minta ${jumlah} Shorts dari inti video${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
-  jalankanKantor(['shorts', id, String(jumlah), ...(arahan ? [arahan] : [])], `${id}-shorts`);
+  runOfficeCommand(['shorts', id, String(jumlah), ...(arahan ? [arahan] : [])], `${id}-shorts`);
   segarkan(id);
 }
 
 /** Channel Manager membuat ulang judul, deskripsi & tags sesuai format episode. */
-export async function buatUlangMetadata(form: FormData) {
+export async function regenerateMetadata(form: FormData) {
   const id = teks(form, 'id');
-  jalankanKantor(['metadata', id], `${id}-metadata`);
+  runOfficeCommand(['metadata', id], `${id}-metadata`);
   segarkan(id);
 }
 
 /** Minta Channel Manager menyusun rencana jadwal tayang. */
-export async function mintaPublishPlan(form: FormData) {
+export async function requestPublishPlan(form: FormData) {
   const arahan = teks(form, 'arahan');
-  jalankanKantor(arahan ? ['rencana', arahan] : ['rencana']);
-  revalidatePath('/jadwal');
+  runOfficeCommand(arahan ? ['rencana', arahan] : ['rencana']);
+  revalidatePath('/schedule');
 }
 
 /** Pemilik mengubah rencana jadwal tayang secara manual. */
-export async function simpanPublishPlan(form: FormData) {
+export async function savePublishPlan(form: FormData) {
   const cfg = loadConfig();
   const lama = publishPlan(cfg);
   const slot = form
@@ -371,12 +371,12 @@ export async function simpanPublishPlan(form: FormData) {
     modified: new Date().toISOString(),
   };
   saveConfig(cfg);
-  revalidatePath('/jadwal');
+  revalidatePath('/schedule');
   revalidatePath('/episode/[id]', 'page');
 }
 
 /** Nama playlist tujuan per seri (kosong = bawaan). */
-export async function simpanPlaylist(form: FormData) {
+export async function savePlaylists(form: FormData) {
   const cfg = loadConfig();
   cfg.series = cfg.series.map((s) => {
     const nama = teks(form, `playlist-${s.id}`);
@@ -384,18 +384,18 @@ export async function simpanPlaylist(form: FormData) {
     return nama ? { ...lain, playlist: nama } : lain;
   });
   saveConfig(cfg);
-  revalidatePath('/pengaturan');
+  revalidatePath('/settings');
 }
 
 /** Masukkan video yang sudah diupload tapi belum masuk playlist. */
-export async function masukkanSemuaKePlaylist() {
-  jalankanKantor(['playlist']);
-  revalidatePath('/tayang');
-  revalidatePath('/pengaturan');
+export async function addAllToPlaylists() {
+  runOfficeCommand(['playlist']);
+  revalidatePath('/published');
+  revalidatePath('/settings');
 }
 
 /** Pengaturan riset harian otomatis + pasang/lepas penjadwal macOS. */
-export async function simpanRisetHarian(form: FormData) {
+export async function saveDailyResearch(form: FormData) {
   const cfg = loadConfig();
   const aktif = form.get('aktif') === 'on';
   const jam = /^([01]\d|2[0-3]):[0-5]\d$/.test(teks(form, 'jam')) ? teks(form, 'jam') : '07:00';
@@ -403,12 +403,12 @@ export async function simpanRisetHarian(form: FormData) {
   cfg.dailyResearch = { active: aktif, time: jam, ideaCount: jumlahIde };
   saveConfig(cfg);
   // penjadwal ikut dipasang/dilepas, supaya cukup satu tombol
-  jalankanKantor([aktif ? 'harian-pasang' : 'harian-lepas']);
-  revalidatePath('/pengaturan');
+  runOfficeCommand([aktif ? 'harian-pasang' : 'harian-lepas']);
+  revalidatePath('/settings');
 }
 
 /** Pulihkan episode yang error / ditolak ke langkah yang masuk akal. */
-export async function pulihkan(form: FormData) {
+export async function recover(form: FormData) {
   const id = teks(form, 'id');
   const ep = getEpisode(id);
   const status = ep.render ? 'needs_video_approval' : ep.scenes ? 'needs_audio' : ep.script ? 'needs_script_approval' : 'idea';
@@ -416,15 +416,15 @@ export async function pulihkan(form: FormData) {
   segarkan(id);
 }
 
-export async function simpanMusik(form: FormData) {
+export async function saveMusicSettings(form: FormData) {
   const cfg = loadConfig();
   const volume = Math.min(100, Math.max(0, Number(teks(form, 'volume')) || 0)) / 100;
   cfg.music = { ...cfg.music, volume, inShorts: form.get('diShorts') === 'on' };
   saveConfig(cfg);
-  revalidatePath('/pengaturan');
+  revalidatePath('/settings');
 }
 
-export async function hapusMusik(form: FormData) {
+export async function deleteMusic(form: FormData) {
   const jenis = teks(form, 'jenis') as MusicType;
   const cfg = loadConfig();
   const file = MUSIC_TYPES.includes(jenis) ? cfg.music?.[jenis] : undefined;
@@ -432,24 +432,24 @@ export async function hapusMusik(form: FormData) {
   fs.rmSync(path.join(paths.videoPkg(), 'public', file), { force: true });
   delete cfg.music[jenis];
   saveConfig(cfg);
-  revalidatePath('/pengaturan');
+  revalidatePath('/settings');
 }
 
-export async function simpanNada(id: string, semiton: number) {
+export async function savePitch(id: string, semiton: number) {
   updateEpisode(id, (e) => {
     e.voicePitch = Math.max(-MAX_PITCH, Math.min(MAX_PITCH, Math.round(semiton * 2) / 2)) || undefined;
   });
   segarkan(id);
 }
 
-export async function simpanEfekKarakter(id: string, aktif: boolean) {
+export async function saveCharacterEffects(id: string, aktif: boolean) {
   updateEpisode(id, (e) => {
     e.characterEffects = aktif ? undefined : false;
   });
   segarkan(id);
 }
 
-export async function simpanSuaraKarakter(form: FormData) {
+export async function saveCharacterVoices(form: FormData) {
   const cfg = loadConfig();
   const baca = (p: string) =>
     form.get(`${p}-reset`) === 'on'
@@ -466,10 +466,10 @@ export async function simpanSuaraKarakter(form: FormData) {
   cfg.characterVoices = suara;
   cfg.memorizationVoice = baca('memorization');
   saveConfig(cfg);
-  revalidatePath('/pengaturan');
+  revalidatePath('/settings');
 }
 
-export async function ubahModeRekam(form: FormData) {
+export async function changeRecordingMode(form: FormData) {
   const id = teks(form, 'id');
   const mode: RecordingMode = teks(form, 'mode') === 'per-scene' ? 'per-scene' : 'sequential';
   updateEpisode(id, (e) => {
@@ -481,7 +481,7 @@ export async function ubahModeRekam(form: FormData) {
   segarkan(id);
 }
 
-export async function hapusRekaman(form: FormData) {
+export async function deleteRecordings(form: FormData) {
   const id = teks(form, 'id');
   const ep = getEpisode(id);
   const pub = path.join(paths.videoPkg(), 'public');
