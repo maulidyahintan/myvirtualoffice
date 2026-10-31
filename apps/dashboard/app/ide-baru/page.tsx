@@ -1,4 +1,4 @@
-import { loadConfig, PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, USIA } from '@kantor/shared';
+import { loadConfig, FORMAT_CHOICES, FORMAT_CHOICE_LABEL, AGE_GROUPS } from '@kantor/shared';
 import { buatIdeManual } from '../actions';
 import { Tombol } from '@/components/Tombol';
 
@@ -17,20 +17,20 @@ export default function IdeBaru() {
         </label>
         <label>
           Format video
-          <select name="format" defaultValue="biasa">
-            {PILIHAN_FORMAT.map((f) => (
+          <select name="format" defaultValue="standard">
+            {FORMAT_CHOICES.map((f) => (
               <option key={f} value={f}>
-                {PILIHAN_FORMAT_LABEL[f]} {f === 'short' ? '(vertikal, < 60 detik)' : f === 'biasa' ? '(16:9, 3–5 menit)' : '(jadi 2 episode)'}
+                {FORMAT_CHOICE_LABEL[f]} {f === 'short' ? '(vertikal, < 60 detik)' : f === 'standard' ? '(16:9, 3–5 menit)' : '(jadi 2 episode)'}
               </option>
             ))}
           </select>
         </label>
         <label>
           Seri
-          <select name="seri" defaultValue={cfg.seri[0]?.id}>
-            {cfg.seri.map((s) => (
+          <select name="seri" defaultValue={cfg.series[0]?.id}>
+            {cfg.series.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.nama}
+                {s.name}
               </option>
             ))}
           </select>
@@ -38,7 +38,7 @@ export default function IdeBaru() {
         <label>
           Usia target
           <select name="usia" defaultValue="4-6">
-            {USIA.map((u) => (
+            {AGE_GROUPS.map((u) => (
               <option key={u} value={u}>
                 {u} tahun
               </option>

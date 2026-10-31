@@ -1,4 +1,4 @@
-import { PILIHAN_FORMAT, PILIHAN_FORMAT_LABEL, USIA } from '@kantor/shared';
+import { FORMAT_CHOICES, FORMAT_CHOICE_LABEL, AGE_GROUPS } from '@kantor/shared';
 import { buatHafalan } from '../actions';
 import { Tombol } from '@/components/Tombol';
 
@@ -38,8 +38,8 @@ export default async function HafalanBaru() {
           {surat.length ? (
             <select name="surat" defaultValue="112">
               {surat.map((s) => (
-                <option key={s.nomor} value={s.nomor}>
-                  {s.nomor}. {s.namaLatin} ({s.arti}) · {s.jumlahAyat} ayat
+                <option key={s.number} value={s.number}>
+                  {s.number}. {s.namaLatin} ({s.arti}) · {s.jumlahAyat} ayat
                 </option>
               ))}
             </select>
@@ -66,10 +66,10 @@ export default async function HafalanBaru() {
         </label>
         <label className="lebar-2">
           Format video
-          <select name="format" defaultValue="biasa">
-            {PILIHAN_FORMAT.map((f) => (
+          <select name="format" defaultValue="standard">
+            {FORMAT_CHOICES.map((f) => (
               <option key={f} value={f}>
-                {PILIHAN_FORMAT_LABEL[f]}
+                {FORMAT_CHOICE_LABEL[f]}
               </option>
             ))}
           </select>
@@ -77,7 +77,7 @@ export default async function HafalanBaru() {
         <label className="lebar-2">
           Usia target
           <select name="usia" defaultValue="1-10">
-            {USIA.map((u) => (
+            {AGE_GROUPS.map((u) => (
               <option key={u} value={u}>
                 {u} tahun
               </option>

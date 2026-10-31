@@ -13,7 +13,7 @@ export interface ItemMenu {
 }
 
 export interface GrupMenu {
-  judul: string;
+  title: string;
   item: ItemMenu[];
 }
 
@@ -55,8 +55,8 @@ export function Sidebar({ logo, grup, butuhKamu }: { logo: ReactNode; grup: Grup
 
         <nav className="sidebar-nav">
           {grup.map((g) => (
-            <div key={g.judul} className="sidebar-grup">
-              <div className="sidebar-judul">{g.judul}</div>
+            <div key={g.title} className="sidebar-grup">
+              <div className="sidebar-judul">{g.title}</div>
               {g.item.map((m) => (
                 <Link key={m.href} href={m.href} className={`sidebar-item ${aktif(m.href) ? 'aktif' : ''}`} aria-current={aktif(m.href) ? 'page' : undefined}>
                   <span className="sidebar-ikon" aria-hidden>

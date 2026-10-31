@@ -1,32 +1,33 @@
 import fs from 'node:fs';
 import {
-  BATAS_NADA_KARAKTER,
-  JENIS_MUSIK,
+  CHARACTER_PITCH_LIMITS,
+  MUSIC_TYPES,
   loadConfig,
-  PEMBICARA,
-  SPEK_FORMAT,
-  SUARA_HAFALAN_BAWAAN,
-  SUARA_KARAKTER_BAWAAN,
-  bacaOtomatis,
-  filePenjadwalHarian,
+  SPEAKERS,
+  FORMAT_SPEC,
+  DEFAULT_MEMORIZATION_VOICE,
+  DEFAULT_CHARACTER_VOICE,
+  readAutomationState,
+  dailySchedulerFile,
   listEpisodes,
-  playlistSeri,
-  risetHarian,
-  sedangSibuk,
-  suaraHafalan,
-  suaraPembicara,
+  seriesPlaylist,
+  dailyResearchSettings,
+  isBusy,
+  memorizationVoice,
+  speakerVoice,
+  type MusicType,
 } from '@kantor/shared';
 import { hapusMusik, masukkanSemuaKePlaylist, simpanMusik, simpanPlaylist, simpanRisetHarian, simpanSuaraKarakter } from '../actions';
 import { BagianLipat } from '@/components/BagianLipat';
 import { Tombol } from '@/components/Tombol';
 
-const NAMA_PEMBICARA = { narator: '📖 Narator', ibu: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', hafalan: '🕌 Bacaan hafalan' } as const;
+const NAMA_SPEAKERS = { narrator: '📖 Narator', mother: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', memorization: '🕌 Bacaan hafalan' } as const;
 
 export const dynamic = 'force-dynamic';
 
-const INFO = {
-  pembuka: { judul: '🎵 Musik pembuka', bagian: 'intro' },
-  penutup: { judul: '🎶 Musik penutup', bagian: 'outro' },
+const INFO: Record<MusicType, { title: string; part: string }> = {
+  intro: { title: '🎵 Musik pembuka', part: 'intro' },
+  outro: { title: '🎶 Musik penutup', part: 'outro' },
 } as const;
 
 export default function Pengaturan() {
@@ -36,8 +37,8 @@ export default function Pengaturan() {
         <h1>⚙️ Pengaturan</h1>
         <div className="muted">Klik judul bagian untuk membuka atau menutupnya.</div>
       </div>
-      <div className="stack daftar-pengaturan">
-        {JENIS_MUSIK.map((jenis) => (
+      <div className="stack daftar-page">
+        {MUSIC_TYPES.map((jenis) => (
           <PengaturanMusik key={jenis} jenis={jenis} />
         ))}
         <PengaturanVolume />
@@ -50,16 +51,16 @@ export default function Pengaturan() {
 }
 
 /** Musik pembuka / penutup video. */
-function PengaturanMusik({ jenis }: { jenis: (typeof JENIS_MUSIK)[number] }) {
-  const musik = loadConfig().musik;
-  const { biasa, short } = SPEK_FORMAT;
+function PengaturanMusik({ jenis }: { jenis: (typeof MUSIC_TYPES)[number] }) {
+  const musik = loadConfig().music;
+  const { standard: biasa, short } = FORMAT_SPEC;
   const file = musik?.[jenis];
   return (
-    <BagianLipat id={`musik-${jenis}`} judul={INFO[jenis].judul} ringkasan={file ? '✅ terpasang' : 'belum ada'}>
+    <BagianLipat id={`musik-${jenis}`} judul={INFO[jenis].title} ringkasan={file ? '✅ terpasang' : 'belum ada'}>
       <p className="muted kecil" style={{ margin: 0 }}>
-        Diputar di {INFO[jenis].bagian} semua video baru (termasuk hafalan). {INFO[jenis].bagian === 'intro' ? 'Intro' : 'Outro'} otomatis
-        memanjang mengikuti musik, maksimal {jenis === 'pembuka' ? biasa.introMaksDetik : biasa.outroMaksDetik} detik untuk video biasa dan{' '}
-        {jenis === 'pembuka' ? short.introMaksDetik : short.outroMaksDetik} detik untuk Shorts; musik yang lebih panjang dipudarkan. Pakai musik
+        Diputar di {INFO[jenis].part} semua video baru (termasuk hafalan). {INFO[jenis].part === 'intro' ? 'Intro' : 'Outro'} otomatis
+        memanjang mengikuti musik, maksimal {jenis === 'intro' ? biasa.maxIntroSeconds : biasa.maxOutroSeconds} detik untuk video biasa dan{' '}
+        {jenis === 'intro' ? short.maxIntroSeconds : short.maxOutroSeconds} detik untuk Shorts; musik yang lebih panjang dipudarkan. Pakai musik
         buatan sendiri atau yang lisensinya jelas. Video yang sudah dirender tidak berubah.
       </p>
       {file ? (
@@ -74,7 +75,7 @@ function PengaturanMusik({ jenis }: { jenis: (typeof JENIS_MUSIK)[number] }) {
         </>
       ) : (
         <p className="muted kecil" style={{ margin: 0 }}>
-          Belum ada, {INFO[jenis].bagian} tanpa musik.
+          Belum ada, {INFO[jenis].part} tanpa musik.
         </p>
       )}
       <form action={`/api/musik/${jenis}`} method="post" encType="multipart/form-data" className="stack">
@@ -88,9 +89,9 @@ function PengaturanMusik({ jenis }: { jenis: (typeof JENIS_MUSIK)[number] }) {
 }
 
 function PengaturanVolume() {
-  const musik = loadConfig().musik;
+  const musik = loadConfig().music;
   const volume = Math.round((musik?.volume ?? 0.7) * 100);
-  const diShorts = musik?.diShorts ?? true;
+  const diShorts = musik?.inShorts ?? true;
   return (
     <BagianLipat id="volume" judul="🔊 Volume musik & Shorts" ringkasan={`${volume}% · ${diShorts ? 'juga di Shorts' : 'tanpa di Shorts'}`}>
       <form action={simpanMusik} className="stack">
@@ -111,7 +112,7 @@ function PengaturanVolume() {
 /** Efek suara per pembicara & bacaan hafalan. */
 function PengaturanSuara() {
   const cfg = loadConfig();
-  const diubah = PEMBICARA.filter((p) => cfg.suaraKarakter?.[p]).length + (cfg.suaraHafalan ? 1 : 0);
+  const diubah = SPEAKERS.filter((p) => cfg.characterVoices?.[p]).length + (cfg.memorizationVoice ? 1 : 0);
   return (
     <BagianLipat
       id="suara"
@@ -124,13 +125,13 @@ function PengaturanSuara() {
           bacaan diberi efek suara anak-anak, lebih pelan (otomatis, bisa dimatikan per episode di Studio). <b>Nada</b> dalam semiton: +
           terdengar lebih kecil seperti anak-anak, − lebih berat. <b>Tempo</b> 100% = kecepatan bicaramu, di bawah 100% lebih pelan.
         </p>
-        {[...PEMBICARA, 'hafalan' as const].map((p) => {
-          const s = p === 'hafalan' ? suaraHafalan(cfg) : suaraPembicara(p, cfg);
-          const ket = p === 'hafalan' ? SUARA_HAFALAN_BAWAAN.ket : SUARA_KARAKTER_BAWAAN[p].ket;
+        {[...SPEAKERS, 'memorization' as const].map((p) => {
+          const s = p === 'memorization' ? memorizationVoice(cfg) : speakerVoice(p, cfg);
+          const ket = p === 'memorization' ? DEFAULT_MEMORIZATION_VOICE.note : DEFAULT_CHARACTER_VOICE[p].note;
           return (
             <div key={p} className="baris-suara">
               <div>
-                <b>{NAMA_PEMBICARA[p]}</b>
+                <b>{NAMA_SPEAKERS[p]}</b>
                 <div className="kecil muted">bawaan: {ket}</div>
               </div>
               <div className="row" style={{ gap: 10, alignItems: 'end' }}>
@@ -139,10 +140,10 @@ function PengaturanSuara() {
                   <input
                     type="number"
                     name={`${p}-nada`}
-                    min={BATAS_NADA_KARAKTER.min}
-                    max={BATAS_NADA_KARAKTER.maks}
+                    min={CHARACTER_PITCH_LIMITS.min}
+                    max={CHARACTER_PITCH_LIMITS.max}
                     step={0.5}
-                    defaultValue={s.nada}
+                    defaultValue={s.pitch}
                     style={{ width: 80 }}
                   />
                 </label>
@@ -157,7 +158,7 @@ function PengaturanSuara() {
             </div>
           );
         })}
-        <Tombol teksProses="Menyimpan…">Simpan pengaturan suara</Tombol>
+        <Tombol teksProses="Menyimpan…">Simpan page suara</Tombol>
       </form>
     </BagianLipat>
   );
@@ -166,10 +167,10 @@ function PengaturanSuara() {
 /** Playlist YouTube tujuan tiap seri. Video otomatis dimasukkan saat diupload. */
 function PengaturanPlaylist() {
   const cfg = loadConfig();
-  const tanpaSetelan = { ...cfg, seri: cfg.seri.map(({ playlist: _, ...s }) => s) };
+  const tanpaSetelan = { ...cfg, seri: cfg.series.map(({ playlist: _, ...s }) => s) };
   const belum = listEpisodes().filter((e) => e.youtube && !e.youtube.playlist).length;
-  const sibuk = sedangSibuk('playlist');
-  const dipakai = [...new Set(cfg.seri.map((s) => playlistSeri(s.id, cfg)))];
+  const sibuk = isBusy('playlist');
+  const dipakai = [...new Set(cfg.series.map((s) => seriesPlaylist(s.id, cfg)))];
   return (
     <BagianLipat
       id="playlist"
@@ -181,17 +182,17 @@ function PengaturanPlaylist() {
         nama di channel; kalau belum ada, dibuat otomatis (publik). Kosongkan untuk memakai bawaan.
       </p>
       <form action={simpanPlaylist} className="stack" style={{ gap: 8 }}>
-        {cfg.seri.map((s) => (
+        {cfg.series.map((s) => (
           <label key={s.id} className="kecil">
-            {s.nama}
-            <input type="text" name={`playlist-${s.id}`} defaultValue={s.playlist ?? ''} placeholder={playlistSeri(s.id, tanpaSetelan)} />
+            {s.name}
+            <input type="text" name={`playlist-${s.id}`} defaultValue={s.playlist ?? ''} placeholder={seriesPlaylist(s.id, tanpaSetelan)} />
           </label>
         ))}
         <Tombol className="sekunder" teksProses="Menyimpan…">Simpan playlist</Tombol>
       </form>
       <div className="kecil">
         {dipakai.map((nama) => {
-          const id = cfg.playlistYoutube?.[nama];
+          const id = cfg.youtubePlaylists?.[nama];
           return (
             <div key={nama}>
               {nama}:{' '}
@@ -224,15 +225,15 @@ function PengaturanPlaylist() {
 /** Content Research mencari ide sendiri setiap hari. */
 function PengaturanRisetHarian() {
   const cfg = loadConfig();
-  const atur = risetHarian(cfg);
-  const terpasang = fs.existsSync(filePenjadwalHarian());
-  const c = bacaOtomatis();
-  const HASIL = { ok: '✅ berhasil', gagal: '❌ gagal', jalan: '⏳ sedang berjalan' } as const;
+  const atur = dailyResearchSettings(cfg);
+  const terpasang = fs.existsSync(dailySchedulerFile());
+  const c = readAutomationState();
+  const HASIL = { ok: '✅ berhasil', failed: '❌ gagal', running: '⏳ sedang berjalan' } as const;
   return (
     <BagianLipat
       id="riset-harian"
       judul="🔎 Riset ide otomatis"
-      ringkasan={atur.aktif && terpasang ? `Aktif · ${atur.jam} · min. ${atur.jumlahIde} ide` : 'Nonaktif'}
+      ringkasan={atur.active && terpasang ? `Aktif · ${atur.time} · min. ${atur.ideaCount} ide` : 'Nonaktif'}
     >
       <form action={simpanRisetHarian} className="stack">
         <p className="muted kecil" style={{ margin: 0 }}>
@@ -241,24 +242,24 @@ function PengaturanRisetHarian() {
           login supaya riset bisa jalan.
         </p>
         <label style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <input type="checkbox" name="aktif" defaultChecked={atur.aktif && terpasang} /> Aktif
+          <input type="checkbox" name="aktif" defaultChecked={atur.active && terpasang} /> Aktif
         </label>
         <div className="row" style={{ gap: 12 }}>
           <label className="kecil">
-            Jam ({cfg.zonaWaktu})
-            <input type="time" name="jam" defaultValue={atur.jam} style={{ width: 120 }} />
+            Jam ({cfg.timeZone})
+            <input type="time" name="jam" defaultValue={atur.time} style={{ width: 120 }} />
           </label>
           <label className="kecil">
             Minimal ide per hari
-            <input type="number" name="jumlahIde" min={1} max={8} defaultValue={atur.jumlahIde} style={{ width: 80 }} />
+            <input type="number" name="jumlahIde" min={1} max={8} defaultValue={atur.ideaCount} style={{ width: 80 }} />
           </label>
         </div>
         <div className="kecil">
           Penjadwal: {terpasang ? '🟢 terpasang' : '⚪ belum terpasang (centang Aktif lalu Simpan)'}
-          {c.tanggal ? (
+          {c.date ? (
             <div className="muted">
-              Riset otomatis terakhir: {c.tanggal} · {c.hasil ? HASIL[c.hasil] : ''}
-              {c.pesan ? ` · ${c.pesan}` : ''}
+              Riset otomatis terakhir: {c.date} · {c.result ? HASIL[c.result] : ''}
+              {c.message ? ` · ${c.message}` : ''}
             </div>
           ) : null}
         </div>

@@ -1,4 +1,4 @@
-import { latestFile, paths, sedangSibuk } from '@kantor/shared';
+import { latestFile, paths, isBusy } from '@kantor/shared';
 import { buatLaporan } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Tombol } from '@/components/Tombol';
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export default function HalamanLaporan() {
   const riset = latestFile(paths.riset());
   const laporan = latestFile(paths.laporan());
-  const sibuk = sedangSibuk('laporan') || sedangSibuk('riset');
+  const sibuk = isBusy('laporan') || isBusy('riset');
   const tanggal = (f?: string) => f?.match(/(\d{4}-\d{2}-\d{2})/)?.[1] ?? '';
 
   return (
@@ -25,7 +25,7 @@ export default function HalamanLaporan() {
         <div className="panel stack">
           <h2>Laporan performa {laporan ? <span className="muted kecil">({tanggal(laporan.file)})</span> : null}</h2>
           <form action={buatLaporan}>
-            <Tombol type="submit" disabled={sedangSibuk('laporan')} teksProses="Meminta laporan…">
+            <Tombol type="submit" disabled={isBusy('laporan')} teksProses="Meminta laporan…">
               📊 Minta laporan dari Channel Manager
             </Tombol>
           </form>

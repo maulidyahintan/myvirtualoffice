@@ -5,8 +5,8 @@ export type PegawaiId = 'manajer' | 'riset' | 'penulis' | 'reviewer' | 'sutradar
 
 export interface PegawaiDef {
   id: PegawaiId;
-  nama: string;
-  peran: string;
+  name: string;
+  role: string;
   gaya: 'peci' | 'kerudung';
   warnaBaju: string;
   /** warna kerudung atau peci */
@@ -21,8 +21,8 @@ export interface PegawaiDef {
 export const PEGAWAI: PegawaiDef[] = [
   {
     id: 'manajer',
-    nama: 'Mochi',
-    peran: 'Manajer (Orchestrator)',
+    name: 'Mochi',
+    role: 'Manajer (Orchestrator)',
     gaya: 'peci',
     warnaBaju: '#4F8A6E',
     warnaAksen: '#2B2B2B',
@@ -32,8 +32,8 @@ export const PEGAWAI: PegawaiDef[] = [
   },
   {
     id: 'riset',
-    nama: 'Miku',
-    peran: 'Content Research',
+    name: 'Miku',
+    role: 'Content Research',
     gaya: 'kerudung',
     warnaBaju: '#7FB7C9',
     warnaAksen: '#2F7F86',
@@ -43,8 +43,8 @@ export const PEGAWAI: PegawaiDef[] = [
   },
   {
     id: 'penulis',
-    nama: 'Chimi',
-    peran: 'Content Specialist (Penulis)',
+    name: 'Chimi',
+    role: 'Content Specialist (Penulis)',
     gaya: 'kerudung',
     warnaBaju: '#E9A2B8',
     warnaAksen: '#C2577E',
@@ -54,8 +54,8 @@ export const PEGAWAI: PegawaiDef[] = [
   },
   {
     id: 'reviewer',
-    nama: 'Choki',
-    peran: 'Kids & Syariah Reviewer',
+    name: 'Choki',
+    role: 'Kids & Syariah Reviewer',
     gaya: 'peci',
     warnaBaju: '#6C8FD6',
     warnaAksen: '#1F2A44',
@@ -65,8 +65,8 @@ export const PEGAWAI: PegawaiDef[] = [
   },
   {
     id: 'sutradara',
-    nama: 'Momo',
-    peran: 'Video Creator (Sutradara)',
+    name: 'Momo',
+    role: 'Video Creator (Sutradara)',
     gaya: 'peci',
     warnaBaju: '#E7A54B',
     warnaAksen: '#3A2E2A',
@@ -76,8 +76,8 @@ export const PEGAWAI: PegawaiDef[] = [
   },
   {
     id: 'channel',
-    nama: 'Lulu',
-    peran: 'Channel Manager',
+    name: 'Lulu',
+    role: 'Channel Manager',
     gaya: 'kerudung',
     warnaBaju: '#A99BE0',
     warnaAksen: '#5B4AA8',
@@ -90,16 +90,16 @@ export const PEGAWAI: PegawaiDef[] = [
 export type Keadaan = 'kerja' | 'tunggu' | 'santai';
 
 export interface Aktivitas {
-  waktu: string;
-  pesan: string;
+  time: string;
+  message: string;
   episodeId?: string;
-  judul?: string;
+  title?: string;
 }
 
 export interface StatusPegawai {
   id: PegawaiId;
   keadaan: Keadaan;
-  pesan: string;
+  message: string;
   episodeId?: string;
   aktivitas: Aktivitas[];
 }
@@ -107,7 +107,7 @@ export interface StatusPegawai {
 export interface DataKantor {
   pegawai: StatusPegawai[];
   /** jumlah episode per fase (untuk papan tulis) */
-  fase: { judul: string; jumlah: number }[];
-  menungguKamu: { id: string; judul: string; label: string }[];
+  fase: { title: string; jumlah: number }[];
+  menungguKamu: { id: string; title: string; label: string }[];
   diperbarui: string;
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FASE, listEpisodes, loadConfig, sedangSibuk, STATUS_SIBUK } from '@kantor/shared';
+import { PHASES, listEpisodes, loadConfig, isBusy, BUSY_STATUSES } from '@kantor/shared';
 import { mulaiRiset } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Badge } from '@/components/Badge';
@@ -10,12 +10,12 @@ export const dynamic = 'force-dynamic';
 export default function PapanKerja() {
   const episodes = listEpisodes();
   const cfg = loadConfig();
-  const risetJalan = sedangSibuk('riset');
-  const adaYangSibuk = risetJalan || episodes.some((e) => STATUS_SIBUK.includes(e.status));
+  const risetJalan = isBusy('riset');
+  const adaYangSibuk = risetJalan || episodes.some((e) => BUSY_STATUSES.includes(e.status));
   const butuhKamu = episodes.filter((e) =>
     ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'].includes(e.status),
   );
-  const namaSeri = (id: string) => cfg.seri.find((s) => s.id === id)?.nama ?? id;
+  const namaSeri = (id: string) => cfg.series.find((s) => s.id === id)?.name ?? id;
 
   return (
     <div className="stack halaman-papan">
@@ -42,23 +42,23 @@ export default function PapanKerja() {
       </form>
 
       <div className="board">
-        {FASE.map((fase) => {
-          const isi = episodes.filter((e) => fase.status.includes(e.status));
+        {PHASES.map((fase) => {
+          const isi = episodes.filter((e) => fase.statuses.includes(e.status));
           return (
-            <section key={fase.judul} className="kolom">
+            <section key={fase.title} className="kolom">
               <h3>
-                {fase.judul} <span>{isi.length}</span>
+                {fase.title} <span>{isi.length}</span>
               </h3>
               {/* tiap kolom bergulir sendiri, papan tetap setinggi layar */}
               <div className="kolom-isi">
                 {isi.map((e) => (
                   <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
-                    <div className="judul">{e.naskah?.judul ?? e.ide.judul}</div>
+                    <div className="judul">{e.script?.title ?? e.idea.title}</div>
                     <div className="kecil muted" style={{ marginBottom: 6 }}>
-                      {e.ide.format === 'short' ? '📱 Shorts · ' : ''}
-                      {e.pasangan ? '🔗 ' : ''}
-                      {e.asal ? '✂️ ' : ''}
-                      {namaSeri(e.ide.seri)} · usia {e.ide.usia}
+                      {e.idea.format === 'short' ? '📱 Shorts · ' : ''}
+                      {e.twin ? '🔗 ' : ''}
+                      {e.source ? '✂️ ' : ''}
+                      {namaSeri(e.idea.series)} · usia {e.idea.age}
                     </div>
                     <Badge status={e.status} />
                   </Link>

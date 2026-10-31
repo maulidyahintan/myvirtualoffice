@@ -3,22 +3,22 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
-  BATAS_SHORTS_DETIK,
-  cekMetadata,
-  durasiIsi,
-  jumlahShortsOtomatis,
+  SHORTS_LIMIT_SECONDS,
+  checkMetadata,
+  contentDuration,
+  autoShortsCount,
   FORMAT_LABEL,
   getEpisode,
   listEpisodes,
   loadConfig,
-  NAMA_HARI,
-  namaPlaylist,
+  DAY_NAMES,
+  playlistName,
   paths,
-  rekomendasiJadwal,
-  sedangSibuk,
-  STATUS_SIBUK,
-  PILIHAN_FORMAT,
-  PILIHAN_FORMAT_LABEL,
+  recommendSchedule,
+  isBusy,
+  BUSY_STATUSES,
+  FORMAT_CHOICES,
+  FORMAT_CHOICE_LABEL,
   type Episode,
 } from '@kantor/shared';
 import {
@@ -45,18 +45,18 @@ import { Tombol } from '@/components/Tombol';
 
 export const dynamic = 'force-dynamic';
 
-/** Pilih cara mengirim rekaman: berurutan (1 file / beberapa bagian) atau per adegan. */
+/** Pilih cara mengirim rekaman: berurutan (1 file / beberapa bagian) atau per scene. */
 function PilihModeRekam({ ep }: { ep: Episode }) {
-  const mode = ep.modeRekam ?? 'urut';
-  const satuan = ep.ide.jenis === 'hafalan' ? 'ayat' : 'adegan';
+  const mode = ep.recordingMode ?? 'sequential';
+  const satuan = ep.idea.type === 'memorization' ? 'ayat' : 'adegan';
   const pilihan = [
     {
-      mode: 'urut',
+      mode: 'sequential',
       label: '📼 Berurutan',
       ket: 'satu file, atau beberapa bagian (mis. per 2 menit)',
     },
     {
-      mode: 'per-adegan',
+      mode: 'per-scene',
       label: `🎬 Per ${satuan}`,
       ket: `satu file untuk tiap ${satuan}, durasi ${satuan} ikut persis`,
     },
@@ -72,7 +72,7 @@ function PilihModeRekam({ ep }: { ep: Episode }) {
             <Tombol type="submit" className={mode === p.mode ? '' : 'sekunder'} style={{ width: '100%', textAlign: 'left' }}>
               {p.label}
               <br />
-              <span style={{ fontWeight: 400, fontSize: 13 }}>{p.ket}</span>
+              <span style={{ fontWeight: 400, fontSize: 13 }}>{p.note}</span>
             </Tombol>
           </form>
         ))}
@@ -81,21 +81,21 @@ function PilihModeRekam({ ep }: { ep: Episode }) {
   );
 }
 
-/** Upload rekaman per adegan (hafalan: per ayat). Bisa juga dipakai untuk merekam ulang satu adegan saja. */
+/** Upload rekaman per scene (memorization: per verse). Bisa juga dipakai untuk merekam ulang satu scene saja. */
 function RekamanPerAdegan({ ep }: { ep: Episode }) {
-  const hafalan = ep.ide.jenis === 'hafalan';
+  const hafalan = ep.idea.type === 'memorization';
   const satuan = hafalan ? 'Ayat' : 'Adegan';
-  const ulang = ep.ide.hafalan?.ulang ?? 1;
+  const ulang = ep.idea.memorization?.repetitions ?? 1;
   const daftar = hafalan
-    ? (ep.hafalan?.ayat ?? []).map((a) => ({
-        judul: a.nomor === 0 ? 'Basmalah' : `Ayat ${a.nomor}${ulang > 1 ? ` (baca ${ulang}x, jeda ±1 detik)` : ''}`,
+    ? (ep.memorization?.verses ?? []).map((a) => ({
+        judul: a.number === 0 ? 'Basmalah' : `Ayat ${a.number}${ulang > 1 ? ` (baca ${ulang}x, jeda ±1 detik)` : ''}`,
         teks: a.latin,
       }))
-    : (ep.adegan ?? []).map((a, i) => ({
-        judul: `Adegan ${i + 1}${a.jenis === 'pertanyaan' ? ' (jeda berpikir ±3 detik ditambahkan otomatis)' : ''}`,
-        teks: a.narasi,
+    : (ep.scenes ?? []).map((a, i) => ({
+        judul: `Adegan ${i + 1}${a.type === 'question' ? ' (jeda berpikir ±3 detik ditambahkan otomatis)' : ''}`,
+        teks: a.narration,
       }));
-  const per = ep.audioPerAdegan ?? [];
+  const per = ep.audioPerScene ?? [];
   const sudah = daftar.filter((_, i) => per[i]).length;
   return (
     <div className="stack">
@@ -116,7 +116,7 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
         >
           <div className="kecil">
             <b>
-              {per[i] ? '✅' : '⬜'} {d.judul}
+              {per[i] ? '✅' : '⬜'} {d.title}
             </b>
             <div className="muted" style={{ marginTop: 4 }}>
               {d.teks}
@@ -170,9 +170,9 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
   );
 }
 
-/** Upload rekaman per bagian: kirim bagian demi bagian, lalu render setelah lengkap. */
+/** Upload rekaman per part: kirim bagian demi bagian, lalu render setelah lengkap. */
 function RekamanBagian({ ep }: { ep: Episode }) {
-  const bagian = ep.bagianAudio ?? [];
+  const bagian = ep.audioParts ?? [];
   return (
     <div className="stack">
       {bagian.length ? (
@@ -229,7 +229,7 @@ function ekorLog(id: string, baris = 40) {
 function besokJamTayang(jam: string) {
   const d = new Date(Date.now() + 86400_000);
   const tgl = new Intl.DateTimeFormat('en-CA', {
-    timeZone: loadConfig().zonaWaktu,
+    timeZone: loadConfig().timeZone,
   }).format(d);
   return `${tgl}T${jam}`;
 }
@@ -237,17 +237,17 @@ function besokJamTayang(jam: string) {
 /** Input jadwal tayang, terisi rekomendasi Channel Manager (slot kosong berikutnya); tetap bisa diganti. */
 function JadwalTayang({ ep }: { ep: Episode }) {
   const cfg = loadConfig();
-  const saran = rekomendasiJadwal(listEpisodes(), cfg).get(ep.id);
-  const [tgl, jam] = saran?.lokal.split('T') ?? [];
+  const saran = recommendSchedule(listEpisodes(), cfg).get(ep.id);
+  const [tgl, jam] = saran?.local.split('T') ?? [];
   const tanggal = tgl ? new Date(`${tgl}T00:00:00Z`) : undefined;
   return (
     <label>
-      Jadwal tayang ({cfg.zonaWaktu})
-      <input type="datetime-local" name="jadwal" defaultValue={saran?.lokal ?? besokJamTayang(cfg.jamTayangDefault)} required />
+      Jadwal tayang ({cfg.timeZone})
+      <input type="datetime-local" name="jadwal" defaultValue={saran?.local ?? besokJamTayang(cfg.defaultPublishTime)} required />
       <span className="kecil muted" style={{ fontWeight: 'normal' }}>
         {saran && tanggal ? (
           <>
-            📅 Rekomendasi Channel Manager: <b>{NAMA_HARI[tanggal.getUTCDay()]}, {tanggal.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', timeZone: 'UTC' })} pukul {jam}</b>{' '}
+            📅 Rekomendasi Channel Manager: <b>{DAY_NAMES[tanggal.getUTCDay()]}, {tanggal.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', timeZone: 'UTC' })} pukul {jam}</b>{' '}
             (slot kosong berikutnya di <Link href="/jadwal">rencana tayang</Link>). Boleh diganti sesukamu.
           </>
         ) : (
@@ -264,11 +264,11 @@ const Id = ({ id }: { id: string }) => <input type="hidden" name="id" value={id}
 
 function PanelAksi({ ep }: { ep: Episode }) {
   const cfg = loadConfig();
-  if (STATUS_SIBUK.includes(ep.status)) {
+  if (BUSY_STATUSES.includes(ep.status)) {
     return (
       <div className="panel aksi">
         <h2>⏳ Agen sedang bekerja</h2>
-        <p className="muted">{ep.catatanStatus}</p>
+        <p className="muted">{ep.statusNote}</p>
         <p className="kecil muted">Halaman ini menyegarkan diri otomatis. Kamu boleh menutupnya.</p>
       </div>
     );
@@ -283,10 +283,10 @@ function PanelAksi({ ep }: { ep: Episode }) {
             <Id id={ep.id} />
             <label className="kecil">
               Format video{' '}
-              <select name="format" defaultValue={ep.ide.format ?? 'biasa'}>
-                {PILIHAN_FORMAT.map((f) => (
+              <select name="format" defaultValue={ep.idea.format ?? 'standard'}>
+                {FORMAT_CHOICES.map((f) => (
                   <option key={f} value={f}>
-                    {PILIHAN_FORMAT_LABEL[f]}
+                    {FORMAT_CHOICE_LABEL[f]}
                   </option>
                 ))}
               </select>
@@ -294,7 +294,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
             <span className="kecil muted">
               Pilih <b>Keduanya</b> untuk membuat dua episode sekaligus dari materi ini: video biasa dan Shorts, dikerjakan bersamaan.
             </span>
-            <Tombol type="submit">{ep.ide.jenis === 'hafalan' ? '📖 Setujui & ambil teks surat' : '✍️ Setujui & tugaskan Penulis + Reviewer'}</Tombol>
+            <Tombol type="submit">{ep.idea.type === 'memorization' ? '📖 Setujui & ambil teks surat' : '✍️ Setujui & tugaskan Penulis + Reviewer'}</Tombol>
           </form>
           <FormTolak id={ep.id} />
         </div>
@@ -307,17 +307,17 @@ function PanelAksi({ ep }: { ep: Episode }) {
           {ep.review ? (
             <div>
               <div className="row">
-                <b>Skor reviewer: {ep.review.skor}/10</b>
-                <span className={`badge ${ep.review.keputusan === 'lolos' ? 'selesai' : 'error'}`}>{ep.review.keputusan}</span>
+                <b>Skor reviewer: {ep.review.score}/10</b>
+                <span className={`badge ${ep.review.decision === 'approved' ? 'selesai' : 'error'}`}>{ep.review.decision}</span>
               </div>
-              {ep.review.keputusan === 'revisi' ? (
+              {ep.review.decision === 'needs_revision' ? (
                 <p className="peringatan kecil">
                   Reviewer masih minta revisi setelah batas revisi otomatis. Baca catatannya sebelum menyetujui.
                 </p>
               ) : null}
               <h3 style={{ marginTop: 12 }}>Wajib kamu cek sendiri:</h3>
               <ul className="cek">
-                {ep.review.cekManusia.map((c, i) => (
+                {ep.review.humanCheck.map((c, i) => (
                   <li key={i}>{c}</li>
                 ))}
               </ul>
@@ -331,7 +331,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
             </label>
             <Tombol type="submit" teksProses="Menyimpan…">✅ Setujui naskah → Sutradara</Tombol>
           </form>
-          {ep.ide.jenis === 'hafalan' ? null : (
+          {ep.idea.type === 'memorization' ? null : (
             <form action={mintaRevisi} className="stack">
               <Id id={ep.id} />
               <label>
@@ -355,17 +355,17 @@ function PanelAksi({ ep }: { ep: Episode }) {
       return (
         <div className="panel aksi stack">
           <h2>🎙️ Rekam suaramu</h2>
-          {ep.ide.jenis === 'hafalan' ? (
+          {ep.idea.type === 'memorization' ? (
             <ol className="kecil" style={{ margin: 0, paddingLeft: 18 }}>
               <li>
                 Rekam di ruangan sepi pakai HP, dalam satu file atau <b>beberapa bagian</b> (potong di jeda, bukan di tengah ayat).
               </li>
-              {ep.hafalan?.ayat[0]?.nomor === 0 ? <li>Mulai dengan basmalah (sekali).</li> : null}
+              {ep.memorization?.verses[0]?.number === 0 ? <li>Mulai dengan basmalah (sekali).</li> : null}
               <li>
-                Baca ayat {ep.hafalan?.ayat.find((a) => a.nomor > 0)?.nomor} sampai {ep.hafalan?.ayat.at(-1)?.nomor} berurutan
-                {(ep.ide.hafalan?.ulang ?? 1) > 1 ? (
+                Baca ayat {ep.memorization?.verses.find((a) => a.number > 0)?.number} sampai {ep.memorization?.verses.at(-1)?.number} berurutan
+                {(ep.idea.memorization?.repetitions ?? 1) > 1 ? (
                   <>
-                    , <b>tiap ayat diulang {ep.ide.hafalan?.ulang}x</b>
+                    , <b>tiap ayat diulang {ep.idea.memorization?.repetitions}x</b>
                   </>
                 ) : null}
                 .
@@ -390,7 +390,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
             🎙️ Buka Studio Rekam (rekam sambil lihat video, atur nada)
           </Link>
           <PilihModeRekam ep={ep} />
-          {ep.modeRekam === 'per-adegan' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
+          {ep.recordingMode === 'per-scene' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
           <form action={renderVideo}>
             <Id id={ep.id} />
             <Tombol type="submit" className="sekunder" teksProses="Memulai render…">
@@ -405,7 +405,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
         <div className="panel aksi stack">
           <h2>Tonton & setujui video</h2>
           <p className="kecil muted">
-            Video diupload sebagai <b>Made for Kids</b>, kategori Pendidikan, dan langsung masuk playlist <b>{namaPlaylist(ep, cfg)}</b>. Dengan jadwal, video tayang otomatis.
+            Video diupload sebagai <b>Made for Kids</b>, kategori Pendidikan, dan langsung masuk playlist <b>{playlistName(ep, cfg)}</b>. Dengan jadwal, video tayang otomatis.
           </p>
           <form action={setujuiVideo} className="stack">
             <Id id={ep.id} />
@@ -419,18 +419,18 @@ function PanelAksi({ ep }: { ep: Episode }) {
             </Tombol>
           </form>
           <VideoLama ep={ep} />
-          {!ep.fileAudio ? <p className="peringatan kecil">Ini masih pratinjau tanpa suara. Upload rekaman dulu sebelum tayang.</p> : null}
-          {ep.ide.jenis === 'hafalan' && ep.fileAudio ? (
+          {!ep.audioFile ? <p className="peringatan kecil">Ini masih pratinjau tanpa suara. Upload rekaman dulu sebelum tayang.</p> : null}
+          {ep.idea.type === 'memorization' && ep.audioFile ? (
             <details>
               <summary>Waktu tiap bacaan meleset? Koreksi di sini</summary>
               <form action={simpanWaktuHafalan} className="stack" style={{ marginTop: 10 }}>
                 <Id id={ep.id} />
                 <p className="kecil muted">
-                  Detik mulai tiap bacaan di rekaman, dipisah koma ({ep.hafalan?.mulaiSegmen?.length ?? '?'} bacaan).
-                  {ep.hafalan?.mulaiSegmen ? '' : ' Jeda tidak terdeteksi jelas, jadi video dibagi rata.'} Kosongkan untuk deteksi otomatis
+                  Detik mulai tiap bacaan di rekaman, dipisah koma ({ep.memorization?.segmentStarts?.length ?? '?'} bacaan).
+                  {ep.memorization?.segmentStarts ? '' : ' Jeda tidak terdeteksi jelas, jadi video dibagi rata.'} Kosongkan untuk deteksi otomatis
                   lagi.
                 </p>
-                <input type="text" name="waktu" defaultValue={ep.hafalan?.mulaiSegmen?.map((t) => t.toFixed(1)).join(', ') ?? ''} />
+                <input type="text" name="waktu" defaultValue={ep.memorization?.segmentStarts?.map((t) => t.toFixed(1)).join(', ') ?? ''} />
                 <Tombol type="submit" className="sekunder" teksProses="Menyimpan…">
                   💾 Simpan & render ulang
                 </Tombol>
@@ -443,7 +443,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
               <Link href={`/episode/${ep.id}/studio`}>🎙️ Buka Studio Rekam</Link> untuk merekam ulang adegan tertentu sambil melihat
               videonya, atau mengatur nada suara.
             </p>
-            {ep.modeRekam === 'per-adegan' ? (
+            {ep.recordingMode === 'per-scene' ? (
               <div style={{ marginTop: 10 }}>
                 <RekamanPerAdegan ep={ep} />
               </div>
@@ -472,11 +472,11 @@ function PanelAksi({ ep }: { ep: Episode }) {
               Buka di YouTube ↗
             </a>
           ) : null}
-          {ep.youtube?.jadwalTayang ? (
+          {ep.youtube?.publishTime ? (
             <div className="muted">
               Tayang:{' '}
-              {new Date(ep.youtube.jadwalTayang).toLocaleString('id-ID', {
-                timeZone: cfg.zonaWaktu,
+              {new Date(ep.youtube.publishTime).toLocaleString('id-ID', {
+                timeZone: cfg.timeZone,
                 dateStyle: 'full',
                 timeStyle: 'short',
               })}
@@ -493,7 +493,7 @@ function PanelAksi({ ep }: { ep: Episode }) {
       return (
         <div className="panel aksi stack">
           <h2>{ep.status === 'error' ? '⚠️ Ada masalah' : 'Ditolak'}</h2>
-          {ep.catatanStatus ? <p className="peringatan">{ep.catatanStatus}</p> : null}
+          {ep.statusNote ? <p className="peringatan">{ep.statusNote}</p> : null}
           <form action={pulihkan}>
             <Id id={ep.id} />
             <Tombol type="submit">↩️ Kembalikan ke langkah terakhir yang berhasil</Tombol>
@@ -506,8 +506,8 @@ function PanelAksi({ ep }: { ep: Episode }) {
 /** Peringatan metadata yang tidak cocok dengan format video + tombol buat ulang. */
 function CekMetadata({ ep }: { ep: Episode }) {
   if (!ep.metadata) return null;
-  const masalah = cekMetadata(ep.metadata, ep.ide.format);
-  const sibuk = sedangSibuk(`${ep.id}-metadata`) || ep.status === 'rendering';
+  const masalah = checkMetadata(ep.metadata, ep.idea.format);
+  const sibuk = isBusy(`${ep.id}-metadata`) || ep.status === 'rendering';
   const bolehUbah = !['uploading', 'scheduled', 'published'].includes(ep.status);
   return (
     <>
@@ -520,7 +520,7 @@ function CekMetadata({ ep }: { ep: Episode }) {
         <form action={buatUlangMetadata}>
           <Id id={ep.id} />
           <Tombol type="submit" className="sekunder" disabled={sibuk}>
-            {sibuk ? '⏳ Channel Manager sedang menulis…' : `✍️ Buat ulang metadata ${ep.ide.format === 'short' ? 'Shorts' : 'video biasa'} (SEO)`}
+            {sibuk ? '⏳ Channel Manager sedang menulis…' : `✍️ Buat ulang metadata ${ep.idea.format === 'short' ? 'Shorts' : 'video biasa'} (SEO)`}
           </Tombol>
         </form>
       ) : null}
@@ -530,24 +530,24 @@ function CekMetadata({ ep }: { ep: Episode }) {
 
 /** Buat versi format lain (Shorts ↔ video biasa) dengan materi & rekaman yang sama. */
 function VersiLain({ ep }: { ep: Episode }) {
-  const short = ep.ide.format === 'short';
+  const short = ep.idea.format === 'short';
   let adaPasangan = false;
   try {
-    adaPasangan = Boolean(ep.pasangan && getEpisode(ep.pasangan));
+    adaPasangan = Boolean(ep.twin && getEpisode(ep.twin));
   } catch {
     /* episode kembaran sudah dihapus */
   }
   if (adaPasangan || !ep.render) return null;
   // perkiraan panjang versi baru dari waktu adegan hasil render (intro/outro sedikit berbeda)
-  const isi = durasiIsi(ep);
+  const isi = contentDuration(ep);
   const menit = (d: number) => `${Math.floor(d / 60)}:${String(Math.round(d % 60)).padStart(2, '0')}`;
   // video panjang tidak disalin utuh jadi Shorts: YouTube hanya menganggap video vertikal ≤ 3 menit sebagai Shorts
-  if (!short && isi !== undefined && isi > BATAS_SHORTS_DETIK) {
+  if (!short && isi !== undefined && isi > SHORTS_LIMIT_SECONDS) {
     return (
       <span className="kecil muted">
         📱 Video ini ±{menit(isi)}, terlalu panjang untuk disalin utuh jadi Shorts (YouTube hanya menganggap video vertikal sampai 3 menit
         sebagai Shorts).{' '}
-        {ep.ide.jenis === 'hafalan' ? '' : `Pakai "✂️ Pecah jadi beberapa Shorts" di bawah: diambil inti pembicaraannya saja.`}
+        {ep.idea.type === 'memorization' ? '' : `Pakai "✂️ Pecah jadi beberapa Shorts" di bawah: diambil inti pembicaraannya saja.`}
       </span>
     );
   }
@@ -568,15 +568,15 @@ function VersiLain({ ep }: { ep: Episode }) {
 
 /** Video biasa cerita → beberapa Shorts dari adegan yang paling penting (rekaman sama, tanpa rekam ulang). */
 function PecahShorts({ ep }: { ep: Episode }) {
-  if (ep.ide.format === 'short' || ep.ide.jenis === 'hafalan' || !ep.render) return null;
-  const turunan = (ep.turunan ?? []).flatMap((t) => {
+  if (ep.idea.format === 'short' || ep.idea.type === 'memorization' || !ep.render) return null;
+  const turunan = (ep.derivatives ?? []).flatMap((t) => {
     try {
       return [getEpisode(t)];
     } catch {
       return [];
     }
   });
-  const sibuk = sedangSibuk(`shorts-${ep.id}`);
+  const sibuk = isBusy(`shorts-${ep.id}`);
   return (
     <details open={sibuk || turunan.length > 0}>
       <summary>✂️ Pecah jadi beberapa Shorts (adegan penting saja)</summary>
@@ -587,7 +587,7 @@ function PecahShorts({ ep }: { ep: Episode }) {
             <ul style={{ margin: '4px 0 0', paddingLeft: 18 }}>
               {turunan.map((t) => (
                 <li key={t.id}>
-                  <Link href={`/episode/${t.id}`}>{t.naskah?.judul ?? t.ide.judul}</Link> <Badge status={t.status} />
+                  <Link href={`/episode/${t.id}`}>{t.script?.title ?? t.ide.title}</Link> <Badge status={t.status} />
                 </li>
               ))}
             </ul>
@@ -606,7 +606,7 @@ function PecahShorts({ ep }: { ep: Episode }) {
             <label className="kecil">
               Jumlah Shorts{' '}
               <select name="jumlah" defaultValue="">
-                <option value="">Otomatis ({jumlahShortsOtomatis(durasiIsi(ep))} Shorts untuk video ±{Math.round((durasiIsi(ep) ?? 0) / 60)} menit)</option>
+                <option value="">Otomatis ({autoShortsCount(contentDuration(ep))} Shorts untuk video ±{Math.round((contentDuration(ep) ?? 0) / 60)} menit)</option>
                 {[1, 2, 3, 4, 5].map((n) => (
                   <option key={n} value={n}>
                     {n}
@@ -667,17 +667,17 @@ function EditUlang({ ep }: { ep: Episode }) {
 
 /** Upload lama dari episode yang diedit ulang. */
 function VideoLama({ ep }: { ep: Episode }) {
-  if (!ep.youtubeLama?.length) return null;
+  if (!ep.youtubeHistory?.length) return null;
   return (
     <div className="kecil muted">
       Versi sebelumnya di YouTube:{' '}
-      {ep.youtubeLama.map((v, i) => (
+      {ep.youtubeHistory.map((v, i) => (
         <span key={v.videoId}>
           {i ? ', ' : ''}
           <a href={v.url} target="_blank" rel="noreferrer">
             {v.videoId}
           </a>{' '}
-          ({v.ditarik ? 'sudah private' : 'akan dijadikan private setelah versi baru diupload'})
+          ({v.withdrawn ? 'sudah private' : 'akan dijadikan private setelah versi baru diupload'})
         </span>
       ))}
     </div>
@@ -708,7 +708,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
     notFound();
   }
   const cfg = loadConfig();
-  const seri = cfg.seri.find((s) => s.id === ep.ide.seri)?.nama ?? ep.ide.seri;
+  const seri = cfg.series.find((s) => s.id === ep.idea.series)?.name ?? ep.idea.series;
   const log = ekorLog(id);
 
   return (
@@ -718,19 +718,19 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
           <Link href="/papan-kerja" className="kecil">
             ← Papan kerja
           </Link>
-          <h1>{ep.naskah?.judul ?? ep.ide.judul}</h1>
+          <h1>{ep.script?.title ?? ep.idea.title}</h1>
           <div className="row muted">
             <span>
-              {seri} · usia {ep.ide.usia} · {FORMAT_LABEL[ep.ide.format ?? 'biasa']}
+              {seri} · usia {ep.idea.age} · {FORMAT_LABEL[ep.idea.format ?? 'standard']}
             </span>
-            {ep.asal ? (
-              <Link href={`/episode/${ep.asal.id}`} className="kecil">
-                ✂️ Potongan dari video asal (adegan {ep.asal.adegan.map((i) => i + 1).join(', ')})
+            {ep.source ? (
+              <Link href={`/episode/${ep.source.id}`} className="kecil">
+                ✂️ Potongan dari video asal (adegan {ep.source.scenes.map((i) => i + 1).join(', ')})
               </Link>
             ) : null}
-            {ep.pasangan ? (
-              <Link href={`/episode/${ep.pasangan}`} className="kecil">
-                🔗 Lihat versi {ep.ide.format === 'short' ? 'video biasa' : 'Shorts'}
+            {ep.twin ? (
+              <Link href={`/episode/${ep.twin}`} className="kecil">
+                🔗 Lihat versi {ep.idea.format === 'short' ? 'video biasa' : 'Shorts'}
               </Link>
             ) : null}
             <Badge status={ep.status} />
@@ -738,7 +738,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
         </div>
         <div className="row">
           <TombolTanyaAgen />
-          <AutoRefresh aktif={STATUS_SIBUK.includes(ep.status) || sedangSibuk(`shorts-${ep.id}`) || sedangSibuk(`${ep.id}-metadata`)} />
+          <AutoRefresh aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`)} />
         </div>
       </div>
 
@@ -750,29 +750,29 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
               <video
                 controls
                 preload="metadata"
-                src={`/api/media/${ep.render.video}?v=${ep.render.waktu}`}
-                style={ep.ide.format === 'short' ? { maxWidth: 360, aspectRatio: '9 / 16', margin: '0 auto' } : undefined}
+                src={`/api/media/${ep.render.video}?v=${ep.render.time}`}
+                style={ep.idea.format === 'short' ? { maxWidth: 360, aspectRatio: '9 / 16', margin: '0 auto' } : undefined}
               />
               {ep.render.thumbnail ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img className="thumb" alt="thumbnail" src={`/api/media/${ep.render.thumbnail}?v=${ep.render.waktu}`} />
+                <img className="thumb" alt="thumbnail" src={`/api/media/${ep.render.thumbnail}?v=${ep.render.time}`} />
               ) : null}
             </div>
           ) : null}
 
-          {ep.naskah ? (
+          {ep.script ? (
             <div className="panel">
               <h2>Naskah</h2>
-              <p className="muted">{ep.naskah.ringkasan}</p>
-              {(ep.adegan ?? ep.naskah.adegan).map((a, i) => (
+              <p className="muted">{ep.script.summary}</p>
+              {(ep.scenes ?? ep.script.scenes).map((a, i) => (
                 <div key={i} className="adegan">
                   <div className="nomor">{i + 1}</div>
                   <div>
                     <div className="kecil">
-                      <span className="pembicara">{a.pembicara}</span> · {a.jenis}
-                      {'latar' in a ? ` · ${a.latar} · ${a.karakter.join(', ') || 'tanpa karakter'} · ${a.ekspresi}` : ''}
+                      <span className="pembicara">{a.speaker}</span> · {a.type}
+                      {'latar' in a ? ` · ${a.background} · ${a.characters.join(', ') || 'tanpa karakter'} · ${a.expression}` : ''}
                     </div>
-                    <div className="narasi-baca">{a.narasi}</div>
+                    <div className="narasi-baca">{a.narration}</div>
                     {'petunjukVisual' in a ? <div className="kecil muted">🎬 {a.petunjukVisual}</div> : null}
                   </div>
                 </div>
@@ -782,32 +782,32 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
             <div className="panel muted">Naskah belum ditulis.</div>
           )}
 
-          {ep.naskah?.dalil.length ? (
+          {ep.script?.evidences.length ? (
             <div className="panel">
               <h2>Dalil yang dipakai (wajib dicek)</h2>
-              {ep.naskah.dalil.map((d, i) => (
+              {ep.script.evidences.map((d, i) => (
                 <div key={i} className="dalil">
                   <div className="kecil">
-                    <b>{d.jenis}</b> · {d.sumber}
+                    <b>{d.type}</b> · {d.source}
                   </div>
-                  {d.teksArab ? <div className="arab">{d.teksArab}</div> : null}
+                  {d.arabicicText ? <div className="arab">{d.arabicicText}</div> : null}
                   {d.latin ? (
                     <div className="kecil" style={{ fontStyle: 'italic' }}>
                       {d.latin}
                     </div>
                   ) : null}
-                  <div>“{d.terjemah}”</div>
+                  <div>“{d.translation}”</div>
                 </div>
               ))}
             </div>
           ) : null}
 
-          {ep.naskah && ep.status === 'needs_script_approval' ? (
+          {ep.script && ep.status === 'needs_script_approval' ? (
             <details className="panel">
               <summary>Edit naskah manual (JSON)</summary>
               <form action={simpanNaskahManual} className="stack" style={{ marginTop: 10 }}>
                 <Id id={ep.id} />
-                <textarea className="kode" name="naskah" defaultValue={JSON.stringify(ep.naskah, null, 2)} />
+                <textarea className="kode" name="naskah" defaultValue={JSON.stringify(ep.script, null, 2)} />
                 <Tombol type="submit" className="sekunder" teksProses="Menyimpan…">
                   💾 Simpan naskah
                 </Tombol>
@@ -822,12 +822,12 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
           <div className="panel">
             <h2>Ide</h2>
             <p>
-              <b>Pesan moral:</b> {ep.ide.pesanMoral}
+              <b>Pesan moral:</b> {ep.idea.moralMessage}
             </p>
-            <p className="kecil muted">{ep.ide.alasan}</p>
-            {ep.ide.referensi.length ? (
+            <p className="kecil muted">{ep.idea.reason}</p>
+            {ep.idea.references.length ? (
               <ul className="kecil">
-                {ep.ide.referensi.map((r, i) => (
+                {ep.idea.references.map((r, i) => (
                   <li key={i}>
                     {r.startsWith('http') ? (
                       <a href={r} target="_blank" rel="noreferrer">
@@ -846,7 +846,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
             <div className="panel">
               <h2>Catatan reviewer</h2>
               <ul className="kecil">
-                {ep.review.catatan.map((c, i) => (
+                {ep.review.notes.map((c, i) => (
                   <li key={i}>{c}</li>
                 ))}
               </ul>
@@ -857,9 +857,9 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
             <div className="panel stack">
               <h2>Metadata YouTube</h2>
               <div>
-                <b>{ep.metadata.judul}</b>
+                <b>{ep.metadata.title}</b>
               </div>
-              <pre className="md kecil">{ep.metadata.deskripsi}</pre>
+              <pre className="md kecil">{ep.metadata.description}</pre>
               <div className="kecil muted">{ep.metadata.tags.map((t) => `#${t}`).join(' ')}</div>
               <CekMetadata ep={ep} />
             </div>
@@ -874,11 +874,11 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
                 .map((l, i) => (
                   <li key={i}>
                     <span className="muted">
-                      {new Date(l.waktu).toLocaleString('id-ID', {
-                        timeZone: cfg.zonaWaktu,
+                      {new Date(l.time).toLocaleString('id-ID', {
+                        timeZone: cfg.timeZone,
                       })}
                     </span>{' '}
-                    · <b>{l.oleh}</b>: {l.pesan}
+                    · <b>{l.by}</b>: {l.message}
                   </li>
                 ))}
             </ul>

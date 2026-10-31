@@ -70,9 +70,9 @@ export function KantorView({ awal }: { awal: DataKantor }) {
               >
                 <span className="gelembung-nama">
                   <span className={`titik ${keadaan}`} />
-                  {p.nama}
+                  {p.name}
                 </span>
-                <span className="gelembung-pesan">{s?.pesan}</span>
+                <span className="gelembung-pesan">{s?.message}</span>
               </button>
             );
           })}
@@ -93,12 +93,12 @@ export function KantorView({ awal }: { awal: DataKantor }) {
                   onClick={() => setTerpilih(terpilih === p.id ? null : p.id)}
                 >
                   <span className="avatar" style={{ background: p.warnaBaju }}>
-                    {p.nama[0]}
+                    {p.name[0]}
                   </span>
                   <span style={{ flex: 1, textAlign: 'left' }}>
-                    <b>{p.nama}</b> <span className="muted kecil">· {p.peran}</span>
+                    <b>{p.name}</b> <span className="muted kecil">· {p.role}</span>
                     <span className="kecil" style={{ display: 'block' }}>
-                      <span className={`titik ${s?.keadaan}`} /> {s?.pesan}
+                      <span className={`titik ${s?.keadaan}`} /> {s?.message}
                     </span>
                   </span>
                 </button>
@@ -114,7 +114,7 @@ export function KantorView({ awal }: { awal: DataKantor }) {
             id="kantor-detail"
             judul={
               <>
-                {def.nama} <span className="muted kecil">· {def.peran}</span>
+                {def.name} <span className="muted kecil">· {def.role}</span>
               </>
             }
             ringkasan={LABEL[st.keadaan]}
@@ -122,7 +122,7 @@ export function KantorView({ awal }: { awal: DataKantor }) {
             ingat={false}
           >
             <div>
-              <span className={`titik ${st.keadaan}`} /> <b>{LABEL[st.keadaan]}</b> — {st.pesan}
+              <span className={`titik ${st.keadaan}`} /> <b>{LABEL[st.keadaan]}</b> — {st.message}
             </div>
             {st.episodeId ? <Link href={`/episode/${st.episodeId}`}>Buka episode terkait →</Link> : null}
             <div>
@@ -131,8 +131,8 @@ export function KantorView({ awal }: { awal: DataKantor }) {
                 <ul className="kecil" style={{ paddingLeft: 18, margin: 0 }}>
                   {st.aktivitas.map((a, i) => (
                     <li key={i}>
-                      <span className="muted">{waktuRelatif(a.waktu)}</span> · {a.pesan}
-                      {a.judul ? <span className="muted"> ({a.judul})</span> : null}
+                      <span className="muted">{waktuRelatif(a.time)}</span> · {a.message}
+                      {a.title ? <span className="muted"> ({a.title})</span> : null}
                     </li>
                   ))}
                 </ul>
@@ -152,7 +152,7 @@ export function KantorView({ awal }: { awal: DataKantor }) {
             <ul className="kecil" style={{ paddingLeft: 18, margin: 0 }}>
               {data.menungguKamu.map((m) => (
                 <li key={m.id}>
-                  <Link href={`/episode/${m.id}`}>{m.judul}</Link> <span className="muted">· {m.label}</span>
+                  <Link href={`/episode/${m.id}`}>{m.title}</Link> <span className="muted">· {m.label}</span>
                 </li>
               ))}
             </ul>

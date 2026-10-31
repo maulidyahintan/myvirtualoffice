@@ -1,10 +1,10 @@
 import 'server-only';
-import { FASE, listEpisodes, sedangSibuk, STATUS_LABEL, type Episode, type EpisodeStatus } from '@kantor/shared';
+import { PHASES, listEpisodes, isBusy, STATUS_LABEL, type Episode, type EpisodeStatus } from '@kantor/shared';
 import { PEGAWAI, type Aktivitas, type DataKantor, type PegawaiId, type StatusPegawai } from '@/components/kantor/pegawai';
 
 const MENUNGGU: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
 
-const judulEp = (e: Episode) => e.naskah?.judul ?? e.ide.judul;
+const judulEp = (e: Episode) => e.script?.title ?? e.idea.title;
 const pendek = (s: string, n = 34) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 
 /** Ubah status episode + penanda proses menjadi "apa yang sedang dikerjakan tiap pegawai". */
@@ -12,12 +12,12 @@ export function statusKantor(): DataKantor {
   const eps = listEpisodes();
   const dengan = (s: EpisodeStatus) => eps.filter((e) => e.status === s);
 
-  const kerja: Partial<Record<PegawaiId, { pesan: string; episodeId?: string }>> = {};
-  const set = (id: PegawaiId, pesan: string, episodeId?: string) => {
-    if (!kerja[id]) kerja[id] = { pesan, episodeId };
+  const kerja: Partial<Record<PegawaiId, { message: string; episodeId?: string }>> = {};
+  const set = (id: PegawaiId, message: string, episodeId?: string) => {
+    if (!kerja[id]) kerja[id] = { message, episodeId };
   };
 
-  if (sedangSibuk('riset')) set('riset', 'Mencari tren & ide episode');
+  if (isBusy('riset')) set('riset', 'Mencari tren & ide episode');
   for (const e of dengan('writing')) set('penulis', `Menulis "${pendek(judulEp(e), 26)}"`, e.id);
   for (const e of dengan('reviewing')) set('reviewer', `Memeriksa "${pendek(judulEp(e), 24)}"`, e.id);
   for (const e of dengan('directing')) {
@@ -26,31 +26,31 @@ export function statusKantor(): DataKantor {
   }
   for (const e of dengan('rendering')) set('sutradara', `Merender "${pendek(judulEp(e), 26)}"`, e.id);
   for (const e of dengan('uploading')) set('channel', 'Upload ke YouTube', e.id);
-  if (sedangSibuk('laporan')) set('channel', 'Menyusun laporan performa');
+  if (isBusy('laporan')) set('channel', 'Menyusun laporan performa');
 
   const menungguKamu = eps
     .filter((e) => MENUNGGU.includes(e.status))
-    .map((e) => ({ id: e.id, judul: judulEp(e), label: STATUS_LABEL[e.status] }));
+    .map((e) => ({ id: e.id, title: judulEp(e), label: STATUS_LABEL[e.status] }));
 
   // riwayat aktivitas per pegawai dari log semua episode
   const semuaLog = eps
-    .flatMap((e) => e.log.map((l) => ({ ...l, episodeId: e.id, judul: judulEp(e) })))
-    .sort((a, b) => b.waktu.localeCompare(a.waktu));
+    .flatMap((e) => e.log.map((l) => ({ ...l, episodeId: e.id, title: judulEp(e) })))
+    .sort((a, b) => b.time.localeCompare(a.time));
 
   const adaYangKerja = Object.keys(kerja).length > 0;
 
   const pegawai: StatusPegawai[] = PEGAWAI.map((p) => {
     const aktivitas: Aktivitas[] = semuaLog
-      .filter((l) => p.logOleh.includes(l.oleh))
+      .filter((l) => p.logOleh.includes(l.by))
       .slice(0, 6)
-      .map((l) => ({ waktu: l.waktu, pesan: l.pesan, episodeId: l.episodeId, judul: l.judul }));
+      .map((l) => ({ time: l.time, message: l.message, episodeId: l.episodeId, title: l.title }));
 
     if (p.id === 'manajer') {
       if (menungguKamu.length) {
         return {
           id: p.id,
           keadaan: 'tunggu',
-          pesan: `${menungguKamu.length} pekerjaan menunggu persetujuanmu`,
+          message: `${menungguKamu.length} pekerjaan menunggu persetujuanmu`,
           episodeId: menungguKamu[0].id,
           aktivitas,
         };
@@ -64,18 +64,18 @@ export function statusKantor(): DataKantor {
     }
 
     const k = kerja[p.id];
-    if (k) return { id: p.id, keadaan: 'kerja', pesan: k.pesan, episodeId: k.episodeId, aktivitas };
+    if (k) return { id: p.id, keadaan: 'kerja', message: k.message, episodeId: k.episodeId, aktivitas };
     return {
       id: p.id,
       keadaan: 'santai',
-      pesan: aktivitas[0] ? `Istirahat · terakhir: ${pendek(aktivitas[0].pesan, 22)}` : 'Menunggu tugas',
+      pesan: aktivitas[0] ? `Istirahat · terakhir: ${pendek(aktivitas[0].message, 22)}` : 'Menunggu tugas',
       aktivitas,
     };
   });
 
   return {
     pegawai,
-    fase: FASE.map((f) => ({ judul: f.judul, jumlah: eps.filter((e) => f.status.includes(e.status)).length })),
+    fase: PHASES.map((f) => ({ title: f.title, jumlah: eps.filter((e) => f.statuses.includes(e.status)).length })),
     menungguKamu,
     diperbarui: new Date().toISOString(),
   };

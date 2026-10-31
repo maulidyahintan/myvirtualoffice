@@ -68,7 +68,7 @@ export function StudioRekam({
   id: string;
   video?: string;
   vertikal: boolean;
-  bagian: BagianStudio[];
+  part: BagianStudio[];
   nadaAwal: number;
   nadaMaks: number;
   /** undefined = efek karakter tidak berlaku (hafalan) */
@@ -105,17 +105,17 @@ export function StudioRekam({
   const b = bagian[aktif];
   const t = take[aktif];
   const hening = batasHening ?? b.heningStop;
-  const adaVideo = Boolean(video && b.mulai !== undefined);
+  const adaVideo = Boolean(video && b.start !== undefined);
   const lengkap = tersimpan.every(Boolean);
 
   // pindah bagian → video ke awal bagian itu
   useEffect(() => {
     const v = videoRef.current;
-    if (v && b.mulai !== undefined) {
+    if (v && b.start !== undefined) {
       v.pause();
-      v.currentTime = b.mulai;
+      v.currentTime = b.start;
     }
-  }, [aktif, b.mulai]);
+  }, [aktif, b.start]);
 
   // lepaskan mikrofon saat halaman ditutup
   useEffect(
@@ -137,8 +137,8 @@ export function StudioRekam({
   // video berhenti di akhir adegan, tidak lanjut ke adegan berikutnya
   useEffect(() => {
     const v = videoRef.current;
-    if (!v || b.mulai === undefined || b.durasi === undefined) return;
-    const akhir = b.mulai + b.durasi;
+    if (!v || b.start === undefined || b.duration === undefined) return;
+    const akhir = b.start + b.duration;
     const cek = () => {
       if (v.currentTime >= akhir) {
         v.pause();
@@ -147,13 +147,13 @@ export function StudioRekam({
     };
     v.addEventListener('timeupdate', cek);
     return () => v.removeEventListener('timeupdate', cek);
-  }, [b.mulai, b.durasi]);
+  }, [b.start, b.duration]);
 
   function putarVideo() {
     const v = videoRef.current;
-    if (!v || b.mulai === undefined) return;
+    if (!v || b.start === undefined) return;
     v.muted = true;
-    v.currentTime = b.mulai;
+    v.currentTime = b.start;
     void v.play();
   }
 
@@ -371,7 +371,7 @@ export function StudioRekam({
   }, [status]);
 
   const sibuk = status !== 'siap';
-  const lebih = b.durasi !== undefined && detik > b.durasi;
+  const lebih = b.duration !== undefined && detik > b.duration;
 
   return (
     <div className="studio">
@@ -399,24 +399,24 @@ export function StudioRekam({
 
         <div className="panel stack" style={{ gap: 10 }}>
           <div className="row" style={{ justifyContent: 'space-between' }}>
-            <b>{b.judul}</b>
+            <b>{b.title}</b>
             <span className="kecil muted">
               {aktif + 1} / {bagian.length}
             </span>
           </div>
-          <div className={`studio-teks${b.arab ? ' arab' : ''}`} dir={b.arab ? 'rtl' : undefined}>
+          <div className={`studio-teks${b.arabic ? ' arab' : ''}`} dir={b.arabic ? 'rtl' : undefined}>
             {b.teks}
           </div>
-          {b.catatan ? <div className="kecil muted">{b.catatan}</div> : null}
+          {b.notes ? <div className="kecil muted">{b.notes}</div> : null}
           {b.suara && efekAwal !== undefined ? (
             <div className="kecil">
               🎭 <b>{efek ? b.suara : 'Efek suara mati: suara asli'}</b>
             </div>
           ) : null}
 
-          {b.durasi !== undefined ? (
+          {b.duration !== undefined ? (
             <div className="kecil">
-              Panjang di pratinjau: <b>{detikTeks(b.durasi)}</b>
+              Panjang di pratinjau: <b>{detikTeks(b.duration)}</b>
               {t ? (
                 <>
                   {' '}
@@ -426,7 +426,7 @@ export function StudioRekam({
               <div className="studio-bar">
                 <div
                   style={{
-                    width: `${Math.min(100, ((status === 'rekam' ? detik : (t?.detik ?? 0)) / b.durasi) * 100)}%`,
+                    width: `${Math.min(100, ((status === 'rekam' ? detik : (t?.detik ?? 0)) / b.duration) * 100)}%`,
                     background: lebih ? 'var(--emas)' : 'var(--hijau)',
                   }}
                 />
@@ -564,7 +564,7 @@ export function StudioRekam({
           >
             <span>{tersimpan[i] ? '✅' : take[i] ? '🟡' : '⬜'}</span>
             <span className="studio-item-isi">
-              <b>{x.judul}</b>
+              <b>{x.title}</b>
               <span className="muted">{x.teks}</span>
             </span>
           </button>

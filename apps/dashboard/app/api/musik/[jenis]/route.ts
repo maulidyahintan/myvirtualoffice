@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { ensureDir, loadConfig, paths, saveConfig } from '@kantor/shared';
-import { JENIS_MUSIK, type JenisMusik } from '@kantor/shared/constants';
+import { MUSIC_TYPES, type MusicType } from '@kantor/shared/constants';
 
 const TIPE: Record<string, string> = {
   '.mp3': 'audio/mpeg',
@@ -11,14 +11,14 @@ const TIPE: Record<string, string> = {
   '.ogg': 'audio/ogg',
 };
 
-function bacaJenis(jenis: string): JenisMusik | undefined {
-  return JENIS_MUSIK.includes(jenis as JenisMusik) ? (jenis as JenisMusik) : undefined;
+function bacaJenis(jenis: string): MusicType | undefined {
+  return MUSIC_TYPES.includes(jenis as MusicType) ? (jenis as MusicType) : undefined;
 }
 
 // Putar musik yang tersimpan (pratinjau di halaman pengaturan).
 export async function GET(_req: Request, ctx: { params: Promise<{ jenis: string }> }) {
-  const jenis = bacaJenis((await ctx.params).jenis);
-  const file = jenis ? loadConfig().musik?.[jenis] : undefined;
+  const jenis = bacaJenis((await ctx.params).type);
+  const file = jenis ? loadConfig().music?.[jenis] : undefined;
   const lokasi = file ? path.join(paths.videoPkg(), 'public', file) : '';
   if (!file || !fs.existsSync(lokasi)) return new Response('Tidak ditemukan', { status: 404 });
   return new Response(fs.readFileSync(lokasi), {
@@ -28,7 +28,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ jenis: string 
 
 // Upload musik pembuka/penutup → packages/video/public/musik/<jenis>.<ext>
 export async function POST(req: Request, ctx: { params: Promise<{ jenis: string }> }) {
-  const jenis = bacaJenis((await ctx.params).jenis);
+  const jenis = bacaJenis((await ctx.params).type);
   if (!jenis) return Response.json({ error: 'Jenis musik tidak dikenal' }, { status: 400 });
 
   const file = (await req.formData()).get('musik');
@@ -42,7 +42,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ jenis: string 
   fs.writeFileSync(path.join(dir, `${jenis}${ext}`), Buffer.from(await file.arrayBuffer()));
 
   const cfg = loadConfig();
-  cfg.musik = { volume: 0.7, diShorts: true, ...cfg.musik, [jenis]: `musik/${jenis}${ext}` };
+  cfg.music = { volume: 0.7, diShorts: true, ...cfg.music, [jenis]: `musik/${jenis}${ext}` };
   saveConfig(cfg);
 
   return Response.redirect(new URL('/pengaturan', req.url), 303);

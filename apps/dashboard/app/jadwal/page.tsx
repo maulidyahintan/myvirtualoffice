@@ -1,19 +1,19 @@
 import Link from 'next/link';
 import {
   FORMAT_LABEL,
-  isoKeLokal,
-  jadwalEpisode,
+  isoToLocal,
+  episodeSchedule,
   listEpisodes,
   loadConfig,
-  NAMA_HARI,
-  rekomendasiJadwal,
-  rencanaTayang,
-  sedangSibuk,
-  tambahHari,
+  DAY_NAMES,
+  recommendSchedule,
+  publishPlan,
+  isBusy,
+  addDays,
   type Episode,
-  type RencanaTayang,
+  type PublishPlan,
 } from '@kantor/shared';
-import { mintaRencanaTayang, simpanRencanaTayang } from '../actions';
+import { mintaPublishPlan, simpanPublishPlan } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { BagianLipat } from '@/components/BagianLipat';
 import { Tombol } from '@/components/Tombol';
@@ -21,43 +21,43 @@ import { Tombol } from '@/components/Tombol';
 export const dynamic = 'force-dynamic';
 
 const HARI_DAFTAR = 14;
-const LABEL_SLOT = { semua: 'Semua format', biasa: 'Video biasa', short: 'Shorts' } as const;
+const LABEL_SLOT = { all: 'Semua format', standard: 'Video biasa', short: 'Shorts' } as const;
 /** Kalender mulai hari Senin. */
 const URUTAN_HARI = [1, 2, 3, 4, 5, 6, 0];
 
 interface Isi {
   ep: Episode;
-  lokal: string;
-  rekomendasi: boolean;
+  local: string;
+  recommendation: boolean;
 }
 
-const judulDari = (e: Episode) => e.metadata?.judul ?? e.naskah?.judul ?? e.ide.judul;
+const judulDari = (e: Episode) => e.metadata?.title ?? e.script?.title ?? e.idea.title;
 const tglPendek = (tanggal: string, opsi: Intl.DateTimeFormatOptions) => new Date(`${tanggal}T00:00:00Z`).toLocaleDateString('id-ID', { ...opsi, timeZone: 'UTC' });
 
 export default async function HalamanJadwal({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const sp = await searchParams;
   const tampilan = sp.tampilan === 'daftar' ? 'daftar' : 'kalender';
   const cfg = loadConfig();
-  const rencana = rencanaTayang(cfg);
+  const rencana = publishPlan(cfg);
   const episodes = listEpisodes();
-  const sibuk = sedangSibuk('rencana');
+  const sibuk = isBusy('rencana');
   const sekarang = new Date();
-  const lokalSekarang = isoKeLokal(sekarang.toISOString(), cfg.zonaWaktu);
+  const lokalSekarang = isoToLocal(sekarang.toISOString(), cfg.timeZone);
   const hariIni = lokalSekarang.slice(0, 10);
   const bulan = typeof sp.bulan === 'string' && /^\d{4}-\d{2}$/.test(sp.bulan) ? sp.bulan : hariIni.slice(0, 7);
 
-  const saran = rekomendasiJadwal(episodes, cfg, sekarang);
+  const saran = recommendSchedule(episodes, cfg, sekarang);
   // semua jadwal (termasuk yang sudah tayang, untuk kalender) + rekomendasi untuk video yang menunggu persetujuan
   const isi: Isi[] = [
     ...episodes.flatMap((ep) => {
-      const iso = jadwalEpisode(ep);
-      return iso ? [{ ep, lokal: isoKeLokal(iso, cfg.zonaWaktu), rekomendasi: false }] : [];
+      const iso = episodeSchedule(ep);
+      return iso ? [{ ep, local: isoToLocal(iso, cfg.timeZone), recommendation: false }] : [];
     }),
     ...episodes.flatMap((ep) => {
       const s = saran.get(ep.id);
-      return s ? [{ ep, lokal: s.lokal, rekomendasi: true }] : [];
+      return s ? [{ ep, local: s.local, recommendation: true }] : [];
     }),
-  ].sort((a, b) => a.lokal.localeCompare(b.lokal));
+  ].sort((a, b) => a.local.localeCompare(b.local));
   const tanpaSlot = episodes.filter((e) => e.status === 'needs_video_approval' && !saran.has(e.id));
   const tautan = (t: string, b = bulan) => `/jadwal?tampilan=${t}${t === 'kalender' ? `&bulan=${b}` : ''}`;
 
@@ -94,14 +94,14 @@ export default async function HalamanJadwal({ searchParams }: { searchParams: Pr
         <>
           <KalenderBulan bulan={bulan} hariIni={hariIni} lokalSekarang={lokalSekarang} isi={isi} rencana={rencana} tautan={tautan} />
           <div className="grid-rencana">
-            <PanelRencana rencana={rencana} zona={cfg.zonaWaktu} sibuk={sibuk} />
+            <PanelRencana rencana={rencana} zona={cfg.timeZone} sibuk={sibuk} />
           </div>
         </>
       ) : (
         <div className="grid2">
           <DaftarHari hariIni={hariIni} lokalSekarang={lokalSekarang} isi={isi} rencana={rencana} />
           <div className="stack">
-            <PanelRencana rencana={rencana} zona={cfg.zonaWaktu} sibuk={sibuk} />
+            <PanelRencana rencana={rencana} zona={cfg.timeZone} sibuk={sibuk} />
           </div>
         </div>
       )}
@@ -111,8 +111,8 @@ export default async function HalamanJadwal({ searchParams }: { searchParams: Pr
 
 /** Label & gaya satu jadwal: sudah tayang, terjadwal, atau rekomendasi yang menunggu persetujuan. */
 function keadaan(x: Isi, lokalSekarang: string) {
-  if (x.rekomendasi) return { kelas: 'saran', label: 'Rekomendasi, menunggu persetujuanmu' };
-  if (x.lokal <= lokalSekarang) return { kelas: 'tayang', label: 'Sudah tayang' };
+  if (x.recommendation) return { kelas: 'saran', label: 'Rekomendasi, menunggu persetujuanmu' };
+  if (x.local <= lokalSekarang) return { kelas: 'tayang', label: 'Sudah tayang' };
   return { kelas: 'terjadwal', label: 'Terjadwal' };
 }
 
@@ -129,26 +129,26 @@ function KalenderBulan({
   hariIni: string;
   lokalSekarang: string;
   isi: Isi[];
-  rencana: RencanaTayang;
+  rencana: PublishPlan;
   tautan: (t: string, b?: string) => string;
 }) {
   const awal = `${bulan}-01`;
   // bulan berjalan: mulai dari minggu ini, 5 minggu ke depan (melewati batas bulan) supaya jadwal mendatang terlihat
   const berjalan = bulan === hariIni.slice(0, 7);
   const titikAwal = berjalan ? hariIni : awal;
-  const geser = URUTAN_HARI.indexOf(tambahHari(titikAwal, 0).hari);
-  let sel = Array.from({ length: berjalan ? 35 : 42 }, (_, n) => tambahHari(titikAwal, n - geser));
+  const geser = URUTAN_HARI.indexOf(addDays(titikAwal, 0).day);
+  let sel = Array.from({ length: berjalan ? 35 : 42 }, (_, n) => addDays(titikAwal, n - geser));
   // bulan lain: 6 minggu cukup; minggu terakhir yang seluruhnya bulan depan dibuang
-  if (!berjalan) while (sel.length > 28 && sel.slice(-7).every((h) => !h.tanggal.startsWith(bulan))) sel = sel.slice(0, -7);
+  if (!berjalan) while (sel.length > 28 && sel.slice(-7).every((h) => !h.date.startsWith(bulan))) sel = sel.slice(0, -7);
   const judulKalender = berjalan
-    ? `${tglPendek(sel[0].tanggal, { day: 'numeric', month: 'short' })} – ${tglPendek(sel.at(-1)!.tanggal, { day: 'numeric', month: 'short', year: 'numeric' })}`
+    ? `${tglPendek(sel[0].date, { day: 'numeric', month: 'short' })} – ${tglPendek(sel.at(-1)!.date, { day: 'numeric', month: 'short', year: 'numeric' })}`
     : tglPendek(awal, { month: 'long', year: 'numeric' });
   const [th, bl] = bulan.split('-').map(Number);
   const geserBulan = (n: number) => {
     const d = new Date(Date.UTC(th, bl - 1 + n, 1));
     return d.toISOString().slice(0, 7);
   };
-  const isiTampil = isi.filter((x) => x.lokal >= sel[0].tanggal && x.lokal.slice(0, 10) <= sel.at(-1)!.tanggal);
+  const isiTampil = isi.filter((x) => x.local >= sel[0].date && x.local.slice(0, 10) <= sel.at(-1)!.date);
 
   return (
     <div className="panel stack kalender-panel">
@@ -177,32 +177,32 @@ function KalenderBulan({
           <span>
             <i className="saran" /> Rekomendasi
           </span>
-          <span className="muted">{isiTampil.filter((x) => !x.rekomendasi).length} video terjadwal/tayang di sini</span>
+          <span className="muted">{isiTampil.filter((x) => !x.recommendation).length} video terjadwal/tayang di sini</span>
         </div>
       </div>
 
       <div className="kalender">
         {URUTAN_HARI.map((h) => (
           <div key={h} className="kalender-hari">
-            {NAMA_HARI[h]}
+            {DAY_NAMES[h]}
           </div>
         ))}
-        {sel.map(({ tanggal, hari }) => {
-          const hariItu = isi.filter((x) => x.lokal.startsWith(tanggal));
+        {sel.map(({ date: tanggal, day: hari }) => {
+          const hariItu = isi.filter((x) => x.local.startsWith(tanggal));
           const luar = !berjalan && !tanggal.startsWith(bulan);
-          const libur = !rencana.hari.includes(hari);
+          const libur = !rencana.days.includes(hari);
           const kelas = ['kalender-sel', luar && 'luar', tanggal === hariIni && 'hari-ini', tanggal < hariIni && 'lewat', libur && 'libur']
             .filter(Boolean)
             .join(' ');
           return (
             <div key={tanggal} className={kelas}>
               <div className="kalender-tgl">
-                <span className="kalender-nama-hari">{NAMA_HARI[hari]}, </span>
+                <span className="kalender-nama-hari">{DAY_NAMES[hari]}, </span>
                 <b>{tanggal.endsWith('-01') ? tglPendek(tanggal, { day: 'numeric', month: 'short' }) : Number(tanggal.slice(8))}</b>
                 {tanggal === hariIni ? <span className="kalender-label">hari ini</span> : null}
                 {!luar && !libur && tanggal >= hariIni ? (
                   <span className="kalender-kuota">
-                    {hariItu.length}/{rencana.videoPerHari}
+                    {hariItu.length}/{rencana.videosPerDay}
                   </span>
                 ) : null}
               </div>
@@ -211,7 +211,7 @@ function KalenderBulan({
                 return (
                   <Link key={x.ep.id} href={`/episode/${x.ep.id}`} className={`jadwal-chip ${k.kelas}`} title={`${judulDari(x.ep)} · ${k.label}`}>
                     <span className="jadwal-jam">
-                      {x.lokal.slice(11)} {x.ep.ide.format === 'short' ? '📱' : '🎬'}
+                      {x.local.slice(11)} {x.ep.idea.format === 'short' ? '📱' : '🎬'}
                     </span>
                     <span className="jadwal-judul">{judulDari(x.ep)}</span>
                   </Link>
@@ -227,29 +227,29 @@ function KalenderBulan({
 }
 
 /** Daftar per hari, 14 hari ke depan. */
-function DaftarHari({ hariIni, lokalSekarang, isi, rencana }: { hariIni: string; lokalSekarang: string; isi: Isi[]; rencana: RencanaTayang }) {
+function DaftarHari({ hariIni, lokalSekarang, isi, rencana }: { hariIni: string; lokalSekarang: string; isi: Isi[]; rencana: PublishPlan }) {
   return (
     <div className="panel stack">
       <h2>{HARI_DAFTAR} hari ke depan</h2>
-      {Array.from({ length: HARI_DAFTAR }, (_, n) => tambahHari(hariIni, n)).map(({ tanggal, hari }) => {
-        const hariItu = isi.filter((x) => x.lokal.startsWith(tanggal));
-        const libur = !rencana.hari.includes(hari);
+      {Array.from({ length: HARI_DAFTAR }, (_, n) => addDays(hariIni, n)).map(({ date: tanggal, day: hari }) => {
+        const hariItu = isi.filter((x) => x.local.startsWith(tanggal));
+        const libur = !rencana.days.includes(hari);
         return (
           <div key={tanggal} style={{ borderBottom: '1px solid var(--line)', paddingBottom: 8 }}>
             <div className="kecil">
               <b>
-                {NAMA_HARI[hari]}, {tglPendek(tanggal, { day: 'numeric', month: 'short' })}
+                {DAY_NAMES[hari]}, {tglPendek(tanggal, { day: 'numeric', month: 'short' })}
               </b>{' '}
-              <span className="muted">{libur ? '· tidak tayang' : `· ${hariItu.length}/${rencana.videoPerHari} video`}</span>
+              <span className="muted">{libur ? '· tidak tayang' : `· ${hariItu.length}/${rencana.videosPerDay} video`}</span>
             </div>
             {hariItu.map((x) => {
               const k = keadaan(x, lokalSekarang);
               return (
                 <div key={x.ep.id} className="row kecil" style={{ gap: 8, marginTop: 4 }}>
-                  <span style={{ fontVariantNumeric: 'tabular-nums' }}>{x.lokal.slice(11)}</span>
-                  <span>{x.ep.ide.format === 'short' ? '📱' : '🎬'}</span>
+                  <span style={{ fontVariantNumeric: 'tabular-nums' }}>{x.local.slice(11)}</span>
+                  <span>{x.ep.idea.format === 'short' ? '📱' : '🎬'}</span>
                   <Link href={`/episode/${x.ep.id}`}>{judulDari(x.ep)}</Link>
-                  {x.rekomendasi ? <span className="muted">(rekomendasi, menunggu persetujuanmu)</span> : <span className={`badge ${k.kelas === 'tayang' ? 'selesai' : 'tunggu'}`}>{k.label}</span>}
+                  {x.recommendation ? <span className="muted">(rekomendasi, menunggu persetujuanmu)</span> : <span className={`badge ${k.kelas === 'tayang' ? 'selesai' : 'tunggu'}`}>{k.label}</span>}
                 </div>
               );
             })}
@@ -261,43 +261,43 @@ function DaftarHari({ hariIni, lokalSekarang, isi, rencana }: { hariIni: string;
 }
 
 /** Rencana dari Channel Manager + ubah sendiri (panel buka-tutup). */
-function PanelRencana({ rencana, zona, sibuk }: { rencana: RencanaTayang; zona: string; sibuk: boolean }) {
-  const baris = [...rencana.slot, { jam: '', format: 'semua' as const }, { jam: '', format: 'semua' as const }];
+function PanelRencana({ rencana, zona, sibuk }: { rencana: PublishPlan; zona: string; sibuk: boolean }) {
+  const baris = [...rencana.slots, { time: '', format: 'all' as const }, { time: '', format: 'all' as const }];
   return (
     <>
       <BagianLipat
         id="jadwal-rencana"
         judul="📋 Rencana saat ini"
-        ringkasan={rencana.oleh === 'channel-manager' ? 'dari Channel Manager' : rencana.diubah ? 'diatur sendiri' : 'bawaan'}
+        ringkasan={rencana.by === 'channel-manager' ? 'dari Channel Manager' : rencana.modified ? 'diatur sendiri' : 'bawaan'}
         bawaanBuka
       >
         <div className="kecil">
           <div>
-            <b>{rencana.videoPerHari} video per hari</b> · {rencana.hari.length === 7 ? 'setiap hari' : rencana.hari.map((h) => NAMA_HARI[h]).join(', ')}
+            <b>{rencana.videosPerDay} video per hari</b> · {rencana.days.length === 7 ? 'setiap hari' : rencana.days.map((h) => DAY_NAMES[h]).join(', ')}
           </div>
           <ul style={{ margin: '6px 0', paddingLeft: 18 }}>
-            {rencana.slot.map((s) => (
-              <li key={`${s.jam}-${s.format}`}>
-                {s.jam} · {s.format === 'semua' ? 'semua format' : FORMAT_LABEL[s.format]}
+            {rencana.slots.map((s) => (
+              <li key={`${s.time}-${s.format}`}>
+                {s.time} · {s.format === 'all' ? 'semua format' : FORMAT_LABEL[s.format]}
               </li>
             ))}
           </ul>
           <div className="muted">
-            {rencana.diubah
-              ? `Disusun ${rencana.oleh === 'channel-manager' ? 'Channel Manager' : 'oleh kamu'} · ${new Date(rencana.diubah).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short', timeZone: zona })}`
+            {rencana.modified
+              ? `Disusun ${rencana.by === 'channel-manager' ? 'Channel Manager' : 'oleh kamu'} · ${new Date(rencana.modified).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short', timeZone: zona })}`
               : 'Rencana bawaan (belum disusun Channel Manager).'}
           </div>
         </div>
-        {rencana.alasan ? (
-          <details open={rencana.oleh === 'channel-manager'}>
+        {rencana.reason ? (
+          <details open={rencana.by === 'channel-manager'}>
             <summary className="kecil">Alasan Channel Manager</summary>
-            <pre className="md kecil">{rencana.alasan}</pre>
+            <pre className="md kecil">{rencana.reason}</pre>
           </details>
         ) : null}
         {sibuk ? (
           <p className="kecil">⏳ Channel Manager sedang menyusun rencana dari statistik channel & stok video…</p>
         ) : (
-          <form action={mintaRencanaTayang} className="stack" style={{ gap: 8 }}>
+          <form action={mintaPublishPlan} className="stack" style={{ gap: 8 }}>
             <textarea name="arahan" rows={2} placeholder="Arahan (opsional), misal: fokus Shorts dulu, Jumat libur" />
             <Tombol type="submit">🧑‍💼 Minta Channel Manager menyusun rencana</Tombol>
           </form>
@@ -307,17 +307,17 @@ function PanelRencana({ rencana, zona, sibuk }: { rencana: RencanaTayang; zona: 
       <BagianLipat
         id="jadwal-ubah"
         judul="✏️ Ubah rencana sendiri"
-        ringkasan={`${rencana.videoPerHari} video/hari · ${rencana.slot.length} jam tayang`}
+        ringkasan={`${rencana.videosPerDay} video/hari · ${rencana.slots.length} jam tayang`}
       >
-        <form action={simpanRencanaTayang} className="stack">
+        <form action={simpanPublishPlan} className="stack">
           <label className="kecil">
             Maksimal video per hari
-            <input type="number" name="videoPerHari" min={1} max={6} defaultValue={rencana.videoPerHari} style={{ width: 80 }} />
+            <input type="number" name="videoPerHari" min={1} max={6} defaultValue={rencana.videosPerDay} style={{ width: 80 }} />
           </label>
           <div className="row kecil" style={{ gap: 10 }}>
-            {NAMA_HARI.map((h, i) => (
+            {DAY_NAMES.map((h, i) => (
               <label key={h} style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-                <input type="checkbox" name="hari" value={i} defaultChecked={rencana.hari.includes(i)} /> {h}
+                <input type="checkbox" name="hari" value={i} defaultChecked={rencana.days.includes(i)} /> {h}
               </label>
             ))}
           </div>
@@ -325,9 +325,9 @@ function PanelRencana({ rencana, zona, sibuk }: { rencana: RencanaTayang; zona: 
             <span className="kecil">Jam tayang ({zona}); kosongkan untuk menghapus</span>
             {baris.map((s, i) => (
               <div key={i} className="row" style={{ gap: 8 }}>
-                <input type="time" name="jam" defaultValue={s.jam} style={{ width: 120 }} />
+                <input type="time" name="jam" defaultValue={s.time} style={{ width: 120 }} />
                 <select name="formatSlot" defaultValue={s.format}>
-                  {(['semua', 'biasa', 'short'] as const).map((f) => (
+                  {(['all', 'standard', 'short'] as const).map((f) => (
                     <option key={f} value={f}>
                       {LABEL_SLOT[f]}
                     </option>

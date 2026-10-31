@@ -29,9 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const siapTayang = episodes.filter((e) => e.status === 'needs_video_approval').length;
 
   const grup: GrupMenu[] = [
-    { judul: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
+    { title: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
     {
-      judul: 'Produksi',
+      title: 'Produksi',
       item: [
         { href: '/papan-kerja', ikon: '🗂️', label: 'Papan Kerja', badge: butuhKamu },
         { href: '/ide-baru', ikon: '💡', label: 'Ide Manual' },
@@ -39,14 +39,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       ],
     },
     {
-      judul: 'Publikasi',
+      title: 'Publikasi',
       item: [
         { href: '/jadwal', ikon: '📅', label: 'Jadwal Tayang', badge: siapTayang },
         { href: '/tayang', ikon: '🎬', label: 'Video Tayang' },
       ],
     },
-    { judul: 'Analisis', item: [{ href: '/laporan', ikon: '📊', label: 'Riset & Laporan' }] },
-    { judul: 'Sistem', item: [{ href: '/pengaturan', ikon: '⚙️', label: 'Pengaturan' }] },
+    { title: 'Analisis', item: [{ href: '/laporan', ikon: '📊', label: 'Riset & Laporan' }] },
+    { title: 'Sistem', item: [{ href: '/pengaturan', ikon: '⚙️', label: 'Pengaturan' }] },
   ];
 
   return (
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="aplikasi">
           <Sidebar
-            logo={<LogoTasnie keterangan={cfg.namaChannel.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />}
+            logo={<LogoTasnie keterangan={cfg.channelName.replace(/^Tasnie\s*/i, '')} fontJudul={fredoka.style.fontFamily} />}
             grup={grup}
             butuhKamu={butuhKamu}
           />

@@ -2,7 +2,7 @@ import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
-import { ensureDir, getEpisode, paths, rootDir, setStatus, STATUS_SIBUK } from '@kantor/shared';
+import { ensureDir, getEpisode, paths, rootDir, setStatus, BUSY_STATUSES } from '@kantor/shared';
 
 /**
  * Jalankan perintah CLI kantor di belakang layar (proses terpisah),
@@ -28,7 +28,7 @@ export function jalankanKantor(args: string[], episodeId?: string) {
     try {
       // kalau proses mati sebelum sempat mencatat error, jangan biarkan episode "sibuk" selamanya
       const ep = getEpisode(episodeId);
-      if (STATUS_SIBUK.includes(ep.status)) {
+      if (BUSY_STATUSES.includes(ep.status)) {
         setStatus(episodeId, 'error', 'dashboard', `Proses berhenti (kode ${code}). Lihat data/logs/${episodeId}.log`);
       }
     } catch {
@@ -38,4 +38,4 @@ export function jalankanKantor(args: string[], episodeId?: string) {
   child.unref();
 }
 
-export { lokalKeIso } from '@kantor/shared';
+export { localToIso } from '@kantor/shared';

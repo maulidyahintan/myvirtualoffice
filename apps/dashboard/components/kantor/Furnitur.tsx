@@ -199,7 +199,7 @@ export function Lounge() {
 }
 
 /** Papan tulis di dinding belakang: stiker warna = jumlah episode per fase. */
-export function PapanTulis({ fase }: { fase: { judul: string; jumlah: number }[] }) {
+export function PapanTulis({ fase }: { fase: { title: string; jumlah: number }[] }) {
   const warna = ['#F7D774', '#F4A6B8', '#9FD3E6', '#B7E1A1', '#C7B7F2', '#E3C9A8'];
   const lebar = 2.6;
   const kolom = lebar / fase.length;

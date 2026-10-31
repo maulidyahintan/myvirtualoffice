@@ -2,18 +2,18 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { AGEN_CHAT } from '@kantor/shared/constants';
-import type { AgenChat, PesanChat } from '@kantor/shared/types';
+import { CHAT_AGENTS } from '@kantor/shared/constants';
+import type { ChatAgent, PesanChat } from '@kantor/shared/types';
 import { PEGAWAI } from '@/components/kantor/pegawai';
 
 type Pesan = PesanChat & { judulEpisode?: string };
 interface Ringkasan {
-  agen: AgenChat;
+  agen: ChatAgent;
   terakhir: PesanChat | null;
   mengetik: boolean;
 }
 
-const SARAN: Record<AgenChat, string[]> = {
+const SARAN: Record<ChatAgent, string[]> = {
   manajer: ['Apa yang harus aku kerjakan duluan hari ini?', 'Jelaskan beda video cerita, hafalan, dan Shorts'],
   riset: ['Topik apa yang lagi banyak dicari orang tua minggu ini?', 'Ide Shorts yang cocok untuk usia 1-3?'],
   penulis: ['Bagaimana cara bikin pembuka cerita yang menarik?', 'Kasih contoh lelucon Mochi yang lucu'],
@@ -22,16 +22,16 @@ const SARAN: Record<AgenChat, string[]> = {
   channel: ['Bagaimana performa channel kita?', 'Jam tayang terbaik untuk penonton anak?'],
 };
 
-const pegawai = (id: AgenChat) => PEGAWAI.find((p) => p.id === id)!;
+const pegawai = (id: ChatAgent) => PEGAWAI.find((p) => p.id === id)!;
 
-const Avatar = ({ id, besar }: { id: AgenChat; besar?: boolean }) => (
+const Avatar = ({ id, besar }: { id: ChatAgent; besar?: boolean }) => (
   <span className={`chat-avatar ${besar ? 'besar' : ''}`} style={{ background: pegawai(id).warnaBaju }}>
-    {pegawai(id).nama[0]}
+    {pegawai(id).name[0]}
   </span>
 );
 
 /** Event untuk membuka chat dari tombol lain, misal di halaman episode. */
-export const bukaChat = (agen: AgenChat = 'manajer') => window.dispatchEvent(new CustomEvent('buka-chat', { detail: agen }));
+export const bukaChat = (agen: ChatAgent = 'manajer') => window.dispatchEvent(new CustomEvent('buka-chat', { detail: agen }));
 
 /**
  * Chat mengambang di pojok kanan bawah (ala LinkedIn): bilah daftar agen yang bisa
@@ -42,7 +42,7 @@ export function ChatMengambang() {
   const episodeHalaman = pathname.match(/^\/episode\/([^/]+)/)?.[1];
 
   const [daftarTerbuka, setDaftarTerbuka] = useState(false);
-  const [agen, setAgen] = useState<AgenChat | null>(null);
+  const [agen, setAgen] = useState<ChatAgent | null>(null);
   const [kecil, setKecil] = useState(false);
   const [pesan, setPesan] = useState<Pesan[]>([]);
   const [mengetik, setMengetik] = useState(false);
@@ -53,19 +53,19 @@ export function ChatMengambang() {
 
   const muatRingkasan = useCallback(async () => {
     const r = await fetch('/api/chat').then((x) => x.json());
-    setRingkasan(r.ringkasan ?? []);
+    setRingkasan(r.summary ?? []);
   }, []);
 
-  const muatPesan = useCallback(async (a: AgenChat) => {
+  const muatPesan = useCallback(async (a: ChatAgent) => {
     const r = await fetch(`/api/chat?agen=${a}`).then((x) => x.json());
-    setPesan(r.pesan ?? []);
+    setPesan(r.message ?? []);
     setMengetik(Boolean(r.mengetik));
   }, []);
 
   // buka dari tombol lain
   useEffect(() => {
     const buka = (e: Event) => {
-      setAgen((e as CustomEvent<AgenChat>).detail);
+      setAgen((e as CustomEvent<ChatAgent>).detail);
       setKecil(false);
       setBahasEpisode(true);
     };
@@ -102,7 +102,7 @@ export function ChatMengambang() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ agen, teks: isi, episodeId: bahasEpisode ? episodeHalaman : undefined }),
     }).then((x) => x.json());
-    if (r.pesan) setPesan(r.pesan);
+    if (r.message) setPesan(r.message);
   }
 
   async function obrolanBaru() {
@@ -121,8 +121,8 @@ export function ChatMengambang() {
           <div className="chat-kepala" onClick={() => setKecil((k) => !k)}>
             <Avatar id={agen} />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <b>{pegawai(agen).nama}</b>
-              <div className="kecil muted">{mengetik ? 'sedang mengetik…' : pegawai(agen).peran}</div>
+              <b>{pegawai(agen).name}</b>
+              <div className="kecil muted">{mengetik ? 'sedang mengetik…' : pegawai(agen).role}</div>
             </div>
             <button
               type="button"
@@ -156,7 +156,7 @@ export function ChatMengambang() {
                 {pesan.length === 0 ? (
                   <div className="stack">
                     <p className="muted kecil" style={{ margin: 0 }}>
-                      Tanya apa saja ke {pegawai(agen).nama}. Agen hanya menjawab, tidak mengubah naskah atau data.
+                      Tanya apa saja ke {pegawai(agen).name}. Agen hanya menjawab, tidak mengubah naskah atau data.
                     </p>
                     {SARAN[agen].map((s) => (
                       <button key={s} type="button" className="sekunder kecil chat-saran" onClick={() => void kirim(s)}>
@@ -166,9 +166,9 @@ export function ChatMengambang() {
                   </div>
                 ) : null}
                 {pesan.map((p, i) => (
-                  <div key={i} className={`chat-pesan ${p.dari}`}>
+                  <div key={i} className={`chat-pesan ${p.from}`}>
                     {p.episodeId && (i === 0 || pesan[i - 1].episodeId !== p.episodeId) ? (
-                      <div className="kecil muted">📎 {p.judulEpisode ?? 'episode'}</div>
+                      <div className="kecil muted">📎 {p.titleEpisode ?? 'episode'}</div>
                     ) : null}
                     <div className="chat-pesan-teks">{p.teks}</div>
                   </div>
@@ -225,7 +225,7 @@ export function ChatMengambang() {
         </div>
         {daftarTerbuka ? (
           <div className="chat-daftar-isi">
-            {AGEN_CHAT.map((id) => {
+            {CHAT_AGENTS.map((id) => {
               const r = ringkasan.find((x) => x.agen === id);
               return (
                 <button
@@ -239,9 +239,9 @@ export function ChatMengambang() {
                 >
                   <Avatar id={id} />
                   <span style={{ minWidth: 0, textAlign: 'left' }}>
-                    <b>{pegawai(id).nama}</b> <span className="kecil muted">· {pegawai(id).peran}</span>
+                    <b>{pegawai(id).name}</b> <span className="kecil muted">· {pegawai(id).role}</span>
                     <span className="kecil muted chat-cuplikan">
-                      {r?.mengetik ? 'sedang mengetik…' : r?.terakhir ? `${r.terakhir.dari === 'saya' ? 'Kamu: ' : ''}${r.terakhir.teks}` : 'Mulai obrolan'}
+                      {r?.mengetik ? 'sedang mengetik…' : r?.terakhir ? `${r.terakhir.from === 'saya' ? 'Kamu: ' : ''}${r.terakhir.teks}` : 'Mulai obrolan'}
                     </span>
                   </span>
                 </button>
