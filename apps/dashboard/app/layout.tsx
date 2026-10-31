@@ -1,13 +1,16 @@
 import type { Metadata } from 'next';
-import { Fredoka } from 'next/font/google';
+import { Fredoka, Plus_Jakarta_Sans } from 'next/font/google';
 import { listEpisodes, loadConfig, type EpisodeStatus } from '@kantor/shared';
 import { ChatMengambang } from '@/components/ChatMengambang';
 import { LogoTasnie } from '@/components/LogoTasnie';
 import { Sidebar, type GrupMenu } from '@/components/Sidebar';
 import './globals.css';
 
-// font tulisan logo & judul halaman, sama seperti di video
+// font tulisan logo (sama seperti di video)
 const fredoka = Fredoka({ subsets: ['latin'], weight: ['600', '700'], variable: '--font-judul' });
+
+// font profesional untuk UI (dibuat di Indonesia, sangat mudah dibaca)
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--font-ui' });
 
 export const metadata: Metadata = {
   title: 'Kantor AI · Tasnie',
@@ -47,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   ];
 
   return (
-    <html lang="id" className={fredoka.variable}>
+    <html lang="id" className={`${fredoka.variable} ${plusJakartaSans.variable}`}>
       <body>
         <div className="aplikasi">
           <Sidebar

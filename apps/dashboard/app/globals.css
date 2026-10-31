@@ -29,9 +29,9 @@ body {
     var(--bg);
   background-attachment: fixed;
   color: var(--ink);
-  font-family: ui-rounded, 'SF Pro Rounded', 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-ui), system-ui, -apple-system, sans-serif;
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -68,7 +68,7 @@ main { padding: 32px 36px 96px; max-width: 1480px; width: 100%; margin: 0 auto; 
 .kartu-butuh-ket { display: block; font-size: 12px; opacity: 0.8; line-height: 1.3; }
 .kartu-butuh-angka {
   flex: none; width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
-  font-family: var(--font-judul), var(--font-judul-cadangan); font-weight: 700; font-size: 20px;
+  font-family: var(--font-ui); font-weight: 800; font-size: 20px;
   background: rgba(255, 255, 255, 0.14); color: #fff;
 }
 .kartu-butuh.ada { background: linear-gradient(135deg, #f6c35f, #e8a23a); border-color: transparent; color: #4a3200; box-shadow: 0 10px 24px -12px rgba(232, 162, 58, 0.9); }
@@ -108,9 +108,9 @@ main { padding: 32px 36px 96px; max-width: 1480px; width: 100%; margin: 0 auto; 
 }
 
 /* ---------- tipografi & blok dasar ---------- */
-h1 { font-family: var(--font-judul), var(--font-judul-cadangan); font-weight: 700; font-size: 30px; letter-spacing: -0.2px; margin: 0 0 4px; color: var(--hijau-tua); }
-h2 { font-size: 17px; margin: 0 0 12px; }
-h3 { font-size: 15px; margin: 0 0 8px; }
+h1 { font-family: var(--font-ui); font-weight: 700; font-size: 28px; letter-spacing: -0.5px; margin: 0 0 4px; color: var(--hijau-tua); }
+h2 { font-family: var(--font-ui); font-weight: 700; font-size: 17px; letter-spacing: -0.2px; margin: 0 0 12px; }
+h3 { font-family: var(--font-ui); font-weight: 700; font-size: 15px; letter-spacing: -0.1px; margin: 0 0 8px; }
 .muted { color: var(--muted); }
 .kecil { font-size: 13px; }
 
