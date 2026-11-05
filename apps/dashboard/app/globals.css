@@ -456,3 +456,22 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .kartu-ilustrasi img, .ilustrasi-kosong { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: rgba(0, 0, 0, 0.05); }
 .ilustrasi-kosong { display: grid; place-items: center; }
 .kartu-ilustrasi figcaption { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* hapus episode langsung dari kartu Arsip */
+.kartu-arsip { position: relative; display: block; }
+.kartu-arsip .kartu-tautan { display: block; color: inherit; text-decoration: none; }
+/* tautan judul menutupi seluruh kartu; baris status di atasnya tetap bisa diklik */
+.kartu-arsip .kartu-tautan::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.baris-arsip { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 6px; }
+.baris-arsip-status { display: flex; align-items: center; gap: 6px; }
+.hapus-kartu {
+  display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0; border: none; border-radius: 6px;
+  background: transparent; box-shadow: none; color: #d64545; cursor: pointer;
+}
+.hapus-kartu:hover:not(:disabled) { background: rgba(214, 69, 69, 0.1); transform: none; }
+.hapus-kartu.redup { color: var(--muted); opacity: 0.45; cursor: not-allowed; }
+.hapus-konfirmasi {
+  padding: 8px 10px; border-radius: 10px; border: 1px solid #e7a59d; background: #fff4f2;
+  display: flex; flex-direction: column; gap: 6px; font-size: 12px;
+}
+.hapus-konfirmasi button { padding: 4px 10px; font-size: 12px; }

@@ -171,6 +171,51 @@ export function getEpisode(id: string): Episode {
   return JSON.parse(fs.readFileSync(f, 'utf8'));
 }
 
+/** Statuses shown in the board's Archive column; only these episodes may be deleted. */
+export const ARCHIVE_STATUSES: EpisodeStatus[] = ['rejected', 'error'];
+
+/** Why this archived episode can't be deleted (empty = it can). */
+export function deleteBlockers(ep: Episode, all: Episode[] = listEpisodes()): string[] {
+  const why: string[] = [];
+  if (!ARCHIVE_STATUSES.includes(ep.status)) why.push('hanya episode di Arsip (ditolak / error) yang bisa dihapus');
+  if (ep.youtube?.videoId) why.push('videonya pernah diupload ke YouTube, jadi datanya tetap disimpan');
+  const shorts = all.filter((e) => e.source?.id === ep.id);
+  if (shorts.length) why.push(`masih punya ${shorts.length} Shorts turunan; hapus Shorts-nya dulu`);
+  return why;
+}
+
+/**
+ * Permanently delete an archived episode with its recordings, renders, illustrations and logs, and drop
+ * links to it from other episodes (twin, Shorts list of its source). Throws when deleteBlockers() says no.
+ */
+export function deleteEpisode(id: string): number {
+  const ep = getEpisode(id);
+  const all = listEpisodes();
+  const why = deleteBlockers(ep, all);
+  if (why.length) throw new Error(`Episode tidak bisa dihapus: ${why.join('; ')}`);
+
+  for (const other of all) {
+    if (other.id === id || (other.twin !== id && !other.derivatives?.includes(id))) continue;
+    updateEpisode(other.id, (e) => {
+      if (e.twin === id) e.twin = undefined;
+      if (e.derivatives) e.derivatives = e.derivatives.filter((d) => d !== id);
+    });
+  }
+  // files named after the episode: <id>.json/.mp4/.png/.log…, <id>-adegan-…, <id>-ai.running …
+  const mine = (f: string) => f.startsWith(`${id}.`) || f.startsWith(`${id}-`);
+  const dirs = [paths.renders(), paths.audio(), path.join(paths.videoPkg(), 'public', 'ilustrasi'), paths.logs()];
+  let removed = 0;
+  for (const dir of dirs) {
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir).filter(mine)) {
+      fs.rmSync(path.join(dir, f), { force: true });
+      removed++;
+    }
+  }
+  fs.rmSync(fileOf(id));
+  return removed + 1;
+}
+
 export function saveEpisode(ep: Episode): Episode {
   ep.modified = new Date().toISOString();
   writeJsonAtomic(fileOf(ep.id), ep);

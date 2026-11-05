@@ -38,6 +38,8 @@ import {
   CHARACTERS,
   aiJobMarker,
   isBusy,
+  deleteBlockers,
+  deleteEpisode,
   DEFAULT_CHARACTER_LOOKS,
   DEFAULT_CHARACTER_PROFILES,
   BACKGROUND_LABEL,
@@ -550,6 +552,19 @@ export async function fillAiVoices(form: FormData) {
   addLog(id, 'pemilik', 'Minta adegan kosong diisi suara AI');
   runOfficeCommand(['suara-ai', id], id);
   segarkan(id);
+}
+
+/** Hapus permanen episode di Arsip (ditolak / error), setelah pemilik mencentang konfirmasi. */
+export async function deleteArchivedEpisode(form: FormData) {
+  const id = teks(form, 'id');
+  if (form.get('yakin') !== 'on') return;
+  const ep = getEpisode(id);
+  if (deleteBlockers(ep).length || isBusy(aiJobMarker(id))) return;
+  deleteEpisode(id);
+  revalidatePath('/board');
+  // back to the board as it was (filters, open columns) when deleted from a card
+  const kembali = teks(form, 'kembali');
+  redirect(kembali.startsWith('/board') ? kembali : '/board?open=arsip');
 }
 
 /**

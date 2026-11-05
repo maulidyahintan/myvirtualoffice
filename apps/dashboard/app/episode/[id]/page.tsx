@@ -3,6 +3,7 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  deleteBlockers,
   aiJobMarker,
   needsHumanVoice,
   visualStyle,
@@ -50,6 +51,7 @@ import {
   generateIllustrations,
   reviseOneScene,
   editSceneText,
+  deleteArchivedEpisode,
   removeIllustration,
   setEpisodeVisualStyle,
   recover,
@@ -776,9 +778,38 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
             <Id id={ep.id} />
             <SubmitButton type="submit">↩️ Kembalikan ke langkah terakhir yang berhasil</SubmitButton>
           </form>
+          <HapusEpisode ep={ep} />
         </div>
       );
   }
+}
+
+/** Hapus permanen episode di Arsip, dengan centang konfirmasi (tanpa dialog browser). */
+function HapusEpisode({ ep }: { ep: Episode }) {
+  const alasan = deleteBlockers(ep);
+  return (
+    <details className="kecil">
+      <summary>🗑️ Hapus episode ini permanen</summary>
+      {alasan.length ? (
+        <p className="muted" style={{ marginBottom: 0 }}>
+          Tidak bisa dihapus: {alasan.join('; ')}.
+        </p>
+      ) : (
+        <form action={deleteArchivedEpisode} className="stack" style={{ marginTop: 8, gap: 6 }}>
+          <Id id={ep.id} />
+          <span className="muted">
+            Ide, naskah, rekaman suara, hasil render, ilustrasi, dan log episode ini dihapus dari komputer. <b>Tidak bisa dibatalkan.</b>
+          </span>
+          <label style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <input type="checkbox" name="yakin" required /> Ya, hapus &quot;{ep.script?.title ?? ep.idea.title}&quot; permanen
+          </label>
+          <SubmitButton type="submit" className="bahaya" teksProses="Menghapus…">
+            🗑️ Hapus permanen
+          </SubmitButton>
+        </form>
+      )}
+    </details>
+  );
 }
 
 /** Minta revisi video (adegan & visual) tanpa mengubah narasi; rekaman tetap dipakai. */

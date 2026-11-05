@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { PHASES, listEpisodes, loadConfig, isBusy, BUSY_STATUSES, WAITING_STATUSES } from '@kantor/shared';
+import { PHASES, listEpisodes, loadConfig, isBusy, deleteBlockers, BUSY_STATUSES, WAITING_STATUSES } from '@kantor/shared';
 import { startResearch } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
+import { ArchiveDeleteButton } from '@/components/ArchiveDeleteButton';
 import { Badge } from '@/components/Badge';
 import { SubmitButton } from '@/components/SubmitButton';
 
@@ -107,18 +108,44 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
                 {k.key === 'draft' && k.isi.length === 0 ? (
                   <div className="kecil muted">Episode yang belum mau ditayangkan. Pindahkan lewat tombol “📥 Simpan ke Draft” di halaman episode.</div>
                 ) : null}
-                {k.isi.map((e) => (
-                  <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
-                    <div className="judul">{e.script?.title ?? e.idea.title}</div>
+                {k.isi.map((e) => {
+                  const judul = e.script?.title ?? e.idea.title;
+                  const keterangan = (
                     <div className="kecil muted" style={{ marginBottom: 6 }}>
                       {e.idea.format === 'short' ? '📱 Shorts · ' : ''}
                       {e.twin ? '🔗 ' : ''}
                       {e.source ? '✂️ ' : ''}
                       {namaSeri(e.idea.series)} · usia {e.idea.age}
                     </div>
-                    <Badge status={e.status} />
-                  </Link>
-                ))}
+                  );
+                  if (k.key !== 'arsip') {
+                    return (
+                      <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
+                        <div className="judul">{judul}</div>
+                        {keterangan}
+                        <Badge status={e.status} />
+                      </Link>
+                    );
+                  }
+                  // archive: the title link stretches over the whole card; the status row (with the delete
+                  // icon next to the badge) sits above it, so clicking the icon doesn't open the episode
+                  return (
+                    <div key={e.id} className="kartu kartu-arsip">
+                      <Link href={`/episode/${e.id}`} className="judul kartu-tautan">
+                        {judul}
+                      </Link>
+                      {keterangan}
+                      <ArchiveDeleteButton
+                        id={e.id}
+                        title={judul}
+                        blocked={deleteBlockers(e, semua).join('; ') || undefined}
+                        back={url({})}
+                      >
+                        <Badge status={e.status} />
+                      </ArchiveDeleteButton>
+                    </div>
+                  );
+                })}
                 {k.key !== 'draft' && k.isi.length === 0 ? <div className="kecil muted">—</div> : null}
               </div>
             </section>
