@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T16:04:41.205Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-05T16:07:21.082Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
     "series": "kenapa-ya",
@@ -147,10 +147,35 @@
       "time": "2026-11-05T16:04:41.205Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T16:06:59.555Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-05T16:07:00.451Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-05T16:07:14.671Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:07:20.548Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:07:21.082Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
     }
   ],
   "twin": "kenapa-ya-kita-bangun-subuh-padahal-masi-7aaf",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
     "summary": "Pagi-pagi saat Subuh, Ibu masuk ke kamar dan membangunkan Mamas dengan lembut. Mamas masih mengantuk karena semalam main balok sampai larut. Ia bertanya kenapa Subuh harus sepagi itu. Ibu memberi dua alasan. Pertama, orang yang shalat Subuh berada dalam jaminan Allah (HR. Muslim no. 657). Kedua, dua rakaat sebelum Subuh lebih baik daripada dunia dan isinya (HR. Muslim no. 725). Lalu Ibu memberi tiga tips: tidur lebih awal, taruh alarm agak jauh dari kasur supaya Mamas bisa bangun sendiri, dan baca doa bangun tidur. Setelah wudhu, kantuk Mamas hilang. Video ditutup dengan ajakan mencoba bangun Subuh besok. Durasinya sekitar 3 menit.",
@@ -278,5 +303,300 @@
       "Cek apakah analogi 'lebih hebat dari tameng pahlawan' dan 'lebih baik dari semua mainan' bisa diterima sebagai penyederhanaan untuk anak, dan tidak terkesan meremehkan isi hadits.",
       "Cek apakah sumber dalil tampil sebagai teks di layar di video final."
     ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Di luar masih gelap. Adzan Subuh baru saja terdengar. Pelan-pelan, Ibu masuk ke kamar Mamas.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Waktunya Subuh",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mas... bangun, Sayang. Sudah Subuh. Yuk, kita shalat bersama.",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Hmm... lima menit lagi, Bu. Mamas masih ngantuk. Kenapa sih Subuh itu pagi sekali?",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Pertanyaan bagus, Mas. Rasulullah shallallahu 'alaihi wa sallam bersabda, orang yang shalat Subuh berada dalam jaminan Allah. Artinya, dia dalam perlindungan Allah.",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Dalam jaminan Allah",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Wah, dilindungi Allah? Itu lebih hebat dari tameng pahlawan, ya, Bu!",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Jauh lebih hebat. Ada lagi. Dua rakaat sunnah sebelum Subuh itu lebih baik daripada dunia dan seluruh isinya.",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Lebih baik dari dunia",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Lebih baik dari semua mainan di dunia! Tapi lihat, mata Mamas menutup lagi. Mochi menepuk pipi Mamas. Pluk!",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Adik-adik, semalam Mamas main balok sampai larut. Kira-kira, apa yang bisa Mamas lakukan supaya besok mudah bangun? Ayo, pikirkan dulu...",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Supaya mudah bangun?",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Ini tiga tipsnya, Mas. Satu, tidur lebih awal. Dua, pasang alarm dan taruh agak jauh, supaya Mamas berdiri untuk mematikannya. Tiga, begitu bangun, langsung baca doa bangun tidur. Yuk, kita baca!",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Tiga tips bangun Subuh",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+        "latin": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+        "meaning": "Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali."
+      },
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Artinya: segala puji bagi Allah yang menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+        "latin": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+        "meaning": "Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali."
+      },
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Lalu Mamas berwudhu. Brrr, dingin! Mochi kabur kena cipratan. Kantuk Mamas pun hilang. Mamas shalat sunnah fajar, lalu shalat Subuh bersama Ibu.",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Jadi, kita bangun Subuh karena Allah melindungi orang yang shalat Subuh. Ingat tiga tipsnya: tidur awal, alarm agak jauh, baca doa bangun tidur. Besok pagi, yuk coba bangun Subuh! Wassalamu'alaikum warahmatullahi wabarakatuh.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Yuk bangun Subuh!",
+      "props": [
+        "prayer-mat"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Kenapa Harus Bangun Subuh? Cerita Anak Islami | Seri Kenapa Ya",
+    "description": "Kenapa kita harus bangun Subuh padahal masih ngantuk? Di cerita anak islami ini, Mamas belajar dari Ibu tentang keutamaan shalat Subuh dan tips mudah bangun pagi.\n\nAdzan Subuh berkumandang, tapi Mamas masih mengantuk karena semalam main balok sampai larut. Ibu membangunkannya dengan lembut. Mamas pun bertanya, \"Kenapa sih Subuh itu pagi sekali?\" Ibu menjawab dengan dua hadits shahih, lalu memberi tiga tips agar besok Mamas lebih mudah bangun. Setelah berwudhu, kantuk Mamas hilang dan ia shalat Subuh bersama Ibu.\n\nPelajaran hari ini:\n• Orang yang shalat Subuh berada dalam jaminan dan perlindungan Allah.\n• Dua rakaat sunnah sebelum Subuh lebih baik daripada dunia dan seisinya.\n• Tips bangun Subuh: tidur lebih awal, taruh alarm agak jauh dari kasur, lalu baca doa bangun tidur.\n\nDalil:\n- \"Barang siapa shalat Subuh, maka ia berada dalam jaminan Allah.\" (HR. Muslim no. 657)\n- \"Dua rakaat fajar lebih baik daripada dunia dan seisinya.\" (HR. Muslim no. 725)\n- Doa bangun tidur: Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur. (HR. Bukhari no. 6312)\n\nAyah dan Bunda, yuk tonton bersama si kecil dan ajak ia bercerita: kapan terakhir kali ia bangun Subuh sendiri? Coba praktikkan tiga tipsnya bersama malam ini. Temukan juga cerita lain di seri \"Kenapa Ya\" untuk menemani rasa penasaran anak.\n\n#CeritaIslamiAnak #ShalatSubuh #DoaHarian",
+    "tags": [
+      "cerita islami anak",
+      "kenapa harus bangun subuh",
+      "keutamaan shalat subuh untuk anak",
+      "shalat subuh anak",
+      "tips bangun subuh untuk anak",
+      "doa bangun tidur",
+      "doa bangun tidur untuk anak",
+      "sunnah fajar",
+      "belajar shalat untuk anak",
+      "kartun islami anak",
+      "edukasi islam anak",
+      "cerita anak muslim",
+      "seri kenapa ya",
+      "adab bangun pagi anak muslim"
+    ],
+    "thumbnailText": "Kenapa Bangun Subuh?"
   }
 }
