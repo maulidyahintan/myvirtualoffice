@@ -4,6 +4,7 @@
 //   npm run kantor -- hafalan <id>      (ambil teks surat untuk video hafalan)
 //   npm run kantor -- sutradara <id>
 //   npm run kantor -- render <id>
+//   npm run kantor -- suara-ai <id>    (isi adegan yang belum direkam dengan suara AI gratis)
 //   npm run kantor -- upload <id> [2026-11-01T16:30:00+07:00]
 //   npm run kantor -- shorts <id> [jumlah] ["arahan"]  (pecah video biasa jadi beberapa Shorts)
 //   npm run kantor -- metadata <id> [render]  (buat ulang judul/deskripsi sesuai format, lalu render)
@@ -30,6 +31,7 @@ import {
   buildPublishPlan,
   direct,
   reviseDirection,
+  fillAiVoices,
   withdrawOldVideos,
   writeScript,
   upload,
@@ -73,6 +75,9 @@ async function main() {
     case 'revise-video':
     case 'revisi-video':
       return reviseDirection(need(arg1));
+    case 'ai-voice':
+    case 'suara-ai':
+      return fillAiVoices(need(arg1));
     case 'render':
       return render(need(arg1));
     case 'upload':

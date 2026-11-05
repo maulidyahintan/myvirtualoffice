@@ -257,7 +257,8 @@ async function siapkanAudioPerScene(ep: Episode, onLine?: (s: string) => void) {
   const efek = files.map((_, i) =>
     hafal
       ? memorizationEffect
-      : ep.characterEffects !== false && ep.scenes?.[i]
+      : // AI voices already sound like the character; the effect is only for the owner's own voice
+        ep.characterEffects !== false && ep.scenes?.[i] && !ep.aiVoiceScenes?.[i]
         ? voiceFilter(speakerVoice(ep.scenes[i].speaker, cfg))
         : undefined,
   );

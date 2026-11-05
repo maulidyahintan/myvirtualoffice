@@ -130,6 +130,8 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
       offset[i] = Math.max(0, Number(form.get('offset')) || 0) || null;
       e.sceneOffsets = offset;
       e.recordingMode = 'per-scene';
+      // the owner's own recording replaces an AI voice
+      if (e.aiVoiceScenes?.[i]) e.aiVoiceScenes[i] = false;
       if (e.memorization) e.memorization.segmentStarts = undefined;
     });
     addLog(id, 'pemilik', `Rekaman ${ep.idea.type === 'memorization' ? 'ayat' : 'adegan'} ${i + 1} diupload`);

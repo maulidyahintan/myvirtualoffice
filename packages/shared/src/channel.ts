@@ -8,7 +8,7 @@ import {
   DEFAULT_CHARACTER_PROFILES,
   SPEAKERS,
 } from './constants.ts';
-import type { AppConfig, Background, CharacterLooks, CharacterProfile, Speaker } from './types.ts';
+import type { AppConfig, Background, CharacterLooks, CharacterProfile, Scene, Speaker } from './types.ts';
 
 export function characterProfile(cfg: AppConfig, id: Speaker): CharacterProfile {
   const own = cfg.characters?.[id];
@@ -66,4 +66,12 @@ export function characterGuide(cfg: AppConfig): string {
   ]
     .filter((l) => l !== undefined)
     .join('\n');
+}
+
+/**
+ * Scenes the AI voice must NOT read: prayers and anything with Arabic script or transliteration
+ * (ā, ḥ, ṣ, …), because TTS gets makhraj & tajwid wrong. These stay for the owner to record.
+ */
+export function needsHumanVoice(scene: Scene): boolean {
+  return scene.type === 'prayer' || Boolean(scene.prayer) || /[\u0600-\u06FF]|[āīūḥṣḍṭẓʿʾ]/i.test(scene.narration);
 }

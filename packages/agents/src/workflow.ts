@@ -1,5 +1,7 @@
 // Orchestrator: office workflow from idea to publication.
 // Each function = one "work shift" triggered from dashboard or CLI.
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   addLog,
   createEpisodeFromIdea,
@@ -9,6 +11,8 @@ import {
   listEpisodes,
   loadConfig,
   allowedBackgrounds,
+  needsHumanVoice,
+  ensureDir,
   type Background,
   paths,
   normalizeMetadata,
@@ -24,6 +28,7 @@ import {
 } from '@kantor/shared';
 import { fetchSurah, BASMALAH } from './quran.ts';
 import { runAgent } from './run-agent.ts';
+import { AiVoiceUnavailable, speak } from './tts.ts';
 import {
   IllustratorSchema,
   ReportSchema,
@@ -319,6 +324,7 @@ export async function direct(id: string) {
       e.recordingMode = 'per-scene';
       e.audioPerScene = reuse.files;
       e.sceneOffsets = reuse.offsets;
+      e.aiVoiceScenes = reuse.ai.some(Boolean) ? reuse.ai : undefined;
       e.previousRecordings = undefined;
     }
   });
@@ -344,6 +350,7 @@ function reuseRecordings(ep: Episode, scenes: Scene[]) {
   const pool = ep.previousRecordings.filter((r) => r.file);
   const files: (string | null)[] = [];
   const offsets: (number | null)[] = [];
+  const ai: boolean[] = [];
   const missing: number[] = [];
   scenes.forEach((s, i) => {
     const k = pool.findIndex((r) => norm(r.narration) === norm(s.narration));
@@ -351,13 +358,15 @@ function reuseRecordings(ep: Episode, scenes: Scene[]) {
       const [r] = pool.splice(k, 1);
       files.push(r.file);
       offsets.push(r.offset);
+      ai.push(Boolean(r.ai));
     } else {
       files.push(null);
       offsets.push(null);
+      ai.push(false);
       missing.push(i);
     }
   });
-  return { files, offsets, missing };
+  return { files, offsets, ai, missing };
 }
 
 /**
@@ -428,6 +437,79 @@ function backgroundPicker() {
     last = chosen;
     return chosen;
   };
+}
+
+// ---------------------------------------------------------------- AI VOICE
+/**
+ * Fill the empty scenes with the free AI voice. Scenes with Arabic (prayers, verses, transliteration) are
+ * skipped for the owner to record; when the free quota runs out, the rest is left to record by hand.
+ */
+export async function fillAiVoices(id: string) {
+  const ep = getEpisode(id);
+  const say = log(id, 'pengisi-suara');
+  // optional helper: when it can't run, only note why — the episode keeps waiting for the owner's recording
+  const reason =
+    ep.idea.type === 'memorization'
+      ? "Video hafalan direkam sendiri (bacaan Al-Qur'an)"
+      : !ep.scenes?.length
+        ? 'Episode belum punya adegan'
+        : ep.recordingMode !== 'per-scene' && (ep.audioFile || ep.audioParts?.length)
+          ? 'Episode ini sudah punya rekaman utuh; pilih mode rekam per adegan dulu supaya suara AI bisa mengisi adegan yang kosong'
+          : !process.env.GEMINI_API_KEY?.trim()
+            ? 'Suara AI belum disiapkan: isi GEMINI_API_KEY di .env (API key Google AI Studio dari proyek tanpa akun penagihan)'
+            : undefined;
+  if (reason) {
+    say(`Suara AI tidak dipakai: ${reason}`);
+    return;
+  }
+  const scenes = ep.scenes!;
+  const filled = (i: number) => Boolean(getEpisode(id).audioPerScene?.[i]);
+  const targets = scenes.map((_, i) => i).filter((i) => !filled(i) && !needsHumanVoice(scenes[i]));
+  const human = scenes.map((_, i) => i).filter((i) => !filled(i) && needsHumanVoice(scenes[i]));
+  if (!targets.length) {
+    say(human.length ? `Tidak ada adegan untuk suara AI; adegan ${human.map((i) => i + 1).join(', ')} berisi bacaan Arab, rekam sendiri` : 'Semua adegan sudah ada suaranya');
+    return;
+  }
+  say(`Mengisi ${targets.length} adegan dengan suara AI gratis${human.length ? ` (adegan ${human.map((i) => i + 1).join(', ')} berisi bacaan Arab, rekam sendiri)` : ''}`);
+
+  const dir = ensureDir(paths.audio());
+  const done: number[] = [];
+  let stopped: string | undefined;
+  for (const i of targets) {
+    let audio: Buffer;
+    try {
+      audio = await speak(scenes[i].narration, scenes[i].speaker);
+    } catch (e) {
+      if (!(e instanceof AiVoiceUnavailable)) throw e;
+      stopped = e.message;
+      break;
+    }
+    const name = `${id}-adegan-${i + 1}-ai-${Date.now().toString(36)}.wav`;
+    fs.writeFileSync(path.join(dir, name), audio);
+    // re-read inside the update so recordings uploaded meanwhile are kept
+    updateEpisode(id, (e) => {
+      const n = e.scenes?.length ?? 0;
+      if (e.audioPerScene?.[i]) return;
+      e.audioPerScene = Array.from({ length: n }, (_, k) => e.audioPerScene?.[k] ?? null);
+      e.audioPerScene[i] = `audio/${name}`;
+      e.sceneOffsets = Array.from({ length: n }, (_, k) => e.sceneOffsets?.[k] ?? null);
+      e.aiVoiceScenes = Array.from({ length: n }, (_, k) => e.aiVoiceScenes?.[k] ?? false);
+      e.aiVoiceScenes[i] = true;
+      e.recordingMode = 'per-scene';
+    });
+    done.push(i);
+    say(`Adegan ${i + 1} diisi suara AI (${done.length}/${targets.length})`);
+  }
+  const left = [...targets.filter((i) => !done.includes(i)), ...human].sort((a, b) => a - b);
+  say(
+    [
+      `${done.length} adegan diisi suara AI`,
+      stopped ? `berhenti: ${stopped}` : '',
+      left.length ? `rekam sendiri adegan ${left.map((i) => i + 1).join(', ')}` : 'semua adegan sudah ada suaranya, dengarkan lalu render',
+    ]
+      .filter(Boolean)
+      .join(' · '),
+  );
 }
 
 // ---------------------------------------------------------------- RENDER

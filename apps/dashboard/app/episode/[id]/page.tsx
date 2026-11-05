@@ -3,6 +3,8 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  needsHumanVoice,
+  rootDir,
   backgroundLabel,
   speakerNames,
   isoToLocal,
@@ -42,6 +44,7 @@ import {
   changeRecordingMode,
   requestRevision,
   requestVideoRevision,
+  fillAiVoices,
   recover,
   renderVideo,
   approveScript,
@@ -95,6 +98,63 @@ function PilihModeRekam({ ep }: { ep: Episode }) {
 }
 
 /** Upload rekaman per scene (memorization: per verse). Bisa juga dipakai untuk merekam ulang satu scene saja. */
+/** Kunci suara AI dari .env root (dashboard tidak memuat .env proyek). */
+function suaraAiSiap(): boolean {
+  if (process.env.GEMINI_API_KEY?.trim()) return true;
+  try {
+    return /^GEMINI_API_KEY=[ \t]*\S+/m.test(fs.readFileSync(path.join(rootDir(), '.env'), 'utf8'));
+  } catch {
+    return false;
+  }
+}
+
+/** Pemakaian suara AI hari ini (ditulis pengisi suara di data/suara-ai.json). */
+function pemakaianSuaraAi(): { requests: number; exhausted: boolean } {
+  try {
+    const u = JSON.parse(fs.readFileSync(path.join(paths.data(), 'suara-ai.json'), 'utf8'));
+    const today = u.date === new Date().toISOString().slice(0, 10);
+    return { requests: today ? u.requests : 0, exhausted: today && Boolean(u.exhaustedAt) };
+  } catch {
+    return { requests: 0, exhausted: false };
+  }
+}
+
+/** Isi adegan kosong dengan suara AI gratis; sisanya (bacaan Arab, jatah habis) direkam sendiri. */
+function IsiSuaraAi({ ep }: { ep: Episode }) {
+  if (ep.idea.type === 'memorization' || !ep.scenes?.length) return null;
+  const kosong = ep.scenes.map((s, i) => ({ s, i })).filter(({ i }) => !ep.audioPerScene?.[i] || ep.recordingMode !== 'per-scene');
+  const bisaAi = kosong.filter(({ s }) => !needsHumanVoice(s)).length;
+  const arab = kosong.length - bisaAi;
+  if (!bisaAi) return null;
+  if (!suaraAiSiap()) {
+    return (
+      <details className="kecil">
+        <summary>🤖 Mau diisi suara AI gratis?</summary>
+        <p className="muted" style={{ marginBottom: 0 }}>
+          Buat API key di <b>aistudio.google.com/apikey</b> dengan proyek <b>tanpa akun penagihan</b> (supaya tidak pernah ada biaya), lalu
+          isi <code>GEMINI_API_KEY=</code> di file <code>.env</code> proyek. Setelah itu tombolnya muncul di sini.
+        </p>
+      </details>
+    );
+  }
+  const pakai = pemakaianSuaraAi();
+  const sedang = isBusy(ep.id);
+  return (
+    <form action={fillAiVoices} className="stack" style={{ gap: 6 }}>
+      <Id id={ep.id} />
+      <SubmitButton type="submit" className="sekunder" disabled={pakai.exhausted || sedang} teksProses="Memulai…">
+        🤖 Isi {bisaAi} adegan dengan suara AI (gratis)
+      </SubmitButton>
+      <span className="kecil muted">
+        {pakai.exhausted
+          ? 'Jatah suara AI gratis hari ini sudah habis; rekam sendiri atau coba lagi besok.'
+          : `Narasi bahasa Indonesia saja${arab ? `; ${arab} adegan berisi bacaan Arab tetap rekam sendiri` : ''}. Kalau jatah gratis habis di tengah jalan, sisanya rekam sendiri. Hari ini: ${pakai.requests} adegan.`}
+        {ep.recordingMode !== 'per-scene' ? ' Mode rekam otomatis pindah ke per adegan.' : ''}
+      </span>
+    </form>
+  );
+}
+
 function RekamanPerAdegan({ ep }: { ep: Episode }) {
   const hafalan = ep.idea.type === 'memorization';
   const satuan = hafalan ? 'Ayat' : 'Adegan';
@@ -131,6 +191,10 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
             <b>
               {per[i] ? '✅' : '⬜'} {d.title}
             </b>
+            {per[i] && ep.aiVoiceScenes?.[i] ? <span className="label-suara ai">🤖 suara AI</span> : null}
+            {!per[i] && !hafalan && ep.scenes?.[i] && needsHumanVoice(ep.scenes[i]) ? (
+              <span className="label-suara arab">✋ bacaan Arab, rekam sendiri</span>
+            ) : null}
             <div className="muted" style={{ marginTop: 4 }}>
               {d.text}
             </div>
@@ -411,6 +475,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
             🎙️ Buka Studio Rekam (rekam sambil lihat video, atur nada)
           </Link>
           <PilihModeRekam ep={ep} />
+          <IsiSuaraAi ep={ep} />
           {ep.recordingMode === 'per-scene' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
           <form action={renderVideo}>
             <Id id={ep.id} />

@@ -187,7 +187,12 @@ export async function requestRevision(form: FormData) {
     // narration stays the same; a single sequential recording can't be split, so it is released
     // (files stay on disk either way)
     if (e.recordingMode === 'per-scene' && e.audioPerScene?.some(Boolean) && e.scenes) {
-      e.previousRecordings = e.scenes.map((s, i) => ({ narration: s.narration, file: e.audioPerScene?.[i] ?? null, offset: e.sceneOffsets?.[i] ?? null }));
+      e.previousRecordings = e.scenes.map((s, i) => ({
+        narration: s.narration,
+        file: e.audioPerScene?.[i] ?? null,
+        offset: e.sceneOffsets?.[i] ?? null,
+        ai: e.aiVoiceScenes?.[i] || undefined,
+      }));
       e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: 'Rekaman per adegan disimpan; adegan yang narasinya tidak berubah akan memakai rekaman lama' });
     } else if (e.audioFile || e.audioParts?.length) {
       e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: 'Rekaman lama dilepas karena naskah direvisi (perlu rekam ulang)' });
@@ -197,6 +202,7 @@ export async function requestRevision(form: FormData) {
       e.audioParts = undefined;
       e.audioPerScene = undefined;
       e.sceneOffsets = undefined;
+      e.aiVoiceScenes = undefined;
     }
   });
   setStatus(id, 'writing', 'pemilik', `Minta revisi: ${feedback.slice(0, 80)}`);
@@ -532,6 +538,14 @@ export async function saveCharacterVoices(form: FormData) {
   cfg.memorizationVoice = baca('memorization');
   saveConfig(cfg);
   revalidatePath('/settings');
+}
+
+/** Isi adegan yang belum direkam dengan suara AI gratis (bacaan Arab dilewati, rekam sendiri). */
+export async function fillAiVoices(form: FormData) {
+  const id = teks(form, 'id');
+  addLog(id, 'pemilik', 'Minta adegan kosong diisi suara AI');
+  runOfficeCommand(['suara-ai', id], id);
+  segarkan(id);
 }
 
 /** Simpan instruksi agen (pedoman/niche channel atau instruksi satu pegawai) ke file prompt-nya. */
