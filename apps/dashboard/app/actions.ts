@@ -421,6 +421,19 @@ export async function saveDailyResearch(form: FormData) {
   revalidatePath('/settings');
 }
 
+/** Revisi adegan & visual video yang sudah dirender; narasi & rekaman tetap, lalu dirender ulang. */
+export async function requestVideoRevision(form: FormData) {
+  const id = teks(form, 'id');
+  const feedback = teks(form, 'feedback');
+  if (!feedback) return;
+  updateEpisode(id, (e) => {
+    e.directionFeedback = feedback;
+  });
+  setStatus(id, 'directing', 'pemilik', `Minta revisi video: ${feedback.slice(0, 80)}`);
+  runOfficeCommand(['revisi-video', id], id);
+  segarkan(id);
+}
+
 /** Simpan episode ke Draft: tidak akan ditayangkan dulu; statusnya disimpan supaya bisa dilanjutkan. */
 export async function moveToDraft(form: FormData) {
   const id = teks(form, 'id');

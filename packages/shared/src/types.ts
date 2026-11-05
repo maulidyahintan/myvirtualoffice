@@ -174,6 +174,8 @@ export interface Episode {
   review?: Review;
   revisionCount: number;
   humanFeedback?: string;
+  /** Owner's notes for the Director when asking to redo scenes/visuals of a rendered video (narration unchanged). */
+  directionFeedback?: string;
   scenes?: Scene[];
   metadata?: YouTubeMetadata;
   /** Verse text + visuals (only for memorization type) */

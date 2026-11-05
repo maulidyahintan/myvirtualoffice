@@ -29,6 +29,7 @@ import {
   prepareMemorization,
   buildPublishPlan,
   direct,
+  reviseDirection,
   withdrawOldVideos,
   writeScript,
   upload,
@@ -69,6 +70,9 @@ async function main() {
     case 'direct':
     case 'sutradara':
       return direct(need(arg1));
+    case 'revise-video':
+    case 'revisi-video':
+      return reviseDirection(need(arg1));
     case 'render':
       return render(need(arg1));
     case 'upload':

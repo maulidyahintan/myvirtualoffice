@@ -41,6 +41,7 @@ import {
   deleteRecordings,
   changeRecordingMode,
   requestRevision,
+  requestVideoRevision,
   recover,
   renderVideo,
   approveScript,
@@ -485,6 +486,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               </form>
             )}
           </details>
+          <MintaRevisiVideo ep={ep} />
           <MintaRevisiNaskah ep={ep} />
           <FormTolak id={ep.id} />
         </div>
@@ -529,6 +531,31 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
         </div>
       );
   }
+}
+
+/** Minta revisi video (adegan & visual) tanpa mengubah narasi; rekaman tetap dipakai. */
+function MintaRevisiVideo({ ep }: { ep: Episode }) {
+  if (ep.idea.type === 'memorization' || !ep.scenes?.length || !ep.render) return null;
+  return (
+    <details>
+      <summary>🎬 Minta revisi video (adegan & visual)</summary>
+      <form action={requestVideoRevision} className="stack" style={{ marginTop: 10 }}>
+        <Id id={ep.id} />
+        <textarea
+          name="feedback"
+          placeholder="contoh: adegan 3 pindah ke dapur, Mochi tidur di adegan akhir, Mamas memegang Al-Qur'an saat membaca surat"
+          required
+        />
+        <span className="kecil muted">
+          Narasi & rekaman suaramu tetap; Sutradara menyusun ulang latar, tokoh, ekspresi, aksi & properti sesuai catatan, lalu video
+          otomatis dirender ulang.
+        </span>
+        <SubmitButton type="submit" className="sekunder" teksProses="Mengirim…">
+          🎬 Kirim ke Sutradara
+        </SubmitButton>
+      </form>
+    </details>
+  );
 }
 
 /** Minta revisi naskah setelah tahap naskah (saat rekam suara / persetujuan video). */

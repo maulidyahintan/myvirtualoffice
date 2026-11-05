@@ -297,10 +297,50 @@ export async function direct(id: string) {
     requestMetadata(ep),
   ]);
 
+  updateEpisode(id, (e) => {
+    e.scenes = alignWithScript(ep, direction.scenes);
+    e.metadata = metadata;
+  });
+  setStatus(id, 'needs_audio', 'orchestrator', 'Siap direkam: bacakan narasi adegan secara berurutan');
+}
+
+/**
+ * Redo the scenes/visuals of an episode from the owner's notes (`directionFeedback`) without touching
+ * the narration, so existing recordings stay valid; re-renders right away when recordings exist.
+ */
+export async function reviseDirection(id: string) {
+  const ep = getEpisode(id);
+  if (!ep.script || !ep.scenes) throw new Error('Episode belum punya adegan');
+  const feedback = ep.directionFeedback ?? '';
+  setStatus(id, 'directing', 'sutradara', `Merevisi adegan: ${feedback.slice(0, 80)}`);
+  const direction = await runAgent({
+    peran: 'sutradara',
+    schema: DirectorSchema,
+    maxTurns: 4,
+    onProgress: log(id, 'sutradara'),
+    prompt: [
+      formatInfo(ep),
+      `Naskah yang sudah disetujui (narasi TIDAK boleh diubah, sudah direkam):\n${JSON.stringify(ep.script, null, 2)}`,
+      `Adegan saat ini:\n${JSON.stringify(ep.scenes, null, 2)}`,
+      `Catatan revisi dari pemilik channel (WAJIB diikuti, pertahankan bagian lain yang sudah bagus):\n${feedback}`,
+      'Susun ulang adegannya.',
+    ].join('\n\n'),
+  });
+  updateEpisode(id, (e) => {
+    e.scenes = alignWithScript(ep, direction.scenes);
+    e.directionFeedback = undefined;
+  });
+  const hasAudio = Boolean(ep.audioFile) || Boolean(ep.audioParts?.length) || Boolean(ep.audioPerScene?.some(Boolean));
+  if (hasAudio) return render(id);
+  setStatus(id, 'needs_audio', 'orchestrator', 'Adegan direvisi; siap direkam');
+}
+
+/** Director output aligned to the approved script: narration, speaker & type are copied verbatim. */
+function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
   // Safety: narration must match script exactly (because it's already/will be recorded)
-  const scriptScenes = ep.script.scenes;
-  const finalScenes = scriptScenes.map((n, i) => {
-    const s = direction.scenes[i] ?? direction.scenes.at(-1)!;
+  const scriptScenes = ep.script!.scenes;
+  return scriptScenes.map((n, i) => {
+    const s = scenes[i] ?? scenes.at(-1)!;
     const characters = s.characters.slice();
     if (n.speaker !== 'narrator' && !characters.includes(n.speaker)) characters.push(n.speaker);
     // actions only for characters present, and sensible (Mochi: sleep/play; Mamas/Mother: anything except sleep)
@@ -309,12 +349,6 @@ export async function direct(id: string) {
     );
     return { ...s, type: n.type, speaker: n.speaker, narration: n.narration, characters, actions: actions?.length ? actions : undefined };
   });
-
-  updateEpisode(id, (e) => {
-    e.scenes = finalScenes;
-    e.metadata = metadata;
-  });
-  setStatus(id, 'needs_audio', 'orchestrator', 'Siap direkam: bacakan narasi adegan secara berurutan');
 }
 
 // ---------------------------------------------------------------- RENDER
