@@ -456,6 +456,9 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .kartu-ilustrasi img, .ilustrasi-kosong { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: rgba(0, 0, 0, 0.05); }
 .ilustrasi-kosong { display: grid; place-items: center; }
 .kartu-ilustrasi figcaption { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.label-suara.memuat { display: inline-flex; align-items: center; gap: 6px; margin: 0; padding: 4px 10px; font-size: 12px; background: var(--emas-muda); }
+.label-suara .putar { width: 12px; height: 12px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: putar-suara 0.8s linear infinite; }
+@keyframes putar-suara { to { transform: rotate(360deg); } }
 
 /* hapus episode langsung dari kartu Arsip */
 .kartu-arsip { position: relative; display: block; }

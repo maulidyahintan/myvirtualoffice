@@ -294,6 +294,28 @@ export function markBusy(name: string) {
 /** Marker for an episode's optional AI helper job (AI voice, illustrations, fixing one scene): one at a time. */
 export const aiJobMarker = (episodeId: string) => `${episodeId}-ai`;
 
+/** Which scene (0-based) the AI voice is working on for an episode; written when the button is clicked. */
+const aiVoiceProgressFile = (episodeId: string) => path.join(ensure(paths.logs()), `${episodeId}-suara-ai.json`);
+
+export function setAiVoiceProgress(episodeId: string, scene: number | null) {
+  if (scene === null) fs.rmSync(aiVoiceProgressFile(episodeId), { force: true });
+  else fs.writeFileSync(aiVoiceProgressFile(episodeId), JSON.stringify({ scene, at: Date.now() }));
+}
+
+/**
+ * Scene the AI voice is filling right now, or undefined. The file is written by the dashboard the moment
+ * the button is clicked (before the worker has started), so it also counts for a short while without a
+ * running worker; a stale file left by a crashed worker is ignored after a minute.
+ */
+export function aiVoiceInProgress(episodeId: string): number | undefined {
+  try {
+    const { scene, at } = JSON.parse(fs.readFileSync(aiVoiceProgressFile(episodeId), 'utf8')) as { scene: number; at: number };
+    return isBusy(aiJobMarker(episodeId)) || Date.now() - at < 60_000 ? scene : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export function markDone(name: string) {
   fs.rmSync(markerFile(name), { force: true });
 }

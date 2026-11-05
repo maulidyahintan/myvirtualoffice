@@ -37,6 +37,8 @@ import {
   BACKGROUNDS,
   CHARACTERS,
   aiJobMarker,
+  aiVoiceInProgress,
+  setAiVoiceProgress,
   isBusy,
   deleteBlockers,
   deleteEpisode,
@@ -544,13 +546,17 @@ export async function saveCharacterVoices(form: FormData) {
   revalidatePath('/settings');
 }
 
-/** Isi adegan yang belum direkam dengan suara AI gratis (bacaan Arab dilewati, rekam sendiri). */
+/** Isi SATU adegan yang belum direkam dengan suara AI gratis (bacaan Arab tetap rekam sendiri). */
 export async function fillAiVoices(form: FormData) {
   const id = teks(form, 'id');
-  // one AI helper job per episode at a time (repeated clicks would spend the free quota twice)
-  if (isBusy(aiJobMarker(id))) return;
-  addLog(id, 'pemilik', 'Minta adegan kosong diisi suara AI');
-  runOfficeCommand(['suara-ai', id], id);
+  const adegan = Number(teks(form, 'adegan'));
+  if (!Number.isInteger(adegan) || adegan < 1) return;
+  // one AI job per episode at a time; the progress mark is written right now (before the worker starts)
+  // so a second click in between is refused and the scene shows its loading state immediately
+  if (isBusy(aiJobMarker(id)) || aiVoiceInProgress(id) !== undefined) return;
+  setAiVoiceProgress(id, adegan - 1);
+  addLog(id, 'pemilik', `Minta adegan ${adegan} diisi suara AI`);
+  runOfficeCommand(['suara-ai', id, String(adegan)], id);
   segarkan(id);
 }
 

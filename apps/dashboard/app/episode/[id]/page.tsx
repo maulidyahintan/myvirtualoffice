@@ -3,6 +3,7 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  aiVoiceInProgress,
   deleteBlockers,
   aiJobMarker,
   needsHumanVoice,
@@ -132,12 +133,10 @@ function pemakaianSuaraAi(): { requests: number; exhausted: boolean } {
   }
 }
 
-/** Isi adegan kosong dengan suara AI gratis; sisanya (bacaan Arab, jatah habis) direkam sendiri. */
+/** Status suara AI gratis di atas daftar rekaman: cara pakai, jatah hari ini, atau cara menyiapkannya. */
 function IsiSuaraAi({ ep }: { ep: Episode }) {
   if (ep.idea.type === 'memorization' || !ep.scenes?.length) return null;
-  const kosong = ep.scenes.map((s, i) => ({ s, i })).filter(({ i }) => !ep.audioPerScene?.[i] || ep.recordingMode !== 'per-scene');
-  const bisaAi = kosong.filter(({ s }) => !needsHumanVoice(s)).length;
-  const arab = kosong.length - bisaAi;
+  const bisaAi = ep.scenes.filter((s, i) => !(ep.recordingMode === 'per-scene' && ep.audioPerScene?.[i]) && !needsHumanVoice(s)).length;
   if (!bisaAi) return null;
   if (!suaraAiSiap()) {
     return (
@@ -145,25 +144,50 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
         <summary>🤖 Mau diisi suara AI gratis?</summary>
         <p className="muted" style={{ marginBottom: 0 }}>
           Buat API key di <b>aistudio.google.com/apikey</b> dengan proyek <b>tanpa akun penagihan</b> (supaya tidak pernah ada biaya), lalu
-          isi <code>GEMINI_API_KEY=</code> di file <code>.env</code> proyek. Setelah itu tombolnya muncul di sini.
+          isi <code>GEMINI_API_KEY=</code> di file <code>.env</code> proyek. Setelah itu tombolnya muncul di tiap adegan.
         </p>
       </details>
     );
   }
   const pakai = pemakaianSuaraAi();
-  const sedang = isBusy(aiJobMarker(ep.id));
   return (
-    <form action={fillAiVoices} className="stack" style={{ gap: 6 }}>
-      <Id id={ep.id} />
-      <SubmitButton type="submit" className="sekunder" disabled={pakai.exhausted || sedang} teksProses="Memulai…">
-        {sedang ? '⏳ Sedang mengisi suara AI…' : `🤖 Isi ${bisaAi} adegan dengan suara AI (gratis)`}
-      </SubmitButton>
-      <span className="kecil muted">
-        {pakai.exhausted
+    <p className="kecil muted" style={{ margin: 0 }}>
+      🤖{' '}
+      {ep.recordingMode !== 'per-scene'
+        ? 'Suara AI gratis bisa mengisi adegan satu per satu: pilih mode rekam per adegan di atas.'
+        : pakai.exhausted
           ? 'Jatah suara AI gratis hari ini sudah habis; rekam sendiri atau coba lagi besok.'
-          : `Narasi bahasa Indonesia saja${arab ? `; ${arab} adegan berisi bacaan Arab tetap rekam sendiri` : ''}. Jatah gratis Google ±10 adegan per hari; kalau habis di tengah jalan, sisanya rekam sendiri atau lanjutkan besok. Hari ini terpakai: ${pakai.requests} adegan.`}
-        {ep.recordingMode !== 'per-scene' ? ' Mode rekam otomatis pindah ke per adegan.' : ''}
+          : `Suara AI gratis: klik "🤖 Isi suara AI" di adegan yang mau diisi, satu adegan per klik. Bacaan Arab tetap rekam sendiri. Jatah Google ±20 adegan per hari; hari ini terpakai ${pakai.requests}.`}
+    </p>
+  );
+}
+
+/** Tombol suara AI untuk satu adegan, atau tanda loading kalau adegan ini sedang dibuatkan suaranya. */
+function TombolSuaraAi({ ep, index }: { ep: Episode; index: number }) {
+  const scene = ep.scenes?.[index];
+  if (!scene || ep.idea.type === 'memorization' || ep.audioPerScene?.[index] || needsHumanVoice(scene) || !suaraAiSiap()) return null;
+  const dikerjakan = aiVoiceInProgress(ep.id);
+  if (dikerjakan === index) {
+    return (
+      <span className="label-suara memuat" role="status">
+        <span className="putar" aria-hidden /> Membuat suara AI…
       </span>
+    );
+  }
+  const sibuk = dikerjakan !== undefined || isBusy(aiJobMarker(ep.id));
+  return (
+    <form action={fillAiVoices}>
+      <Id id={ep.id} />
+      <input type="hidden" name="adegan" value={index + 1} />
+      <SubmitButton
+        type="submit"
+        className="sekunder"
+        disabled={sibuk || pemakaianSuaraAi().exhausted}
+        teksProses="Memulai…"
+        title={sibuk ? `Tunggu adegan ${dikerjakan !== undefined ? dikerjakan + 1 : 'lain'} selesai dulu` : undefined}
+      >
+        🤖 Isi suara AI
+      </SubmitButton>
     </form>
   );
 }
@@ -392,6 +416,7 @@ function RekamanPerAdegan({ ep }: { ep: Episode }) {
               style={{ width: '100%', height: 36 }}
             />
           ) : null}
+          {hafalan ? null : <TombolSuaraAi ep={ep} index={i} />}
           <form
             action={`/api/audio/${ep.id}`}
             method="post"
@@ -1136,7 +1161,7 @@ export default async function HalamanEpisode({
           <TombolDraft ep={ep} />
           <AskAgentButton />
           <AutoRefresh
-            aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`) || isBusy(aiJobMarker(ep.id))}
+            aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`) || isBusy(aiJobMarker(ep.id)) || aiVoiceInProgress(ep.id) !== undefined}
           />
         </div>
       </div>

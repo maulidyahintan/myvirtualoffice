@@ -13,6 +13,7 @@ import {
   allowedBackgrounds,
   visualStyle,
   needsHumanVoice,
+  setAiVoiceProgress,
   ensureDir,
   type Background,
   paths,
@@ -450,7 +451,16 @@ function backgroundPicker() {
  * Fill the empty scenes with the free AI voice. Scenes with Arabic (prayers, verses, transliteration) are
  * skipped for the owner to record; when the free quota runs out, the rest is left to record by hand.
  */
-export async function fillAiVoices(id: string) {
+export async function fillAiVoices(id: string, sceneNo?: number) {
+  try {
+    await fillAiVoicesNow(id, sceneNo);
+  } finally {
+    setAiVoiceProgress(id, null);
+  }
+}
+
+/** With a scene number (1-based) only that scene is filled; without, every empty scene. */
+async function fillAiVoicesNow(id: string, sceneNo?: number) {
   const ep = getEpisode(id);
   const say = log(id, 'pengisi-suara');
   // optional helper: when it can't run, only note why — the episode keeps waiting for the owner's recording
@@ -470,18 +480,20 @@ export async function fillAiVoices(id: string) {
   }
   const scenes = ep.scenes!;
   const filled = (i: number) => Boolean(getEpisode(id).audioPerScene?.[i]);
-  const targets = scenes.map((_, i) => i).filter((i) => !filled(i) && !needsHumanVoice(scenes[i]));
-  const human = scenes.map((_, i) => i).filter((i) => !filled(i) && needsHumanVoice(scenes[i]));
+  const wanted = scenes.map((_, i) => i).filter((i) => !sceneNo || i === sceneNo - 1);
+  const targets = wanted.filter((i) => !filled(i) && !needsHumanVoice(scenes[i]));
+  const human = wanted.filter((i) => !filled(i) && needsHumanVoice(scenes[i]));
   if (!targets.length) {
     say(human.length ? `Tidak ada adegan untuk suara AI; adegan ${human.map((i) => i + 1).join(', ')} berisi bacaan Arab, rekam sendiri` : 'Semua adegan sudah ada suaranya');
     return;
   }
-  say(`Mengisi ${targets.length} adegan dengan suara AI gratis${human.length ? ` (adegan ${human.map((i) => i + 1).join(', ')} berisi bacaan Arab, rekam sendiri)` : ''}`);
+  say(`${sceneNo ? `Membuat suara AI untuk adegan ${sceneNo}` : `Mengisi ${targets.length} adegan dengan suara AI gratis`}${human.length ? ` (adegan ${human.map((i) => i + 1).join(', ')} berisi bacaan Arab, rekam sendiri)` : ''}`);
 
   const dir = ensureDir(paths.audio());
   const done: number[] = [];
   let stopped: string | undefined;
   for (const i of targets) {
+    setAiVoiceProgress(id, i);
     let audio: Buffer;
     try {
       audio = await speak(scenes[i].narration, scenes[i].speaker);
