@@ -82,7 +82,8 @@ export const ItemArt: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala =
     )}
     {id === 'toy-car' && (
       <g>
-        <path d="M-26 6 L-26 -4 Q-24 -10 -14 -10 L-8 -20 L10 -20 L18 -10 Q26 -10 26 -2 L26 6 Z" fill="#4F8FD9" stroke="#3A6EAE" strokeWidth={2} strokeLinejoin="round" />
+        {/* merah, seperti "Si Merah" milik Mamas */}
+        <path d="M-26 6 L-26 -4 Q-24 -10 -14 -10 L-8 -20 L10 -20 L18 -10 Q26 -10 26 -2 L26 6 Z" fill="#E0524A" stroke="#B23A33" strokeWidth={2} strokeLinejoin="round" />
         <path d="M-6 -17 L8 -17 L13 -10 L-10 -10 Z" fill="#BFE3F5" />
         {[-14, 14].map((x) => (
           <g key={x}>
