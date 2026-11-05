@@ -92,5 +92,6 @@
     "outro": "musik/penutup.m4a",
     "volume": 1,
     "inShorts": false
-  }
+  },
+  "visualStyle": "ai-illustration"
 }
