@@ -8,6 +8,8 @@ import {
   latestFile,
   listEpisodes,
   loadConfig,
+  allowedBackgrounds,
+  type Background,
   paths,
   normalizeMetadata,
   saveConfig,
@@ -220,9 +222,10 @@ async function directMemorization(ep: Episode) {
     }),
     requestMetadata(ep),
   ]);
+  const pick = backgroundPicker();
   const verses = memorization.verses.map((v, i) => {
     const vis = illustration.visuals.find((x) => x.number === v.number) ?? illustration.visuals[i];
-    return vis ? { ...v, background: vis.background, moods: vis.moods } : v;
+    return { ...v, ...(vis ? { background: vis.background, moods: vis.moods } : {}), background: pick(vis?.background ?? v.background) };
   });
   // scenes used by dashboard & render checking; for memorization they mirror verses
   const scenes: Scene[] = verses.map((v) => ({
@@ -392,6 +395,7 @@ export async function reviseDirection(id: string) {
 function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
   // Safety: narration must match script exactly (because it's already/will be recorded)
   const scriptScenes = ep.script!.scenes;
+  const pick = backgroundPicker();
   return scriptScenes.map((n, i) => {
     const s = scenes[i] ?? scenes.at(-1)!;
     const characters = s.characters.slice();
@@ -400,8 +404,30 @@ function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
     const actions = s.actions?.filter(
       (x) => characters.includes(x.character) && (x.character === 'mochi' ? x.action === 'sleeping' || x.action === 'playing' : x.action !== 'sleeping'),
     );
-    return { ...s, type: n.type, speaker: n.speaker, narration: n.narration, characters, actions: actions?.length ? actions : undefined };
+    return {
+      ...s,
+      background: pick(s.background),
+      type: n.type,
+      speaker: n.speaker,
+      narration: n.narration,
+      characters,
+      actions: actions?.length ? actions : undefined,
+    };
   });
+}
+
+/**
+ * Keeps agent-chosen backgrounds within the ones enabled in Settings: a disabled one is replaced by the
+ * previous allowed background (so the place doesn't jump around), or the first allowed one.
+ */
+function backgroundPicker() {
+  const allowed = allowedBackgrounds(loadConfig());
+  let last: Background | undefined;
+  return (bg: Background): Background => {
+    const chosen = allowed.includes(bg) ? bg : (last ?? allowed[0]);
+    last = chosen;
+    return chosen;
+  };
 }
 
 // ---------------------------------------------------------------- RENDER

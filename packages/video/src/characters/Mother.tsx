@@ -4,20 +4,51 @@ import { Quran } from '../props/ItemArt';
 import { heldItemArt } from './Mamas';
 import { Arm } from './Arm';
 import { Face } from './Face';
+import { shade, useLook } from './looks';
 
 // Mother: kerudung pink panjang menutup dada, abaya navy sampai mata kaki.
-const w = {
+const W_ASLI = {
   kulit: '#F7CFB4',
+  kulitTerang: '#FFE5D4',
+  kulitGelap: '#EAAA8C',
   kerudung: '#F3A9C2',
   kerudungBayang: '#DE88A6',
   kerudungTerang: '#F9C9D9',
+  kerudungKilap: '#FBCADB',
+  kerudungGelap: '#E58CAC',
+  kerudungAtas: '#F6B3CA',
   ciput: '#E07FA0',
   abaya: '#24305E',
   abayaBayang: '#1A2348',
   abayaAksen: '#3E4F8C',
+  abayaTerang: '#34437E',
+  abayaGelap: '#18204A',
   sepatu: '#3A2E2E',
   garis: '#4A3A40',
 };
+
+/** Original palette; only the parts whose base color was changed in Settings are recomputed. */
+function paletIbu({ base, changed }: ReturnType<typeof useLook>) {
+  const w = { ...W_ASLI };
+  if (changed('skin')) Object.assign(w, { kulit: base.skin, kulitTerang: shade(base.skin, 0.45), kulitGelap: shade(base.skin, -0.2) });
+  if (changed('hijab')) {
+    const c = base.hijab;
+    Object.assign(w, {
+      kerudung: c,
+      kerudungBayang: shade(c, -0.15),
+      kerudungTerang: shade(c, 0.4),
+      kerudungKilap: shade(c, 0.35),
+      kerudungGelap: shade(c, -0.2),
+      kerudungAtas: shade(c, 0.15),
+      ciput: shade(c, -0.22),
+    });
+  }
+  if (changed('dress')) {
+    const c = base.dress;
+    Object.assign(w, { abaya: c, abayaBayang: shade(c, -0.25), abayaAksen: shade(c, 0.2), abayaTerang: shade(c, 0.12), abayaGelap: shade(c, -0.35) });
+  }
+  return w;
+}
 
 function poseIbu(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
@@ -65,6 +96,7 @@ function poseIbu(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
 
 export const Mother: React.FC<RigProps> = (r) => {
   const id = useId().replace(/:/g, '');
+  const w = paletIbu(useLook('mother'));
   const { f, expression, bicara } = r;
   const pose = poseIbu(r);
   const kibar = Math.sin(f / 28) * 3 + (r.jalan !== null ? Math.sin(r.jalan * 2) * 3 : 0);
@@ -107,19 +139,19 @@ export const Mother: React.FC<RigProps> = (r) => {
     <g>
       <defs>
         <radialGradient id={`kulit-${id}`} cx="0.42" cy="0.38" r="0.7">
-          <stop offset="0" stopColor="#FFE5D4" />
+          <stop offset="0" stopColor={w.kulitTerang} />
           <stop offset="0.65" stopColor={w.kulit} />
-          <stop offset="1" stopColor="#EAAA8C" />
+          <stop offset="1" stopColor={w.kulitGelap} />
         </radialGradient>
         <radialGradient id={`kerudung-${id}`} cx="0.38" cy="0.2" r="0.95">
-          <stop offset="0" stopColor="#FBCADB" />
+          <stop offset="0" stopColor={w.kerudungKilap} />
           <stop offset="0.55" stopColor={w.kerudung} />
-          <stop offset="1" stopColor="#E58CAC" />
+          <stop offset="1" stopColor={w.kerudungGelap} />
         </radialGradient>
         <linearGradient id={`abaya-${id}`} x1="0" y1="0" x2="1" y2="0.2">
-          <stop offset="0" stopColor="#34437E" />
+          <stop offset="0" stopColor={w.abayaTerang} />
           <stop offset="0.55" stopColor={w.abaya} />
-          <stop offset="1" stopColor="#18204A" />
+          <stop offset="1" stopColor={w.abayaGelap} />
         </linearGradient>
       </defs>
       {/* abaya navy, ujung bawah bergoyang pelan */}
@@ -158,13 +190,13 @@ export const Mother: React.FC<RigProps> = (r) => {
         <ellipse cx={120} cy={106} rx={50} ry={54} fill={`url(#kulit-${id})`} stroke={w.kerudungBayang} strokeWidth={4} />
         <ellipse cx={104} cy={92} rx={14} ry={7} fill="#FFFFFF" opacity={0.18} transform="rotate(-15 104 92)" />
         {/* ciput di dahi */}
-        <path d="M76 98 Q78 52 120 50 Q162 52 164 98 Q150 72 120 70 Q90 72 76 98 Z" fill="#F6B3CA" />
+        <path d="M76 98 Q78 52 120 50 Q162 52 164 98 Q150 72 120 70 Q90 72 76 98 Z" fill={w.kerudungAtas} />
         <path d="M80 86 Q120 60 160 86" stroke={w.ciput} strokeWidth={4} fill="none" strokeLinecap="round" />
         <g transform="translate(120 108)">
           <Face
             expression={expression}
             gaya="mother"
-            kulit="#F7CFB4"
+            kulit={w.kulit}
             tutup={r.tutup}
             mulut={r.mulut}
             bicara={bicara}

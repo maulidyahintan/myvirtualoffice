@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getEpisode, SPEAKER_LABEL, countWords, loadConfig, MAX_PITCH, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, memorizationVoice, speakerVoice, type Episode } from '@kantor/shared';
+import { getEpisode, SPEAKER_LABEL, speakerNames, countWords, loadConfig, MAX_PITCH, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, memorizationVoice, speakerVoice, type Episode } from '@kantor/shared';
 import { RecordingStudio, type StudioPart } from '@/components/RecordingStudio';
 
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ function ketSuara(pembicara: string): string {
   const s = speakerVoice(pembicara, loadConfig());
   const ket = DEFAULT_CHARACTER_VOICE[pembicara as keyof typeof DEFAULT_CHARACTER_VOICE]?.note ?? '';
   const asli = !s.pitch && s.tempo === 1;
-  return `${SPEAKER_LABEL[pembicara as keyof typeof SPEAKER_LABEL] ?? pembicara}: ${asli ? 'suara asli' : `${ket} (nada ${s.pitch > 0 ? '+' : ''}${s.pitch}, tempo ${Math.round(s.tempo * 100)}%)`}`;
+  return `${speakerNames(loadConfig())[pembicara as keyof typeof SPEAKER_LABEL] ?? pembicara}: ${asli ? 'suara asli' : `${ket} (nada ${s.pitch > 0 ? '+' : ''}${s.pitch}, tempo ${Math.round(s.tempo * 100)}%)`}`;
 }
 
 /** Keterangan efek suara bacaan hafalan, misal "Suara hafalan: seperti anak-anak, lebih pelan (nada +3, tempo 85%)". */
@@ -22,6 +22,7 @@ function ketHafalan(): string {
 
 function daftarBagian(ep: Episode): StudioPart[] {
   const waktu = ep.render?.scenes;
+  const namaTokoh = speakerNames(loadConfig());
   const suaraAyat = ep.idea.type === 'memorization' ? ketHafalan() : undefined;
   const ulang = ep.idea.memorization?.repetitions ?? 1;
   const bagian: Omit<StudioPart, 'start' | 'duration' | 'saved'>[] =
@@ -38,7 +39,7 @@ function daftarBagian(ep: Episode): StudioPart[] {
           voice: suaraAyat,
         }))
       : (ep.scenes ?? []).map((a, i) => ({
-          title: `Adegan ${i + 1} · ${SPEAKER_LABEL[a.speaker] ?? a.speaker}`,
+          title: `Adegan ${i + 1} · ${namaTokoh[a.speaker] ?? a.speaker}`,
           text: a.narration,
           arabic: false,
           notes: a.type === 'question' ? 'Jeda berpikir ±3 detik untuk anak ditambahkan otomatis setelah pertanyaan.' : '',

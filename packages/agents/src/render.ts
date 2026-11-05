@@ -362,6 +362,7 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void): 
     format: ep.idea.format ?? 'standard',
     memorization,
     music: musikVideo(cfg, ep.idea.format ?? 'standard'),
+    characterLooks: cfg.characterLooks,
   };
   const propsFile = path.join(dir, `${ep.id}.props.json`);
   fs.writeFileSync(propsFile, JSON.stringify(props));
@@ -373,6 +374,7 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void): 
     characters: pertama.characters.length ? pertama.characters : ['mother', 'mamas'],
     ...(memorization ? { subtitle: 'Hafalan Surat' } : {}),
     expression: 'happy',
+    characterLooks: cfg.characterLooks,
   };
   const thumbPropsFile = path.join(dir, `${ep.id}.thumb.json`);
   fs.writeFileSync(thumbPropsFile, JSON.stringify(thumbProps));

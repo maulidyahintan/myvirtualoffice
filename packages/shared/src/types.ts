@@ -12,6 +12,7 @@ import type {
   CHARACTERS,
   BACKGROUNDS,
   AGE_GROUPS,
+  SPEAKERS,
 } from './constants.ts';
 
 export type { EpisodeStatus };
@@ -246,6 +247,8 @@ export interface EpisodeVideoProps {
   memorization?: MemorizationVideo;
   /** Intro & outro music from channel settings. */
   music?: VideoMusic;
+  /** Character colors from channel settings. */
+  characterLooks?: CharacterLooks;
   /** Filled automatically by calculateMetadata. */
   sceneFrames?: number[];
   introFrame?: number;
@@ -270,6 +273,8 @@ export interface ThumbnailProps {
   background: Background;
   characters: Character[];
   expression: Expression;
+  /** Character colors from channel settings. */
+  characterLooks?: CharacterLooks;
 }
 
 /** Single publish time in a day, for specific format or all. */
@@ -299,6 +304,22 @@ export interface DailyResearch {
   ideaCount: number;
 }
 
+export type Speaker = (typeof SPEAKERS)[number];
+
+export interface CharacterProfile {
+  /** Name shown in the dashboard and used by the agents, e.g. "Mamas". */
+  name: string;
+  /** Appearance & personality, read by the Writer and Director. */
+  description: string;
+}
+
+/** Base colors per drawn character; shades (shadow/highlight) are derived from these. */
+export interface CharacterLooks {
+  mamas?: { skin?: string; cap?: string; shirt?: string; pants?: string };
+  mother?: { skin?: string; hijab?: string; dress?: string };
+  mochi?: { fur?: string; belly?: string };
+}
+
 export interface AppConfig {
   channelName: string;
   language: string;
@@ -322,6 +343,14 @@ export interface AppConfig {
   publishPlan?: PublishPlan;
   /** Voice effect per speaker (overrides DEFAULT_CHARACTER_VOICE). */
   characterVoices?: Partial<Record<'narrator' | 'mother' | 'mamas' | 'mochi', { pitch: number; tempo: number }>>;
+  /** Name & personality per speaker, read by the agents (overrides DEFAULT_CHARACTER_PROFILES). */
+  characters?: Partial<Record<Speaker, CharacterProfile>>;
+  /** Colors of the drawn characters (overrides DEFAULT_CHARACTER_LOOKS). */
+  characterLooks?: CharacterLooks;
+  /** Backgrounds the Director must not use. */
+  disabledBackgrounds?: Background[];
+  /** Display names of backgrounds (overrides BACKGROUND_LABEL). */
+  backgroundLabels?: Partial<Record<Background, string>>;
   /** Voice effect for memorization video recitation (overrides DEFAULT_MEMORIZATION_VOICE). */
   memorizationVoice?: { pitch: number; tempo: number };
   music?: VideoMusic & {

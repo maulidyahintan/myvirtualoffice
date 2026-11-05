@@ -1,5 +1,16 @@
 import React from 'react';
-import { warna } from '../theme';
+import { warna as warnaTema } from '../theme';
+import { shade, useLook } from './looks';
+
+/** Theme colors with Mochi's fur/belly from Settings (original palette when unchanged). */
+function useWarnaMochi() {
+  const { base, changed } = useLook('mochi');
+  return {
+    ...warnaTema,
+    ...(changed('fur') ? { mochi: base.fur, mochiBelang: shade(base.fur, -0.15) } : {}),
+    ...(changed('belly') ? { mochiPerut: base.belly } : {}),
+  };
+}
 import { random, noiseS, type RigProps } from './motion';
 
 /** Ekor dari beberapa ruas yang bergelombang seperti ekor kucing sungguhan. */
@@ -20,6 +31,7 @@ function jalurEkor(f: number, tegak: boolean): string {
 
 /** Mochi tidur meringkuk: badan bulat rendah, kepala di atas kaki depan, ekor melingkar, "Zzz". */
 const MochiTidur: React.FC<{ f: number }> = ({ f }) => {
+  const warna = useWarnaMochi();
   const g = warna.garis;
   const napas = 1 + Math.sin(f / 30) * 0.035;
   return (
@@ -78,6 +90,7 @@ const GulunganBenang: React.FC<{ f: number }> = ({ f }) => {
 };
 
 export const Mochi: React.FC<RigProps> = (r) => {
+  const warna = useWarnaMochi();
   const { f, expression, tutup } = r;
   if (r.action === 'sleeping') return <MochiTidur f={f} />;
   const main = r.action === 'playing';

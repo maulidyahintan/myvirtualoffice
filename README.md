@@ -218,10 +218,12 @@ Windows: pakai Task Scheduler dengan perintah yang sama. Gerbang persetujuan tet
 | Mau ubah | Di mana |
 |---|---|
 | Nama channel, seri, playlist, jam tayang default | `kantor.config.json` (isi `playlistId` agar video otomatis masuk playlist) |
-| Karakter, nilai, larangan | `packages/agents/prompts/pedoman-channel.md` |
-| Gaya penulisan / struktur episode | `packages/agents/prompts/penulis.md` |
-| Tampilan karakter | `packages/video/src/characters/Karakter.tsx` (SVG + React) |
-| Latar baru | `packages/video/src/backgrounds/Latar.tsx` **dan** daftar `LATAR` di `packages/shared/src/constants.ts` |
+| Niche channel: misi, target usia, gaya bahasa, aturan | Pengaturan → 🎯 Niche & pedoman channel (file `packages/agents/prompts/pedoman-channel.md`) |
+| Instruksi tiap pegawai (riset, penulis, reviewer, …) | Pengaturan → 🧠 Instruksi per pegawai (file `packages/agents/prompts/*.md`) |
+| Nama, sifat & warna karakter | Pengaturan → 🧒 Karakter (warna berlaku untuk video yang dirender setelahnya) |
+| Latar yang boleh dipakai Sutradara & namanya | Pengaturan → 🏞️ Latar animasi |
+| Bentuk gambar karakter | `packages/video/src/characters/*.tsx` (SVG + React) |
+| Latar baru | `packages/video/src/backgrounds/Backdrop.tsx` **dan** daftar `BACKGROUNDS` di `packages/shared/src/constants.ts` |
 | Tempo subtitle/durasi | `packages/shared/src/timing.ts` |
 | Model Claude | `KANTOR_MODEL` di `.env` (kosong = default) |
 

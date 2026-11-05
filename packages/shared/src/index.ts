@@ -4,3 +4,4 @@ export * from './timing.ts';
 export * from './store.ts';
 export * from './schedule.ts';
 export * from './metadata.ts';
+export * from './channel.ts';

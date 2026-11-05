@@ -3,11 +3,16 @@ import { mixPose, eatingPhase, noise, noiseS, ballBounce, type ArmPose, type Rig
 import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
 import { Face } from './Face';
+import { shade, useLook } from './looks';
 
 // Mamas: anak laki-laki ±4 tahun. Peci rajut biru, baju koko putih
 // berkerah abu-abu, kancing kayu, panel bawah abu-abu bermotif, saku di dada.
-const k = {
+const K_ASLI = {
   kulit: '#F6CBAE',
+  kulitTerang: '#FFE3D0',
+  kulitGelap: '#E9A687',
+  telinga: '#F4A898',
+  telingaDalam: '#EE8F84',
   kulitBayang: '#E7AE8E',
   rambut: '#3A2A24',
   peci: '#3E6E9E',
@@ -15,15 +20,36 @@ const k = {
   peciTerang: '#5584B3',
   baju: '#F8F7F2',
   bajuGaris: '#CFCBC0',
+  bajuTerang: '#FFFFFF',
+  bajuGelap: '#E6E3DA',
+  lengan: '#F7F5EE',
   kerah: '#6E6D6A',
   panel: '#DCDFE4',
   panelMotif: '#BFC4CC',
   pita: '#EEDBA4',
   kancing: '#C9A37C',
   celana: '#4B5468',
+  celanaTerang: '#5A6479',
+  celanaGelap: '#3E465A',
   sandal: '#F6F6F4',
   garis: 'rgba(150, 95, 70, 0.35)',
 };
+
+/** Original palette; only the parts whose base color was changed in Settings are recomputed. */
+function paletMamas({ base, changed }: ReturnType<typeof useLook>) {
+  const k = { ...K_ASLI };
+  if (changed('skin')) {
+    const c = base.skin;
+    Object.assign(k, { kulit: c, kulitBayang: shade(c, -0.12), kulitTerang: shade(c, 0.45), kulitGelap: shade(c, -0.2), telinga: shade(c, -0.06), telingaDalam: shade(c, -0.14) });
+  }
+  if (changed('cap')) Object.assign(k, { peci: base.cap, peciGelap: shade(base.cap, -0.25), peciTerang: shade(base.cap, 0.2) });
+  if (changed('shirt')) {
+    const c = base.shirt;
+    Object.assign(k, { baju: c, bajuGaris: shade(c, -0.18), bajuTerang: shade(c, 0.5), bajuGelap: shade(c, -0.08), lengan: shade(c, -0.01) });
+  }
+  if (changed('pants')) Object.assign(k, { celana: base.pants, celanaTerang: shade(base.pants, 0.12), celanaGelap: shade(base.pants, -0.15) });
+  return k;
+}
 
 function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
@@ -85,6 +111,7 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
 
 export const Mamas: React.FC<RigProps> = (r) => {
   const id = useId().replace(/:/g, '');
+  const k = paletMamas(useLook('mamas'));
   const { f, expression, bicara } = r;
   const pose = poseMamas(r);
 
@@ -120,7 +147,7 @@ export const Mamas: React.FC<RigProps> = (r) => {
       warnaBawah={k.kulit}
       warnaTangan={k.kulit}
       garis={k.garis}
-      lenganBaju={{ panjang: 36, warna: '#F7F5EE', garis: k.bajuGaris }}
+      lenganBaju={{ panjang: 36, warna: k.lengan, garis: k.bajuGaris }}
       pegang={kanan ? heldItemArt(r) : undefined}
     />
   );
@@ -137,13 +164,13 @@ export const Mamas: React.FC<RigProps> = (r) => {
           <path d="M0 6 L3.5 2 L7 6 L10.5 2 L14 6" fill="none" stroke={k.peciGelap} strokeWidth={1.6} />
         </pattern>
         <radialGradient id={`kulit-${id}`} cx="0.42" cy="0.36" r="0.72">
-          <stop offset="0" stopColor="#FFE3D0" />
+          <stop offset="0" stopColor={k.kulitTerang} />
           <stop offset="0.6" stopColor={k.kulit} />
-          <stop offset="1" stopColor="#E9A687" />
+          <stop offset="1" stopColor={k.kulitGelap} />
         </radialGradient>
         <linearGradient id={`baju-${id}`} x1="0" y1="0" x2="0.3" y2="1">
-          <stop offset="0" stopColor="#FFFFFF" />
-          <stop offset="1" stopColor="#E6E3DA" />
+          <stop offset="0" stopColor={k.bajuTerang} />
+          <stop offset="1" stopColor={k.bajuGelap} />
         </linearGradient>
         <linearGradient id={`kilap-${id}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.35" />
@@ -151,8 +178,8 @@ export const Mamas: React.FC<RigProps> = (r) => {
           <stop offset="1" stopColor="#000000" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient id={`celana-${id}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#5A6479" />
-          <stop offset="1" stopColor="#3E465A" />
+          <stop offset="0" stopColor={k.celanaTerang} />
+          <stop offset="1" stopColor={k.celanaGelap} />
         </linearGradient>
         <clipPath id={`panel-${id}`}>
           <path d="M66 214 Q68 205 92 200 L148 200 Q172 205 174 214 L178 322 Q120 330 62 322 Z" />
@@ -218,10 +245,10 @@ export const Mamas: React.FC<RigProps> = (r) => {
         {/* rambut belakang */}
         <path d="M60 120 Q58 80 120 70 Q182 80 180 120 Z" fill={k.rambut} />
         {/* telinga */}
-        <ellipse cx={50} cy={140} rx={17} ry={21} fill="#F4A898" />
-        <ellipse cx={190} cy={140} rx={17} ry={21} fill="#F4A898" />
-        <ellipse cx={52} cy={140} rx={9} ry={12} fill="#EE8F84" opacity={0.6} />
-        <ellipse cx={188} cy={140} rx={9} ry={12} fill="#EE8F84" opacity={0.6} />
+        <ellipse cx={50} cy={140} rx={17} ry={21} fill={k.telinga} />
+        <ellipse cx={190} cy={140} rx={17} ry={21} fill={k.telinga} />
+        <ellipse cx={52} cy={140} rx={9} ry={12} fill={k.telingaDalam} opacity={0.6} />
+        <ellipse cx={188} cy={140} rx={9} ry={12} fill={k.telingaDalam} opacity={0.6} />
         {/* wajah bulat dengan pipi tembam */}
         <path
           d="M120 62 C170 62 194 98 193 138 C192 178 162 198 120 198 C78 198 48 178 47 138 C46 98 70 62 120 62 Z"
@@ -249,7 +276,7 @@ export const Mamas: React.FC<RigProps> = (r) => {
           <Face
             expression={expression}
             gaya="anak"
-            kulit="#F6CBAE"
+            kulit={k.kulit}
             tutup={r.tutup}
             mulut={r.mulut}
             bicara={bicara}

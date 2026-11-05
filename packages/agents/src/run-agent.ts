@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { query, type Options } from '@anthropic-ai/claude-agent-sdk';
 import { z } from 'zod';
-import { paths } from '@kantor/shared';
+import { characterGuide, loadConfig, paths } from '@kantor/shared';
 
 export interface AgentSpec<S extends z.ZodType> {
   /** Nama file prompt di packages/agents/prompts (tanpa .md) */
@@ -25,7 +25,7 @@ function bacaPrompt(nama: string) {
 }
 
 export async function runAgent<S extends z.ZodType>(spec: AgentSpec<S>): Promise<z.infer<S>> {
-  const systemPrompt = [bacaPrompt(spec.peran), '---', bacaPrompt('pedoman-channel')].join('\n\n');
+  const systemPrompt = [bacaPrompt(spec.peran), '---', bacaPrompt('pedoman-channel'), characterGuide(loadConfig())].join('\n\n');
   const tools = spec.tools ?? [];
   const allowed = [...tools, ...(spec.mcpTools ?? [])];
 

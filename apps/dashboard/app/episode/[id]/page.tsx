@@ -3,16 +3,16 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  backgroundLabel,
+  speakerNames,
   isoToLocal,
   MIN_SCHEDULE_GAP_MINUTES,
   NO_DRAFT_STATUSES,
   estimatedScriptSeconds,
   SCRIPT_WORD_LIMIT,
   scriptWordCount,
-  BACKGROUND_LABEL,
   EXPRESSION_LABEL,
   SCENE_TYPE_LABEL,
-  SPEAKER_LABEL,
   SHORTS_LIMIT_SECONDS,
   checkMetadata,
   contentDuration,
@@ -824,6 +824,7 @@ export default async function HalamanEpisode({
     notFound();
   }
   const cfg = loadConfig();
+  const namaTokoh = speakerNames(cfg);
   const seri = cfg.series.find((s) => s.id === ep.idea.series)?.name ?? ep.idea.series;
   const log = ekorLog(id);
 
@@ -901,9 +902,9 @@ export default async function HalamanEpisode({
                   <div className="nomor">{i + 1}</div>
                   <div>
                     <div className="kecil">
-                      <span className="pembicara">{SPEAKER_LABEL[a.speaker]}</span> · {SCENE_TYPE_LABEL[a.type]}
+                      <span className="pembicara">{namaTokoh[a.speaker]}</span> · {SCENE_TYPE_LABEL[a.type]}
                       {'background' in a
-                        ? ` · ${BACKGROUND_LABEL[a.background]} · ${a.characters.map((c) => SPEAKER_LABEL[c]).join(', ') || 'tanpa karakter'} · ${EXPRESSION_LABEL[a.expression]}`
+                        ? ` · ${backgroundLabel(cfg, a.background)} · ${a.characters.map((c) => namaTokoh[c]).join(', ') || 'tanpa karakter'} · ${EXPRESSION_LABEL[a.expression]}`
                         : ''}
                     </div>
                     <div className="narasi-baca">{a.narration}</div>

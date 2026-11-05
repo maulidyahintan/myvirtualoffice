@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { query } from '@anthropic-ai/claude-agent-sdk';
-import { readChat, getEpisode, paths, addChatMessage, type ChatAgent } from '@kantor/shared';
+import { readChat, getEpisode, paths, addChatMessage, characterGuide, loadConfig, type ChatAgent } from '@kantor/shared';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
 
 const PERAN: Record<ChatAgent, { prompt: string; tools: string[]; mcpTools: string[] }> = {
@@ -95,7 +95,7 @@ export async function replyToChat(agent: ChatAgent) {
   const q = query({
     prompt,
     options: {
-      systemPrompt: [readPrompt(role.prompt), '---', readPrompt('pedoman-channel'), '---', MODE_CHAT].join('\n\n'),
+      systemPrompt: [readPrompt(role.prompt), '---', readPrompt('pedoman-channel'), characterGuide(loadConfig()), '---', MODE_CHAT].join('\n\n'),
       model: process.env.KANTOR_MODEL || undefined,
       tools: role.tools,
       allowedTools: [...role.tools, ...role.mcpTools],

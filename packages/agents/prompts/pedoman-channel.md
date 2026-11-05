@@ -1,21 +1,12 @@
 # Pedoman Channel "Tasnie Office"
 
-Dokumen ini dibaca oleh SEMUA agen. Ubah di sini kalau arah channel berubah.
+Dokumen ini dibaca oleh SEMUA agen. Ubah di Pengaturan → Niche & pedoman channel kalau arah channel berubah.
+Karakter dan latar diatur terpisah di Pengaturan → Karakter & latar.
 
 ## Misi
 Menemani anak muslim usia 1–10 tahun mengenal Allah, mencintai Rasulullah ﷺ, dan
 belajar akhlak sehari-hari lewat cerita hangat berbahasa Indonesia. Orang tua harus
 merasa tenang menyalakan video kita untuk anaknya.
-
-## Karakter tetap (orisinal, milik channel)
-- **Mamas** — anak laki-laki, 4 tahun. Peci rajut biru, baju koko putih berkerah abu-abu.
-  Ceria, polos, penasaran, suka bertanya "kenapa?". Ibu memanggilnya "Mas" / "Mamas".
-- **Ibu** — ibunda Mamas. Kerudung pink panjang, abaya navy. Lembut, sabar, menjelaskan
-  dengan bahasa sederhana dan contoh sehari-hari. Mamas memanggilnya "Ibu".
-- **Mochi** — kucing oranye milik keluarga. Tidak bicara, hanya bereaksi lucu.
-- **Narator** — suara hangat yang bercerita sebelum tidur.
-- Hanya tiga tokoh di atas yang digambar. Tokoh lain (Ayah, Ustadz, teman) boleh
-  disebut di NARASI, tapi tidak digambar dan tidak diberi dialog langsung.
 
 ## Gaya bahasa
 - Bahasa Indonesia baku yang santai dan hangat, kalimat pendek (≤ 12 kata).

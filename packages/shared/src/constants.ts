@@ -190,3 +190,50 @@ export const BACKGROUND_LABEL: Record<(typeof BACKGROUNDS)[number], string> = {
   market: 'pasar',
   store: 'toko',
 };
+
+/** Default name & personality per speaker (owner can change them in Settings → Karakter). */
+export const DEFAULT_CHARACTER_PROFILES: Record<(typeof SPEAKERS)[number], { name: string; description: string }> = {
+  mamas: {
+    name: 'Mamas',
+    description:
+      'Anak laki-laki, 4 tahun. Peci rajut biru, baju koko putih berkerah abu-abu. Ceria, polos, penasaran, suka bertanya "kenapa?". Ibu memanggilnya "Mas" / "Mamas".',
+  },
+  mother: {
+    name: 'Ibu',
+    description:
+      'Ibunda Mamas. Kerudung pink panjang, abaya navy. Lembut, sabar, menjelaskan dengan bahasa sederhana dan contoh sehari-hari. Mamas memanggilnya "Ibu".',
+  },
+  mochi: { name: 'Mochi', description: 'Kucing oranye milik keluarga. Tidak bicara, hanya bereaksi lucu.' },
+  narrator: { name: 'Narator', description: 'Suara hangat yang bercerita sebelum tidur.' },
+};
+
+/** Default base colors of the drawn characters (matching the original artwork). */
+export const DEFAULT_CHARACTER_LOOKS = {
+  mamas: { skin: '#F6CBAE', cap: '#3E6E9E', shirt: '#F8F7F2', pants: '#4B5468' },
+  mother: { skin: '#F7CFB4', hijab: '#F3A9C2', dress: '#24305E' },
+  mochi: { fur: '#F0A04B', belly: '#FCE3C4' },
+} as const;
+
+/** Indonesian labels of the editable color parts, for the Settings form. */
+export const CHARACTER_LOOK_LABEL: Record<string, string> = {
+  skin: 'Kulit',
+  cap: 'Peci',
+  shirt: 'Baju',
+  pants: 'Celana',
+  hijab: 'Kerudung',
+  dress: 'Abaya / gamis',
+  fur: 'Bulu',
+  belly: 'Perut',
+};
+
+/** Prompt files the owner may edit in Settings (file name in packages/agents/prompts → label). */
+export const EDITABLE_PROMPTS = {
+  'pedoman-channel': '📜 Pedoman channel (dibaca semua pegawai)',
+  riset: '🔎 Miku · Content Research',
+  penulis: '✍️ Chimi · Penulis naskah',
+  reviewer: '🛡️ Choki · Kids & Syariah Reviewer',
+  sutradara: '🎬 Momo · Sutradara',
+  ilustrator: '🖼️ Ilustrator hafalan',
+  'channel-manager': '📈 Lulu · Channel Manager',
+  manajer: '🧭 Mochi · Manajer',
+} as const;

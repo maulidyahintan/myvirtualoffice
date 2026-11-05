@@ -16,8 +16,30 @@ import {
   memorizationVoice,
   speakerVoice,
   type MusicType,
+  BACKGROUNDS,
+  BACKGROUND_LABEL,
+  CHARACTERS,
+  CHARACTER_LOOK_LABEL,
+  DEFAULT_CHARACTER_PROFILES,
+  EDITABLE_PROMPTS,
+  allowedBackgrounds,
+  backgroundLabel,
+  characterLooks,
+  characterProfile,
+  paths,
 } from '@kantor/shared';
-import { deleteMusic, addAllToPlaylists, saveMusicSettings, savePlaylists, saveDailyResearch, saveCharacterVoices } from '../actions';
+import {
+  deleteMusic,
+  addAllToPlaylists,
+  saveMusicSettings,
+  savePlaylists,
+  saveDailyResearch,
+  saveCharacterVoices,
+  saveAgentPrompt,
+  saveCharacters,
+  saveBackgrounds,
+} from '../actions';
+import path from 'node:path';
 import { Collapsible } from '@/components/Collapsible';
 import { SubmitButton } from '@/components/SubmitButton';
 
@@ -38,6 +60,9 @@ export default function Pengaturan() {
         <div className="muted">Klik judul bagian untuk membuka atau menutupnya.</div>
       </div>
       <div className="stack daftar-page">
+        <PengaturanNiche />
+        <PengaturanKarakter />
+        <PengaturanLatar />
         {MUSIC_TYPES.map((jenis) => (
           <PengaturanMusik key={jenis} jenis={jenis} />
         ))}
@@ -45,6 +70,7 @@ export default function Pengaturan() {
         <PengaturanSuara />
         <PengaturanPlaylist />
         <PengaturanRisetHarian />
+        <PengaturanInstruksi />
       </div>
     </div>
   );
@@ -265,6 +291,152 @@ function PengaturanRisetHarian() {
         </div>
         <SubmitButton className="sekunder" teksProses="Menyimpan…">Simpan riset otomatis</SubmitButton>
       </form>
+    </Collapsible>
+  );
+}
+
+type PromptName = keyof typeof EDITABLE_PROMPTS;
+
+function bacaPrompt(nama: PromptName): string {
+  try {
+    return fs.readFileSync(path.join(paths.prompts(), `${nama}.md`), 'utf8');
+  } catch {
+    return '';
+  }
+}
+
+/** Satu form untuk mengedit file instruksi agen. */
+function FormPrompt({ nama, baris = 18 }: { nama: PromptName; baris?: number }) {
+  return (
+    <form action={saveAgentPrompt} className="stack">
+      <input type="hidden" name="nama" value={nama} />
+      <textarea name="isi" defaultValue={bacaPrompt(nama)} rows={baris} required minLength={20} className="teks-prompt" />
+      <SubmitButton type="submit" teksProses="Menyimpan…">
+        💾 Simpan
+      </SubmitButton>
+    </form>
+  );
+}
+
+/** Niche channel: pedoman yang dibaca semua pegawai (misi, target usia, gaya bahasa, aturan). */
+function PengaturanNiche() {
+  const isi = bacaPrompt('pedoman-channel');
+  const misi = isi.match(/## Misi\s+([^\n]+)/)?.[1];
+  return (
+    <Collapsible id="niche" judul="🎯 Niche & pedoman channel" ringkasan={misi ? `${misi.slice(0, 70)}…` : 'tema, target penonton, aturan konten'}>
+      <p className="muted kecil" style={{ margin: 0 }}>
+        Tema dan arah channel: misi, target usia, gaya bahasa, dan aturan konten. <b>Dibaca semua pegawai</b>: Riset mencari ide sesuai
+        niche ini, Penulis menulis dengan gayanya, Reviewer memeriksa aturannya. Berlaku untuk pekerjaan berikutnya; episode yang sudah
+        jadi tidak berubah. Karakter & latar diatur di bagian sendiri.
+      </p>
+      <FormPrompt nama="pedoman-channel" baris={24} />
+    </Collapsible>
+  );
+}
+
+/** Nama, sifat, dan warna tokoh. */
+function PengaturanKarakter() {
+  const cfg = loadConfig();
+  const looks = characterLooks(cfg);
+  const diubah = SPEAKERS.filter((id) => cfg.characters?.[id]).length + CHARACTERS.filter((id) => cfg.characterLooks?.[id]).length;
+  const nama = SPEAKERS.map((id) => characterProfile(cfg, id).name).join(', ');
+  return (
+    <Collapsible id="karakter" judul="🧒 Karakter" ringkasan={diubah ? `${nama} · diatur sendiri` : `${nama} · bawaan`}>
+      <form action={saveCharacters} className="stack">
+        <p className="muted kecil" style={{ margin: 0 }}>
+          <b>Nama & sifat</b> dibaca Penulis dan Sutradara untuk naskah berikutnya. <b>Warna</b> dipakai di video & thumbnail yang dirender
+          setelah ini (bayangan & kilap ikut menyesuaikan); video lama perlu dirender ulang. Bentuk gambar tokoh tetap sama.
+        </p>
+        {/* drawn characters first, the narrator (voice only) last */}
+        {[...CHARACTERS, 'narrator' as const].map((id) => {
+          const p = characterProfile(cfg, id);
+          const def = DEFAULT_CHARACTER_PROFILES[id];
+          const warna = (CHARACTERS as readonly string[]).includes(id) ? looks[id as (typeof CHARACTERS)[number]] : undefined;
+          return (
+            <fieldset key={id} className="kartu-karakter stack">
+              <legend>
+                <b>{NAMA_SPEAKERS[id]}</b>
+              </legend>
+              <label className="kecil">
+                Nama
+                <input type="text" name={`${id}-nama`} defaultValue={p.name} placeholder={def.name} maxLength={30} />
+              </label>
+              <label className="kecil">
+                Penampilan & sifat
+                <textarea name={`${id}-sifat`} defaultValue={p.description} placeholder={def.description} rows={3} />
+              </label>
+              {warna ? (
+                <div className="row" style={{ gap: 14, alignItems: 'end', flexWrap: 'wrap' }}>
+                  {Object.entries(warna).map(([part, value]) => (
+                    <label key={part} className="kecil pilih-warna">
+                      {CHARACTER_LOOK_LABEL[part] ?? part}
+                      <input type="color" name={`${id}-${part}`} defaultValue={value} />
+                    </label>
+                  ))}
+                  <label className="kecil" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                    <input type="checkbox" name={`${id}-reset`} /> warna asli
+                  </label>
+                </div>
+              ) : (
+                <span className="kecil muted">Hanya suara, tidak digambar.</span>
+              )}
+            </fieldset>
+          );
+        })}
+        <p className="muted kecil" style={{ margin: 0 }}>
+          Kosongkan nama / sifat untuk kembali ke bawaan. Suara tiap tokoh diatur di bagian &quot;Suara karakter & hafalan&quot;.
+        </p>
+        <SubmitButton type="submit" teksProses="Menyimpan…">
+          💾 Simpan karakter
+        </SubmitButton>
+      </form>
+    </Collapsible>
+  );
+}
+
+/** Latar yang boleh dipakai Sutradara + nama tampilannya. */
+function PengaturanLatar() {
+  const cfg = loadConfig();
+  const aktif = new Set(allowedBackgrounds(cfg));
+  return (
+    <Collapsible id="latar" judul="🏞️ Latar animasi" ringkasan={`${aktif.size} dari ${BACKGROUNDS.length} aktif`}>
+      <form action={saveBackgrounds} className="stack">
+        <p className="muted kecil" style={{ margin: 0 }}>
+          Sutradara hanya memakai latar yang dicentang untuk adegan berikutnya (minimal satu). Nama tampilan dipakai di dashboard dan
+          dibaca Sutradara.
+        </p>
+        <div className="grid-latar">
+          {BACKGROUNDS.map((b) => (
+            <div key={b} className="baris-latar">
+              <input type="checkbox" name={`aktif-${b}`} defaultChecked={aktif.has(b)} aria-label={`Aktifkan ${backgroundLabel(cfg, b)}`} />
+              <input type="text" name={`nama-${b}`} defaultValue={backgroundLabel(cfg, b)} placeholder={BACKGROUND_LABEL[b]} maxLength={30} />
+              <code className="kecil muted">{b}</code>
+            </div>
+          ))}
+        </div>
+        <SubmitButton type="submit" teksProses="Menyimpan…">
+          💾 Simpan latar
+        </SubmitButton>
+      </form>
+    </Collapsible>
+  );
+}
+
+/** Instruksi tiap pegawai AI (lanjutan). */
+function PengaturanInstruksi() {
+  const nama = (Object.keys(EDITABLE_PROMPTS) as PromptName[]).filter((n) => n !== 'pedoman-channel');
+  return (
+    <Collapsible id="instruksi" judul="🧠 Instruksi per pegawai (lanjutan)" ringkasan={`${nama.length} pegawai`}>
+      <p className="muted kecil" style={{ margin: 0 }}>
+        Instruksi kerja tiap pegawai AI. Ubah kalau niche berganti dan instruksinya masih menyebut tema lama. Hati-hati: bagian yang
+        menyebut nama kolom (misal <code>background</code>, <code>screenText</code>) dipakai sistem, jangan dihapus.
+      </p>
+      {nama.map((n) => (
+        <details key={n} className="instruksi-pegawai">
+          <summary>{EDITABLE_PROMPTS[n]}</summary>
+          <FormPrompt nama={n} />
+        </details>
+      ))}
     </Collapsible>
   );
 }

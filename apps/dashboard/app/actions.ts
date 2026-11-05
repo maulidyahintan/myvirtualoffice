@@ -34,6 +34,14 @@ import {
   type AgeGroup,
   BUSY_STATUSES,
   NO_DRAFT_STATUSES,
+  BACKGROUNDS,
+  CHARACTERS,
+  DEFAULT_CHARACTER_LOOKS,
+  DEFAULT_CHARACTER_PROFILES,
+  BACKGROUND_LABEL,
+  EDITABLE_PROMPTS,
+  type Background,
+  type CharacterLooks,
 } from '@kantor/shared';
 import { runOfficeCommand, localToIso } from '@/lib/runner';
 
@@ -522,6 +530,60 @@ export async function saveCharacterVoices(form: FormData) {
   }
   cfg.characterVoices = suara;
   cfg.memorizationVoice = baca('memorization');
+  saveConfig(cfg);
+  revalidatePath('/settings');
+}
+
+/** Simpan instruksi agen (pedoman/niche channel atau instruksi satu pegawai) ke file prompt-nya. */
+export async function saveAgentPrompt(form: FormData) {
+  const name = teks(form, 'nama');
+  const content = String(form.get('isi') ?? '').replace(/\r\n/g, '\n').trim();
+  // only known prompt files can be written, and never emptied
+  if (!(name in EDITABLE_PROMPTS) || content.length < 20) return;
+  fs.writeFileSync(path.join(paths.prompts(), `${name}.md`), `${content}\n`);
+  revalidatePath('/settings');
+}
+
+/** Nama & sifat tiap tokoh, warna tokoh yang digambar. */
+export async function saveCharacters(form: FormData) {
+  const cfg = loadConfig();
+  const profiles: NonNullable<typeof cfg.characters> = {};
+  for (const id of SPEAKERS) {
+    const name = teks(form, `${id}-nama`);
+    const description = teks(form, `${id}-sifat`);
+    const def = DEFAULT_CHARACTER_PROFILES[id];
+    // only store what differs from the defaults, so later default improvements still apply
+    if ((name && name !== def.name) || (description && description !== def.description)) profiles[id] = { name, description };
+  }
+  const hex = (v: string) => (/^#[0-9a-f]{6}$/i.test(v) ? v.toUpperCase() : undefined);
+  const looks: CharacterLooks = {};
+  for (const id of CHARACTERS) {
+    const own: Record<string, string> = {};
+    for (const [part, def] of Object.entries(DEFAULT_CHARACTER_LOOKS[id])) {
+      const v = form.get(`${id}-reset`) === 'on' ? undefined : hex(teks(form, `${id}-${part}`));
+      // only store colors that differ from the original artwork
+      if (v && v !== def.toUpperCase()) own[part] = v;
+    }
+    if (Object.keys(own).length) (looks as Record<string, Record<string, string>>)[id] = own;
+  }
+  cfg.characters = Object.keys(profiles).length ? profiles : undefined;
+  cfg.characterLooks = Object.keys(looks).length ? looks : undefined;
+  saveConfig(cfg);
+  revalidatePath('/settings');
+}
+
+/** Latar yang boleh dipakai Sutradara + nama tampilannya. */
+export async function saveBackgrounds(form: FormData) {
+  const cfg = loadConfig();
+  const off = BACKGROUNDS.filter((b) => form.get(`aktif-${b}`) !== 'on');
+  const labels: Partial<Record<Background, string>> = {};
+  for (const b of BACKGROUNDS) {
+    const label = teks(form, `nama-${b}`);
+    if (label && label !== BACKGROUND_LABEL[b]) labels[b] = label;
+  }
+  // at least one background must stay usable
+  cfg.disabledBackgrounds = off.length && off.length < BACKGROUNDS.length ? off : undefined;
+  cfg.backgroundLabels = Object.keys(labels).length ? labels : undefined;
   saveConfig(cfg);
   revalidatePath('/settings');
 }

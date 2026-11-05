@@ -432,3 +432,15 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .chat-pesan:hover .chat-salin, .chat-salin:focus-visible { opacity: 1; }
 .chat-salin:hover:not(:disabled) { color: var(--hijau); transform: none; }
 @media (hover: none) { .chat-salin { opacity: 1; } }
+
+/* pengaturan: niche, karakter, latar, instruksi */
+.teks-prompt { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 1.5; }
+.kartu-karakter { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 0; }
+.kartu-karakter legend { padding: 0 6px; }
+.pilih-warna { display: flex; flex-direction: column; gap: 4px; }
+.pilih-warna input[type='color'] { width: 56px; height: 34px; padding: 2px; border-radius: 8px; cursor: pointer; }
+.grid-latar { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.baris-latar { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 4px 8px; }
+.baris-latar code { grid-column: 2; }
+.instruksi-pegawai { border-top: 1px solid var(--line); padding-top: 8px; }
+.instruksi-pegawai summary { cursor: pointer; font-weight: 700; padding: 4px 0; }

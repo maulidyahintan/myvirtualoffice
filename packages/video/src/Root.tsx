@@ -6,13 +6,18 @@ import { Thumbnail } from './Thumbnail';
 import { PROTOTYPE_3D_DURATION, Prototype3D } from './Prototype3D';
 import { Avatar, Banner, IkonStill, LogoStill } from './brand/Branding';
 import { LogoAnimasi } from './brand/LogoAnimasi';
+import { withLooks } from './characters/looks';
 import { sampleEpisode, sampleMemorization, sampleShort, sampleThumbnail } from './samples';
+
+// characters use the colors from the props' characterLooks (Settings → Karakter)
+const EpisodeDenganWarna = withLooks(Episode);
+const ThumbnailDenganWarna = withLooks(Thumbnail);
 
 export const Root: React.FC = () => (
   <>
     <Composition
       id="Episode"
-      component={Episode}
+      component={EpisodeDenganWarna}
       width={1920}
       height={1080}
       fps={FPS}
@@ -23,7 +28,7 @@ export const Root: React.FC = () => (
     {/* pratinjau YouTube Shorts (komposisi yang sama, ukuran mengikuti props.format) */}
     <Composition
       id="Short"
-      component={Episode}
+      component={EpisodeDenganWarna}
       width={1080}
       height={1920}
       fps={FPS}
@@ -33,7 +38,7 @@ export const Root: React.FC = () => (
     />
     <Composition
       id="Hafalan"
-      component={Episode}
+      component={EpisodeDenganWarna}
       width={1920}
       height={1080}
       fps={FPS}
@@ -43,7 +48,7 @@ export const Root: React.FC = () => (
     />
     {/* prototipe tokoh 3D */}
     <Composition id="Prototipe3D" component={Prototype3D} width={1920} height={1080} fps={FPS} durationInFrames={PROTOTYPE_3D_DURATION} />
-    <Still id="Thumbnail" component={Thumbnail} width={1280} height={720} defaultProps={sampleThumbnail} />
+    <Still id="Thumbnail" component={ThumbnailDenganWarna} width={1280} height={720} defaultProps={sampleThumbnail} />
     {/* branding channel */}
     <Composition id="LogoAnimasi" component={LogoAnimasi} width={1920} height={1080} fps={FPS} durationInFrames={FPS * 3} />
     <Still id="Logo" component={LogoStill} width={1600} height={600} />
