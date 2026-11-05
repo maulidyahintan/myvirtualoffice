@@ -1,9 +1,9 @@
 {
   "id": "surat-an-nas-al-falaq-dua-surat-perlindu-ed24",
   "created": "2026-10-30T12:12:06.791Z",
-  "modified": "2026-10-31T05:48:16.293Z",
-  "status": "error",
-  "statusNote": "The user has exceeded the number of videos they may upload.",
+  "modified": "2026-11-05T10:52:38.374Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-08T05:00:00.000Z",
   "idea": {
     "title": "Surat An-Nas & Al-Falaq: Dua Surat Perlindungan",
     "series": "asbabun-nuzul",
@@ -141,7 +141,7 @@
       }
     ]
   },
-  "selectedSchedule": "2026-11-02T05:00:00.000Z",
+  "selectedSchedule": "2026-11-08T05:00:00.000Z",
   "log": [
     {
       "time": "2026-10-30T12:12:06.791Z",
@@ -182,6 +182,40 @@
       "time": "2026-10-31T05:48:16.293Z",
       "by": "upload",
       "message": "The user has exceeded the number of videos they may upload."
+    },
+    {
+      "time": "2026-11-05T10:52:30.728Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T10:52:32.566Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-08 12:00"
+    },
+    {
+      "time": "2026-11-05T10:52:33.330Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T10:52:38.374Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Asbabun Nuzul\""
+    },
+    {
+      "time": "2026-11-05T10:52:38.374Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-08T05:00:00.000Z"
     }
-  ]
+  ],
+  "youtube": {
+    "videoId": "MPpwnErA3oQ",
+    "url": "https://www.youtube.com/watch?v=MPpwnErA3oQ",
+    "publishTime": "2026-11-08T05:00:00.000Z",
+    "playlist": {
+      "name": "Asbabun Nuzul",
+      "id": "PLD-usmJsNuYc"
+    }
+  }
 }

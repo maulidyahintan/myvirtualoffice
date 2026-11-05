@@ -1,9 +1,9 @@
 {
   "id": "kenapa-ya-kita-bilang-alhamdulillah-saat-eb93",
   "created": "2026-10-30T11:52:32.594Z",
-  "modified": "2026-11-05T03:43:40.122Z",
-  "status": "rejected",
-  "statusNote": "terlalu panjang",
+  "modified": "2026-11-05T10:52:38.972Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-08T09:00:00.000Z",
   "idea": {
     "title": "Kenapa Ya Kita Bilang \"Alhamdulillah\" Saat Bersin?",
     "series": "kenapa-ya",
@@ -726,6 +726,31 @@
       "time": "2026-11-05T03:43:40.122Z",
       "by": "pemilik",
       "message": "terlalu panjang"
+    },
+    {
+      "time": "2026-11-05T10:52:19.712Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T10:52:21.328Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-08 16:00"
+    },
+    {
+      "time": "2026-11-05T10:52:22.094Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T10:52:38.972Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-05T10:52:38.972Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-08T09:00:00.000Z"
     }
   ],
   "audioPerScene": [
@@ -764,5 +789,15 @@
     null,
     null
   ],
-  "recordingMode": "per-scene"
+  "recordingMode": "per-scene",
+  "selectedSchedule": "2026-11-08T09:00:00.000Z",
+  "youtube": {
+    "videoId": "8mbA2Dvzb8E",
+    "url": "https://www.youtube.com/watch?v=8mbA2Dvzb8E",
+    "publishTime": "2026-11-08T09:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

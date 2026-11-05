@@ -1,9 +1,9 @@
 {
   "id": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa",
   "created": "2026-10-30T12:42:32.414Z",
-  "modified": "2026-11-05T05:09:01.875Z",
-  "status": "error",
-  "statusNote": "invalid_grant",
+  "modified": "2026-11-05T10:52:06.924Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-06T05:00:00.000Z",
   "idea": {
     "title": "Hujan Turun! Mamas Berdoa \"Allahumma Shayyiban Nafi'an\"",
     "series": "doa-harian",
@@ -230,6 +230,31 @@
       "time": "2026-11-05T05:09:01.875Z",
       "by": "upload",
       "message": "invalid_grant"
+    },
+    {
+      "time": "2026-11-05T10:51:56.231Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T10:51:57.646Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-06 12:00"
+    },
+    {
+      "time": "2026-11-05T10:51:58.482Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T10:52:06.924Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-05T10:52:06.924Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-06T05:00:00.000Z"
     }
   ],
   "scenes": [
@@ -405,5 +430,14 @@
   ],
   "recordingMode": "per-scene",
   "audioFile": "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-gabung.wav",
-  "selectedSchedule": "2026-11-05T11:30:00.000Z"
+  "selectedSchedule": "2026-11-06T05:00:00.000Z",
+  "youtube": {
+    "videoId": "6nANRvTS_2I",
+    "url": "https://www.youtube.com/watch?v=6nANRvTS_2I",
+    "publishTime": "2026-11-06T05:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

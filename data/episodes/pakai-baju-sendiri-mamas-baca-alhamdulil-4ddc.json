@@ -1,8 +1,8 @@
 {
   "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
   "created": "2026-11-05T03:35:15.737Z",
-  "modified": "2026-11-05T04:53:05.237Z",
-  "status": "error",
+  "modified": "2026-11-05T10:52:21.462Z",
+  "status": "scheduled",
   "idea": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
     "series": "doa-harian",
@@ -147,10 +147,35 @@
       "time": "2026-11-05T04:53:05.237Z",
       "by": "upload",
       "message": "invalid_grant"
+    },
+    {
+      "time": "2026-11-05T10:52:11.360Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T10:52:12.561Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-07 18:30"
+    },
+    {
+      "time": "2026-11-05T10:52:13.330Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T10:52:21.462Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-05T10:52:21.462Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-07T11:30:00.000Z"
     }
   ],
   "twin": "pakai-baju-sendiri-mamas-baca-alhamdulil-a181",
-  "statusNote": "invalid_grant",
+  "statusNote": "Terjadwal tayang 2026-11-07T11:30:00.000Z",
   "script": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
     "summary": "Mamas ingin memakai baju koko sendiri. Ternyata Mochi bersembunyi di dalam lengan baju, lalu kancingnya terpasang miring. Ibu membantu dengan sabar dan mengajarkan doa memakai pakaian (HR. Abu Dawud no. 4023). Pesannya: setiap memakai baju, kita bilang \"Alhamdulillah\" dan bersyukur kepada Allah yang memberi kita pakaian.",
@@ -382,5 +407,14 @@
     ],
     "time": "2026-11-05T04:42:34.364Z"
   },
-  "selectedSchedule": "2026-11-05T11:30:00.000Z"
+  "selectedSchedule": "2026-11-07T11:30:00.000Z",
+  "youtube": {
+    "videoId": "r8mdOLoPbG8",
+    "url": "https://www.youtube.com/watch?v=r8mdOLoPbG8",
+    "publishTime": "2026-11-07T11:30:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

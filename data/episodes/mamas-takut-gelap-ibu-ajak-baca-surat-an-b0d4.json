@@ -1,9 +1,9 @@
 {
   "id": "mamas-takut-gelap-ibu-ajak-baca-surat-an-b0d4",
   "created": "2026-10-30T11:52:52.840Z",
-  "modified": "2026-10-30T12:09:58.231Z",
-  "status": "rejected",
-  "statusNote": "kepanjangan",
+  "modified": "2026-11-05T10:53:03.869Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-09T05:00:00.000Z",
   "idea": {
     "title": "Mamas Takut Gelap, Ibu Ajak Baca Surat An-Nas",
     "series": "kisah-sebelum-tidur",
@@ -539,6 +539,41 @@
       "time": "2026-10-30T12:09:58.231Z",
       "by": "pemilik",
       "message": "kepanjangan"
+    },
+    {
+      "time": "2026-11-05T10:52:44.843Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T10:52:46.431Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-09 12:00"
+    },
+    {
+      "time": "2026-11-05T10:52:47.034Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T10:53:03.868Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-05T10:53:03.869Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-09T05:00:00.000Z"
     }
-  ]
+  ],
+  "selectedSchedule": "2026-11-09T05:00:00.000Z",
+  "youtube": {
+    "videoId": "o4mUouXsAdM",
+    "url": "https://www.youtube.com/watch?v=o4mUouXsAdM",
+    "publishTime": "2026-11-09T05:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }
