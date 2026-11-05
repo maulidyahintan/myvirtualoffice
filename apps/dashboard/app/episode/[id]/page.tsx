@@ -3,6 +3,7 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  mixesArabicAndIndonesian,
   aiVoiceInProgress,
   deleteBlockers,
   aiJobMarker,
@@ -231,6 +232,32 @@ function UbahNarasi({ ep, index }: { ep: Episode; index: number }) {
   );
 }
 
+/** Upload (atau ganti) audio bacaan Arab satu adegan langsung di daftar naskah. */
+function AudioBacaanArab({ ep, index }: { ep: Episode; index: number }) {
+  const file = ep.recordingMode === 'per-scene' ? ep.audioPerScene?.[index] : undefined;
+  const rekamanUtuh = ep.recordingMode !== 'per-scene' && Boolean(ep.audioFile || ep.audioParts?.length);
+  return (
+    <div className="kotak-bacaan stack">
+      <b>🎙️ Audio bacaan Arab {file ? '✅' : ''}</b>
+      {file ? (
+        <audio controls preload="none" src={`/api/audio/${ep.id}?adegan=${index}&v=${encodeURIComponent(file)}`} style={{ width: '100%', height: 36 }} />
+      ) : (
+        <span className="muted">Rekam bacaan adegan ini dengan suaramu sendiri (makhraj & tajwid), lalu upload di sini.</span>
+      )}
+      <form action={`/api/audio/${ep.id}`} method="post" encType="multipart/form-data" className="row" style={{ gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+        <input type="hidden" name="adegan" value={index} />
+        <input type="file" name="audio" accept=".mp3,.m4a,.wav,.aac,.ogg,audio/*" required style={{ flex: '1 1 200px' }} />
+        <SubmitButton teksProses="Mengupload…" type="submit" className="sekunder">
+          {file ? 'Ganti audio' : '⬆️ Upload audio'}
+        </SubmitButton>
+      </form>
+      {rekamanUtuh ? (
+        <span className="muted">Episode ini memakai satu rekaman utuh; upload per adegan memindahkannya ke mode rekam per adegan.</span>
+      ) : null}
+    </div>
+  );
+}
+
 /** Perbaiki satu adegan dengan arahan, lalu lihat pratinjau adegan itu saja (narasi & rekaman tetap). */
 function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
   if (ep.idea.type === 'memorization' || !['needs_audio', 'needs_video_approval', 'error'].includes(ep.status)) return null;
@@ -240,6 +267,13 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
   const sedang = isBusy(aiJobMarker(ep.id));
   return (
     <div className="stack" style={{ gap: 6, marginTop: 6 }}>
+      {mixesArabicAndIndonesian(scene) ? (
+        <span className="kecil peringatan" style={{ margin: 0 }}>
+          ⚠️ Bacaan Arab di adegan ini masih bercampur kalimat Indonesia. Sebaiknya dipisah jadi adegan sendiri lewat &quot;Minta revisi
+          naskah&quot;, supaya audio bacaannya bisa diupload terpisah.
+        </span>
+      ) : null}
+      {needsHumanVoice(scene) ? <AudioBacaanArab ep={ep} index={index} /> : null}
       {pratinjau ? (
         <div className="stack" style={{ gap: 4 }}>
           <span className="kecil">
