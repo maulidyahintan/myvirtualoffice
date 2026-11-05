@@ -92,6 +92,23 @@ export const ItemArt: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala =
         ))}
       </g>
     )}
+    {id === 'toy-elephant' && (
+      // gajah kayu mainan, menghadap kanan, serat kayu tipis
+      <g>
+        {[-15, -4, 6, 15].map((x) => (
+          <rect key={x} x={x - 4} y={6} width={8} height={13} rx={3} fill="#C98E52" stroke="#9C6A38" strokeWidth={1.5} />
+        ))}
+        <path d="M-24 -4 q-7 2 -6 9" stroke="#9C6A38" strokeWidth={2.5} fill="none" strokeLinecap="round" />
+        <ellipse cx={-2} cy={-2} rx={23} ry={15} fill="#DDA466" stroke="#9C6A38" strokeWidth={2} />
+        <path d="M-16 -8 q8 -4 16 0 M-14 2 q10 -4 20 0" stroke="#C48A4E" strokeWidth={1.5} fill="none" opacity={0.8} />
+        <path d="M27 -6 Q36 0 33 12 Q32 17 28 16" stroke="#9C6A38" strokeWidth={9} fill="none" strokeLinecap="round" />
+        <path d="M27 -6 Q36 0 33 12 Q32 17 28 16" stroke="#DDA466" strokeWidth={5.5} fill="none" strokeLinecap="round" />
+        <circle cx={22} cy={-10} r={12} fill="#DDA466" stroke="#9C6A38" strokeWidth={2} />
+        <ellipse cx={13} cy={-9} rx={7} ry={10} fill="#C98E52" stroke="#9C6A38" strokeWidth={1.5} />
+        <circle cx={25} cy={-13} r={2} fill="#2E2626" />
+        <circle cx={26} cy={-14} r={0.7} fill="#fff" />
+      </g>
+    )}
     {id === 'doll' && (
       <g>
         <circle cx={-12} cy={-20} r={7} fill="#B07E52" />

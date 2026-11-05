@@ -76,7 +76,7 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
     case 'eating':
       return { kiri: kiriAksi, kanan: mixPose(pegang, { bahu: -26, siku: -142 }, eatingPhase(f)) };
     case 'playing':
-      return r.heldItem === 'toy-car' || r.heldItem === 'doll'
+      return r.heldItem === 'toy-car' || r.heldItem === 'toy-elephant' || r.heldItem === 'doll'
         ? { kiri: kiriAksi, kanan: { bahu: 24 + Math.sin(f / 12) * 18, siku: -50 + Math.sin(f / 12) * 20 } }
         : // memantulkan bola: telapak menepuk bola dari atas
           { kiri: kiriAksi, kanan: { bahu: 36, siku: 30 - ballBounce(f) * 34 } };

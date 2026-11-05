@@ -37,7 +37,7 @@ export const CHARACTERS = ['mamas', 'mother', 'mochi'] as const;
 export const EXPRESSIONS = ['happy', 'sad', 'thinking', 'surprised', 'calm'] as const;
 
 /** Small items that characters can hold (can also be placed in scene). */
-export const HELD_ITEMS = ['quran', 'apple', 'banana', 'date', 'cake', 'milk-glass', 'ball', 'toy-car', 'doll', 'book', 'flower'] as const;
+export const HELD_ITEMS = ['quran', 'apple', 'banana', 'date', 'cake', 'milk-glass', 'ball', 'toy-car', 'toy-elephant', 'doll', 'book', 'flower'] as const;
 
 /** Supporting props in scene (placed on floor/small table around characters). */
 export const SCENE_PROPS = [

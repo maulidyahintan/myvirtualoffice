@@ -15,12 +15,12 @@ oleh template animasi Remotion milik channel.
 - `expression`: happy, sad, thinking, surprised, calm
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
   - Mamas/Mother: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
-    (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/doll)
+    (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
   - Mochi: `sleeping` (meringkuk di pillow), `playing` (gulungan benang)
-- `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, doll, book, flower
+- `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower
 - `props` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
   - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, date, apple, banana, milk-glass
-  - mainan: ball, toy-car, doll, building-blocks, toy-box
+  - mainan: ball, toy-car, toy-elephant, doll, building-blocks, toy-box
   - ibadah: prayer-mat (di bawah tokoh yang berdoa/membaca), quran-stand, quran
   - lain: potted-tree, fruit-basket, book, flower, pillow
 - `type`: story, prayer, question
