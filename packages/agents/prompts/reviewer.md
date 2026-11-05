@@ -34,3 +34,8 @@ demonetisasi karena prinsip kualitas konten anak YouTube, dan (2) isi agama bena
 ## Untuk format YouTube Shorts
 - Wajar jika tanpa salam pembuka dan tanpa adegan `pertanyaan`.
 - Pastikan total ≤ 65 kata, satu konsep, dan dalil tetap lengkap & benar.
+
+## Pemisahan bacaan Arab (WAJIB dicek)
+Setiap doa, dzikir, ayat/surat, atau lafaz hadits berbahasa Arab harus berada di scene sendiri
+yang hanya berisi bacaan itu (latin), tanpa pengantar atau arti berbahasa Indonesia di scene
+yang sama. Kalau ada yang tercampur, beri catatan revisi yang menyebut nomor scene-nya.

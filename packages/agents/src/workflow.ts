@@ -13,6 +13,7 @@ import {
   allowedBackgrounds,
   visualStyle,
   needsHumanVoice,
+  mixesArabicAndIndonesian,
   setAiVoiceProgress,
   ensureDir,
   type Background,
@@ -142,6 +143,14 @@ export async function writeScript(id: string) {
       continue;
     }
     if (words > limit.max) log(id, 'penulis')(`Naskah masih ${words} kata (batas ${limit.max}) setelah revisi otomatis — mohon dicek pemilik channel`);
+    // every Arabic recitation must be a scene of its own (recorded/uploaded separately)
+    const mixed = script.scenes.map((s, i) => (mixesArabicAndIndonesian(s) ? i + 1 : 0)).filter(Boolean);
+    if (mixed.length && round < cfg.maxAutoRevisions) {
+      log(id, 'penulis')(`Bacaan Arab masih bercampur kalimat Indonesia di scene ${mixed.join(', ')} — dipisahkan`);
+      feedback = `Scene ${mixed.join(', ')} mencampur bacaan berbahasa Arab dengan kalimat bahasa Indonesia. Pisahkan: bacaan Arab (doa/ayat/surat/dzikir) menjadi scene sendiri yang HANYA berisi bacaan itu; pengantar di scene sebelumnya, arti/penjelasan di scene sesudahnya. Bagian lain naskah jangan diubah.`;
+      continue;
+    }
+    if (mixed.length) log(id, 'penulis')(`Scene ${mixed.join(', ')} masih mencampur bacaan Arab & bahasa Indonesia — mohon dicek pemilik channel`);
 
     setStatus(id, 'reviewing', 'reviewer', 'Memeriksa naskah');
     const review = await runAgent({

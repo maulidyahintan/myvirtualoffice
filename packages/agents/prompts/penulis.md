@@ -32,10 +32,16 @@ direkam dengan suara manusia (pemilik channel membaca naskahmu sendiri).
   (termasuk bacaan doa dalam latin bila dibaca). Kalimat pendek.
 - `speaker`: siapa yang bicara di scene itu (mamas, mother, atau narrator).
   Mochi tidak bicara.
-- Kalau cerita perlu **membacakan surat/ayat Al-Qur'an** (misal Mamas mengamalkan
-  hafalannya, atau Ibu mengajak membaca surat bersama), scene bacaan itu dibuat
-  terpisah dengan `speaker: mamas` (suara anak-anak Mamas yang membaca). Narration
-  pengantar/penjelasannya tetap di scene lain (mother atau narrator).
+- **Setiap bacaan berbahasa Arab = SATU scene sendiri** (WAJIB): doa, dzikir (misal
+  Ḥasbunallāh), ayat/surat Al-Qur'an, atau lafaz hadits. Scene itu HANYA berisi bacaannya
+  dalam tulisan latin, tanpa kalimat pengantar, arti, atau penjelasan berbahasa Indonesia.
+  - Pengantar ("Yuk, kita berdoa…", "Mamas baca, ya") → scene SEBELUMNYA.
+  - Arti / penjelasan ("Artinya, …") → scene SESUDAHNYA.
+  - Doa & dzikir: `type: prayer`. Ayat/surat: `type: story` dengan `speaker: mamas`
+    (suara anak-anak Mamas yang membaca).
+  - Beberapa surat berturut-turut (misal 3 Qul) → satu scene per surat.
+  Alasannya: bacaan Arab direkam/diupload terpisah oleh pemilik channel, sedangkan narasi
+  berbahasa Indonesia bisa diisi suara lain.
 - `visualDirection`: 1 kalimat untuk sutradara (tempat, siapa ada, suasana).
 - Setiap ayat/hadits/doa yang disebut di narration WAJIB dicatat di `evidences` dengan
   sumber spesifik. Lebih baik sedikit dalil tapi pasti benar.
