@@ -128,5 +128,17 @@
     "from": "agent",
     "text": "Bu, saya belum bisa memastikan penyebabnya karena saya tidak bisa menonton videonya. Di data yang saya lihat juga tidak ada info rekaman suara. Tapi ada satu hal yang paling mungkin:\n\n**Channel kita tidak memakai musik. Jadi semua suara di video berasal dari rekaman suara Ibu.** Kalau rekamannya belum ada atau tidak terbaca, hasil render pasti hening.\n\nCoba jawab dua pertanyaan ini, Bu:\n\n1. **Apakah Ibu sudah merekam suara untuk episode Pasukan Gajah ini?** Urutannya: rekam suara dulu, baru render. Kalau render jalan sebelum rekaman ada, videonya jadi bisu.\n   - Kalau **belum**: rekam dulu ke-16 adegannya di halaman episode, lalu render ulang.\n   - Kalau **sudah**: buka halaman episode, lalu putar rekaman beberapa adegan.\n2. **Saat diputar di halaman episode, rekamannya terdengar atau tidak?**\n   - **Terdengar, tapi videonya tetap hening**: berarti rekamannya tidak ikut masuk saat render. Coba render ulang sekali saja. Kalau masih hening, kemungkinan ada masalah teknis di proses render, dan itu di luar yang bisa saya cek.\n   - **Tidak terdengar**: rekamannya kosong. Bisa karena mikrofon mati atau izin mikrofon di browser belum diberikan. Jadi perlu rekam ulang.\n\nKalau ternyata harus rekam ulang, sekalian kerjakan saran Choki dulu lewat **\"Minta revisi\"**: ganti kata \"gereja\" jadi \"bangunan megah\", dan tambah 1–2 kalimat supaya durasinya aman. Dengan begitu cukup sekali rekam.\n\nKabari saya jawabannya ya, Bu, nanti saya bantu langkah berikutnya.",
     "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T04:33:44.094Z",
+    "from": "owner",
+    "text": "kenapa tidak ada suarayanya ?",
+    "episodeId": "hujan-turun-mamas-berdoa-allahumma-shayy-d482"
+  },
+  {
+    "time": "2026-11-05T04:33:57.035Z",
+    "from": "agent",
+    "text": "Bu, maaf, jawaban saya tadi salah episode lagi. Yang Ibu buka sekarang **\"Hujan Turun! Mamas Berdoa\"** dengan 12 adegan, bukan Pasukan Gajah.\n\nUntuk episode ini, penyebabnya terlihat di log. Setelah Ibu menekan \"Mulai render\" (10:52), sistem mencatat **\"Render pratinjau tanpa suara\"**. Jadi video ini memang dibuat sebagai **pratinjau bisu**. Suara Ibu tidak dimasukkan ke video, jadi bukan karena rekamannya rusak.\n\nSaya tidak bisa memastikan kenapa sistem memilih pratinjau bisu. Ada dua kemungkinan:\n1. **Ada rekaman adegan yang belum terbaca.** Di log terlihat adegan 8–12 sudah diupload, tapi saya tidak bisa melihat adegan 1–7. Kalau satu adegan saja belum ada rekamannya, sistem mungkin membuat pratinjau tanpa suara. Coba putar rekaman ke-12 adegan di halaman episode, lalu rekam ulang adegan yang kosong.\n2. **Pratinjau bisu memang tahap awal**, lalu ada langkah lain untuk render lengkap dengan suara. Coba cari tombol render ulang atau render final di halaman episode. Saya tidak yakin nama tombolnya, jadi tolong dicek.\n\nSetelah semua rekaman ada, tekan render lagi. Kalau berhasil, di log seharusnya tidak muncul lagi tulisan \"tanpa suara\".\n\nAda catatan penting kalau Ibu sampai harus rekam ulang. Sebaiknya kerjakan dulu saran Choki lewat **\"Minta revisi\"**: tambahkan kalimat Ibu di adegan 11, misalnya \"Nanti kalau hujan turun lagi, Mas baca, ya!\". Tujuannya supaya anak tidak mengira doa ini dibaca setelah hujan. Dengan begitu cukup sekali rekam.",
+    "episodeId": "hujan-turun-mamas-berdoa-allahumma-shayy-d482"
   }
 ]
