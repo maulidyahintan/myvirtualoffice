@@ -3,6 +3,7 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  NO_DRAFT_STATUSES,
   estimatedScriptSeconds,
   SCRIPT_WORD_LIMIT,
   scriptWordCount,
@@ -31,6 +32,8 @@ import {
 import {
   regenerateMetadata,
   createAlternateFormat,
+  moveToDraft,
+  restoreFromDraft,
   splitIntoShorts,
   reopenForEdit,
   deleteRecordings,
@@ -510,6 +513,21 @@ function PanelAksi({ ep }: { ep: Episode }) {
   }
 }
 
+/** Simpan ke Draft (tidak ditayangkan dulu); tidak tersedia saat agen bekerja atau setelah diupload. */
+function TombolDraft({ ep }: { ep: Episode }) {
+  if (ep.draftedAt || BUSY_STATUSES.includes(ep.status) || NO_DRAFT_STATUSES.includes(ep.status)) return null;
+  return (
+    <form action={moveToDraft}>
+      <Id id={ep.id} />
+      <SubmitButton className="sekunder kecil" teksProses="Menyimpan…">
+        📥 Simpan ke Draft
+      </SubmitButton>
+    </form>
+  );
+}
+
+const cfgZona = () => loadConfig().timeZone;
+
 /** Jumlah kata & perkiraan durasi naskah; peringatan bila melebihi batas (video biasa ≤ 5 menit). */
 function PanjangNaskah({ ep }: { ep: Episode }) {
   if (!ep.script) return null;
@@ -761,10 +779,25 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
           </div>
         </div>
         <div className="row">
+          <TombolDraft ep={ep} />
           <AskAgentButton />
           <AutoRefresh aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`)} />
         </div>
       </div>
+
+      {ep.draftedAt ? (
+        <div className="panel row info-draft" style={{ justifyContent: 'space-between' }}>
+          <span>
+            📥 <b>Episode ini di Draft</b> sejak{' '}
+            {new Date(ep.draftedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', timeZone: cfgZona() })}: tidak dihitung di “Butuh kamu” dan
+            tidak dijadwalkan. Kamu tetap bisa mengerjakannya; keluarkan dari Draft kalau sudah siap ditayangkan.
+          </span>
+          <form action={restoreFromDraft}>
+            <Id id={ep.id} />
+            <SubmitButton className="sekunder">↩️ Keluarkan dari Draft</SubmitButton>
+          </form>
+        </div>
+      ) : null}
 
       <div className="grid2">
         <div className="stack">

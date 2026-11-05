@@ -32,6 +32,8 @@ import {
   type RecordingMode,
   type Script,
   type AgeGroup,
+  BUSY_STATUSES,
+  NO_DRAFT_STATUSES,
 } from '@kantor/shared';
 import { runOfficeCommand, localToIso } from '@/lib/runner';
 
@@ -220,6 +222,8 @@ export async function approveVideo(form: FormData) {
   // tahan slot ini selama upload berjalan, supaya rekomendasi video berikutnya tidak bentrok
   updateEpisode(id, (e) => {
     e.selectedSchedule = iso;
+    // approving for upload means it's no longer parked
+    e.draftedAt = undefined;
   });
   setStatus(id, 'uploading', 'pemilik', iso ? `Video disetujui, tayang ${jadwal.replace('T', ' ')}` : 'Video disetujui');
   runOfficeCommand(args, id);
@@ -405,6 +409,29 @@ export async function saveDailyResearch(form: FormData) {
   // penjadwal ikut dipasang/dilepas, supaya cukup satu tombol
   runOfficeCommand([aktif ? 'harian-pasang' : 'harian-lepas']);
   revalidatePath('/settings');
+}
+
+/** Simpan episode ke Draft: tidak akan ditayangkan dulu; statusnya disimpan supaya bisa dilanjutkan. */
+export async function moveToDraft(form: FormData) {
+  const id = teks(form, 'id');
+  const ep = getEpisode(id);
+  if (BUSY_STATUSES.includes(ep.status)) throw new Error('Episode sedang dikerjakan agen; tunggu sampai selesai dulu');
+  if (NO_DRAFT_STATUSES.includes(ep.status)) throw new Error('Episode sudah diupload ke YouTube; tidak bisa dipindah ke Draft');
+  updateEpisode(id, (e) => {
+    e.draftedAt = new Date().toISOString();
+  });
+  addLog(id, 'pemilik', 'Dipindah ke Draft (tidak ditayangkan dulu)');
+  segarkan(id);
+}
+
+/** Keluarkan episode dari Draft: lanjut dari langkah terakhirnya. */
+export async function restoreFromDraft(form: FormData) {
+  const id = teks(form, 'id');
+  updateEpisode(id, (e) => {
+    e.draftedAt = undefined;
+  });
+  addLog(id, 'pemilik', 'Dikeluarkan dari Draft');
+  segarkan(id);
 }
 
 /** Pulihkan episode yang error / ditolak ke langkah yang masuk akal. */

@@ -1,8 +1,7 @@
 import 'server-only';
-import { PHASES, listEpisodes, isBusy, STATUS_LABEL, type Episode, type EpisodeStatus } from '@kantor/shared';
+import { PHASES, listEpisodes, isBusy, STATUS_LABEL, WAITING_STATUSES, type Episode, type EpisodeStatus } from '@kantor/shared';
 import { STAFF, type Activity, type OfficeData, type StaffId, type StaffStatus } from '@/components/office/staff';
 
-const WAITING_STATUSES: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
 
 const episodeTitle = (e: Episode) => e.script?.title ?? e.idea.title;
 const truncate = (s: string, n = 34) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
@@ -29,7 +28,7 @@ export function officeStatus(): OfficeData {
   if (isBusy('laporan')) set('channel', 'Menyusun laporan performa');
 
   const menungguKamu = eps
-    .filter((e) => WAITING_STATUSES.includes(e.status))
+    .filter((e) => WAITING_STATUSES.includes(e.status) && !e.draftedAt)
     .map((e) => ({ id: e.id, title: episodeTitle(e), label: STATUS_LABEL[e.status] }));
 
   // riwayat aktivitas per pegawai dari log semua episode
@@ -75,7 +74,7 @@ export function officeStatus(): OfficeData {
 
   return {
     pegawai,
-    fase: PHASES.map((f) => ({ title: f.title, jumlah: eps.filter((e) => f.statuses.includes(e.status)).length })),
+    fase: PHASES.map((f) => ({ title: f.title, jumlah: eps.filter((e) => f.statuses.includes(e.status) && !e.draftedAt).length })),
     menungguKamu,
     diperbarui: new Date().toISOString(),
   };

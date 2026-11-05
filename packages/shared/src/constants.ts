@@ -152,6 +152,12 @@ export const PHASES: { title: string; statuses: EpisodeStatus[] }[] = [
   { title: 'Arsip', statuses: ['rejected', 'error'] },
 ];
 
+/** Statuses waiting for the channel owner's action. */
+export const WAITING_STATUSES: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
+
+/** Statuses that can't be moved to Draft (already on YouTube or being uploaded). */
+export const NO_DRAFT_STATUSES: EpisodeStatus[] = ['uploading', 'scheduled', 'published'];
+
 export const FPS = 30;
 
 /** Indonesian display labels for code-level enum values (the UI stays Indonesian). */

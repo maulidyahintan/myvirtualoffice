@@ -161,6 +161,8 @@ export interface Episode {
   modified: string;
   status: EpisodeStatus;
   statusNote?: string;
+  /** Parked in Draft (not to be published for now); the status is kept so it resumes where it left off. ISO time it was moved. */
+  draftedAt?: string;
   idea: Idea;
   /** Twin episode from same idea with different format (standard video ↔ Shorts). */
   twin?: string;

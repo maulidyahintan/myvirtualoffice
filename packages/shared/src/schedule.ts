@@ -88,7 +88,7 @@ export function recommendSchedule(episodes: Episode[], cfg: AppConfig, now = new
     return iso && new Date(iso) > now ? [{ iso, local: isoToLocal(iso, zone) }] : [];
   });
   const queue = episodes
-    .filter((e) => e.status === 'needs_video_approval')
+    .filter((e) => e.status === 'needs_video_approval' && !e.draftedAt)
     .sort((a, b) => (a.render?.time ?? a.modified).localeCompare(b.render?.time ?? b.modified));
 
   const result = new Map<string, RecommendedSlot>();

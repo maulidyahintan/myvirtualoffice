@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Fredoka, Plus_Jakarta_Sans } from 'next/font/google';
-import { listEpisodes, loadConfig, type EpisodeStatus } from '@kantor/shared';
+import { listEpisodes, loadConfig, WAITING_STATUSES } from '@kantor/shared';
 import { FloatingChat } from '@/components/FloatingChat';
 import { TasnieLogo } from '@/components/TasnieLogo';
 import { Sidebar, type MenuGroup } from '@/components/Sidebar';
@@ -20,13 +20,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 /** Status yang menunggu tindakan pemilik channel. */
-const WAITING_STATUSES: EpisodeStatus[] = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const cfg = loadConfig();
   const episodes = listEpisodes();
-  const butuhKamu = episodes.filter((e) => WAITING_STATUSES.includes(e.status)).length;
-  const siapTayang = episodes.filter((e) => e.status === 'needs_video_approval').length;
+  const butuhKamu = episodes.filter((e) => WAITING_STATUSES.includes(e.status) && !e.draftedAt).length;
+  const siapTayang = episodes.filter((e) => e.status === 'needs_video_approval' && !e.draftedAt).length;
 
   const grup: MenuGroup[] = [
     { title: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
