@@ -1,8 +1,8 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T15:39:24.576Z",
-  "status": "rendering",
+  "modified": "2026-11-05T15:50:39.855Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "series": "kisah-sebelum-tidur",
@@ -593,10 +593,40 @@
       "time": "2026-11-05T15:39:03.362Z",
       "by": "video-creator",
       "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T15:42:55.712Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T15:46:23.128Z",
+      "by": "pemilik",
+      "message": "Minta revisi video: ubah mobil mainan berwarna merah"
+    },
+    {
+      "time": "2026-11-05T15:46:24.039Z",
+      "by": "sutradara",
+      "message": "Merevisi adegan: ubah mobil mainan berwarna merah"
+    },
+    {
+      "time": "2026-11-05T15:46:47.264Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T15:46:47.695Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T15:50:39.855Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
-  "statusNote": "Render dengan rekaman suara",
+  "statusNote": "Video siap ditonton & disetujui",
   "script": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "summary": "Versi ringkas (±2,5–3 menit). Sepupu Mamas, Dek Hafiz, ingin meminjam mobil-mobilan merah Mamas, Si Merah. Awalnya Mamas menolak karena takut mobilnya rusak. Ibu bertanya, \"Mamas senang tidak, dipinjami?\" Mamas ingat pernah dipinjami sepeda oleh Dek Hafiz, lalu mau bermain bergantian. Pelajarannya: kita ingin teman bahagia seperti kita ingin bahagia (HR. Al-Bukhari no. 13, Muslim no. 45).",
@@ -784,7 +814,8 @@
       ],
       "expression": "surprised",
       "props": [
-        "toy-box"
+        "toy-box",
+        "toy-car"
       ],
       "actions": [
         {
@@ -1112,5 +1143,68 @@
     true
   ],
   "recordingMode": "per-scene",
-  "audioFile": "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-gabung.wav"
+  "audioFile": "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-gabung.wav",
+  "render": {
+    "video": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f.mp4",
+    "thumbnail": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f.png",
+    "scenes": [
+      {
+        "start": 10,
+        "duration": 21.266666666666666
+      },
+      {
+        "start": 31.266666666666666,
+        "duration": 6.266666666666667
+      },
+      {
+        "start": 37.53333333333333,
+        "duration": 18
+      },
+      {
+        "start": 55.53333333333333,
+        "duration": 8.5
+      },
+      {
+        "start": 64.03333333333333,
+        "duration": 6.5
+      },
+      {
+        "start": 70.53333333333333,
+        "duration": 10.1
+      },
+      {
+        "start": 80.63333333333334,
+        "duration": 5.6
+      },
+      {
+        "start": 86.23333333333333,
+        "duration": 9.7
+      },
+      {
+        "start": 95.93333333333334,
+        "duration": 15.2
+      },
+      {
+        "start": 111.13333333333334,
+        "duration": 9.333333333333334
+      },
+      {
+        "start": 120.46666666666667,
+        "duration": 11.266666666666667
+      },
+      {
+        "start": 131.73333333333332,
+        "duration": 19.633333333333333
+      },
+      {
+        "start": 151.36666666666667,
+        "duration": 8.133333333333333
+      },
+      {
+        "start": 159.5,
+        "duration": 18.9
+      }
+    ],
+    "time": "2026-11-05T15:50:39.854Z"
+  }
 }
