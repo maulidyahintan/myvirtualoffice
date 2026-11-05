@@ -1,7 +1,7 @@
 {
   "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
   "created": "2026-11-05T03:35:15.737Z",
-  "modified": "2026-11-05T03:44:21.376Z",
+  "modified": "2026-11-05T04:42:34.364Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
@@ -120,6 +120,16 @@
     },
     {
       "time": "2026-11-05T03:44:21.376Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T04:41:18.664Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T04:42:34.364Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
     }
@@ -333,28 +343,28 @@
   "audioFile": "audio/pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc-gabung.wav",
   "render": {
     "video": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc.mp4",
-    "adegan": [
+    "scenes": [
       {
-        "mulai": 1.5,
-        "durasi": 6.233333333333333
+        "start": 1.5,
+        "duration": 7.266666666666667
       },
       {
-        "mulai": 7.733333333333333,
-        "durasi": 6.7
+        "start": 8.766666666666667,
+        "duration": 10.133333333333333
       },
       {
-        "mulai": 14.433333333333334,
-        "durasi": 9.1
+        "start": 18.9,
+        "duration": 14.833333333333334
       },
       {
-        "mulai": 23.533333333333335,
-        "durasi": 11.466666666666667
+        "start": 33.733333333333334,
+        "duration": 19.266666666666666
       },
       {
-        "mulai": 35,
-        "durasi": 7.2
+        "start": 53,
+        "duration": 11.166666666666666
       }
     ],
-    "time": "2026-11-05T03:44:21.376Z"
+    "time": "2026-11-05T04:42:34.364Z"
   }
 }

@@ -1,7 +1,7 @@
 {
   "id": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa",
   "created": "2026-10-30T12:42:32.414Z",
-  "modified": "2026-11-05T03:46:23.236Z",
+  "modified": "2026-11-05T04:44:19.709Z",
   "status": "needs_video_approval",
   "statusNote": "Video siap ditonton & disetujui",
   "idea": {
@@ -205,6 +205,16 @@
       "time": "2026-11-05T03:46:23.236Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T04:43:03.808Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T04:44:19.709Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "scenes": [
@@ -340,29 +350,29 @@
   },
   "render": {
     "video": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa.mp4",
-    "adegan": [
+    "scenes": [
       {
-        "mulai": 1.5,
-        "durasi": 5.766666666666667
+        "start": 1.5,
+        "duration": 6.933333333333334
       },
       {
-        "mulai": 7.266666666666667,
-        "durasi": 9.1
+        "start": 8.433333333333334,
+        "duration": 11.466666666666667
       },
       {
-        "mulai": 16.366666666666667,
-        "durasi": 8.633333333333333
+        "start": 19.9,
+        "duration": 13.366666666666667
       },
       {
-        "mulai": 25,
-        "durasi": 5.3
+        "start": 33.266666666666666,
+        "duration": 8.1
       },
       {
-        "mulai": 30.3,
-        "durasi": 7.2
+        "start": 41.36666666666667,
+        "duration": 13.9
       }
     ],
-    "time": "2026-11-05T03:46:23.235Z"
+    "time": "2026-11-05T04:44:19.709Z"
   },
   "audioPerScene": [
     "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-adegan-1-mw304kxr.webm",

@@ -1,7 +1,7 @@
 {
   "id": "hujan-turun-mamas-berdoa-allahumma-shayy-d482",
   "created": "2026-10-30T11:52:32.593Z",
-  "modified": "2026-11-05T03:54:28.534Z",
+  "modified": "2026-11-05T04:47:29.770Z",
   "status": "needs_video_approval",
   "statusNote": "Video siap ditonton & disetujui",
   "idea": {
@@ -348,6 +348,16 @@
       "time": "2026-11-05T03:54:28.534Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T04:44:20.587Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T04:47:29.770Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "scenes": [
@@ -654,56 +664,56 @@
   "render": {
     "video": "hujan-turun-mamas-berdoa-allahumma-shayy-d482.mp4",
     "thumbnail": "hujan-turun-mamas-berdoa-allahumma-shayy-d482.png",
-    "adegan": [
+    "scenes": [
       {
-        "mulai": 3,
-        "durasi": 9.566666666666666
+        "start": 10,
+        "duration": 14.033333333333333
       },
       {
-        "mulai": 12.566666666666666,
-        "durasi": 4.333333333333333
+        "start": 24.033333333333335,
+        "duration": 4.5
       },
       {
-        "mulai": 16.9,
-        "durasi": 10.033333333333333
+        "start": 28.533333333333335,
+        "duration": 13.733333333333333
       },
       {
-        "mulai": 26.933333333333334,
-        "durasi": 5.766666666666667
+        "start": 42.266666666666666,
+        "duration": 9.566666666666666
       },
       {
-        "mulai": 32.7,
-        "durasi": 3
+        "start": 51.833333333333336,
+        "duration": 4.733333333333333
       },
       {
-        "mulai": 35.7,
-        "durasi": 11
+        "start": 56.56666666666667,
+        "duration": 18.666666666666668
       },
       {
-        "mulai": 46.7,
-        "durasi": 9.7
+        "start": 75.23333333333333,
+        "duration": 13.866666666666667
       },
       {
-        "mulai": 56.4,
-        "durasi": 12.9
+        "start": 89.1,
+        "duration": 25.9
       },
       {
-        "mulai": 69.3,
-        "durasi": 3.8666666666666667
+        "start": 115,
+        "duration": 9.366666666666667
       },
       {
-        "mulai": 73.16666666666667,
-        "durasi": 12.9
+        "start": 124.36666666666666,
+        "duration": 16.6
       },
       {
-        "mulai": 86.06666666666666,
-        "durasi": 4.333333333333333
+        "start": 140.96666666666667,
+        "duration": 6.166666666666667
       },
       {
-        "mulai": 90.4,
-        "durasi": 11
+        "start": 147.13333333333333,
+        "duration": 23
       }
     ],
-    "time": "2026-11-05T03:54:28.534Z"
+    "time": "2026-11-05T04:47:29.770Z"
   }
 }
