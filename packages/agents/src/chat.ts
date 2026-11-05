@@ -42,6 +42,17 @@ function episodeContext(id: string): string {
       review: ep.review,
       scenes: ep.scenes?.map((a) => ({ background: a.background, characters: a.characters, expression: a.expression, screenText: a.screenText })),
       metadata: ep.metadata,
+      // recording & render facts, so questions like "why is there no sound?" can be answered
+      audio: {
+        recordingMode: ep.recordingMode ?? 'sequential',
+        recordedFile: ep.audioFile ?? null,
+        recordedParts: ep.audioParts?.length ?? 0,
+        recordedScenes: ep.audioPerScene ? `${ep.audioPerScene.filter(Boolean).length} dari ${ep.audioPerScene.length}` : null,
+        voiceEffects: ep.characterEffects !== false,
+        renderedWithoutAudio: Boolean(ep.render) && !ep.audioFile && !ep.audioPerScene?.some(Boolean),
+      },
+      render: ep.render ? { video: ep.render.video, time: ep.render.time } : null,
+      draft: Boolean(ep.draftedAt),
       recentLog: ep.log.slice(-8),
     };
     return `Episode yang sedang dibahas:\n${JSON.stringify(summary, null, 2).slice(0, 15000)}`;
@@ -57,16 +68,26 @@ export async function replyToChat(agent: ChatAgent) {
   if (!last || last.from !== 'owner') return;
   const role = PERAN[agent];
 
+  // label each turn with the episode it was about, so earlier questions about other episodes don't get mixed in
+  const titleOf = (id?: string) => {
+    if (!id) return 'umum';
+    try {
+      const ep = getEpisode(id);
+      return `episode "${ep.script?.title ?? ep.idea.title}"`;
+    } catch {
+      return `episode ${id}`;
+    }
+  };
   const transcript = history
     .slice(-20, -1)
-    .map((m) => `${m.from === 'owner' ? 'Pemilik' : 'Kamu'}: ${m.text}`)
+    .map((m) => `${m.from === 'owner' ? 'Pemilik' : 'Kamu'} [${titleOf(m.episodeId)}]: ${m.text}`)
     .join('\n\n');
 
   const prompt = [
     `Tanggal hari ini: ${new Date().toISOString().slice(0, 10)}.`,
     last.episodeId ? episodeContext(last.episodeId) : '',
     transcript ? `Percakapan sebelumnya:\n${transcript}` : '',
-    `Pesan baru dari pemilik:\n${last.text}`,
+    `Pesan baru dari pemilik [${titleOf(last.episodeId)}]${last.episodeId ? ' — jawab tentang episode INI, bukan episode dari pesan-pesan sebelumnya' : ''}:\n${last.text}`,
   ]
     .filter(Boolean)
     .join('\n\n');

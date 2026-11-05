@@ -8,9 +8,9 @@ import { STAFF } from '@/components/office/staff';
 
 type Pesan = ChatMessage & { episodeTitle?: string };
 interface Ringkasan {
-  agen: ChatAgent;
-  terakhir: ChatMessage | null;
-  mengetik: boolean;
+  agent: ChatAgent;
+  last: ChatMessage | null;
+  typing: boolean;
 }
 
 const SUGGESTIONS: Record<ChatAgent, string[]> = {
@@ -57,9 +57,9 @@ export function FloatingChat() {
   }, []);
 
   const muatPesan = useCallback(async (a: ChatAgent) => {
-    const r = await fetch(`/api/chat?agen=${a}`).then((x) => x.json());
-    setPesan(r.message ?? []);
-    setMengetik(Boolean(r.mengetik));
+    const r = await fetch(`/api/chat?agent=${a}`).then((x) => x.json());
+    setPesan(r.messages ?? []);
+    setMengetik(Boolean(r.typing));
   }, []);
 
   // buka dari tombol lain
@@ -100,19 +100,19 @@ export function FloatingChat() {
     const r = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ agen, teks: isi, episodeId: bahasEpisode ? episodeHalaman : undefined }),
+      body: JSON.stringify({ agent: agen, text: isi, episodeId: bahasEpisode ? episodeHalaman : undefined }),
     }).then((x) => x.json());
-    if (r.message) setPesan(r.message);
+    if (r.messages) setPesan(r.messages);
   }
 
   async function obrolanBaru() {
     if (!agen) return;
-    await fetch(`/api/chat?agen=${agen}`, { method: 'DELETE' });
+    await fetch(`/api/chat?agent=${agen}`, { method: 'DELETE' });
     setPesan([]);
     setMengetik(false);
   }
 
-  const sibuk = ringkasan.filter((r) => r.mengetik).length;
+  const sibuk = ringkasan.filter((r) => r.typing).length;
 
   return (
     <div className="chat-mengambang">
@@ -226,7 +226,7 @@ export function FloatingChat() {
         {daftarTerbuka ? (
           <div className="chat-daftar-isi">
             {CHAT_AGENTS.map((id) => {
-              const r = ringkasan.find((x) => x.agen === id);
+              const r = ringkasan.find((x) => x.agent === id);
               return (
                 <button
                   key={id}
@@ -241,7 +241,7 @@ export function FloatingChat() {
                   <span style={{ minWidth: 0, textAlign: 'left' }}>
                     <b>{pegawai(id).name}</b> <span className="kecil muted">· {pegawai(id).role}</span>
                     <span className="kecil muted chat-cuplikan">
-                      {r?.mengetik ? 'sedang mengetik…' : r?.terakhir ? `${r.terakhir.from === 'owner' ? 'Kamu: ' : ''}${r.terakhir.text}` : 'Mulai obrolan'}
+                      {r?.typing ? 'sedang mengetik…' : r?.last ? `${r.last.from === 'owner' ? 'Kamu: ' : ''}${r.last.text}` : 'Mulai obrolan'}
                     </span>
                   </span>
                 </button>
