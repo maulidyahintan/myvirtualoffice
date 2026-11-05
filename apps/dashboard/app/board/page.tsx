@@ -24,10 +24,14 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
   const namaSeri = (id: string) => cfg.series.find((s) => s.id === id)?.name ?? id;
   const jumlahFormat = (f: FilterFormat) => (f === 'all' ? semua.length : semua.filter((e) => (e.idea.format ?? 'standard') === f).length);
   // kolom: fase kerja (tanpa draft), lalu Draft sebelum Arsip
-  // Draft & Arsip are folded into narrow strips by default so the work columns get the room
+  // Tayang, Draft & Arsip are folded into narrow strips by default so the work columns get the room
   const open = new Set(String(sp.open ?? '').split(',').filter(Boolean));
   const kolom = [
-    ...PHASES.filter((f) => f.title !== 'Arsip').map((f) => ({ key: f.title, title: f.title, isi: aktif.filter((e) => f.statuses.includes(e.status)), lipat: false })),
+    ...PHASES.filter((f) => f.title !== 'Arsip').map((f) =>
+      f.title === 'Tayang'
+        ? { key: 'tayang', title: '📺 Tayang', isi: aktif.filter((e) => f.statuses.includes(e.status)), lipat: true }
+        : { key: f.title, title: f.title, isi: aktif.filter((e) => f.statuses.includes(e.status)), lipat: false },
+    ),
     { key: 'draft', title: '📥 Draft', isi: draft, lipat: true },
     ...PHASES.filter((f) => f.title === 'Arsip').map((f) => ({ key: 'arsip', title: '🗄️ Arsip', isi: aktif.filter((e) => f.statuses.includes(e.status)), lipat: true })),
   ];
