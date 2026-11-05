@@ -155,9 +155,15 @@ function need(id?: string): string {
 }
 
 main().catch((e: unknown) => {
-  const pesan = e instanceof Error ? e.message : String(e);
+  let pesan = e instanceof Error ? e.message : String(e);
+  // Google refuses the stored YouTube login (expired/revoked) — say what to do instead of the raw code
+  if (/invalid_grant/.test(pesan)) {
+    pesan =
+      'Login YouTube kedaluwarsa atau dicabut (invalid_grant). Hubungkan ulang channel: jalankan `npm run auth:youtube`, lalu ulangi. ' +
+      'Supaya tidak terulang tiap 7 hari, ubah aplikasi OAuth di Google Cloud Console dari "Testing" ke "In production".';
+  }
   console.error(`❌ ${pesan}`);
-  const butuhId = ['tulis', 'hafalan', 'sutradara', 'render', 'upload'].includes(cmd ?? '');
+  const butuhId = ['write', 'tulis', 'memorization', 'hafalan', 'direct', 'sutradara', 'revise-video', 'revisi-video', 'render', 'upload'].includes(cmd ?? '');
   if (butuhId && arg1) {
     try {
       setStatus(arg1, 'error', cmd!, pesan);
