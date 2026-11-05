@@ -31,6 +31,31 @@ const Avatar = ({ id, besar }: { id: ChatAgent; besar?: boolean }) => (
 );
 
 /** Event untuk membuka chat dari tombol lain, misal di halaman episode. */
+/** Copy an agent reply to the clipboard (shown on hover over the bubble). */
+function TombolSalin({ teks }: { teks: string }) {
+  const [tersalin, setTersalin] = useState(false);
+  const salin = async () => {
+    try {
+      await navigator.clipboard.writeText(teks);
+    } catch {
+      // fallback for browsers without clipboard permission
+      const t = document.createElement('textarea');
+      t.value = teks;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand('copy');
+      t.remove();
+    }
+    setTersalin(true);
+    setTimeout(() => setTersalin(false), 1500);
+  };
+  return (
+    <button type="button" className="chat-salin" onClick={() => void salin()} title="Salin jawaban">
+      {tersalin ? '✓ Tersalin' : '📋 Salin'}
+    </button>
+  );
+}
+
 export const openChat = (agen: ChatAgent = 'manajer') => window.dispatchEvent(new CustomEvent('buka-chat', { detail: agen }));
 
 /**
@@ -171,6 +196,7 @@ export function FloatingChat() {
                       <div className="kecil muted">📎 {p.episodeTitle ?? 'episode'}</div>
                     ) : null}
                     <div className="chat-pesan-teks">{p.text}</div>
+                    {p.from === 'agent' ? <TombolSalin teks={p.text} /> : null}
                   </div>
                 ))}
                 {mengetik ? <div className="chat-pesan agen mengetik">mengetik…</div> : null}

@@ -175,6 +175,14 @@ export async function requestRevision(form: FormData) {
   if (!feedback) return;
   updateEpisode(id, (e) => {
     e.humanFeedback = feedback;
+    // the narration will change, so recordings made for the old script no longer fit (files stay on disk)
+    if (e.audioFile || e.audioParts?.length || e.audioPerScene?.some(Boolean)) {
+      e.audioFile = undefined;
+      e.audioParts = undefined;
+      e.audioPerScene = undefined;
+      e.sceneOffsets = undefined;
+      e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: 'Rekaman lama dilepas karena naskah direvisi (perlu rekam ulang)' });
+    }
   });
   setStatus(id, 'writing', 'pemilik', `Minta revisi: ${feedback.slice(0, 80)}`);
   runOfficeCommand(['tulis', id], id);

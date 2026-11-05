@@ -422,3 +422,13 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .kolom-lipat-jumlah { background: #fff; border: 1px solid var(--line); border-radius: 99px; min-width: 26px; padding: 0 6px; text-align: center; font-size: 12px; font-weight: 800; color: var(--ink); }
 .kolom h3 .kolom-tutup { margin-left: 6px; text-decoration: none; color: var(--muted); font-size: 12px; padding: 0 4px; border-radius: 6px; }
 .kolom h3 .kolom-tutup:hover { background: #fff; color: var(--ink); }
+
+/* tombol salin di gelembung jawaban agen */
+.chat-pesan { position: relative; }
+.chat-salin {
+  align-self: flex-end; margin-top: 2px; padding: 2px 8px; font-size: 11px; font-weight: 700; border-radius: 8px; box-shadow: none;
+  background: rgba(255, 255, 255, 0.8); color: var(--muted); border: 1px solid var(--line); opacity: 0; transition: opacity 0.12s ease;
+}
+.chat-pesan:hover .chat-salin, .chat-salin:focus-visible { opacity: 1; }
+.chat-salin:hover:not(:disabled) { color: var(--hijau); transform: none; }
+@media (hover: none) { .chat-salin { opacity: 1; } }

@@ -417,6 +417,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               👀 Render pratinjau tanpa suara
             </SubmitButton>
           </form>
+          <MintaRevisiNaskah ep={ep} />
         </div>
       );
 
@@ -484,6 +485,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               </form>
             )}
           </details>
+          <MintaRevisiNaskah ep={ep} />
           <FormTolak id={ep.id} />
         </div>
       );
@@ -527,6 +529,28 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
         </div>
       );
   }
+}
+
+/** Minta revisi naskah setelah tahap naskah (saat rekam suara / persetujuan video). */
+function MintaRevisiNaskah({ ep }: { ep: Episode }) {
+  if (ep.idea.type === 'memorization' || !ep.script) return null;
+  const adaRekaman = Boolean(ep.audioFile || ep.audioParts?.length || ep.audioPerScene?.some(Boolean));
+  return (
+    <details>
+      <summary>📝 Minta revisi naskah</summary>
+      <form action={requestRevision} className="stack" style={{ marginTop: 10 }}>
+        <Id id={ep.id} />
+        <textarea name="feedback" placeholder="contoh: padatkan jadi ±300 kata, buang adegan 4–5, tambah momen lucu Mochi" required />
+        <span className="kecil muted">
+          Naskah dikembalikan ke Penulis + Reviewer, lalu kamu setujui lagi dan Sutradara menyusun ulang adegannya.
+          {adaRekaman ? ' Rekaman yang sudah ada tidak cocok dengan naskah baru, jadi perlu direkam ulang (file lamanya tidak dihapus).' : ''}
+        </span>
+        <SubmitButton type="submit" className="sekunder" teksProses="Mengirim…">
+          🔁 Kirim ke Penulis
+        </SubmitButton>
+      </form>
+    </details>
+  );
 }
 
 /** Simpan ke Draft (tidak ditayangkan dulu); tidak tersedia saat agen bekerja atau setelah diupload. */
