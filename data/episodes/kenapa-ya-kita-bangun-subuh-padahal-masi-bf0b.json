@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T16:07:21.082Z",
+  "modified": "2026-11-05T16:13:00.631Z",
   "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
@@ -172,6 +172,101 @@
       "time": "2026-11-05T16:07:21.082Z",
       "by": "orchestrator",
       "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-05T16:11:24.093Z",
+      "by": "pemilik",
+      "message": "Minta adegan 1 diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T16:11:24.925Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 1"
+    },
+    {
+      "time": "2026-11-05T16:11:33.749Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-05T16:11:33.750Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-05T16:11:37.994Z",
+      "by": "pemilik",
+      "message": "Minta adegan 2 diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T16:11:38.600Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 2"
+    },
+    {
+      "time": "2026-11-05T16:11:44.625Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-05T16:11:44.626Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-05T16:11:47.948Z",
+      "by": "pemilik",
+      "message": "Minta adegan 3 diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T16:11:48.552Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 3"
+    },
+    {
+      "time": "2026-11-05T16:11:53.808Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-05T16:11:53.809Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-05T16:11:57.583Z",
+      "by": "pemilik",
+      "message": "Minta adegan 4 diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T16:11:58.191Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 4"
+    },
+    {
+      "time": "2026-11-05T16:12:05.283Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-05T16:12:05.284Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-05T16:12:08.114Z",
+      "by": "pemilik",
+      "message": "Minta adegan 5 diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T16:12:08.721Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 5"
+    },
+    {
+      "time": "2026-11-05T16:13:00.631Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari) · rekam sendiri adegan 5"
     }
   ],
   "twin": "kenapa-ya-kita-bangun-subuh-padahal-masi-7aaf",
@@ -598,5 +693,51 @@
       "adab bangun pagi anak muslim"
     ],
     "thumbnailText": "Kenapa Bangun Subuh?"
-  }
+  },
+  "recordingMode": "per-scene",
+  "audioPerScene": [
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-1-ai-mw3qtl2s.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-2-ai-mw3qttgx.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-3-ai-mw3qu0jz.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-4-ai-mw3qu9eq.wav",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
 }

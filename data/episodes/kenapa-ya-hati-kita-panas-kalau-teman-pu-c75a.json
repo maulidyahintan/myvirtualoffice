@@ -1,0 +1,129 @@
+{
+  "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
+  "created": "2026-11-05T16:07:59.224Z",
+  "modified": "2026-11-05T16:08:50.929Z",
+  "status": "needs_script_approval",
+  "idea": {
+    "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Rasa iri dilawan dengan bersyukur dan ikut senang atas kebaikan teman. Ada dua dalil. Pertama, lihatlah orang yang di bawah kita supaya tidak meremehkan nikmat Allah (HR. Muslim no. 2963). Kedua, tidak sempurna iman seseorang sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya (HR. Bukhari no. 13, Muslim no. 45). Teman hanya disebut di narasi, tidak digambar.",
+    "format": "short",
+    "reason": "Topik berbagi dan cemburu menunjukkan permintaan tinggi. Abi & Andra 'Tidak Mau Berbagi Mainan' dapat ±19.800 views/hari, 'Kakak Mau Mengalah' ±8.000 views/hari, dan Kabi 'Hazeem Pelit' 518 ribu views. Pesaingnya fokus ke tindakan berbagi, jarang membahas 'kenapa' hati merasa iri dengan dalil untuk usia 7–10 tahun. Ini cocok dengan format diskusi seri Kenapa Ya.",
+    "references": [
+      "https://www.youtube.com/watch?v=6hZaLNIDASg",
+      "https://www.youtube.com/watch?v=bfc4a83HSp8",
+      "https://www.youtube.com/watch?v=kyK6IvOE0yo",
+      "Shahih Muslim no. 2963; Shahih Bukhari no. 13; Shahih Muslim no. 45"
+    ]
+  },
+  "revisionCount": 1,
+  "log": [
+    {
+      "time": "2026-11-05T16:07:59.224Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T16:07:59.226Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7"
+    },
+    {
+      "time": "2026-11-05T16:07:59.230Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T16:08:00.134Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T16:08:25.807Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:08:26.293Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T16:08:50.413Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:08:50.929Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru? #Shorts",
+    "summary": "Mamas merasa hatinya panas karena temannya, Raka, punya mainan baru. Ibu menjelaskan bahwa itu rasa iri dan obatnya adalah bersyukur. Caranya dengan melihat orang yang nikmatnya lebih sedikit (HR. Muslim no. 2963) dan ikut senang atas kebaikan teman (HR. Bukhari no. 13, Muslim no. 45). Mamas pun bersyukur dan mengucapkan selamat untuk temannya. Raka hanya disebut dalam dialog dan tidak digambar.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Bu, kenapa hatiku panas? Raka punya mainan baru!",
+        "visualDirection": "Halaman rumah sore hari: Mamas cemberut sambil memeluk lutut, Mochi menatapnya dengan kepala miring keheranan."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Itu rasa iri, Mas. Obatnya syukur. Nabi ﷺ bersabda, lihatlah orang di bawahmu. Supaya tidak meremehkan nikmat Allah.",
+        "visualDirection": "Halaman rumah: Ibu duduk di samping Mamas dan mengelus kepalanya dengan lembut, sementara Mochi naik ke pangkuan Mamas."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Nabi ﷺ juga bersabda: iman belum sempurna, sampai kita mencintai untuk saudara, apa yang kita cintai untuk diri sendiri.",
+        "visualDirection": "Halaman rumah: Ibu tersenyum dan menunjuk dada Mamas dengan lembut, wajah Mamas berubah dari cemberut menjadi berpikir."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Alhamdulillah, mainanku juga banyak. Selamat ya, Raka! Hati panas? Ganti dengan syukur, ya!",
+        "visualDirection": "Halaman rumah: Mamas tersenyum lebar dan melambai ke arah pagar (teman tidak digambar), Mochi berguling senang di dekat kotak mainan Mamas."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "انْظُرُوا إِلَى مَنْ أَسْفَلَ مِنْكُمْ وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ",
+        "latin": "Unzhurū ilā man asfala minkum wa lā tanzhurū ilā man huwa fauqakum, fa huwa ajdaru allā tazdarū ni'matallāh.",
+        "translation": "Lihatlah orang yang berada di bawah kalian dan jangan melihat orang yang berada di atas kalian, karena yang demikian itu lebih layak agar kalian tidak meremehkan nikmat Allah.",
+        "source": "HR. Muslim no. 2963"
+      },
+      {
+        "type": "hadits",
+        "arabicText": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+        "latin": "Lā yu'minu ahadukum hattā yuhibba li akhīhi mā yuhibbu li nafsih.",
+        "translation": "Tidak sempurna iman salah seorang di antara kalian sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.",
+        "source": "HR. Bukhari no. 13 dan Muslim no. 45"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Lolos. Panjangnya sekitar 57 kata, masih dalam batas 45–65. Konsepnya satu: rasa iri diobati dengan syukur. Konflik kecilnya punya penyelesaian jelas, yaitu Mamas bersyukur lalu memberi selamat ke Raka. Pesan moralnya tegas di akhir.",
+      "Syariat aman. Tidak ada Nabi, sahabat, atau malaikat yang digambar. Raka tidak digambar dan tidak diberi dialog langsung, cukup disebut oleh Mamas. Kedua hadits masyhur dan shahih, sumbernya juga spesifik.",
+      "Bacaan Arab: tidak ada lafaz Arab atau latin di scene mana pun. Hadits hanya disampaikan lewat terjemah bebas oleh Ibu, jadi aturan pemisahan scene tidak berlaku. Tidak ada ayat Al-Qur'an, jadi aturan pembicara mamas juga tidak berlaku.",
+      "Saran opsional (tidak wajib) untuk scene 2: 'lihatlah orang di bawahmu' agak abstrak untuk anak. Pertimbangkan memparafrasekan sesuai ringkasan, misalnya 'lihatlah orang yang punya lebih sedikit dari kita'. Jumlah kata tetap sama dan maknanya tidak keluar dari hadits.",
+      "Saran opsional untuk scene 3: kalimatnya cukup panjang, sekitar 18 kata dengan banyak koma. Bisa dipecah jadi dua kalimat pendek, misalnya 'Iman belum sempurna. Sampai kita ikut senang untuk saudara, seperti untuk diri sendiri.' Tujuannya agar sesuai pedoman kalimat ≤ 12 kata.",
+      "Catatan kecil di evidences: teks Arab HR. Muslim no. 2963 di beberapa jalur riwayat diakhiri 'نِعْمَةَ اللَّهِ عَلَيْكُمْ'. Sebaiknya teks disamakan dengan redaksi kitab yang dirujuk."
+    ],
+    "humanCheck": [
+      "Dalil 1: HR. Muslim no. 2963. Teksnya 'انْظُرُوا إِلَى مَنْ أَسْفَلَ مِنْكُمْ وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ'. Cek apakah redaksi aslinya diakhiri 'عَلَيْكُمْ', lalu cek kecocokan nomor haditsnya dengan penomoran Fuad Abdul Baqi. Cek juga terjemah dan transliterasi latinnya.",
+      "Dalil 2: HR. Bukhari no. 13 dan Muslim no. 45. Teksnya 'لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ'. Cek kecocokan teks dan nomor haditsnya. Pastikan juga terjemah 'tidak sempurna iman' memang dipakai sesuai syarah ulama, bukan 'tidak beriman'.",
+      "Cek apakah parafrase di narasi scene 2 dan 3 masih setia pada makna kedua hadits.",
+      "Cek apakah karakter Mamas (4 tahun) cocok untuk target usia 7–10, atau target usianya perlu disesuaikan."
+    ]
+  }
+}

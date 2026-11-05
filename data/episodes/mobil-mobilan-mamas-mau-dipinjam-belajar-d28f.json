@@ -1,8 +1,8 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T16:00:21.034Z",
-  "status": "error",
+  "modified": "2026-11-05T16:08:23.965Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "series": "kisah-sebelum-tidur",
@@ -653,10 +653,15 @@
       "time": "2026-11-05T16:00:21.034Z",
       "by": "upload",
       "message": "The user has exceeded the number of videos they may upload."
+    },
+    {
+      "time": "2026-11-05T16:08:23.965Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
     }
   ],
   "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
-  "statusNote": "The user has exceeded the number of videos they may upload.",
+  "statusNote": "Dipulihkan",
   "script": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "summary": "Versi ringkas (±2,5–3 menit). Sepupu Mamas, Dek Hafiz, ingin meminjam mobil-mobilan merah Mamas, Si Merah. Awalnya Mamas menolak karena takut mobilnya rusak. Ibu bertanya, \"Mamas senang tidak, dipinjami?\" Mamas ingat pernah dipinjami sepeda oleh Dek Hafiz, lalu mau bermain bergantian. Pelajarannya: kita ingin teman bahagia seperti kita ingin bahagia (HR. Al-Bukhari no. 13, Muslim no. 45).",
