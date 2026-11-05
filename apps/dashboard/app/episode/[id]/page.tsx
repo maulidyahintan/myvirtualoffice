@@ -49,6 +49,7 @@ import {
   fillAiVoices,
   generateIllustrations,
   reviseOneScene,
+  editSceneText,
   removeIllustration,
   setEpisodeVisualStyle,
   recover,
@@ -165,6 +166,45 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
   );
 }
 
+/** Edit narasi & teks layar satu adegan secara langsung; adegan doa bisa dijadikan cerita biasa tanpa teks Arab. */
+function UbahNarasi({ ep, index }: { ep: Episode; index: number }) {
+  const scene = ep.scenes![index];
+  const adaRekaman = ep.recordingMode === 'per-scene' ? Boolean(ep.audioPerScene?.[index]) : Boolean(ep.audioFile || ep.audioParts?.length);
+  return (
+    <details className="kecil">
+      <summary>✏️ Ubah narasi</summary>
+      <form action={editSceneText} className="stack" style={{ marginTop: 8, gap: 6 }}>
+        <Id id={ep.id} />
+        <input type="hidden" name="adegan" value={index + 1} />
+        <label>
+          Narasi
+          <textarea name="narasi" rows={3} required defaultValue={scene.narration} />
+        </label>
+        <label>
+          Teks layar (opsional, singkat)
+          <input type="text" name="teksLayar" defaultValue={scene.screenText ?? ''} maxLength={40} />
+        </label>
+        {scene.prayer ? (
+          <label style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <input type="checkbox" name="kartuDoa" defaultChecked /> Tampilkan kartu doa (teks Arab di layar)
+          </label>
+        ) : null}
+        <span className="muted">
+          {scene.prayer ? 'Matikan kartu doa kalau adegan ini cukup artinya saja (jadi adegan cerita biasa, bisa diisi suara AI). ' : ''}
+          {adaRekaman
+            ? ep.recordingMode === 'per-scene'
+              ? 'Kalau narasi diubah, rekaman adegan ini dilepas dan perlu direkam ulang (adegan lain tetap).'
+              : 'Kalau narasi diubah, rekaman utuh episode ini tidak cocok lagi dan perlu direkam ulang. Pakai mode rekam per adegan supaya cukup adegan ini saja.'
+            : ''}
+        </span>
+        <SubmitButton type="submit" className="sekunder" teksProses="Menyimpan…">
+          💾 Simpan narasi adegan {index + 1}
+        </SubmitButton>
+      </form>
+    </details>
+  );
+}
+
 /** Perbaiki satu adegan dengan arahan, lalu lihat pratinjau adegan itu saja (narasi & rekaman tetap). */
 function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
   if (ep.idea.type === 'memorization' || !['needs_audio', 'needs_video_approval', 'error'].includes(ep.status)) return null;
@@ -182,6 +222,7 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
           <video controls preload="none" src={`/api/media/${pratinjau}`} style={{ width: '100%', maxWidth: 480, borderRadius: 8 }} />
         </div>
       ) : null}
+      <UbahNarasi ep={ep} index={index} />
       <details className="kecil">
         <summary>🎬 Perbaiki adegan ini</summary>
         <form action={reviseOneScene} className="stack" style={{ marginTop: 8, gap: 6 }}>

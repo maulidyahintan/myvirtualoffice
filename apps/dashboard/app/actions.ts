@@ -552,6 +552,62 @@ export async function fillAiVoices(form: FormData) {
   segarkan(id);
 }
 
+/**
+ * Ubah sendiri narasi (dan teks layar) satu adegan. Untuk adegan doa, kartu doa bisa dimatikan supaya
+ * adegan jadi cerita biasa tanpa teks Arab. Rekaman lama adegan itu tidak cocok lagi, jadi dilepas
+ * (file tidak dihapus) dan episode kembali ke tahap rekam bila perlu.
+ */
+export async function editSceneText(form: FormData) {
+  const id = teks(form, 'id');
+  const i = Number(teks(form, 'adegan')) - 1;
+  const narasi = String(form.get('narasi') ?? '').replace(/\s+/g, ' ').trim();
+  if (!narasi) return;
+  const ep = getEpisode(id);
+  const scene = ep.scenes?.[i];
+  if (!scene || !ep.script?.scenes[i]) return;
+  const tanpaKartu = Boolean(scene.prayer) && form.get('kartuDoa') !== 'on';
+  const teksLayar = teks(form, 'teksLayar');
+  const narasiBerubah = narasi !== scene.narration;
+  if (!narasiBerubah && !tanpaKartu && teksLayar === (scene.screenText ?? '')) return;
+
+  let lepasRekaman = false;
+  updateEpisode(id, (e) => {
+    const s = e.scenes![i];
+    s.narration = narasi;
+    e.script!.scenes[i].narration = narasi;
+    s.screenText = teksLayar || undefined;
+    if (tanpaKartu) {
+      // prayer card off → an ordinary story scene (no Arabic on screen)
+      s.prayer = undefined;
+      s.type = 'story';
+      e.script!.scenes[i].type = 'story';
+    }
+    if (narasiBerubah) {
+      if (e.recordingMode === 'per-scene' && e.audioPerScene?.[i]) {
+        e.audioPerScene[i] = null;
+        if (e.sceneOffsets) e.sceneOffsets[i] = null;
+        if (e.aiVoiceScenes) e.aiVoiceScenes[i] = false;
+        lepasRekaman = true;
+      } else if (e.recordingMode !== 'per-scene' && (e.audioFile || e.audioParts?.length)) {
+        // one recording for the whole episode no longer matches the script
+        e.audioFile = undefined;
+        e.audioParts = undefined;
+        lepasRekaman = true;
+      }
+      if (e.scenePreviews?.[i]) delete e.scenePreviews[i];
+    }
+  });
+  addLog(
+    id,
+    'pemilik',
+    `Narasi adegan ${i + 1} diubah${tanpaKartu ? ' (kartu doa dimatikan)' : ''}${lepasRekaman ? '; rekamannya perlu direkam ulang' : ''}`,
+  );
+  if (lepasRekaman && ['needs_video_approval', 'error'].includes(ep.status)) {
+    setStatus(id, 'needs_audio', 'pemilik', `Adegan ${i + 1} perlu direkam ulang setelah narasinya diubah`);
+  }
+  segarkan(id);
+}
+
 /** Perbaiki satu adegan sesuai arahan pemilik (narasi tetap), lalu render pratinjau adegan itu saja. */
 export async function reviseOneScene(form: FormData) {
   const id = teks(form, 'id');
