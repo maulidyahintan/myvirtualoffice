@@ -548,6 +548,58 @@ export async function fillAiVoices(form: FormData) {
   segarkan(id);
 }
 
+/** Perbaiki satu adegan sesuai arahan pemilik (narasi tetap), lalu render pratinjau adegan itu saja. */
+export async function reviseOneScene(form: FormData) {
+  const id = teks(form, 'id');
+  const adegan = teks(form, 'adegan');
+  const arahan = teks(form, 'arahan');
+  if (!arahan) return;
+  addLog(id, 'pemilik', `Minta adegan ${adegan} diperbaiki: ${arahan.slice(0, 80)}`);
+  runOfficeCommand(['revisi-adegan', id, adegan, arahan], id);
+  segarkan(id);
+}
+
+/** Buat ilustrasi AI untuk adegan penting (atau gambar ulang satu adegan). */
+export async function generateIllustrations(form: FormData) {
+  const id = teks(form, 'id');
+  const adegan = teks(form, 'adegan');
+  addLog(id, 'pemilik', adegan ? `Minta ilustrasi adegan ${adegan} digambar ulang` : 'Minta ilustrasi AI untuk adegan penting');
+  runOfficeCommand(adegan ? ['ilustrasi', id, adegan] : ['ilustrasi', id], id);
+  segarkan(id);
+}
+
+/** Hapus ilustrasi satu adegan: adegan itu kembali memakai animasi biasa. */
+export async function removeIllustration(form: FormData) {
+  const id = teks(form, 'id');
+  const i = Number(teks(form, 'adegan')) - 1;
+  updateEpisode(id, (e) => {
+    const ill = e.scenes?.[i]?.illustration;
+    if (!ill) return;
+    if (ill.image) fs.rmSync(path.join(paths.videoPkg(), 'public', ill.image), { force: true });
+    delete e.scenes![i].illustration;
+  });
+  addLog(id, 'pemilik', `Ilustrasi adegan ${i + 1} dihapus (kembali ke animasi)`);
+  segarkan(id);
+}
+
+/** Gaya visual episode: animasi karakter saja, atau ditambah ilustrasi AI. */
+export async function setEpisodeVisualStyle(form: FormData) {
+  const id = teks(form, 'id');
+  const gaya = teks(form, 'gaya');
+  updateEpisode(id, (e) => {
+    e.visualStyle = gaya === 'ai-illustration' || gaya === 'animation' ? gaya : undefined;
+  });
+  segarkan(id);
+}
+
+/** Gaya visual bawaan channel. */
+export async function saveVisualStyle(form: FormData) {
+  const cfg = loadConfig();
+  cfg.visualStyle = teks(form, 'gaya') === 'ai-illustration' ? 'ai-illustration' : undefined;
+  saveConfig(cfg);
+  revalidatePath('/settings');
+}
+
 /** Simpan instruksi agen (pedoman/niche channel atau instruksi satu pegawai) ke file prompt-nya. */
 export async function saveAgentPrompt(form: FormData) {
   const name = teks(form, 'nama');

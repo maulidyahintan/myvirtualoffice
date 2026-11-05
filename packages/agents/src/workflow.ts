@@ -11,6 +11,7 @@ import {
   listEpisodes,
   loadConfig,
   allowedBackgrounds,
+  visualStyle,
   needsHumanVoice,
   ensureDir,
   type Background,
@@ -29,8 +30,12 @@ import {
 import { fetchSurah, BASMALAH } from './quran.ts';
 import { runAgent } from './run-agent.ts';
 import { AiVoiceUnavailable, speak } from './tts.ts';
+import { IllustrationUnavailable, drawPicture, illustrationReady } from './illustrate.ts';
 import {
   IllustratorSchema,
+  SceneIllustrationSchema,
+  SingleSceneSchema,
+  IllustrationPromptSchema,
   ReportSchema,
   MetadataSchema,
   ScriptSchema,
@@ -40,7 +45,7 @@ import {
   DirectorSchema,
 } from './schemas.ts';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
-import { renderEpisode } from './render.ts';
+import { renderEpisode, renderScenePreview } from './render.ts';
 import { makePrivate, uploadEpisode } from './youtube/upload.ts';
 import { removeFromPlaylist, addToPlaylist } from './youtube/playlist.ts';
 
@@ -403,26 +408,27 @@ export async function reviseDirection(id: string) {
 /** Director output aligned to the approved script: narration, speaker & type are copied verbatim. */
 function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
   // Safety: narration must match script exactly (because it's already/will be recorded)
-  const scriptScenes = ep.script!.scenes;
   const pick = backgroundPicker();
-  return scriptScenes.map((n, i) => {
-    const s = scenes[i] ?? scenes.at(-1)!;
-    const characters = s.characters.slice();
-    if (n.speaker !== 'narrator' && !characters.includes(n.speaker)) characters.push(n.speaker);
-    // actions only for characters present, and sensible (Mochi: sleep/play; Mamas/Mother: anything except sleep)
-    const actions = s.actions?.filter(
-      (x) => characters.includes(x.character) && (x.character === 'mochi' ? x.action === 'sleeping' || x.action === 'playing' : x.action !== 'sleeping'),
-    );
-    return {
-      ...s,
-      background: pick(s.background),
-      type: n.type,
-      speaker: n.speaker,
-      narration: n.narration,
-      characters,
-      actions: actions?.length ? actions : undefined,
-    };
-  });
+  return ep.script!.scenes.map((n, i) => normalizeScene(n, scenes[i] ?? scenes.at(-1)!, pick));
+}
+
+/** One Director scene made safe: narration, speaker & type copied verbatim, sensible actions, allowed background. */
+function normalizeScene(n: Pick<Scene, 'type' | 'speaker' | 'narration'>, s: Scene, pick: (bg: Background) => Background): Scene {
+  const characters = s.characters.slice();
+  if (n.speaker !== 'narrator' && !characters.includes(n.speaker)) characters.push(n.speaker);
+  // actions only for characters present, and sensible (Mochi: sleep/play; Mamas/Mother: anything except sleep)
+  const actions = s.actions?.filter(
+    (x) => characters.includes(x.character) && (x.character === 'mochi' ? x.action === 'sleeping' || x.action === 'playing' : x.action !== 'sleeping'),
+  );
+  return {
+    ...s,
+    background: pick(s.background),
+    type: n.type,
+    speaker: n.speaker,
+    narration: n.narration,
+    characters,
+    actions: actions?.length ? actions : undefined,
+  };
 }
 
 /**
@@ -512,6 +518,165 @@ export async function fillAiVoices(id: string) {
   );
 }
 
+// ---------------------------------------------------------------- REVISE ONE SCENE
+/**
+ * Fix one scene (1-based) from the owner's note, narration unchanged: an AI-illustration scene gets a new
+ * picture, any other scene is redone by the Director. Then only that scene is rendered as a preview.
+ */
+export async function reviseScene(id: string, sceneNo: number, note: string) {
+  const ep = getEpisode(id);
+  const i = sceneNo - 1;
+  const scene = ep.scenes?.[i];
+  if (!scene) throw new Error(`Adegan ${sceneNo} tidak ada`);
+  const cfg = loadConfig();
+  const pictured = visualStyle(ep, cfg) === 'ai-illustration' && scene.illustration;
+
+  if (pictured) {
+    const say = log(id, 'ilustrator');
+    say(`Merevisi gambar adegan ${sceneNo}: ${note.slice(0, 80)}`);
+    const { prompt } = await runAgent({
+      peran: 'ilustrator-adegan',
+      schema: IllustrationPromptSchema,
+      maxTurns: 3,
+      onProgress: say,
+      prompt: [
+        `Tulis ulang deskripsi gambar untuk SATU adegan ini.`,
+        `Narasi adegan ${sceneNo}: ${scene.narration}`,
+        `Deskripsi gambar sebelumnya: ${scene.illustration!.prompt}`,
+        `Catatan pemilik channel (WAJIB diikuti, tetap patuhi aturan gambar): ${note}`,
+      ].join('\n\n'),
+    });
+    let jpg: Buffer;
+    try {
+      jpg = await drawPicture(prompt);
+    } catch (e) {
+      if (e instanceof IllustrationUnavailable) {
+        say(`Gambar adegan ${sceneNo} belum bisa dibuat: ${e.message}`);
+        return;
+      }
+      throw e;
+    }
+    const name = `ilustrasi/${id}-${sceneNo}-${Date.now().toString(36)}.jpg`;
+    fs.writeFileSync(path.join(ensureDir(path.join(paths.videoPkg(), 'public', 'ilustrasi')), path.basename(name)), jpg);
+    updateEpisode(id, (e) => {
+      const old = e.scenes![i].illustration?.image;
+      if (old) fs.rmSync(path.join(paths.videoPkg(), 'public', old), { force: true });
+      e.scenes![i].illustration = { prompt: prompt.trim(), image: name };
+    });
+  } else {
+    const say = log(id, 'sutradara');
+    say(`Merevisi adegan ${sceneNo}: ${note.slice(0, 80)}`);
+    const result = await runAgent({
+      peran: 'sutradara',
+      schema: SingleSceneSchema,
+      maxTurns: 4,
+      onProgress: say,
+      prompt: [
+        formatInfo(ep),
+        `Semua adegan saat ini (untuk konteks):\n${JSON.stringify(ep.scenes!.map(({ illustration: _, ...s }) => s), null, 1)}`,
+        `Revisi HANYA adegan ${sceneNo}. Narasi, speaker, dan type TIDAK boleh diubah (sudah direkam).`,
+        `Catatan pemilik channel untuk adegan ini (WAJIB diikuti, pertahankan yang sudah bagus):\n${note}`,
+        'Kembalikan adegan itu saja.',
+      ].join('\n\n'),
+    });
+    updateEpisode(id, (e) => {
+      const before = e.scenes![i];
+      e.scenes![i] = { ...normalizeScene(before, result.scene, backgroundPicker()), illustration: before.illustration };
+    });
+  }
+
+  const say = log(id, 'video-creator');
+  say(`Merender pratinjau adegan ${sceneNo}`);
+  const file = await renderScenePreview(getEpisode(id), i);
+  if (!file) {
+    say(`Adegan ${sceneNo} sudah direvisi. Pratinjau belum bisa dibuat (belum ada render penuh yang cocok); render ulang untuk melihatnya.`);
+    return;
+  }
+  updateEpisode(id, (e) => {
+    e.scenePreviews = { ...e.scenePreviews, [i]: file };
+  });
+  say(`Pratinjau adegan ${sceneNo} siap. Kalau sudah cocok, render ulang video lengkap.`);
+}
+
+// ---------------------------------------------------------------- AI ILLUSTRATION
+/**
+ * AI pictures of what happens in key scenes (free Cloudflare quota). Without a scene number: the scene
+ * illustrator picks the scenes (once) and every picture still missing is drawn. With a scene number
+ * (1-based): only that picture is drawn again. When the quota runs out the rest stays animated.
+ */
+export async function illustrateEpisode(id: string, sceneNo?: number) {
+  const ep = getEpisode(id);
+  const say = log(id, 'ilustrator');
+  const reason =
+    ep.idea.type === 'memorization'
+      ? 'video hafalan memakai latar biasa'
+      : !ep.scenes?.length
+        ? 'episode belum punya adegan'
+        : !illustrationReady()
+          ? 'isi CLOUDFLARE_ACCOUNT_ID dan CLOUDFLARE_API_TOKEN di .env (akun Cloudflare paket Free)'
+          : undefined;
+  if (reason) {
+    say(`Ilustrasi AI tidak dibuat: ${reason}`);
+    return;
+  }
+  const scenes = ep.scenes!;
+
+  if (!sceneNo && !scenes.some((s) => s.illustration)) {
+    say('Memilih adegan yang perlu digambar');
+    const result = await runAgent({
+      peran: 'ilustrator-adegan',
+      schema: SceneIllustrationSchema,
+      maxTurns: 3,
+      onProgress: say,
+      prompt: `Judul: ${ep.script?.title ?? ep.idea.title}\n\nAdegan:\n${scenes
+        .map((s, i) => `${i + 1}. [${s.type}, ${s.speaker}, tokoh: ${s.characters.join(', ') || '-'}] ${s.narration}`)
+        .join('\n')}`,
+    });
+    const chosen = result.illustrations.filter((x) => {
+      const s = scenes[x.scene - 1];
+      // prayers show the prayer card and questions show the thinking dots: keep those animated
+      return s && s.type === 'story' && !s.prayer && x.prompt.trim();
+    });
+    updateEpisode(id, (e) => {
+      for (const x of chosen) e.scenes![x.scene - 1].illustration = { prompt: x.prompt.trim() };
+      e.visualStyle = 'ai-illustration';
+    });
+    say(`Adegan yang digambar: ${chosen.map((x) => x.scene).join(', ') || '-'}`);
+  }
+
+  const current = getEpisode(id).scenes!;
+  const todo = current
+    .map((s, i) => ({ s, i }))
+    .filter(({ s, i }) => s.illustration && (sceneNo ? i === sceneNo - 1 : !s.illustration.image));
+  if (!todo.length) {
+    say(sceneNo ? `Adegan ${sceneNo} tidak punya deskripsi ilustrasi` : 'Semua ilustrasi sudah ada');
+    return;
+  }
+  const dir = ensureDir(path.join(paths.videoPkg(), 'public', 'ilustrasi'));
+  let done = 0;
+  for (const { s, i } of todo) {
+    let jpg: Buffer;
+    try {
+      jpg = await drawPicture(s.illustration!.prompt);
+    } catch (e) {
+      if (!(e instanceof IllustrationUnavailable)) throw e;
+      say(`Berhenti: ${e.message}. Adegan tanpa gambar tetap memakai animasi biasa.`);
+      break;
+    }
+    const name = `ilustrasi/${id}-${i + 1}-${Date.now().toString(36)}.jpg`;
+    fs.writeFileSync(path.join(dir, path.basename(name)), jpg);
+    updateEpisode(id, (e) => {
+      const ill = e.scenes?.[i]?.illustration;
+      if (!ill) return;
+      if (ill.image) fs.rmSync(path.join(paths.videoPkg(), 'public', ill.image), { force: true });
+      ill.image = name;
+    });
+    done++;
+    say(`Ilustrasi adegan ${i + 1} selesai (${done}/${todo.length})`);
+  }
+  if (done) say(`${done} ilustrasi siap. Cek di halaman episode, lalu render ulang supaya masuk ke video.`);
+}
+
 // ---------------------------------------------------------------- RENDER
 export async function render(id: string) {
   const ep = getEpisode(id);
@@ -530,6 +695,9 @@ export async function render(id: string) {
   });
   updateEpisode(id, (e) => {
     e.render = { ...result, time: new Date().toISOString() };
+    // the full render now contains every revised scene
+    for (const f of Object.values(e.scenePreviews ?? {})) fs.rmSync(path.join(paths.renders(), f), { force: true });
+    e.scenePreviews = undefined;
   });
   setStatus(id, 'needs_video_approval', 'video-creator', 'Video siap ditonton & disetujui');
 }

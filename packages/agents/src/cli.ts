@@ -5,6 +5,8 @@
 //   npm run kantor -- sutradara <id>
 //   npm run kantor -- render <id>
 //   npm run kantor -- suara-ai <id>    (isi adegan yang belum direkam dengan suara AI gratis)
+//   npm run kantor -- revisi-adegan <id> <adegan> "arahan"  (perbaiki satu adegan + render pratinjaunya)
+//   npm run kantor -- ilustrasi <id> [adegan]  (gambar AI gratis untuk adegan penting; nomor adegan = gambar ulang)
 //   npm run kantor -- upload <id> [2026-11-01T16:30:00+07:00]
 //   npm run kantor -- shorts <id> [jumlah] ["arahan"]  (pecah video biasa jadi beberapa Shorts)
 //   npm run kantor -- metadata <id> [render]  (buat ulang judul/deskripsi sesuai format, lalu render)
@@ -32,6 +34,8 @@ import {
   direct,
   reviseDirection,
   fillAiVoices,
+  illustrateEpisode,
+  reviseScene,
   withdrawOldVideos,
   writeScript,
   upload,
@@ -78,6 +82,12 @@ async function main() {
     case 'ai-voice':
     case 'suara-ai':
       return fillAiVoices(need(arg1));
+    case 'revise-scene':
+    case 'revisi-adegan':
+      return reviseScene(need(arg1), Number(arg2), arg3 ?? '');
+    case 'illustrate':
+    case 'ilustrasi':
+      return illustrateEpisode(need(arg1), arg2 ? Number(arg2) : undefined);
     case 'render':
       return render(need(arg1));
     case 'upload':

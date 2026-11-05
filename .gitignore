@@ -14,3 +14,6 @@ packages/video/public/audio/*
 !packages/video/public/audio/.gitkeep
 .claude/worktrees/
 data/suara-ai.json
+packages/video/public/ilustrasi/*
+!packages/video/public/ilustrasi/.gitkeep
+data/ilustrasi-ai.json

@@ -107,3 +107,23 @@ export const IllustratorSchema = z.object({
     }),
   ),
 });
+
+/** Scene illustrator: pick the scenes worth a picture of what happens, and describe each picture. */
+export const SceneIllustrationSchema = z.object({
+  illustrations: z
+    .array(
+      z.object({
+        scene: z.number().describe('scene number, starting at 1'),
+        prompt: z.string().describe('English picture description, no people or faces'),
+      }),
+    )
+    .max(10),
+});
+
+/** Director revising a single scene from the owner's note. */
+export const SingleSceneSchema = z.object({ scene: SceneSchema });
+
+/** Scene illustrator rewriting one picture description from the owner's note. */
+export const IllustrationPromptSchema = z.object({
+  prompt: z.string().describe('English picture description, no people or faces'),
+});

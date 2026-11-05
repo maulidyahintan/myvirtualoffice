@@ -38,6 +38,7 @@ import {
   saveAgentPrompt,
   saveCharacters,
   saveBackgrounds,
+  saveVisualStyle,
 } from '../actions';
 import path from 'node:path';
 import { Collapsible } from '@/components/Collapsible';
@@ -63,6 +64,7 @@ export default function Pengaturan() {
         <PengaturanNiche />
         <PengaturanKarakter />
         <PengaturanLatar />
+        <PengaturanGayaVisual />
         {MUSIC_TYPES.map((jenis) => (
           <PengaturanMusik key={jenis} jenis={jenis} />
         ))}
@@ -437,6 +439,33 @@ function PengaturanInstruksi() {
           <FormPrompt nama={n} />
         </details>
       ))}
+    </Collapsible>
+  );
+}
+
+/** Gaya visual bawaan: animasi saja, atau ditambah ilustrasi AI untuk adegan penting. */
+function PengaturanGayaVisual() {
+  const gaya = loadConfig().visualStyle ?? 'animation';
+  return (
+    <Collapsible id="gaya-visual" judul="🎨 Gaya visual video" ringkasan={gaya === 'ai-illustration' ? 'animasi + ilustrasi AI' : 'animasi saja'}>
+      <form action={saveVisualStyle} className="stack">
+        <p className="muted kecil" style={{ margin: 0 }}>
+          <b>Animasi saja</b>: tokoh & latar yang digambar (seperti sekarang). <b>Animasi + ilustrasi AI</b>: adegan penting (kisah yang
+          diceritakan, kejadian/benda yang dibahas) diberi gambar kejadiannya, gratis lewat Cloudflare dengan jatah harian; kalau jatah
+          habis, adegan itu tetap animasi. Ilustrasinya dibuat dari halaman episode dan bisa diatur per episode.
+        </p>
+        <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
+          {(['animation', 'ai-illustration'] as const).map((g) => (
+            <label key={g} className="kecil" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+              <input type="radio" name="gaya" value={g} defaultChecked={gaya === g} />
+              {g === 'animation' ? '🎞️ Animasi saja' : '🖼️ Animasi + ilustrasi AI'}
+            </label>
+          ))}
+        </div>
+        <SubmitButton type="submit" teksProses="Menyimpan…">
+          💾 Simpan gaya visual
+        </SubmitButton>
+      </form>
     </Collapsible>
   );
 }

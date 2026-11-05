@@ -15,6 +15,7 @@ import {
   paths,
   memorizationSegments,
   speakerVoice,
+  visualStyle,
   updateEpisode,
   type Episode,
   type EpisodeVideoProps,
@@ -357,7 +358,11 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void): 
     channelName: cfg.channelName,
     title: ep.script?.title ?? ep.idea.title,
     seriesName: cfg.series.find((s) => s.id === ep.idea.series)?.name ?? '',
-    scenes: ep.scenes,
+    // AI pictures only in the 'ai-illustration' style; a picture not drawn yet keeps the animation
+    scenes:
+      visualStyle(ep, cfg) === 'ai-illustration'
+        ? ep.scenes
+        : ep.scenes.map(({ illustration: _, ...scene }) => scene),
     audioFile: audioRender && nada ? await shiftPitch(ep.id, audioRender, nada, onLine) : audioRender,
     sceneStarts: mulaiScene,
     format: ep.idea.format ?? 'standard',
@@ -389,4 +394,31 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void): 
   const thumbnail = `${ep.id}.png`;
   await jalankan(['still', 'src/index.ts', 'Thumbnail', path.join(dir, thumbnail), `--props=${thumbPropsFile}`], onLine);
   return { video, thumbnail, scenes };
+}
+
+/**
+ * Quick preview of one scene after it was revised: reuses the props of the last full render (audio and
+ * timing already prepared), swaps in the episode's current version of that scene and renders only its
+ * frames. Returns the file name in data/renders, or undefined when there is no matching full render yet.
+ */
+export async function renderScenePreview(ep: Episode, index: number, onLine?: (s: string) => void): Promise<string | undefined> {
+  const propsFile = path.join(paths.renders(), `${ep.id}.props.json`);
+  if (!fs.existsSync(propsFile) || !ep.scenes?.[index]) return undefined;
+  const props = JSON.parse(fs.readFileSync(propsFile, 'utf8')) as EpisodeVideoProps;
+  // the scene list changed since the last render (e.g. a script revision): timing no longer matches
+  if (props.scenes.length !== ep.scenes.length) return undefined;
+  const cfg = loadConfig();
+  const { illustration, ...scene } = ep.scenes[index];
+  props.scenes[index] = visualStyle(ep, cfg) === 'ai-illustration' && illustration ? { ...scene, illustration } : scene;
+  props.characterLooks = cfg.characterLooks;
+
+  const timing = (await waktuScene(props))[index];
+  const first = Math.round(timing.start * FPS);
+  const last = Math.round((timing.start + timing.duration) * FPS) - 1;
+  const previewProps = path.join(paths.renders(), `${ep.id}.preview.json`);
+  fs.writeFileSync(previewProps, JSON.stringify(props));
+  const file = `${ep.id}-adegan-${index + 1}.mp4`;
+  await jalankan(['render', 'src/index.ts', 'Episode', path.join(paths.renders(), file), `--props=${previewProps}`, `--frames=${first}-${last}`], onLine);
+  fs.rmSync(previewProps, { force: true });
+  return file;
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   needsHumanVoice,
+  visualStyle,
   rootDir,
   backgroundLabel,
   speakerNames,
@@ -45,6 +46,10 @@ import {
   requestRevision,
   requestVideoRevision,
   fillAiVoices,
+  generateIllustrations,
+  reviseOneScene,
+  removeIllustration,
+  setEpisodeVisualStyle,
   recover,
   renderVideo,
   approveScript,
@@ -99,14 +104,18 @@ function PilihModeRekam({ ep }: { ep: Episode }) {
 
 /** Upload rekaman per scene (memorization: per verse). Bisa juga dipakai untuk merekam ulang satu scene saja. */
 /** Kunci suara AI dari .env root (dashboard tidak memuat .env proyek). */
-function suaraAiSiap(): boolean {
-  if (process.env.GEMINI_API_KEY?.trim()) return true;
+/** Apakah kunci ini terisi (dashboard tidak memuat .env proyek, jadi dibaca langsung). */
+function envAda(...nama: string[]): boolean {
+  let isi = '';
   try {
-    return /^GEMINI_API_KEY=[ \t]*\S+/m.test(fs.readFileSync(path.join(rootDir(), '.env'), 'utf8'));
+    isi = fs.readFileSync(path.join(rootDir(), '.env'), 'utf8');
   } catch {
-    return false;
+    /* tidak ada .env */
   }
+  return nama.every((n) => process.env[n]?.trim() || new RegExp(`^${n}=[ \\t]*\\S+`, 'm').test(isi));
 }
+
+const suaraAiSiap = () => envAda('GEMINI_API_KEY');
 
 /** Pemakaian suara AI hari ini (ditulis pengisi suara di data/suara-ai.json). */
 function pemakaianSuaraAi(): { requests: number; exhausted: boolean } {
@@ -152,6 +161,138 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
         {ep.recordingMode !== 'per-scene' ? ' Mode rekam otomatis pindah ke per adegan.' : ''}
       </span>
     </form>
+  );
+}
+
+/** Perbaiki satu adegan dengan arahan, lalu lihat pratinjau adegan itu saja (narasi & rekaman tetap). */
+function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
+  if (ep.idea.type === 'memorization' || !['needs_audio', 'needs_video_approval', 'error'].includes(ep.status)) return null;
+  const scene = ep.scenes![index];
+  const gambar = visualStyle(ep, loadConfig()) === 'ai-illustration' && scene.illustration;
+  const pratinjau = ep.scenePreviews?.[index];
+  const sedang = isBusy(ep.id);
+  return (
+    <div className="stack" style={{ gap: 6, marginTop: 6 }}>
+      {pratinjau ? (
+        <div className="stack" style={{ gap: 4 }}>
+          <span className="kecil">
+            <b>👀 Pratinjau adegan {index + 1} setelah diperbaiki</b> <span className="muted">(belum masuk video lengkap)</span>
+          </span>
+          <video controls preload="none" src={`/api/media/${pratinjau}`} style={{ width: '100%', maxWidth: 480, borderRadius: 8 }} />
+        </div>
+      ) : null}
+      <details className="kecil">
+        <summary>🎬 Perbaiki adegan ini</summary>
+        <form action={reviseOneScene} className="stack" style={{ marginTop: 8, gap: 6 }}>
+          <Id id={ep.id} />
+          <input type="hidden" name="adegan" value={index + 1} />
+          <textarea
+            name="arahan"
+            rows={2}
+            required
+            placeholder={
+              gambar
+                ? 'contoh: burungnya lebih dekat dan kerikilnya jelas, langit sore'
+                : 'contoh: Ibu memegang Al-Qur\'an, latar kamar malam, Mamas tersenyum, Mochi tidur di dekatnya'
+            }
+          />
+          <span className="muted">
+            {gambar ? 'Gambar AI adegan ini dibuat ulang sesuai arahan.' : 'Sutradara menyusun ulang latar, tokoh, ekspresi, aksi & properti adegan ini.'} Narasi &
+            rekaman tetap. {ep.render ? 'Setelah itu pratinjau adegan ini saja dirender (±1 menit).' : ''}
+          </span>
+          <SubmitButton type="submit" className="sekunder" disabled={sedang} teksProses="Mengirim…">
+            🎬 Perbaiki adegan {index + 1}
+          </SubmitButton>
+        </form>
+      </details>
+    </div>
+  );
+}
+
+/** Ilustrasi AI untuk adegan penting: pilih gaya visual, buat, cek, gambar ulang, atau hapus per adegan. */
+function PanelIlustrasi({ ep }: { ep: Episode }) {
+  if (ep.idea.type === 'memorization' || !ep.scenes?.length) return null;
+  if (!['needs_audio', 'needs_video_approval', 'error'].includes(ep.status)) return null;
+  const cfg = loadConfig();
+  const gaya = visualStyle(ep, cfg);
+  const siap = envAda('CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN');
+  const ada = ep.scenes.map((s, i) => ({ s, i })).filter(({ s }) => s.illustration);
+  const kurang = ada.filter(({ s }) => !s.illustration?.image).length;
+  const sedang = isBusy(ep.id);
+  return (
+    <div className="panel stack">
+      <h2>🖼️ Ilustrasi AI (opsional)</h2>
+      <p className="kecil muted" style={{ margin: 0 }}>
+        Adegan penting (kisah yang diceritakan, benda/kejadian yang dibahas) diberi gambar kejadiannya, penuh layar dengan gerak kamera
+        pelan. Percakapan tetap animasi tokoh kita. Gambar tanpa manusia, gratis lewat Cloudflare (ada jatah harian).
+      </p>
+      <form action={setEpisodeVisualStyle} className="row" style={{ gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+        <Id id={ep.id} />
+        <span className="kecil">Gaya visual episode ini:</span>
+        {(['animation', 'ai-illustration'] as const).map((g) => (
+          <SubmitButton key={g} type="submit" name="gaya" value={g} className={gaya === g ? '' : 'sekunder'} disabled={gaya === g}>
+            {g === 'animation' ? '🎞️ Animasi saja' : '🖼️ Animasi + ilustrasi AI'}
+          </SubmitButton>
+        ))}
+      </form>
+      {gaya === 'ai-illustration' ? (
+        <>
+          {!siap ? (
+            <p className="kecil muted" style={{ margin: 0 }}>
+              Belum disiapkan: buat akun <b>Cloudflare paket Free</b>, lalu isi <code>CLOUDFLARE_ACCOUNT_ID=</code> dan{' '}
+              <code>CLOUDFLARE_API_TOKEN=</code> (template token &quot;Workers AI&quot;) di file <code>.env</code> proyek.
+            </p>
+          ) : !ada.length || kurang ? (
+            <form action={generateIllustrations}>
+              <Id id={ep.id} />
+              <SubmitButton type="submit" disabled={sedang} teksProses="Memulai…">
+                🖼️ {ada.length ? `Buat ${kurang} ilustrasi yang belum ada` : 'Pilih adegan & buat ilustrasi'}
+              </SubmitButton>
+            </form>
+          ) : null}
+          {ada.length ? (
+            <div className="grid-ilustrasi">
+              {ada.map(({ s, i }) => (
+                <figure key={i} className="kartu-ilustrasi">
+                  {s.illustration?.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={`/api/illustration/${path.basename(s.illustration.image)}`} alt={`Ilustrasi adegan ${i + 1}`} />
+                  ) : (
+                    <div className="ilustrasi-kosong kecil muted">belum digambar</div>
+                  )}
+                  <figcaption className="kecil">
+                    <b>Adegan {i + 1}</b> <span className="muted">· {s.illustration?.prompt}</span>
+                  </figcaption>
+                  <div className="row" style={{ gap: 6 }}>
+                    {siap ? (
+                      <form action={generateIllustrations}>
+                        <Id id={ep.id} />
+                        <input type="hidden" name="adegan" value={i + 1} />
+                        <SubmitButton type="submit" className="sekunder" disabled={sedang} teksProses="…">
+                          🔁 Gambar ulang
+                        </SubmitButton>
+                      </form>
+                    ) : null}
+                    <form action={removeIllustration}>
+                      <Id id={ep.id} />
+                      <input type="hidden" name="adegan" value={i + 1} />
+                      <SubmitButton type="submit" className="sekunder" teksProses="…">
+                        ✕ Pakai animasi
+                      </SubmitButton>
+                    </form>
+                  </div>
+                </figure>
+              ))}
+            </div>
+          ) : null}
+          {ada.some(({ s }) => s.illustration?.image) && ep.status === 'needs_video_approval' ? (
+            <p className="kecil muted" style={{ margin: 0 }}>
+              Cek tiap gambar (pastikan tidak ada sosok manusia), lalu <b>render ulang</b> supaya ilustrasi masuk ke video.
+            </p>
+          ) : null}
+        </>
+      ) : null}
+    </div>
   );
 }
 
@@ -974,6 +1115,7 @@ export default async function HalamanEpisode({
                     </div>
                     <div className="narasi-baca">{a.narration}</div>
                     {'visualDirection' in a ? <div className="kecil muted">🎬 {a.visualDirection}</div> : null}
+                    {ep.scenes ? <PerbaikiAdegan ep={ep} index={i} /> : null}
                   </div>
                 </div>
               ))}
@@ -1018,6 +1160,7 @@ export default async function HalamanEpisode({
 
         <div className="stack">
           <PanelAksi ep={ep} jadwalTerlaluDekat={jadwalTerlaluDekat} />
+          <PanelIlustrasi ep={ep} />
 
           <div className="panel">
             <h2>Ide</h2>
