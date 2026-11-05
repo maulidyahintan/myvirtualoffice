@@ -491,11 +491,11 @@ export async function fillAiVoices(id: string) {
       break;
     }
     const name = `${id}-adegan-${i + 1}-ai-${Date.now().toString(36)}.wav`;
-    fs.writeFileSync(path.join(dir, name), audio);
-    // re-read inside the update so recordings uploaded meanwhile are kept
+    // re-read inside the update so recordings uploaded meanwhile are kept (and no unused file is left)
     updateEpisode(id, (e) => {
       const n = e.scenes?.length ?? 0;
       if (e.audioPerScene?.[i]) return;
+      fs.writeFileSync(path.join(dir, name), audio);
       e.audioPerScene = Array.from({ length: n }, (_, k) => e.audioPerScene?.[k] ?? null);
       e.audioPerScene[i] = `audio/${name}`;
       e.sceneOffsets = Array.from({ length: n }, (_, k) => e.sceneOffsets?.[k] ?? null);

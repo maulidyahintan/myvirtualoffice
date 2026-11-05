@@ -19,7 +19,9 @@ interface Usage {
   characters: number;
   /** TTS model that worked for this key */
   model?: string;
-  /** Set when Google refused because the daily free quota ran out */
+  /** Models whose daily free quota ran out today (each model has its own quota) */
+  exhaustedModels?: string[];
+  /** Set when every model's daily free quota ran out */
   exhaustedAt?: string;
 }
 
@@ -74,7 +76,8 @@ export async function speak(text: string, speaker: Speaker): Promise<Buffer> {
 
   const { voice, style } = AI_VOICES[speaker];
   const forced = process.env.GEMINI_TTS_MODEL?.trim();
-  const models = forced ? [forced] : usage.model ? [usage.model, ...MODELS.filter((m) => m !== usage.model)] : MODELS;
+  const ordered = forced ? [forced] : usage.model ? [usage.model, ...MODELS.filter((m) => m !== usage.model)] : MODELS;
+  const models = ordered.filter((m) => !usage.exhaustedModels?.includes(m));
   const body = JSON.stringify({
     contents: [{ parts: [{ text: `${style}: ${spoken(text)}` }] }],
     generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } },
@@ -93,7 +96,8 @@ export async function speak(text: string, speaker: Speaker): Promise<Buffer> {
         const data = JSON.parse(raw) as { candidates?: { content?: { parts?: { inlineData?: { data?: string } }[] } }[] };
         const b64 = data.candidates?.[0]?.content?.parts?.find((p) => p.inlineData?.data)?.inlineData?.data;
         if (!b64) throw new Error('Suara AI tidak mengembalikan audio');
-        saveUsage({ ...aiVoiceUsage(), model, requests: usage.requests + 1, characters: usage.characters + text.length });
+        const now = aiVoiceUsage();
+        saveUsage({ ...now, model, requests: now.requests + 1, characters: now.characters + text.length });
         return wav(Buffer.from(b64, 'base64'));
       }
       if (res.status === 404) break; // model not available for this key → try the next one
@@ -104,8 +108,13 @@ export async function speak(text: string, speaker: Speaker): Promise<Buffer> {
           await sleep((wait + 1) * 1000);
           continue;
         }
-        saveUsage({ ...aiVoiceUsage(), exhaustedAt: new Date().toISOString() });
-        throw new AiVoiceUnavailable('Jatah suara AI gratis sudah habis');
+        if (perDay) {
+          // this model is done for today; the next (older) model has its own free quota
+          const now = aiVoiceUsage();
+          saveUsage({ ...now, exhaustedModels: [...(now.exhaustedModels ?? []), model] });
+          break;
+        }
+        throw new AiVoiceUnavailable('Suara AI sedang dibatasi Google (terlalu banyak permintaan per menit); coba lagi sebentar lagi');
       }
       if (res.status === 400 || res.status === 403) {
         const msg = (raw.match(/"message":\s*"([^"]+)"/)?.[1] ?? raw).slice(0, 200);
@@ -113,6 +122,10 @@ export async function speak(text: string, speaker: Speaker): Promise<Buffer> {
       }
       throw new Error(`Suara AI gagal (${res.status}): ${raw.slice(0, 200)}`);
     }
+  }
+  if (aiVoiceUsage().exhaustedModels?.length) {
+    saveUsage({ ...aiVoiceUsage(), exhaustedAt: new Date().toISOString() });
+    throw new AiVoiceUnavailable('Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari)');
   }
   throw new AiVoiceUnavailable('Model suara AI tidak tersedia untuk API key ini');
 }

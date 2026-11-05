@@ -36,6 +36,8 @@ import {
   NO_DRAFT_STATUSES,
   BACKGROUNDS,
   CHARACTERS,
+  aiJobMarker,
+  isBusy,
   DEFAULT_CHARACTER_LOOKS,
   DEFAULT_CHARACTER_PROFILES,
   BACKGROUND_LABEL,
@@ -543,6 +545,8 @@ export async function saveCharacterVoices(form: FormData) {
 /** Isi adegan yang belum direkam dengan suara AI gratis (bacaan Arab dilewati, rekam sendiri). */
 export async function fillAiVoices(form: FormData) {
   const id = teks(form, 'id');
+  // one AI helper job per episode at a time (repeated clicks would spend the free quota twice)
+  if (isBusy(aiJobMarker(id))) return;
   addLog(id, 'pemilik', 'Minta adegan kosong diisi suara AI');
   runOfficeCommand(['suara-ai', id], id);
   segarkan(id);
@@ -551,6 +555,8 @@ export async function fillAiVoices(form: FormData) {
 /** Perbaiki satu adegan sesuai arahan pemilik (narasi tetap), lalu render pratinjau adegan itu saja. */
 export async function reviseOneScene(form: FormData) {
   const id = teks(form, 'id');
+  // one AI helper job per episode at a time (repeated clicks would spend the free quota twice)
+  if (isBusy(aiJobMarker(id))) return;
   const adegan = teks(form, 'adegan');
   const arahan = teks(form, 'arahan');
   if (!arahan) return;
@@ -562,6 +568,8 @@ export async function reviseOneScene(form: FormData) {
 /** Buat ilustrasi AI untuk adegan penting (atau gambar ulang satu adegan). */
 export async function generateIllustrations(form: FormData) {
   const id = teks(form, 'id');
+  // one AI helper job per episode at a time (repeated clicks would spend the free quota twice)
+  if (isBusy(aiJobMarker(id))) return;
   const adegan = teks(form, 'adegan');
   addLog(id, 'pemilik', adegan ? `Minta ilustrasi adegan ${adegan} digambar ulang` : 'Minta ilustrasi AI untuk adegan penting');
   runOfficeCommand(adegan ? ['ilustrasi', id, adegan] : ['ilustrasi', id], id);

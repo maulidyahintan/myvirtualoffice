@@ -19,7 +19,7 @@
 //   npm run kantor -- laporan
 //   npm run kantor -- status
 import './env.ts';
-import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent } from '@kantor/shared';
+import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent, aiJobMarker, isBusy } from '@kantor/shared';
 import { replyToChat } from './chat.ts';
 import { uninstallScheduler, installScheduler, runDailyResearchIfDue } from './automation.ts';
 import { splitIntoShorts } from './shorts.ts';
@@ -81,13 +81,13 @@ async function main() {
       return reviseDirection(need(arg1));
     case 'ai-voice':
     case 'suara-ai':
-      return fillAiVoices(need(arg1));
+      return oneAtATime(need(arg1), () => fillAiVoices(arg1));
     case 'revise-scene':
     case 'revisi-adegan':
-      return reviseScene(need(arg1), Number(arg2), arg3 ?? '');
+      return oneAtATime(need(arg1), () => reviseScene(arg1, Number(arg2), arg3 ?? ''));
     case 'illustrate':
     case 'ilustrasi':
-      return illustrateEpisode(need(arg1), arg2 ? Number(arg2) : undefined);
+      return oneAtATime(need(arg1), () => illustrateEpisode(arg1, arg2 ? Number(arg2) : undefined));
     case 'render':
       return render(need(arg1));
     case 'upload':
@@ -161,6 +161,24 @@ async function main() {
       return;
     default:
       console.log('Commands: research|riset | daily|harian | daily-install|harian-pasang | daily-uninstall|harian-lepas | chat <agent> | write|tulis <id> | memorization|hafalan <id> | direct|sutradara <id> | render <id> | upload <id> [schedule] | shorts <id> [count] | metadata <id> [render] | plan|rencana [guidance] | playlist [id] | withdraw|tarik <id> | report|laporan | status');
+  }
+}
+
+/**
+ * AI helper jobs on one episode never run side by side (repeated clicks would spend the small free
+ * quota twice and write over each other): a second one while the first is running is skipped.
+ */
+async function oneAtATime(id: string, work: () => Promise<void>) {
+  const marker = aiJobMarker(id);
+  if (isBusy(marker)) {
+    console.log(`Pekerjaan AI untuk ${id} masih berjalan, permintaan ini dilewati`);
+    return;
+  }
+  markBusy(marker);
+  try {
+    await work();
+  } finally {
+    markDone(marker);
   }
 }
 

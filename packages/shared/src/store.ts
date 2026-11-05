@@ -246,6 +246,9 @@ export function markBusy(name: string) {
   fs.writeFileSync(markerFile(name), String(process.pid));
 }
 
+/** Marker for an episode's optional AI helper job (AI voice, illustrations, fixing one scene): one at a time. */
+export const aiJobMarker = (episodeId: string) => `${episodeId}-ai`;
+
 export function markDone(name: string) {
   fs.rmSync(markerFile(name), { force: true });
 }

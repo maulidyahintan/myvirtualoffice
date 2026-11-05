@@ -3,6 +3,7 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  aiJobMarker,
   needsHumanVoice,
   visualStyle,
   rootDir,
@@ -147,17 +148,17 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
     );
   }
   const pakai = pemakaianSuaraAi();
-  const sedang = isBusy(ep.id);
+  const sedang = isBusy(aiJobMarker(ep.id));
   return (
     <form action={fillAiVoices} className="stack" style={{ gap: 6 }}>
       <Id id={ep.id} />
       <SubmitButton type="submit" className="sekunder" disabled={pakai.exhausted || sedang} teksProses="Memulai…">
-        🤖 Isi {bisaAi} adegan dengan suara AI (gratis)
+        {sedang ? '⏳ Sedang mengisi suara AI…' : `🤖 Isi ${bisaAi} adegan dengan suara AI (gratis)`}
       </SubmitButton>
       <span className="kecil muted">
         {pakai.exhausted
           ? 'Jatah suara AI gratis hari ini sudah habis; rekam sendiri atau coba lagi besok.'
-          : `Narasi bahasa Indonesia saja${arab ? `; ${arab} adegan berisi bacaan Arab tetap rekam sendiri` : ''}. Kalau jatah gratis habis di tengah jalan, sisanya rekam sendiri. Hari ini: ${pakai.requests} adegan.`}
+          : `Narasi bahasa Indonesia saja${arab ? `; ${arab} adegan berisi bacaan Arab tetap rekam sendiri` : ''}. Jatah gratis Google ±10 adegan per hari; kalau habis di tengah jalan, sisanya rekam sendiri atau lanjutkan besok. Hari ini terpakai: ${pakai.requests} adegan.`}
         {ep.recordingMode !== 'per-scene' ? ' Mode rekam otomatis pindah ke per adegan.' : ''}
       </span>
     </form>
@@ -170,7 +171,7 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
   const scene = ep.scenes![index];
   const gambar = visualStyle(ep, loadConfig()) === 'ai-illustration' && scene.illustration;
   const pratinjau = ep.scenePreviews?.[index];
-  const sedang = isBusy(ep.id);
+  const sedang = isBusy(aiJobMarker(ep.id));
   return (
     <div className="stack" style={{ gap: 6, marginTop: 6 }}>
       {pratinjau ? (
@@ -218,7 +219,7 @@ function PanelIlustrasi({ ep }: { ep: Episode }) {
   const siap = envAda('CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN');
   const ada = ep.scenes.map((s, i) => ({ s, i })).filter(({ s }) => s.illustration);
   const kurang = ada.filter(({ s }) => !s.illustration?.image).length;
-  const sedang = isBusy(ep.id);
+  const sedang = isBusy(aiJobMarker(ep.id));
   return (
     <div className="panel stack">
       <h2>🖼️ Ilustrasi AI (opsional)</h2>
@@ -1062,7 +1063,9 @@ export default async function HalamanEpisode({
         <div className="row">
           <TombolDraft ep={ep} />
           <AskAgentButton />
-          <AutoRefresh aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`)} />
+          <AutoRefresh
+            aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`) || isBusy(aiJobMarker(ep.id))}
+          />
         </div>
       </div>
 
