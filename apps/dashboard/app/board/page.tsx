@@ -24,11 +24,28 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
   const namaSeri = (id: string) => cfg.series.find((s) => s.id === id)?.name ?? id;
   const jumlahFormat = (f: FilterFormat) => (f === 'all' ? semua.length : semua.filter((e) => (e.idea.format ?? 'standard') === f).length);
   // kolom: fase kerja (tanpa draft), lalu Draft sebelum Arsip
+  // Draft & Arsip are folded into narrow strips by default so the work columns get the room
+  const open = new Set(String(sp.open ?? '').split(',').filter(Boolean));
   const kolom = [
-    ...PHASES.filter((f) => f.title !== 'Arsip').map((f) => ({ title: f.title, isi: aktif.filter((e) => f.statuses.includes(e.status)), draft: false })),
-    { title: 'Draft', isi: draft, draft: true },
-    ...PHASES.filter((f) => f.title === 'Arsip').map((f) => ({ title: f.title, isi: aktif.filter((e) => f.statuses.includes(e.status)), draft: false })),
+    ...PHASES.filter((f) => f.title !== 'Arsip').map((f) => ({ key: f.title, title: f.title, isi: aktif.filter((e) => f.statuses.includes(e.status)), lipat: false })),
+    { key: 'draft', title: '📥 Draft', isi: draft, lipat: true },
+    ...PHASES.filter((f) => f.title === 'Arsip').map((f) => ({ key: 'arsip', title: '🗄️ Arsip', isi: aktif.filter((e) => f.statuses.includes(e.status)), lipat: true })),
   ];
+  const tutup = (k: { key: string; lipat: boolean }) => k.lipat && !open.has(k.key);
+  const url = (opsi: { format?: FilterFormat; open?: Set<string> }) => {
+    const q = new URLSearchParams();
+    const f = opsi.format ?? filter;
+    const o = [...(opsi.open ?? open)];
+    if (f !== 'all') q.set('format', f);
+    if (o.length) q.set('open', o.join(','));
+    return q.size ? `/board?${q}` : '/board';
+  };
+  const alihkan = (key: string) => {
+    const o = new Set(open);
+    if (o.has(key)) o.delete(key);
+    else o.add(key);
+    return url({ open: o });
+  };
 
   return (
     <div className="stack halaman-papan">
@@ -43,7 +60,7 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
           <AutoRefresh aktif={adaYangSibuk} />
           <nav className="pilih-tampilan" aria-label="Filter format">
             {(Object.keys(FILTER_FORMAT) as FilterFormat[]).map((f) => (
-              <Link key={f} href={f === 'all' ? '/board' : `/board?format=${f}`} className={filter === f ? 'aktif' : ''}>
+              <Link key={f} href={url({ format: f })} className={filter === f ? 'aktif' : ''}>
                 {FILTER_FORMAT[f]} <span className="hitung">{jumlahFormat(f)}</span>
               </Link>
             ))}
@@ -63,33 +80,46 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
         </SubmitButton>
       </form>
 
-      <div className="board">
-        {kolom.map((k) => (
-          <section key={k.title} className={`kolom ${k.draft ? 'kolom-draft' : ''}`}>
-            <h3>
-              {k.draft ? '📥 Draft' : k.title} <span>{k.isi.length}</span>
-            </h3>
-            {/* tiap kolom bergulir sendiri, papan tetap setinggi layar */}
-            <div className="kolom-isi">
-              {k.draft && k.isi.length === 0 ? (
-                <div className="kecil muted">Episode yang belum mau ditayangkan. Pindahkan lewat tombol “📥 Simpan ke Draft” di halaman episode.</div>
-              ) : null}
-              {k.isi.map((e) => (
-                <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
-                  <div className="judul">{e.script?.title ?? e.idea.title}</div>
-                  <div className="kecil muted" style={{ marginBottom: 6 }}>
-                    {e.idea.format === 'short' ? '📱 Shorts · ' : ''}
-                    {e.twin ? '🔗 ' : ''}
-                    {e.source ? '✂️ ' : ''}
-                    {namaSeri(e.idea.series)} · usia {e.idea.age}
-                  </div>
-                  <Badge status={e.status} />
-                </Link>
-              ))}
-              {!k.draft && k.isi.length === 0 ? <div className="kecil muted">—</div> : null}
-            </div>
-          </section>
-        ))}
+      <div className="board" style={{ gridTemplateColumns: kolom.map((k) => (tutup(k) ? '46px' : 'minmax(158px, 1fr)')).join(' ') }}>
+        {kolom.map((k) =>
+          tutup(k) ? (
+            // kolom terlipat: strip tipis, klik untuk membuka
+            <Link key={k.key} href={alihkan(k.key)} className={`kolom-lipat ${k.key === 'draft' ? 'kolom-draft' : ''}`} title={`Tampilkan ${k.title}`}>
+              <span className="kolom-lipat-jumlah">{k.isi.length}</span>
+              <span className="kolom-lipat-judul">{k.title}</span>
+            </Link>
+          ) : (
+            <section key={k.key} className={`kolom ${k.key === 'draft' ? 'kolom-draft' : ''}`}>
+              <h3>
+                {k.title} <span>{k.isi.length}</span>
+                {k.lipat ? (
+                  <Link href={alihkan(k.key)} className="kolom-tutup" title={`Sembunyikan ${k.title}`}>
+                    ✕
+                  </Link>
+                ) : null}
+              </h3>
+              {/* tiap kolom bergulir sendiri, papan tetap setinggi layar */}
+              <div className="kolom-isi">
+                {k.key === 'draft' && k.isi.length === 0 ? (
+                  <div className="kecil muted">Episode yang belum mau ditayangkan. Pindahkan lewat tombol “📥 Simpan ke Draft” di halaman episode.</div>
+                ) : null}
+                {k.isi.map((e) => (
+                  <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
+                    <div className="judul">{e.script?.title ?? e.idea.title}</div>
+                    <div className="kecil muted" style={{ marginBottom: 6 }}>
+                      {e.idea.format === 'short' ? '📱 Shorts · ' : ''}
+                      {e.twin ? '🔗 ' : ''}
+                      {e.source ? '✂️ ' : ''}
+                      {namaSeri(e.idea.series)} · usia {e.idea.age}
+                    </div>
+                    <Badge status={e.status} />
+                  </Link>
+                ))}
+                {k.key !== 'draft' && k.isi.length === 0 ? <div className="kecil muted">—</div> : null}
+              </div>
+            </section>
+          ),
+        )}
       </div>
     </div>
   );
