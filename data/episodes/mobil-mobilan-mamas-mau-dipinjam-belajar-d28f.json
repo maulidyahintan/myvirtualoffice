@@ -1,8 +1,8 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T15:29:40.279Z",
-  "status": "needs_audio",
+  "modified": "2026-11-05T15:39:24.576Z",
+  "status": "rendering",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "series": "kisah-sebelum-tidur",
@@ -548,10 +548,55 @@
       "time": "2026-11-05T15:29:40.279Z",
       "by": "pengisi-suara",
       "message": "6 adegan diisi suara AI · rekam sendiri adegan 13"
+    },
+    {
+      "time": "2026-11-05T15:38:11.688Z",
+      "by": "pemilik",
+      "message": "Narasi adegan 13 diubah (kartu doa dimatikan)"
+    },
+    {
+      "time": "2026-11-05T15:38:18.402Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:38:19.322Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 1 adegan dengan suara AI gratis"
+    },
+    {
+      "time": "2026-11-05T15:38:30.474Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-05T15:38:30.475Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-05T15:38:56.669Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:38:57.501Z",
+      "by": "pengisi-suara",
+      "message": "Semua adegan sudah ada suaranya"
+    },
+    {
+      "time": "2026-11-05T15:39:02.760Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-05T15:39:03.362Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
     }
   ],
   "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
-  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "statusNote": "Render dengan rekaman suara",
   "script": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "summary": "Versi ringkas (±2,5–3 menit). Sepupu Mamas, Dek Hafiz, ingin meminjam mobil-mobilan merah Mamas, Si Merah. Awalnya Mamas menolak karena takut mobilnya rusak. Ibu bertanya, \"Mamas senang tidak, dipinjami?\" Mamas ingat pernah dipinjami sepeda oleh Dek Hafiz, lalu mau bermain bergantian. Pelajarannya: kita ingin teman bahagia seperti kita ingin bahagia (HR. Al-Bukhari no. 13, Muslim no. 45).",
@@ -629,9 +674,9 @@
         "visualDirection": "Ibu duduk di samping Mamas di karpet, memeluk pundaknya; cahaya lembut, tanpa menggambarkan sosok Nabi."
       },
       {
-        "type": "prayer",
+        "type": "story",
         "speaker": "mamas",
-        "narration": "Yuk, berdoa supaya akhlak kita baik. Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta. Ya Allah, tunjukilah aku kepada akhlak yang paling baik.",
+        "narration": "Yuk, berdoa supaya akhlak kita baik. Ya Allah, tunjukilah aku kepada akhlak yang paling baik.",
         "visualDirection": "Malam di kamar, Mamas dan Ibu menengadahkan tangan berdoa, Mochi tidur meringkuk di dekat mobil merah."
       },
       {
@@ -957,9 +1002,9 @@
       ]
     },
     {
-      "type": "prayer",
+      "type": "story",
       "speaker": "mamas",
-      "narration": "Yuk, berdoa supaya akhlak kita baik. Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta. Ya Allah, tunjukilah aku kepada akhlak yang paling baik.",
+      "narration": "Yuk, berdoa supaya akhlak kita baik. Ya Allah, tunjukilah aku kepada akhlak yang paling baik.",
       "background": "bedroom-night",
       "characters": [
         "mamas",
@@ -967,11 +1012,6 @@
         "mochi"
       ],
       "expression": "calm",
-      "prayer": {
-        "arabic": "وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ",
-        "latin": "Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta.",
-        "meaning": "Tunjukilah aku kepada akhlak yang paling baik, tidak ada yang dapat menunjukkan kepada yang paling baik kecuali Engkau. (HR. Muslim no. 771)"
-      },
       "props": [
         "prayer-mat",
         "pillow",
@@ -1036,7 +1076,7 @@
     "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-10-ai-mw3pb3qn.wav",
     "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-11-ai-mw3pb9g2.wav",
     "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-12-ai-mw3pbhlr.wav",
-    null,
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-13-ai-mw3pn2rq.wav",
     "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-14-ai-mw3pbpo5.wav"
   ],
   "sceneOffsets": [
@@ -1068,8 +1108,9 @@
     true,
     true,
     true,
-    false,
+    true,
     true
   ],
-  "recordingMode": "per-scene"
+  "recordingMode": "per-scene",
+  "audioFile": "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-gabung.wav"
 }
