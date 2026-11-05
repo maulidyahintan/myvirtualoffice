@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-wudhu-tidak-boleh-boros-air-8270",
   "created": "2026-11-05T03:44:27.212Z",
-  "modified": "2026-11-05T03:44:27.212Z",
-  "status": "idea",
+  "modified": "2026-11-05T16:06:13.164Z",
+  "status": "writing",
   "idea": {
     "title": "Kenapa Ya Wudhu Tidak Boleh Boros Air?",
     "series": "kenapa-ya",
@@ -21,6 +21,176 @@
       "time": "2026-11-05T03:44:27.212Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T16:04:47.604Z",
+      "by": "pemilik",
+      "message": "Dibuat juga versi Shorts: kenapa-ya-wudhu-tidak-boleh-boros-air-aa92"
+    },
+    {
+      "time": "2026-11-05T16:04:47.607Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T16:04:48.502Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T16:05:37.406Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:05:37.812Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T16:06:12.772Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:06:13.164Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
     }
-  ]
+  ],
+  "twin": "kenapa-ya-wudhu-tidak-boleh-boros-air-aa92",
+  "statusNote": "Revisi otomatis ke-1",
+  "script": {
+    "title": "Kenapa Ya Wudhu Tidak Boleh Boros Air?",
+    "summary": "Mamas berwudhu dengan keran terbuka deras sambil main cipratan air. Ibu menaruh ember di bawah keran, dan ember itu hampir penuh sebelum wudhu Mamas selesai. Ibu menjelaskan bahwa air adalah nikmat Allah. Ibu juga bercerita bahwa Rasulullah ﷺ berwudhu cukup dengan satu mud air, kira-kira secakupan dua telapak tangan orang dewasa, dan bahwa Allah tidak menyukai orang yang berlebih-lebihan. Mamas lalu berwudhu lagi dengan air secukupnya. Air di ember dipakai untuk menyiram bunga. Cerita ditutup dengan doa setelah wudhu.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Sore ini, Mamas mau wudhu untuk shalat Ashar.",
+        "visualDirection": "Tempat wudhu di rumah pada sore hari yang cerah. Mamas berdiri di depan keran, dan Mochi duduk di dekatnya."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas membuka keran deras sekali. Byuuur! Sambil wudhu, Mamas asyik main cipratan air. Cipratannya kena Mochi. Mochi melompat kaget, bulunya basah!",
+        "visualDirection": "Tempat wudhu. Air keran mengalir deras, Mamas tertawa sambil memercikkan air, dan Mochi melompat menjauh dengan bulu basah."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Mas, coba lihat ember di bawah keran ini. Ibu taruh tadi, waktu Mamas mulai wudhu.",
+        "visualDirection": "Tempat wudhu. Ibu datang dengan lembut dan menunjuk ember di bawah keran."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Wah, embernya hampir penuh, Bu! Padahal Mamas belum selesai. Kenapa ya, airnya banyak sekali?",
+        "visualDirection": "Tempat wudhu. Close-up ember yang hampir penuh, dan Mamas menatapnya dengan heran."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Karena kerannya terbuka deras terus, Mas. Banyak air jatuh tanpa dipakai. Itu namanya boros.",
+        "visualDirection": "Tempat wudhu. Ibu berjongkok sejajar dengan Mamas sambil tersenyum sabar."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Memangnya kenapa, Bu? Air kan banyak. Tinggal buka keran lagi.",
+        "visualDirection": "Tempat wudhu. Mamas mengangkat bahu dengan polos, dan Mochi menjilati bulunya yang basah."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Air itu nikmat dari Allah, Mas. Ada anak-anak di tempat lain yang harus berjalan jauh untuk mengambil air. Kita wajib menjaganya.",
+        "visualDirection": "Tempat wudhu. Ibu mematikan keran perlahan, dan suasananya tenang."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, menurut kalian, berapa banyak air yang dipakai Rasulullah ﷺ untuk wudhu? Satu ember? Atau lebih sedikit? Ayo tebak dulu!",
+        "visualDirection": "Tempat wudhu. Ember penuh di samping gayung kecil, sementara Mamas dan Mochi menoleh penasaran."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Rasulullah shallallahu 'alaihi wasallam berwudhu cukup dengan satu mud air. Satu mud itu kira-kira secakupan dua telapak tangan orang dewasa. Sedikit sekali, kan? Ini diriwayatkan Imam Bukhari dan Muslim.",
+        "visualDirection": "Tempat wudhu. Ibu merapatkan dua telapak tangannya yang berisi sedikit air, dan Mamas melihat dengan mata terbelalak."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Allah juga tidak menyukai orang yang berlebih-lebihan. Jadi, buka keran kecil saja. Tapi semua anggota wudhu tetap dibasuh rata, ya.",
+        "visualDirection": "Tempat wudhu. Ibu membuka keran sedikit sehingga airnya mengalir kecil dan tenang."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Siap, Bu! Kerannya kecil saja. Air di ember ini nanti Mamas pakai menyiram bunga.",
+        "visualDirection": "Tempat wudhu. Mamas tersenyum semangat sambil menunjuk ember."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas wudhu lagi dengan rapi dan tenang. Tiba-tiba Mochi mengibaskan badannya. Brrr! Sekarang Mamas yang kecipratan. Hihihi!",
+        "visualDirection": "Tempat wudhu. Mamas berwudhu dengan air kecil, lalu Mochi mengibaskan bulunya ke arah Mamas dan Ibu tertawa kecil."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Selesai wudhu, Mamas berdoa. Asyhadu an laa ilaaha illallaahu wahdahu laa syariika lah, wa asyhadu anna Muhammadan 'abduhu wa rasuluh.",
+        "visualDirection": "Tempat wudhu. Mamas menengadahkan tangan dengan wajah segar, dan Mochi duduk tenang di sampingnya."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Adik-adik, air itu nikmat Allah. Wudhu pakai air secukupnya, ya! Wassalamu'alaikum.",
+        "visualDirection": "Taman. Mamas menyiram bunga dengan air dari ember, Mochi mengikutinya, dan langit sore tampak hangat."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "كَانَ النَّبِيُّ صلى الله عليه وسلم يَغْسِلُ - أَوْ كَانَ يَغْتَسِلُ - بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ، وَيَتَوَضَّأُ بِالْمُدِّ",
+        "latin": "Kaanan nabiyyu shallallahu 'alaihi wasallam yaghsilu - au kaana yaghtasilu - bish-shaa'i ilaa khamsati amdaad, wa yatawadh-dha-u bil-mudd.",
+        "translation": "Anas radhiyallahu 'anhu berkata: Nabi ﷺ mandi dengan satu sha' sampai lima mud air, dan berwudhu dengan satu mud.",
+        "source": "HR. Bukhari no. 201 dan Muslim no. 325, dari Anas bin Malik radhiyallahu 'anhu"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ",
+        "latin": "Wa kuluu wasyrabuu wa laa tusrifuu, innahuu laa yuhibbul musrifiin.",
+        "translation": "Makan dan minumlah, dan jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.",
+        "source": "QS. Al-A'raf: 31"
+      },
+      {
+        "type": "doa",
+        "arabicText": "أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+        "latin": "Asyhadu an laa ilaaha illallaahu wahdahu laa syariika lah, wa asyhadu anna Muhammadan 'abduhu wa rasuluh.",
+        "translation": "Aku bersaksi bahwa tidak ada tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya.",
+        "source": "HR. Muslim no. 234, dari Umar bin al-Khaththab radhiyallahu 'anhu (doa setelah wudhu)"
+      }
+    ]
+  },
+  "review": {
+    "decision": "needs_revision",
+    "score": 8,
+    "notes": [
+      "WAJIB – Scene 13 (prayer): pengantar \"Selesai wudhu, Mamas berdoa.\" masih satu scene dengan bacaan Arab (latin). Pisahkan jadi dua scene. Scene 13a: speaker narrator, type story, isinya \"Selesai wudhu, Mamas berdoa seperti yang diajarkan Rasulullah ﷺ. Doa ini diriwayatkan Imam Muslim.\" Scene 13b: speaker mamas, type prayer, isinya HANYA latin \"Asyhadu an laa ilaaha illallaahu wahdahu laa syariika lah, wa asyhadu anna Muhammadan 'abduhu wa rasuluh.\" Kalau mau, tambahkan scene 13c (narrator) berisi arti singkatnya.",
+      "Scene 10: kalimat \"Allah juga tidak menyukai orang yang berlebih-lebihan\" belum menyebut sumber di narasi. Tambahkan sumbernya, misalnya: \"Allah berfirman dalam surat Al-A'raf ayat 31: Allah tidak menyukai orang yang berlebih-lebihan.\" Ini penting karena target usianya 7–10 tahun dan sumber dalil wajib jelas.",
+      "Scene 9: tambahkan perawi sahabatnya supaya lengkap, misalnya: \"Ini diceritakan sahabat Anas bin Malik, diriwayatkan Imam Bukhari dan Muslim.\" Kalimatnya tetap dibuat pendek (≤12 kata per kalimat).",
+      "Scene 3–4 (logika, minor): kalau ember ada di bawah keran, air seharusnya kena tangan Mamas, bukan masuk ember. Supaya masuk akal, ubah visualnya jadi ember menampung air yang terbuang dan menetes dari bak/lantai wudhu. Bisa juga Ibu menaruh ember di samping untuk menampung air yang muncrat dan tumpah. Sesuaikan kalimat Ibu di scene 3.",
+      "Penambahan scene di atas tetap aman: naskah sekarang 236 kata, jadi masih jauh di bawah 320. Pastikan totalnya tidak lewat batas.",
+      "Hal yang sudah baik (pertahankan): tidak ada visualisasi Nabi atau sahabat. Perilaku boros punya konsekuensi dan penyelesaian yang jelas (ember penuh, penjelasan Ibu, wudhu ulang dengan rapi, air dipakai menyiram bunga). Ada momen tanya-tebak di scene 8. Ada penyeimbang \"anggota wudhu tetap dibasuh rata\". Tidak menakut-nakuti, dan latar `ablution` serta `garden` sesuai daftar."
+    ],
+    "humanCheck": [
+      "Dalil 1 – Hadits wudhu dengan satu mud: HR. Bukhari no. 201 dan Muslim no. 325, dari Anas bin Malik. Teks yang dipakai: \"كَانَ النَّبِيُّ صلى الله عليه وسلم يَغْسِلُ - أَوْ كَانَ يَغْتَسِلُ - بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ، وَيَتَوَضَّأُ بِالْمُدِّ\". Cek nomor hadits (Bukhari 201 sesuai penomoran Fath al-Bari; Muslim 325 sesuai penomoran Abdul Baqi) dan cek apakah lafaznya cocok.",
+      "Dalil 2 – QS. Al-A'raf: 31, potongan \"وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ\". Konteks asli ayat ini soal makan dan minum. Di naskah ayat ini dipakai sebagai prinsip umum larangan berlebih-lebihan, termasuk saat wudhu. Pastikan pemilik channel nyaman dengan penerapan umum ini (menurut saya wajar, tapi tolong dikonfirmasi).",
+      "Dalil 3 – Doa setelah wudhu: HR. Muslim no. 234, dari Umar bin al-Khaththab. Teks yang dipakai: \"أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ\". Cek nomor hadits dan lafaznya, juga ejaan latin \"rasuluh\" (lebih tepat dibaca \"rasuuluh\").",
+      "Ukuran satu mud yang ditulis \"secakupan dua telapak tangan orang dewasa\": ini definisi yang umum dipakai ulama (sekitar 0,6–0,75 liter). Pastikan penyederhanaan ini bisa diterima, termasuk visual Ibu yang menampung sedikit air di dua telapak tangan agar tidak terkesan terlalu sedikit.",
+      "Kalimat \"Ada anak-anak di tempat lain yang harus berjalan jauh untuk mengambil air\": klaim faktual ini umum dan benar, tapi pastikan visualnya tidak menggambarkan kelompok tertentu secara stereotip.",
+      "Saya sengaja tidak memakai hadits \"jangan boros walau di sungai yang mengalir\" (Ibnu Majah) karena sanadnya diperselisihkan dan dinilai lemah. Jangan ditambahkan oleh penulis."
+    ]
+  }
 }

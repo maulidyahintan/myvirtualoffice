@@ -1,0 +1,129 @@
+{
+  "id": "kenapa-ya-wudhu-tidak-boleh-boros-air-aa92",
+  "created": "2026-11-05T16:04:47.602Z",
+  "modified": "2026-11-05T16:05:47.411Z",
+  "status": "needs_script_approval",
+  "idea": {
+    "title": "Kenapa Ya Wudhu Tidak Boleh Boros Air?",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Air adalah nikmat Allah. Saat wudhu pun kita tidak berlebihan. Rasulullah ﷺ berwudhu cukup dengan satu mud air, sekitar dua genggam tangan orang dewasa (HR. Bukhari no. 201, Muslim no. 325, dari Anas radhiyallahu 'anhu). Allah tidak menyukai orang yang berlebihan (QS. Al-A'raf: 31).",
+    "format": "short",
+    "reason": "Anak 7–10 tahun mulai belajar shalat dan wudhu sendiri. Kebiasaan membiarkan keran terus mengalir adalah masalah nyata yang sering dikeluhkan orang tua. Format 'kenapa' plus fakta sederhana pas dengan seri ini: Mamas dan Ibu membandingkan air satu mud dengan air keran yang terbuang di ember. Topik ini belum ada di daftar dan dalilnya disepakati (tidak khilafiyah). Visual cukup gayung, keran, dan ember, tanpa menggambarkan Nabi.",
+    "references": [
+      "Shahih al-Bukhari no. 201 & Shahih Muslim no. 325 (wudhu dengan satu mud)",
+      "QS. Al-A'raf: 31"
+    ]
+  },
+  "revisionCount": 1,
+  "log": [
+    {
+      "time": "2026-11-05T16:04:47.602Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T16:04:47.604Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode kenapa-ya-wudhu-tidak-boleh-boros-air-8270"
+    },
+    {
+      "time": "2026-11-05T16:04:47.609Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T16:04:48.502Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T16:05:17.042Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:05:17.486Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T16:05:46.996Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T16:05:47.411Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "twin": "kenapa-ya-wudhu-tidak-boleh-boros-air-8270",
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Kenapa Ya Wudhu Tidak Boleh Boros Air?",
+    "summary": "Mamas kaget karena ember jadi penuh padahal ia cuma wudhu. Ibu menjelaskan bahwa air adalah nikmat Allah. Rasulullah ﷺ berwudhu cukup dengan satu mud air, kira-kira sepenuh dua tangkup tangan orang dewasa. Ibu juga menyampaikan bahwa Allah tidak menyukai orang yang berlebihan. Mamas pun mengecilkan keran.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Lho, embernya penuh! Padahal Mamas cuma wudhu. Ibu, kenapa wudhu tidak boleh boros?",
+        "visualDirection": "Tempat wudhu, keran mengalir deras ke ember yang hampir tumpah. Mamas kaget, dan Mochi melompat mundur karena kecipratan air."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Air itu nikmat Allah, Mas. Rasulullah shallallahu 'alaihi wa sallam berwudhu cukup satu mud. Kira-kira sepenuh dua tangkup tangan Ibu.",
+        "visualDirection": "Ibu menangkupkan kedua tangannya berisi sedikit air di samping ember yang penuh untuk membandingkan, sementara Mamas memperhatikan dengan takjub."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Allah tidak suka yang berlebihan. Jadi, kecilkan kerannya, ya.",
+        "visualDirection": "Ibu tersenyum lembut sambil menunjuk keran, lalu Mamas memutar keran sampai alirannya kecil dan tenang."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Siap, Bu! Keran kecil, wudhu tetap sempurna. Hemat air, yuk!",
+        "visualDirection": "Mamas berwudhu dengan aliran keran yang kecil sambil tersenyum ke kamera, dan Mochi menjilat setetes air dari keran dengan lucu."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم يَتَوَضَّأُ بِالْمُدِّ، وَيَغْتَسِلُ بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ",
+        "latin": "Kāna rasūlullāhi shallallāhu 'alaihi wa sallam yatawadhdha'u bil-mudd, wa yaghtasilu bish-shā'i ilā khamsati amdād.",
+        "translation": "Rasulullah ﷺ berwudhu dengan satu mud air dan mandi dengan satu sha' hingga lima mud. (Diriwayatkan dari Anas bin Malik radhiyallahu 'anhu.)",
+        "source": "HR. Bukhari no. 201 dan Muslim no. 325"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ",
+        "latin": "Wa kulū wasyrabū wa lā tusrifū, innahū lā yuḥibbul-musrifīn.",
+        "translation": "Makan dan minumlah, tetapi jangan berlebihan. Sungguh, Allah tidak menyukai orang yang berlebihan.",
+        "source": "QS. Al-A'raf: 31"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Naskah ini lolos. Total 53 kata (batas 45–65). Hanya membahas satu konsep, yaitu hemat air saat wudhu. Konflik (ember penuh) selesai dengan jelas: Mamas mengecilkan keran. Nabi, sahabat, dan malaikat tidak digambarkan. Latar 'ablution' boleh dipakai.",
+      "Tidak ada adegan yang membacakan bacaan Arab utuh, jadi aturan pemisahan scene tidak berlaku. Lafaz 'shallallahu 'alaihi wa sallam' di scene 2 adalah shalawat singkat setelah nama Nabi. Itu bukan bacaan doa atau ayat, jadi boleh tetap di dalam kalimat.",
+      "Saran kecil (tidak wajib), scene 1: kalimat 'Padahal Mamas cuma wudhu' agak janggal. Wudhu tidak membuat ember penuh, yang membuat penuh adalah keran yang dibiarkan deras. Usul ganti: 'Lho, embernya penuh! Kerannya deras sekali. Ibu, kenapa wudhu tidak boleh boros?' Panjangnya tetap 13 kata.",
+      "Saran kecil, judul dan scene 1: 'tidak boleh boros' agak keras. Menurut mayoritas ulama, boros air saat wudhu hukumnya makruh, bukan haram. Untuk anak masih bisa diterima. Kalau mau lebih tepat, pakai 'Kenapa Wudhu Harus Hemat Air?'.",
+      "Saran kecil, scene 4 (visual): Mochi menjilat air dari keran tempat wudhu kurang baik dicontoh soal kebersihan. Bisa diganti Mochi duduk manis memperhatikan tetesan air, atau mengibaskan ekor.",
+      "Di daftar dalil, sebaiknya tulis 'QS. Al-A'raf: 31 (potongan ayat)'. Teks yang dikutip hanya bagian akhir ayat 31. Ayat ini juga konteksnya tentang makan dan minum. Memakainya sebagai dasar umum larangan berlebihan sudah lazim, tapi jangan sampai terkesan ayat ini khusus tentang wudhu.",
+      "Bagus karena penulis tidak memakai hadits 'walaupun di sungai yang mengalir' (Ibnu Majah). Sanadnya lemah, jadi tepat untuk dihindari."
+    ],
+    "humanCheck": [
+      "Dalil 1: HR. Bukhari no. 201 dan Muslim no. 325, dari Anas bin Malik. Teks: 'كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم يَتَوَضَّأُ بِالْمُدِّ، وَيَغْتَسِلُ بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ'. Lafaz ini sesuai dengan riwayat Muslim 325. Lafaz di Bukhari 201 urutannya berbeda (mandi disebut lebih dulu) dan ada keraguan perawi 'yaghsilu/yaghtasilu'. Pastikan penomoran yang dipakai sama dengan kitab rujukan channel (Bukhari versi Fath al-Bari, Muslim versi Fuad Abdul Baqi).",
+      "Dalil 2: QS. Al-A'raf: 31 (potongan akhir ayat). Teks: 'وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ'. Terjemahan: 'Makan dan minumlah, tetapi jangan berlebihan. Sungguh, Allah tidak menyukai orang yang berlebihan.' Cocokkan dengan mushaf dan terjemahan Kemenag.",
+      "Penjelasan '1 mud = kira-kira sepenuh dua tangkup tangan orang dewasa' adalah perkiraan yang umum dipakai ulama. Ukurannya sekitar 0,5–0,75 liter. Pastikan pemilik channel nyaman dengan penyederhanaan ini, dan visual tangkupan tangan Ibu tidak terlihat terlalu sedikit.",
+      "Kata 'tidak boleh boros' di judul dan scene 1: pemilik channel perlu memutuskan apakah kata ini dipertahankan. Hukum boros air saat wudhu menurut mayoritas ulama adalah makruh.",
+      "Visual: pastikan tidak ada percikan air atau gerak cepat yang terlalu ramai saat Mochi melompat di scene 1. Pastikan juga video tanpa musik instrumen, cukup efek suara air yang lembut."
+    ]
+  }
+}
