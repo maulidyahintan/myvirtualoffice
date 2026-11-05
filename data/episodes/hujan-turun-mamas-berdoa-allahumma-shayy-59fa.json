@@ -1,9 +1,9 @@
 {
   "id": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa",
   "created": "2026-10-30T12:42:32.414Z",
-  "modified": "2026-10-30T12:43:21.339Z",
-  "status": "needs_script_approval",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "modified": "2026-11-05T03:46:23.236Z",
+  "status": "needs_video_approval",
+  "statusNote": "Video siap ditonton & disetujui",
   "idea": {
     "title": "Hujan Turun! Mamas Berdoa \"Allahumma Shayyiban Nafi'an\"",
     "series": "doa-harian",
@@ -125,6 +125,259 @@
       "time": "2026-10-30T12:43:21.339Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T03:34:05.188Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-05T03:34:05.791Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-05T03:34:12.069Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:34:16.230Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:34:16.779Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-05T03:34:54.774Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-05T03:34:55.631Z",
+      "by": "video-creator",
+      "message": "Render pratinjau tanpa suara"
+    },
+    {
+      "time": "2026-11-05T03:35:42.469Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T03:44:17.152Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 1 diupload"
+    },
+    {
+      "time": "2026-11-05T03:44:37.790Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 2 diupload"
+    },
+    {
+      "time": "2026-11-05T03:44:57.266Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 3 diupload"
+    },
+    {
+      "time": "2026-11-05T03:45:11.365Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 4 diupload"
+    },
+    {
+      "time": "2026-11-05T03:45:27.825Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 5 diupload"
+    },
+    {
+      "time": "2026-11-05T03:45:28.868Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-05T03:45:29.760Z",
+      "by": "video-creator",
+      "message": "Render pratinjau tanpa suara"
+    },
+    {
+      "time": "2026-11-05T03:46:23.236Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
-  ]
+  ],
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Tik, tik, tik! Ibu, suara apa itu? Mochi juga kaget!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "screenText": "Tik, tik, tik!",
+      "props": [
+        "potted-tree",
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Itu hujan, Mas. Hujan dari Allah. Pohon dan bunga jadi bisa minum. Hujan itu rezeki dari Allah.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "potted-tree",
+        "pillow",
+        "flower"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Kalau hujan turun, Rasulullah shallallahu 'alaihi wa sallam berdoa. Ayo, ikuti Ibu, ya. Allahumma shayyiban nafi'an.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "prayer-mat",
+        "potted-tree"
+      ],
+      "actions": [
+        {
+          "character": "mother",
+          "action": "praying"
+        },
+        {
+          "character": "mamas",
+          "action": "praying"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Allahumma shayyiban nafi'an. Ya Allah, turunkan hujan yang bermanfaat.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اللَّهُمَّ صَيِّبًا نَافِعًا",
+        "latin": "Allahumma shayyiban nafi'an",
+        "meaning": "Ya Allah, (turunkanlah) hujan yang bermanfaat."
+      },
+      "props": [
+        "prayer-mat",
+        "potted-tree"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mother",
+          "action": "praying"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Masya Allah, pintar, Mas! Adik-adik, hujan turun? Berdoa dulu, ya! Allahumma shayyiban nafi'an.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Berdoa dulu, ya!",
+      "props": [
+        "potted-tree",
+        "flower"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Doa Ketika Hujan Turun | Allahumma Shayyiban Nafi'an",
+    "description": "Doa ketika hujan turun untuk anak: Mamas dan Ibu membaca \"Allahumma shayyiban nafi'an\" (Ya Allah, turunkanlah hujan yang bermanfaat) karena hujan adalah rezeki dari Allah. Sumber: HR. Bukhari no. 1032.\n#Shorts #DoaHarian #CeritaIslamiAnak",
+    "tags": [
+      "doa ketika hujan turun",
+      "doa saat hujan untuk anak",
+      "allahumma shayyiban nafi'an",
+      "doa harian anak",
+      "cerita islami anak",
+      "belajar doa untuk balita",
+      "shorts islami anak",
+      "mamas dan ibu"
+    ],
+    "thumbnailText": "Doa Saat Hujan"
+  },
+  "render": {
+    "video": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa.mp4",
+    "adegan": [
+      {
+        "mulai": 1.5,
+        "durasi": 5.766666666666667
+      },
+      {
+        "mulai": 7.266666666666667,
+        "durasi": 9.1
+      },
+      {
+        "mulai": 16.366666666666667,
+        "durasi": 8.633333333333333
+      },
+      {
+        "mulai": 25,
+        "durasi": 5.3
+      },
+      {
+        "mulai": 30.3,
+        "durasi": 7.2
+      }
+    ],
+    "time": "2026-11-05T03:46:23.235Z"
+  },
+  "audioPerScene": [
+    "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-adegan-1-mw304kxr.webm",
+    "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-adegan-2-mw3050v0.webm",
+    "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-adegan-3-mw305fw1.webm",
+    "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-adegan-4-mw305qrn.webm",
+    "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-adegan-5-mw3063gw.webm"
+  ],
+  "sceneOffsets": [
+    2.128,
+    2.134,
+    2.133,
+    2.127,
+    2.13
+  ],
+  "recordingMode": "per-scene",
+  "audioFile": "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-gabung.wav"
 }

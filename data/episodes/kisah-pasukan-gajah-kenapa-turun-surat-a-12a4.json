@@ -1,0 +1,133 @@
+{
+  "id": "kisah-pasukan-gajah-kenapa-turun-surat-a-12a4",
+  "created": "2026-11-05T03:48:25.245Z",
+  "modified": "2026-11-05T03:49:35.304Z",
+  "status": "needs_script_approval",
+  "idea": {
+    "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
+    "series": "asbabun-nuzul",
+    "age": "7-10",
+    "moralMessage": "Allah Maha Kuat dan menjaga rumah-Nya, Ka'bah. Pasukan yang sombong dan besar bisa dikalahkan Allah dengan burung-burung kecil. Jangan sombong, karena kekuatan sejati milik Allah. Dalil: QS. Al-Fil: 1–5.",
+    "format": "short",
+    "reason": "Seri Asbabun Nuzul sekarang 100% berisi An-Nas/Al-Falaq dan banyak duplikatnya. Al-Fil memberi variasi yang sangat dibutuhkan. Kisah pasukan gajah adalah materi klasik TPA/SD dan hewannya menarik bagi anak. Patuh syariat: semua dikisahkan lewat narator, visualnya cukup siluet gajah, gurun, langit, burung, dan batu kecil. Tidak ada tokoh manusia atau Nabi yang digambar. Detail sejarah di luar ayat cukup yang masyhur dan disepakati, jangan menambah dramatisasi.",
+    "references": [
+      "QS. Al-Fil: 1–5 beserta tafsir ringkas (Tafsir Ibnu Katsir, surat Al-Fil)",
+      "Daftar episode internal: seri asbabun-nuzul hanya berisi An-Nas/Al-Falaq"
+    ]
+  },
+  "revisionCount": 1,
+  "log": [
+    {
+      "time": "2026-11-05T03:48:25.245Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T03:48:25.247Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+    },
+    {
+      "time": "2026-11-05T03:48:25.249Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T03:48:25.912Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:48:59.655Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:49:00.104Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:49:34.924Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:49:35.304Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "twin": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9",
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
+    "summary": "Mamas heran karena ada surat Al-Qur'an yang bernama \"Gajah\". Narator bercerita singkat tentang pasukan Abrahah yang sombong dan datang membawa gajah untuk merobohkan Ka'bah. Allah menjaga rumah-Nya dengan mengirim burung-burung kecil yang melempari mereka dengan batu dari tanah yang terbakar. Mamas lalu membaca ayat pertama Surat Al-Fil, dan Ibu menutup dengan pesan: jangan sombong, karena kekuatan sejati hanya milik Allah. Semua kisah disampaikan lewat narator. Visualnya hanya siluet gajah, gurun, langit, burung, dan batu kecil, tanpa tokoh manusia.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu! Ada surat namanya Gajah? Kok bisa?",
+        "visualDirection": "Ruang tamu sore, Mamas menunjuk gambar gajah di buku cerita, Mochi kaget lalu bersembunyi di balik bantal, Ibu tersenyum di sebelahnya."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Dulu sekali, ada raja bernama Abrahah. Ia datang ke Makkah membawa pasukan. Ada gajah-gajah yang besar sekali. Mereka sombong. Mereka ingin merobohkan Ka'bah.",
+        "visualDirection": "Gurun luas dengan siluet gajah besar dan barisan pasukan yang hanya tampak sebagai bayangan samar di kejauhan. Ka'bah terlihat kecil di ujung, suasananya tenang dan tidak menakutkan."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Tapi Allah menjaga rumah-Nya. Allah mengirim burung-burung kecil. Datangnya berbondong-bondong! Mereka melempar batu dari tanah yang terbakar. Pasukan sombong itu pun kalah. Seperti daun yang dimakan ulat.",
+        "visualDirection": "Langit biru penuh kawanan burung kecil, batu-batu kecil berjatuhan dengan lembut, lalu siluet pasukan memudar. Gambar ditutup dengan daun kering yang berlubang, tanpa adegan kekerasan."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Alam tara kaifa fa'ala rabbuka bi-ash-haabil fiil.",
+        "visualDirection": "Mamas duduk bersila di atas karpet sambil membaca dengan suara anak-anak, Ibu mendengarkan dengan bangga, dan Mochi duduk rapi di depan Mamas."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Itu Surat Al-Fil, Mas. Gajah besar kalah oleh burung kecil. Jadi, jangan sombong, ya. Kekuatan sejati hanya milik Allah!",
+        "visualDirection": "Ibu memeluk Mamas. Mochi menegakkan ekor dan berjalan gagah meniru gajah, lalu tersandung bantal, dan Mamas tertawa."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ ﴿١﴾ أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ ﴿٢﴾ وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ ﴿٣﴾ تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ ﴿٤﴾ فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ ﴿٥﴾",
+        "latin": "Alam tara kaifa fa'ala rabbuka bi-ash-haabil fiil. Alam yaj'al kaidahum fii tadhliil. Wa arsala 'alaihim thairan abaabiil. Tarmiihim bihijaaratim min sijjiil. Faja'alahum ka'ashfim ma'kuul.",
+        "translation": "Tidakkah engkau perhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah? Bukankah Dia telah menjadikan tipu daya mereka sia-sia? Dan Dia mengirimkan kepada mereka burung yang berbondong-bondong, yang melempari mereka dengan batu dari tanah yang terbakar, sehingga mereka dijadikan-Nya seperti daun-daun yang dimakan ulat.",
+        "source": "QS. Al-Fil: 1–5"
+      },
+      {
+        "type": "atsar",
+        "translation": "Pasukan bergajah dipimpin oleh Abrahah, penguasa Yaman, yang datang ke Makkah untuk merobohkan Ka'bah, lalu Allah membinasakan mereka. (Detail sejarah yang masyhur dan disepakati para ahli tafsir.)",
+        "source": "Tafsir Ibnu Katsir, tafsir Surat Al-Fil"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8,
+    "notes": [
+      "Judul 'Kenapa Turun Surat Al-Fil?' bisa membuat orang mengira peristiwa ini asbabun nuzul (sebab langsung turunnya surat). Padahal peristiwa gajah terjadi sekitar 40 tahun sebelum wahyu pertama, dan surat ini turun untuk mengingatkan kaum Quraisy. Ganti misalnya menjadi 'Kisah Pasukan Gajah dalam Surat Al-Fil'.",
+      "Adegan 2: Abrahah bukan raja yang berdaulat sendiri. Ia penguasa Yaman yang menjadi wakil raja Habasyah. Ganti 'raja bernama Abrahah' menjadi 'penguasa Yaman bernama Abrahah'.",
+      "Adegan 5: 'Gajah besar kalah oleh burung kecil' bisa ditangkap seolah burunglah yang menang sendiri. Lebih tepat: 'Gajah besar kalah, karena Allah mengirim burung kecil.'",
+      "Ringkasan menulis 'tanpa tokoh manusia', tapi adegan 2 menampilkan siluet pasukan. Siluet pasukan tidak melanggar aturan karena mereka bukan Nabi atau sahabat. Samakan saja ringkasan dengan visualnya, atau hapus siluet pasukan.",
+      "Dalil kedua ditandai 'atsar', padahal isinya keterangan sejarah dari kitab tafsir. Lebih akurat diberi label 'tafsir/sejarah'.",
+      "Adegan 4: tampilkan teks terjemahan ayat 1 di layar saat Mamas membaca, supaya penonton usia 7–10 paham artinya.",
+      "Sudah baik: panjang sekitar 86 kata (batas Shorts ±140), hanya satu konsep, ayat dibaca dengan pembicara mamas, tidak ada visualisasi Nabi, sahabat, malaikat, atau Allah, dan kekalahan pasukan digambarkan tanpa kekerasan."
+    ],
+    "humanCheck": [
+      "Cocokkan teks Arab, latin, dan terjemahan QS. Al-Fil: 1–5 dengan mushaf dan terjemahan Kemenag, termasuk latin ayat 1 yang dibaca Mamas: 'Alam tara kaifa fa'ala rabbuka bi-ash-haabil fiil'.",
+      "Cek rujukan Tafsir Ibnu Katsir (tafsir Surat Al-Fil): apakah Abrahah penguasa Yaman, wakil raja Habasyah, yang datang untuk merobohkan Ka'bah. Pastikan sebutan 'raja' sudah diganti.",
+      "Pastikan Ka'bah yang digambar kecil di kejauhan tetap terlihat terhormat.",
+      "Pastikan judul akhir tidak memberi kesan asbabun nuzul yang keliru.",
+      "Pastikan video tidak memakai musik instrumen, hanya suara dan efek suara ringan."
+    ]
+  }
+}

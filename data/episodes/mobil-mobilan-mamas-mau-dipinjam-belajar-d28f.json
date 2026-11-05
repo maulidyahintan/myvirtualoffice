@@ -1,0 +1,591 @@
+{
+  "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
+  "created": "2026-11-04T01:25:32.576Z",
+  "modified": "2026-11-05T03:57:05.053Z",
+  "status": "needs_audio",
+  "idea": {
+    "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
+    "series": "kisah-sebelum-tidur",
+    "age": "4-6",
+    "moralMessage": "Berbagi membuat hati senang. Kita ingin teman bahagia seperti kita ingin bahagia. Sumbernya hadits \"Tidak sempurna iman salah seorang dari kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya\" (HR. Al-Bukhari no. 13, Muslim no. 45). Ceritanya: sepupu Mamas (hanya di narasi) ingin meminjam mobil-mobilan. Mamas awalnya menolak. Ibu lalu bertanya, \"Mamas senang kalau dipinjami?\" Akhirnya Mamas mau bergantian.",
+    "format": "standard",
+    "reason": "Versi Inggris dari MHT Baby Quran (\"He Didn't Want to Share!\") dapat sekitar 55.928 views per hari. Versi Indonesianya lemah: Kabi 9,6 menit, Syaamil Salma 1.460 views per hari, sisanya di bawah 200 views per hari. Konflik kecil yang langsung selesai cocok untuk Shorts kurang dari 60 detik. Ini berbeda dari ide \"hati panas karena mainan teman\", yang membahas iri, bukan berbagi.",
+    "references": [
+      "https://www.youtube.com/watch?v=YefdiUpDI_Q (MHT Baby Quran – 55.928 views/hari)",
+      "https://www.youtube.com/watch?v=CSYSLUF8G34 (Syaamil Salma Rebutan Mainan – 1.460 views/hari)",
+      "https://www.youtube.com/watch?v=kyK6IvOE0yo (Kabi – Hazeem Pelit, 9,6 menit)",
+      "HR. Al-Bukhari no. 13; HR. Muslim no. 45"
+    ]
+  },
+  "revisionCount": 2,
+  "log": [
+    {
+      "time": "2026-11-04T01:25:32.576Z",
+      "by": "riset",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T03:34:34.826Z",
+      "by": "pemilik",
+      "message": "Dibuat juga versi Shorts: mobil-mobilan-mamas-mau-dipinjam-belajar-cae1"
+    },
+    {
+      "time": "2026-11-05T03:34:34.828Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T03:34:35.490Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:35:20.147Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:35:20.676Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:35:47.861Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:35:48.270Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T03:48:13.175Z",
+      "by": "pemilik",
+      "message": "Minta revisi: buat narasi tidak lebih dari 4 menit, jangan kepanjangan. singkat padat dan tida"
+    },
+    {
+      "time": "2026-11-05T03:48:13.793Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:48:39.327Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:48:39.729Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:49:13.115Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:49:13.531Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T03:56:39.052Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-05T03:56:39.663Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-05T03:56:51.711Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:57:04.659Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:57:05.053Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    }
+  ],
+  "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "script": {
+    "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
+    "summary": "Versi ringkas (±2,5–3 menit). Sepupu Mamas, Dek Hafiz, ingin meminjam mobil-mobilan merah Mamas, Si Merah. Awalnya Mamas menolak karena takut mobilnya rusak. Ibu bertanya, \"Mamas senang tidak, dipinjami?\" Mamas ingat pernah dipinjami sepeda oleh Dek Hafiz, lalu mau bermain bergantian. Pelajarannya: kita ingin teman bahagia seperti kita ingin bahagia (HR. Al-Bukhari no. 13, Muslim no. 45).",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Mamas punya mobil-mobilan merah. Namanya Si Merah. Brum, brum! Sore ini, sepupu Mamas datang. Namanya Dek Hafiz. Dek Hafiz ingin meminjam Si Merah.",
+        "visualDirection": "Ruang tengah sore hari, Mamas mendorong mobil merah di karpet, Mochi memperhatikan; sepupu tidak digambar, cukup bayangan lembut di pintu."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Nggak mau! Ini punya Mamas! Nanti Si Merah rusak!",
+        "visualDirection": "Mamas memeluk mobil merah erat-erat, pipinya menggembung, alisnya berkerut."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Dek Hafiz menunduk sedih. Mamas main sendirian, tapi kok tidak seru? Tiba-tiba, hup! Mochi melompat. Si Merah menggelinding ke bawah kursi!",
+        "visualDirection": "Mamas duduk sendiri kurang gembira; Mochi melompat ringan, mobil merah meluncur pelan ke bawah sofa."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Eh, ada apa, Mas? Kok Mamas cemberut? Dek Hafiz juga sedih.",
+        "visualDirection": "Ibu datang dan berlutut di samping Mamas sambil mengambilkan mobil merah dari bawah sofa."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Dek Hafiz mau pinjam Si Merah, Bu. Mamas takut rusak.",
+        "visualDirection": "Mamas memegang mobil merah sambil menatap Ibu dengan wajah ragu."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Ibu tanya, ya. Dulu Dek Hafiz meminjamkan sepedanya. Mamas senang tidak, dipinjami?",
+        "visualDirection": "Ibu tersenyum lembut; muncul gelembung kenangan Mamas tertawa naik sepeda kecil di halaman."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Senang banget, Bu! Mamas sampai muter-muter halaman!",
+        "visualDirection": "Wajah Mamas berubah ceria, tangannya bergaya memegang setang sepeda."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Nah, Dek Hafiz juga ingin senang, sama seperti Mamas. Kalau mainnya pelan-pelan, insya Allah tidak rusak.",
+        "visualDirection": "Ibu mengelus kepala Mamas; Mochi menoleh bergantian ke Ibu dan Mamas."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, apa yang sebaiknya Mamas lakukan? ... Ya, betul! Mamas bisa berbagi dan bermain bergantian!",
+        "visualDirection": "Mamas menatap mobil merah sambil berpikir, tanda tanya lembut di atas kepalanya; jeda tenang sebentar."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Dek Hafiz, ini Si Merah. Dek Hafiz duluan, ya. Nanti gantian. Pelan-pelan mainnya!",
+        "visualDirection": "Mamas mengulurkan mobil merah ke arah samping layar sambil tersenyum lebar."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mereka bergantian mendorong Si Merah. Eh, Mochi malah mau naik ke atasnya! Mamas tertawa geli.",
+        "visualDirection": "Mobil merah melaju pelan di karpet, Mochi mencoba duduk di atasnya, Mamas tertawa sambil menutup mulut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "MasyaAllah, Mamas hebat! Rasulullah ﷺ bersabda, tidak sempurna iman seseorang, sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya. Mamas suka senang, jadi Mamas ingin Dek Hafiz senang juga.",
+        "visualDirection": "Ibu duduk di samping Mamas di karpet, memeluk pundaknya; cahaya lembut, tanpa menggambarkan sosok Nabi."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Yuk, berdoa supaya akhlak kita baik. Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta. Ya Allah, tunjukilah aku kepada akhlak yang paling baik.",
+        "visualDirection": "Malam di kamar, Mamas dan Ibu menengadahkan tangan berdoa, Mochi tidur meringkuk di dekat mobil merah."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Adik-adik, berbagi membuat hati senang. Besok, coba bergantian mainan dengan teman, ya! Selamat tidur. Wassalamu'alaikum warahmatullahi wabarakatuh.",
+        "visualDirection": "Kamera perlahan menjauh dari jendela kamar Mamas yang lampunya meredup, bintang berkelip lembut."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+        "latin": "Laa yu'minu ahadukum hattaa yuhibba li akhiihi maa yuhibbu li nafsihi.",
+        "translation": "Tidak sempurna iman salah seorang dari kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.",
+        "source": "HR. Al-Bukhari no. 13; HR. Muslim no. 45 (dari Anas bin Malik radhiyallahu 'anhu)"
+      },
+      {
+        "type": "doa",
+        "arabicText": "وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ",
+        "latin": "Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta.",
+        "translation": "Tunjukilah aku kepada akhlak yang paling baik, tidak ada yang dapat menunjukkan kepada yang paling baik kecuali Engkau.",
+        "source": "HR. Muslim no. 771 (dari Ali bin Abi Thalib radhiyallahu 'anhu; potongan doa istiftah Nabi ﷺ)"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Secara syariat aman. Tidak ada visualisasi Nabi atau sahabat. Kedua dalil masyhur dan sahih, sumbernya juga spesifik. Tidak ada klaim keutamaan yang dikarang.",
+      "Kualitas konten anak baik. Konfliknya kecil dan nyata (takut mainan rusak). Penyelesaiannya lewat empati, bukan dimarahi. Ada momen interaktif dan pesan moral yang jelas. Dek Hafiz tidak digambar dan tidak diberi dialog langsung, jadi sudah sesuai pedoman.",
+      "DURASI: total narasi sekitar 270 kata, jadi perkiraannya hanya ±2,5 menit. Summary sendiri menulis '±2,5–3 menit', sedangkan format standar minta 3–5 menit. Saran: tambahkan 1–2 adegan pendek. Contoh: Mamas memperhatikan Dek Hafiz main pelan-pelan dan Si Merah tetap aman, lalu Mamas berkata 'Ternyata nggak rusak, Bu!'. Adegan ini sekaligus menutup rasa takut Mamas. Bisa juga dengan memperpanjang jeda di adegan pertanyaan.",
+      "Kalimat hadits yang dibacakan Ibu terlalu panjang untuk usia 4–6 (lebih dari 12 kata). Pecah jadi beberapa kalimat. Contoh: 'Rasulullah ﷺ bersabda. Tidak sempurna iman seseorang. Sampai ia mencintai untuk saudaranya. Apa yang ia cintai untuk dirinya.' Tambahkan juga sumbernya secara lisan, misalnya '(HR. Bukhari dan Muslim)'.",
+      "Jelaskan kata 'saudara' untuk anak. Contoh: 'Saudara itu termasuk sepupu dan teman-teman kita.' Dengan begitu anak paham kenapa hadits ini cocok untuk Dek Hafiz.",
+      "Adegan doa: lebih wajar kalau Ibu yang memimpin ('Yuk, Mas, kita berdoa...') lalu Mamas menirukan. Kalau tetap Mamas yang memimpin, tidak masalah secara syariat.",
+      "Perpindahan waktu dari sore ke malam (adegan doa) cukup mendadak. Tambahkan satu kalimat narator, misalnya 'Malam pun tiba. Dek Hafiz sudah pulang.'",
+      "Visual 'bintang berkelip lembut': pastikan animatornya membuat kedip yang sangat pelan, tidak cepat, supaya tidak overstimulating.",
+      "Judul sudah sesuai isi dan tidak clickbait. Tanda seru boleh dipertahankan."
+    ],
+    "humanCheck": [
+      "DALIL 1 (hadits): 'لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ'. Sumber: HR. Al-Bukhari no. 13 dan HR. Muslim no. 45, dari Anas bin Malik ra. Cocokkan teks Arab, latin, terjemah, dan nomor haditsnya dengan kitab atau situs tepercaya (misalnya sunnah.com). Lafaz Muslim ada yang memakai 'لِأَخِيهِ - أَوْ قَالَ لِجَارِهِ', jadi pastikan teks yang dikutip mengikuti lafaz Bukhari.",
+      "DALIL 2 (doa): 'وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ'. Sumber: HR. Muslim no. 771, dari Ali bin Abi Thalib ra, bagian dari doa istiftah. Cek nomornya (penomoran bisa beda antar-edisi) dan pastikan memotong doa di bagian ini sudah tepat. Narasi menambahkan 'Ya Allah' di terjemahan, padahal tidak ada di teks Arab. Pastikan ini bisa diterima, atau tulis 'Ya Allah' di luar terjemahan.",
+      "Cek ejaan latin doa saat dibacakan, terutama 'akhlaaq' dan 'ahsanihaa'. Pastikan pengisi suara melafalkannya dengan benar.",
+      "Pastikan durasi akhir video memenuhi format 3–5 menit setelah diisi suara dan diberi jeda.",
+      "Pastikan efek suara 'brum brum' dan audio lainnya tidak memakai musik instrumen."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Mamas punya mobil-mobilan merah. Namanya Si Merah. Brum, brum! Sore ini, sepupu Mamas datang. Namanya Dek Hafiz. Dek Hafiz ingin meminjam Si Merah.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Si Merah, Brum Brum!",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "playing",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Nggak mau! Ini punya Mamas! Nanti Si Merah rusak!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Dek Hafiz menunduk sedih. Mamas main sendirian, tapi kok tidak seru? Tiba-tiba, hup! Mochi melompat. Si Merah menggelinding ke bawah kursi!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Eh, ada apa, Mas? Kok Mamas cemberut? Dek Hafiz juga sedih.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mother",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Dek Hafiz mau pinjam Si Merah, Bu. Mamas takut rusak.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Ibu tanya, ya. Dulu Dek Hafiz meminjamkan sepedanya. Mamas senang tidak, dipinjami?",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Senang banget, Bu! Mamas sampai muter-muter halaman!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Nah, Dek Hafiz juga ingin senang, sama seperti Mamas. Kalau mainnya pelan-pelan, insya Allah tidak rusak.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Teman juga ingin senang",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Adik-adik, apa yang sebaiknya Mamas lakukan? ... Ya, betul! Mamas bisa berbagi dan bermain bergantian!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Apa yang sebaiknya dilakukan?",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Dek Hafiz, ini Si Merah. Dek Hafiz duluan, ya. Nanti gantian. Pelan-pelan mainnya!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Main bergantian",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mereka bergantian mendorong Si Merah. Eh, Mochi malah mau naik ke atasnya! Mamas tertawa geli.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "playing",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "MasyaAllah, Mamas hebat! Rasulullah ﷺ bersabda, tidak sempurna iman seseorang, sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya. Mamas suka senang, jadi Mamas ingin Dek Hafiz senang juga.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Berbagi itu indah",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Yuk, berdoa supaya akhlak kita baik. Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta. Ya Allah, tunjukilah aku kepada akhlak yang paling baik.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ",
+        "latin": "Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta.",
+        "meaning": "Tunjukilah aku kepada akhlak yang paling baik, tidak ada yang dapat menunjukkan kepada yang paling baik kecuali Engkau. (HR. Muslim no. 771)"
+      },
+      "props": [
+        "prayer-mat",
+        "pillow",
+        "toy-car"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mother",
+          "action": "praying"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Adik-adik, berbagi membuat hati senang. Besok, coba bergantian mainan dengan teman, ya! Selamat tidur. Wassalamu'alaikum warahmatullahi wabarakatuh.",
+      "background": "night-sky",
+      "characters": [],
+      "expression": "calm",
+      "screenText": "Berbagi membuat hati senang"
+    }
+  ],
+  "metadata": {
+    "title": "Cerita Anak Belajar Berbagi | Mamas dan Mobil-Mobilan Si Merah",
+    "description": "Cerita anak islami tentang belajar berbagi mainan: Mamas awalnya tidak mau meminjamkan mobil-mobilan merahnya, Si Merah, kepada sepupunya.\n\nSore itu Dek Hafiz ingin meminjam Si Merah. Mamas menolak karena takut mobilnya rusak. Tapi main sendirian ternyata tidak seru. Ibu lalu mengingatkan Mamas waktu Dek Hafiz meminjamkan sepedanya. Mamas ingat betapa senangnya dia saat itu. Akhirnya Mamas mau bermain bergantian, dan Mochi si kucing ikut meramaikan!\n\nPelajaran hari ini:\n• Berbagi membuat hati kita dan teman sama-sama senang.\n• Kita bisa bermain bergantian dan pelan-pelan agar mainan tetap terjaga.\n• Kita ingin teman bahagia, seperti kita ingin bahagia.\n\nDalil:\n\"Tidak sempurna iman salah seorang dari kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.\" (HR. Al-Bukhari no. 13; HR. Muslim no. 45, dari Anas bin Malik radhiyallahu 'anhu)\n\nDoa akhlak baik: \"Wahdinii li ahsanil akhlaaq, laa yahdii li ahsanihaa illaa anta.\" (HR. Muslim no. 771, dari Ali bin Abi Thalib radhiyallahu 'anhu)\n\nAyah dan Bunda, yuk temani si kecil menonton. Setelah itu ajak ia bermain bergantian dengan saudara atau temannya. Cerita ini bagian dari seri Kisah Sebelum Tidur untuk anak usia 4–6 tahun. Episode lainnya bisa ditonton di channel Tasnie Office.\n\n#CeritaIslamiAnak #BelajarBerbagi #KisahSebelumTidur",
+    "tags": [
+      "cerita islami anak",
+      "belajar berbagi",
+      "cerita anak berbagi mainan",
+      "kisah sebelum tidur",
+      "dongeng islami anak",
+      "akhlak anak muslim",
+      "cerita anak usia 4-6 tahun",
+      "hadits mencintai saudara",
+      "doa akhlak yang baik untuk anak",
+      "cerita anak bermain bergantian",
+      "kartun islami anak indonesia",
+      "mamas dan ibu",
+      "pendidikan karakter anak islami",
+      "cerita pengantar tidur anak muslim"
+    ],
+    "thumbnailText": "Yuk, Berbagi Mainan!"
+  }
+}

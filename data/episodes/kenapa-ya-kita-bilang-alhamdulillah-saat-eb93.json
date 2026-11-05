@@ -1,9 +1,9 @@
 {
   "id": "kenapa-ya-kita-bilang-alhamdulillah-saat-eb93",
   "created": "2026-10-30T11:52:32.594Z",
-  "modified": "2026-10-31T00:37:15.557Z",
-  "status": "needs_video_approval",
-  "statusNote": "Video siap ditonton & disetujui",
+  "modified": "2026-11-05T03:43:40.122Z",
+  "status": "rejected",
+  "statusNote": "terlalu panjang",
   "idea": {
     "title": "Kenapa Ya Kita Bilang \"Alhamdulillah\" Saat Bersin?",
     "series": "kenapa-ya",
@@ -696,6 +696,73 @@
       "time": "2026-10-31T00:37:15.557Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T03:39:08.614Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 1 diupload"
+    },
+    {
+      "time": "2026-11-05T03:39:29.513Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 2 diupload"
+    },
+    {
+      "time": "2026-11-05T03:39:38.507Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 3 diupload"
+    },
+    {
+      "time": "2026-11-05T03:40:30.400Z",
+      "by": "pemilik",
+      "message": "terlali panjang dan cepat"
+    },
+    {
+      "time": "2026-11-05T03:40:34.504Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T03:43:40.122Z",
+      "by": "pemilik",
+      "message": "terlalu panjang"
     }
-  ]
+  ],
+  "audioPerScene": [
+    "audio/kenapa-ya-kita-bilang-alhamdulillah-saat-eb93-adegan-1-mw2zxyv7.webm",
+    "audio/kenapa-ya-kita-bilang-alhamdulillah-saat-eb93-adegan-2-mw2zyezr.webm",
+    "audio/kenapa-ya-kita-bilang-alhamdulillah-saat-eb93-adegan-3-mw2zylxl.webm",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "sceneOffsets": [
+    2.131,
+    2.131,
+    2.132,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "recordingMode": "per-scene"
 }

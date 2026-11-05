@@ -1,0 +1,133 @@
+{
+  "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
+  "created": "2026-11-05T03:34:34.825Z",
+  "modified": "2026-11-05T03:35:15.703Z",
+  "status": "needs_script_approval",
+  "idea": {
+    "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
+    "series": "kisah-sebelum-tidur",
+    "age": "4-6",
+    "moralMessage": "Berbagi membuat hati senang. Kita ingin teman bahagia seperti kita ingin bahagia. Sumbernya hadits \"Tidak sempurna iman salah seorang dari kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya\" (HR. Al-Bukhari no. 13, Muslim no. 45). Ceritanya: sepupu Mamas (hanya di narasi) ingin meminjam mobil-mobilan. Mamas awalnya menolak. Ibu lalu bertanya, \"Mamas senang kalau dipinjami?\" Akhirnya Mamas mau bergantian.",
+    "format": "short",
+    "reason": "Versi Inggris dari MHT Baby Quran (\"He Didn't Want to Share!\") dapat sekitar 55.928 views per hari. Versi Indonesianya lemah: Kabi 9,6 menit, Syaamil Salma 1.460 views per hari, sisanya di bawah 200 views per hari. Konflik kecil yang langsung selesai cocok untuk Shorts kurang dari 60 detik. Ini berbeda dari ide \"hati panas karena mainan teman\", yang membahas iri, bukan berbagi.",
+    "references": [
+      "https://www.youtube.com/watch?v=YefdiUpDI_Q (MHT Baby Quran – 55.928 views/hari)",
+      "https://www.youtube.com/watch?v=CSYSLUF8G34 (Syaamil Salma Rebutan Mainan – 1.460 views/hari)",
+      "https://www.youtube.com/watch?v=kyK6IvOE0yo (Kabi – Hazeem Pelit, 9,6 menit)",
+      "HR. Al-Bukhari no. 13; HR. Muslim no. 45"
+    ]
+  },
+  "revisionCount": 1,
+  "log": [
+    {
+      "time": "2026-11-05T03:34:34.825Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T03:34:34.826Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode mobil-mobilan-mamas-mau-dipinjam-belajar-d28f"
+    },
+    {
+      "time": "2026-11-05T03:34:34.829Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T03:34:35.491Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:34:54.863Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:34:55.226Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:35:15.309Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:35:15.703Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
+    "summary": "Sepupu Mamas ingin meminjam mobil-mobilan merah, tapi Mamas menolak dan memeluk mainannya erat-erat. Mochi tidak sengaja mendorong mobil itu sampai menggelinding ke kaki Ibu. Ibu lalu bertanya, \"Kalau Mamas yang mau pinjam, senang tidak kalau dipinjami?\" Mamas pun sadar dan mau bergantian. Ibu menutup cerita dengan hadits bahwa iman belum sempurna sampai kita mencintai untuk saudara kita apa yang kita cintai untuk diri sendiri.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ini mobilku! Nggak boleh dipinjam!",
+        "visualDirection": "Close-up di ruang keluarga: Mamas memeluk mobil-mobilan merah erat-erat sambil cemberut, Mochi mengintip dari balik bantal."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Sepupu Mamas ingin ikut main. Tapi Mamas menggeleng. Eh, Mochi menyenggol mobilnya. Mobil menggelinding ke kaki Ibu!",
+        "visualDirection": "Mochi menepuk mobil-mobilan dengan kaki depannya, mobil meluncur pelan di karpet sampai berhenti di depan Ibu yang tersenyum; sepupu tidak digambar."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Mas, kalau Mamas mau pinjam mainan... Mamas senang tidak, kalau dipinjami?",
+        "visualDirection": "Ibu berlutut sejajar dengan Mamas, memegang mobil-mobilan, wajahnya lembut dan sabar."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Senang, Bu... Ya sudah, kita gantian, ya!",
+        "visualDirection": "Mamas tersenyum malu lalu mengulurkan mobil-mobilan ke arah luar bingkai, Mochi mengeong senang di sampingnya."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Pintar, Mas! Rasulullah bersabda, tidak sempurna iman seseorang, hingga ia mencintai untuk saudaranya, apa yang ia cintai untuk dirinya. Berbagi itu bikin hati senang!",
+        "visualDirection": "Ibu memeluk Mamas di karpet ruang keluarga yang hangat, Mochi bergelung di dekat mobil-mobilan, cahaya sore yang lembut."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+        "latin": "Laa yu'minu ahadukum hattaa yuhibba li akhiihi maa yuhibbu linafsihi",
+        "translation": "Tidak sempurna iman salah seorang dari kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.",
+        "source": "HR. Al-Bukhari no. 13 dan Muslim no. 45, dari Anas bin Malik radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Sesuai syariat: tidak ada penggambaran Nabi, sahabat, atau malaikat. Sepupu hanya disebut di narasi dan tidak digambar. Ini sudah sesuai pedoman.",
+      "Dalilnya tepat dan masyhur. Hadits Anas bin Malik ini ada di HR. Al-Bukhari no. 13 dan Muslim no. 45. Teks Arab dan latinnya sesuai. Terjemah 'tidak sempurna iman' adalah pemahaman yang umum dipakai ulama.",
+      "Panjangnya sekitar 70 kata, jauh di bawah ±140. Hanya ada satu konsep (berbagi), cocok untuk Shorts.",
+      "Ada perilaku negatif (menolak berbagi) dan sudah ada penyelesaiannya. Pesan moralnya jelas, tidak menakut-nakuti, dan tidak ada ajakan komersial.",
+      "Tidak ada adegan membaca ayat Al-Qur'an. Jadi aturan `speaker: mamas` untuk tilawah tidak berlaku di sini.",
+      "Saran kecil (opsional): perbaiki kesinambungan visual. Di adegan 3 Ibu memegang mobil-mobilan, tapi di adegan 4 Mamas yang mengulurkannya. Tambahkan di visualDirection adegan 3 atau 4: 'Ibu mengembalikan mobil ke tangan Mamas', baru Mamas mengulurkannya.",
+      "Saran kecil (opsional): pertanyaan Ibu di adegan 3 bisa lebih jelas untuk usia 4–6. Contoh: 'Mas, kalau Mamas mau pinjam mainan teman... senang tidak kalau dipinjami?'",
+      "Saran kecil (opsional): tulis 'Rasulullah ﷺ' di narasi atau subtitle. Pengisi suara juga bisa melafalkan 'shallallahu 'alaihi wasallam' sebagai bentuk adab.",
+      "Saran kecil (opsional): kalimat hadits di adegan 5 lebih dari 12 kata. Itu wajar karena ini kutipan dalil. Pastikan pembacaannya pelan dan ada jeda di setiap koma."
+    ],
+    "humanCheck": [
+      "Dalil 1 — Sumber: HR. Al-Bukhari no. 13 dan Muslim no. 45, dari Anas bin Malik radhiyallahu 'anhu. Mohon cek nomornya di kitab atau di situs seperti sunnah.com / hadits.id.",
+      "Dalil 1 — Teks Arab: لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ. Cek harakatnya. Catatan: salah satu riwayat Muslim berbunyi 'لأخيه أو قال لجاره'. Lafaz yang dipakai di naskah adalah lafaz Bukhari.",
+      "Dalil 1 — Latin: 'Laa yu'minu ahadukum hattaa yuhibba li akhiihi maa yuhibbu linafsihi'. Cek transliterasinya.",
+      "Dalil 1 — Terjemah: 'Tidak sempurna iman salah seorang dari kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.' Kata 'sempurna' adalah tafsiran makna (bukan arti harfiah), dan tafsiran ini umum diterima. Pastikan Anda nyaman dengan terjemah ini.",
+      "Pastikan narasi Ibu di adegan 5 tetap setia pada makna hadits walaupun diringkas ('mencintai untuk saudaranya apa yang ia cintai untuk dirinya').",
+      "Cek judul 'Mobil-Mobilan Mamas Mau Dipinjam!' dan thumbnail-nya. Pastikan tidak terkesan clickbait dan sesuai isi video."
+    ]
+  }
+}

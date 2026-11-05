@@ -1,0 +1,27 @@
+{
+  "id": "hafalan-surat-al-ashr-bersama-mamas-tiga-75f2",
+  "created": "2026-11-03T09:07:56.193Z",
+  "modified": "2026-11-03T09:07:56.193Z",
+  "status": "idea",
+  "idea": {
+    "title": "Hafalan Surat Al-'Ashr Bersama Mamas — Tiga Ayat, Yuk!",
+    "series": "hafalan",
+    "age": "1-10",
+    "moralMessage": "Waktu itu berharga. Orang yang beruntung adalah yang beriman, beramal baik, dan saling menasihati dalam kebaikan dan kesabaran (QS. Al-'Ashr 103:1–3). Ayatnya diulang perlahan, satu per satu, lalu ditutup dengan arti sederhana: \"Yuk pakai waktu untuk kebaikan!\"",
+    "format": "short",
+    "reason": "Shorts hafalan punya permintaan sangat tinggi: 'Hafalan surat annas' Short mendapat 156.272 views/hari. Surat An-Nas, Al-Falaq, Al-Ikhlas, Al-Fatihah, dan Al-Kautsar sudah ada di pipeline. Al-'Ashr adalah surat pendek berikutnya yang paling umum dihafal anak, dan cuma 3 ayat, jadi pas untuk durasi < 60 detik. Short ini juga memperluas seri hafalan di luar klaster An-Nas.",
+    "references": [
+      "https://www.youtube.com/watch?v=zUF8WzwvpzA (Hafalan surat annas Short — 156.272 views/hari)",
+      "https://www.youtube.com/watch?v=qyIiggRBOZ4 (Tes Hafalan Juz 30 — 19.323 views/hari)",
+      "QS. Al-'Ashr 103:1–3"
+    ]
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-03T09:07:56.193Z",
+      "by": "riset",
+      "message": "Ide dibuat"
+    }
+  ]
+}

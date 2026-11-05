@@ -1,0 +1,599 @@
+{
+  "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-a181",
+  "created": "2026-11-04T01:25:32.576Z",
+  "modified": "2026-11-05T04:04:07.229Z",
+  "status": "needs_audio",
+  "idea": {
+    "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
+    "series": "doa-harian",
+    "age": "1-3",
+    "moralMessage": "Saat memakai baju, kita bersyukur kepada Allah yang memberi pakaian. Doanya: \"Alhamdulillahilladzi kasani hadza ats-tsauba wa razaqanihi min ghairi haulin minni wa la quwwah\" (HR. Abu Dawud no. 4023, At-Tirmidzi no. 3458, hasan). Untuk usia 1–3, cukup pengulangan bagian awalnya. Mamas memakai baju koko sendiri, kancingnya sempat terbalik, lalu Ibu membantu dengan sabar. Mochi bersembunyi di dalam lengan baju.",
+    "format": "standard",
+    "reason": "Shorts doa harian adalah format dengan permintaan tertinggi dalam riset ini (doa makan 26–877 ribu views per hari). Doa memakai baju belum ada di antrean kita dan jarang dibuat dalam animasi berbahasa Indonesia. Rutinitas berpakaian juga momen nyata balita belajar mandiri, jadi relevan bagi orang tua.",
+    "references": [
+      "https://www.youtube.com/watch?v=4P9XaEMXMu4 (Risa – doa sebelum makan, 97.891 views/hari, pembanding format doa harian Shorts)",
+      "https://www.youtube.com/watch?v=5xLBeujnDwo (Ahmad & Siti – Adab dalam Islam, 179.353 views/hari)",
+      "HR. Abu Dawud no. 4023; HR. At-Tirmidzi no. 3458"
+    ]
+  },
+  "revisionCount": 3,
+  "log": [
+    {
+      "time": "2026-11-04T01:25:32.576Z",
+      "by": "riset",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T03:35:15.738Z",
+      "by": "pemilik",
+      "message": "Dibuat juga versi Shorts: pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc"
+    },
+    {
+      "time": "2026-11-05T03:35:15.738Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-05T03:35:16.859Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:36:11.053Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:36:11.463Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:36:53.744Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:36:54.145Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T03:47:35.965Z",
+      "by": "pemilik",
+      "message": "Minta revisi: buat narasi tidak lebih dari 4 menit, jangan kepanjangan. singkat padat dan tida"
+    },
+    {
+      "time": "2026-11-05T03:47:36.583Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:48:05.277Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:48:05.718Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:48:55.865Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:48:56.290Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-05T03:50:05.793Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:50:06.178Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:50:44.340Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:50:44.737Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T03:53:37.326Z",
+      "by": "pemilik",
+      "message": "Minta revisi: buat narasi tidak lebih dari 4 menit, jangan kepanjangan. singkat padat dan tida"
+    },
+    {
+      "time": "2026-11-05T03:53:38.573Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T03:54:01.157Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:54:01.596Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-05T03:54:43.743Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:54:44.125Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-05T03:56:03.952Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-05T03:56:04.564Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-05T03:56:21.033Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:56:27.643Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T03:56:28.086Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-05T04:04:07.229Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 1 diupload"
+    }
+  ],
+  "twin": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "script": {
+    "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah | Doa Memakai Pakaian untuk Anak",
+    "summary": "Mamas ingin memakai baju koko sendiri. Saat tangannya masuk, ternyata Mochi bersembunyi di dalam lengan baju. Mamas mencoba lagi, tetapi kancingnya terpasang terbalik. Ibu membantunya dengan sabar. Setelah itu Ibu mengajak Mamas bersyukur, karena baju itu pemberian Allah, lalu membaca doa memakai baju. Bagian awal doa diulang bersama penonton, dan arti doanya dijelaskan secara singkat. Naskah ini sekitar 230 kata. Jika dibacakan pelan untuk anak usia 1–3 tahun, durasinya sekitar 2,5–3 menit.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Mamas baru selesai mandi. Sekarang waktunya pakai baju!",
+        "visualDirection": "Kamar Mamas yang cerah di pagi hari. Mamas berbalut handuk biru, sedangkan Mochi meringkuk di atas kasur dekat baju koko putih."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu, Mamas mau pakai baju koko sendiri!",
+        "visualDirection": "Mamas mengangkat baju koko putih berkerah abu-abu dengan semangat. Ibu duduk di tepi kasur."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Masya Allah, hebat! Mulai tangan kanan dulu, ya.",
+        "visualDirection": "Ibu tersenyum lembut dan menunjuk tangan kanan Mamas."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Tangan kanan masuk... Eh, lengannya bergerak! Meooong! Ternyata Mochi ada di dalam lengan baju!",
+        "visualDirection": "Lengan baju menggembung dan bergoyang pelan, lalu kepala Mochi menyembul dari ujung lengan. Mamas terbelalak, kemudian tertawa."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Hihi, Mochi, itu baju Mamas. Ayo keluar dulu.",
+        "visualDirection": "Ibu mengeluarkan Mochi dengan lembut, dan Mochi melompat ringan ke atas bantal."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Ayo, ucapkan bersama! Tangan kanan masuk... tangan kiri masuk... Kancingnya, satu, dua, tiga!",
+        "visualDirection": "Mamas memakai baju dengan serius, lalu jari kecilnya memasang kancing satu per satu dengan tempo pelan."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Selesai! Eh... kok bajunya miring, Bu?",
+        "visualDirection": "Mamas berdiri di depan cermin dengan baju yang miring karena kancingnya tidak sejajar. Mochi ikut memiringkan kepala."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Kancingnya terbalik. Tidak apa-apa, Mamas sudah berusaha. Ibu bantu, ya. Nah, rapi!",
+        "visualDirection": "Ibu berlutut sejajar dengan Mamas, memasang ulang kancingnya dengan sabar, lalu memakaikan peci rajut biru."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, sesudah pakai baju, kita bilang apa, ya? Hmm...",
+        "visualDirection": "Mamas yang sudah rapi menatap penonton sambil menempelkan telunjuk di dagu. Ada jeda hening sejenak."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Alhamdulillah! Baju ini dari Allah. Yuk, baca doa memakai baju.",
+        "visualDirection": "Ibu dan Mamas duduk berhadapan di karpet. Ibu menunjuk lembut ke baju koko Mamas."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Alhamdulillahilladzi kasani hadza ats-tsauba, wa razaqanihi min ghairi haulin minni wa la quwwah.",
+        "visualDirection": "Mamas duduk tenang dengan tangan di pangkuan. Cahaya pagi yang lembut masuk dari jendela."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, segala puji bagi Allah yang memberiku baju ini. Ayo ulang, adik-adik! Alhamdulillahilladzi kasani hadza ats-tsauba. Sekali lagi! Alhamdulillahilladzi kasani hadza ats-tsauba.",
+        "visualDirection": "Ibu menghadap penonton dengan senyum hangat. Mamas di sampingnya ikut mengucapkan, dan Mochi duduk manis memperhatikan."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mochi ikut senang, lalu berguling di karpet. Adik-adik, pakai baju, lalu bilang Alhamdulillah! Wassalamu'alaikum!",
+        "visualDirection": "Mochi berguling pelan di karpet. Mamas, Ibu, dan Mochi melambai ke arah penonton di kamar yang cerah."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "doa",
+        "arabicText": "الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا الثَّوْبَ وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",
+        "latin": "Alhamdulillahilladzi kasani hadza ats-tsauba wa razaqanihi min ghairi haulin minni wa la quwwah",
+        "translation": "Segala puji bagi Allah yang telah memberiku pakaian ini dan memberikannya kepadaku tanpa daya dan kekuatan dariku.",
+        "source": "HR. Abu Dawud no. 4023, dari Mu'adz bin Anas radhiyallahu 'anhu; dihasankan oleh Al-Albani."
+      },
+      {
+        "type": "hadits",
+        "arabicText": "كَانَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يُعْجِبُهُ التَّيَمُّنُ فِي تَنَعُّلِهِ وَتَرَجُّلِهِ وَطُهُورِهِ وَفِي شَأْنِهِ كُلِّهِ",
+        "translation": "Nabi ﷺ suka mendahulukan yang kanan ketika memakai sandal, menyisir rambut, bersuci, dan dalam semua urusannya. (Dasar Ibu mengajak Mamas memakai baju mulai dari tangan kanan.)",
+        "source": "HR. Al-Bukhari no. 168 dan Muslim no. 268, dari Aisyah radhiyallahu 'anha"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Lolos. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Hadits Aisyah dipakai di metadata saja, tidak dinarasikan sebagai kisah. Tidak ada klaim keutamaan amalan. Bagian 'ghufira lahu…' sengaja tidak disebut, dan itu tepat, karena tambahan 'wa ma ta'akhkhar' diperselisihkan kekuatannya.",
+      "Alurnya cocok untuk usia 1–3. Ada konflik kecil yang lucu (Mochi di lengan baju) dan kesalahan wajar (kancing terbalik). Ibu menanggapinya dengan sabar dan menghargai usaha Mamas. Ada momen interaktif ('ucapkan bersama', pertanyaan, ulang doa) dan pesan penutup yang jelas. Tidak ada clickbait atau unsur komersial. Tidak ada yang menakut-nakuti.",
+      "Durasi: ±230 kata kira-kira 2,5–3 menit, padahal format standar minta 3–5 menit. Sebaiknya tambah 1–2 adegan pengulangan yang memang bagus untuk balita. Misalnya Mamas mengulang 'tangan kanan masuk… tangan kiri masuk…' bersama penonton, atau narator mengajak menghitung kancing sekali lagi setelah Ibu merapikan. Atau beri jeda hening yang lebih panjang di adegan pertanyaan dan pengulangan doa.",
+      "Adegan 7: ganti 'Bu' menjadi 'Ibu' supaya sesuai pedoman panggilan ('kok bajunya miring, Ibu?' atau 'Ibu, kok bajunya miring?').",
+      "Adegan 1 (visual): sebaiknya Mamas sudah memakai kaos dalam dan celana panjang, jangan hanya berbalut handuk. Tujuannya menjaga adab aurat dan menghindari sensitivitas YouTube terhadap visual anak yang setengah berpakaian. Narasinya bisa tetap 'baru selesai mandi'.",
+      "Adegan 12: arti yang dibacakan Ibu hanya potongan awal ('yang memberiku baju ini'). Untuk balita ini boleh. Supaya orang tua tidak salah paham, tampilkan teks arab, latin, dan terjemah lengkap di layar saat adegan doa (adegan 11).",
+      "Opsional: sebagai dalil 'mulai dari kanan', ada hadits yang lebih spesifik soal pakaian, yaitu HR. At-Tirmidzi no. 1766 dari Abu Hurairah ('kana idza labisa qamishan bada'a bimayaminihi'). Atau HR. Abu Dawud no. 4141 ('idza labistum wa idza tawadh-dha'tum fabda'u bimayaminikum'). Hadits Aisyah yang sekarang sudah benar dan cukup. Ini hanya tambahan kalau mau lebih tepat sasaran.",
+      "Catatan kecil: pedoman usia 1–3 menyebut 1 konsep per video. Fokus utamanya (doa memakai baju dan bilang Alhamdulillah) sudah jelas. Pastikan 'mulai dari kanan' tetap jadi detail pendukung saja dan tidak ditambah penjelasan baru."
+    ],
+    "humanCheck": [
+      "DALIL 1 (doa memakai pakaian): cek teks arab الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا الثَّوْبَ وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ, beserta latin dan terjemahnya. Sumbernya HR. Abu Dawud no. 4023 dari Mu'adz bin Anas (al-Juhani) radhiyallahu 'anhu, dihasankan Al-Albani (Shahih Abi Dawud). Cocokkan nomor hadits dengan edisi kitab yang dipakai, karena penomoran bisa berbeda antar-cetakan.",
+      "DALIL 2 (mendahulukan yang kanan): cek teks arab كَانَ النَّبِيُّ ﷺ يُعْجِبُهُ التَّيَمُّنُ فِي تَنَعُّلِهِ وَتَرَجُّلِهِ وَطُهُورِهِ وَفِي شَأْنِهِ كُلِّهِ dan terjemahnya. Sumbernya HR. Al-Bukhari no. 168 dan Muslim no. 268 dari Aisyah radhiyallahu 'anha. Cek juga nomor di Muslim sesuai penomoran Fuad Abdul Baqi.",
+      "Pastikan pelafalan latin doa oleh pengisi suara Mamas benar, terutama 'kasānī', 'ats-tsauba', 'razaqanīhi', dan 'haulin minnī wa lā quwwah'. Pastikan juga teks arab di layar sama persis dengan evidence.",
+      "Cek durasi akhir hasil rekaman. Kalau masih di bawah 3 menit, tambah adegan pengulangan sesuai catatan.",
+      "Cek visual adegan 1 (Mamas berhanduk). Putuskan apakah diganti dengan Mamas yang sudah memakai kaos dalam dan celana.",
+      "Pastikan tidak ada musik instrumen di hasil akhir. Yang boleh hanya suara dan efek ringan, misalnya 'meooong' dan suara kain."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Mamas baru selesai mandi. Sekarang waktunya pakai baju!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Pakai Baju Sendiri",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu, Mamas mau pakai baju koko sendiri!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Masya Allah, hebat! Mulai tangan kanan dulu, ya.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Kanan dulu",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Tangan kanan masuk... Eh, lengannya bergerak! Meooong! Ternyata Mochi ada di dalam lengan baju!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Hihi, Mochi, itu baju Mamas. Ayo keluar dulu.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Ayo, ucapkan bersama! Tangan kanan masuk... tangan kiri masuk... Kancingnya, satu, dua, tiga!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Satu, dua, tiga!",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Selesai! Eh... kok bajunya miring, Bu?",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Kancingnya terbalik. Tidak apa-apa, Mamas sudah berusaha. Ibu bantu, ya. Nah, rapi!",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Sudah berusaha",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Adik-adik, sesudah pakai baju, kita bilang apa, ya? Hmm...",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Kita bilang apa?",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Alhamdulillah! Baju ini dari Allah. Yuk, baca doa memakai baju.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Alhamdulillah!",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Alhamdulillahilladzi kasani hadza ats-tsauba, wa razaqanihi min ghairi haulin minni wa la quwwah.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا الثَّوْبَ وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",
+        "latin": "Alhamdulillahilladzi kasani hadza ats-tsauba wa razaqanihi min ghairi haulin minni wa la quwwah",
+        "meaning": "Segala puji bagi Allah yang telah memberiku pakaian ini dan memberikannya kepadaku tanpa daya dan kekuatan dariku. (HR. Abu Dawud no. 4023)"
+      },
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Artinya, segala puji bagi Allah yang memberiku baju ini. Ayo ulang, adik-adik! Alhamdulillahilladzi kasani hadza ats-tsauba. Sekali lagi! Alhamdulillahilladzi kasani hadza ats-tsauba.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Ayo ulang!",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mochi ikut senang, lalu berguling di karpet. Adik-adik, pakai baju, lalu bilang Alhamdulillah! Wassalamu'alaikum!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Pakai baju, Alhamdulillah",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Doa Memakai Baju untuk Anak | Mamas Belajar Pakai Baju Sendiri",
+    "description": "Doa memakai baju untuk anak bersama Mamas! Mamas belajar memakai baju koko sendiri, lalu bersyukur dengan mengucapkan Alhamdulillah dan membaca doa memakai pakaian.\n\nMamas ingin memakai baju sendiri. Eh, ternyata Mochi bersembunyi di dalam lengan baju! Saat Mamas mencoba lagi, kancingnya terpasang terbalik. Ibu membantu dengan sabar, lalu mengajak Mamas berterima kasih kepada Allah atas baju yang ia pakai.\n\nPelajaran hari ini:\n• Belajar memakai baju sendiri, mulai dari tangan kanan\n• Tidak apa-apa kalau keliru, yang penting sudah berusaha\n• Setelah memakai baju, ucapkan Alhamdulillah dan baca doanya\n\nDoa memakai pakaian:\nAlhamdulillahilladzi kasani hadza ats-tsauba wa razaqanihi min ghairi haulin minni wa la quwwah.\nArtinya: \"Segala puji bagi Allah yang telah memberiku pakaian ini dan memberikannya kepadaku tanpa daya dan kekuatan dariku.\"\n(HR. Abu Dawud no. 4023, dari Mu'adz bin Anas; dihasankan oleh Al-Albani)\n\nMendahulukan yang kanan: Nabi ﷺ suka mendahulukan yang kanan dalam semua urusannya (HR. Al-Bukhari no. 168 dan Muslim no. 268, dari Aisyah).\n\nAyah dan Bunda, yuk dampingi si kecil mengulang doa ini setiap selesai berpakaian. Tonton juga video lain di seri Doa Harian bersama Mamas, Ibu, dan Mochi.\n\n#DoaHarian #CeritaIslamiAnak #DoaAnak",
+    "tags": [
+      "doa memakai baju",
+      "doa memakai pakaian untuk anak",
+      "doa memakai baju untuk anak",
+      "doa harian anak",
+      "cerita islami anak",
+      "belajar pakai baju sendiri",
+      "adab berpakaian anak muslim",
+      "mendahulukan tangan kanan",
+      "doa anak muslim",
+      "belajar doa untuk balita",
+      "kartun islami anak",
+      "pendidikan islam anak usia dini",
+      "Mamas dan Ibu",
+      "Tasnie Office"
+    ],
+    "thumbnailText": "Pakai Baju, Alhamdulillah!"
+  },
+  "audioPerScene": [
+    "audio/pakai-baju-sendiri-mamas-baca-alhamdulil-a181-adegan-1-mw30u37f.webm",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "sceneOffsets": [
+    2.129,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "recordingMode": "per-scene"
+}
