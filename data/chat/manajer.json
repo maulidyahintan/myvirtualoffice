@@ -140,5 +140,29 @@
     "from": "agent",
     "text": "Bu, maaf, jawaban saya tadi salah episode lagi. Yang Ibu buka sekarang **\"Hujan Turun! Mamas Berdoa\"** dengan 12 adegan, bukan Pasukan Gajah.\n\nUntuk episode ini, penyebabnya terlihat di log. Setelah Ibu menekan \"Mulai render\" (10:52), sistem mencatat **\"Render pratinjau tanpa suara\"**. Jadi video ini memang dibuat sebagai **pratinjau bisu**. Suara Ibu tidak dimasukkan ke video, jadi bukan karena rekamannya rusak.\n\nSaya tidak bisa memastikan kenapa sistem memilih pratinjau bisu. Ada dua kemungkinan:\n1. **Ada rekaman adegan yang belum terbaca.** Di log terlihat adegan 8–12 sudah diupload, tapi saya tidak bisa melihat adegan 1–7. Kalau satu adegan saja belum ada rekamannya, sistem mungkin membuat pratinjau tanpa suara. Coba putar rekaman ke-12 adegan di halaman episode, lalu rekam ulang adegan yang kosong.\n2. **Pratinjau bisu memang tahap awal**, lalu ada langkah lain untuk render lengkap dengan suara. Coba cari tombol render ulang atau render final di halaman episode. Saya tidak yakin nama tombolnya, jadi tolong dicek.\n\nSetelah semua rekaman ada, tekan render lagi. Kalau berhasil, di log seharusnya tidak muncul lagi tulisan \"tanpa suara\".\n\nAda catatan penting kalau Ibu sampai harus rekam ulang. Sebaiknya kerjakan dulu saran Choki lewat **\"Minta revisi\"**: tambahkan kalimat Ibu di adegan 11, misalnya \"Nanti kalau hujan turun lagi, Mas baca, ya!\". Tujuannya supaya anak tidak mengira doa ini dibaca setelah hujan. Dengan begitu cukup sekali rekam.",
     "episodeId": "hujan-turun-mamas-berdoa-allahumma-shayy-d482"
+  },
+  {
+    "time": "2026-11-05T04:58:43.535Z",
+    "from": "owner",
+    "text": "seharusnya di adegan ke 15 itu yg disematkan di video itu potongan / arti dari surat luqman, baru setelah itu bacaan hasbunalloh wa nikmal wakilnya",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T04:59:01.282Z",
+    "from": "agent",
+    "text": "Paham, Bu. Masalahnya karena adegan 15 sekarang menggabungkan dua hal: arti Surat Luqman, lalu bacaan Ḥasbunallāh. Adegannya bertipe **doa**, jadi kemungkinan besar sistem menampilkan teks Ḥasbunallāh sepanjang adegan. Akibatnya arti Luqman tidak muncul di layar. Ini masih dugaan, karena data teks layar adegan 15 terpotong di tampilan saya.\n\nJalan keluarnya, **adegan 15 dipecah jadi dua** supaya teks layarnya berganti sesuai urutan:\n\n- **Adegan 15 (cerita, Mamas):** \"Artinya kata Ibu, jangan berjalan di bumi dengan sombong. Allah tidak suka orang yang sombong dan membanggakan diri.\"\n  Teks di layar: **arti QS. Luqman: 18**\n- **Adegan 16 (doa, Mamas):** \"Ka'bah dijaga Allah. Kita juga dijaga Allah. Kalau merasa kecil atau takut, Mamas ingat Allah. Ḥasbunallāhu wa ni'mal wakīl.\"\n  Teks di layar: **Ḥasbunallāh (Arab, latin, arti) + QS. Ali 'Imran: 173**\n- **Adegan 17 (Ibu):** tetap seperti adegan 16 yang lama, yaitu arti Ḥasbunallāh lalu salam penutup.\n\nKalimat \"Ka'bah dijaga Allah…\" itu saran Choki, supaya perpindahan dari pesan \"jangan sombong\" ke dzikir Ḥasbunallāh terasa nyambung.\n\n**Caranya:** buka halaman episode ini, tekan **\"Minta revisi\"**, lalu tempel usulan di atas. Tulis juga dengan jelas: *\"teks layar adegan 15 = arti Luqman 18, adegan 16 = Ḥasbunallāh\"*. Setelah itu, rekam ulang kedua adegan ini dan render ulang.\n\nBiar cukup sekali rekam, sekalian masukkan dua saran Choki lainnya di revisi yang sama:\n- Ganti \"gereja\" jadi \"bangunan yang sangat megah\".\n- Tambah kalimat \"Gajah-gajah itu besar sekali. Langkahnya berat. Duk… duk…\" supaya durasinya aman minimal 3 menit.\n\nPastikan juga semua adegan sudah ada rekamannya sebelum render, biar videonya tidak bisu lagi seperti kemarin.",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T05:01:02.833Z",
+    "from": "owner",
+    "text": "dimana tombol minta revisinya ?",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T05:01:15.671Z",
+    "from": "agent",
+    "text": "Bu, saya tidak bisa melihat tampilan dashboard, jadi letak persisnya belum bisa saya pastikan. Saya juga sudah terlalu yakin waktu menyebut tombol \"Minta revisi\" tadi, maaf.\n\nEpisode ini statusnya **menunggu persetujuan video**. Jadi kemungkinan besar tombolnya ada di sini:\n\n1. **Halaman episode Pasukan Gajah, dekat pratinjau video.** Biasanya di bawah atau di samping video ada tombol persetujuan, misalnya \"Setujui\", bersebelahan dengan tombol penolakan seperti \"Minta revisi\" atau \"Tolak\".\n2. **Di Papan Kerja.** Coba klik kartu episode ini, lalu lihat apakah ada menu atau tombol tindakan.\n\nKalau kedua tempat itu tidak ada, mungkin di tahap ini tombolnya hanya untuk video (setujui atau render ulang). Tombol revisi naskah mungkin cuma muncul di tahap persetujuan naskah. Kalau begitu, saya tidak tahu cara mengembalikan episode ke tahap naskah dari dashboard.\n\nBiar saya bisa bantu dengan tepat, Ibu bisa sebutkan **tombol apa saja yang terlihat** di halaman episode ini? Dari situ saya tunjukkan mana yang dipakai. Kalau memang tidak ada jalannya, yang paling aman adalah tanya ke orang yang membuat dashboard ini.",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
   }
 ]

@@ -1,8 +1,8 @@
 {
   "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
   "created": "2026-11-05T03:35:15.737Z",
-  "modified": "2026-11-05T04:42:34.364Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-05T04:53:05.237Z",
+  "status": "error",
   "idea": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
     "series": "doa-harian",
@@ -132,10 +132,25 @@
       "time": "2026-11-05T04:42:34.364Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T04:53:04.213Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-05 18:30"
+    },
+    {
+      "time": "2026-11-05T04:53:05.080Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T04:53:05.237Z",
+      "by": "upload",
+      "message": "invalid_grant"
     }
   ],
   "twin": "pakai-baju-sendiri-mamas-baca-alhamdulil-a181",
-  "statusNote": "Video siap ditonton & disetujui",
+  "statusNote": "invalid_grant",
   "script": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
     "summary": "Mamas ingin memakai baju koko sendiri. Ternyata Mochi bersembunyi di dalam lengan baju, lalu kancingnya terpasang miring. Ibu membantu dengan sabar dan mengajarkan doa memakai pakaian (HR. Abu Dawud no. 4023). Pesannya: setiap memakai baju, kita bilang \"Alhamdulillah\" dan bersyukur kepada Allah yang memberi kita pakaian.",
@@ -366,5 +381,6 @@
       }
     ],
     "time": "2026-11-05T04:42:34.364Z"
-  }
+  },
+  "selectedSchedule": "2026-11-05T11:30:00.000Z"
 }
