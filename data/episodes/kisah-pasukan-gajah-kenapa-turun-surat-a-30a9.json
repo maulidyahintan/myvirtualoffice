@@ -1,8 +1,8 @@
 {
   "id": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9",
   "created": "2026-11-05T03:44:27.212Z",
-  "modified": "2026-11-05T04:52:47.234Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-05T10:45:02.199Z",
+  "status": "needs_script_approval",
   "idea": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
     "series": "asbabun-nuzul",
@@ -251,13 +251,73 @@
       "time": "2026-11-05T04:52:47.234Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T05:10:26.694Z",
+      "by": "pemilik",
+      "message": "Rekaman per adegan disimpan; adegan yang narasinya tidak berubah akan memakai rekaman lama"
+    },
+    {
+      "time": "2026-11-05T05:10:26.695Z",
+      "by": "pemilik",
+      "message": "Minta revisi: 1. Adegan 5 (narator): ganti \"Ia membangun gereja yang megah di sana\" menjadi \"I"
+    },
+    {
+      "time": "2026-11-05T05:10:32.751Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-05T05:11:12.907Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T05:11:13.338Z",
+      "by": "penulis",
+      "message": "Naskah 344 kata, melebihi batas 320 kata — dipadatkan"
+    },
+    {
+      "time": "2026-11-05T05:11:13.339Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-05T05:11:15.313Z",
+      "by": "tulis",
+      "message": "Agen penulis tidak mengembalikan JSON: You've hit your session limit · resets 3:30pm (Asia/Jakarta)"
+    },
+    {
+      "time": "2026-11-05T10:44:10.846Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-05T10:44:12.636Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-05 18:30"
+    },
+    {
+      "time": "2026-11-05T10:44:13.573Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T10:44:13.726Z",
+      "by": "upload",
+      "message": "invalid_grant"
+    },
+    {
+      "time": "2026-11-05T10:45:02.199Z",
+      "by": "orchestrator",
+      "message": "Naskah revisi siap disetujui (17 adegan, 344 kata)"
     }
   ],
   "twin": "kisah-pasukan-gajah-kenapa-turun-surat-a-12a4",
-  "statusNote": "Video siap ditonton & disetujui",
+  "statusNote": "Naskah revisi siap disetujui (17 adegan, 344 kata)",
   "script": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
-    "summary": "Mamas bermain dengan gajah kayu barunya dan merasa gajahnya paling kuat. Ibu lalu bercerita tentang pasukan gajah yang kisahnya ada di Surat Al-Fil. Narator menceritakan Abrahah, penguasa di negeri Yaman. Ia membangun gereja megah dan ingin orang berhenti berkunjung ke Ka'bah. Ia datang membawa pasukan gajah untuk merobohkan Ka'bah. Allah mengalahkannya dengan burung-burung yang datang berbondong-bondong membawa batu dari tanah yang dibakar. Ibu menjelaskan bahwa peristiwa itu terjadi pada Tahun Gajah, tahun lahirnya Nabi Muhammad ﷺ. Bertahun-tahun kemudian, Surat Al-Fil turun di Makkah sebagai pengingat bahwa Allah yang menjaga Ka'bah. Pelajarannya: kekuatan sejati milik Allah, jadi jangan sombong. Surat Al-Fil tidak dibacakan. Isinya hanya diceritakan dan dijelaskan artinya. Mamas membacakan sebagian QS. Luqman: 18. Video ditutup dengan Mamas mengucapkan \"Ḥasbunallāhu wa ni'mal wakīl\" (QS. Ali 'Imran: 173). Visual kisahnya cukup siluet gajah, gurun, langit, burung, dan batu kecil, tanpa tokoh manusia.",
+    "summary": "Mamas bermain dengan gajah kayu barunya dan merasa gajahnya paling kuat. Ibu lalu bercerita tentang pasukan gajah yang kisahnya ada di Surat Al-Fil. Narator menceritakan Abrahah, penguasa di negeri Yaman. Ia membangun bangunan yang sangat megah dan ingin orang berhenti berkunjung ke Ka'bah. Ia datang membawa pasukan gajah untuk merobohkan Ka'bah. Allah mengalahkannya dengan burung-burung yang datang berbondong-bondong membawa batu dari tanah yang dibakar. Ibu menjelaskan bahwa peristiwa itu terjadi pada Tahun Gajah, tahun lahirnya Nabi Muhammad ﷺ. Bertahun-tahun kemudian, Surat Al-Fil turun di Makkah sebagai pengingat bahwa Allah yang menjaga Ka'bah. Pelajarannya: kekuatan sejati milik Allah, jadi jangan sombong. Surat Al-Fil tidak dibacakan. Isinya hanya diceritakan dan dijelaskan artinya. Mamas membacakan sebagian QS. Luqman: 18 lalu menjelaskan artinya. Setelah itu Mamas mengingat bahwa Ka'bah dijaga Allah dan kita juga dijaga Allah, lalu mengucapkan \"Ḥasbunallāhu wa ni'mal wakīl\" (QS. Ali 'Imran: 173). Visual kisahnya cukup siluet gajah, gurun, langit, burung, dan batu kecil, tanpa tokoh manusia.",
     "scenes": [
       {
         "type": "story",
@@ -286,14 +346,14 @@
       {
         "type": "story",
         "speaker": "narrator",
-        "narration": "Dahulu, sebelum Nabi Muhammad ﷺ lahir, ada penguasa di negeri Yaman. Namanya Abrahah. Ia membangun gereja yang megah di sana. Ia ingin orang-orang berkunjung ke sana, bukan ke Ka'bah.",
-        "visualDirection": "Latar gurun luas berwarna senja dengan siluet bangunan megah di kejauhan dan siluet sederhana Ka'bah di sisi lain. Tidak ada tokoh manusia yang digambar."
+        "narration": "Dahulu, sebelum Nabi Muhammad ﷺ lahir, ada penguasa di negeri Yaman. Namanya Abrahah. Ia membangun bangunan yang sangat megah di sana. Ia ingin orang-orang berkunjung ke sana, bukan ke Ka'bah.",
+        "visualDirection": "Gurun senja dengan siluet bangunan megah di kejauhan dan siluet sederhana Ka'bah di sisi lain, lalu siluet gajah-gajah berjalan pelan di cakrawala berdebu tipis; tidak ada tokoh manusia."
       },
       {
         "type": "story",
         "speaker": "narrator",
         "narration": "Lalu Abrahah datang membawa pasukan besar dan gajah-gajah. Ia ingin merobohkan Ka'bah di kota Makkah. Ia merasa paling kuat. Ia sombong.",
-        "visualDirection": "Siluet gajah-gajah berjalan pelan di cakrawala gurun, dengan debu tipis dan warna yang tenang. Tidak ada wajah atau tokoh manusia."
+        "visualDirection": "Gurun senja dengan siluet bangunan megah di kejauhan dan siluet sederhana Ka'bah di sisi lain, lalu siluet gajah-gajah berjalan pelan di cakrawala berdebu tipis; tidak ada tokoh manusia."
       },
       {
         "type": "story",
@@ -344,9 +404,15 @@
         "visualDirection": "Mamas membaca dengan tenang sambil duduk rapi, dan Ibu mendengarkan sambil tersenyum."
       },
       {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Artinya kata Ibu, jangan berjalan di bumi dengan sombong. Allah tidak suka orang yang sombong dan membanggakan diri.",
+        "visualDirection": "Mamas menjelaskan sambil menatap Ibu, lalu meletakkan gajah kayunya dengan rapi di samping menara balok."
+      },
+      {
         "type": "prayer",
         "speaker": "mamas",
-        "narration": "Artinya kata Ibu, jangan berjalan di bumi dengan sombong. Allah tidak suka orang yang sombong dan membanggakan diri. Kalau merasa kecil atau takut, Mamas ingat Allah. Ḥasbunallāhu wa ni'mal wakīl.",
+        "narration": "Ka'bah dijaga Allah. Kita juga dijaga Allah. Kalau merasa kecil atau takut, Mamas ingat Allah. Ḥasbunallāhu wa ni'mal wakīl.",
         "visualDirection": "Mamas dan Ibu mengangkat tangan berdoa di ruang tengah yang hangat. Mochi duduk tenang di samping mereka."
       },
       {
@@ -362,7 +428,7 @@
         "arabicText": "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ ﴿١﴾ أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ ﴿٢﴾ وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ ﴿٣﴾ تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ ﴿٤﴾ فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ ﴿٥﴾",
         "latin": "Alam tara kaifa fa'ala rabbuka bi-aṣḥābil-fīl. Alam yaj'al kaidahum fī taḍlīl. Wa arsala 'alaihim ṭairan abābīl. Tarmīhim bi-ḥijāratim min sijjīl. Fa ja'alahum ka'aṣfim ma'kūl.",
         "translation": "Tidakkah engkau perhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah? Bukankah Dia telah menjadikan tipu daya mereka sia-sia? Dan Dia mengirimkan kepada mereka burung yang berbondong-bondong, yang melempari mereka dengan batu dari tanah liat yang dibakar, sehingga mereka dijadikan-Nya seperti daun-daun yang dimakan (ulat).",
-        "source": "QS. Al-Fil (105): 1–5. Surat ini tidak dibacakan di video. Isinya hanya diceritakan oleh narator dan Ibu. Konteks kisah merujuk pada Tafsir Ibnu Katsir, tafsir Surat Al-Fil: Abrahah sebagai penguasa di Yaman, gereja megah yang ia bangun agar orang berpaling dari Ka'bah, Tahun Gajah sebagai tahun lahirnya Nabi ﷺ, dan fungsi surat ini sebagai pengingat bagi penduduk Makkah."
+        "source": "QS. Al-Fil (105): 1–5. Surat ini tidak dibacakan di video. Isinya hanya diceritakan oleh narator dan Ibu. Konteks kisah merujuk pada Tafsir Ibnu Katsir, tafsir Surat Al-Fil: Abrahah sebagai penguasa di Yaman, bangunan megah yang ia bangun agar orang berpaling dari Ka'bah, Tahun Gajah sebagai tahun lahirnya Nabi ﷺ, dan fungsi surat ini sebagai pengingat bagi penduduk Makkah."
       },
       {
         "type": "ayat",
@@ -758,44 +824,7 @@
     ],
     "thumbnailText": "Kenapa Pasukan Gajah Kalah?"
   },
-  "audioPerScene": [
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-1-mw30l95a.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-2-mw30lnlx.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-3-mw30mrbu.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-4-mw30mzyl.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-5-mw30ni26.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-6-mw30nvii.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-7-mw30opo3.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-8-mw30oxuh.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-9-mw30pdss.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-10-mw30q0ns.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-11-mw30qefr.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-12-mw30qtzo.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-13-mw30r42d.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-14-mw30rli7.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-15-mw30simv.webm",
-    "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-16-mw30sw6p.webm"
-  ],
-  "sceneOffsets": [
-    2.133,
-    2.133,
-    2.134,
-    2.133,
-    2.136,
-    2.133,
-    2.13,
-    2.13,
-    2.133,
-    2.134,
-    2.134,
-    2.132,
-    2.132,
-    2.135,
-    2.134,
-    2.133
-  ],
   "recordingMode": "per-scene",
-  "audioFile": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-gabung.wav",
   "render": {
     "video": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9.mp4",
     "thumbnail": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9.png",
@@ -866,5 +895,89 @@
       }
     ],
     "time": "2026-11-05T04:52:47.234Z"
-  }
+  },
+  "directionFeedback": "Adegan arti Surat Luqman (setelah Mamas membaca QS. Luqman: 18) menampilkan ARTI QS. Luqman: 18 di layar, bukan Ḥasbunallāh. Adegan berikutnya (doa) baru menampilkan Ḥasbunallāhu wa ni'mal wakīl (Arab, latin, arti) + QS. Ali 'Imran: 173.",
+  "previousRecordings": [
+    {
+      "narration": "Assalamu'alaikum, adik-adik! Sore ini Mamas bermain di ruang tengah. Mamas punya mainan baru, yaitu gajah kayu yang besar. Mochi duduk di dekatnya sambil mengibaskan ekor.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-1-mw30l95a.webm",
+      "offset": 2.133
+    },
+    {
+      "narration": "Lihat, Bu! Gajahku paling kuat! Duk, duk, duk! Menaranya roboh semua! Tidak ada yang bisa mengalahkan gajahku!",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-2-mw30lnlx.webm",
+      "offset": 2.133
+    },
+    {
+      "narration": "Wah, gajahnya kuat sekali, Mas. Tapi tahu tidak? Dulu ada pasukan gajah yang kalah oleh burung-burung. Allah menceritakannya di Surat Al-Fil. Al-Fil artinya gajah. Mau Ibu ceritakan?",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-3-mw30mrbu.webm",
+      "offset": 2.134
+    },
+    {
+      "narration": "Mau, Bu! Ayo, Mochi, sini. Kita dengar ceritanya bersama.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-4-mw30mzyl.webm",
+      "offset": 2.133
+    },
+    {
+      "narration": "Dahulu, sebelum Nabi Muhammad ﷺ lahir, ada penguasa di negeri Yaman. Namanya Abrahah. Ia membangun gereja yang megah di sana. Ia ingin orang-orang berkunjung ke sana, bukan ke Ka'bah.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-5-mw30ni26.webm",
+      "offset": 2.136
+    },
+    {
+      "narration": "Lalu Abrahah datang membawa pasukan besar dan gajah-gajah. Ia ingin merobohkan Ka'bah di kota Makkah. Ia merasa paling kuat. Ia sombong.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-6-mw30nvii.webm",
+      "offset": 2.133
+    },
+    {
+      "narration": "Tapi rencana mereka gagal. Allah mengirim burung-burung yang datang berbondong-bondong. Burung itu membawa batu dari tanah yang dibakar. Pasukan itu pun kalah, dan Ka'bah tetap aman.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-7-mw30opo3.webm",
+      "offset": 2.13
+    },
+    {
+      "narration": "Batunya kecil, tapi gajahnya kalah? Kok bisa, Bu?",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-8-mw30oxuh.webm",
+      "offset": 2.13
+    },
+    {
+      "narration": "Karena Allah yang mengirim burung itu, Mas. Kekuatan sejati itu milik Allah. Bukan milik gajah, bukan juga milik penguasa. Allah tidak butuh pasukan besar untuk menang.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-9-mw30pdss.webm",
+      "offset": 2.133
+    },
+    {
+      "narration": "Tahun kejadian itu disebut Tahun Gajah. Pada tahun itulah Nabi Muhammad ﷺ lahir. Bertahun-tahun kemudian, Surat Al-Fil turun di Makkah. Orang Makkah masih ingat kejadian itu. Lewat surat ini, Allah mengingatkan bahwa Dialah yang menjaga Ka'bah.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-10-mw30q0ns.webm",
+      "offset": 2.134
+    },
+    {
+      "narration": "Nah, adik-adik. Tadi Mamas bilang gajahnya paling kuat. Menurut adik, apa yang sebaiknya Mamas katakan sekarang? Coba pikirkan dulu, ya.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-11-mw30qefr.webm",
+      "offset": 2.134
+    },
+    {
+      "narration": "Bu, Mamas tidak mau sombong lagi. Yang paling kuat itu Allah. Yuk, Mamas bangun lagi menaranya. Eh, Mochi! Jangan didorong! Mochi juga tidak boleh sombong, ya!",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-12-mw30qtzo.webm",
+      "offset": 2.132
+    },
+    {
+      "narration": "Pintar, Mas. Allah juga mengajarkan ini di Surat Luqman. Mamas baca, ya.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-13-mw30r42d.webm",
+      "offset": 2.132
+    },
+    {
+      "narration": "Wa lā tamsyi fil-arḍi maraḥā, innallāha lā yuḥibbu kulla mukhtālin fakhūr.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-14-mw30rli7.webm",
+      "offset": 2.135
+    },
+    {
+      "narration": "Artinya kata Ibu, jangan berjalan di bumi dengan sombong. Allah tidak suka orang yang sombong dan membanggakan diri. Kalau merasa kecil atau takut, Mamas ingat Allah. Ḥasbunallāhu wa ni'mal wakīl.",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-15-mw30simv.webm",
+      "offset": 2.134
+    },
+    {
+      "narration": "Artinya, cukuplah Allah bagi kami. Dia sebaik-baik pelindung. Sampai jumpa lagi, adik-adik. Wassalamu'alaikum!",
+      "file": "audio/kisah-pasukan-gajah-kenapa-turun-surat-a-30a9-adegan-16-mw30sw6p.webm",
+      "offset": 2.133
+    }
+  ],
+  "selectedSchedule": "2026-11-05T11:30:00.000Z"
 }

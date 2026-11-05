@@ -1,9 +1,9 @@
 {
   "id": "hujan-turun-mamas-berdoa-allahumma-shayy-59fa",
   "created": "2026-10-30T12:42:32.414Z",
-  "modified": "2026-11-05T04:44:19.709Z",
-  "status": "needs_video_approval",
-  "statusNote": "Video siap ditonton & disetujui",
+  "modified": "2026-11-05T05:09:01.875Z",
+  "status": "error",
+  "statusNote": "invalid_grant",
   "idea": {
     "title": "Hujan Turun! Mamas Berdoa \"Allahumma Shayyiban Nafi'an\"",
     "series": "doa-harian",
@@ -215,6 +215,21 @@
       "time": "2026-11-05T04:44:19.709Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T05:09:01.095Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-05 18:30"
+    },
+    {
+      "time": "2026-11-05T05:09:01.714Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T05:09:01.875Z",
+      "by": "upload",
+      "message": "invalid_grant"
     }
   ],
   "scenes": [
@@ -389,5 +404,6 @@
     2.13
   ],
   "recordingMode": "per-scene",
-  "audioFile": "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-gabung.wav"
+  "audioFile": "audio/hujan-turun-mamas-berdoa-allahumma-shayy-59fa-gabung.wav",
+  "selectedSchedule": "2026-11-05T11:30:00.000Z"
 }
