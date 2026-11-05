@@ -214,8 +214,10 @@ export async function approveVideo(form: FormData) {
   let iso: string | undefined;
   if (jadwal) {
     iso = localToIso(jadwal, loadConfig().timeZone);
+    // too soon (e.g. the page was open for a while and the suggested time has passed): back to the
+    // episode with a clear warning instead of crashing the page
     if (new Date(iso).getTime() < Date.now() + MIN_SCHEDULE_GAP_MINUTES * 60_000) {
-      throw new Error(`Jadwal tayang minimal ${MIN_SCHEDULE_GAP_MINUTES} menit dari sekarang`);
+      redirect(`/episode/${id}?jadwal=terlalu-dekat`);
     }
     args.push(iso);
   }

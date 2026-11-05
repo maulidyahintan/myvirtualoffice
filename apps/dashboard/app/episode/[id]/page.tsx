@@ -3,6 +3,8 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  isoToLocal,
+  MIN_SCHEDULE_GAP_MINUTES,
   NO_DRAFT_STATUSES,
   estimatedScriptSeconds,
   SCRIPT_WORD_LIMIT,
@@ -253,7 +255,14 @@ function JadwalTayang({ ep }: { ep: Episode }) {
   return (
     <label>
       Jadwal tayang ({cfg.timeZone})
-      <input type="datetime-local" name="jadwal" defaultValue={saran?.local ?? besokJamTayang(cfg.defaultPublishTime)} required />
+      {/* min: the browser rejects times that are already too close before the form is sent */}
+      <input
+        type="datetime-local"
+        name="jadwal"
+        defaultValue={saran?.local ?? besokJamTayang(cfg.defaultPublishTime)}
+        min={isoToLocal(new Date(Date.now() + (MIN_SCHEDULE_GAP_MINUTES + 5) * 60_000).toISOString(), cfg.timeZone)}
+        required
+      />
       <span className="kecil muted" style={{ fontWeight: 'normal' }}>
         {saran && tanggal ? (
           <>
@@ -272,7 +281,7 @@ function JadwalTayang({ ep }: { ep: Episode }) {
 
 const Id = ({ id }: { id: string }) => <input type="hidden" name="id" value={id} />;
 
-function PanelAksi({ ep }: { ep: Episode }) {
+function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerlaluDekat?: boolean }) {
   const cfg = loadConfig();
   if (BUSY_STATUSES.includes(ep.status)) {
     return (
@@ -417,6 +426,12 @@ function PanelAksi({ ep }: { ep: Episode }) {
           <p className="kecil muted">
             Video diupload sebagai <b>Made for Kids</b>, kategori Pendidikan, dan langsung masuk playlist <b>{playlistName(ep, cfg)}</b>. Dengan jadwal, video tayang otomatis.
           </p>
+          {jadwalTerlaluDekat ? (
+            <p className="peringatan kecil" style={{ margin: 0 }}>
+              ⏰ Jadwal tayang yang dipilih sudah lewat atau kurang dari {MIN_SCHEDULE_GAP_MINUTES} menit dari sekarang (YouTube butuh waktu
+              memproses video). Jadwal di bawah sudah diperbarui; cek lalu setujui lagi.
+            </p>
+          ) : null}
           <form action={approveVideo} className="stack">
             <Id id={ep.id} />
             <JadwalTayang ep={ep} />
@@ -741,8 +756,15 @@ function FormTolak({ id }: { id: string }) {
   );
 }
 
-export default async function HalamanEpisode({ params }: { params: Promise<{ id: string }> }) {
+export default async function HalamanEpisode({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const { id } = await params;
+  const jadwalTerlaluDekat = (await searchParams).jadwal === 'terlalu-dekat';
   let ep: Episode;
   try {
     ep = getEpisode(id);
@@ -877,7 +899,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
         </div>
 
         <div className="stack">
-          <PanelAksi ep={ep} />
+          <PanelAksi ep={ep} jadwalTerlaluDekat={jadwalTerlaluDekat} />
 
           <div className="panel">
             <h2>Ide</h2>
