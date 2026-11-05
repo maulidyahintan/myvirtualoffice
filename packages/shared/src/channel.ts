@@ -8,7 +8,7 @@ import {
   DEFAULT_CHARACTER_PROFILES,
   SPEAKERS,
 } from './constants.ts';
-import type { AppConfig, Background, CharacterLooks, CharacterProfile, Episode, Scene, Speaker, VisualStyle } from './types.ts';
+import type { AppConfig, Background, CharacterLooks, CharacterProfile, Episode, RecordingMode, Scene, Speaker, VisualStyle } from './types.ts';
 
 export function characterProfile(cfg: AppConfig, id: Speaker): CharacterProfile {
   const own = cfg.characters?.[id];
@@ -103,4 +103,15 @@ export function mixesArabicAndIndonesian(scene: Pick<Scene, 'type' | 'narration'
 /** Visual style used when rendering this episode (episode choice, else the channel default). */
 export function visualStyle(ep: Episode, cfg: AppConfig): VisualStyle {
   return ep.idea.type === 'memorization' ? 'animation' : (ep.visualStyle ?? cfg.visualStyle ?? 'animation');
+}
+
+/**
+ * Recording mode shown to the owner. Stories without any recording yet default to per-scene, because the
+ * AI voice and the Arabic-recitation uploads work scene by scene; memorization videos keep the sequential
+ * flow (one recitation file, pauses detected automatically).
+ */
+export function effectiveRecordingMode(ep: Episode): RecordingMode {
+  if (ep.recordingMode) return ep.recordingMode;
+  if (ep.idea.type === 'memorization' || ep.audioFile || ep.audioParts?.length) return 'sequential';
+  return 'per-scene';
 }

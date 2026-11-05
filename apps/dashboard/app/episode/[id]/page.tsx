@@ -3,6 +3,7 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  effectiveRecordingMode,
   mixesArabicAndIndonesian,
   aiVoiceInProgress,
   deleteBlockers,
@@ -74,7 +75,7 @@ export const dynamic = 'force-dynamic';
 
 /** Pilih cara mengirim rekaman: berurutan (1 file / beberapa bagian) atau per scene. */
 function PilihModeRekam({ ep }: { ep: Episode }) {
-  const mode = ep.recordingMode ?? 'sequential';
+  const mode = effectiveRecordingMode(ep);
   const satuan = ep.idea.type === 'memorization' ? 'ayat' : 'adegan';
   const pilihan = [
     {
@@ -137,7 +138,7 @@ function pemakaianSuaraAi(): { requests: number; exhausted: boolean } {
 /** Status suara AI gratis di atas daftar rekaman: cara pakai, jatah hari ini, atau cara menyiapkannya. */
 function IsiSuaraAi({ ep }: { ep: Episode }) {
   if (ep.idea.type === 'memorization' || !ep.scenes?.length) return null;
-  const bisaAi = ep.scenes.filter((s, i) => !(ep.recordingMode === 'per-scene' && ep.audioPerScene?.[i]) && !needsHumanVoice(s)).length;
+  const bisaAi = ep.scenes.filter((s, i) => !(effectiveRecordingMode(ep) === 'per-scene' && ep.audioPerScene?.[i]) && !needsHumanVoice(s)).length;
   if (!bisaAi) return null;
   if (!suaraAiSiap()) {
     return (
@@ -151,12 +152,27 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
     );
   }
   const pakai = pemakaianSuaraAi();
+  if (effectiveRecordingMode(ep) !== 'per-scene') {
+    // AI voice fills scenes one by one, so it needs the per-scene mode: offer the switch as a clear button
+    const adaRekaman = Boolean(ep.audioFile || ep.audioParts?.length);
+    return (
+      <form action={changeRecordingMode} className="stack" style={{ gap: 4 }}>
+        <Id id={ep.id} />
+        <input type="hidden" name="mode" value="per-scene" />
+        <SubmitButton type="submit" className="sekunder" teksProses="Memindahkan…">
+          🤖 Pakai suara AI: pindah ke mode per adegan
+        </SubmitButton>
+        <span className="kecil muted">
+          Suara AI gratis mengisi adegan satu per satu, jadi perlu mode rekam per adegan.
+          {adaRekaman ? ' Rekaman utuh yang sudah diupload tidak dipakai lagi di mode ini.' : ''}
+        </span>
+      </form>
+    );
+  }
   return (
     <p className="kecil muted" style={{ margin: 0 }}>
       🤖{' '}
-      {ep.recordingMode !== 'per-scene'
-        ? 'Suara AI gratis bisa mengisi adegan satu per satu: pilih mode rekam per adegan di atas.'
-        : pakai.exhausted
+      {pakai.exhausted
           ? 'Jatah suara AI gratis hari ini sudah habis; rekam sendiri atau coba lagi besok.'
           : `Suara AI gratis: klik "🤖 Isi suara AI" di adegan yang mau diisi, satu adegan per klik. Bacaan Arab tetap rekam sendiri. Jatah Google ±20 adegan per hari; hari ini terpakai ${pakai.requests}.`}
     </p>
@@ -196,7 +212,7 @@ function TombolSuaraAi({ ep, index }: { ep: Episode; index: number }) {
 /** Edit narasi & teks layar satu adegan secara langsung; adegan doa bisa dijadikan cerita biasa tanpa teks Arab. */
 function UbahNarasi({ ep, index }: { ep: Episode; index: number }) {
   const scene = ep.scenes![index];
-  const adaRekaman = ep.recordingMode === 'per-scene' ? Boolean(ep.audioPerScene?.[index]) : Boolean(ep.audioFile || ep.audioParts?.length);
+  const adaRekaman = effectiveRecordingMode(ep) === 'per-scene' ? Boolean(ep.audioPerScene?.[index]) : Boolean(ep.audioFile || ep.audioParts?.length);
   return (
     <details className="kecil">
       <summary>✏️ Ubah narasi</summary>
@@ -219,7 +235,7 @@ function UbahNarasi({ ep, index }: { ep: Episode; index: number }) {
         <span className="muted">
           {scene.prayer ? 'Matikan kartu doa kalau adegan ini cukup artinya saja (jadi adegan cerita biasa, bisa diisi suara AI). ' : ''}
           {adaRekaman
-            ? ep.recordingMode === 'per-scene'
+            ? effectiveRecordingMode(ep) === 'per-scene'
               ? 'Kalau narasi diubah, rekaman adegan ini dilepas dan perlu direkam ulang (adegan lain tetap).'
               : 'Kalau narasi diubah, rekaman utuh episode ini tidak cocok lagi dan perlu direkam ulang. Pakai mode rekam per adegan supaya cukup adegan ini saja.'
             : ''}
@@ -234,8 +250,8 @@ function UbahNarasi({ ep, index }: { ep: Episode; index: number }) {
 
 /** Upload (atau ganti) audio bacaan Arab satu adegan langsung di daftar naskah. */
 function AudioBacaanArab({ ep, index }: { ep: Episode; index: number }) {
-  const file = ep.recordingMode === 'per-scene' ? ep.audioPerScene?.[index] : undefined;
-  const rekamanUtuh = ep.recordingMode !== 'per-scene' && Boolean(ep.audioFile || ep.audioParts?.length);
+  const file = effectiveRecordingMode(ep) === 'per-scene' ? ep.audioPerScene?.[index] : undefined;
+  const rekamanUtuh = effectiveRecordingMode(ep) !== 'per-scene' && Boolean(ep.audioFile || ep.audioParts?.length);
   return (
     <div className="kotak-bacaan stack">
       <b>🎙️ Audio bacaan Arab {file ? '✅' : ''}</b>
@@ -720,7 +736,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
           </Link>
           <PilihModeRekam ep={ep} />
           <IsiSuaraAi ep={ep} />
-          {ep.recordingMode === 'per-scene' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
+          {effectiveRecordingMode(ep) === 'per-scene' ? <RekamanPerAdegan ep={ep} /> : <RekamanBagian ep={ep} />}
           <form action={renderVideo}>
             <Id id={ep.id} />
             <SubmitButton type="submit" className="sekunder" teksProses="Memulai render…">
@@ -780,7 +796,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               <Link href={`/episode/${ep.id}/studio`}>🎙️ Buka Studio Rekam</Link> untuk merekam ulang adegan tertentu sambil melihat
               videonya, atau mengatur nada suara.
             </p>
-            {ep.recordingMode === 'per-scene' ? (
+            {effectiveRecordingMode(ep) === 'per-scene' ? (
               <div style={{ marginTop: 10 }}>
                 <RekamanPerAdegan ep={ep} />
               </div>
