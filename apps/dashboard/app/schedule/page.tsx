@@ -67,7 +67,7 @@ export default async function HalamanJadwal({ searchParams }: { searchParams: Pr
         <div>
           <h1>📅 Jadwal Tayang</h1>
           <div className="muted kecil">
-            Saat menyetujui video, jadwalnya otomatis terisi slot kosong berikutnya dari rencana, dan tetap bisa kamu ganti tanggal & jamnya.
+            Saat menyetujui video, jadwalnya otomatis terisi slot kosong paling dekat (hari ini/besok lebih dulu), dan tetap bisa kamu ganti tanggal & jamnya. Rekomendasi di kalender bergeser sendiri setiap ada video yang terjadwal.
           </div>
         </div>
         <div className="row">

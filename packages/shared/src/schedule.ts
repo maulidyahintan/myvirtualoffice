@@ -1,6 +1,6 @@
 // Publish schedule plan: Channel Manager determines how many videos per day, days, and publish times
 // per format. From that plan, next available slots are calculated for each ready-to-publish video.
-import type { Episode, AppConfig, PublishPlan } from './types.ts';
+import type { Episode, AppConfig, Format, PublishPlan } from './types.ts';
 
 export const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'] as const;
 
@@ -75,45 +75,63 @@ export interface RecommendedSlot {
   iso: string;
 }
 
-/**
- * Recommended schedule for video awaiting approval, following Channel Manager plan.
- * Queue filled sequentially (oldest ready first) into next available slot:
- * selected publish day, not full (videosPerDay), slot matches format, and not yet filled.
- */
-export function recommendSchedule(episodes: Episode[], cfg: AppConfig, now = new Date()): Map<string, RecommendedSlot> {
-  const plan = publishPlan(cfg);
-  const zone = cfg.timeZone;
-  const filled = episodes.flatMap((e) => {
+/** Upcoming publish times that are already taken (scheduled on YouTube or uploading with a schedule). */
+function takenSlots(episodes: Episode[], zone: string, now: Date): { iso: string; local: string }[] {
+  return episodes.flatMap((e) => {
     const iso = episodeSchedule(e);
     return iso && new Date(iso) > now ? [{ iso, local: isoToLocal(iso, zone) }] : [];
   });
-  const queue = episodes
-    .filter((e) => e.status === 'needs_video_approval' && !e.draftedAt)
-    .sort((a, b) => (a.render?.time ?? a.modified).localeCompare(b.render?.time ?? b.modified));
+}
 
-  const result = new Map<string, RecommendedSlot>();
+/** Earliest free slot in the plan for a format, given the slots already taken. */
+function firstFreeSlot(format: Format, taken: { iso: string; local: string }[], cfg: AppConfig, now: Date): RecommendedSlot | undefined {
+  const plan = publishPlan(cfg);
+  const zone = cfg.timeZone;
   const today = isoToLocal(now.toISOString(), zone).slice(0, 10);
   const threshold = now.getTime() + SLOT_GAP_MINUTES * 60_000;
   const slots = [...plan.slots].sort((a, b) => a.time.localeCompare(b.time));
-
-  for (const ep of queue) {
-    const format = ep.idea.format ?? 'standard';
-    search: for (let n = 0; n < SEARCH_DAYS; n++) {
-      const { date, day } = addDays(today, n);
-      if (!plan.days.includes(day)) continue;
-      if (filled.filter((t) => t.local.startsWith(date)).length >= plan.videosPerDay) continue;
-      for (const s of slots) {
-        if (s.format !== 'all' && s.format !== format) continue;
-        const local = `${date}T${s.time}`;
-        const iso = localToIso(local, zone);
-        const time = new Date(iso).getTime();
-        if (time < threshold) continue;
-        if (filled.some((t) => Math.abs(new Date(t.iso).getTime() - time) < SLOT_DISTANCE_MINUTES * 60_000)) continue;
-        result.set(ep.id, { local, iso });
-        filled.push({ iso, local });
-        break search;
-      }
+  for (let n = 0; n < SEARCH_DAYS; n++) {
+    const { date, day } = addDays(today, n);
+    if (!plan.days.includes(day)) continue;
+    if (taken.filter((t) => t.local.startsWith(date)).length >= plan.videosPerDay) continue;
+    for (const s of slots) {
+      if (s.format !== 'all' && s.format !== format) continue;
+      const local = `${date}T${s.time}`;
+      const iso = localToIso(local, zone);
+      const time = new Date(iso).getTime();
+      if (time < threshold) continue;
+      if (taken.some((t) => Math.abs(new Date(t.iso).getTime() - time) < SLOT_DISTANCE_MINUTES * 60_000)) continue;
+      return { local, iso };
     }
+  }
+  return undefined;
+}
+
+/**
+ * Default publish time when approving this episode: the EARLIEST empty slot for its format, counting only
+ * videos that are actually scheduled — not the tentative recommendations of other unapproved videos — so
+ * today's/tomorrow's empty slots get filled first.
+ */
+export function nextFreeSlot(ep: Episode, episodes: Episode[], cfg: AppConfig, now = new Date()): RecommendedSlot | undefined {
+  return firstFreeSlot(ep.idea.format ?? 'standard', takenSlots(episodes, cfg.timeZone, now), cfg, now);
+}
+
+/**
+ * Preview of the approval queue for the calendar: videos awaiting approval (oldest ready first, drafts
+ * excluded) are placed one after another into the free slots. Recomputed on every load, so it shifts by
+ * itself as videos get scheduled.
+ */
+export function recommendSchedule(episodes: Episode[], cfg: AppConfig, now = new Date()): Map<string, RecommendedSlot> {
+  const taken = takenSlots(episodes, cfg.timeZone, now);
+  const queue = episodes
+    .filter((e) => e.status === 'needs_video_approval' && !e.draftedAt)
+    .sort((a, b) => (a.render?.time ?? a.modified).localeCompare(b.render?.time ?? b.modified));
+  const result = new Map<string, RecommendedSlot>();
+  for (const ep of queue) {
+    const slot = firstFreeSlot(ep.idea.format ?? 'standard', taken, cfg, now);
+    if (!slot) continue;
+    result.set(ep.id, slot);
+    taken.push(slot);
   }
   return result;
 }

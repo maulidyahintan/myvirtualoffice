@@ -24,7 +24,7 @@ import {
   DAY_NAMES,
   playlistName,
   paths,
-  recommendSchedule,
+  nextFreeSlot,
   isBusy,
   BUSY_STATUSES,
   FORMAT_CHOICES,
@@ -246,10 +246,11 @@ function besokJamTayang(jam: string) {
   return `${tgl}T${jam}`;
 }
 
-/** Input jadwal tayang, terisi rekomendasi Channel Manager (slot kosong berikutnya); tetap bisa diganti. */
+/** Input jadwal tayang, terisi slot kosong paling dekat dari rencana Channel Manager; tetap bisa diganti. */
 function JadwalTayang({ ep }: { ep: Episode }) {
   const cfg = loadConfig();
-  const saran = recommendSchedule(listEpisodes(), cfg).get(ep.id);
+  // earliest empty slot for this format (other videos' tentative recommendations don't block it)
+  const saran = nextFreeSlot(ep, listEpisodes(), cfg);
   const [tgl, jam] = saran?.local.split('T') ?? [];
   const tanggal = tgl ? new Date(`${tgl}T00:00:00Z`) : undefined;
   return (
@@ -267,7 +268,7 @@ function JadwalTayang({ ep }: { ep: Episode }) {
         {saran && tanggal ? (
           <>
             📅 Rekomendasi Channel Manager: <b>{DAY_NAMES[tanggal.getUTCDay()]}, {tanggal.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', timeZone: 'UTC' })} pukul {jam}</b>{' '}
-            (slot kosong berikutnya di <Link href="/schedule">rencana tayang</Link>). Boleh diganti sesukamu.
+            (slot kosong paling dekat di <Link href="/schedule">rencana tayang</Link>). Boleh diganti sesukamu.
           </>
         ) : (
           <>

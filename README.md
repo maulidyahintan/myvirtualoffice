@@ -173,8 +173,8 @@ yang ditonton dulu sebelum dijadwalkan.
 **Jadwal tayang mengikuti rencana Channel Manager.** Di **Jadwal Tayang**, Channel Manager menyusun
 rencana dari statistik channel & stok video: berapa video per hari, hari tayang, dan jam tayang per
 format (Shorts / video biasa), lengkap dengan alasannya. Saat menyetujui video, jadwalnya otomatis
-terisi slot kosong berikutnya dari rencana itu (video yang lebih dulu siap dapat slot lebih awal, slot
-yang sudah terisi dilewati), dan tetap bisa diganti tanggal & jamnya. Rencana juga bisa diubah sendiri.
+terisi slot kosong paling dekat dari rencana itu (hari ini/besok diisi lebih dulu; slot yang sudah
+terisi dilewati), dan tetap bisa diganti tanggal & jamnya. Rekomendasi di kalender bergeser sendiri. Rencana juga bisa diubah sendiri.
 
 **Metadata sesuai format.** Judul, deskripsi, dan tags dibuat terpisah untuk Shorts (singkat,
 diakhiri `#Shorts`) dan video biasa (deskripsi SEO lengkap, tanpa `#Shorts`). Versi format lain
