@@ -18,6 +18,7 @@ import {
   updateEpisode,
   type Episode,
   type EpisodeVideoProps,
+  type KnownKeys,
   type Format,
   type AppConfig,
   type VideoMusic,
@@ -134,7 +135,7 @@ async function shiftPitch(id: string, audioFile: string, semitones: number, onLi
  * Detik mulai & lama tiap adegan (memorization: tiap ayat) di video, dihitung dengan rumus
  * yang sama seperti calculateMetadata komposisi Episode.
  */
-export async function waktuScene(props: EpisodeVideoProps): Promise<{ mulai: number; durasi: number }[]> {
+export async function waktuScene(props: EpisodeVideoProps): Promise<NonNullable<NonNullable<Episode['render']>['scenes']>> {
   const durasiAudio = props.audioFile ? await durasiFile(props.audioFile) : undefined;
   const { intro } = introOutroFrames(
     props.format,
@@ -152,7 +153,7 @@ export async function waktuScene(props: EpisodeVideoProps): Promise<{ mulai: num
   }
   let f = intro;
   return frames.map((n) => {
-    const w = { mulai: f / FPS, durasi: n / FPS };
+    const w = { start: f / FPS, duration: n / FPS };
     f += n;
     return w;
   });
@@ -160,7 +161,7 @@ export async function waktuScene(props: EpisodeVideoProps): Promise<{ mulai: num
 
 /**
  * Potongan rekaman yang berisi suara: hening di awal (sisakan 0,2 dtk) & akhir
- * (sisakan 0,4 dtk, supaya ujung kata yang lirih tidak terpotong) dmotherang. Kembalikan filter atrim, atau undefined kalau tidak perlu.
+ * (sisakan 0,4 dtk, supaya ujung kata yang lirih tidak terpotong) dibuang. Kembalikan filter atrim, atau undefined kalau tidak perlu.
  */
 async function filterRapikan(lokasi: string): Promise<string | undefined> {
   const durasi = await durasiAudio(lokasi);
@@ -299,7 +300,7 @@ function musikVideo(cfg: AppConfig, format: Format): VideoMusic | undefined {
   return result.intro || result.outro ? result : undefined;
 }
 
-export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
+export async function renderEpisode(ep: Episode, onLine?: (s: string) => void): Promise<Omit<NonNullable<Episode['render']>, 'time'>> {
   if (!ep.scenes?.length) throw new Error('Episode belum punya adegan dari Sutradara');
   const cfg = loadConfig();
   const dir = ensureDir(paths.renders());
@@ -351,22 +352,22 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
   // efek karakter / efek hafalan sudah mengatur nada → nada episode tidak ditumpuk lagi
   const pakaiEfek = ep.characterEffects !== false && (ep.idea.type === 'memorization' || ep.recordingMode === 'per-scene');
   const nada = pakaiEfek ? 0 : (ep.voicePitch ?? 0);
-  const props: EpisodeVideoProps = {
+  const props: KnownKeys<EpisodeVideoProps> = {
     channelName: cfg.channelName,
     title: ep.script?.title ?? ep.idea.title,
     seriesName: cfg.series.find((s) => s.id === ep.idea.series)?.name ?? '',
     scenes: ep.scenes,
-    fileAudio: audioRender && nada ? await shiftPitch(ep.id, audioRender, nada, onLine) : audioRender,
-    mulaiScene,
+    audioFile: audioRender && nada ? await shiftPitch(ep.id, audioRender, nada, onLine) : audioRender,
+    sceneStarts: mulaiScene,
     format: ep.idea.format ?? 'standard',
     memorization,
-    musik: musikVideo(cfg, ep.idea.format ?? 'standard'),
+    music: musikVideo(cfg, ep.idea.format ?? 'standard'),
   };
   const propsFile = path.join(dir, `${ep.id}.props.json`);
   fs.writeFileSync(propsFile, JSON.stringify(props));
 
   const pertama = ep.scenes.find((a) => a.characters.length > 0) ?? ep.scenes[0];
-  const thumbProps: ThumbnailProps = {
+  const thumbProps: KnownKeys<ThumbnailProps> = {
     text: ep.metadata?.thumbnailText ?? props.title,
     background: pertama.background,
     characters: pertama.characters.length ? pertama.characters : ['mother', 'mamas'],
@@ -380,9 +381,9 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void) {
   const video = `${ep.id}.mp4`;
   await jalankan(['render', 'src/index.ts', 'Episode', path.join(dir, video), `--props=${propsFile}`], onLine);
   // Shorts tidak memakai thumbnail kustom (YouTube memilih frame dari video)
-  const adegan = await waktuScene(props);
-  if (props.format === 'short') return { video, thumbnail: undefined, adegan };
+  const scenes = await waktuScene(props);
+  if (props.format === 'short') return { video, thumbnail: undefined, scenes };
   const thumbnail = `${ep.id}.png`;
   await jalankan(['still', 'src/index.ts', 'Thumbnail', path.join(dir, thumbnail), `--props=${thumbPropsFile}`], onLine);
-  return { video, thumbnail, adegan };
+  return { video, thumbnail, scenes };
 }

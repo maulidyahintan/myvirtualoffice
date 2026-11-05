@@ -320,7 +320,9 @@ export async function direct(id: string) {
 // ---------------------------------------------------------------- RENDER
 export async function render(id: string) {
   const ep = getEpisode(id);
-  setStatus(id, 'rendering', 'video-creator', ep.audioFile ? 'Render dengan rekaman suara' : 'Render pratinjau tanpa suara');
+  // per-scene recordings are merged during the render, so they count as audio too
+  const hasAudio = Boolean(ep.audioFile) || Boolean(ep.audioParts?.length) || Boolean(ep.audioPerScene?.some(Boolean));
+  setStatus(id, 'rendering', 'video-creator', hasAudio ? 'Render dengan rekaman suara' : 'Render pratinjau tanpa suara');
   let last = 0;
   const result = await renderEpisode(ep, (l) => {
     // write progress to log every ~10%, not every line

@@ -146,7 +146,7 @@ Daftar adegan (detik = lama di video):
 ${JSON.stringify(daftar, null, 2)}`,
   });
 
-  const dmotherat: string[] = [];
+  const created: string[] = [];
   for (const [k, s] of result.shorts.slice(0, jumlah).entries()) {
     const idx = rapikanPilihan(s.scenes, potongan);
     if (!idx.length) continue;
@@ -176,21 +176,21 @@ ${JSON.stringify(daftar, null, 2)}`,
       });
     });
     setStatus(baru.id, 'rendering', 'sutradara', 'Menunggu giliran render');
-    dmotherat.push(baru.id);
+    created.push(baru.id);
   }
   if (ep.recordingMode !== 'per-scene') for (const p of potongan) fs.rmSync(path.join(pub(), p.file), { force: true });
   updateEpisode(id, (e) => {
-    e.derivatives = [...(e.derivatives ?? []), ...dmotherat];
+    e.derivatives = [...(e.derivatives ?? []), ...created];
   });
-  catat(`${dmotherat.length} Shorts dmotherat: ${dmotherat.join(', ')}`);
+  catat(`${created.length} Shorts dibuat: ${created.join(', ')}`);
 
   // render satu per satu; satu gagal tidak menghentikan yang lain
-  for (const b of dmotherat) {
+  for (const b of created) {
     try {
       await onRender?.(b);
     } catch (e) {
       setStatus(b, 'error', 'video-creator', (e as Error).message);
     }
   }
-  return dmotherat;
+  return created;
 }

@@ -218,6 +218,13 @@ export interface Episode {
 }
 
 /** Props sent to Remotion composition. */
+/**
+ * `T` without its `[key: string]: unknown` index signature. Remotion props need the index signature,
+ * but it also lets misspelled keys slip through silently — build props as `KnownKeys<…>` so the
+ * compiler rejects unknown keys.
+ */
+export type KnownKeys<T> = { [K in keyof T as string extends K ? never : K]: T[K] };
+
 export interface EpisodeVideoProps {
   [key: string]: unknown;
   channelName: string;
