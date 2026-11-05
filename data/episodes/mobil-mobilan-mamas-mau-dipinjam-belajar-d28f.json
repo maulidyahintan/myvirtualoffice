@@ -1,7 +1,7 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T03:57:05.053Z",
+  "modified": "2026-11-05T15:29:40.279Z",
   "status": "needs_audio",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
@@ -113,6 +113,441 @@
       "time": "2026-11-05T03:57:05.053Z",
       "by": "orchestrator",
       "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-05T15:22:47.867Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:22:48.729Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 13 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:22:59.459Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/13)"
+    },
+    {
+      "time": "2026-11-05T15:23:03.194Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:04.068Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 12 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:04.163Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/13)"
+    },
+    {
+      "time": "2026-11-05T15:23:08.267Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:08.883Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 11 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:10.112Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (1/12)"
+    },
+    {
+      "time": "2026-11-05T15:23:11.429Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:12.039Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 11 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:12.711Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/13)"
+    },
+    {
+      "time": "2026-11-05T15:23:37.964Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:38.810Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 10 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:41.245Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:41.883Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 10 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:44.337Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:44.953Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 10 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:47.375Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:48.001Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 10 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:50.390Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:51.022Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 10 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:52.056Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:52.677Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 10 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:55.551Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:23:56.001Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (1/10)"
+    },
+    {
+      "time": "2026-11-05T15:23:56.200Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 9 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:23:57.872Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (1/10)"
+    },
+    {
+      "time": "2026-11-05T15:24:00.648Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (2/10)"
+    },
+    {
+      "time": "2026-11-05T15:24:01.131Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (1/9)"
+    },
+    {
+      "time": "2026-11-05T15:24:06.757Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:07.626Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:13.269Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:14.064Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:19.848Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:20.655Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:25.915Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:26.696Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:28.960Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:29.599Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:35.072Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:35.702Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:39.115Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:39.752Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:48.688Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:49.318Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:52.824Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:24:53.491Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 8 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:24:59.772Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (1/8)"
+    },
+    {
+      "time": "2026-11-05T15:25:00.065Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:25:00.565Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:00.701Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 7 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:25:00.702Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis · rekam sendiri adegan 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:00.743Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:00.752Z",
+      "by": "pengisi-suara",
+      "message": "3 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:00.765Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:00.843Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:00.951Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:01.044Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:01.057Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:01.250Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:01.265Z",
+      "by": "pengisi-suara",
+      "message": "2 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:04.277Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (2/8)"
+    },
+    {
+      "time": "2026-11-05T15:25:04.278Z",
+      "by": "pengisi-suara",
+      "message": "2 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis · rekam sendiri adegan 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:05.640Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (1/8)"
+    },
+    {
+      "time": "2026-11-05T15:25:05.641Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis · rekam sendiri adegan 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:05.642Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (2/10)"
+    },
+    {
+      "time": "2026-11-05T15:25:05.643Z",
+      "by": "pengisi-suara",
+      "message": "2 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:06.239Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (1/8)"
+    },
+    {
+      "time": "2026-11-05T15:25:06.240Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis · rekam sendiri adegan 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:25:08.149Z",
+      "by": "pemilik",
+      "message": "Minta adegan kosong diisi suara AI"
+    },
+    {
+      "time": "2026-11-05T15:25:08.763Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 6 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:25:08.764Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis · rekam sendiri adegan 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:26:00.471Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:26:00.480Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:26:00.574Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:26:00.582Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:26:00.589Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:26:01.105Z",
+      "by": "pengisi-suara",
+      "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis sudah habis · rekam sendiri adegan 6, 7, 8, 9, 10, 11, 12, 13, 14"
+    },
+    {
+      "time": "2026-11-05T15:28:16.280Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 6 adegan dengan suara AI gratis (adegan 13 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-05T15:28:23.339Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (1/6)"
+    },
+    {
+      "time": "2026-11-05T15:29:05.603Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 9 diisi suara AI (2/6)"
+    },
+    {
+      "time": "2026-11-05T15:29:11.856Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (3/6)"
+    },
+    {
+      "time": "2026-11-05T15:29:19.251Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (4/6)"
+    },
+    {
+      "time": "2026-11-05T15:29:29.825Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (5/6)"
+    },
+    {
+      "time": "2026-11-05T15:29:40.278Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 14 diisi suara AI (6/6)"
+    },
+    {
+      "time": "2026-11-05T15:29:40.279Z",
+      "by": "pengisi-suara",
+      "message": "6 adegan diisi suara AI · rekam sendiri adegan 13"
     }
   ],
   "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
@@ -587,5 +1022,54 @@
       "cerita pengantar tidur anak muslim"
     ],
     "thumbnailText": "Yuk, Berbagi Mainan!"
-  }
+  },
+  "audioPerScene": [
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-1-ai-mw3p34ea.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-2-ai-mw3p380y.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-3-ai-mw3p3emd.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-4-ai-mw3p4c0w.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-5-ai-mw3p4fly.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-6-ai-mw3p5p8a.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-7-ai-mw3p5spe.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-8-ai-mw3pa2ax.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-9-ai-mw3paywv.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-10-ai-mw3pb3qn.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-11-ai-mw3pb9g2.wav",
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-12-ai-mw3pbhlr.wav",
+    null,
+    "audio/mobil-mobilan-mamas-mau-dipinjam-belajar-d28f-adegan-14-ai-mw3pbpo5.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true
+  ],
+  "recordingMode": "per-scene"
 }
