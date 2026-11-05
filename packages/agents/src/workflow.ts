@@ -17,6 +17,8 @@ import {
   type Scene,
   type MemorizationVerse,
   type Episode,
+  SCRIPT_WORD_LIMIT,
+  scriptWordCount,
 } from '@kantor/shared';
 import { fetchSurah, BASMALAH } from './quran.ts';
 import { runAgent } from './run-agent.ts';
@@ -48,9 +50,10 @@ const log = (id: string | undefined, by: string) => (message: string) => {
 
 /** Format instructions for agents, so script/scenes/metadata adapt to Shorts or standard video. */
 function formatInfo(ep: Episode): string {
+  const { min, max } = SCRIPT_WORD_LIMIT[ep.idea.format ?? 'standard'];
   return (ep.idea.format ?? 'standard') === 'short'
-    ? 'FORMAT: YouTube Shorts (vertical video 9:16, total < 60 seconds). Follow "Shorts Format" rules in your role.'
-    : 'FORMAT: Standard video (16:9, 3–5 minutes).';
+    ? `FORMAT: YouTube Shorts (video vertikal 9:16, total < 60 detik, naskah ${min}–${max} kata). Ikuti aturan bagian "Format Shorts" di peranmu.`
+    : `FORMAT: Video biasa (16:9, MAKSIMAL 5 menit, naskah ${min}–${max} kata). Langsung ke inti cerita, tidak bertele-tele.`;
 }
 
 function seriesList() {
@@ -116,13 +119,23 @@ export async function writeScript(id: string) {
       e.script = script;
     });
 
+    // too long → back to the writer to tighten it before spending a review on it
+    const limit = SCRIPT_WORD_LIMIT[ep.idea.format ?? 'standard'];
+    const words = scriptWordCount(script);
+    if (words > limit.max && round < cfg.maxAutoRevisions) {
+      log(id, 'penulis')(`Naskah ${words} kata, melebihi batas ${limit.max} kata — dipadatkan`);
+      feedback = `Naskah terlalu panjang: ${words} kata, maksimal ${limit.max} kata (target ${limit.min}–${limit.max}). Padatkan: langsung ke inti cerita, buang pengantar, pengulangan, dan dialog yang tidak memajukan cerita. Pertahankan pesan moral, dalil, momen lucu, dan pertanyaan untuk penonton.`;
+      continue;
+    }
+    if (words > limit.max) log(id, 'penulis')(`Naskah masih ${words} kata (batas ${limit.max}) setelah revisi otomatis — mohon dicek pemilik channel`);
+
     setStatus(id, 'reviewing', 'reviewer', 'Memeriksa naskah');
     const review = await runAgent({
       peran: 'reviewer',
       schema: ReviewSchema,
       maxTurns: 4,
       onProgress: log(id, 'reviewer'),
-      prompt: `${formatInfo(ep)}\nUsia target: ${ep.idea.age}\n\nNaskah:\n${JSON.stringify(script, null, 2)}\n\nPeriksa naskah ini.`,
+      prompt: `${formatInfo(ep)}\nUsia target: ${ep.idea.age}\nPanjang naskah: ${words} kata (batas ${limit.min}–${limit.max}).\n\nNaskah:\n${JSON.stringify(script, null, 2)}\n\nPeriksa naskah ini.`,
     });
     ep = updateEpisode(id, (e) => {
       e.review = review;
@@ -416,7 +429,7 @@ export async function buildPublishPlan(arahan?: string) {
       `Sedang diproduksi: ${hitung((e) => !['needs_video_approval', 'scheduled', 'published', 'rejected', 'error', 'idea'].includes(e.status))}`,
       `Sudah tayang: ${hitung((e) => e.status === 'published')}`,
       terjadwal.length ? `Sudah terjadwal:\n${terjadwal.join('\n')}` : 'Belum ada video terjadwal.',
-      cfg.publishPlan ? `Rencana saat ini:\n${JSON.stringify({ ...cfg.publishPlan, alasan: undefined }, null, 2)}` : '',
+      cfg.publishPlan ? `Rencana saat ini:\n${JSON.stringify({ ...cfg.publishPlan, reason: undefined }, null, 2)}` : '',
       arahan ? `Arahan pemilik channel: ${arahan}` : '',
       'Susun rencana jadwal tayang channel.',
     ]

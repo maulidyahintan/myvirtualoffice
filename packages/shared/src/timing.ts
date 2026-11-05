@@ -4,6 +4,32 @@ import type { Scene, MemorizationVerse, Format } from './types.ts';
 const WORDS_PER_SECOND = 2.1; // Slow & clear children's story reading tempo
 const QUESTION_PAUSE_SECONDS = 3; // Child given time to think
 
+/**
+ * Measured pace of the owner's own recordings, pauses between scenes included (≈1.16–1.28 words/s
+ * across recorded standard videos and Shorts). Used to estimate the final video length of a script.
+ */
+const RECORDED_WORDS_PER_SECOND = 1.2;
+
+/**
+ * Script length limits (narration words). Standard videos stay under 5 minutes: 320 words at the
+ * recorded pace ≈ 4.4 minutes of content, plus intro/outro.
+ */
+export const SCRIPT_WORD_LIMIT: Record<Format, { min: number; max: number }> = {
+  standard: { min: 220, max: 320 },
+  short: { min: 45, max: 65 },
+};
+
+/** Total narration words in a script. */
+export function scriptWordCount(script: { scenes: { narration: string }[] }): number {
+  return script.scenes.reduce((n, s) => n + countWords(s.narration), 0);
+}
+
+/** Estimated final video length (seconds) of a script at the owner's recording pace, intro/outro included. */
+export function estimatedScriptSeconds(script: { scenes: { narration: string }[] }, format: Format = 'standard'): number {
+  const { intro, outro } = introOutroFrames(format);
+  return scriptWordCount(script) / RECORDED_WORDS_PER_SECOND + (intro + outro) / FPS;
+}
+
 export function countWords(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }

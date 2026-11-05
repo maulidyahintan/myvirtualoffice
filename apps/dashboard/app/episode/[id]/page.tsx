@@ -3,6 +3,9 @@ import path from 'node:path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
+  estimatedScriptSeconds,
+  SCRIPT_WORD_LIMIT,
+  scriptWordCount,
   BACKGROUND_LABEL,
   EXPRESSION_LABEL,
   SCENE_TYPE_LABEL,
@@ -507,6 +510,23 @@ function PanelAksi({ ep }: { ep: Episode }) {
   }
 }
 
+/** Jumlah kata & perkiraan durasi naskah; peringatan bila melebihi batas (video biasa ≤ 5 menit). */
+function PanjangNaskah({ ep }: { ep: Episode }) {
+  if (!ep.script) return null;
+  const format = ep.idea.format ?? 'standard';
+  const { max } = SCRIPT_WORD_LIMIT[format];
+  const kata = scriptWordCount(ep.script);
+  const detik = estimatedScriptSeconds(ep.script, format);
+  const durasi = `${Math.floor(detik / 60)}:${String(Math.round(detik % 60)).padStart(2, '0')}`;
+  const lewat = kata > max;
+  return (
+    <p className={lewat ? 'peringatan kecil' : 'kecil muted'} style={{ margin: '0 0 8px' }}>
+      📏 {kata} kata · perkiraan video ±{durasi} (batas {max} kata{format === 'standard' ? ', maks. 5 menit' : ''})
+      {lewat ? ' — terlalu panjang, minta revisi untuk dipadatkan.' : ''}
+    </p>
+  );
+}
+
 /** Peringatan metadata yang tidak cocok dengan format video + tombol buat ulang. */
 function CekMetadata({ ep }: { ep: Episode }) {
   if (!ep.metadata) return null;
@@ -767,6 +787,7 @@ export default async function HalamanEpisode({ params }: { params: Promise<{ id:
           {ep.script ? (
             <div className="panel">
               <h2>Naskah</h2>
+              <PanjangNaskah ep={ep} />
               <p className="muted">{ep.script.summary}</p>
               {(ep.scenes ?? ep.script.scenes).map((a, i) => (
                 <div key={i} className="adegan">
