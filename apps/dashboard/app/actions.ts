@@ -175,13 +175,20 @@ export async function requestRevision(form: FormData) {
   if (!feedback) return;
   updateEpisode(id, (e) => {
     e.humanFeedback = feedback;
-    // the narration will change, so recordings made for the old script no longer fit (files stay on disk)
+    // the narration will change: per-scene recordings are kept aside and reused later for scenes whose
+    // narration stays the same; a single sequential recording can't be split, so it is released
+    // (files stay on disk either way)
+    if (e.recordingMode === 'per-scene' && e.audioPerScene?.some(Boolean) && e.scenes) {
+      e.previousRecordings = e.scenes.map((s, i) => ({ narration: s.narration, file: e.audioPerScene?.[i] ?? null, offset: e.sceneOffsets?.[i] ?? null }));
+      e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: 'Rekaman per adegan disimpan; adegan yang narasinya tidak berubah akan memakai rekaman lama' });
+    } else if (e.audioFile || e.audioParts?.length) {
+      e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: 'Rekaman lama dilepas karena naskah direvisi (perlu rekam ulang)' });
+    }
     if (e.audioFile || e.audioParts?.length || e.audioPerScene?.some(Boolean)) {
       e.audioFile = undefined;
       e.audioParts = undefined;
       e.audioPerScene = undefined;
       e.sceneOffsets = undefined;
-      e.log.push({ time: new Date().toISOString(), by: 'pemilik', message: 'Rekaman lama dilepas karena naskah direvisi (perlu rekam ulang)' });
     }
   });
   setStatus(id, 'writing', 'pemilik', `Minta revisi: ${feedback.slice(0, 80)}`);

@@ -122,7 +122,8 @@ export async function writeScript(id: string) {
     // too long → back to the writer to tighten it before spending a review on it
     const limit = SCRIPT_WORD_LIMIT[ep.idea.format ?? 'standard'];
     const words = scriptWordCount(script);
-    if (words > limit.max && round < cfg.maxAutoRevisions) {
+    // a revision of an already-recorded script must not be condensed: that would change narration that is reused
+    if (words > limit.max && round < cfg.maxAutoRevisions && !ep.previousRecordings?.length) {
       log(id, 'penulis')(`Naskah ${words} kata, melebihi batas ${limit.max} kata — dipadatkan`);
       feedback = `Naskah terlalu panjang: ${words} kata, maksimal ${limit.max} kata (target ${limit.min}–${limit.max}). Padatkan: langsung ke inti cerita, buang pengantar, pengulangan, dan dialog yang tidak memajukan cerita. Pertahankan pesan moral, dalil, momen lucu, dan pertanyaan untuk penonton.`;
       continue;
@@ -237,6 +238,7 @@ async function directMemorization(ep: Episode) {
     e.memorization = { ...memorization, verses };
     e.scenes = scenes;
     e.metadata = metadata;
+    e.directionFeedback = undefined;
   });
   const reps = ep.idea.memorization?.repetitions ?? 1;
   setStatus(
@@ -292,16 +294,67 @@ export async function direct(id: string) {
       schema: DirectorSchema,
       maxTurns: 4,
       onProgress: log(id, 'sutradara'),
-      prompt: `${formatInfo(ep)}\n\nNaskah yang sudah disetujui:\n${JSON.stringify(ep.script, null, 2)}\n\nSusun adegannya.`,
+      prompt: [
+        formatInfo(ep),
+        `Naskah yang sudah disetujui:\n${JSON.stringify(ep.script, null, 2)}`,
+        // notes for the scenes left by the owner (e.g. together with a script revision)
+        ep.directionFeedback ? `Catatan dari pemilik channel untuk adegan (WAJIB diikuti):\n${ep.directionFeedback}` : '',
+        'Susun adegannya.',
+      ]
+        .filter(Boolean)
+        .join('\n\n'),
     }),
     requestMetadata(ep),
   ]);
 
+  const scenes = alignWithScript(ep, direction.scenes);
+  const reuse = reuseRecordings(ep, scenes);
   updateEpisode(id, (e) => {
-    e.scenes = alignWithScript(ep, direction.scenes);
+    e.scenes = scenes;
     e.metadata = metadata;
+    if (reuse) {
+      e.recordingMode = 'per-scene';
+      e.audioPerScene = reuse.files;
+      e.sceneOffsets = reuse.offsets;
+      e.previousRecordings = undefined;
+    }
   });
-  setStatus(id, 'needs_audio', 'orchestrator', 'Siap direkam: bacakan narasi adegan secara berurutan');
+  if (reuse) {
+    log(id, 'sutradara')(
+      reuse.missing.length
+        ? `${reuse.files.length - reuse.missing.length} dari ${reuse.files.length} adegan memakai rekaman lama; rekam ulang adegan ${reuse.missing.map((i) => i + 1).join(', ')}`
+        : 'Semua adegan memakai rekaman lama (narasi tidak berubah)',
+    );
+  }
+  setStatus(
+    id,
+    'needs_audio',
+    'orchestrator',
+    reuse?.missing.length ? `Rekam adegan ${reuse.missing.map((i) => i + 1).join(', ')} (lainnya memakai rekaman lama)` : 'Siap direkam: bacakan narasi adegan secara berurutan',
+  );
+}
+
+/** Match recordings kept aside during a script revision to the new scenes by identical narration. */
+function reuseRecordings(ep: Episode, scenes: Scene[]) {
+  if (!ep.previousRecordings?.length) return undefined;
+  const norm = (t: string) => t.replace(/\s+/g, ' ').trim();
+  const pool = ep.previousRecordings.filter((r) => r.file);
+  const files: (string | null)[] = [];
+  const offsets: (number | null)[] = [];
+  const missing: number[] = [];
+  scenes.forEach((s, i) => {
+    const k = pool.findIndex((r) => norm(r.narration) === norm(s.narration));
+    if (k >= 0) {
+      const [r] = pool.splice(k, 1);
+      files.push(r.file);
+      offsets.push(r.offset);
+    } else {
+      files.push(null);
+      offsets.push(null);
+      missing.push(i);
+    }
+  });
+  return { files, offsets, missing };
 }
 
 /**

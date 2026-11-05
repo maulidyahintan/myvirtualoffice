@@ -176,6 +176,11 @@ export interface Episode {
   humanFeedback?: string;
   /** Owner's notes for the Director when asking to redo scenes/visuals of a rendered video (narration unchanged). */
   directionFeedback?: string;
+  /**
+   * Per-scene recordings kept aside while the script is being revised; after the Director re-aligns the
+   * scenes, every scene whose narration is unchanged gets its old recording back.
+   */
+  previousRecordings?: { narration: string; file: string | null; offset: number | null }[];
   scenes?: Scene[];
   metadata?: YouTubeMetadata;
   /** Verse text + visuals (only for memorization type) */

@@ -55,3 +55,5 @@ direkam dengan suara manusia (pemilik channel membaca naskahmu sendiri).
 
 Jika ada **feedback** (dari reviewer atau pemilik channel), perbaiki SEMUA poinnya
 dan pertahankan bagian yang sudah bagus.
+Saat merevisi naskah yang sudah ada, ubah HANYA bagian yang diminta. Narasi adegan lain
+dipertahankan persis kata per kata, karena mungkin sudah direkam dan rekamannya dipakai lagi.
