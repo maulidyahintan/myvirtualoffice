@@ -1,8 +1,8 @@
 {
   "id": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9",
   "created": "2026-11-05T03:44:27.212Z",
-  "modified": "2026-11-05T04:33:09.834Z",
-  "status": "rendering",
+  "modified": "2026-11-05T04:52:47.234Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
     "series": "asbabun-nuzul",
@@ -236,10 +236,25 @@
       "time": "2026-11-05T04:32:39.614Z",
       "by": "video-creator",
       "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T04:36:27.646Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T04:47:30.608Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T04:52:47.234Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "twin": "kisah-pasukan-gajah-kenapa-turun-surat-a-12a4",
-  "statusNote": "Render dengan rekaman suara",
+  "statusNote": "Video siap ditonton & disetujui",
   "script": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
     "summary": "Mamas bermain dengan gajah kayu barunya dan merasa gajahnya paling kuat. Ibu lalu bercerita tentang pasukan gajah yang kisahnya ada di Surat Al-Fil. Narator menceritakan Abrahah, penguasa di negeri Yaman. Ia membangun gereja megah dan ingin orang berhenti berkunjung ke Ka'bah. Ia datang membawa pasukan gajah untuk merobohkan Ka'bah. Allah mengalahkannya dengan burung-burung yang datang berbondong-bondong membawa batu dari tanah yang dibakar. Ibu menjelaskan bahwa peristiwa itu terjadi pada Tahun Gajah, tahun lahirnya Nabi Muhammad ﷺ. Bertahun-tahun kemudian, Surat Al-Fil turun di Makkah sebagai pengingat bahwa Allah yang menjaga Ka'bah. Pelajarannya: kekuatan sejati milik Allah, jadi jangan sombong. Surat Al-Fil tidak dibacakan. Isinya hanya diceritakan dan dijelaskan artinya. Mamas membacakan sebagian QS. Luqman: 18. Video ditutup dengan Mamas mengucapkan \"Ḥasbunallāhu wa ni'mal wakīl\" (QS. Ali 'Imran: 173). Visual kisahnya cukup siluet gajah, gurun, langit, burung, dan batu kecil, tanpa tokoh manusia.",
@@ -784,72 +799,72 @@
   "render": {
     "video": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9.mp4",
     "thumbnail": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9.png",
-    "adegan": [
+    "scenes": [
       {
-        "mulai": 3,
-        "durasi": 12.9
+        "start": 10,
+        "duration": 16.966666666666665
       },
       {
-        "mulai": 15.9,
-        "durasi": 9.1
+        "start": 26.966666666666665,
+        "duration": 12.933333333333334
       },
       {
-        "mulai": 25,
-        "durasi": 13.866666666666667
+        "start": 39.9,
+        "duration": 22.866666666666667
       },
       {
-        "mulai": 38.86666666666667,
-        "durasi": 5.3
+        "start": 62.766666666666666,
+        "duration": 6.6
       },
       {
-        "mulai": 44.166666666666664,
-        "durasi": 14.8
+        "start": 69.36666666666666,
+        "duration": 19.566666666666666
       },
       {
-        "mulai": 58.96666666666667,
-        "durasi": 11
+        "start": 88.93333333333334,
+        "duration": 13.3
       },
       {
-        "mulai": 69.96666666666667,
-        "durasi": 13.366666666666667
+        "start": 102.23333333333333,
+        "duration": 15.8
       },
       {
-        "mulai": 83.33333333333333,
-        "durasi": 4.8
+        "start": 118.03333333333333,
+        "duration": 6.133333333333334
       },
       {
-        "mulai": 88.13333333333334,
-        "durasi": 13.366666666666667
+        "start": 124.16666666666667,
+        "duration": 17.633333333333333
       },
       {
-        "mulai": 101.5,
-        "durasi": 18.133333333333333
+        "start": 141.8,
+        "duration": 26.133333333333333
       },
       {
-        "mulai": 119.63333333333334,
-        "durasi": 13.533333333333333
+        "start": 167.93333333333334,
+        "duration": 17.033333333333335
       },
       {
-        "mulai": 133.16666666666666,
-        "durasi": 13.366666666666667
+        "start": 184.96666666666667,
+        "duration": 14.566666666666666
       },
       {
-        "mulai": 146.53333333333333,
-        "durasi": 6.7
+        "start": 199.53333333333333,
+        "duration": 9.233333333333333
       },
       {
-        "mulai": 153.23333333333332,
-        "durasi": 6.233333333333333
+        "start": 208.76666666666668,
+        "duration": 14
       },
       {
-        "mulai": 159.46666666666667,
-        "durasi": 15.3
+        "start": 222.76666666666668,
+        "duration": 20.233333333333334
       },
       {
-        "mulai": 174.76666666666668,
-        "durasi": 7.2
+        "start": 243,
+        "duration": 15.266666666666667
       }
     ],
-    "time": "2026-11-05T04:06:54.993Z"
+    "time": "2026-11-05T04:52:47.234Z"
   }
 }
