@@ -1,8 +1,8 @@
 {
   "id": "hafalan-surat-al-lahab-ad36",
   "created": "2026-11-05T10:58:31.048Z",
-  "modified": "2026-11-05T11:00:20.627Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-05T14:30:06.328Z",
+  "status": "scheduled",
   "idea": {
     "title": "Hafalan Surat Al-Lahab",
     "series": "memorization",
@@ -87,10 +87,45 @@
       "time": "2026-11-05T11:00:20.627Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T14:27:31.244Z",
+      "by": "pemilik",
+      "message": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "time": "2026-11-05T14:27:32.212Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T14:28:06.658Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-05T14:29:49.947Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-06 16:00"
+    },
+    {
+      "time": "2026-11-05T14:29:50.563Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-05T14:30:06.327Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Hafalan\""
+    },
+    {
+      "time": "2026-11-05T14:30:06.328Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-06T09:00:00.000Z"
     }
   ],
   "twin": "hafalan-surat-al-lahab-67db",
-  "statusNote": "Video siap ditonton & disetujui",
+  "statusNote": "Terjadwal tayang 2026-11-06T09:00:00.000Z",
   "memorization": {
     "surahName": "Al-Lahab",
     "surahMeaning": "Api Yang Bergejolak",
@@ -146,7 +181,15 @@
         "moods": []
       }
     ],
-    "segmentEffect": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476"
+    "segmentEffect": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476",
+    "segmentStarts": [
+      1,
+      8,
+      19,
+      27,
+      33,
+      40
+    ]
   },
   "script": {
     "title": "Hafalan Surat Al-Lahab",
@@ -357,29 +400,39 @@
     "scenes": [
       {
         "start": 10,
-        "duration": 9.866666666666667
+        "duration": 8
       },
       {
-        "start": 19.866666666666667,
-        "duration": 7.8
+        "start": 18,
+        "duration": 11
       },
       {
-        "start": 27.666666666666668,
-        "duration": 9.866666666666667
+        "start": 29,
+        "duration": 8
       },
       {
-        "start": 37.53333333333333,
-        "duration": 7.8
+        "start": 37,
+        "duration": 6
       },
       {
-        "start": 45.333333333333336,
-        "duration": 8.833333333333334
+        "start": 43,
+        "duration": 7
       },
       {
-        "start": 54.166666666666664,
-        "duration": 8.3
+        "start": 50,
+        "duration": 12.466666666666667
       }
     ],
-    "time": "2026-11-05T11:00:20.626Z"
+    "time": "2026-11-05T14:28:06.658Z"
+  },
+  "selectedSchedule": "2026-11-06T09:00:00.000Z",
+  "youtube": {
+    "videoId": "Y5eTyhzDQTE",
+    "url": "https://www.youtube.com/watch?v=Y5eTyhzDQTE",
+    "publishTime": "2026-11-06T09:00:00.000Z",
+    "playlist": {
+      "name": "Hafalan",
+      "id": "PLQpeKIzmWSxQ"
+    }
   }
 }
