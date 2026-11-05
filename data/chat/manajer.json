@@ -104,5 +104,29 @@
     "from": "agent",
     "text": "Itu bukan error dari kantor kita, Bu. Pesan itu datang langsung dari **YouTube**. Artinya **channel sudah mencapai batas jumlah upload untuk periode ini**, biasanya per 24 jam. Videonya sendiri tidak bermasalah.\n\n**Kenapa bisa kena batas?**\nDari daftar episode, sekarang ada **12 video berstatus scheduled**, dan sebagian besar sepertinya diupload dalam 1–2 hari terakhir. YouTube membatasi jumlah upload harian, apalagi kalau uploadnya lewat sistem otomatis seperti dashboard kita. Batasnya lebih ketat lagi kalau channel belum diverifikasi nomor HP. Upload yang gagal kemungkinan juga ikut dihitung. Jadi menekan \"Dipulihkan\" lalu setujui lagi tidak akan membantu, malah bisa membuat batasnya makin lama terbuka.\n\n**Yang bisa Ibu lakukan:**\n1. **Tunggu sekitar 24 jam** sejak upload terakhir yang berhasil, lalu coba lagi. Jangan dicoba berulang-ulang sebelum itu.\n2. **Verifikasi channel** di youtube.com/verify (pakai nomor HP), kalau belum. Biasanya ini menaikkan batas upload.\n3. **Atur jadwal tayang ulang.** Jadwal 1 Nov 12:00 mungkin masih terkejar, mungkin juga tidak. Kalau besok uploadnya berhasil, jadwalnya bisa digeser sedikit.\n4. **Ke depannya, cukup 1–3 upload per hari.** Jangan sekaligus banyak.\n\n**Satu hal yang perlu Ibu tahu:** di daftar episode ada banyak video An-Nas yang mirip-mirip. Judul \"Surat An-Nas & Al-Falaq: Dua Surat Perlindungan\" ini saja ada dua, satu error dan satu lagi masih menunggu persetujuan. Lalu ada \"Al-Mu'awwidzatain: Dua Surat Perlindungan Rasulullah ﷺ\" yang sudah terjadwal 7 Nov, dan \"Takut Gelap\" yang terjadwal dua kali di hari yang sama. Video yang terlalu mirip bisa dianggap konten berulang oleh YouTube, dan itu juga melanggar pedoman kita sendiri. Saran saya, cek dulu apakah episode ini memang perlu diupload. Kalau isinya sudah tercakup oleh \"Al-Mu'awwidzatain\", lebih baik pakai satu yang terbaik saja.\n\nSatu catatan terakhir: saya tidak bisa melihat angka batas upload channel Ibu. Kalau mau tahu pasti, lihat di YouTube Studio.",
     "episodeId": "surat-an-nas-al-falaq-dua-surat-perlindu-7490"
+  },
+  {
+    "time": "2026-11-05T04:27:37.023Z",
+    "from": "owner",
+    "text": "kenapa ga ada suaranya ?",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T04:27:51.230Z",
+    "from": "agent",
+    "text": "Bu, saya tidak bisa menonton videonya, jadi penyebabnya belum bisa saya pastikan. Yang sedang dibuka sekarang episode **Kisah Pasukan Gajah** (16 adegan). Statusnya menunggu persetujuan video, jadi belum tayang dan masih aman. Karena channel kita tidak memakai musik, video bisa benar-benar hening kalau rekaman suaranya tidak ikut masuk. Kemungkinan penyebabnya:\n\n1. **Video hening dari awal sampai akhir:** kemungkinan besar rekaman suara belum ada atau tidak terbaca saat render. Buka halaman episode, lalu cek bagian rekaman per adegan. Pastikan ke-16 adegan punya rekaman dan bisa diputar di situ.\n2. **Hanya beberapa adegan yang hening:** rekaman adegan-adegan itu terlewat atau gagal terupload. Rekam ulang adegan tersebut saja, lalu render ulang.\n3. **Rekaman ada tapi tidak terdengar:** volumenya terlalu kecil, mikrofon mati saat merekam, atau format filenya tidak didukung. Putar rekamannya satu per satu untuk mengecek.\n4. **Sebelum yang lain, cek pemutarnya dulu.** Bisa jadi videonya dibisukan di pemutar atau di browser.\n\nVideonya hening total atau hanya sebagian, Bu? Kalau sebagian, mulai detik ke berapa?\n\nKalau Ibu memang harus rekam ulang, sekalian kerjakan dulu saran Choki lewat **\"Minta revisi\"**: ganti kata \"gereja\" jadi \"bangunan megah\", lalu tambah 1–2 kalimat supaya durasinya aman minimal 3 menit. Dengan begitu cukup sekali rekam.",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T04:28:08.863Z",
+    "from": "owner",
+    "text": "kenapa tidak ada suara",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
+  },
+  {
+    "time": "2026-11-05T04:28:21.259Z",
+    "from": "agent",
+    "text": "Bu, saya belum bisa memastikan penyebabnya karena saya tidak bisa menonton videonya. Di data yang saya lihat juga tidak ada info rekaman suara. Tapi ada satu hal yang paling mungkin:\n\n**Channel kita tidak memakai musik. Jadi semua suara di video berasal dari rekaman suara Ibu.** Kalau rekamannya belum ada atau tidak terbaca, hasil render pasti hening.\n\nCoba jawab dua pertanyaan ini, Bu:\n\n1. **Apakah Ibu sudah merekam suara untuk episode Pasukan Gajah ini?** Urutannya: rekam suara dulu, baru render. Kalau render jalan sebelum rekaman ada, videonya jadi bisu.\n   - Kalau **belum**: rekam dulu ke-16 adegannya di halaman episode, lalu render ulang.\n   - Kalau **sudah**: buka halaman episode, lalu putar rekaman beberapa adegan.\n2. **Saat diputar di halaman episode, rekamannya terdengar atau tidak?**\n   - **Terdengar, tapi videonya tetap hening**: berarti rekamannya tidak ikut masuk saat render. Coba render ulang sekali saja. Kalau masih hening, kemungkinan ada masalah teknis di proses render, dan itu di luar yang bisa saya cek.\n   - **Tidak terdengar**: rekamannya kosong. Bisa karena mikrofon mati atau izin mikrofon di browser belum diberikan. Jadi perlu rekam ulang.\n\nKalau ternyata harus rekam ulang, sekalian kerjakan saran Choki dulu lewat **\"Minta revisi\"**: ganti kata \"gereja\" jadi \"bangunan megah\", dan tambah 1–2 kalimat supaya durasinya aman. Dengan begitu cukup sekali rekam.\n\nKabari saya jawabannya ya, Bu, nanti saya bantu langkah berikutnya.",
+    "episodeId": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9"
   }
 ]
