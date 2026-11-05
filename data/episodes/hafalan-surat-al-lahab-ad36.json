@@ -1,0 +1,385 @@
+{
+  "id": "hafalan-surat-al-lahab-ad36",
+  "created": "2026-11-05T10:58:31.048Z",
+  "modified": "2026-11-05T11:00:20.627Z",
+  "status": "needs_video_approval",
+  "idea": {
+    "title": "Hafalan Surat Al-Lahab",
+    "series": "memorization",
+    "age": "1-10",
+    "moralMessage": "Menghafal Surat Al-Lahab (Api Yang Bergejolak)",
+    "type": "memorization",
+    "memorization": {
+      "surah": 111,
+      "surahName": "Al-Lahab",
+      "verseFrom": 1,
+      "verseTo": 5,
+      "repetitions": 1,
+      "basmalah": true
+    },
+    "reason": "Ide hafalan dari pemilik channel",
+    "references": [],
+    "format": "standard"
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-05T10:58:31.048Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-05T10:58:31.051Z",
+      "by": "pemilik",
+      "message": "Dibuat juga versi Shorts: hafalan-surat-al-lahab-67db"
+    },
+    {
+      "time": "2026-11-05T10:58:31.052Z",
+      "by": "pemilik",
+      "message": "Mengambil teks surat"
+    },
+    {
+      "time": "2026-11-05T10:58:32.032Z",
+      "by": "orchestrator",
+      "message": "Mengambil teks Surat Al-Lahab dari equran.id"
+    },
+    {
+      "time": "2026-11-05T10:58:32.194Z",
+      "by": "orchestrator",
+      "message": "Teks surat siap dicek pemilik channel"
+    },
+    {
+      "time": "2026-11-05T10:58:48.073Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-05T10:58:48.689Z",
+      "by": "sutradara",
+      "message": "Memilih latar sesuai arti ayat & menyusun metadata"
+    },
+    {
+      "time": "2026-11-05T10:58:52.262Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T10:59:07.289Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-05T10:59:07.733Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    },
+    {
+      "time": "2026-11-05T10:59:33.180Z",
+      "by": "pemilik",
+      "message": "Bagian 1 rekaman diupload (0.8 MB), total 1 bagian"
+    },
+    {
+      "time": "2026-11-05T10:59:33.864Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T11:00:20.627Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    }
+  ],
+  "twin": "hafalan-surat-al-lahab-67db",
+  "statusNote": "Video siap ditonton & disetujui",
+  "memorization": {
+    "surahName": "Al-Lahab",
+    "surahMeaning": "Api Yang Bergejolak",
+    "verses": [
+      {
+        "number": 0,
+        "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "meaning": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "background": "dawn",
+        "moods": [
+          "light"
+        ]
+      },
+      {
+        "number": 1,
+        "arabic": "تَبَّتْ يَدَآ اَبِيْ لَهَبٍ وَّتَبَّۗ",
+        "latin": "Tabbat yadā abī lahabiw wa tabb(a).",
+        "meaning": "Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia.",
+        "background": "desert",
+        "moods": []
+      },
+      {
+        "number": 2,
+        "arabic": "مَآ اَغْنٰى عَنْهُ مَالُهٗ وَمَا كَسَبَۗ",
+        "latin": "Mā agnā ‘anhu māluhū wa mā kasab(a).",
+        "meaning": "Tidaklah berguna baginya hartanya dan apa yang dia usahakan.",
+        "background": "desert",
+        "moods": []
+      },
+      {
+        "number": 3,
+        "arabic": "سَيَصْلٰى نَارًا ذَاتَ لَهَبٍۙ",
+        "latin": "Sayaṣlā nāran żāta lahab(in).",
+        "meaning": "Kelak dia akan memasuki api yang bergejolak (neraka),",
+        "background": "night-sky",
+        "moods": []
+      },
+      {
+        "number": 4,
+        "arabic": "وَّامْرَاَتُهٗ ۗحَمَّالَةَ الْحَطَبِۚ",
+        "latin": "Wamra'atuh(ū), ḥammālatal-ḥaṭab(i).",
+        "meaning": "(begitu pula) istrinya, pembawa kayu bakar (penyebar fitnah).",
+        "background": "night-sky",
+        "moods": []
+      },
+      {
+        "number": 5,
+        "arabic": "فِيْ جِيْدِهَا حَبْلٌ مِّنْ مَّسَدٍ ࣖ",
+        "latin": "Fī jīdihā ḥablum mim masad(in).",
+        "meaning": "Di lehernya ada tali dari sabut yang dipintal.",
+        "background": "night-sky",
+        "moods": []
+      }
+    ],
+    "segmentEffect": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476"
+  },
+  "script": {
+    "title": "Hafalan Surat Al-Lahab",
+    "summary": "Surat ke-111 (Api Yang Bergejolak), 5 ayat. Tiap ayat dibaca 1x.",
+    "scenes": [
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "visualDirection": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Tabbat yadā abī lahabiw wa tabb(a).",
+        "visualDirection": "Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Mā agnā ‘anhu māluhū wa mā kasab(a).",
+        "visualDirection": "Tidaklah berguna baginya hartanya dan apa yang dia usahakan."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Sayaṣlā nāran żāta lahab(in).",
+        "visualDirection": "Kelak dia akan memasuki api yang bergejolak (neraka),"
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Wamra'atuh(ū), ḥammālatal-ḥaṭab(i).",
+        "visualDirection": "(begitu pula) istrinya, pembawa kayu bakar (penyebar fitnah)."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Fī jīdihā ḥablum mim masad(in).",
+        "visualDirection": "Di lehernya ada tali dari sabut yang dipintal."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "translation": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "source": "Basmalah"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "تَبَّتْ يَدَآ اَبِيْ لَهَبٍ وَّتَبَّۗ",
+        "latin": "Tabbat yadā abī lahabiw wa tabb(a).",
+        "translation": "Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia.",
+        "source": "QS. Al-Lahab: 1"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "مَآ اَغْنٰى عَنْهُ مَالُهٗ وَمَا كَسَبَۗ",
+        "latin": "Mā agnā ‘anhu māluhū wa mā kasab(a).",
+        "translation": "Tidaklah berguna baginya hartanya dan apa yang dia usahakan.",
+        "source": "QS. Al-Lahab: 2"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "سَيَصْلٰى نَارًا ذَاتَ لَهَبٍۙ",
+        "latin": "Sayaṣlā nāran żāta lahab(in).",
+        "translation": "Kelak dia akan memasuki api yang bergejolak (neraka),",
+        "source": "QS. Al-Lahab: 3"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "وَّامْرَاَتُهٗ ۗحَمَّالَةَ الْحَطَبِۚ",
+        "latin": "Wamra'atuh(ū), ḥammālatal-ḥaṭab(i).",
+        "translation": "(begitu pula) istrinya, pembawa kayu bakar (penyebar fitnah).",
+        "source": "QS. Al-Lahab: 4"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "فِيْ جِيْدِهَا حَبْلٌ مِّنْ مَّسَدٍ ࣖ",
+        "latin": "Fī jīdihā ḥablum mim masad(in).",
+        "translation": "Di lehernya ada tali dari sabut yang dipintal.",
+        "source": "QS. Al-Lahab: 5"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 10,
+    "notes": [
+      "Teks diambil otomatis dari equran.id (Kemenag RI), tidak ditulis AI."
+    ],
+    "humanCheck": [
+      "Cocokkan teks Arab & harakat dengan mushaf kamu.",
+      "Pastikan rentang ayat sesuai yang ingin dihafalkan."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Bismillāhir-raḥmānir-raḥīm(i).",
+      "background": "dawn",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "meaning": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Tabbat yadā abī lahabiw wa tabb(a).",
+      "background": "desert",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "تَبَّتْ يَدَآ اَبِيْ لَهَبٍ وَّتَبَّۗ",
+        "latin": "Tabbat yadā abī lahabiw wa tabb(a).",
+        "meaning": "Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Mā agnā ‘anhu māluhū wa mā kasab(a).",
+      "background": "desert",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "مَآ اَغْنٰى عَنْهُ مَالُهٗ وَمَا كَسَبَۗ",
+        "latin": "Mā agnā ‘anhu māluhū wa mā kasab(a).",
+        "meaning": "Tidaklah berguna baginya hartanya dan apa yang dia usahakan."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Sayaṣlā nāran żāta lahab(in).",
+      "background": "night-sky",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "سَيَصْلٰى نَارًا ذَاتَ لَهَبٍۙ",
+        "latin": "Sayaṣlā nāran żāta lahab(in).",
+        "meaning": "Kelak dia akan memasuki api yang bergejolak (neraka),"
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Wamra'atuh(ū), ḥammālatal-ḥaṭab(i).",
+      "background": "night-sky",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "وَّامْرَاَتُهٗ ۗحَمَّالَةَ الْحَطَبِۚ",
+        "latin": "Wamra'atuh(ū), ḥammālatal-ḥaṭab(i).",
+        "meaning": "(begitu pula) istrinya, pembawa kayu bakar (penyebar fitnah)."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Fī jīdihā ḥablum mim masad(in).",
+      "background": "night-sky",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "فِيْ جِيْدِهَا حَبْلٌ مِّنْ مَّسَدٍ ࣖ",
+        "latin": "Fī jīdihā ḥablum mim masad(in).",
+        "meaning": "Di lehernya ada tali dari sabut yang dipintal."
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Hafalan Surat Al-Lahab untuk Anak | 5 Ayat, Tiap Ayat Diulang",
+    "description": "Hafalan Surat Al-Lahab untuk anak, dibaca pelan ayat demi ayat dan tiap ayat diulang sekali. Ayo menghafal bersama, adik-adik!\n\nSurat Al-Lahab (Api yang Bergejolak) adalah surat ke-111 dalam Al-Qur'an. Jumlahnya 5 ayat dan termasuk surat Makkiyah. Surat ini bercerita tentang Abu Lahab. Ia memusuhi Rasulullah ﷺ dan menghalangi orang dari kebaikan. Allah menjelaskan bahwa harta dan usahanya tidak bisa menolongnya.\n\nPelajaran hari ini:\n• Harta tidak bisa menolong orang yang berbuat jahat.\n• Jangan menyakiti orang yang mengajak kepada kebaikan.\n• Sayangi dan dukung kebaikan, seperti kita mencintai Rasulullah ﷺ.\n\nTeks Arab dan terjemah: Kementerian Agama RI (via equran.id).\n\nRasulullah ﷺ bersabda: \"Sebaik-baik kalian adalah orang yang belajar Al-Qur'an dan mengajarkannya.\" (HR. Bukhari no. 5027)\n\nAyah dan Bunda, yuk dampingi si kecil saat menonton. Ulangi bersama setiap ayat sampai lancar, sedikit demi sedikit setiap hari. Jangan lupa tonton juga hafalan surat pendek lainnya di Tasnie Office.\n\n#HafalanSuratPendek #SuratAlLahab #CeritaIslamiAnak",
+    "tags": [
+      "hafalan surat al lahab",
+      "surat al lahab untuk anak",
+      "hafalan surat pendek anak",
+      "surat al lahab 5 ayat",
+      "belajar mengaji anak",
+      "juz amma anak",
+      "murottal anak",
+      "hafalan juz 30",
+      "surat al lahab dan artinya",
+      "tahfidz anak",
+      "belajar al quran untuk anak",
+      "cerita islami anak",
+      "video islami anak",
+      "tasnie office"
+    ],
+    "thumbnailText": "Al-Lahab"
+  },
+  "recordingMode": "sequential",
+  "audioParts": [
+    "audio/hafalan-surat-al-lahab-ad36-mw3foc6y-1.mp3"
+  ],
+  "audioFile": "audio/hafalan-surat-al-lahab-ad36-mw3foc6y-1.mp3",
+  "render": {
+    "video": "hafalan-surat-al-lahab-ad36.mp4",
+    "thumbnail": "hafalan-surat-al-lahab-ad36.png",
+    "scenes": [
+      {
+        "start": 10,
+        "duration": 9.866666666666667
+      },
+      {
+        "start": 19.866666666666667,
+        "duration": 7.8
+      },
+      {
+        "start": 27.666666666666668,
+        "duration": 9.866666666666667
+      },
+      {
+        "start": 37.53333333333333,
+        "duration": 7.8
+      },
+      {
+        "start": 45.333333333333336,
+        "duration": 8.833333333333334
+      },
+      {
+        "start": 54.166666666666664,
+        "duration": 8.3
+      }
+    ],
+    "time": "2026-11-05T11:00:20.626Z"
+  }
+}

@@ -1,9 +1,9 @@
 {
   "id": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba",
   "created": "2026-10-30T11:53:04.248Z",
-  "modified": "2026-11-05T10:54:23.170Z",
-  "status": "rendering",
-  "statusNote": "Render dengan rekaman suara",
+  "modified": "2026-11-05T10:58:10.356Z",
+  "status": "needs_video_approval",
+  "statusNote": "Video siap ditonton & disetujui",
   "idea": {
     "title": "Asbabun Nuzul Surat An-Nas: Surat Perlindungan yang Istimewa",
     "series": "asbabun-nuzul",
@@ -657,7 +657,6 @@
   ],
   "render": {
     "video": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba.mp4",
-    "time": "2026-10-30T12:00:38.835Z",
     "scenes": [
       {
         "start": 1.5,
@@ -723,7 +722,8 @@
         "start": 458.1666666666667,
         "duration": 36.06666666666667
       }
-    ]
+    ],
+    "time": "2026-11-05T10:58:10.355Z"
   },
   "log": [
     {
@@ -795,6 +795,11 @@
       "time": "2026-11-05T10:53:52.049Z",
       "by": "video-creator",
       "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-05T10:58:10.356Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ]
 }
