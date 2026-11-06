@@ -16,6 +16,7 @@ import {
   memorizationSegments,
   speakerVoice,
   visualStyle,
+  thumbnailPlan,
   updateEpisode,
   type Episode,
   type EpisodeVideoProps,
@@ -373,13 +374,9 @@ export async function renderEpisode(ep: Episode, onLine?: (s: string) => void): 
   const propsFile = path.join(dir, `${ep.id}.props.json`);
   fs.writeFileSync(propsFile, JSON.stringify(props));
 
-  const pertama = ep.scenes.find((a) => a.characters.length > 0) ?? ep.scenes[0];
+  // each playlist has its own look and episodes vary within it (see thumbnailPlan)
   const thumbProps: KnownKeys<ThumbnailProps> = {
-    text: ep.metadata?.thumbnailText ?? props.title,
-    background: pertama.background,
-    characters: pertama.characters.length ? pertama.characters : ['mother', 'mamas'],
-    ...(memorization ? { subtitle: 'Hafalan Surat' } : {}),
-    expression: 'happy',
+    ...thumbnailPlan(ep, ep.metadata?.thumbnailText ?? props.title, cfg),
     characterLooks: cfg.characterLooks,
   };
   const thumbPropsFile = path.join(dir, `${ep.id}.thumb.json`);

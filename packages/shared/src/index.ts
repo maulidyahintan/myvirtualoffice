@@ -5,3 +5,4 @@ export * from './store.ts';
 export * from './schedule.ts';
 export * from './metadata.ts';
 export * from './channel.ts';
+export * from './thumbnail.ts';

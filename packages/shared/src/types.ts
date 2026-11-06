@@ -297,6 +297,14 @@ export interface ThumbnailProps {
   expression: Expression;
   /** Character colors from channel settings. */
   characterLooks?: CharacterLooks;
+  /** AI illustration (path in packages/video/public) used instead of the drawn background. */
+  illustration?: string;
+  /** Playlist label shown as a pill above the title, e.g. "🕋 ASBABUN NUZUL". */
+  badge?: string;
+  /** Playlist accent color (pill, title outline, bottom stripe). */
+  accent?: string;
+  /** Text on the right and characters on the left (alternates between episodes for variety). */
+  mirror?: boolean;
 }
 
 /** Single publish time in a day, for specific format or all. */
