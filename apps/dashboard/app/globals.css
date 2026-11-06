@@ -481,3 +481,5 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 
 /* audio bacaan Arab langsung di adegannya */
 .kotak-bacaan { gap: 6px; padding: 8px 10px; border-radius: 10px; border: 1px dashed var(--line); background: rgba(232, 176, 74, 0.08); font-size: 13px; }
+/* putaran loading juga dipakai di tombol "isi semua" */
+.putar { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: putar-suara 0.8s linear infinite; }

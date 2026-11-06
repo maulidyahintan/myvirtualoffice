@@ -38,6 +38,7 @@ import {
   CHARACTERS,
   aiJobMarker,
   aiVoiceInProgress,
+  needsHumanVoice,
   setAiVoiceProgress,
   isBusy,
   deleteBlockers,
@@ -549,14 +550,20 @@ export async function saveCharacterVoices(form: FormData) {
 /** Isi SATU adegan yang belum direkam dengan suara AI gratis (bacaan Arab tetap rekam sendiri). */
 export async function fillAiVoices(form: FormData) {
   const id = teks(form, 'id');
-  const adegan = Number(teks(form, 'adegan'));
-  if (!Number.isInteger(adegan) || adegan < 1) return;
+  // with a scene number: only that scene; without: every empty scene, one after another
+  const adegan = teks(form, 'adegan') ? Number(teks(form, 'adegan')) : undefined;
+  if (adegan !== undefined && (!Number.isInteger(adegan) || adegan < 1)) return;
   // one AI job per episode at a time; the progress mark is written right now (before the worker starts)
   // so a second click in between is refused and the scene shows its loading state immediately
   if (isBusy(aiJobMarker(id)) || aiVoiceInProgress(id) !== undefined) return;
-  setAiVoiceProgress(id, adegan - 1);
-  addLog(id, 'pemilik', `Minta adegan ${adegan} diisi suara AI`);
-  runOfficeCommand(['suara-ai', id, String(adegan)], id);
+  const ep = getEpisode(id);
+  const pertama = adegan
+    ? adegan - 1
+    : (ep.scenes ?? []).findIndex((s, i) => !ep.audioPerScene?.[i] && !needsHumanVoice(s));
+  if (pertama < 0) return;
+  setAiVoiceProgress(id, pertama);
+  addLog(id, 'pemilik', adegan ? `Minta adegan ${adegan} diisi suara AI` : 'Minta semua adegan kosong diisi suara AI satu per satu');
+  runOfficeCommand(adegan ? ['suara-ai', id, String(adegan)] : ['suara-ai', id], id);
   segarkan(id);
 }
 

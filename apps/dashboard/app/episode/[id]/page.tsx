@@ -169,13 +169,26 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
       </form>
     );
   }
+  const dikerjakan = aiVoiceInProgress(ep.id);
+  const sibuk = dikerjakan !== undefined || isBusy(aiJobMarker(ep.id));
   return (
-    <p className="kecil muted" style={{ margin: 0 }}>
-      🤖{' '}
-      {pakai.exhausted
+    <form action={fillAiVoices} className="stack" style={{ gap: 4 }}>
+      <Id id={ep.id} />
+      <SubmitButton type="submit" className="sekunder" disabled={sibuk || pakai.exhausted} teksProses="Memulai…">
+        {sibuk ? (
+          <span className="row" style={{ gap: 8, alignItems: 'center', justifyContent: 'center' }}>
+            <span className="putar" aria-hidden /> Mengisi suara AI{dikerjakan !== undefined ? ` adegan ${dikerjakan + 1}` : ''}…
+          </span>
+        ) : (
+          `🤖 Isi semua adegan dengan suara AI (${bisaAi} adegan)`
+        )}
+      </SubmitButton>
+      <span className="kecil muted">
+        {pakai.exhausted
           ? 'Jatah suara AI gratis hari ini sudah habis; rekam sendiri atau coba lagi besok.'
-          : `Suara AI gratis: klik "🤖 Isi suara AI" di adegan yang mau diisi, satu adegan per klik. Bacaan Arab tetap rekam sendiri. Jatah Google ±20 adegan per hari; hari ini terpakai ${pakai.requests}.`}
-    </p>
+          : `Diisi satu per satu, berurutan; adegan yang sedang dikerjakan ditandai ⏳. Bisa juga per adegan lewat tombol 🤖 di adegannya. Bacaan Arab tetap rekam sendiri. Jatah Google ±20 adegan per hari; hari ini terpakai ${pakai.requests}.`}
+      </span>
+    </form>
   );
 }
 
