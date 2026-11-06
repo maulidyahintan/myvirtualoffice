@@ -1,0 +1,132 @@
+{
+  "id": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-963a",
+  "created": "2026-11-06T10:12:09.986Z",
+  "modified": "2026-11-06T10:13:02.621Z",
+  "status": "needs_script_approval",
+  "idea": {
+    "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Masjid adalah rumah Allah. Anak-anak senang diajak ke sana. Kita jaga adabnya: berjalan tenang, tidak berlari dan berteriak, masuk dengan kaki kanan, dan membaca doa masuk masjid (HR. Muslim no. 713).",
+    "format": "short",
+    "reason": "Video \"Benarkah anak dilarang ke masjid?\" mendapat 31–48 rb views/hari, tapi semuanya untuk orang dewasa (madeForKids = false). Belum ada versi yang bisa ditonton anak sendiri. Kita hindari perdebatan khilafiyah dan fokus pada adab yang disepakati. Topik ini bisa dipasangkan dengan Shorts Doa Masuk Masjid. Sebagai video biasa, episode ini juga membantu jam tonton.",
+    "references": [
+      "https://www.youtube.com/watch?v=DOoPRqcjakM (Benarkah Anak Dilarang ke Masjid? – ±48 rb/hari, non-kids)",
+      "https://www.youtube.com/watch?v=62PNeed2PfU (Anak tidak boleh main di masjid? – ±31 rb/hari)",
+      "https://www.youtube.com/watch?v=I3Y3ulnYlQc (Kalimat dari Nabi saat masuk masjid – HR. Muslim no. 713)"
+    ]
+  },
+  "revisionCount": 1,
+  "log": [
+    {
+      "time": "2026-11-06T10:12:09.986Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-06T10:12:09.987Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660"
+    },
+    {
+      "time": "2026-11-06T10:12:09.990Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-06T10:12:10.649Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-06T10:12:37.566Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-06T10:12:38.030Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-06T10:13:02.060Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-06T10:13:02.621Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "twin": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660",
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
+    "summary": "Di depan masjid, Mochi berlari-lari dan Mamas bertanya kenapa anak-anak diajak ke masjid. Ibu menjawab bahwa masjid adalah rumah Allah, jadi kita belajar mencintainya sejak kecil. Adabnya: berjalan tenang, tidak berlari dan berteriak, masuk dengan kaki kanan, lalu membaca doa masuk masjid (HR. Muslim no. 713).",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Mochi, jangan lari! Ibu, kenapa anak-anak diajak ke masjid?",
+        "visualDirection": "Halaman depan masjid (mosque) pada sore yang tenang; Mochi berlari kecil lalu berhenti kaget dan duduk manis, Mamas menoleh ke Ibu dengan wajah penasaran."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Karena masjid rumah Allah, Mas. Kita belajar mencintainya sejak kecil. Di sana, jalan tenang. Tidak berlari, tidak berteriak. Masuk dengan kaki kanan, lalu berdoa.",
+        "visualDirection": "Di depan pintu masjid, Ibu tersenyum lembut sambil menggandeng Mamas; Mamas berjalan pelan dan melangkahkan kaki kanan lebih dulu, Mochi menunggu tenang di halaman."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Allāhummaftaḥ lī abwāba raḥmatik.",
+        "visualDirection": "Mamas berdiri di ambang pintu masjid, menengadahkan tangan dengan khusyuk, cahaya sore yang lembut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, ya Allah, bukakanlah pintu-pintu rahmat-Mu. Yuk, jaga adab di rumah Allah!",
+        "visualDirection": "Dalam masjid (inside-mosque) yang tenang, Ibu dan Mamas duduk rapi di karpet sambil tersenyum ke kamera."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "doa",
+        "arabicText": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+        "latin": "Allāhummaftaḥ lī abwāba raḥmatik",
+        "translation": "Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu.",
+        "source": "HR. Muslim no. 713, dari Abu Humaid atau Abu Usaid radhiyallahu 'anhu"
+      },
+      {
+        "type": "hadits",
+        "translation": "Nabi ﷺ suka mendahulukan yang kanan saat memakai sandal, menyisir, bersuci, dan dalam semua urusannya.",
+        "source": "HR. Bukhari no. 168 dan Muslim no. 268, dari Aisyah radhiyallahu 'anha (dalil umum mendahulukan kanan, termasuk saat masuk masjid)"
+      },
+      {
+        "type": "hadits",
+        "translation": "Jika kalian mendengar iqamah, berjalanlah menuju shalat dengan tenang dan berwibawa, dan jangan tergesa-gesa.",
+        "source": "HR. Bukhari no. 636 dan Muslim no. 602, dari Abu Hurairah radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Syariat aman. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Yang digambar hanya Mamas, Ibu, dan Mochi.",
+      "Pemisahan bacaan Arab sudah benar. Scene 3 hanya berisi lafaz doa (latin), dan artinya ada di scene 4.",
+      "Panjang naskah 49 kata, masih dalam batas 45–65. Isinya satu konsep (adab masuk masjid) dan langsung ke inti. Sesuai format Shorts.",
+      "Ada perilaku negatif (Mochi berlari) dan langsung diselesaikan: Mochi berhenti lalu duduk manis. Pesan moralnya jelas.",
+      "Saran kecil di visual scene 3: doa masuk masjid umumnya tidak dibaca sambil menengadahkan tangan. Sebaiknya diganti, misalnya: 'Mamas melangkahkan kaki kanan masuk ke ambang pintu masjid sambil berdoa pelan, tangan di samping badan, cahaya sore lembut.' Ini supaya anak tidak meniru cara yang kurang tepat.",
+      "Opsional: di scene 1, Mamas berseru 'Mochi, jangan lari!' di halaman masjid. Bisa diarahkan supaya diucapkan dengan suara pelan, agar sejalan dengan pesan 'tidak berteriak'.",
+      "Kalimat 'masjid rumah Allah' adalah ungkapan yang umum dan sejalan dengan QS. Al-Jin: 18 ('masjid-masjid itu milik Allah'). Ini bukan klaim tanpa dasar."
+    ],
+    "humanCheck": [
+      "Doa masuk masjid: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ' (Allāhummaftaḥ lī abwāba raḥmatik), artinya 'Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu.' Sumber: HR. Muslim no. 713, dari Abu Humaid atau Abu Usaid. Cek lafaz Arab, latin, dan nomor haditsnya (penomoran Fuad Abdul Baqi).",
+      "Hadits mendahulukan yang kanan: 'Nabi ﷺ suka mendahulukan yang kanan saat memakai sandal, menyisir, bersuci, dan dalam semua urusannya.' Sumber: HR. Bukhari no. 168 dan Muslim no. 268, dari Aisyah. Cek nomor dan terjemahnya. Catatan: ini dalil umum. Ada riwayat khusus soal masuk masjid dengan kaki kanan dari Anas (HR. Al-Hakim, dinilai hasan), tapi tidak dipakai di sini. Ini sudah cukup aman.",
+      "Hadits berjalan tenang: 'Jika kalian mendengar iqamah, berjalanlah menuju shalat dengan tenang dan berwibawa, dan jangan tergesa-gesa.' Sumber: HR. Bukhari no. 636 dan Muslim no. 602, dari Abu Hurairah. Cek nomor dan terjemahnya. Hadits ini aslinya tentang berjalan menuju shalat. Di naskah dipakai sebagai dasar umum adab berjalan tenang di masjid. Pastikan Anda setuju dengan penerapan ini.",
+      "Ada kucing (Mochi) di halaman masjid. Pastikan visualnya tidak menampilkan Mochi masuk ke dalam masjid atau ke area shalat."
+    ]
+  }
+}

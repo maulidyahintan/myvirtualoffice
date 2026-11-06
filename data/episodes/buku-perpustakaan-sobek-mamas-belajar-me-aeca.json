@@ -1,0 +1,122 @@
+{
+  "id": "buku-perpustakaan-sobek-mamas-belajar-me-aeca",
+  "created": "2026-11-06T10:12:03.065Z",
+  "modified": "2026-11-06T10:12:48.337Z",
+  "status": "needs_script_approval",
+  "idea": {
+    "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
+    "series": "kisah-sebelum-tidur",
+    "age": "4-6",
+    "moralMessage": "Barang pinjaman adalah amanah. Kita merawatnya, mengembalikannya, dan berkata jujur kalau rusak (QS. An-Nisa: 58). Orang yang jujur dipercaya dan disayang.",
+    "format": "short",
+    "reason": "Shorts \"Boneka Robek\" dari AisyahFatihTV mendapat ±72 rb views/hari. Artinya konflik soal barang rusak menarik bagi anak. Versi kita memakai latar library: Mochi tidak sengaja menyobek buku pinjaman. Mamas sempat ingin menyembunyikannya, lalu memilih jujur, dan konsekuensinya jelas. Tema amanah dan barang pinjaman belum ada di antrean. Kisah adab panjang ala Kabi (10–14 menit, 8–13 rb/hari) memberi peluang untuk versi 3–5 menit yang lebih ramah balita.",
+    "references": [
+      "https://www.youtube.com/watch?v=Vh_hLXMGiPA (Boneka Robek – AisyahFatihTV, ±72 rb/hari)",
+      "https://www.youtube.com/watch?v=2F_fwAlDQuU (Kakak Memilih Jujur – Petualangan Akhlak, ±11 rb/hari)",
+      "QS. An-Nisa: 58"
+    ]
+  },
+  "revisionCount": 1,
+  "log": [
+    {
+      "time": "2026-11-06T10:12:03.065Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-06T10:12:03.067Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode buku-perpustakaan-sobek-mamas-belajar-me-d120"
+    },
+    {
+      "time": "2026-11-06T10:12:03.071Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-06T10:12:03.965Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-06T10:12:24.702Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-06T10:12:25.252Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-06T10:12:47.931Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-06T10:12:48.337Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    }
+  ],
+  "twin": "buku-perpustakaan-sobek-mamas-belajar-me-d120",
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
+    "summary": "Mochi tidak sengaja menyobek buku pinjaman dari perpustakaan. Mamas ingin menyembunyikannya di bawah bantal. Ibu mengingatkan bahwa barang pinjaman adalah amanah (QS. An-Nisa: 58). Mamas lalu berkata jujur kepada penjaga perpustakaan, dan mereka menambal buku itu bersama-sama.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Kreek! Mochi menyobek buku pinjaman Mamas! Mamas ingin menyembunyikannya di bawah bantal.",
+        "visualDirection": "bedroom-night: Mochi kaget dengan kertas sobek di mulutnya, Mamas panik dan buru-buru menyelipkan buku ke bawah bantal."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Mas, buku pinjaman itu amanah. Kita jujur, ya. Allah berfirman:",
+        "visualDirection": "bedroom-night: Ibu duduk di tepi kasur dan mengusap kepala Mamas dengan lembut, sementara Mochi mengintip dari balik bantal."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Innallāha ya'murukum an tu'addul-amānāti ilā ahlihā.",
+        "visualDirection": "bedroom-night: Mamas duduk tenang sambil memeluk buku yang sobek, cahaya lampu tidur terasa hangat."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Artinya, Allah menyuruh kita menyampaikan amanah kepada pemiliknya. Mamas pun jujur kepada penjaga perpustakaan. Ia tersenyum, lalu mereka menambal bukunya bersama. Jaga pinjaman, jujur kalau rusak, ya!",
+        "visualDirection": "library: Mamas menyerahkan buku dengan wajah lega di depan meja peminjaman, lalu tersenyum sambil memegang selotip, dan Mochi duduk manis di dekatnya."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا",
+        "latin": "Innallāha ya'murukum an tu'addul-amānāti ilā ahlihā",
+        "translation": "Sesungguhnya Allah menyuruh kamu menyampaikan amanah kepada yang berhak menerimanya.",
+        "source": "QS. An-Nisa (4): 58"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Lolos tanpa revisi wajib. Naskah 55 kata, satu konsep (amanah dan jujur), dalilnya tepat, dan konfliknya selesai dengan baik: Mamas tidak jadi menyembunyikan buku, lalu jujur dan memperbaikinya.",
+      "Bacaan Arab sudah terpisah dengan benar. Scene 3 hanya berisi latin ayat dan dibacakan oleh `mamas`. Pengantar ada di scene 2 dan artinya di scene 4.",
+      "Opsional, scene 4: 'Ia tersenyum' tidak jelas menunjuk siapa. Usul diganti menjadi 'Penjaga perpustakaan tersenyum.' Anak usia 4–6 jadi langsung paham bahwa jujur disambut baik.",
+      "Opsional, visual scene 4: penjaga perpustakaan tidak boleh digambar, karena hanya Mamas, Ibu, dan Mochi yang boleh tampil. Usul arahan visual ditambah: 'penjaga perpustakaan tidak tampak (di luar frame); kamera fokus pada Mamas, buku, dan selotip di meja.'",
+      "Opsional, scene 1: buat efek suara 'Kreek!' pelan, tidak mengagetkan, supaya sesuai aturan visual dan audio yang tenang.",
+      "Opsional: kalimat penutup 'Jaga pinjaman, jujur kalau rusak, ya!' sudah bagus. Kalau masih ada ruang kata, bisa ditambah ajakan berbuat baik sesuai pedoman, misalnya 'Yuk, jadi anak amanah!' Total kata tetap harus ≤ 65."
+    ],
+    "humanCheck": [
+      "DALIL 1: QS. An-Nisa (4): 58 — Arab: 'إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا' (ini potongan awal ayat). Cocokkan harakat dengan mushaf.",
+      "Latin: 'Innallāha ya'murukum an tu'addul-amānāti ilā ahlihā'. Cek transliterasinya, terutama 'tu'addul-amānāti', dan pastikan pelafalan TTS suara Mamas benar.",
+      "Terjemah: 'Sesungguhnya Allah menyuruh kamu menyampaikan amanah kepada yang berhak menerimanya.' Cocokkan dengan terjemah Kemenag. Edisi 2019 memakai 'kepada pemiliknya', jadi pastikan konsisten dengan narasi scene 4.",
+      "Kecocokan konteks: ayat ini tentang menyerahkan amanah kepada pemiliknya. Di naskah, ayat dipakai untuk mengembalikan barang pinjaman dan jujur soal kerusakannya. Menurut saya wajar, tapi tolong dikonfirmasi.",
+      "Visual scene 4: pastikan penjaga perpustakaan tidak tergambar di hasil animasi, termasuk tangan atau siluetnya."
+    ]
+  }
+}

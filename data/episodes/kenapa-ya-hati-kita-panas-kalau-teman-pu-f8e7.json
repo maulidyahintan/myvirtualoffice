@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
   "created": "2026-11-02T10:11:06.546Z",
-  "modified": "2026-11-05T16:09:25.715Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-06T10:20:24.963Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
     "series": "kenapa-ya",
@@ -58,10 +58,105 @@
       "time": "2026-11-05T16:09:25.715Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-06T10:11:34.445Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-06T10:11:35.353Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-06T10:11:49.717Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-06T10:11:57.316Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-06T10:11:57.770Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-06T10:16:57.635Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-06T10:16:58.537Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 11 adegan dengan suara AI gratis (adegan 9 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-06T10:17:06.672Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/11)"
+    },
+    {
+      "time": "2026-11-06T10:17:16.253Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/11)"
+    },
+    {
+      "time": "2026-11-06T10:17:24.901Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/11)"
+    },
+    {
+      "time": "2026-11-06T10:17:36.463Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (4/11)"
+    },
+    {
+      "time": "2026-11-06T10:18:09.863Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (5/11)"
+    },
+    {
+      "time": "2026-11-06T10:18:19.811Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (6/11)"
+    },
+    {
+      "time": "2026-11-06T10:18:25.222Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (7/11)"
+    },
+    {
+      "time": "2026-11-06T10:18:31.774Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (8/11)"
+    },
+    {
+      "time": "2026-11-06T10:20:09.918Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (9/11)"
+    },
+    {
+      "time": "2026-11-06T10:20:14.778Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (10/11)"
+    },
+    {
+      "time": "2026-11-06T10:20:24.963Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (11/11)"
+    },
+    {
+      "time": "2026-11-06T10:20:24.963Z",
+      "by": "pengisi-suara",
+      "message": "11 adegan diisi suara AI · rekam sendiri adegan 9"
     }
   ],
   "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
     "summary": "Mamas pulang dari taman bermain sambil cemberut. Temannya, Raka, punya mobil remot baru, sedangkan mobil Mamas hanya mobil kayu lama. Ibu menjelaskan bahwa rasa itu namanya iri. Saat Mochi berguling lucu mengejar mobil kayu, Mamas sadar bahwa mainannya juga menyenangkan. Ibu lalu mengajarkan dua obat iri dari Rasulullah ﷺ. Pertama, lihat orang yang keadaannya di bawah kita supaya tidak meremehkan nikmat Allah (HR. Muslim no. 2963). Kedua, cintai untuk saudara apa yang kita cintai untuk diri sendiri (HR. Bukhari no. 13, Muslim no. 45). Mamas bersyukur dan berniat ikut senang untuk Raka. Raka hanya disebut di narasi dan tidak digambar.",
@@ -177,5 +272,325 @@
       "Cek audio di scene 4: efek suara Mochi terpeleset dan berguling harus tetap lembut, tidak keras dan tidak mengagetkan anak.",
       "Cek visual di scene 2 dan scene 11: mainan yang tampil cukup mobil kayu milik Mamas. Jangan tampilkan mobil remot merek tertentu atau yang mirip produk komersial."
     ]
-  }
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Sore ini Mamas pulang dari taman bermain dengan wajah cemberut.",
+      "background": "yard",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "screenText": "Kenapa hati panas?",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu, Raka punya mobil remot baru. Merah, bisa ngebut, ada lampunya! Mobil Mamas cuma mobil kayu lama. Kenapa ya, hati Mamas jadi panas?",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "sad",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Hmm, itu namanya rasa iri, Mas. Iri datang kalau kita sibuk melihat milik orang lain. Kita jadi lupa nikmat yang sudah Allah berikan.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm",
+      "screenText": "Itu namanya iri",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Tiba-tiba Mochi menyundul mobil kayu itu. Mobilnya meluncur di lantai. Mochi mengejarnya, terpeleset, lalu berguling lucu. Mamas jadi tertawa kecil.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "toy-car"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Nah, teman-teman, menurut kalian, apa yang bisa Mamas lakukan supaya hatinya tidak panas lagi? Coba pikirkan dulu, ya.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Apa yang bisa dilakukan?",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Rasulullah ﷺ sudah mengajarkan obatnya, Mas. Pertama, lihatlah orang yang keadaannya di bawah kita, jangan yang di atas. Masih banyak anak yang tidak punya mainan sama sekali. Dengan begitu, kita tidak meremehkan nikmat Allah.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm",
+      "screenText": "Obat pertama: bersyukur",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Oh iya, Mamas masih punya mobil kayu, bola, dan Mochi. Alhamdulillah!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Alhamdulillah!",
+      "props": [
+        "ball"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Obat kedua, ikut senang atas kebaikan teman. Rasulullah ﷺ bersabda tentang ini. Yuk, kita hafalkan bersama.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "happy",
+      "screenText": "Obat kedua: ikut senang",
+      "props": [
+        "ball",
+        "toy-car"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Lā yu'minu aḥadukum ḥattā yuḥibba li-akhīhi mā yuḥibbu li-nafsih.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "HR. Bukhari & Muslim",
+      "props": [
+        "ball",
+        "toy-car",
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Artinya, tidak sempurna iman seseorang sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri. Mamas senang punya mainan, kan? Maka ikut senanglah saat Raka punya mainan baru.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Cintai untuk saudaramu",
+      "props": [
+        "ball",
+        "toy-car",
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Besok Mamas mau bilang ke Raka, 'Wah, mobilmu keren! Mamas ikut senang!'",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Mamas ikut senang!",
+      "props": [
+        "ball"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Hati Mamas kini terasa sejuk. Adik-adik, kalau hati mulai panas karena iri, ingat dua obatnya: bersyukur dan ikut senang untuk teman. Wassalamu'alaikum!",
+      "background": "yard",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Bersyukur & ikut senang"
+    }
+  ],
+  "metadata": {
+    "title": "Obat Iri Hati untuk Anak | Kenapa Ya Hati Panas Lihat Mainan Teman?",
+    "description": "Cerita islami anak tentang rasa iri: kenapa hati terasa panas saat teman punya mainan baru, dan apa obatnya menurut Rasulullah ﷺ?\n\nMamas pulang dari taman bermain sambil cemberut. Temannya, Raka, punya mobil remot baru, sedangkan mainan Mamas hanya mobil kayu lama. Ibu menjelaskan dengan lembut bahwa rasa itu namanya iri. Lewat tingkah lucu Mochi, Mamas sadar bahwa nikmat yang ia punya pun sangat menyenangkan.\n\nPelajaran hari ini:\n• Iri muncul saat kita sibuk melihat milik orang lain dan lupa nikmat Allah.\n• Obat pertama: lihat orang yang keadaannya di bawah kita, lalu bersyukur.\n• Obat kedua: ikut senang atas kebaikan teman, seperti kita senang untuk diri sendiri.\n\nDalil:\n1. \"Lihatlah orang yang berada di bawah kalian dan jangan melihat orang yang berada di atas kalian. Hal itu lebih layak agar kalian tidak meremehkan nikmat Allah atas kalian.\" (HR. Muslim no. 2963)\n2. \"Tidak sempurna iman salah seorang di antara kalian sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.\" (HR. Bukhari no. 13 dan Muslim no. 45)\n\nAyah dan Bunda, yuk dampingi si kecil menonton, lalu ajak berdiskusi: nikmat apa saja yang sudah Allah berikan hari ini? Temukan juga episode lain dari seri \"Kenapa Ya?\" bersama Mamas, Ibu, dan Mochi.\n\n#CeritaIslamiAnak #AkhlakAnak #KenapaYa",
+    "tags": [
+      "cerita islami anak",
+      "iri hati",
+      "cara menghilangkan iri pada anak",
+      "obat iri hati dalam islam",
+      "akhlak anak muslim",
+      "hadits tentang iri",
+      "mencintai saudara seperti diri sendiri",
+      "bersyukur nikmat Allah untuk anak",
+      "cerita anak tentang bersyukur",
+      "kartun islami anak",
+      "pendidikan karakter anak islami",
+      "kenapa ya",
+      "Mamas dan Ibu",
+      "cerita anak 7-10 tahun",
+      "hadits untuk anak"
+    ],
+    "thumbnailText": "Kenapa Hati Panas?"
+  },
+  "audioPerScene": [
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-1-ai-mw4tllyl.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-2-ai-mw4tltcs.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-3-ai-mw4tm00z.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-4-ai-mw4tm8y5.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-5-ai-mw4tmypy.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-6-ai-mw4tn6e9.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-7-ai-mw4tnakk.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-8-ai-mw4tnfmj.wav",
+    null,
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-10-ai-mw4tpjcr.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-11-ai-mw4tpn3t.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-12-ai-mw4tpuyo.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true
+  ],
+  "recordingMode": "per-scene"
 }
