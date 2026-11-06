@@ -189,6 +189,10 @@ function need(id?: string): string {
 
 main().catch((e: unknown) => {
   let pesan = e instanceof Error ? e.message : String(e);
+  // the Mac was offline or DNS failed for a moment (Wi-Fi switch, waking from sleep, VPN): nothing was sent
+  if (/ENOTFOUND|EAI_AGAIN|ECONNRESET|ETIMEDOUT|ENETUNREACH|ECONNREFUSED|socket hang up|fetch failed/.test(pesan)) {
+    pesan = `Koneksi internet terputus saat menghubungi server (${pesan.match(/ENOTFOUND|EAI_AGAIN|ECONNRESET|ETIMEDOUT|ENETUNREACH|ECONNREFUSED|socket hang up|fetch failed/)?.[0]}). Belum ada yang terkirim. Cek internet, lalu tekan "Kembalikan ke langkah terakhir yang berhasil" dan ulangi.`;
+  }
   // Google refuses the stored YouTube login (expired/revoked) — say what to do instead of the raw code
   if (/invalid_grant/.test(pesan)) {
     pesan =
