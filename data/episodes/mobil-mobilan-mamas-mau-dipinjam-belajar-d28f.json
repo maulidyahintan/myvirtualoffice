@@ -1,7 +1,7 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T16:08:23.965Z",
+  "modified": "2026-11-06T09:51:03.317Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
@@ -656,6 +656,46 @@
     },
     {
       "time": "2026-11-05T16:08:23.965Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-06T09:47:44.495Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-09 16:00"
+    },
+    {
+      "time": "2026-11-06T09:47:45.409Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-06T09:47:46.056Z",
+      "by": "upload",
+      "message": "request to https://oauth2.googleapis.com/token failed, reason: getaddrinfo ENOTFOUND oauth2.googleapis.com"
+    },
+    {
+      "time": "2026-11-06T09:50:45.342Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-06T09:50:46.817Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-09 16:00"
+    },
+    {
+      "time": "2026-11-06T09:50:47.759Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-06T09:50:57.552Z",
+      "by": "upload",
+      "message": "The user has exceeded the number of videos they may upload."
+    },
+    {
+      "time": "2026-11-06T09:51:03.317Z",
       "by": "pemilik",
       "message": "Dipulihkan"
     }

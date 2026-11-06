@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T16:13:00.631Z",
+  "modified": "2026-11-06T09:56:42.214Z",
   "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
@@ -267,6 +267,146 @@
       "time": "2026-11-05T16:13:00.631Z",
       "by": "pengisi-suara",
       "message": "0 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari) · rekam sendiri adegan 5"
+    },
+    {
+      "time": "2026-11-06T09:51:26.596Z",
+      "by": "pemilik",
+      "message": "Minta adegan 5 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:51:27.437Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 5"
+    },
+    {
+      "time": "2026-11-06T09:51:32.289Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:51:32.290Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-06T09:51:36.793Z",
+      "by": "pemilik",
+      "message": "Minta adegan 6 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:51:37.392Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 6"
+    },
+    {
+      "time": "2026-11-06T09:51:45.199Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:51:45.199Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-06T09:51:51.172Z",
+      "by": "pemilik",
+      "message": "Minta adegan 7 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:51:51.997Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 7"
+    },
+    {
+      "time": "2026-11-06T09:52:00.844Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:52:00.845Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-06T09:55:13.899Z",
+      "by": "pemilik",
+      "message": "Minta adegan 8 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:55:14.836Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 8"
+    },
+    {
+      "time": "2026-11-06T09:55:24.035Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:55:24.036Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-06T09:55:27.703Z",
+      "by": "pemilik",
+      "message": "Minta adegan 9 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:55:28.306Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 9"
+    },
+    {
+      "time": "2026-11-06T09:55:43.258Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 9 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:55:43.259Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-06T09:56:04.369Z",
+      "by": "pemilik",
+      "message": "Minta adegan 12 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:56:04.968Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 12"
+    },
+    {
+      "time": "2026-11-06T09:56:18.993Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:56:18.993Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-06T09:56:24.817Z",
+      "by": "pemilik",
+      "message": "Minta adegan 13 diisi suara AI"
+    },
+    {
+      "time": "2026-11-06T09:56:25.412Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 13"
+    },
+    {
+      "time": "2026-11-06T09:56:42.213Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-06T09:56:42.214Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
     }
   ],
   "twin": "kenapa-ya-kita-bangun-subuh-padahal-masi-7aaf",
@@ -700,15 +840,15 @@
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-2-ai-mw3qttgx.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-3-ai-mw3qu0jz.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-4-ai-mw3qu9eq.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-5-ai-mw4soq0x.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-6-ai-mw4sozzi.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-7-ai-mw4spc22.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-8-ai-mw4stou9.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-9-ai-mw4su3o8.wav",
     null,
     null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-12-ai-mw4suv8w.wav",
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-13-ai-mw4svd5v.wav"
   ],
   "sceneOffsets": [
     null,
@@ -730,14 +870,14 @@
     true,
     true,
     true,
+    true,
+    true,
+    true,
+    true,
+    true,
     false,
     false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
+    true,
+    true
   ]
 }
