@@ -83,21 +83,40 @@ function hasArabicRecitation(text: string): boolean {
   return ARABIC_MARKS.test(text) || (text.match(ARABIC_WORDS)?.length ?? 0) >= 2;
 }
 
+const indonesianWords = (text: string) => text.match(INDONESIAN_WORDS)?.length ?? 0;
+
+/** Lowercase letters only, to compare a narration with a prayer's Latin text. */
+const lettersOnly = (text: string) => text.toLowerCase().replace(/[^a-z]/g, '');
+
+type SpokenScene = Pick<Scene, 'type' | 'narration'> & { prayer?: { latin?: string } };
+
+/** Whether the spoken narration itself contains an Arabic recitation (what is said, not what is shown). */
+function speaksArabic(scene: SpokenScene): boolean {
+  if (hasArabicRecitation(scene.narration)) return true;
+  // the prayer card's Latin wording read aloud, even without recognisable words or marks
+  const latin = lettersOnly(scene.prayer?.latin ?? '');
+  if (latin.length >= 12 && lettersOnly(scene.narration).includes(latin.slice(0, 12))) return true;
+  // a prayer scene whose narration is not clearly Indonesian is treated as a recitation, to be safe
+  if (scene.type === 'prayer' || scene.prayer) return indonesianWords(scene.narration) < 3 || (scene.narration.match(ARABIC_WORDS)?.length ?? 0) > 0;
+  return false;
+}
+
 /**
- * Scenes the AI voice must NOT read: prayers and anything with an Arabic recitation (script, marked or
- * plain transliteration), because TTS gets makhraj & tajwid wrong. These stay for the owner to record.
+ * Scenes the AI voice must NOT read: the narration contains an Arabic recitation (script, marked or plain
+ * transliteration, or the prayer's Latin wording), because TTS gets makhraj & tajwid wrong. A prayer scene
+ * that only speaks the meaning in Indonesian may use the AI voice; its prayer card still shows the Arabic.
  */
-export function needsHumanVoice(scene: Pick<Scene, 'type' | 'narration'> & { prayer?: unknown }): boolean {
-  return scene.type === 'prayer' || Boolean(scene.prayer) || hasArabicRecitation(scene.narration);
+export function needsHumanVoice(scene: SpokenScene): boolean {
+  return speaksArabic(scene);
 }
 
 /**
  * A scene that mixes an Arabic recitation with Indonesian sentences (intro or meaning). Every recitation
  * must be a scene of its own, so it can be recorded/uploaded separately and the AI voice can read the rest.
  */
-export function mixesArabicAndIndonesian(scene: Pick<Scene, 'type' | 'narration'>): boolean {
-  if (!(scene.type === 'prayer' || hasArabicRecitation(scene.narration))) return false;
-  return (scene.narration.match(INDONESIAN_WORDS)?.length ?? 0) >= 3;
+export function mixesArabicAndIndonesian(scene: SpokenScene): boolean {
+  const recites = hasArabicRecitation(scene.narration) || (scene.prayer?.latin ? speaksArabic({ ...scene, type: 'story', prayer: scene.prayer }) : false);
+  return recites && indonesianWords(scene.narration) >= 3;
 }
 
 /** Visual style used when rendering this episode (episode choice, else the channel default). */
