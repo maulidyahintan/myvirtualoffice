@@ -1,8 +1,8 @@
 {
   "id": "hafalan-surat-an-nashr-bersama-mamas-tig-fa8b",
   "created": "2026-11-08T13:13:56.957Z",
-  "modified": "2026-11-08T13:13:56.957Z",
-  "status": "idea",
+  "modified": "2026-11-09T14:18:47.038Z",
+  "status": "rejected",
   "idea": {
     "title": "Hafalan Surat An-Nashr Bersama Mamas — Tiga Ayat Kemenangan",
     "series": "hafalan",
@@ -16,12 +16,133 @@
       "QS. An-Nashr: 1–3"
     ]
   },
-  "revisionCount": 0,
+  "revisionCount": 1,
   "log": [
     {
       "time": "2026-11-08T13:13:56.957Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-09T14:16:10.132Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-09T14:16:10.727Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-09T14:16:50.747Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T14:16:51.177Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T14:17:21.537Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T14:17:21.987Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-09T14:17:45.982Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T14:17:46.502Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T14:18:08.483Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T14:18:08.917Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T14:18:47.038Z",
+      "by": "pemilik",
+      "message": "doble"
     }
-  ]
+  ],
+  "statusNote": "doble",
+  "script": {
+    "title": "Hafalan Surat An-Nashr untuk Anak | 3 Ayat Mudah",
+    "summary": "Mamas sudah hafal Surat An-Nashr dan membacakannya untuk Ibu. Ibu lalu menyampaikan pesannya: kalau pertolongan Allah datang, kita bertasbih, memuji Allah, dan minta ampun, karena Allah Maha Penerima tobat. Di akhir video, teman-teman diajak mengulang hafalan tiga kali bersama Mamas.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu, aku sudah hafal Surat An-Nashr! Dengar, ya!",
+        "visualDirection": "Ruang tamu (living-room) yang terang dan tenang, format vertikal; Mamas berdiri bersemangat di depan Ibu sambil menunjuk dadanya, Mochi menguap lucu di atas bantal sofa."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Bismillāhir raḥmānir raḥīm. Iżā jā'a naṣrullāhi wal-fatḥ. Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā. Fasabbiḥ biḥamdi rabbika wastaghfirh, innahū kāna tawwābā.",
+        "visualDirection": "Ruang tamu (living-room); Mamas duduk bersila di samping Ibu dan membaca dengan tenang, teks latin tiap ayat muncul pelan bergantian, Mochi duduk diam mendengarkan."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Kita belajar, kalau pertolongan Allah datang, bertasbihlah, pujilah Allah, dan minta ampun. Allah Maha Penerima tobat.",
+        "visualDirection": "Ruang tamu (living-room); Ibu tersenyum lembut sambil mengusap kepala Mamas, ikon sederhana tangan berdoa dan hati muncul pelan."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Hebat, Mas! Yuk, teman-teman, ulangi bersama Mamas tiga kali!",
+        "visualDirection": "Ruang tamu (living-room); Mamas mengacungkan tiga jari ke arah penonton, Mochi melompat pelan ke pangkuan Mamas, suasana hangat dan ceria."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ ۝ وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا ۝ فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا",
+        "latin": "Iżā jā'a naṣrullāhi wal-fatḥ. Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā. Fasabbiḥ biḥamdi rabbika wastaghfirh, innahū kāna tawwābā.",
+        "translation": "Apabila telah datang pertolongan Allah dan kemenangan, dan engkau melihat manusia berbondong-bondong masuk agama Allah, maka bertasbihlah dengan memuji Tuhanmu dan mohonlah ampunan kepada-Nya. Sungguh, Dia Maha Penerima tobat.",
+        "source": "QS. An-Nashr: 1–3"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+        "latin": "Bismillāhir raḥmānir raḥīm.",
+        "translation": "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang. (Basmalah, dibaca di awal surat.)",
+        "source": "Basmalah, dibaca di awal surat; lafaznya termuat dalam QS. An-Naml: 30"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Naskah lolos. Panjangnya 53 kata, masih dalam batas Shorts (45–65). Isinya satu konsep: hafalan An-Nashr plus satu pesan inti. Tidak ada tokoh Nabi, sahabat, atau malaikat yang digambar. Tidak ada clickbait atau ajakan komersial.",
+      "Bacaan surat (scene 2) sudah memakai speaker mamas, sesuai aturan. Scene itu hanya berisi bacaan latin. Pengantar ada di scene 1 dan arti/pesan ada di scene 3, jadi bacaan Arab sudah terpisah dengan benar.",
+      "Saran kecil (opsional) untuk scene 4: kalimat 'ulangi bersama Mamas tiga kali!' menjanjikan pengulangan, padahal video selesai di situ. Pilih salah satu: (a) ganti jadi 'Yuk, teman-teman, ulangi bersama Mamas, ya!', atau (b) kalau durasi cukup, video di-loop ke scene 2. Ini supaya tidak ada janji yang tidak ditepati.",
+      "Saran kecil (opsional) untuk visual scene 4: yang bicara Ibu, tapi Mamas yang mengacungkan tiga jari. Sebaiknya Ibu juga ditampilkan berbicara, misalnya menoleh ke penonton, supaya sinkron dengan suaranya.",
+      "Pesan di scene 3 sudah sesuai makna lahir ayat dan cocok untuk anak. Tidak perlu menambahkan konteks tafsir (isyarat dekatnya wafat Rasulullah ﷺ) di format Shorts untuk balita."
+    ],
+    "humanCheck": [
+      "Dalil 1: QS. An-Nashr ayat 1–3. Cocokkan teks Arab إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ ۝ وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا ۝ فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا dengan mushaf standar. Periksa juga harakat dan tanda waqafnya.",
+      "Dalil 1, bagian latin: 'Iżā jā'a naṣrullāhi wal-fatḥ. Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā. Fasabbiḥ biḥamdi rabbika wastaghfirh, innahū kāna tawwābā.' Pastikan latin ini sama persis dengan yang dibaca pengisi suara di scene 2, terutama pelafalan 'wastaghfirh' dan 'tawwābā'.",
+      "Dalil 1, bagian terjemah: 'Apabila telah datang pertolongan Allah dan kemenangan, dan engkau melihat manusia berbondong-bondong masuk agama Allah, maka bertasbihlah dengan memuji Tuhanmu dan mohonlah ampunan kepada-Nya. Sungguh, Dia Maha Penerima tobat.' Bandingkan dengan Terjemah Kemenag RI.",
+      "Dalil 2: Basmalah بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ('Bismillāhir raḥmānir raḥīm'). Sumbernya ditulis 'lafaznya termuat dalam QS. An-Naml: 30'. Pastikan Anda setuju dengan cara penyebutan sumber ini. Ayat itu berbunyi '...wa innahū bismillāhir raḥmānir raḥīm', dan cara ini menghindari khilafiyah apakah basmalah termasuk ayat di awal setiap surat.",
+      "Audio: dengarkan rekaman suara Mamas di scene 2. Pastikan tajwid dan makhraj bacaan benar, karena bacaan Al-Qur'an yang keliru adalah risiko terbesar video ini.",
+      "Pastikan tidak ada musik instrumen di hasil render, cukup suara dan efek suara ringan."
+    ]
+  }
 }

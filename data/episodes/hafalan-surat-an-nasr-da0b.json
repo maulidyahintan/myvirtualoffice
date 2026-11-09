@@ -1,0 +1,371 @@
+{
+  "id": "hafalan-surat-an-nasr-da0b",
+  "created": "2026-11-09T14:16:03.814Z",
+  "modified": "2026-11-09T14:26:08.959Z",
+  "status": "scheduled",
+  "idea": {
+    "title": "Hafalan Surat An-Nasr",
+    "series": "memorization",
+    "age": "1-10",
+    "moralMessage": "Menghafal Surat An-Nasr (Pertolongan)",
+    "type": "memorization",
+    "memorization": {
+      "surah": 110,
+      "surahName": "An-Nasr",
+      "verseFrom": 1,
+      "verseTo": 3,
+      "repetitions": 1,
+      "basmalah": true
+    },
+    "reason": "Ide hafalan dari pemilik channel",
+    "references": [],
+    "format": "short"
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-09T14:16:03.814Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-09T14:16:03.815Z",
+      "by": "pemilik",
+      "message": "Kembaran Shorts dari episode hafalan-surat-an-nasr-ec61"
+    },
+    {
+      "time": "2026-11-09T14:16:03.818Z",
+      "by": "pemilik",
+      "message": "Mengambil teks surat"
+    },
+    {
+      "time": "2026-11-09T14:16:04.750Z",
+      "by": "orchestrator",
+      "message": "Mengambil teks Surat An-Nasr dari equran.id"
+    },
+    {
+      "time": "2026-11-09T14:16:05.105Z",
+      "by": "orchestrator",
+      "message": "Teks surat siap dicek pemilik channel"
+    },
+    {
+      "time": "2026-11-09T14:18:23.012Z",
+      "by": "pemilik",
+      "message": "doble"
+    },
+    {
+      "time": "2026-11-09T14:19:09.346Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-09T14:19:11.732Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T14:19:12.332Z",
+      "by": "sutradara",
+      "message": "Memilih latar sesuai arti ayat & menyusun metadata"
+    },
+    {
+      "time": "2026-11-09T14:19:17.222Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T14:19:21.936Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T14:19:22.487Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    },
+    {
+      "time": "2026-11-09T14:20:13.476Z",
+      "by": "pemilik",
+      "message": "Bagian 1 rekaman diupload (0.8 MB), total 1 bagian"
+    },
+    {
+      "time": "2026-11-09T14:20:15.987Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-09T14:20:45.125Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-09T14:23:54.570Z",
+      "by": "pemilik",
+      "message": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "time": "2026-11-09T14:23:55.401Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-09T14:24:16.888Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-09T14:25:59.996Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-12 18:30"
+    },
+    {
+      "time": "2026-11-09T14:26:00.605Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T14:26:08.958Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Hafalan Shorts\" (playlist baru dibuat)"
+    },
+    {
+      "time": "2026-11-09T14:26:08.959Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-12T11:30:00.000Z"
+    }
+  ],
+  "twin": "hafalan-surat-an-nasr-ec61",
+  "statusNote": "Terjadwal tayang 2026-11-12T11:30:00.000Z",
+  "memorization": {
+    "surahName": "An-Nasr",
+    "surahMeaning": "Pertolongan",
+    "verses": [
+      {
+        "number": 0,
+        "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "meaning": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "background": "dawn",
+        "moods": [
+          "light"
+        ]
+      },
+      {
+        "number": 1,
+        "arabic": "اِذَا جَاۤءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ",
+        "latin": "Iżā jā'a naṣrullāhi wal-fatḥ(u).",
+        "meaning": "Apabila telah datang pertolongan Allah dan kemenangan",
+        "background": "desert",
+        "moods": [
+          "light"
+        ]
+      },
+      {
+        "number": 2,
+        "arabic": "وَرَاَيْتَ النَّاسَ يَدْخُلُوْنَ فِيْ دِيْنِ اللّٰهِ اَفْوَاجًاۙ",
+        "latin": "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).",
+        "meaning": "dan engkau melihat manusia berbondong-bondong masuk agama Allah,",
+        "background": "desert",
+        "moods": [
+          "birds"
+        ]
+      },
+      {
+        "number": 3,
+        "arabic": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُۗ اِنَّهٗ كَانَ تَوَّابًا ࣖ",
+        "latin": "Fasabbiḥ biḥamdi rabbika wastagfirh(u), innahū kāna tawwābā(n).",
+        "meaning": "bertasbihlah dengan memuji Tuhanmu dan mohonlah ampun kepada-Nya. Sesungguhnya Dia Maha Penerima tobat.",
+        "background": "mosque",
+        "moods": [
+          "light",
+          "stars"
+        ]
+      }
+    ],
+    "segmentEffect": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476",
+    "segmentStarts": [
+      0,
+      10,
+      19,
+      30
+    ]
+  },
+  "script": {
+    "title": "Hafalan Surat An-Nasr",
+    "summary": "Surat ke-110 (Pertolongan), 3 ayat. Tiap ayat dibaca 1x.",
+    "scenes": [
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "visualDirection": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Iżā jā'a naṣrullāhi wal-fatḥ(u).",
+        "visualDirection": "Apabila telah datang pertolongan Allah dan kemenangan"
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).",
+        "visualDirection": "dan engkau melihat manusia berbondong-bondong masuk agama Allah,"
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Fasabbiḥ biḥamdi rabbika wastagfirh(u), innahū kāna tawwābā(n).",
+        "visualDirection": "bertasbihlah dengan memuji Tuhanmu dan mohonlah ampun kepada-Nya. Sesungguhnya Dia Maha Penerima tobat."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "translation": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "source": "Basmalah"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "اِذَا جَاۤءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ",
+        "latin": "Iżā jā'a naṣrullāhi wal-fatḥ(u).",
+        "translation": "Apabila telah datang pertolongan Allah dan kemenangan",
+        "source": "QS. An-Nasr: 1"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "وَرَاَيْتَ النَّاسَ يَدْخُلُوْنَ فِيْ دِيْنِ اللّٰهِ اَفْوَاجًاۙ",
+        "latin": "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).",
+        "translation": "dan engkau melihat manusia berbondong-bondong masuk agama Allah,",
+        "source": "QS. An-Nasr: 2"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُۗ اِنَّهٗ كَانَ تَوَّابًا ࣖ",
+        "latin": "Fasabbiḥ biḥamdi rabbika wastagfirh(u), innahū kāna tawwābā(n).",
+        "translation": "bertasbihlah dengan memuji Tuhanmu dan mohonlah ampun kepada-Nya. Sesungguhnya Dia Maha Penerima tobat.",
+        "source": "QS. An-Nasr: 3"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 10,
+    "notes": [
+      "Teks diambil otomatis dari equran.id (Kemenag RI), tidak ditulis AI."
+    ],
+    "humanCheck": [
+      "Cocokkan teks Arab & harakat dengan mushaf kamu.",
+      "Pastikan rentang ayat sesuai yang ingin dihafalkan."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Bismillāhir-raḥmānir-raḥīm(i).",
+      "background": "dawn",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i).",
+        "meaning": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Iżā jā'a naṣrullāhi wal-fatḥ(u).",
+      "background": "desert",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اِذَا جَاۤءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ",
+        "latin": "Iżā jā'a naṣrullāhi wal-fatḥ(u).",
+        "meaning": "Apabila telah datang pertolongan Allah dan kemenangan"
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).",
+      "background": "desert",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "وَرَاَيْتَ النَّاسَ يَدْخُلُوْنَ فِيْ دِيْنِ اللّٰهِ اَفْوَاجًاۙ",
+        "latin": "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).",
+        "meaning": "dan engkau melihat manusia berbondong-bondong masuk agama Allah,"
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Fasabbiḥ biḥamdi rabbika wastagfirh(u), innahū kāna tawwābā(n).",
+      "background": "mosque",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُۗ اِنَّهٗ كَانَ تَوَّابًا ࣖ",
+        "latin": "Fasabbiḥ biḥamdi rabbika wastagfirh(u), innahū kāna tawwābā(n).",
+        "meaning": "bertasbihlah dengan memuji Tuhanmu dan mohonlah ampun kepada-Nya. Sesungguhnya Dia Maha Penerima tobat."
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Hafalan Surat An-Nasr untuk Anak | 3 Ayat Singkat",
+    "description": "Yuk hafalan Surat An-Nasr (surat ke-110, 3 ayat) bersama adik-adik. Surat ini tentang pertolongan Allah dan mengajak kita bertasbih, memuji Allah, dan memohon ampun. Teks & terjemah dari Kemenag RI via equran.id. Ayah Bunda, temani si kecil mengulang ya.\n#Shorts #HafalanSurat #CeritaIslamiAnak",
+    "tags": [
+      "hafalan surat an nasr",
+      "surat an nasr untuk anak",
+      "hafalan juz amma anak",
+      "belajar mengaji anak",
+      "surat pendek untuk anak",
+      "hafalan surat pendek",
+      "murojaah anak",
+      "shorts islami anak",
+      "cerita islami anak"
+    ],
+    "thumbnailText": "An-Nasr"
+  },
+  "recordingMode": "sequential",
+  "audioParts": [
+    "audio/hafalan-surat-an-nasr-da0b-mw9clt7k-1.mp3"
+  ],
+  "audioFile": "audio/hafalan-surat-an-nasr-da0b-mw9clt7k-1.mp3",
+  "render": {
+    "video": "hafalan-surat-an-nasr-da0b.mp4",
+    "scenes": [
+      {
+        "start": 1.5,
+        "duration": 10
+      },
+      {
+        "start": 11.5,
+        "duration": 9
+      },
+      {
+        "start": 20.5,
+        "duration": 11
+      },
+      {
+        "start": 31.5,
+        "duration": 17.3
+      }
+    ],
+    "time": "2026-11-09T14:24:16.887Z"
+  },
+  "selectedSchedule": "2026-11-12T11:30:00.000Z",
+  "youtube": {
+    "videoId": "hE-tFot03JU",
+    "url": "https://www.youtube.com/watch?v=hE-tFot03JU",
+    "publishTime": "2026-11-12T11:30:00.000Z",
+    "playlist": {
+      "name": "Hafalan Shorts",
+      "id": "PLCRBfD4cosHY"
+    }
+  }
+}
