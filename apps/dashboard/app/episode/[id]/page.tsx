@@ -54,6 +54,7 @@ import {
   generateIllustrations,
   reviseOneScene,
   editSceneText,
+  deleteScriptScene,
   deleteArchivedEpisode,
   removeIllustration,
   setEpisodeVisualStyle,
@@ -223,6 +224,44 @@ function TombolSuaraAi({ ep, index }: { ep: Episode; index: number }) {
 }
 
 /** Edit narasi & teks layar satu adegan secara langsung; adegan doa bisa dijadikan cerita biasa tanpa teks Arab. */
+/** Hapus satu adegan sendiri (tanpa revisi Penulis), dengan centang konfirmasi tanpa dialog browser. */
+function HapusAdegan({ ep, index }: { ep: Episode; index: number }) {
+  const tahap = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
+  if (!tahap.includes(ep.status) || ep.idea.type === 'memorization' || (ep.script?.scenes.length ?? 0) <= 1) return null;
+  const rekamanSatuFile = ep.status !== 'needs_script_approval' && Boolean(ep.audioFile || ep.audioParts?.length);
+  const adaRekaman = Boolean(ep.audioPerScene?.[index]);
+  return (
+    <details className="kecil">
+      <summary>🗑️ Hapus adegan</summary>
+      {rekamanSatuFile ? (
+        <p className="muted" style={{ marginBottom: 0 }}>
+          Tidak bisa dihapus: rekamanmu satu file untuk semua adegan, jadi tidak bisa dipotong per adegan. Hapus rekamannya dulu, atau minta
+          revisi naskah.
+        </p>
+      ) : isBusy(aiJobMarker(ep.id)) ? (
+        <p className="muted" style={{ marginBottom: 0 }}>
+          Tunggu pekerjaan AI di episode ini selesai dulu.
+        </p>
+      ) : (
+        <form action={deleteScriptScene} className="stack" style={{ marginTop: 8, gap: 6 }}>
+          <Id id={ep.id} />
+          <input type="hidden" name="adegan" value={index + 1} />
+          <span className="muted">
+            Nomor adegan sesudahnya ikut bergeser{adaRekaman ? '; rekaman adegan ini dilepas (filenya tidak dihapus)' : ''}
+            {ep.render ? '. Videonya perlu dirender ulang' : ''}.
+          </span>
+          <label style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <input type="checkbox" name="yakin" required /> Ya, hapus adegan {index + 1}
+          </label>
+          <SubmitButton type="submit" className="bahaya" teksProses="Menghapus…">
+            🗑️ Hapus adegan {index + 1}
+          </SubmitButton>
+        </form>
+      )}
+    </details>
+  );
+}
+
 function UbahNarasi({ ep, index }: { ep: Episode; index: number }) {
   const scene = ep.scenes![index];
   const adaRekaman = effectiveRecordingMode(ep) === 'per-scene' ? Boolean(ep.audioPerScene?.[index]) : Boolean(ep.audioFile || ep.audioParts?.length);
@@ -1279,6 +1318,7 @@ export default async function HalamanEpisode({
                     <div className="narasi-baca">{a.narration}</div>
                     {'visualDirection' in a ? <div className="kecil muted">🎬 {a.visualDirection}</div> : null}
                     {ep.scenes ? <PerbaikiAdegan ep={ep} index={i} /> : null}
+                    <HapusAdegan ep={ep} index={i} />
                   </div>
                 </div>
               ))}

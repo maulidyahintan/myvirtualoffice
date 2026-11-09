@@ -228,6 +228,50 @@ export async function saveManualScript(form: FormData) {
   segarkan(id);
 }
 
+/** Tahap di mana pemilik boleh menghapus adegan sendiri (sebelum video diupload, tanpa pekerjaan AI berjalan). */
+const TAHAP_HAPUS_ADEGAN = ['needs_script_approval', 'needs_audio', 'needs_video_approval', 'error'];
+
+/**
+ * Hapus satu adegan langsung, tanpa meminta revisi ke Penulis: dari naskah, adegan Sutradara, dan rekaman
+ * per adegannya, supaya semua urutan tetap sejajar. Video yang sudah dirender jadi tidak cocok lagi, jadi
+ * episode kembali ke tahap rekam untuk dirender ulang. Rekaman satu file (berurutan) tidak bisa dipotong
+ * per adegan, jadi penghapusan ditolak selama rekaman itu ada.
+ */
+export async function deleteScriptScene(form: FormData) {
+  const id = teks(form, 'id');
+  const i = Number(teks(form, 'adegan')) - 1;
+  if (form.get('yakin') !== 'on') return;
+  const ep = getEpisode(id);
+  const jumlah = ep.script?.scenes.length ?? 0;
+  if (!TAHAP_HAPUS_ADEGAN.includes(ep.status) || ep.idea.type === 'memorization' || !(i >= 0 && i < jumlah) || jumlah <= 1) return;
+  if (isBusy(aiJobMarker(id)) || aiVoiceInProgress(id) !== undefined) return;
+  if (ep.status !== 'needs_script_approval' && (ep.audioFile || ep.audioParts?.length)) return;
+  const narasi = ep.script!.scenes[i].narration;
+  const adaRender = Boolean(ep.render);
+  updateEpisode(id, (e) => {
+    e.script!.scenes.splice(i, 1);
+    if (e.scenes?.length === jumlah) e.scenes.splice(i, 1);
+    if (e.audioPerScene?.length === jumlah) e.audioPerScene.splice(i, 1);
+    if (e.sceneOffsets?.length === jumlah) e.sceneOffsets.splice(i, 1);
+    if (e.aiVoiceScenes?.length === jumlah) e.aiVoiceScenes.splice(i, 1);
+    if (e.scenePreviews) {
+      // pratinjau per adegan memakai nomor urut: buang yang dihapus, geser yang sesudahnya
+      const geser: Record<string, string> = {};
+      for (const [k, f] of Object.entries(e.scenePreviews)) {
+        const n = Number(k);
+        if (n < i) geser[n] = f;
+        else if (n > i) geser[n - 1] = f;
+      }
+      e.scenePreviews = Object.keys(geser).length ? geser : undefined;
+    }
+  });
+  addLog(id, 'pemilik', `Adegan ${i + 1} dihapus: "${narasi.slice(0, 80)}${narasi.length > 80 ? '…' : ''}"`);
+  if (adaRender && ['needs_video_approval', 'error'].includes(ep.status)) {
+    setStatus(id, 'needs_audio', 'pemilik', `Adegan ${i + 1} dihapus; render ulang videonya`);
+  }
+  segarkan(id);
+}
+
 export async function approveScript(form: FormData) {
   const id = teks(form, 'id');
   if (form.get('dalilDicek') !== 'on') throw new Error('Centang konfirmasi pengecekan dalil dulu');
