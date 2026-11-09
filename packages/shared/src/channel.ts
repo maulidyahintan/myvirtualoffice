@@ -8,7 +8,7 @@ import {
   DEFAULT_CHARACTER_PROFILES,
   SPEAKERS,
 } from './constants.ts';
-import type { AppConfig, Background, CharacterLooks, CharacterProfile, Episode, RecordingMode, Scene, Speaker, VisualStyle } from './types.ts';
+import type { AppConfig, Background, CharacterLooks, CharacterProfile, Episode, Evidence, RecordingMode, Scene, Speaker, VisualStyle } from './types.ts';
 
 export function characterProfile(cfg: AppConfig, id: Speaker): CharacterProfile {
   const own = cfg.characters?.[id];
@@ -117,6 +117,37 @@ export function needsHumanVoice(scene: SpokenScene): boolean {
 export function mixesArabicAndIndonesian(scene: SpokenScene): boolean {
   const recites = hasArabicRecitation(scene.narration) || (scene.prayer?.latin ? speaksArabic({ ...scene, type: 'story', prayer: scene.prayer }) : false);
   return recites && indonesianWords(scene.narration) >= 3;
+}
+
+/**
+ * The script's evidence (prayer, verse, dzikir) whose Latin wording this narration recites, so a scene
+ * that reads it aloud can show its Arabic text. Matched on the opening of the Latin text, which is enough
+ * for a repeated first half ("Ayo ulang! Alhamdulillahilladzi kasani...").
+ */
+export function recitedEvidence(narration: string, evidences: Evidence[]): Evidence | undefined {
+  const spoken = lettersOnly(narration);
+  return evidences.find((e) => {
+    const latin = lettersOnly(e.latin ?? '');
+    return Boolean(e.arabicText) && latin.length >= 12 && spoken.includes(latin.slice(0, 12));
+  });
+}
+
+/**
+ * Give every scene that recites one of the script's evidences aloud a prayer card with its Arabic text,
+ * when the Director left it out. The Arabic comes from the reviewed evidence, never written anew by AI.
+ * Returns the 0-based indexes of the scenes that got a card.
+ */
+export function fillPrayerCards(scenes: Scene[], evidences: Evidence[]): number[] {
+  const filled: number[] = [];
+  scenes.forEach((s, i) => {
+    if (s.prayer || !speaksArabic(s)) return;
+    const e = recitedEvidence(s.narration, evidences);
+    if (!e?.arabicText) return;
+    s.prayer = { arabic: e.arabicText, latin: e.latin ?? '', meaning: `${e.translation} (${e.source.split(/[,;]/)[0].trim()})` };
+    s.type = 'prayer';
+    filled.push(i);
+  });
+  return filled;
 }
 
 /** Visual style used when rendering this episode (episode choice, else the channel default). */

@@ -14,6 +14,7 @@ import {
   visualStyle,
   needsHumanVoice,
   mixesArabicAndIndonesian,
+  fillPrayerCards,
   setAiVoiceProgress,
   ensureDir,
   type Background,
@@ -419,7 +420,11 @@ export async function reviseDirection(id: string) {
 function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
   // Safety: narration must match script exactly (because it's already/will be recorded)
   const pick = backgroundPicker();
-  return ep.script!.scenes.map((n, i) => normalizeScene(n, scenes[i] ?? scenes.at(-1)!, pick));
+  const aligned = ep.script!.scenes.map((n, i) => normalizeScene(n, scenes[i] ?? scenes.at(-1)!, pick));
+  // a scene that recites a prayer aloud but got no prayer card: show the Arabic from the script's evidence
+  const filled = fillPrayerCards(aligned, ep.script!.evidences);
+  if (filled.length) log(ep.id, 'sutradara')(`Kartu doa (teks Arab) dipasang otomatis di adegan ${filled.map((i) => i + 1).join(', ')}`);
+  return aligned;
 }
 
 /** One Director scene made safe: narration, speaker & type copied verbatim, sensible actions, allowed background. */
