@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-wudhu-tidak-boleh-boros-air-8270",
   "created": "2026-11-05T03:44:27.212Z",
-  "modified": "2026-11-05T16:07:27.518Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-09T12:36:56.142Z",
+  "status": "scheduled",
   "idea": {
     "title": "Kenapa Ya Wudhu Tidak Boleh Boros Air?",
     "series": "kenapa-ya",
@@ -15,7 +15,7 @@
       "QS. Al-A'raf: 31"
     ]
   },
-  "revisionCount": 1,
+  "revisionCount": 2,
   "log": [
     {
       "time": "2026-11-05T03:44:27.212Z",
@@ -76,13 +76,203 @@
       "time": "2026-11-05T16:07:27.518Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T12:09:15.827Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T12:09:16.677Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T12:09:17.679Z",
+      "by": "sutradara",
+      "message": "Agen channel-manager tidak mengembalikan JSON: Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "time": "2026-11-09T12:17:24.061Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-09T12:19:43.702Z",
+      "by": "pemilik",
+      "message": "Minta revisi: hapus adegan 13, 14 dan 15"
+    },
+    {
+      "time": "2026-11-09T12:19:44.546Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-09T12:20:07.454Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:20:07.907Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T12:20:39.779Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:20:40.250Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T12:21:25.714Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T12:21:26.570Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T12:21:41.163Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:21:41.468Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:21:42.027Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-09T12:21:47.627Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-09T12:21:48.420Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 13 adegan dengan suara AI gratis"
+    },
+    {
+      "time": "2026-11-09T12:21:54.855Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/13)"
+    },
+    {
+      "time": "2026-11-09T12:22:05.316Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/13)"
+    },
+    {
+      "time": "2026-11-09T12:22:10.651Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/13)"
+    },
+    {
+      "time": "2026-11-09T12:22:16.470Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (4/13)"
+    },
+    {
+      "time": "2026-11-09T12:23:06.284Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (5/13)"
+    },
+    {
+      "time": "2026-11-09T12:23:11.550Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (6/13)"
+    },
+    {
+      "time": "2026-11-09T12:23:18.765Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (7/13)"
+    },
+    {
+      "time": "2026-11-09T12:23:26.149Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (8/13)"
+    },
+    {
+      "time": "2026-11-09T12:23:36.571Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 9 diisi suara AI (9/13)"
+    },
+    {
+      "time": "2026-11-09T12:23:46.716Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (10/13)"
+    },
+    {
+      "time": "2026-11-09T12:24:06.188Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (11/13)"
+    },
+    {
+      "time": "2026-11-09T12:24:15.225Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (12/13)"
+    },
+    {
+      "time": "2026-11-09T12:24:22.167Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (13/13)"
+    },
+    {
+      "time": "2026-11-09T12:24:22.168Z",
+      "by": "pengisi-suara",
+      "message": "13 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-09T12:24:25.985Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-09T12:24:26.819Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-09T12:26:23.130Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-09T12:36:32.594Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-11 16:00"
+    },
+    {
+      "time": "2026-11-09T12:36:33.547Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T12:36:56.141Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-09T12:36:56.142Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-11T09:00:00.000Z"
     }
   ],
   "twin": "kenapa-ya-wudhu-tidak-boleh-boros-air-aa92",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Terjadwal tayang 2026-11-11T09:00:00.000Z",
   "script": {
     "title": "Kenapa Ya Wudhu Tidak Boleh Boros Air?",
-    "summary": "Mamas berwudhu dengan keran terbuka deras sambil main cipratan air. Ibu menaruh ember di samping bak wudhu untuk menampung air yang tumpah. Ember itu hampir penuh sebelum wudhu Mamas selesai. Ibu menjelaskan bahwa air adalah nikmat Allah. Ibu juga bercerita bahwa Rasulullah ﷺ berwudhu cukup dengan satu mud air, kira-kira secakupan dua telapak tangan orang dewasa. Hadits ini diceritakan sahabat Anas bin Malik dan diriwayatkan Imam Bukhari dan Muslim. Ibu menyampaikan pula bahwa Allah tidak menyukai orang yang berlebih-lebihan (QS. Al-A'raf: 31). Mamas lalu berwudhu lagi dengan air secukupnya, dan air di ember dipakai untuk menyiram bunga. Cerita ditutup dengan doa setelah wudhu beserta artinya.",
+    "summary": "Mamas berwudhu dengan keran terbuka deras sambil main cipratan air. Ibu menaruh ember di samping bak wudhu untuk menampung air yang tumpah. Ember itu hampir penuh sebelum wudhu Mamas selesai. Ibu menjelaskan bahwa air adalah nikmat Allah. Ibu juga bercerita bahwa Rasulullah ﷺ berwudhu cukup dengan satu mud air, kira-kira secakupan dua telapak tangan orang dewasa. Hadits ini diceritakan sahabat Anas bin Malik dan diriwayatkan Imam Bukhari dan Muslim. Ibu menyampaikan pula bahwa Allah tidak menyukai orang yang berlebih-lebihan (QS. Al-A'raf: 31). Mamas lalu berwudhu lagi dengan air secukupnya, Mochi membuatnya kecipratan, dan air di ember dipakai untuk menyiram bunga.",
     "scenes": [
       {
         "type": "story",
@@ -159,24 +349,6 @@
       {
         "type": "story",
         "speaker": "narrator",
-        "narration": "Selesai wudhu, Mamas berdoa seperti yang diajarkan Rasulullah ﷺ. Doa ini diriwayatkan Imam Muslim.",
-        "visualDirection": "Tempat wudhu. Mamas berdiri dengan wajah segar sambil bersiap berdoa, dan Mochi duduk di sampingnya."
-      },
-      {
-        "type": "prayer",
-        "speaker": "mamas",
-        "narration": "Asyhadu an laa ilaaha illallaahu wahdahu laa syariika lah, wa asyhadu anna Muhammadan 'abduhu wa rasuluh.",
-        "visualDirection": "Tempat wudhu. Mamas menengadahkan tangan dengan khusyuk, dan Mochi duduk tenang di sampingnya."
-      },
-      {
-        "type": "story",
-        "speaker": "narrator",
-        "narration": "Artinya, aku bersaksi tiada tuhan yang berhak disembah selain Allah. Dan Muhammad adalah hamba dan utusan-Nya.",
-        "visualDirection": "Tempat wudhu. Mamas menurunkan tangannya dan tersenyum lega, dengan cahaya sore yang lembut."
-      },
-      {
-        "type": "story",
-        "speaker": "narrator",
         "narration": "Adik-adik, air itu nikmat Allah. Wudhu pakai air secukupnya, ya! Wassalamu'alaikum.",
         "visualDirection": "Taman. Mamas menyiram bunga dengan air dari ember, Mochi mengikutinya, dan langit sore tampak hangat."
       }
@@ -195,13 +367,6 @@
         "latin": "Wa kuluu wasyrabuu wa laa tusrifuu, innahuu laa yuhibbul musrifiin.",
         "translation": "Makan dan minumlah, dan jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.",
         "source": "QS. Al-A'raf: 31"
-      },
-      {
-        "type": "doa",
-        "arabicText": "أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-        "latin": "Asyhadu an laa ilaaha illallaahu wahdahu laa syariika lah, wa asyhadu anna Muhammadan 'abduhu wa rasuluh.",
-        "translation": "Aku bersaksi bahwa tidak ada tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya.",
-        "source": "HR. Muslim no. 234, dari Umar bin al-Khaththab radhiyallahu 'anhu (doa setelah wudhu)"
       }
     ]
   },
@@ -209,18 +374,338 @@
     "decision": "approved",
     "score": 8.5,
     "notes": [
-      "Scene 8 dan 13: ganti simbol 'ﷺ' di narasi dengan tulisan 'shallallahu 'alaihi wasallam' seperti di scene 9, supaya pembaca suara tidak salah membaca atau melewatinya.",
-      "Scene 2: Mamas mencipratkan air ke Mochi sampai Mochi kaget, tapi belum ada penyelesaiannya. Tambahkan satu kalimat pendek Mamas minta maaf ke Mochi (misalnya di scene 4 atau 11: 'Maaf ya, Mochi!').",
-      "Scene 3 (arahan visual): ungkapan 'menampung air muncrat dan tumpah dari lantai wudhu' membingungkan. Sederhanakan menjadi 'ember di bawah keran/di samping bak, menampung air yang tumpah'.",
-      "Scene 10 (opsional): QS. Al-A'raf: 31 aslinya tentang makan dan minum. Supaya kaitannya jelas untuk usia 7–10, Ibu bisa menambahkan satu kalimat pendek: 'Ayat ini tentang tidak berlebih-lebihan, termasuk memakai air.'",
-      "Sudah baik: tidak ada visualisasi Nabi atau sahabat; scene 14 hanya berisi bacaan doa (latin) dengan pembicara mamas, pengantar dan arti di scene terpisah; ada momen interaktif di scene 8; perilaku boros ada akibat dan perbaikannya; panjang 274 kata."
+      "Syariat aman: Rasulullah ﷺ dan sahabat Anas hanya disebut di narasi atau dialog Ibu. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Kedua dalil punya sumber yang spesifik.",
+      "Tidak ada bacaan Arab yang dilafalkan di scene. Scene 10 hanya menyebut sumber lalu artinya. Karena itu aturan pemisahan bacaan Arab dan aturan pembicara mamas untuk ayat tidak berlaku. Kalau penulis ingin ayatnya dibacakan, buat scene terpisah yang hanya berisi latin 'Wa kuluu wasyrabuu wa laa tusrifuu, innahuu laa yuhibbul musrifiin' dengan speaker mamas. Arti tetap di scene berikutnya.",
+      "Scene 10 (saran kecil): ayat Al-A'raf 31 konteksnya makan dan minum. Kalimat 'Artinya, Allah tidak menyukai orang yang berlebih-lebihan' benar sebagai potongan ayat. Agar tidak terkesan memotong konteks, bisa diganti menjadi: 'Allah berfirman, jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.'",
+      "Scene 7 (opsional): kalimat 'Ada anak-anak di tempat lain yang harus berjalan jauh untuk mengambil air' berisi 13 kata. Bisa dipecah menjadi: 'Di tempat lain, ada anak yang berjalan jauh. Mereka harus mengambil air sendiri.' Kata 'wajib' pada 'Kita wajib menjaganya' juga bisa dilunakkan menjadi 'Kita harus menjaganya' supaya tidak terdengar seperti hukum fikih.",
+      "Scene 8: beri jeda jelas, sekitar 2–3 detik hening atau efek suara ringan, setelah 'Ayo tebak dulu!' supaya momen interaktifnya terasa.",
+      "Kualitas konten anak sudah baik. Perilaku negatif (boros air dan menciprati Mochi) ada konsekuensinya: ember penuh, Ibu menjelaskan, lalu Mamas memperbaiki. Ada fakta konkret untuk usia 7–10 (ukuran satu mud). Ada pertanyaan interaktif sebelum jawaban, dan penutupnya hangat dengan ajakan. Panjang 228 kata dan tempo langsung ke inti. Judul tidak clickbait dan tidak ada ajakan komersial.",
+      "Visual scene 3: pastikan ember terlihat masuk akal menampung air tumpahan, misalnya diletakkan di bawah ujung saluran atau pinggir lantai wudhu. Hindari kesan ember menampung air dari lantai kotor, karena airnya nanti dipakai menyiram bunga. Untuk menyiram tanaman, air bekas wudhu tetap boleh dipakai."
     ],
     "humanCheck": [
-      "Hadits wudhu satu mud: HR. Bukhari no. 201 dan Muslim no. 325, dari Anas bin Malik. Teks: 'كَانَ النَّبِيُّ صلى الله عليه وسلم يَغْسِلُ - أَوْ كَانَ يَغْتَسِلُ - بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ، وَيَتَوَضَّأُ بِالْمُدِّ'. Cocokkan nomor hadits dan lafaz (lafaz ini versi Bukhari).",
-      "Penjelasan ukuran di scene 9: 'satu mud kira-kira secakupan dua telapak tangan orang dewasa'. Pastikan Anda setuju dengan penyederhanaan ini (±0,6–0,7 liter).",
-      "QS. Al-A'raf: 31, potongan 'وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ'. Cocokkan teks dan terjemah dengan mushaf/Kemenag. Pastikan Anda nyaman ayat tentang makan-minum ini dipakai untuk larangan boros air.",
-      "Doa setelah wudhu: HR. Muslim no. 234, dari Umar bin al-Khaththab. Teks: 'أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ'. Cocokkan nomor, lafaz, latin di scene 14, dan arti di scene 15.",
-      "Cek pengucapan latin doa oleh suara Mamas, terutama 'illallaahu wahdahu' dan ''abduhu wa rasuluh'."
+      "Dalil 1 (hadits): HR. Bukhari no. 201 dan Muslim no. 325 dari Anas bin Malik. Lafaz Bukhari: 'كَانَ النَّبِيُّ صلى الله عليه وسلم يَغْسِلُ - أَوْ كَانَ يَغْتَسِلُ - بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ، وَيَتَوَضَّأُ بِالْمُدِّ'. Artinya: Nabi ﷺ mandi dengan satu sha' sampai lima mud, dan berwudhu dengan satu mud. Cek nomor hadits di edisi yang Anda pakai. Lafaz Muslim no. 325 sedikit berbeda urutannya, jadi teks Arab yang ditampilkan sebaiknya diberi keterangan 'lafaz Bukhari'.",
+      "Dalil 2 (ayat): QS. Al-A'raf: 31, potongan 'وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ'. Artinya: 'Makan dan minumlah, dan jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.' Cek kesesuaian teks dan terjemahnya dengan mushaf atau terjemah Kemenag. Pastikan Anda nyaman ayat yang konteksnya makan dan minum dipakai untuk prinsip umum tidak boros dalam wudhu.",
+      "Penjelasan ukuran 'satu mud kira-kira secakupan dua telapak tangan orang dewasa': ini definisi yang umum dipakai ulama (cakupan dua tangan orang dewasa ukuran sedang). Pastikan Anda setuju dengan penyederhanaan ini dan visual scene 9 tidak menimbulkan kesan wudhu Nabi hanya memakai satu cakupan sekali basuh.",
+      "Kalimat 'Kita wajib menjaganya' di scene 7: putuskan apakah diganti dengan 'harus' agar tidak terdengar sebagai klaim hukum fikih."
     ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Sore ini, Mamas mau wudhu untuk shalat Ashar.",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Wudhu Sore Ini"
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mamas membuka keran deras sekali. Byuuur! Sambil wudhu, Mamas asyik main cipratan air. Cipratannya kena Mochi. Mochi melompat kaget, bulunya basah!",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mas, coba lihat ember di samping bak ini. Ibu taruh untuk menampung air yang tumpah.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Wah, embernya hampir penuh, Bu! Padahal Mamas belum selesai. Kenapa ya, airnya banyak sekali?",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Karena kerannya terbuka deras terus, Mas. Banyak air jatuh tanpa dipakai. Itu namanya boros.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Itu namanya boros"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Memangnya kenapa, Bu? Air kan banyak. Tinggal buka keran lagi.",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "thinking"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Air itu nikmat dari Allah, Mas. Ada anak-anak di tempat lain yang harus berjalan jauh untuk mengambil air. Kita wajib menjaganya.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "screenText": "Air nikmat Allah"
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Adik-adik, menurut kalian, berapa banyak air yang dipakai Rasulullah ﷺ untuk wudhu? Satu ember? Atau lebih sedikit? Ayo tebak dulu!",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Berapa banyak airnya?"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Rasulullah shallallahu 'alaihi wasallam berwudhu cukup dengan satu mud air. Satu mud itu kira-kira secakupan dua telapak tangan orang dewasa. Sedikit sekali, kan? Ini diceritakan sahabat Anas bin Malik. Diriwayatkan Imam Bukhari dan Muslim.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "screenText": "Cukup satu mud"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Allah berfirman dalam surat Al-A'raf ayat 31. Artinya, Allah tidak menyukai orang yang berlebih-lebihan. Jadi, buka keran kecil saja. Tapi semua anggota wudhu tetap dibasuh rata, ya.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Jangan berlebih-lebihan"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Siap, Bu! Kerannya kecil saja. Air di ember ini nanti Mamas pakai menyiram bunga.",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy"
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mamas wudhu lagi dengan rapi dan tenang. Tiba-tiba Mochi mengibaskan badannya. Brrr! Sekarang Mamas yang kecipratan. Hihihi!",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Adik-adik, air itu nikmat Allah. Wudhu pakai air secukupnya, ya! Wassalamu'alaikum.",
+      "background": "garden",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Wudhu air secukupnya",
+      "props": [
+        "flower",
+        "potted-tree"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "flower"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Kenapa Wudhu Tidak Boleh Boros Air? | Cerita Islami Anak Mamas",
+    "description": "Kenapa wudhu tidak boleh boros air? Dalam cerita islami anak ini, Mamas belajar wudhu dengan air secukupnya bersama Ibu.\n\nSore itu, Mamas wudhu sambil membuka keran deras dan bermain cipratan air. Ibu menaruh ember untuk menampung air yang tumpah, dan ember itu hampir penuh sebelum wudhu Mamas selesai. Ibu lalu menjelaskan bahwa air adalah nikmat Allah. Ibu juga menceritakan bahwa Rasulullah ﷺ berwudhu cukup dengan sedikit air. Mamas pun mengulang wudhunya dengan rapi, dan air di ember dipakai untuk menyiram bunga.\n\nPelajaran hari ini:\n• Air adalah nikmat Allah yang harus kita jaga.\n• Wudhu cukup dengan air secukupnya. Buka keran kecil, tetapi semua anggota wudhu tetap dibasuh rata.\n• Air sisa bisa dimanfaatkan lagi, misalnya untuk menyiram tanaman.\n\nDalil:\n• Anas bin Malik radhiyallahu 'anhu berkata: Nabi ﷺ berwudhu dengan satu mud (kira-kira secakupan dua telapak tangan orang dewasa). HR. Bukhari no. 201 dan Muslim no. 325.\n• \"…dan jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.\" QS. Al-A'raf: 31.\n\nAyah dan Bunda, yuk dampingi si kecil menonton, lalu ajak ia mempraktikkan wudhu hemat air di rumah. Tonton juga episode lain dari seri \"Kenapa Ya?\" untuk menemani anak belajar adab sehari-hari.\n\n#CeritaIslamiAnak #BelajarWudhu #KenapaYa",
+    "tags": [
+      "cerita islami anak",
+      "wudhu tidak boleh boros air",
+      "belajar wudhu untuk anak",
+      "adab wudhu anak",
+      "hemat air saat wudhu",
+      "jangan boros air islam",
+      "kartun islami anak",
+      "kenapa ya mamas",
+      "cerita mamas dan ibu",
+      "wudhu rasulullah satu mud",
+      "hadits wudhu satu mud",
+      "surat al araf ayat 31",
+      "pendidikan islam anak",
+      "akhlak anak muslim"
+    ],
+    "thumbnailText": "Kenapa Tidak Boleh Boros?"
+  },
+  "audioPerScene": [
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-1-ai-mw98dnvq.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-2-ai-mw98dvyb.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-3-ai-mw98e02i.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-4-ai-mw98e4k4.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-5-ai-mw98f6zv.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-6-ai-mw98fb24.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-7-ai-mw98fgmk.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-8-ai-mw98fmbn.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-9-ai-mw98fud5.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-10-ai-mw98g26y.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-11-ai-mw98gh7u.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-12-ai-mw98go6v.wav",
+    "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-adegan-13-ai-mw98gtjp.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "recordingMode": "per-scene",
+  "audioFile": "audio/kenapa-ya-wudhu-tidak-boleh-boros-air-8270-gabung.wav",
+  "render": {
+    "video": "kenapa-ya-wudhu-tidak-boleh-boros-air-8270.mp4",
+    "thumbnail": "kenapa-ya-wudhu-tidak-boleh-boros-air-8270.png",
+    "scenes": [
+      {
+        "start": 10,
+        "duration": 9.566666666666666
+      },
+      {
+        "start": 19.566666666666666,
+        "duration": 18.8
+      },
+      {
+        "start": 38.36666666666667,
+        "duration": 8.066666666666666
+      },
+      {
+        "start": 46.43333333333333,
+        "duration": 10.8
+      },
+      {
+        "start": 57.233333333333334,
+        "duration": 10.5
+      },
+      {
+        "start": 67.73333333333333,
+        "duration": 7.9
+      },
+      {
+        "start": 75.63333333333334,
+        "duration": 13.133333333333333
+      },
+      {
+        "start": 88.76666666666667,
+        "duration": 18.3
+      },
+      {
+        "start": 107.06666666666666,
+        "duration": 21.766666666666666
+      },
+      {
+        "start": 128.83333333333334,
+        "duration": 17.4
+      },
+      {
+        "start": 146.23333333333332,
+        "duration": 8.066666666666666
+      },
+      {
+        "start": 154.3,
+        "duration": 17.3
+      },
+      {
+        "start": 171.6,
+        "duration": 10.1
+      }
+    ],
+    "time": "2026-11-09T12:26:23.129Z"
+  },
+  "selectedSchedule": "2026-11-11T09:00:00.000Z",
+  "youtube": {
+    "videoId": "_IuvkBol2k8",
+    "url": "https://www.youtube.com/watch?v=_IuvkBol2k8",
+    "publishTime": "2026-11-11T09:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
   }
 }

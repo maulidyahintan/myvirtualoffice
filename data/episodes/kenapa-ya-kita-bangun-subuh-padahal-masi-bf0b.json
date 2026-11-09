@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-06T09:56:42.214Z",
+  "modified": "2026-11-09T12:04:18.479Z",
   "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
@@ -405,6 +405,26 @@
     },
     {
       "time": "2026-11-06T09:56:42.214Z",
+      "by": "pengisi-suara",
+      "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-09T12:04:10.369Z",
+      "by": "pemilik",
+      "message": "Minta adegan 11 diisi suara AI"
+    },
+    {
+      "time": "2026-11-09T12:04:11.379Z",
+      "by": "pengisi-suara",
+      "message": "Membuat suara AI untuk adegan 11"
+    },
+    {
+      "time": "2026-11-09T12:04:18.478Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (1/1)"
+    },
+    {
+      "time": "2026-11-09T12:04:18.479Z",
       "by": "pengisi-suara",
       "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
     }
@@ -846,7 +866,7 @@
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-8-ai-mw4stou9.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-9-ai-mw4su3o8.wav",
     null,
-    null,
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-11-ai-mw97r0rx.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-12-ai-mw4suv8w.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-13-ai-mw4svd5v.wav"
   ],
@@ -876,7 +896,7 @@
     true,
     true,
     false,
-    false,
+    true,
     true,
     true
   ]

@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
   "created": "2026-11-02T10:11:06.546Z",
-  "modified": "2026-11-06T10:20:24.963Z",
+  "modified": "2026-11-09T12:14:46.471Z",
   "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
@@ -153,6 +153,11 @@
       "time": "2026-11-06T10:20:24.963Z",
       "by": "pengisi-suara",
       "message": "11 adegan diisi suara AI · rekam sendiri adegan 9"
+    },
+    {
+      "time": "2026-11-09T12:14:46.471Z",
+      "by": "sutradara",
+      "message": "Kartu doa (teks Arab) dipasang otomatis di adegan 9"
     }
   ],
   "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
@@ -440,7 +445,7 @@
       ]
     },
     {
-      "type": "story",
+      "type": "prayer",
       "speaker": "mamas",
       "narration": "Lā yu'minu aḥadukum ḥattā yuḥibba li-akhīhi mā yuḥibbu li-nafsih.",
       "background": "living-room",
@@ -461,7 +466,12 @@
           "character": "mochi",
           "action": "sleeping"
         }
-      ]
+      ],
+      "prayer": {
+        "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+        "latin": "Lā yu'minu aḥadukum ḥattā yuḥibba li-akhīhi mā yuḥibbu li-nafsih.",
+        "meaning": "Tidak sempurna iman salah seorang di antara kalian sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri. (HR. Bukhari no. 13 dan Muslim no. 45)"
+      }
     },
     {
       "type": "story",

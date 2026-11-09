@@ -1,9 +1,9 @@
 {
   "id": "baca-3-qul-sebelum-tidur-kebiasaan-rasul-aa1c",
   "created": "2026-10-30T12:11:05.809Z",
-  "modified": "2026-10-30T12:13:48.736Z",
-  "status": "needs_video_approval",
-  "statusNote": "Video siap ditonton & disetujui",
+  "modified": "2026-11-09T11:56:48.097Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-11T11:30:00.000Z",
   "idea": {
     "title": "Baca 3 Qul Sebelum Tidur, Kebiasaan Rasulullah ﷺ",
     "series": "kisah-sebelum-tidur",
@@ -187,6 +187,36 @@
       "time": "2026-10-30T12:13:48.736Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-09T11:56:40.858Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-11 18:30"
+    },
+    {
+      "time": "2026-11-09T11:56:41.754Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T11:56:48.096Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-09T11:56:48.097Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-11T11:30:00.000Z"
     }
-  ]
+  ],
+  "selectedSchedule": "2026-11-11T11:30:00.000Z",
+  "youtube": {
+    "videoId": "tpHB7z_bW5I",
+    "url": "https://www.youtube.com/watch?v=tpHB7z_bW5I",
+    "publishTime": "2026-11-11T11:30:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

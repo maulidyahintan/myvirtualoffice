@@ -1,9 +1,9 @@
 {
   "id": "arti-al-waswas-al-khannas-berlindung-dar-ffe2",
   "created": "2026-10-30T12:12:08.847Z",
-  "modified": "2026-10-30T12:15:20.530Z",
-  "status": "needs_video_approval",
-  "statusNote": "Video siap ditonton & disetujui",
+  "modified": "2026-11-09T11:55:21.642Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-11T05:00:00.000Z",
   "idea": {
     "title": "Arti Al-Waswas Al-Khannas: Berlindung dari Bisikan Jahat",
     "series": "asbabun-nuzul",
@@ -195,6 +195,36 @@
       "time": "2026-10-30T12:15:20.530Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-09T11:55:14.672Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-11 12:00"
+    },
+    {
+      "time": "2026-11-09T11:55:15.494Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T11:55:21.642Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Asbabun Nuzul\""
+    },
+    {
+      "time": "2026-11-09T11:55:21.642Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-11T05:00:00.000Z"
     }
-  ]
+  ],
+  "selectedSchedule": "2026-11-11T05:00:00.000Z",
+  "youtube": {
+    "videoId": "EMYHzzgXBu8",
+    "url": "https://www.youtube.com/watch?v=EMYHzzgXBu8",
+    "publishTime": "2026-11-11T05:00:00.000Z",
+    "playlist": {
+      "name": "Asbabun Nuzul",
+      "id": "PLD-usmJsNuYc"
+    }
+  }
 }

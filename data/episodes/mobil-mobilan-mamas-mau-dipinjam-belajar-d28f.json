@@ -1,8 +1,8 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-06T10:18:47.028Z",
-  "status": "error",
+  "modified": "2026-11-09T11:55:10.743Z",
+  "status": "scheduled",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "series": "kisah-sebelum-tidur",
@@ -713,10 +713,35 @@
       "time": "2026-11-06T10:18:47.028Z",
       "by": "upload",
       "message": "The user has exceeded the number of videos they may upload."
+    },
+    {
+      "time": "2026-11-09T11:54:49.028Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-09T11:54:51.304Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-10 18:30"
+    },
+    {
+      "time": "2026-11-09T11:54:52.138Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T11:55:10.742Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-09T11:55:10.743Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-10T11:30:00.000Z"
     }
   ],
   "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
-  "statusNote": "The user has exceeded the number of videos they may upload.",
+  "statusNote": "Terjadwal tayang 2026-11-10T11:30:00.000Z",
   "script": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
     "summary": "Versi ringkas (±2,5–3 menit). Sepupu Mamas, Dek Hafiz, ingin meminjam mobil-mobilan merah Mamas, Si Merah. Awalnya Mamas menolak karena takut mobilnya rusak. Ibu bertanya, \"Mamas senang tidak, dipinjami?\" Mamas ingat pernah dipinjami sepeda oleh Dek Hafiz, lalu mau bermain bergantian. Pelajarannya: kita ingin teman bahagia seperti kita ingin bahagia (HR. Al-Bukhari no. 13, Muslim no. 45).",
@@ -1297,5 +1322,14 @@
     ],
     "time": "2026-11-05T15:59:37.903Z"
   },
-  "selectedSchedule": "2026-11-09T09:00:00.000Z"
+  "selectedSchedule": "2026-11-10T11:30:00.000Z",
+  "youtube": {
+    "videoId": "1eMAIQ3sDpw",
+    "url": "https://www.youtube.com/watch?v=1eMAIQ3sDpw",
+    "publishTime": "2026-11-10T11:30:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

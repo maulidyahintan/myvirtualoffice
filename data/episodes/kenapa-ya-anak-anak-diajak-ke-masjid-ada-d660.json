@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660",
   "created": "2026-11-06T04:57:59.428Z",
-  "modified": "2026-11-06T10:14:45.820Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-09T12:21:33.372Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
     "series": "kenapa-ya",
@@ -16,7 +16,7 @@
       "https://www.youtube.com/watch?v=I3Y3ulnYlQc (Kalimat dari Nabi saat masuk masjid – HR. Muslim no. 713)"
     ]
   },
-  "revisionCount": 1,
+  "revisionCount": 2,
   "log": [
     {
       "time": "2026-11-06T04:57:59.428Z",
@@ -77,13 +77,108 @@
       "time": "2026-11-06T10:14:45.820Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T12:07:46.955Z",
+      "by": "pemilik",
+      "message": "Minta revisi: HAPUS ADEGAN 12 DAN 13"
+    },
+    {
+      "time": "2026-11-09T12:07:47.859Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-09T12:07:48.843Z",
+      "by": "tulis",
+      "message": "Agen penulis tidak mengembalikan JSON: Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "time": "2026-11-09T12:18:32.110Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-09T12:18:48.665Z",
+      "by": "pemilik",
+      "message": "Minta revisi: hapus adegan 12 dan 13"
+    },
+    {
+      "time": "2026-11-09T12:18:49.505Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-09T12:19:13.485Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:19:13.901Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T12:19:46.565Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:19:47.064Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-09T12:20:20.876Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:20:21.358Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T12:20:48.970Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:20:49.431Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T12:21:11.916Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T12:21:12.791Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T12:21:25.813Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:21:32.959Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:21:33.372Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
     }
   ],
   "twin": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-963a",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
-    "summary": "Mamas senang sekali ikut Ibu ke masjid. Ia bertanya kenapa anak kecil diajak ke sana. Sampai di masjid, Mamas berlari dan berteriak memanggil teman-temannya. Ibu menegurnya dengan lembut, lalu mengajarkan adab di rumah Allah: berjalan tenang, masuk dengan kaki kanan, dan membaca doa masuk masjid (HR. Muslim no. 713). Mamas bertanya kenapa harus kaki kanan. Ibu menjelaskan bahwa Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik (HR. Bukhari dan Muslim). Ibu juga mengajak Mamas merapikan sandal dan tidak berlari di dalam masjid. Narator bercerita bahwa Rasulullah ﷺ pernah shalat sambil menggendong cucunya, Umamah, tanda sayangnya beliau kepada anak-anak.",
+    "summary": "Mamas senang sekali ikut Ibu ke masjid. Ia bertanya kenapa anak kecil diajak ke sana. Sampai di masjid, Mamas berlari dan berteriak memanggil teman-temannya. Ibu menegurnya dengan lembut, lalu mengajarkan adab di rumah Allah: berjalan tenang, masuk dengan kaki kanan, dan membaca doa masuk masjid, Allāhummaftaḥ lī abwāba raḥmatik (HR. Muslim no. 713). Mamas bertanya kenapa harus kaki kanan. Ibu menjelaskan bahwa Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik (HR. Bukhari dan Muslim). Ibu juga mengajak Mamas merapikan sandal dan tidak berlari di dalam masjid. Narator bercerita bahwa Rasulullah ﷺ pernah shalat sambil menggendong cucunya, Umamah, tanda sayangnya beliau kepada anak-anak.",
     "scenes": [
       {
         "type": "story",
@@ -130,13 +225,19 @@
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Kita berjalan dengan tenang. Masuk dengan kaki kanan. Lalu baca doa masuk masjid. Ikuti Ibu, ya.",
+        "narration": "Kita berjalan dengan tenang. Masuk dengan kaki kanan. Lalu baca doa masuk masjid. Dengarkan, ya, Mas.",
         "visualDirection": "Di depan pintu masjid, Ibu dan Mamas melangkahkan kaki kanan bersamaan, Mamas memperhatikan kakinya dengan serius."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mother",
+        "narration": "Allāhummaftaḥ lī abwāba raḥmatik.",
+        "visualDirection": "Di ambang pintu masjid, Ibu menengadahkan tangan berdoa dengan khusyuk, Mamas di sampingnya ikut menengadahkan tangan dengan tenang."
       },
       {
         "type": "story",
         "speaker": "narrator",
-        "narration": "Betul, adik-adik! Jawabannya ada tiga: berjalan tenang, masuk dengan kaki kanan, dan berdoa. Apakah jawaban adik sama?",
+        "narration": "Artinya: Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu. Doa ini diajarkan Rasulullah ﷺ, diriwayatkan Imam Muslim. Betul, adik-adik! Jawabannya ada tiga: berjalan tenang, masuk dengan kaki kanan, dan berdoa. Apakah jawaban adik sama?",
         "visualDirection": "Di depan pintu masjid, tampak tiga ikon sederhana muncul perlahan: langkah pelan, telapak kaki kanan, dan tangan berdoa."
       },
       {
@@ -148,26 +249,20 @@
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Karena Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik. Hadisnya diriwayatkan Imam Bukhari dan Muslim. Oh ya, sandalnya dirapikan dulu, Mas. Di dalam nanti jangan berlari dan bercanda, ya.",
-        "visualDirection": "Di depan pintu masjid, Ibu tersenyum sambil menunjuk rak sandal, Mamas menyusun sandalnya dengan rapi."
-      },
-      {
-        "type": "prayer",
-        "speaker": "mamas",
-        "narration": "Allāhummaftaḥ lī abwāba raḥmatik.",
-        "visualDirection": "Di ambang pintu masjid, Mamas menengadahkan tangan dan berdoa dengan khusyuk di samping Ibu."
+        "narration": "Karena Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik. Hadisnya diriwayatkan Imam Bukhari dan Muslim.",
+        "visualDirection": "Di depan pintu masjid, Ibu tersenyum lembut sambil menepuk pelan kaki kanan Mamas, Mamas mengangguk paham."
       },
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Artinya, ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu. Doa ini diajarkan Rasulullah ﷺ. Hadisnya diriwayatkan oleh Imam Muslim.",
-        "visualDirection": "Di dalam masjid yang lapang dan tenang, Ibu tersenyum kepada Mamas sambil menggandeng tangannya."
+        "narration": "Oh ya, sandalnya dirapikan dulu, Mas. Di dalam nanti jangan berlari dan bercanda, ya.",
+        "visualDirection": "Di depan pintu masjid, Ibu menunjuk rak sandal, Mamas menyusun sandalnya dengan rapi."
       },
       {
         "type": "story",
         "speaker": "narrator",
         "narration": "Adik-adik tahu? Dulu Rasulullah ﷺ pernah shalat sambil menggendong cucunya, Umamah. Rasulullah ﷺ sayang kepada anak-anak, bahkan saat shalat. Hadisnya diriwayatkan Imam Bukhari dan Muslim.",
-        "visualDirection": "Tampak mihrab masjid yang kosong diterangi cahaya keemasan yang lembut, tanpa ada sosok yang digambarkan."
+        "visualDirection": "Tampak mihrab masjid yang kosong diterangi cahaya keemasan yang lembut; JANGAN tambahkan sosok atau siluet apa pun, termasuk siluet orang dewasa menggendong anak."
       },
       {
         "type": "story",
@@ -179,7 +274,7 @@
         "type": "story",
         "speaker": "narrator",
         "narration": "Yuk, ke masjid dengan tenang, masuk dengan kaki kanan, dan jangan lupa berdoa. Wassalamu'alaikum, adik-adik!",
-        "visualDirection": "Malam di halaman rumah, Mamas dan Ibu pulang disambut Mochi yang sedang duduk manis di atas sajadah."
+        "visualDirection": "Malam di halaman rumah, Mamas dan Ibu pulang disambut Mochi yang duduk manis di keset samping pintu."
       }
     ],
     "evidences": [
@@ -197,7 +292,7 @@
       },
       {
         "type": "hadits",
-        "translation": "Nabi ﷺ suka mendahulukan yang kanan ketika memakai sandal, menyisir rambut, bersuci, dan dalam semua urusan beliau. (Dasar umum adab mendahulukan kaki kanan saat masuk masjid.)",
+        "translation": "Nabi ﷺ suka mendahulukan yang kanan ketika memakai sandal, menyisir rambut, bersuci, dan dalam semua urusan beliau. (Ini dalil umum untuk adab mendahulukan kaki kanan saat masuk masjid, bukan hadits yang khusus menyebut masuk masjid.)",
         "source": "HR. Bukhari no. 168 dan Muslim no. 268, dari Aisyah radhiyallahu 'anha"
       }
     ]
@@ -206,20 +301,265 @@
     "decision": "approved",
     "score": 8.5,
     "notes": [
-      "LOLOS. Tidak ada visual Nabi, sahabat, atau malaikat. Umamah hanya disebut di narasi. Scene 14 cukup menampilkan mihrab kosong dengan cahaya lembut, dan itu sudah sesuai pedoman.",
-      "Bacaan Arab sudah terpisah dengan benar. Scene 12 hanya berisi lafaz doa (latin). Artinya ada di scene 13 tersendiri. Tidak ada ayat Al-Qur'an, jadi aturan `pembicara: mamas` untuk ayat tidak berlaku.",
-      "Panjang 241 kata, masih dalam batas 220–320. Temponya langsung ke inti. Ada momen interaktif di scene 7. Perilaku negatif (berlari dan berteriak, scene 4) langsung ditegur dengan lembut, lalu Mamas minta maaf. Pesan moral dan ajakan di akhir jelas.",
-      "Perbaikan kecil (opsional) – urutan visual: di scene 8 Ibu dan Mamas sudah melangkah masuk dengan kaki kanan. Tapi di scene 11 Mamas baru merapikan sandal di rak, dan di scene 12 masih berdoa di ambang pintu. Saran: ubah visualDirection scene 8 jadi 'Ibu dan Mamas berjalan pelan menuju pintu masjid'. Langkah kaki kanan pindah ke scene 12 atau 13, setelah sandal rapi dan saat berdoa.",
-      "Perbaikan kecil (opsional) – scene 9: 'Betul, adik-adik!' terasa janggal karena penonton belum tentu menjawab. Saran: ganti jadi 'Nah, adik-adik! Jawabannya ada tiga: ...'.",
-      "Perbaikan kecil (opsional) – kesinambungan: sajadah dibawa ke masjid, tapi di scene 16 Mochi duduk di atas sajadah di rumah. Saran: ganti jadi 'duduk manis di atas keset' atau 'di teras'.",
-      "Catatan akurasi: kalimat 'Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik' sudah tepat sebagai ringkasan hadits Aisyah. Naskah tidak mengklaim ada hadits khusus tentang kaki kanan saat masuk masjid, jadi aman."
+      "Naskah lolos. Panjangnya 239 kata, langsung ke inti, dan tidak ada Nabi, sahabat, atau malaikat yang digambar. Scene 14 sudah tegas melarang sosok dan siluet. Doa di scene 9 berdiri sendiri, terpisah dari artinya.",
+      "Perilaku negatif (lari dan berteriak di scene 4) langsung ditegur dengan lembut. Mamas minta maaf, dan ada alasannya (orang shalat jadi terganggu). Sudah sesuai pedoman.",
+      "Saran kecil soal urutan logika: scene 13 (merapikan sandal) terjadi setelah Mamas melangkah masuk dengan kaki kanan (scene 8–12). Padahal sandal dilepas sebelum masuk. Sebaiknya scene 13 dipindah ke sebelum scene 8. Bisa juga kalimatnya diubah jadi 'Tadi sandalnya sudah rapi, kan, Mas?'.",
+      "Saran kecil di scene 10: kata 'Betul, adik-adik!' terasa kurang pas. Jawabannya sudah disebut Ibu di scene 8, jadi tidak ada yang dibenarkan. Bisa diganti 'Jadi, adik-adik, caranya ada tiga: ...'.",
+      "Saran opsional di scene 12: terjemah hadits Aisyah berbunyi 'dalam semua urusan beliau'. Frasa 'hal-hal baik' adalah penjelasan ulama (dari kaidah Imam Nawawi), dan itu masih tepat. Kalau mau lebih jujur pada teks, bisa ditulis 'suka mendahulukan yang kanan, seperti saat memakai sandal dan bersuci'.",
+      "Judul tidak clickbait, tapi jawaban 'kenapa anak diajak ke masjid' di scene 3 masih singkat. Pertimbangkan satu kalimat tambahan yang menyambung ke kisah Umamah di scene 14. Contohnya: 'Rasulullah ﷺ juga sayang pada anak-anak di masjid.'"
     ],
     "humanCheck": [
-      "Dalil 1 (doa masuk masjid): HR. Muslim no. 713, dari Abu Humaid atau Abu Usaid. Teks: اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ — 'Allāhummaftaḥ lī abwāba raḥmatik' — 'Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu.' Cocokkan teks dan nomornya dengan kitab atau aplikasi hadits. Catatan: riwayat Abu Dawud menambahkan shalawat di awal, sedangkan versi Muslim di naskah sudah sesuai.",
-      "Dalil 2 (menggendong Umamah): HR. Bukhari no. 516 dan Muslim no. 543, dari Abu Qatadah. Isinya: Nabi ﷺ shalat sambil menggendong Umamah binti Zainab. Saat sujud beliau meletakkannya, saat berdiri menggendongnya lagi. Cek nomor hadits dan pastikan Umamah memang cucu beliau (putri Zainab binti Rasulullah ﷺ).",
-      "Dalil 3 (mendahulukan yang kanan): HR. Bukhari no. 168 dan Muslim no. 268, dari Aisyah. Isinya: Nabi ﷺ suka mendahulukan yang kanan saat memakai sandal, menyisir rambut, bersuci, dan dalam semua urusan beliau. Cek nomor hadits. Pastikan juga Anda setuju hadits ini dipakai sebagai dasar umum adab masuk masjid dengan kaki kanan.",
-      "Kalimat narasi 'Rasulullah ﷺ sayang kepada anak-anak, bahkan saat shalat' adalah kesimpulan dari hadits Umamah, bukan teks haditsnya. Pastikan Anda nyaman dengan cara penyampaian ini.",
-      "Pastikan visual mihrab dengan 'cahaya keemasan' di scene 14 tidak memberi kesan ada sosok Nabi ﷺ atau Umamah di situ, baik siluet maupun bayangan."
+      "Dalil 1: doa masuk masjid 'Allāhummaftaḥ lī abwāba raḥmatik' (اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ). Sumbernya HR. Muslim no. 713, dari Abu Humaid atau Abu Usaid. Cek lafaz Arab, harakat, latin, dan nomornya (penomoran Fu'ad Abdul Baqi).",
+      "Dalil 2: hadits Rasulullah ﷺ shalat sambil menggendong Umamah binti Zainab. Sumbernya HR. Bukhari no. 516 dan Muslim no. 543, dari Abu Qatadah. Cek nomor dan isi terjemahnya.",
+      "Dalil 3: hadits Aisyah bahwa Nabi ﷺ suka mendahulukan yang kanan (memakai sandal, menyisir, bersuci, semua urusan). Sumbernya HR. Bukhari no. 168 dan Muslim no. 268. Cek nomornya. Pastikan juga hadits ini cukup dipakai sebagai dalil umum untuk masuk masjid dengan kaki kanan. Ada juga atsar Anas yang lebih khusus (Bukhari secara mu'allaq, al-Hakim) kalau ingin menambah penguat.",
+      "Pastikan narasi 'diriwayatkan Imam Bukhari dan Muslim' di scene 12 dan 14 sesuai dengan sumber di evidences.",
+      "Cek pengucapan latin 'Allāhummaftaḥ lī abwāba raḥmatik' oleh pengisi suara Ibu, supaya tidak salah baca.",
+      "Cek visual scene 14 setelah gambar dibuat. Mihrab harus benar-benar kosong, tanpa siluet orang dewasa atau anak.",
+      "Konsistensi kecil: target usia 7–10 tahun, sementara tokoh Mamas berumur 4 tahun. Pastikan ini memang disengaja."
     ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Sore ini Mamas mau ikut Ibu ke masjid. Peci birunya sudah terpasang rapi!",
+      "background": "yard",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "happy",
+      "screenText": "Ayo ke Masjid!"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu, kenapa sih anak-anak diajak ke masjid? Mamas kan masih kecil.",
+      "background": "yard",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Karena masjid itu rumah Allah, Mas. Di sana kita belajar shalat dan berbuat baik. Eh, Mochi! Kamu jaga rumah saja, ya.",
+      "background": "yard",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Masjid, Rumah Allah",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Sampai di masjid, Mamas melihat teman-temannya. Mamas langsung berlari sambil berteriak, \"Hore, aku datang!\"",
+      "background": "mosque",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "surprised"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mas, pelan-pelan. Di dalam ada orang yang sedang shalat. Kalau kita berteriak, mereka jadi terganggu.",
+      "background": "mosque",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Oh iya, maaf, Ibu. Terus, Mamas harus bagaimana?",
+      "background": "mosque",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "sad"
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Menurut adik-adik, bagaimana cara masuk masjid yang baik? Coba pikirkan dulu, ya.",
+      "background": "mosque",
+      "characters": [
+        "mamas"
+      ],
+      "expression": "thinking",
+      "screenText": "Cara masuk masjid?"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Kita berjalan dengan tenang. Masuk dengan kaki kanan. Lalu baca doa masuk masjid. Dengarkan, ya, Mas.",
+      "background": "mosque",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm",
+      "screenText": "Kaki Kanan Dulu"
+    },
+    {
+      "type": "prayer",
+      "speaker": "mother",
+      "narration": "Allāhummaftaḥ lī abwāba raḥmatik.",
+      "background": "mosque",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+        "latin": "Allāhummaftaḥ lī abwāba raḥmatik.",
+        "meaning": "Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu. (HR. Muslim no. 713)"
+      },
+      "actions": [
+        {
+          "character": "mother",
+          "action": "praying"
+        },
+        {
+          "character": "mamas",
+          "action": "praying"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Artinya: Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu. Doa ini diajarkan Rasulullah ﷺ, diriwayatkan Imam Muslim. Betul, adik-adik! Jawabannya ada tiga: berjalan tenang, masuk dengan kaki kanan, dan berdoa. Apakah jawaban adik sama?",
+      "background": "mosque",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "happy",
+      "screenText": "Tenang, Kanan, Berdoa"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu, kenapa harus kaki kanan dulu? Kaki kiri kan juga kaki Mamas.",
+      "background": "mosque",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "thinking"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Karena Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik. Hadisnya diriwayatkan Imam Bukhari dan Muslim.",
+      "background": "mosque",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "happy"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Oh ya, sandalnya dirapikan dulu, Mas. Di dalam nanti jangan berlari dan bercanda, ya.",
+      "background": "mosque",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm",
+      "screenText": "Rapikan Sandal"
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Adik-adik tahu? Dulu Rasulullah ﷺ pernah shalat sambil menggendong cucunya, Umamah. Rasulullah ﷺ sayang kepada anak-anak, bahkan saat shalat. Hadisnya diriwayatkan Imam Bukhari dan Muslim.",
+      "background": "inside-mosque",
+      "characters": [],
+      "expression": "calm"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Mamas mau jadi tamu yang sopan di rumah Allah!",
+      "background": "inside-mosque",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "happy",
+      "props": [
+        "prayer-mat"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Yuk, ke masjid dengan tenang, masuk dengan kaki kanan, dan jangan lupa berdoa. Wassalamu'alaikum, adik-adik!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Tamu Sopan di Masjid",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Adab Masuk Masjid untuk Anak | Kenapa Ya Harus Kaki Kanan?",
+    "description": "Adab masuk masjid untuk anak: berjalan tenang, masuk dengan kaki kanan, dan membaca doa masuk masjid. Belajar bersama Mamas dan Ibu di seri Kenapa Ya.\n\nMamas senang sekali ikut Ibu ke masjid. Begitu melihat teman-temannya, Mamas langsung berlari dan berteriak. Ibu menegurnya dengan lembut, lalu mengajarkan cara menjadi tamu yang sopan di rumah Allah. Mamas juga bertanya, \"Kenapa harus kaki kanan dulu?\"\n\nPelajaran hari ini:\n• Masjid adalah rumah Allah. Kita berjalan tenang dan tidak berteriak supaya orang yang shalat tidak terganggu.\n• Masuk dengan kaki kanan, lalu membaca doa masuk masjid.\n• Rapikan sandal dan jangan berlari atau bercanda di dalam masjid.\n\nDalil:\n• Doa masuk masjid: \"Allāhummaftaḥ lī abwāba raḥmatik\" (Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu). HR. Muslim no. 713.\n• Nabi ﷺ suka mendahulukan yang kanan saat memakai sandal, menyisir rambut, bersuci, dan dalam semua urusan beliau. HR. Bukhari no. 168 dan Muslim no. 268. Ini dalil umum yang dipakai untuk adab mendahulukan kaki kanan.\n• Rasulullah ﷺ pernah shalat sambil menggendong cucu beliau, Umamah. HR. Bukhari no. 516 dan Muslim no. 543.\n\nAyah dan Bunda, yuk dampingi si kecil menonton, lalu praktikkan adab ini bersama saat ke masjid nanti. Tonton juga episode lain di seri Kenapa Ya.\n\n#CeritaIslamiAnak #AdabMasjid #DoaHarian",
+    "tags": [
+      "adab masuk masjid untuk anak",
+      "doa masuk masjid",
+      "doa masuk masjid untuk anak",
+      "kenapa masuk masjid kaki kanan",
+      "adab di masjid",
+      "cerita islami anak",
+      "kartun islami anak",
+      "belajar adab anak muslim",
+      "mengajak anak ke masjid",
+      "allahummaftah li abwaba rahmatik",
+      "doa harian anak",
+      "cerita anak muslim bahasa indonesia",
+      "kenapa ya seri anak islami",
+      "mamas dan ibu"
+    ],
+    "thumbnailText": "Kenapa Kaki Kanan?"
   }
 }

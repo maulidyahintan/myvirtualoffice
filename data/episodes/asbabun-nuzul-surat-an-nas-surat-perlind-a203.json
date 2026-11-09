@@ -1,7 +1,7 @@
 {
   "id": "asbabun-nuzul-surat-an-nas-surat-perlind-a203",
   "created": "2026-10-28T10:20:42.355Z",
-  "modified": "2026-10-30T12:33:53.010Z",
+  "modified": "2026-11-09T11:58:45.978Z",
   "status": "scheduled",
   "statusNote": "Terjadwal tayang 2026-10-31T09:30:00.000Z",
   "idea": {
@@ -19,15 +19,12 @@
       "https://tafsiralquran.id/surat-al-muawwidzatain-dan-memahami-kisah-disihirnya-nabi-muhammad/"
     ]
   },
-  "twin": "asbabun-nuzul-surat-an-nas-surat-perlind-d6ba",
   "derivatives": [
     "surat-an-nas-al-falaq-dua-surat-perlindu-7490",
     "arti-surat-an-nas-tiga-nama-allah-untuk--c501",
     "surat-an-nas-berlindung-dari-bisikan-jah-d6b4",
     "surat-an-nas-al-falaq-dua-surat-perlindu-ed24",
-    "arti-surat-an-nas-3-nama-allah-untuk-ana-d47d",
     "surat-an-nas-berlindung-dari-bisikan-jah-9ea6",
-    "surat-an-nas-untuk-anak-3-nama-allah-yan-a324",
     "arti-al-waswas-al-khannas-berlindung-dar-ffe2",
     "al-mu-awwidzatain-dua-surat-perlindungan-89c4"
   ],

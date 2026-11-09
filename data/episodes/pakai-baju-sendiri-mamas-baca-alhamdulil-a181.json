@@ -1,7 +1,7 @@
 {
   "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-a181",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-05T04:04:07.229Z",
+  "modified": "2026-11-09T12:14:46.469Z",
   "status": "needs_audio",
   "idea": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
@@ -167,6 +167,11 @@
       "time": "2026-11-05T04:04:07.229Z",
       "by": "pemilik",
       "message": "Rekaman adegan 1 diupload"
+    },
+    {
+      "time": "2026-11-09T12:14:46.469Z",
+      "by": "sutradara",
+      "message": "Kartu doa (teks Arab) dipasang otomatis di adegan 12"
     }
   ],
   "twin": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
@@ -506,7 +511,7 @@
       ]
     },
     {
-      "type": "story",
+      "type": "prayer",
       "speaker": "mother",
       "narration": "Artinya, segala puji bagi Allah yang memberiku baju ini. Ayo ulang, adik-adik! Alhamdulillahilladzi kasani hadza ats-tsauba. Sekali lagi! Alhamdulillahilladzi kasani hadza ats-tsauba.",
       "background": "living-room",
@@ -519,7 +524,12 @@
       "screenText": "Ayo ulang!",
       "props": [
         "pillow"
-      ]
+      ],
+      "prayer": {
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا الثَّوْبَ وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",
+        "latin": "Alhamdulillahilladzi kasani hadza ats-tsauba wa razaqanihi min ghairi haulin minni wa la quwwah",
+        "meaning": "Segala puji bagi Allah yang telah memberiku pakaian ini dan memberikannya kepadaku tanpa daya dan kekuatan dariku. (HR. Abu Dawud no. 4023)"
+      }
     },
     {
       "type": "story",

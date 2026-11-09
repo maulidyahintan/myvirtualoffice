@@ -58,12 +58,12 @@
       },
       {
         "time": "18:30",
-        "format": "all"
+        "format": "short"
       }
     ],
     "reason": "Rutin setiap hari: 1 Shorts + 1 video biasa.\n\n- **Shorts 16.00**: anak pulang sekolah/selesai tidur siang, jam ramai menonton Shorts.\n- **Video biasa 18.30**: selepas Maghrib, orang tua punya waktu mendampingi menonton video yang lebih panjang.\n\nTinjau ulang setelah 2–4 minggu dengan data Analytics (jam penonton paling aktif).",
     "by": "owner",
-    "modified": "2026-10-31T02:58:42.459Z"
+    "modified": "2026-11-09T12:37:48.796Z"
   },
   "characterVoices": {
     "narrator": {

@@ -1,9 +1,9 @@
 {
   "id": "arti-surat-an-nas-tiga-nama-allah-untuk--c501",
   "created": "2026-10-30T12:11:59.290Z",
-  "modified": "2026-10-30T12:14:44.592Z",
-  "status": "needs_video_approval",
-  "statusNote": "Video siap ditonton & disetujui",
+  "modified": "2026-11-09T11:58:08.880Z",
+  "status": "scheduled",
+  "statusNote": "Terjadwal tayang 2026-11-12T05:00:00.000Z",
   "idea": {
     "title": "Arti Surat An-Nas: Tiga Nama Allah untuk Anak",
     "series": "asbabun-nuzul",
@@ -169,6 +169,36 @@
       "time": "2026-10-30T12:14:44.592Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-09T11:58:01.431Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-12 12:00"
+    },
+    {
+      "time": "2026-11-09T11:58:02.271Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T11:58:08.879Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Asbabun Nuzul\""
+    },
+    {
+      "time": "2026-11-09T11:58:08.880Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-12T05:00:00.000Z"
     }
-  ]
+  ],
+  "selectedSchedule": "2026-11-12T05:00:00.000Z",
+  "youtube": {
+    "videoId": "5yqOZx32yFY",
+    "url": "https://www.youtube.com/watch?v=5yqOZx32yFY",
+    "publishTime": "2026-11-12T05:00:00.000Z",
+    "playlist": {
+      "name": "Asbabun Nuzul",
+      "id": "PLD-usmJsNuYc"
+    }
+  }
 }

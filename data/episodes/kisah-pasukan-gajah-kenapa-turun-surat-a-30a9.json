@@ -1,8 +1,8 @@
 {
   "id": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9",
   "created": "2026-11-05T03:44:27.212Z",
-  "modified": "2026-11-05T15:05:31.227Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-09T11:52:48.741Z",
+  "status": "scheduled",
   "idea": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
     "series": "asbabun-nuzul",
@@ -431,10 +431,30 @@
       "time": "2026-11-05T15:05:31.227Z",
       "by": "ilustrator",
       "message": "5 ilustrasi siap. Cek di halaman episode, lalu render ulang supaya masuk ke video."
+    },
+    {
+      "time": "2026-11-09T11:52:27.748Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-10 16:00"
+    },
+    {
+      "time": "2026-11-09T11:52:28.667Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-09T11:52:48.740Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Asbabun Nuzul\""
+    },
+    {
+      "time": "2026-11-09T11:52:48.741Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-10T09:00:00.000Z"
     }
   ],
   "twin": "kisah-pasukan-gajah-kenapa-turun-surat-a-12a4",
-  "statusNote": "Edit ulang video",
+  "statusNote": "Terjadwal tayang 2026-11-10T09:00:00.000Z",
   "script": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
     "summary": "Mamas bermain dengan gajah kayu barunya dan merasa gajahnya paling kuat. Ibu lalu bercerita tentang pasukan gajah yang kisahnya ada di Surat Al-Fil. Narator menceritakan Abrahah, penguasa di negeri Yaman. Ia membangun bangunan yang sangat megah dan ingin orang berhenti berkunjung ke Ka'bah. Ia datang membawa pasukan gajah untuk merobohkan Ka'bah. Allah mengalahkannya dengan burung-burung yang datang berbondong-bondong membawa batu dari tanah yang dibakar. Ibu menjelaskan bahwa peristiwa itu terjadi pada Tahun Gajah, tahun lahirnya Nabi Muhammad ﷺ. Bertahun-tahun kemudian, Surat Al-Fil turun di Makkah sebagai pengingat bahwa Allah yang menjaga Ka'bah. Pelajarannya: kekuatan sejati milik Allah, jadi jangan sombong. Surat Al-Fil tidak dibacakan. Isinya hanya diceritakan dan dijelaskan artinya. Mamas membacakan sebagian QS. Luqman: 18 lalu menjelaskan artinya. Setelah itu Mamas mengingat bahwa Ka'bah dijaga Allah dan kita juga dijaga Allah, lalu mengucapkan \"Ḥasbunallāhu wa ni'mal wakīl\" (QS. Ali 'Imran: 173). Visual kisahnya cukup siluet gajah, gurun, langit, burung, dan batu kecil, tanpa tokoh manusia.",
@@ -1119,7 +1139,7 @@
       "offset": 2.133
     }
   ],
-  "selectedSchedule": "2026-11-06T09:00:00.000Z",
+  "selectedSchedule": "2026-11-10T09:00:00.000Z",
   "youtubeHistory": [
     {
       "videoId": "yXyLXmCFeNg",
@@ -1132,5 +1152,14 @@
       "withdrawn": "2026-11-05T10:56:56.004Z"
     }
   ],
-  "visualStyle": "ai-illustration"
+  "visualStyle": "ai-illustration",
+  "youtube": {
+    "videoId": "-bEn1wwhfAc",
+    "url": "https://www.youtube.com/watch?v=-bEn1wwhfAc",
+    "publishTime": "2026-11-10T09:00:00.000Z",
+    "playlist": {
+      "name": "Asbabun Nuzul",
+      "id": "PLD-usmJsNuYc"
+    }
+  }
 }

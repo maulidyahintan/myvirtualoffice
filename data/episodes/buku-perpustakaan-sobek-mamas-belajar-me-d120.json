@@ -1,8 +1,8 @@
 {
   "id": "buku-perpustakaan-sobek-mamas-belajar-me-d120",
   "created": "2026-11-06T04:57:59.428Z",
-  "modified": "2026-11-06T10:13:10.411Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-09T12:32:40.952Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
     "series": "kisah-sebelum-tidur",
@@ -16,7 +16,7 @@
       "QS. An-Nisa: 58"
     ]
   },
-  "revisionCount": 1,
+  "revisionCount": 2,
   "log": [
     {
       "time": "2026-11-06T04:57:59.428Z",
@@ -57,13 +57,178 @@
       "time": "2026-11-06T10:13:10.411Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T12:08:34.613Z",
+      "by": "pemilik",
+      "message": "Minta revisi: HAPUS ADEGAN 9 DAN 10"
+    },
+    {
+      "time": "2026-11-09T12:08:35.269Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-09T12:08:35.983Z",
+      "by": "tulis",
+      "message": "Agen penulis tidak mengembalikan JSON: Failed to authenticate: OAuth session expired and could not be refreshed"
+    },
+    {
+      "time": "2026-11-09T12:18:05.173Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-09T12:18:15.126Z",
+      "by": "pemilik",
+      "message": "Minta revisi: hapus adegan 9 dan 10"
+    },
+    {
+      "time": "2026-11-09T12:18:15.957Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-09T12:18:38.460Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:18:38.877Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T12:19:06.076Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:19:06.637Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-09T12:19:30.729Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:19:31.127Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-09T12:19:54.500Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:19:54.927Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T12:21:32.336Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T12:21:33.131Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T12:21:47.900Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:21:59.533Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T12:21:59.908Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-09T12:24:38.245Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-09T12:24:39.069Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 14 adegan dengan suara AI gratis (adegan 9 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-09T12:24:50.615Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/14)"
+    },
+    {
+      "time": "2026-11-09T12:24:58.676Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/14)"
+    },
+    {
+      "time": "2026-11-09T12:25:05.900Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:06.733Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (4/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:10.889Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (5/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:17.798Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (6/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:30.693Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (7/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:40.292Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (8/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:48.147Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (9/14)"
+    },
+    {
+      "time": "2026-11-09T12:26:48.389Z",
+      "by": "pengisi-suara",
+      "message": "9 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari) · rekam sendiri adegan 9, 11, 12, 13, 14, 15"
+    },
+    {
+      "time": "2026-11-09T12:32:30.742Z",
+      "by": "pemilik",
+      "message": "Adegan 9 dihapus: \"Innallāha ya'murukum an tu'addul amānāti ilā ahlihā.\""
+    },
+    {
+      "time": "2026-11-09T12:32:40.952Z",
+      "by": "pemilik",
+      "message": "Adegan 9 dihapus: \"Artinya, Allah menyuruh kita menyampaikan amanah kepada yang berhak. Jadi, buku …\""
     }
   ],
   "twin": "buku-perpustakaan-sobek-mamas-belajar-me-aeca",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
-    "summary": "Mamas meminjam buku bergambar dari perpustakaan. Saat ia membaca di kasur, Mochi melompat mengejar gambar kupu-kupu, dan halaman buku itu sobek. Mamas takut, lalu menyembunyikan buku itu di bawah bantal. Ibu melihat bantalnya menggembung. Mamas pun berkata jujur kepada Ibu. Ibu menjelaskan bahwa barang pinjaman adalah amanah (QS. An-Nisa: 58). Malam itu mereka memperbaiki buku bersama. Besoknya Mamas mengembalikan buku itu dan mengaku jujur kepada petugas perpustakaan. Mamas tetap dipercaya dan boleh meminjam buku lagi.",
+    "summary": "Mamas meminjam buku bergambar dari perpustakaan. Saat ia membaca di kasur, Mochi melompat mengejar gambar kupu-kupu, dan halaman buku itu sobek. Mamas takut, lalu menyembunyikan buku itu di bawah bantal. Ibu melihat bantalnya menggembung, dan Mamas pun berkata jujur. Ibu menjelaskan bahwa barang pinjaman adalah amanah. Mamas membaca penggalan QS. An-Nisa: 58, lalu Ibu menjelaskan artinya. Malam itu mereka memperbaiki buku bersama. Besoknya Mamas mengembalikan buku itu dan berkata jujur kepada petugas perpustakaan. Mamas tetap dipercaya dan boleh meminjam buku lagi.",
     "scenes": [
       {
         "type": "story",
@@ -86,7 +251,7 @@
       {
         "type": "story",
         "speaker": "narrator",
-        "narration": "Mochi ikut bersembunyi di balik selimut. Tapi ekornya yang oranye kelihatan. Hihi, Mochi, kamu tidak pandai bersembunyi!",
+        "narration": "Mochi ikut sembunyi, tapi ekornya kelihatan. Hihi!",
         "visualDirection": "Kamar malam, gundukan selimut dengan ekor oranye Mochi mencuat dan bergoyang pelan, suasana lucu."
       },
       {
@@ -110,20 +275,8 @@
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan.",
+        "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan. Ayo, Mas, kita baca.",
         "visualDirection": "Kamar malam, Ibu duduk di tepi kasur dan merangkul Mamas dengan hangat."
-      },
-      {
-        "type": "story",
-        "speaker": "mamas",
-        "narration": "Innallāha ya'murukum an tu'addul amānāti ilā ahlihā.",
-        "visualDirection": "Kamar malam yang tenang dengan cahaya lampu lembut, Mamas membaca dengan khusyuk."
-      },
-      {
-        "type": "story",
-        "speaker": "mother",
-        "narration": "Artinya, sesungguhnya Allah menyuruh kalian menyampaikan amanah kepada yang berhak. Jadi, kita kembalikan bukunya, dan bilang yang sebenarnya, ya.",
-        "visualDirection": "Kamar malam, Ibu tersenyum dan Mamas mengangguk mantap."
       },
       {
         "type": "story",
@@ -152,7 +305,7 @@
       {
         "type": "story",
         "speaker": "narrator",
-        "narration": "Adik-adik, barang pinjaman itu amanah. Kita jaga, kita kembalikan, dan jujur kalau rusak. Selamat tidur. Wassalamu'alaikum!",
+        "narration": "Malamnya, Mamas tidur dengan hati tenang. Adik-adik, barang pinjaman itu amanah. Kita jaga, kita kembalikan, dan jujur kalau rusak. Selamat tidur. Wassalamu'alaikum!",
         "visualDirection": "Kamar malam, Mamas tidur nyenyak dan buku baru tersimpan rapi di meja, Mochi meringkuk di kaki kasur."
       }
     ],
@@ -170,21 +323,370 @@
     "decision": "approved",
     "score": 9,
     "notes": [
-      "Syariat aman: tidak ada visual Nabi, sahabat, atau malaikat. Satu-satunya dalil adalah QS. An-Nisa [4]: 58, penggalan awal. Teks Arab, latin, dan terjemahnya sesuai. Tidak ada keutamaan amalan yang dikarang.",
-      "Pemisahan bacaan Arab sudah benar. Scene 9 hanya berisi latin ayat. Pengantarnya ada di scene 8, artinya di scene 10. Pembacanya Mamas (speaker: mamas), sesuai aturan.",
-      "Panjang 247 kata, masih dalam batas. Tempo sudah padat, alurnya langsung: sobek → sembunyi → ketahuan → jujur → ayat → perbaiki → mengembalikan → dipercaya. Tidak ada scene yang perlu dibuang.",
-      "Perilaku negatif (menyembunyikan buku) diselesaikan dengan jelas. Mamas jujur, memperbaiki buku, minta maaf, lalu tetap dipercaya. Pesan moral tidak menakut-nakuti dan cocok untuk usia 4–6.",
-      "Momen interaktif ada di scene 7. Saran opsional: beri jeda hening ±2 detik setelah 'Ayo, pikirkan dulu…' supaya anak sempat menjawab.",
-      "Saran opsional untuk scene 13: Mamas berkata 'karena kucingku'. Bisa ditambah 'aku kurang hati-hati' supaya Mamas jelas bertanggung jawab, bukan menyalahkan Mochi. Contoh: 'Bu Ani, maaf, bukunya sobek. Aku kurang hati-hati.' Tetap ≤ 12 kata.",
-      "Saran opsional untuk scene 1: narasi bilang 'Sore tadi', sedangkan visualnya kamar malam. Ini konsisten karena ceritanya terjadi malam setelah meminjam. Pastikan saja kalimatnya tidak membingungkan, misalnya ganti jadi 'Tadi sore'.",
-      "Scene 12 dan 14 menyebut petugas perpustakaan. Bu Ani hanya muncul di narasi dan tidak punya dialog langsung, jadi sesuai pedoman. Pastikan generator gambar benar-benar tidak menampilkan sosok petugas."
+      "Opsional (scene 11): selotip bening bisa diganti dengan 'merapikan halaman pelan-pelan, lalu besok minta tolong Bu Ani cara memperbaikinya'. Alasannya, banyak perpustakaan tidak ingin buku diperbaiki sendiri. Kalau ingin tetap memakai selotip juga tidak masalah.",
+      "Opsional (scene 10): agar maknanya tidak sempit, Ibu bisa menambah satu kalimat pendek: 'Kalau rusak, kita jujur dan minta maaf.' Kalimat ini menyambungkan ayat dengan sikap jujur, karena ayatnya sendiri tentang mengembalikan amanah, bukan tentang jujur.",
+      "Opsional (judul): tanda seru di judul tidak menyesatkan karena isinya memang sesuai cerita, jadi boleh dipertahankan.",
+      "Sudah baik: ayat dibaca Mamas di scene 9 tanpa campuran bahasa Indonesia, dan artinya ada di scene 10. Pertahankan pola ini."
     ],
     "humanCheck": [
-      "DALIL 1 — QS. An-Nisa [4]: 58, penggalan awal. Arab: إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا. Latin: 'Innallāha ya'murukum an tu'addul amānāti ilā ahlihā'. Terjemah: 'Sesungguhnya Allah menyuruh kamu menyampaikan amanah kepada yang berhak menerimanya.' Cocokkan dengan mushaf dan terjemah Kemenag.",
-      "Konteks ayat: asbabun nuzul An-Nisa 58 terkait penyerahan kunci Ka'bah, tetapi maknanya umum untuk semua amanah. Pastikan Anda nyaman ayat ini dipakai untuk 'barang pinjaman'. Menurut saya ini wajar dan umum dipakai.",
-      "Pelafalan suara Mamas (TTS) untuk scene 9: dengarkan hasil audionya dan pastikan bacaan ayat tidak salah ucap, terutama panjang-pendek 'tu'addul amānāti'.",
-      "Visual scene 12 & 14: pastikan petugas perpustakaan (Bu Ani) tidak tergambar dan hanya Mamas, Ibu, serta Mochi yang tampil.",
-      "Pastikan tidak ada musik instrumen di hasil akhir, hanya suara dan efek ringan seperti 'Kreeek'. Efek sobek jangan terlalu keras."
+      "Dalil: QS. An-Nisa [4]: 58 (penggalan awal). Arab: إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا. Latin: Innallāha ya'murukum an tu'addul amānāti ilā ahlihā. Terjemah: 'Sesungguhnya Allah menyuruh kamu menyampaikan amanah kepada yang berhak menerimanya.' Cocokkan dengan mushaf dan terjemah Kemenag.",
+      "Pastikan transliterasi 'tu'addul amānāti' terbaca dengan benar oleh suara Mamas (TTS), terutama hamzah dan mad.",
+      "Penerapan ayat 4:58 pada barang pinjaman sehari-hari adalah penerapan makna umum amanah, dan menurut saya wajar. Tetap konfirmasi bahwa Anda nyaman dengan penerapan ini.",
+      "Cek visual scene 12–14: petugas perpustakaan (Bu Ani) memang tidak digambar, cukup meja kosong atau sudut pandang dari arah petugas."
     ]
-  }
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Sore tadi, Mamas meminjam buku bergambar dari perpustakaan. Bukunya tentang unta di gurun.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Buku Pinjaman",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mamas membaca di kasur. Tiba-tiba, Mochi melompat mengejar gambar kupu-kupu di buku. Kreeek! Halamannya sobek!",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "screenText": "Kreeek!",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Mochi! Aduh, bukunya sobek… Nanti aku dimarahi. Hmm, aku sembunyikan saja di bawah bantal, ya?",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mochi ikut sembunyi, tapi ekornya kelihatan. Hihi!",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mas, kok bantalnya menggembung? Ada apa di situ?",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu… bukunya sobek. Mochi yang lompat. Tapi aku takut bilang ke Bu Ani di perpustakaan.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Adik-adik, menurut kalian, apa yang harus Mamas lakukan? Menyembunyikan bukunya, atau berkata jujur? Ayo, pikirkan dulu…",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Sembunyi atau jujur?",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan. Ayo, Mas, kita baca.",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Pinjaman itu amanah",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Malam itu, Mamas dan Ibu menempel halaman sobek dengan selotip bening, pelan-pelan. Mochi duduk diam, seperti ikut minta maaf.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Besoknya, di perpustakaan, Mamas memberikan buku itu kepada Bu Ani. Dengan suara kecil, Mamas berkata jujur dan minta maaf.",
+      "background": "library",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "calm",
+      "props": [
+        "book"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Bu Ani, maaf, bukunya sobek karena kucingku. Lain kali, aku baca di meja, jauh dari Mochi.",
+      "background": "library",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "sad",
+      "screenText": "Maaf, Bu Ani",
+      "props": [
+        "book"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Bu Ani tersenyum dan berterima kasih karena Mamas jujur. Mamas pun boleh meminjam buku lagi. Orang yang jujur itu dipercaya dan disayang.",
+      "background": "library",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "happy",
+      "screenText": "Jujur itu dipercaya",
+      "props": [
+        "book"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Malamnya, Mamas tidur dengan hati tenang. Adik-adik, barang pinjaman itu amanah. Kita jaga, kita kembalikan, dan jujur kalau rusak. Selamat tidur. Wassalamu'alaikum!",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Jaga amanah",
+      "props": [
+        "pillow",
+        "book"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Menjaga Amanah Barang Pinjaman | Kisah Sebelum Tidur Mamas",
+    "description": "Cerita anak islami tentang amanah dan jujur: buku pinjaman perpustakaan Mamas sobek. Apakah Mamas menyembunyikannya, atau berkata jujur?\n\nMamas meminjam buku bergambar tentang unta dari perpustakaan. Saat Mamas membaca di kasur, Mochi melompat mengejar gambar kupu-kupu, lalu halaman buku sobek. Mamas takut dan menyembunyikan buku itu di bawah bantal. Ibu bertanya dengan lembut, dan Mamas pun bercerita jujur. Ibu menjelaskan bahwa barang pinjaman adalah amanah. Malam itu mereka memperbaiki buku bersama-sama. Besoknya, Mamas mengembalikan buku dan meminta maaf kepada petugas perpustakaan.\n\nPelajaran hari ini:\n• Barang pinjaman adalah amanah, harus dijaga dan dikembalikan.\n• Kalau barang rusak, berkata jujur dan minta maaf, jangan disembunyikan.\n• Orang yang jujur akan dipercaya dan disayang.\n\nDalil:\n\"Sesungguhnya Allah menyuruh kamu menyampaikan amanah kepada yang berhak menerimanya.\" (QS. An-Nisa [4]: 58, penggalan awal ayat)\n\nAyah dan Bunda, yuk temani si kecil menonton. Setelah itu, ajak ia bercerita: apa yang akan ia lakukan kalau meminjam barang teman lalu rusak? Tonton juga kisah sebelum tidur Mamas lainnya untuk menemani waktu tidur keluarga.\n\n#CeritaIslamiAnak #KisahSebelumTidur #AkhlakAnak",
+    "tags": [
+      "cerita islami anak",
+      "kisah sebelum tidur",
+      "dongeng sebelum tidur islami",
+      "cerita anak jujur",
+      "amanah untuk anak",
+      "menjaga barang pinjaman",
+      "cerita anak tentang amanah",
+      "belajar jujur untuk anak",
+      "akhlak anak muslim",
+      "QS An-Nisa ayat 58",
+      "cerita anak perpustakaan",
+      "kartun islami anak",
+      "Mamas dan Ibu",
+      "cerita anak 4-6 tahun",
+      "pendidikan karakter anak muslim"
+    ],
+    "thumbnailText": "Bukunya Sobek, Jujur?"
+  },
+  "audioPerScene": [
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-1-ai-mw98hfhx.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-2-ai-mw98hlpt.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-3-ai-mw98hrai.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-4-ai-mw98j28b.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-5-ai-mw98j5fp.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-6-ai-mw98jaro.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-7-ai-mw98jkpv.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-8-ai-mw98js4i.wav",
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "recordingMode": "per-scene"
 }
