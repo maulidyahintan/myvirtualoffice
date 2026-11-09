@@ -1,5 +1,6 @@
 // Playlist YouTube per tipe video: cari playlist channel berdasarkan nama, buat kalau belum ada,
-// lalu masukkan video (tanpa dobel). ID playlist disimpan di kantor.config.json (youtubePlaylists).
+// lalu masukkan video (tanpa dobel). Shorts punya playlist sendiri ("Hafalan Shorts"), terpisah dari video
+// biasa. ID playlist disimpan di kantor.config.json (youtubePlaylists).
 import { loadConfig, playlistName, saveConfig, type Episode } from '@kantor/shared';
 import { youtubeWrite } from './client.ts';
 
@@ -8,6 +9,13 @@ const DESKRIPSI: Record<string, string> = {
   'Asbabun Nuzul': 'Kisah sebab turunnya ayat Al-Qur\'an, diceritakan dengan bahasa sederhana untuk anak.',
   'Obrolan Islami Anak': 'Obrolan hangat Mamas dan Ibu tentang adab, doa harian, dan akhlak islami untuk anak.',
 };
+
+/** Playlist description; a Shorts playlist reuses its series text. */
+function description(name: string): string {
+  const base = name.replace(/ Shorts$/, '');
+  const text = DESKRIPSI[base] ?? `Kumpulan video ${base} untuk anak.`;
+  return base === name ? text : `${text} Versi Shorts (video pendek).`;
+}
 
 /** Playlist ID for this name: from cache, from channel playlist list, or create new. */
 export async function playlistId(name: string): Promise<{ id: string; isNew: boolean }> {
@@ -29,7 +37,7 @@ export async function playlistId(name: string): Promise<{ id: string; isNew: boo
     const r = await yt.playlists.insert({
       part: ['snippet', 'status'],
       requestBody: {
-        snippet: { title: name, description: DESKRIPSI[name] ?? `Kumpulan video ${name} untuk anak.`, defaultLanguage: 'id' },
+        snippet: { title: name, description: description(name), defaultLanguage: 'id' },
         status: { privacyStatus: 'public' },
       },
     });
@@ -48,8 +56,8 @@ export async function playlistId(name: string): Promise<{ id: string; isNew: boo
 export async function addToPlaylist(ep: Episode, videoId: string): Promise<{ name: string; id: string; message: string }> {
   const cfg = loadConfig();
   const yt = youtubeWrite();
-  // Manually filled playlist ID per series is prioritized
-  const manual = cfg.series.find((s) => s.id === ep.idea.series)?.playlistId?.trim();
+  // Manually filled playlist ID per series is prioritized (regular videos only: Shorts go to their own playlist)
+  const manual = ep.idea.format === 'short' ? undefined : cfg.series.find((s) => s.id === ep.idea.series)?.playlistId?.trim();
   const name = playlistName(ep, cfg);
   const { id, isNew } = manual ? { id: manual, isNew: false } : await playlistId(name);
 

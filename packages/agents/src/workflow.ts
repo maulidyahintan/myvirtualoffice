@@ -9,6 +9,7 @@ import {
   isoToLocal,
   latestFile,
   listEpisodes,
+  needsPlaylist,
   loadConfig,
   allowedBackgrounds,
   visualStyle,
@@ -752,7 +753,7 @@ export async function upload(id: string, publishTime?: string) {
  * sudah diupload tapi belum tercatat masuk playlist.
  */
 export async function addToPlaylists(id?: string) {
-  const daftar = id ? [getEpisode(id)] : listEpisodes().filter((e) => e.youtube && !e.youtube.playlist);
+  const daftar = id ? [getEpisode(id)] : listEpisodes().filter((e) => needsPlaylist(e));
   for (const ep of daftar) {
     if (!ep.youtube) {
       log(ep.id, 'channel-manager')('Belum diupload ke YouTube, belum bisa dimasukkan ke playlist');
@@ -760,10 +761,21 @@ export async function addToPlaylists(id?: string) {
     }
     try {
       const result = await addToPlaylist(ep, ep.youtube.videoId);
+      // was in another playlist (e.g. a Short in the video playlist, before Shorts got their own): take it out there
+      const old = ep.youtube.playlist;
+      let moved = '';
+      if (old && old.id !== result.id) {
+        try {
+          await removeFromPlaylist(old.id, ep.youtube.videoId);
+          moved = `; dikeluarkan dari playlist "${old.name}"`;
+        } catch (e) {
+          moved = `; gagal dikeluarkan dari playlist "${old.name}": ${(e as Error).message}`;
+        }
+      }
       updateEpisode(ep.id, (e) => {
-        if (e.youtube) e.youtube.playlist = {name: result.name, id: result.id };
+        if (e.youtube) e.youtube.playlist = { name: result.name, id: result.id };
       });
-      log(ep.id, 'channel-manager')(result.message);
+      log(ep.id, 'channel-manager')(result.message + moved);
     } catch (e) {
       log(ep.id, 'channel-manager')(`Gagal memasukkan ke playlist: ${(e as Error).message}`);
     }

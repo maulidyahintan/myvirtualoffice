@@ -1,7 +1,7 @@
 // Thumbnail plan: every playlist has its own look (label, accent color, kind of places), and episodes
 // within a playlist vary (background from the episode's own places, layout side, expression) so the
 // channel page doesn't show the same cover over and over.
-import { playlistName } from './store.ts';
+import { basePlaylistName } from './store.ts';
 import { visualStyle } from './channel.ts';
 import type { AppConfig, Background, Character, Episode, Expression, KnownKeys, ThumbnailProps } from './types.ts';
 
@@ -50,7 +50,8 @@ function expressionFor(title: string): Expression {
 }
 
 export function thumbnailPlan(ep: Episode, text: string, cfg: AppConfig): Omit<KnownKeys<ThumbnailProps>, 'characterLooks'> {
-  const playlist = playlistName(ep, cfg);
+  // the series look, shared by its video and Shorts playlists
+  const playlist = basePlaylistName(ep, cfg);
   const look = lookFor(playlist);
   const h = hash(ep.id);
   const scenes = ep.scenes ?? [];

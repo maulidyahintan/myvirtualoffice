@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import type { ChatAgent, Episode, EpisodeStatus, Idea, AppConfig, ChatMessage, DailyResearch } from './types.ts';
+import type { ChatAgent, Episode, EpisodeStatus, Format, Idea, AppConfig, ChatMessage, DailyResearch } from './types.ts';
 import { voiceFilter, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
 
 let rootCache: string | undefined;
@@ -121,10 +121,25 @@ export function autoShortsCount(seconds: number | undefined): number {
 /** Default playlists: memorization → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", other series → "Obrolan Islami Anak". */
 export const DEFAULT_PLAYLISTS = ['Hafalan', 'Asbabun Nuzul', 'Obrolan Islami Anak'] as const;
 
-/** YouTube playlist name destination for an episode (can be configured per series in Settings). */
-export function playlistName(ep: Episode, cfg: AppConfig = loadConfig()): string {
+/** Shorts get a playlist of their own next to the regular videos: "Hafalan" → "Hafalan Shorts". */
+export function formatPlaylist(base: string, format: Format | undefined): string {
+  return format === 'short' ? `${base} Shorts` : base;
+}
+
+/** Series playlist of an episode, regardless of format (memorization always goes to the memorization series). */
+export function basePlaylistName(ep: Episode, cfg: AppConfig = loadConfig()): string {
   if (ep.idea.type === 'memorization' && ep.idea.series !== 'hafalan') return seriesPlaylist('hafalan', cfg);
   return seriesPlaylist(ep.idea.series, cfg);
+}
+
+/** YouTube playlist name destination for an episode: its series playlist, with Shorts in a separate one. */
+export function playlistName(ep: Episode, cfg: AppConfig = loadConfig()): string {
+  return formatPlaylist(basePlaylistName(ep, cfg), ep.idea.format);
+}
+
+/** Uploaded video that is not in a playlist yet, or still sits in the wrong one (e.g. a Short in the video playlist). */
+export function needsPlaylist(ep: Episode, cfg: AppConfig = loadConfig()): boolean {
+  return Boolean(ep.youtube) && ep.youtube!.playlist?.name !== playlistName(ep, cfg);
 }
 
 /** Playlist name for one series: configured in Settings, or default. */

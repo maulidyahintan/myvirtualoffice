@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FORMAT_LABEL, listEpisodes, loadConfig, playlistName, isBusy, type Episode } from '@kantor/shared';
+import { FORMAT_LABEL, listEpisodes, loadConfig, playlistName, needsPlaylist, isBusy, type Episode } from '@kantor/shared';
 import { addAllToPlaylists } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { SubmitButton } from '@/components/SubmitButton';
@@ -72,7 +72,8 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
     short: diupload.filter((e) => formatnya(e) === 'short').length,
     lengkap: diupload.filter(punyaFormatLain).length,
   };
-  const belumPlaylist = diupload.filter((e) => !e.youtube?.playlist).length;
+  // belum masuk playlist, atau masih di playlist yang salah (Shorts di playlist video biasa)
+  const belumPlaylist = diupload.filter((e) => needsPlaylist(e, cfg)).length;
   const namaSeri = (id: string) => cfg.series.find((s) => s.id === id)?.name ?? id;
   const tanggal = (iso: string) =>
     new Date(iso).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short', timeZone: cfg.timeZone });
@@ -203,6 +204,7 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
                         <a href={`https://www.youtube.com/playlist?list=${e.youtube.playlist.id}`} target="_blank" rel="noreferrer">
                           {e.youtube.playlist.name}
                         </a>
+                        {needsPlaylist(e, cfg) ? <span className="muted"> (akan dipindah ke {playlistName(e, cfg)})</span> : null}
                       </>
                     ) : (
                       <span className="muted">📂 Belum masuk playlist ({playlistName(e, cfg)})</span>

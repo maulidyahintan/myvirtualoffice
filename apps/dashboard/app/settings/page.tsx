@@ -11,6 +11,8 @@ import {
   dailySchedulerFile,
   listEpisodes,
   seriesPlaylist,
+  formatPlaylist,
+  needsPlaylist,
   dailyResearchSettings,
   isBusy,
   memorizationVoice,
@@ -196,9 +198,9 @@ function PengaturanSuara() {
 function PengaturanPlaylist() {
   const cfg = loadConfig();
   const tanpaSetelan = { ...cfg, seri: cfg.series.map(({ playlist: _, ...s }) => s) };
-  const belum = listEpisodes().filter((e) => e.youtube && !e.youtube.playlist).length;
+  const belum = listEpisodes().filter((e) => needsPlaylist(e, cfg)).length;
   const sibuk = isBusy('playlist');
-  const dipakai = [...new Set(cfg.series.map((s) => seriesPlaylist(s.id, cfg)))];
+  const dipakai = [...new Set(cfg.series.flatMap((s) => [seriesPlaylist(s.id, cfg), formatPlaylist(seriesPlaylist(s.id, cfg), 'short')]))];
   return (
     <Collapsible
       id="playlist"
@@ -206,8 +208,9 @@ function PengaturanPlaylist() {
       ringkasan={`${dipakai.length} playlist · ${belum ? `${belum} video belum masuk` : 'semua video sudah masuk'}`}
     >
       <p className="muted kecil" style={{ margin: 0 }}>
-        Setiap video yang diupload langsung dimasukkan ke playlist sesuai seri/tipenya (video biasa & Shorts). Playlist dicari berdasarkan
-        nama di channel; kalau belum ada, dibuat otomatis (publik). Kosongkan untuk memakai bawaan.
+        Setiap video yang diupload langsung dimasukkan ke playlist sesuai seri/tipenya. Shorts punya playlist sendiri: nama playlist
+        ditambah &quot;Shorts&quot; (misal Hafalan → Hafalan Shorts). Playlist dicari berdasarkan nama di channel; kalau belum ada, dibuat
+        otomatis (publik). Kosongkan untuk memakai bawaan.
       </p>
       <form action={savePlaylists} className="stack" style={{ gap: 8 }}>
         {cfg.series.map((s) => (
@@ -239,7 +242,7 @@ function PengaturanPlaylist() {
         <p className="kecil">⏳ Memasukkan video ke playlist…</p>
       ) : belum ? (
         <form action={addAllToPlaylists}>
-          <SubmitButton className="sekunder" teksProses="Memproses…">📂 Masukkan {belum} video yang sudah diupload ke playlist</SubmitButton>
+          <SubmitButton className="sekunder" teksProses="Memproses…">📂 Masukkan / pindahkan {belum} video ke playlist yang benar</SubmitButton>
         </form>
       ) : (
         <p className="kecil muted" style={{ margin: 0 }}>
