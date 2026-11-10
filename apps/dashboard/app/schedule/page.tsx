@@ -133,17 +133,19 @@ function KalenderBulan({
   tautan: (t: string, b?: string) => string;
 }) {
   const awal = `${bulan}-01`;
-  // bulan berjalan: mulai dari minggu ini, 5 minggu ke depan (melewati batas bulan) supaya jadwal mendatang terlihat
-  const berjalan = bulan === hariIni.slice(0, 7);
-  const titikAwal = berjalan ? hariIni : awal;
-  const geser = URUTAN_HARI.indexOf(addDays(titikAwal, 0).day);
-  let sel = Array.from({ length: berjalan ? 35 : 42 }, (_, n) => addDays(titikAwal, n - geser));
-  // bulan lain: 6 minggu cukup; minggu terakhir yang seluruhnya bulan depan dibuang
-  if (!berjalan) while (sel.length > 28 && sel.slice(-7).every((h) => !h.date.startsWith(bulan))) sel = sel.slice(0, -7);
-  const judulKalender = berjalan
-    ? `${tglPendek(sel[0].date, { day: 'numeric', month: 'short' })} – ${tglPendek(sel.at(-1)!.date, { day: 'numeric', month: 'short', year: 'numeric' })}`
-    : tglPendek(awal, { month: 'long', year: 'numeric' });
   const [th, bl] = bulan.split('-').map(Number);
+  const berjalan = bulan === hariIni.slice(0, 7);
+  // satu bulan penuh, Senin sebelum tanggal 1 sampai Minggu sesudah akhir bulan; bulan berjalan diperpanjang
+  // sampai minimal 2 minggu ke depan, supaya jadwal mendatang di awal bulan depan tetap terlihat
+  const akhirBulan = new Date(Date.UTC(th, bl, 0)).toISOString().slice(0, 10);
+  const duaMinggu = addDays(hariIni, 14).date;
+  const akhir = berjalan && duaMinggu > akhirBulan ? duaMinggu : akhirBulan;
+  const geser = URUTAN_HARI.indexOf(addDays(awal, 0).day);
+  const hariTampil = Math.round((Date.parse(`${akhir}T00:00:00Z`) - Date.parse(`${awal}T00:00:00Z`)) / 86_400_000) + 1 + geser;
+  const sel = Array.from({ length: Math.ceil(hariTampil / 7) * 7 }, (_, n) => addDays(awal, n - geser));
+  const judulKalender = akhir > akhirBulan
+    ? `${tglPendek(awal, { month: 'long' })} – ${tglPendek(sel.at(-1)!.date, { day: 'numeric', month: 'short', year: 'numeric' })}`
+    : tglPendek(awal, { month: 'long', year: 'numeric' });
   const geserBulan = (n: number) => {
     const d = new Date(Date.UTC(th, bl - 1 + n, 1));
     return d.toISOString().slice(0, 7);
@@ -163,7 +165,7 @@ function KalenderBulan({
           </Link>
           {berjalan ? null : (
             <Link href={tautan('kalender', hariIni.slice(0, 7))} className="kecil">
-              Kembali ke minggu ini
+              Kembali ke bulan ini
             </Link>
           )}
         </div>
@@ -189,7 +191,7 @@ function KalenderBulan({
         ))}
         {sel.map(({ date: tanggal, day: hari }) => {
           const hariItu = isi.filter((x) => x.local.startsWith(tanggal));
-          const luar = !berjalan && !tanggal.startsWith(bulan);
+          const luar = !tanggal.startsWith(bulan) && !(berjalan && tanggal > hariIni);
           const libur = !rencana.days.includes(hari);
           const kelas = ['kalender-sel', luar && 'luar', tanggal === hariIni && 'hari-ini', tanggal < hariIni && 'lewat', libur && 'libur']
             .filter(Boolean)
