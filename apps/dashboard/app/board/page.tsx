@@ -118,7 +118,7 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
                       {namaSeri(e.idea.series)} · usia {e.idea.age}
                     </div>
                   );
-                  if (k.key !== 'arsip') {
+                  if (k.key !== 'arsip' && k.key !== 'draft') {
                     return (
                       <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
                         <div className="judul">{judul}</div>
@@ -127,7 +127,7 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
                       </Link>
                     );
                   }
-                  // archive: the title link stretches over the whole card; the status row (with the delete
+                  // archive & draft: the title link stretches over the whole card; the status row (with the delete
                   // icon next to the badge) sits above it, so clicking the icon doesn't open the episode
                   return (
                     <div key={e.id} className="kartu kartu-arsip">

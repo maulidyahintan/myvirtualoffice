@@ -911,7 +911,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
   }
 }
 
-/** Hapus permanen episode di Arsip, dengan centang konfirmasi (tanpa dialog browser). */
+/** Hapus permanen episode di Draft atau Arsip, dengan centang konfirmasi (tanpa dialog browser). */
 function HapusEpisode({ ep }: { ep: Episode }) {
   const alasan = deleteBlockers(ep);
   return (
@@ -1275,10 +1275,14 @@ export default async function HalamanEpisode({
             {new Date(ep.draftedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', timeZone: cfgZona() })}: tidak dihitung di “Butuh kamu” dan
             tidak dijadwalkan. Kamu tetap bisa mengerjakannya; keluarkan dari Draft kalau sudah siap ditayangkan.
           </span>
-          <form action={restoreFromDraft}>
-            <Id id={ep.id} />
-            <SubmitButton className="sekunder">↩️ Keluarkan dari Draft</SubmitButton>
-          </form>
+          <div className="stack" style={{ gap: 6 }}>
+            <form action={restoreFromDraft}>
+              <Id id={ep.id} />
+              <SubmitButton className="sekunder">↩️ Keluarkan dari Draft</SubmitButton>
+            </form>
+            {/* rejected / error episodes already show it in their action panel */}
+            {ep.status === 'rejected' || ep.status === 'error' ? null : <HapusEpisode ep={ep} />}
+          </div>
         </div>
       ) : null}
 

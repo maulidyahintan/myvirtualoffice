@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import type { ChatAgent, Episode, EpisodeStatus, Format, Idea, AppConfig, ChatMessage, DailyResearch } from './types.ts';
-import { voiceFilter, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
+import { BUSY_STATUSES, voiceFilter, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
 
 let rootCache: string | undefined;
 
@@ -189,10 +189,11 @@ export function getEpisode(id: string): Episode {
 /** Statuses shown in the board's Archive column; only these episodes may be deleted. */
 export const ARCHIVE_STATUSES: EpisodeStatus[] = ['rejected', 'error'];
 
-/** Why this archived episode can't be deleted (empty = it can). */
+/** Why this archived or drafted episode can't be deleted (empty = it can). */
 export function deleteBlockers(ep: Episode, all: Episode[] = listEpisodes()): string[] {
   const why: string[] = [];
-  if (!ARCHIVE_STATUSES.includes(ep.status)) why.push('hanya episode di Arsip (ditolak / error) yang bisa dihapus');
+  if (!ARCHIVE_STATUSES.includes(ep.status) && !ep.draftedAt) why.push('hanya episode di Draft atau Arsip (ditolak / error) yang bisa dihapus');
+  if (BUSY_STATUSES.includes(ep.status)) why.push('episode sedang dikerjakan; tunggu sampai selesai');
   if (ep.youtube?.videoId) why.push('videonya pernah diupload ke YouTube, jadi datanya tetap disimpan');
   const shorts = all.filter((e) => e.source?.id === ep.id);
   if (shorts.length) why.push(`masih punya ${shorts.length} Shorts turunan; hapus Shorts-nya dulu`);
@@ -200,7 +201,7 @@ export function deleteBlockers(ep: Episode, all: Episode[] = listEpisodes()): st
 }
 
 /**
- * Permanently delete an archived episode with its recordings, renders, illustrations and logs, and drop
+ * Permanently delete an archived or drafted episode with its recordings, renders, illustrations and logs, and drop
  * links to it from other episodes (twin, Shorts list of its source). Throws when deleteBlockers() says no.
  */
 export function deleteEpisode(id: string): number {

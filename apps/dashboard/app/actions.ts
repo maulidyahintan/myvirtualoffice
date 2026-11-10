@@ -611,7 +611,7 @@ export async function fillAiVoices(form: FormData) {
   segarkan(id);
 }
 
-/** Hapus permanen episode di Arsip (ditolak / error), setelah pemilik mencentang konfirmasi. */
+/** Hapus permanen episode di Draft atau Arsip (ditolak / error), setelah pemilik mencentang konfirmasi. */
 export async function deleteArchivedEpisode(form: FormData) {
   const id = teks(form, 'id');
   if (form.get('yakin') !== 'on') return;
@@ -621,7 +621,7 @@ export async function deleteArchivedEpisode(form: FormData) {
   revalidatePath('/board');
   // back to the board as it was (filters, open columns) when deleted from a card
   const kembali = teks(form, 'kembali');
-  redirect(kembali.startsWith('/board') ? kembali : '/board?open=arsip');
+  redirect(kembali.startsWith('/board') ? kembali : `/board?open=${ep.draftedAt ? 'draft' : 'arsip'}`);
 }
 
 /**
