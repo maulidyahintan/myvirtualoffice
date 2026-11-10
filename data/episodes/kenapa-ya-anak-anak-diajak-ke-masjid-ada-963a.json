@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-963a",
   "created": "2026-11-06T10:12:09.986Z",
-  "modified": "2026-11-06T10:13:02.621Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-10T00:35:19.829Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
     "series": "kenapa-ya",
@@ -57,10 +57,40 @@
       "time": "2026-11-06T10:13:02.621Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T23:52:37.169Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T23:52:40.551Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T23:52:48.263Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T23:52:52.462Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T23:52:52.990Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-10T00:35:19.829Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "twin": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
     "summary": "Di depan masjid, Mochi berlari-lari dan Mamas bertanya kenapa anak-anak diajak ke masjid. Ibu menjawab bahwa masjid adalah rumah Allah, jadi kita belajar mencintainya sejak kecil. Adabnya: berjalan tenang, tidak berlari dan berteriak, masuk dengan kaki kanan, lalu membaca doa masuk masjid (HR. Muslim no. 713).",
@@ -128,5 +158,94 @@
       "Hadits berjalan tenang: 'Jika kalian mendengar iqamah, berjalanlah menuju shalat dengan tenang dan berwibawa, dan jangan tergesa-gesa.' Sumber: HR. Bukhari no. 636 dan Muslim no. 602, dari Abu Hurairah. Cek nomor dan terjemahnya. Hadits ini aslinya tentang berjalan menuju shalat. Di naskah dipakai sebagai dasar umum adab berjalan tenang di masjid. Pastikan Anda setuju dengan penerapan ini.",
       "Ada kucing (Mochi) di halaman masjid. Pastikan visualnya tidak menampilkan Mochi masuk ke dalam masjid atau ke area shalat."
     ]
-  }
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Mochi, jangan lari! Ibu, kenapa anak-anak diajak ke masjid?",
+      "background": "mosque",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "screenText": "Kenapa ke masjid?",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Karena masjid rumah Allah, Mas. Kita belajar mencintainya sejak kecil. Di sana, jalan tenang. Tidak berlari, tidak berteriak. Masuk dengan kaki kanan, lalu berdoa.",
+      "background": "mosque",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Jalan tenang"
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Allāhummaftaḥ lī abwāba raḥmatik.",
+      "background": "mosque",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+        "latin": "Allāhummaftaḥ lī abwāba raḥmatik",
+        "meaning": "Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu. (HR. Muslim no. 713)"
+      },
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Artinya, ya Allah, bukakanlah pintu-pintu rahmat-Mu. Yuk, jaga adab di rumah Allah!",
+      "background": "inside-mosque",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "happy",
+      "screenText": "Jaga adab masjid",
+      "props": [
+        "prayer-mat"
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Kenapa Anak Diajak ke Masjid? Adab di Rumah Allah",
+    "description": "Kenapa anak-anak diajak ke masjid? Mamas belajar adab masuk masjid dari Ibu: jalan tenang, masuk dengan kaki kanan, lalu membaca doa masuk masjid (HR. Muslim no. 713; HR. Bukhari no. 168 & Muslim no. 268).\n#Shorts #AdabMasjid #CeritaIslamiAnak",
+    "tags": [
+      "adab masuk masjid",
+      "doa masuk masjid",
+      "doa masuk masjid untuk anak",
+      "kenapa anak diajak ke masjid",
+      "adab anak di masjid",
+      "cerita islami anak",
+      "kenapa ya",
+      "belajar adab islami anak",
+      "shorts islami anak",
+      "mamas dan ibu"
+    ],
+    "thumbnailText": "Adab di Masjid"
+  },
+  "draftedAt": "2026-11-10T00:35:19.825Z"
 }

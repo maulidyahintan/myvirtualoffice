@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
   "created": "2026-11-02T10:11:06.546Z",
-  "modified": "2026-11-09T12:14:46.471Z",
-  "status": "needs_audio",
+  "modified": "2026-11-10T00:28:03.309Z",
+  "status": "scheduled",
   "idea": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
     "series": "kenapa-ya",
@@ -158,10 +158,50 @@
       "time": "2026-11-09T12:14:46.471Z",
       "by": "sutradara",
       "message": "Kartu doa (teks Arab) dipasang otomatis di adegan 9"
+    },
+    {
+      "time": "2026-11-09T23:44:36.771Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 9 diupload"
+    },
+    {
+      "time": "2026-11-09T23:50:51.079Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-09T23:50:54.172Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-09T23:55:19.590Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-10T00:27:39.962Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-13 16:00"
+    },
+    {
+      "time": "2026-11-10T00:27:40.823Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-10T00:28:03.308Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-10T00:28:03.309Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-13T09:00:00.000Z"
     }
   ],
   "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
-  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "statusNote": "Terjadwal tayang 2026-11-13T09:00:00.000Z",
   "script": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
     "summary": "Mamas pulang dari taman bermain sambil cemberut. Temannya, Raka, punya mobil remot baru, sedangkan mobil Mamas hanya mobil kayu lama. Ibu menjelaskan bahwa rasa itu namanya iri. Saat Mochi berguling lucu mengejar mobil kayu, Mamas sadar bahwa mainannya juga menyenangkan. Ibu lalu mengajarkan dua obat iri dari Rasulullah ﷺ. Pertama, lihat orang yang keadaannya di bawah kita supaya tidak meremehkan nikmat Allah (HR. Muslim no. 2963). Kedua, cintai untuk saudara apa yang kita cintai untuk diri sendiri (HR. Bukhari no. 13, Muslim no. 45). Mamas bersyukur dan berniat ikut senang untuk Raka. Raka hanya disebut di narasi dan tidak digambar.",
@@ -569,7 +609,7 @@
     "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-6-ai-mw4tn6e9.wav",
     "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-7-ai-mw4tnakk.wav",
     "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-8-ai-mw4tnfmj.wav",
-    null,
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-9-mw9wrmao.webm",
     "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-10-ai-mw4tpjcr.wav",
     "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-11-ai-mw4tpn3t.wav",
     "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-adegan-12-ai-mw4tpuyo.wav"
@@ -583,7 +623,7 @@
     null,
     null,
     null,
-    null,
+    2.133,
     null,
     null,
     null
@@ -602,5 +642,71 @@
     true,
     true
   ],
-  "recordingMode": "per-scene"
+  "recordingMode": "per-scene",
+  "audioFile": "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7-gabung.wav",
+  "render": {
+    "video": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7.mp4",
+    "thumbnail": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7.png",
+    "scenes": [
+      {
+        "start": 10,
+        "duration": 11.5
+      },
+      {
+        "start": 21.5,
+        "duration": 13.166666666666666
+      },
+      {
+        "start": 34.666666666666664,
+        "duration": 14.033333333333333
+      },
+      {
+        "start": 48.7,
+        "duration": 19.966666666666665
+      },
+      {
+        "start": 68.66666666666667,
+        "duration": 15.533333333333333
+      },
+      {
+        "start": 84.2,
+        "duration": 22.066666666666666
+      },
+      {
+        "start": 106.26666666666667,
+        "duration": 9.5
+      },
+      {
+        "start": 115.76666666666667,
+        "duration": 12.533333333333333
+      },
+      {
+        "start": 128.3,
+        "duration": 11.233333333333333
+      },
+      {
+        "start": 139.53333333333333,
+        "duration": 19.1
+      },
+      {
+        "start": 158.63333333333333,
+        "duration": 8.5
+      },
+      {
+        "start": 167.13333333333333,
+        "duration": 18.966666666666665
+      }
+    ],
+    "time": "2026-11-09T23:55:19.590Z"
+  },
+  "selectedSchedule": "2026-11-13T09:00:00.000Z",
+  "youtube": {
+    "videoId": "-LvDasVA_eY",
+    "url": "https://www.youtube.com/watch?v=-LvDasVA_eY",
+    "publishTime": "2026-11-13T09:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

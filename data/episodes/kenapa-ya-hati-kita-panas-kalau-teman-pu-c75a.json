@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
   "created": "2026-11-05T16:07:59.224Z",
-  "modified": "2026-11-05T16:08:50.929Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-10T00:35:35.505Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
     "series": "kenapa-ya",
@@ -58,10 +58,70 @@
       "time": "2026-11-05T16:08:50.929Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T23:52:03.388Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T23:52:08.940Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T23:52:22.052Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T23:52:25.105Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T23:52:25.650Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-10T00:29:04.042Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-10T00:29:04.880Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 4 adegan dengan suara AI gratis"
+    },
+    {
+      "time": "2026-11-10T00:29:09.071Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/4)"
+    },
+    {
+      "time": "2026-11-10T00:29:18.102Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/4)"
+    },
+    {
+      "time": "2026-11-10T00:29:25.775Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/4)"
+    },
+    {
+      "time": "2026-11-10T00:29:26.010Z",
+      "by": "pengisi-suara",
+      "message": "3 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari) · rekam sendiri adegan 4"
+    },
+    {
+      "time": "2026-11-10T00:35:35.505Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru? #Shorts",
     "summary": "Mamas merasa hatinya panas karena temannya, Raka, punya mainan baru. Ibu menjelaskan bahwa itu rasa iri dan obatnya adalah bersyukur. Caranya dengan melihat orang yang nikmatnya lebih sedikit (HR. Muslim no. 2963) dan ikut senang atas kebaikan teman (HR. Bukhari no. 13, Muslim no. 45). Mamas pun bersyukur dan mengucapkan selamat untuk temannya. Raka hanya disebut dalam dialog dan tidak digambar.",
@@ -125,5 +185,115 @@
       "Cek apakah parafrase di narasi scene 2 dan 3 masih setia pada makna kedua hadits.",
       "Cek apakah karakter Mamas (4 tahun) cocok untuk target usia 7–10, atau target usianya perlu disesuaikan."
     ]
-  }
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Bu, kenapa hatiku panas? Raka punya mainan baru!",
+      "background": "yard",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "screenText": "Hati panas?",
+      "props": [
+        "toy-box"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Itu rasa iri, Mas. Obatnya syukur. Nabi ﷺ bersabda, lihatlah orang di bawahmu. Supaya tidak meremehkan nikmat Allah.",
+      "background": "yard",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "toy-box"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Nabi ﷺ juga bersabda: iman belum sempurna, sampai kita mencintai untuk saudara, apa yang kita cintai untuk diri sendiri.",
+      "background": "yard",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "props": [
+        "toy-box"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Alhamdulillah, mainanku juga banyak. Selamat ya, Raka! Hati panas? Ganti dengan syukur, ya!",
+      "background": "yard",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Ganti dengan syukur",
+      "props": [
+        "toy-box"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Kenapa Hati Panas Lihat Mainan Teman? Obatnya Syukur",
+    "description": "Kenapa hati terasa panas saat teman punya mainan baru? Mamas belajar dari Ibu bahwa itu rasa iri, dan obatnya adalah bersyukur serta ikut senang atas nikmat teman. Dalil: HR. Muslim no. 2963; HR. Bukhari no. 13 & Muslim no. 45.\n#Shorts #Bersyukur #CeritaIslamiAnak",
+    "tags": [
+      "rasa iri pada anak",
+      "cara mengatasi iri pada anak",
+      "bersyukur untuk anak",
+      "hadits tentang bersyukur",
+      "cerita islami anak",
+      "akhlak anak muslim",
+      "kenapa ya seri anak islami",
+      "mencintai saudara seperti diri sendiri",
+      "shorts islami anak"
+    ],
+    "thumbnailText": "Kenapa Hati Panas?"
+  },
+  "audioPerScene": [
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a-adegan-1-ai-mw9ycw9a.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a-adegan-2-ai-mw9yd385.wav",
+    "audio/kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a-adegan-3-ai-mw9yd95a.wav",
+    null
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    false
+  ],
+  "recordingMode": "per-scene",
+  "draftedAt": "2026-11-10T00:35:35.504Z"
 }

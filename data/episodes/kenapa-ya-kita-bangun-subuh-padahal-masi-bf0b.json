@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-09T12:04:18.479Z",
-  "status": "needs_audio",
+  "modified": "2026-11-10T23:31:30.669Z",
+  "status": "scheduled",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
     "series": "kenapa-ya",
@@ -427,10 +427,70 @@
       "time": "2026-11-09T12:04:18.479Z",
       "by": "pengisi-suara",
       "message": "1 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-09T23:50:17.171Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 10 diupload"
+    },
+    {
+      "time": "2026-11-09T23:50:22.403Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-09T23:50:23.360Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-09T23:52:59.520Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-10T08:28:09.378Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-14 16:00"
+    },
+    {
+      "time": "2026-11-10T08:28:10.289Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-10T08:28:21.394Z",
+      "by": "upload",
+      "message": "The user has exceeded the number of videos they may upload."
+    },
+    {
+      "time": "2026-11-10T08:28:24.607Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-10T23:31:11.998Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-14 16:00"
+    },
+    {
+      "time": "2026-11-10T23:31:12.886Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-10T23:31:30.668Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak\""
+    },
+    {
+      "time": "2026-11-10T23:31:30.669Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-14T09:00:00.000Z"
     }
   ],
   "twin": "kenapa-ya-kita-bangun-subuh-padahal-masi-7aaf",
-  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "statusNote": "Terjadwal tayang 2026-11-14T09:00:00.000Z",
   "script": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
     "summary": "Pagi-pagi saat Subuh, Ibu masuk ke kamar dan membangunkan Mamas dengan lembut. Mamas masih mengantuk karena semalam main balok sampai larut. Ia bertanya kenapa Subuh harus sepagi itu. Ibu memberi dua alasan. Pertama, orang yang shalat Subuh berada dalam jaminan Allah (HR. Muslim no. 657). Kedua, dua rakaat sebelum Subuh lebih baik daripada dunia dan isinya (HR. Muslim no. 725). Lalu Ibu memberi tiga tips: tidur lebih awal, taruh alarm agak jauh dari kasur supaya Mamas bisa bangun sendiri, dan baca doa bangun tidur. Setelah wudhu, kantuk Mamas hilang. Video ditutup dengan ajakan mencoba bangun Subuh besok. Durasinya sekitar 3 menit.",
@@ -865,7 +925,7 @@
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-7-ai-mw4spc22.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-8-ai-mw4stou9.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-9-ai-mw4su3o8.wav",
-    null,
+    "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-10-mw9wywy6.webm",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-11-ai-mw97r0rx.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-12-ai-mw4suv8w.wav",
     "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-adegan-13-ai-mw4svd5v.wav"
@@ -880,7 +940,7 @@
     null,
     null,
     null,
-    null,
+    2.135,
     null,
     null,
     null
@@ -899,5 +959,75 @@
     true,
     true,
     true
-  ]
+  ],
+  "audioFile": "audio/kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b-gabung.wav",
+  "render": {
+    "video": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b.mp4",
+    "thumbnail": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b.png",
+    "scenes": [
+      {
+        "start": 10,
+        "duration": 15.6
+      },
+      {
+        "start": 25.6,
+        "duration": 7.866666666666666
+      },
+      {
+        "start": 33.46666666666667,
+        "duration": 7.833333333333333
+      },
+      {
+        "start": 41.3,
+        "duration": 13.5
+      },
+      {
+        "start": 54.8,
+        "duration": 6.2
+      },
+      {
+        "start": 61,
+        "duration": 11.566666666666666
+      },
+      {
+        "start": 72.56666666666666,
+        "duration": 12.833333333333334
+      },
+      {
+        "start": 85.4,
+        "duration": 19
+      },
+      {
+        "start": 104.4,
+        "duration": 20.7
+      },
+      {
+        "start": 125.1,
+        "duration": 11.733333333333333
+      },
+      {
+        "start": 136.83333333333334,
+        "duration": 11.233333333333333
+      },
+      {
+        "start": 148.06666666666666,
+        "duration": 19.666666666666668
+      },
+      {
+        "start": 167.73333333333332,
+        "duration": 28
+      }
+    ],
+    "time": "2026-11-09T23:52:59.520Z"
+  },
+  "selectedSchedule": "2026-11-14T09:00:00.000Z",
+  "youtube": {
+    "videoId": "n3QgE2lNEzo",
+    "url": "https://www.youtube.com/watch?v=n3QgE2lNEzo",
+    "publishTime": "2026-11-14T09:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak",
+      "id": "PLUgYsxxA9xw8"
+    }
+  }
 }

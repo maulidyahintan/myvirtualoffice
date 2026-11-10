@@ -1,7 +1,7 @@
 {
   "id": "mobil-mobilan-mamas-mau-dipinjam-belajar-cae1",
   "created": "2026-11-05T03:34:34.825Z",
-  "modified": "2026-11-05T03:35:15.703Z",
+  "modified": "2026-11-10T00:35:52.771Z",
   "status": "needs_script_approval",
   "idea": {
     "title": "Mobil-Mobilan Mamas Mau Dipinjam! Belajar Berbagi",
@@ -58,6 +58,11 @@
       "time": "2026-11-05T03:35:15.703Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-10T00:35:52.771Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "twin": "mobil-mobilan-mamas-mau-dipinjam-belajar-d28f",
@@ -129,5 +134,6 @@
       "Pastikan narasi Ibu di adegan 5 tetap setia pada makna hadits walaupun diringkas ('mencintai untuk saudaranya apa yang ia cintai untuk dirinya').",
       "Cek judul 'Mobil-Mobilan Mamas Mau Dipinjam!' dan thumbnail-nya. Pastikan tidak terkesan clickbait dan sesuai isi video."
     ]
-  }
+  },
+  "draftedAt": "2026-11-10T00:35:52.768Z"
 }

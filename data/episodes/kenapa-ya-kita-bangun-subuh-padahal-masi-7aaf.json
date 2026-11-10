@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-7aaf",
   "created": "2026-11-05T03:34:26.284Z",
-  "modified": "2026-11-05T03:35:23.230Z",
+  "modified": "2026-11-10T00:35:46.911Z",
   "status": "needs_script_approval",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
@@ -57,6 +57,11 @@
       "time": "2026-11-05T03:35:23.230Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-10T00:35:46.911Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "twin": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
@@ -141,5 +146,6 @@
       "Pastikan perumpamaan \"lebih berharga dari semua mainan\" tidak terdengar sebagai bagian dari teks hadits.",
       "Cek terjemahan dzimmah sebagai \"dijaga / jaminan Allah\". Pastikan Anda nyaman dengan penyederhanaan ini untuk anak."
     ]
-  }
+  },
+  "draftedAt": "2026-11-10T00:35:46.908Z"
 }

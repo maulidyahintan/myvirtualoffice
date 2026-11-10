@@ -1,7 +1,7 @@
 {
   "id": "kisah-pasukan-gajah-kenapa-turun-surat-a-12a4",
   "created": "2026-11-05T03:48:25.245Z",
-  "modified": "2026-11-05T03:49:35.304Z",
+  "modified": "2026-11-10T00:35:42.577Z",
   "status": "needs_script_approval",
   "idea": {
     "title": "Kisah Pasukan Gajah: Kenapa Turun Surat Al-Fil?",
@@ -56,6 +56,11 @@
       "time": "2026-11-05T03:49:35.304Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-10T00:35:42.577Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "twin": "kisah-pasukan-gajah-kenapa-turun-surat-a-30a9",
@@ -129,5 +134,6 @@
       "Pastikan judul akhir tidak memberi kesan asbabun nuzul yang keliru.",
       "Pastikan video tidak memakai musik instrumen, hanya suara dan efek suara ringan."
     ]
-  }
+  },
+  "draftedAt": "2026-11-10T00:35:42.575Z"
 }

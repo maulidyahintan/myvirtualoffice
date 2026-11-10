@@ -1,8 +1,8 @@
 {
   "id": "buku-perpustakaan-sobek-mamas-belajar-me-aeca",
   "created": "2026-11-06T10:12:03.065Z",
-  "modified": "2026-11-06T10:12:48.337Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-10T00:35:25.833Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
     "series": "kisah-sebelum-tidur",
@@ -57,10 +57,45 @@
       "time": "2026-11-06T10:12:48.337Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-09T23:53:11.284Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-09T23:53:12.271Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-09T23:53:19.010Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T23:53:25.150Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-09T23:53:25.686Z",
+      "by": "sutradara",
+      "message": "Kartu doa (teks Arab) dipasang otomatis di adegan 3"
+    },
+    {
+      "time": "2026-11-09T23:53:25.687Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-10T00:35:25.833Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "twin": "buku-perpustakaan-sobek-mamas-belajar-me-d120",
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
     "summary": "Mochi tidak sengaja menyobek buku pinjaman dari perpustakaan. Mamas ingin menyembunyikannya di bawah bantal. Ibu mengingatkan bahwa barang pinjaman adalah amanah (QS. An-Nisa: 58). Mamas lalu berkata jujur kepada penjaga perpustakaan, dan mereka menambal buku itu bersama-sama.",
@@ -118,5 +153,125 @@
       "Kecocokan konteks: ayat ini tentang menyerahkan amanah kepada pemiliknya. Di naskah, ayat dipakai untuk mengembalikan barang pinjaman dan jujur soal kerusakannya. Menurut saya wajar, tapi tolong dikonfirmasi.",
       "Visual scene 4: pastikan penjaga perpustakaan tidak tergambar di hasil animasi, termasuk tangan atau siluetnya."
     ]
-  }
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Kreek! Mochi menyobek buku pinjaman Mamas! Mamas ingin menyembunyikannya di bawah bantal.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "screenText": "Bukunya sobek!",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mas, buku pinjaman itu amanah. Kita jujur, ya. Allah berfirman:",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Innallāha ya'murukum an tu'addul-amānāti ilā ahlihā.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ],
+      "prayer": {
+        "arabic": "إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا",
+        "latin": "Innallāha ya'murukum an tu'addul-amānāti ilā ahlihā",
+        "meaning": "Sesungguhnya Allah menyuruh kamu menyampaikan amanah kepada yang berhak menerimanya. (QS. An-Nisa (4): 58)"
+      }
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Artinya, Allah menyuruh kita menyampaikan amanah kepada pemiliknya. Mamas pun jujur kepada penjaga perpustakaan. Ia tersenyum, lalu mereka menambal bukunya bersama. Jaga pinjaman, jujur kalau rusak, ya!",
+      "background": "library",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Jaga amanah",
+      "props": [
+        "book"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "book"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Buku Pinjaman Sobek? Mamas Belajar Jujur & Amanah",
+    "description": "Buku pinjaman perpustakaan sobek, Mamas belajar menjaga amanah dan berani jujur kepada penjaga perpustakaan. Dalil: QS. An-Nisa (4): 58.\n#Shorts #CeritaIslamiAnak #AdabAnak",
+    "tags": [
+      "cerita islami anak",
+      "menjaga amanah",
+      "belajar jujur untuk anak",
+      "kisah sebelum tidur",
+      "adab meminjam barang",
+      "QS An-Nisa 58",
+      "akhlak anak muslim",
+      "shorts islami anak",
+      "Mamas dan Ibu"
+    ],
+    "thumbnailText": "Jaga Amanah"
+  },
+  "draftedAt": "2026-11-10T00:35:25.830Z"
 }

@@ -1,0 +1,231 @@
+{
+  "id": "wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a",
+  "created": "2026-11-10T00:30:51.975Z",
+  "modified": "2026-11-10T23:31:55.949Z",
+  "status": "scheduled",
+  "idea": {
+    "title": "Wudhu Tidak Boleh Boros Air? Kisah Satu Mud Rasulullah ﷺ",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Air adalah nikmat Allah. Saat wudhu pun kita tidak berlebihan. Rasulullah ﷺ berwudhu cukup dengan satu mud air, sekitar dua genggam tangan orang dewasa (HR. Bukhari no. 201, Muslim no. 325, dari Anas radhiyallahu 'anhu). Allah tidak menyukai orang yang berlebihan (QS. Al-A'raf: 31).",
+    "format": "short",
+    "reason": "Anak 7–10 tahun mulai belajar shalat dan wudhu sendiri. Kebiasaan membiarkan keran terus mengalir adalah masalah nyata yang sering dikeluhkan orang tua. Format 'kenapa' plus fakta sederhana pas dengan seri ini: Mamas dan Ibu membandingkan air satu mud dengan air keran yang terbuang di ember. Topik ini belum ada di daftar dan dalilnya disepakati (tidak khilafiyah). Visual cukup gayung, keran, dan ember, tanpa menggambarkan Nabi.",
+    "references": [
+      "Shahih al-Bukhari no. 201 & Shahih Muslim no. 325 (wudhu dengan satu mud)",
+      "QS. Al-A'raf: 31"
+    ]
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-10T00:30:51.975Z",
+      "by": "sutradara",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-10T00:30:51.977Z",
+      "by": "sutradara",
+      "message": "Shorts 1 dari episode kenapa-ya-wudhu-tidak-boleh-boros-air-8270: adegan 6, 9, 10. Pertanyaan polos Mamas \"air kan banyak\" langsung dijawab dengan dua dalil inti, yaitu satu mud air wudhu Rasulullah ﷺ dan QS. Al-A'raf: 31, lalu ditutup ajakan praktis membuka keran kecil (total 47,2 detik)."
+    },
+    {
+      "time": "2026-11-10T00:30:51.977Z",
+      "by": "sutradara",
+      "message": "Menunggu giliran render"
+    },
+    {
+      "time": "2026-11-10T00:30:51.978Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-10T00:31:49.615Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-10T23:31:48.495Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-13 18:30"
+    },
+    {
+      "time": "2026-11-10T23:31:49.262Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-10T23:31:55.948Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak Shorts\""
+    },
+    {
+      "time": "2026-11-10T23:31:55.949Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-13T11:30:00.000Z"
+    }
+  ],
+  "source": {
+    "id": "kenapa-ya-wudhu-tidak-boleh-boros-air-8270",
+    "scenes": [
+      5,
+      8,
+      9
+    ]
+  },
+  "script": {
+    "title": "Wudhu Tidak Boleh Boros Air? Kisah Satu Mud Rasulullah ﷺ",
+    "summary": "Mamas berwudhu dengan keran terbuka deras sambil main cipratan air. Ibu menaruh ember di samping bak wudhu untuk menampung air yang tumpah. Ember itu hampir penuh sebelum wudhu Mamas selesai. Ibu menjelaskan bahwa air adalah nikmat Allah. Ibu juga bercerita bahwa Rasulullah ﷺ berwudhu cukup dengan satu mud air, kira-kira secakupan dua telapak tangan orang dewasa. Hadits ini diceritakan sahabat Anas bin Malik dan diriwayatkan Imam Bukhari dan Muslim. Ibu menyampaikan pula bahwa Allah tidak menyukai orang yang berlebih-lebihan (QS. Al-A'raf: 31). Mamas lalu berwudhu lagi dengan air secukupnya, Mochi membuatnya kecipratan, dan air di ember dipakai untuk menyiram bunga.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Memangnya kenapa, Bu? Air kan banyak. Tinggal buka keran lagi.",
+        "visualDirection": "Tempat wudhu. Mamas mengangkat bahu dengan polos, dan Mochi menjilati bulunya yang basah."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Rasulullah shallallahu 'alaihi wasallam berwudhu cukup dengan satu mud air. Satu mud itu kira-kira secakupan dua telapak tangan orang dewasa. Sedikit sekali, kan? Ini diceritakan sahabat Anas bin Malik. Diriwayatkan Imam Bukhari dan Muslim.",
+        "visualDirection": "Tempat wudhu. Ibu merapatkan dua telapak tangannya yang berisi sedikit air, dan Mamas melihat dengan mata terbelalak."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Allah berfirman dalam surat Al-A'raf ayat 31. Artinya, Allah tidak menyukai orang yang berlebih-lebihan. Jadi, buka keran kecil saja. Tapi semua anggota wudhu tetap dibasuh rata, ya.",
+        "visualDirection": "Tempat wudhu. Ibu membuka keran sedikit sehingga airnya mengalir kecil dan tenang."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "كَانَ النَّبِيُّ صلى الله عليه وسلم يَغْسِلُ - أَوْ كَانَ يَغْتَسِلُ - بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ، وَيَتَوَضَّأُ بِالْمُدِّ",
+        "latin": "Kaanan nabiyyu shallallahu 'alaihi wasallam yaghsilu - au kaana yaghtasilu - bish-shaa'i ilaa khamsati amdaad, wa yatawadh-dha-u bil-mudd.",
+        "translation": "Anas radhiyallahu 'anhu berkata: Nabi ﷺ mandi dengan satu sha' sampai lima mud air, dan berwudhu dengan satu mud.",
+        "source": "HR. Bukhari no. 201 dan Muslim no. 325, dari Anas bin Malik radhiyallahu 'anhu"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ",
+        "latin": "Wa kuluu wasyrabuu wa laa tusrifuu, innahuu laa yuhibbul musrifiin.",
+        "translation": "Makan dan minumlah, dan jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.",
+        "source": "QS. Al-A'raf: 31"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Syariat aman: Rasulullah ﷺ dan sahabat Anas hanya disebut di narasi atau dialog Ibu. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Kedua dalil punya sumber yang spesifik.",
+      "Tidak ada bacaan Arab yang dilafalkan di scene. Scene 10 hanya menyebut sumber lalu artinya. Karena itu aturan pemisahan bacaan Arab dan aturan pembicara mamas untuk ayat tidak berlaku. Kalau penulis ingin ayatnya dibacakan, buat scene terpisah yang hanya berisi latin 'Wa kuluu wasyrabuu wa laa tusrifuu, innahuu laa yuhibbul musrifiin' dengan speaker mamas. Arti tetap di scene berikutnya.",
+      "Scene 10 (saran kecil): ayat Al-A'raf 31 konteksnya makan dan minum. Kalimat 'Artinya, Allah tidak menyukai orang yang berlebih-lebihan' benar sebagai potongan ayat. Agar tidak terkesan memotong konteks, bisa diganti menjadi: 'Allah berfirman, jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.'",
+      "Scene 7 (opsional): kalimat 'Ada anak-anak di tempat lain yang harus berjalan jauh untuk mengambil air' berisi 13 kata. Bisa dipecah menjadi: 'Di tempat lain, ada anak yang berjalan jauh. Mereka harus mengambil air sendiri.' Kata 'wajib' pada 'Kita wajib menjaganya' juga bisa dilunakkan menjadi 'Kita harus menjaganya' supaya tidak terdengar seperti hukum fikih.",
+      "Scene 8: beri jeda jelas, sekitar 2–3 detik hening atau efek suara ringan, setelah 'Ayo tebak dulu!' supaya momen interaktifnya terasa.",
+      "Kualitas konten anak sudah baik. Perilaku negatif (boros air dan menciprati Mochi) ada konsekuensinya: ember penuh, Ibu menjelaskan, lalu Mamas memperbaiki. Ada fakta konkret untuk usia 7–10 (ukuran satu mud). Ada pertanyaan interaktif sebelum jawaban, dan penutupnya hangat dengan ajakan. Panjang 228 kata dan tempo langsung ke inti. Judul tidak clickbait dan tidak ada ajakan komersial.",
+      "Visual scene 3: pastikan ember terlihat masuk akal menampung air tumpahan, misalnya diletakkan di bawah ujung saluran atau pinggir lantai wudhu. Hindari kesan ember menampung air dari lantai kotor, karena airnya nanti dipakai menyiram bunga. Untuk menyiram tanaman, air bekas wudhu tetap boleh dipakai."
+    ],
+    "humanCheck": [
+      "Dalil 1 (hadits): HR. Bukhari no. 201 dan Muslim no. 325 dari Anas bin Malik. Lafaz Bukhari: 'كَانَ النَّبِيُّ صلى الله عليه وسلم يَغْسِلُ - أَوْ كَانَ يَغْتَسِلُ - بِالصَّاعِ إِلَى خَمْسَةِ أَمْدَادٍ، وَيَتَوَضَّأُ بِالْمُدِّ'. Artinya: Nabi ﷺ mandi dengan satu sha' sampai lima mud, dan berwudhu dengan satu mud. Cek nomor hadits di edisi yang Anda pakai. Lafaz Muslim no. 325 sedikit berbeda urutannya, jadi teks Arab yang ditampilkan sebaiknya diberi keterangan 'lafaz Bukhari'.",
+      "Dalil 2 (ayat): QS. Al-A'raf: 31, potongan 'وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا ۚ إِنَّهُ لَا يُحِبُّ الْمُسْرِفِينَ'. Artinya: 'Makan dan minumlah, dan jangan berlebih-lebihan. Sungguh, Allah tidak menyukai orang yang berlebih-lebihan.' Cek kesesuaian teks dan terjemahnya dengan mushaf atau terjemah Kemenag. Pastikan Anda nyaman ayat yang konteksnya makan dan minum dipakai untuk prinsip umum tidak boros dalam wudhu.",
+      "Penjelasan ukuran 'satu mud kira-kira secakupan dua telapak tangan orang dewasa': ini definisi yang umum dipakai ulama (cakupan dua tangan orang dewasa ukuran sedang). Pastikan Anda setuju dengan penyederhanaan ini dan visual scene 9 tidak menimbulkan kesan wudhu Nabi hanya memakai satu cakupan sekali basuh.",
+      "Kalimat 'Kita wajib menjaganya' di scene 7: putuskan apakah diganti dengan 'harus' agar tidak terdengar sebagai klaim hukum fikih."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Memangnya kenapa, Bu? Air kan banyak. Tinggal buka keran lagi.",
+      "background": "ablution",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "thinking"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Rasulullah shallallahu 'alaihi wasallam berwudhu cukup dengan satu mud air. Satu mud itu kira-kira secakupan dua telapak tangan orang dewasa. Sedikit sekali, kan? Ini diceritakan sahabat Anas bin Malik. Diriwayatkan Imam Bukhari dan Muslim.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "surprised",
+      "screenText": "Cukup satu mud"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Allah berfirman dalam surat Al-A'raf ayat 31. Artinya, Allah tidak menyukai orang yang berlebih-lebihan. Jadi, buka keran kecil saja. Tapi semua anggota wudhu tetap dibasuh rata, ya.",
+      "background": "ablution",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Jangan berlebih-lebihan"
+    }
+  ],
+  "metadata": {
+    "title": "Wudhu Tidak Boleh Boros Air? Kisah Satu Mud Rasulullah ﷺ",
+    "description": "Kenapa wudhu tidak boleh boros air? Rasulullah ﷺ berwudhu cukup dengan satu mud air (HR. Bukhari no. 201, Muslim no. 325), dan Allah tidak menyukai orang yang berlebihan (QS. Al-A'raf: 31).\n#Shorts #WudhuAnak #CeritaIslamiAnak",
+    "tags": [
+      "wudhu anak",
+      "hemat air",
+      "tidak boros air",
+      "adab wudhu",
+      "cerita islami anak",
+      "satu mud air",
+      "QS Al-A'raf 31",
+      "belajar wudhu",
+      "kartun muslim anak",
+      "Tasnie Office"
+    ],
+    "thumbnailText": "Wudhu Hemat Air"
+  },
+  "recordingMode": "per-scene",
+  "audioPerScene": [
+    "audio/wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a-adegan-1.wav",
+    "audio/wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a-adegan-2.wav",
+    "audio/wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a-adegan-3.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null
+  ],
+  "statusNote": "Terjadwal tayang 2026-11-13T11:30:00.000Z",
+  "audioFile": "audio/wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a-gabung.wav",
+  "render": {
+    "video": "wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a.mp4",
+    "scenes": [
+      {
+        "start": 1.5,
+        "duration": 7.233333333333333
+      },
+      {
+        "start": 8.733333333333333,
+        "duration": 22.866666666666667
+      },
+      {
+        "start": 31.6,
+        "duration": 19.266666666666666
+      }
+    ],
+    "time": "2026-11-10T00:31:49.615Z"
+  },
+  "selectedSchedule": "2026-11-13T11:30:00.000Z",
+  "youtube": {
+    "videoId": "ls-E5n8rECM",
+    "url": "https://www.youtube.com/watch?v=ls-E5n8rECM",
+    "publishTime": "2026-11-13T11:30:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak Shorts",
+      "id": "PLVmcdemlHVGc"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-a181",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-09T12:14:46.469Z",
+  "modified": "2026-11-09T23:49:35.726Z",
   "status": "needs_audio",
   "idea": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
@@ -172,6 +172,11 @@
       "time": "2026-11-09T12:14:46.469Z",
       "by": "sutradara",
       "message": "Kartu doa (teks Arab) dipasang otomatis di adegan 12"
+    },
+    {
+      "time": "2026-11-09T23:49:35.726Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 11 diupload"
     }
   ],
   "twin": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
@@ -586,7 +591,7 @@
     null,
     null,
     null,
-    null,
+    "audio/pakai-baju-sendiri-mamas-baca-alhamdulil-a181-adegan-11-mw9wy0yy.webm",
     null,
     null
   ],
@@ -601,7 +606,7 @@
     null,
     null,
     null,
-    null,
+    2.126,
     null,
     null
   ],
