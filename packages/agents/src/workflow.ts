@@ -9,6 +9,8 @@ import {
   isoToLocal,
   latestFile,
   listEpisodes,
+  AI_VOICES,
+  voiceFilter,
   needsPlaylist,
   loadConfig,
   allowedBackgrounds,
@@ -30,6 +32,7 @@ import {
   type Episode,
   SCRIPT_WORD_LIMIT,
   scriptWordCount,
+  type Speaker,
 } from '@kantor/shared';
 import { fetchSurah, BASMALAH } from './quran.ts';
 import { runAgent } from './run-agent.ts';
@@ -49,7 +52,7 @@ import {
   DirectorSchema,
 } from './schemas.ts';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
-import { renderEpisode, renderScenePreview } from './render.ts';
+import { renderEpisode, renderScenePreview, ffmpeg } from './render.ts';
 import { makePrivate, uploadEpisode } from './youtube/upload.ts';
 import { removeFromPlaylist, addToPlaylist } from './youtube/playlist.ts';
 
@@ -475,6 +478,27 @@ export async function fillAiVoices(id: string, sceneNo?: number) {
 }
 
 /** With a scene number (1-based) only that scene is filled; without, every empty scene. */
+/**
+ * Raise the pitch of a generated AI voice when its speaker asks for it (a child from a male voice), so the
+ * file already sounds like the character; render keeps leaving AI voices untouched.
+ */
+async function withAiPitch(audio: Buffer, speaker: Speaker, dir: string): Promise<Buffer> {
+  const filter = voiceFilter({ pitch: AI_VOICES[speaker].pitch ?? 0 });
+  if (!filter) return audio;
+  const tag = `ai-pitch-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+  const input = path.join(dir, `${tag}-in.wav`);
+  const output = path.join(dir, `${tag}-out.wav`);
+  fs.writeFileSync(input, audio);
+  try {
+    const out = await ffmpeg(['-hide_banner', '-loglevel', 'error', '-y', '-i', input, '-af', filter, output]);
+    if (!fs.existsSync(output)) throw new Error(`Nada suara AI gagal dinaikkan: ${out.slice(0, 200)}`);
+    return fs.readFileSync(output);
+  } finally {
+    fs.rmSync(input, { force: true });
+    fs.rmSync(output, { force: true });
+  }
+}
+
 async function fillAiVoicesNow(id: string, sceneNo?: number) {
   const ep = getEpisode(id);
   const say = log(id, 'pengisi-suara');
@@ -511,7 +535,7 @@ async function fillAiVoicesNow(id: string, sceneNo?: number) {
     setAiVoiceProgress(id, i);
     let audio: Buffer;
     try {
-      audio = await speak(scenes[i].narration, scenes[i].speaker);
+      audio = await withAiPitch(await speak(scenes[i].narration, scenes[i].speaker), scenes[i].speaker, dir);
     } catch (e) {
       if (!(e instanceof AiVoiceUnavailable)) throw e;
       stopped = e.message;

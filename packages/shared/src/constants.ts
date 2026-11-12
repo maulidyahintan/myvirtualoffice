@@ -242,9 +242,13 @@ export const EDITABLE_PROMPTS = {
  * Free AI voice (Gemini TTS through a Google AI Studio key without billing): prebuilt voice and speaking
  * style per speaker. The style is spoken as an instruction, not read aloud.
  */
-export const AI_VOICES: Record<(typeof SPEAKERS)[number], { voice: string; style: string }> = {
+/**
+ * Free AI voice per speaker (Gemini TTS prebuilt voice + speaking style). Gemini has no child voices, so a
+ * child is a cheerful male voice with `pitch` (semitones) raised; the shift is baked into the generated file.
+ */
+export const AI_VOICES: Record<(typeof SPEAKERS)[number], { voice: string; style: string; pitch?: number }> = {
   narrator: { voice: 'Sulafat', style: 'Bacakan dengan hangat, tenang, dan pelan seperti mendongeng sebelum tidur untuk anak-anak' },
   mother: { voice: 'Vindemiatrix', style: 'Ucapkan dengan lembut, sabar, dan penuh kasih seperti seorang ibu berbicara kepada anaknya' },
-  mamas: { voice: 'Leda', style: 'Ucapkan dengan ceria, polos, dan bersemangat seperti anak laki-laki berumur empat tahun' },
+  mamas: { voice: 'Achird', style: 'Ucapkan dengan ceria, polos, dan bersemangat seperti anak laki-laki berumur empat tahun', pitch: 4 },
   mochi: { voice: 'Puck', style: 'Ucapkan dengan lucu dan riang' },
 };
