@@ -9,6 +9,10 @@ import {
   isoToLocal,
   latestFile,
   listEpisodes,
+  weekPlan,
+  DAY_CONTENT_LABEL,
+  publishPlan,
+  DAY_NAMES,
   compilationChapters,
   withChapters,
   AI_VOICES,
@@ -929,6 +933,9 @@ export async function buildPublishPlan(arahan?: string) {
       `Sudah tayang: ${hitung((e) => e.status === 'published')}`,
       terjadwal.length ? `Sudah terjadwal:\n${terjadwal.join('\n')}` : 'Belum ada video terjadwal.',
       cfg.publishPlan ? `Rencana saat ini:\n${JSON.stringify({ ...cfg.publishPlan, reason: undefined }, null, 2)}` : '',
+      `Pola mingguan slot video biasa (tetap, diatur pemilik; Shorts tidak terikat): ${weekPlan(publishPlan(cfg))
+        .map((k, h) => `${DAY_NAMES[h]} ${DAY_CONTENT_LABEL[k].toLowerCase()}`)
+        .join(', ')}. Kompilasi = video 20–60 menit. Susun jam & jumlah slot dengan memperhitungkan pola ini.`,
       arahan ? `Arahan pemilik channel: ${arahan}` : '',
       'Susun rencana jadwal tayang channel.',
     ]
@@ -941,6 +948,8 @@ export async function buildPublishPlan(arahan?: string) {
       videosPerDay: result.videosPerDay,
       days: [...new Set(result.days)].sort(),
       slots: result.slots,
+      // the week plan (which day carries stories, memorization, compilations) is the owner's choice: keep it
+      weekPlan: loadConfig().publishPlan?.weekPlan,
       reason: result.reason,
       by: 'channel-manager',
       modified: new Date().toISOString(),

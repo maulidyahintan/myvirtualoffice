@@ -331,12 +331,21 @@ export interface PublishSlot {
   format: Format | 'all';
 }
 
+/** Content of the regular-video slot on one weekday. */
+export type DayContent = ContentType | 'all';
+
 export interface PublishPlan {
   /** Maximum videos published per day (all formats) */
   videosPerDay: number;
   /** Publish days, 0 = Sunday … 6 = Saturday */
   days: number[];
   slots: PublishSlot[];
+  /**
+   * What the regular-video (16:9) slot carries on each weekday, index 0 = Sunday … 6 = Saturday: a story,
+   * a memorization video, a compilation, or anything ('all'). Empty = the default week (see weekPlan).
+   * Shorts are not affected.
+   */
+  weekPlan?: DayContent[];
   /** Channel Manager explanation (Markdown) */
   reason?: string;
   by: 'channel-manager' | 'owner';

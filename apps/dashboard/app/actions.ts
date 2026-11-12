@@ -25,6 +25,9 @@ import {
   MIN_SCHEDULE_GAP_MINUTES,
   FORMAT_CHOICES,
   publishPlan,
+  weekPlan,
+  DAY_CONTENT_LABEL,
+  type DayContent,
   type PublishSlot,
   AGE_GROUPS,
   type FormatChoice,
@@ -488,6 +491,11 @@ export async function savePublishPlan(form: FormData) {
     videosPerDay: Math.min(6, Math.max(1, Number(teks(form, 'videoPerHari')) || 1)),
     days: hari.sort(),
     slots: [...new Map(slot.map((s) => [`${s.time}-${s.format}`, s])).values()].sort((a, b) => a.time.localeCompare(b.time)),
+    // isi slot video biasa per hari (Minggu–Sabtu): cerita / hafalan / kompilasi / bebas
+    weekPlan: Array.from({ length: 7 }, (_, h) => {
+      const v = teks(form, `isiHari-${h}`) as DayContent;
+      return v in DAY_CONTENT_LABEL ? v : weekPlan(lama)[h];
+    }),
     reason: lama.reason,
     by: 'owner',
     modified: new Date().toISOString(),

@@ -1,6 +1,6 @@
 // Publish schedule plan: Channel Manager determines how many videos per day, days, and publish times
 // per format. From that plan, next available slots are calculated for each ready-to-publish video.
-import type { Episode, AppConfig, Format, PublishPlan } from './types.ts';
+import type { Episode, AppConfig, ContentType, DayContent, Format, PublishPlan } from './types.ts';
 
 export const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'] as const;
 
@@ -11,6 +11,38 @@ const SLOT_GAP_MINUTES = 45;
 /** Two videos considered in same slot if their publish times are closer than this. */
 const SLOT_DISTANCE_MINUTES = 60;
 const SEARCH_DAYS = 90;
+
+/** Default week: memorization on Monday & Thursday, a compilation on Saturday, stories on the other days. */
+export const DEFAULT_WEEK_PLAN: DayContent[] = ['story', 'memorization', 'story', 'story', 'memorization', 'story', 'compilation'];
+
+export const DAY_CONTENT_LABEL: Record<DayContent, string> = {
+  story: 'Video cerita',
+  memorization: 'Hafalan surat',
+  compilation: 'Kompilasi',
+  all: 'Bebas (semua jenis)',
+};
+
+export const DAY_CONTENT_ICON: Record<DayContent, string> = { story: '🎬', memorization: '📖', compilation: '🎞️', all: '🎥' };
+
+/** What the regular-video slot carries on each weekday (0 = Sunday). */
+export function weekPlan(plan: PublishPlan): DayContent[] {
+  return plan.weekPlan?.length === 7 ? plan.weekPlan : DEFAULT_WEEK_PLAN;
+}
+
+/** What competes for a slot: its format, and for regular videos also its content (story / memorization / compilation). */
+interface SlotKind {
+  format: Format;
+  content: ContentType;
+}
+
+const slotKind = (ep: Episode): SlotKind => ({ format: ep.idea.format ?? 'standard', content: ep.idea.type ?? 'story' });
+
+/** Whether this video may take the regular-video slot on this weekday; Shorts are not bound to the week plan. */
+export function allowedOnDay(kind: SlotKind, day: number, plan: PublishPlan): boolean {
+  if (kind.format === 'short') return true;
+  const want = weekPlan(plan)[day];
+  return want === 'all' || want === kind.content;
+}
 
 /** Default plan before Channel Manager creates plan: 1 video/day at default publish time. */
 export function publishPlan(cfg: AppConfig): PublishPlan {
@@ -84,7 +116,7 @@ function takenSlots(episodes: Episode[], zone: string, now: Date): { iso: string
 }
 
 /** Earliest free slot in the plan for a format, given the slots already taken. */
-function firstFreeSlot(format: Format, taken: { iso: string; local: string }[], cfg: AppConfig, now: Date): RecommendedSlot | undefined {
+function firstFreeSlot(kind: SlotKind, taken: { iso: string; local: string }[], cfg: AppConfig, now: Date): RecommendedSlot | undefined {
   const plan = publishPlan(cfg);
   const zone = cfg.timeZone;
   const today = isoToLocal(now.toISOString(), zone).slice(0, 10);
@@ -92,10 +124,10 @@ function firstFreeSlot(format: Format, taken: { iso: string; local: string }[], 
   const slots = [...plan.slots].sort((a, b) => a.time.localeCompare(b.time));
   for (let n = 0; n < SEARCH_DAYS; n++) {
     const { date, day } = addDays(today, n);
-    if (!plan.days.includes(day)) continue;
+    if (!plan.days.includes(day) || !allowedOnDay(kind, day, plan)) continue;
     if (taken.filter((t) => t.local.startsWith(date)).length >= plan.videosPerDay) continue;
     for (const s of slots) {
-      if (s.format !== 'all' && s.format !== format) continue;
+      if (s.format !== 'all' && s.format !== kind.format) continue;
       const local = `${date}T${s.time}`;
       const iso = localToIso(local, zone);
       const time = new Date(iso).getTime();
@@ -113,7 +145,7 @@ function firstFreeSlot(format: Format, taken: { iso: string; local: string }[], 
  * today's/tomorrow's empty slots get filled first.
  */
 export function nextFreeSlot(ep: Episode, episodes: Episode[], cfg: AppConfig, now = new Date()): RecommendedSlot | undefined {
-  return firstFreeSlot(ep.idea.format ?? 'standard', takenSlots(episodes, cfg.timeZone, now), cfg, now);
+  return firstFreeSlot(slotKind(ep), takenSlots(episodes, cfg.timeZone, now), cfg, now);
 }
 
 /**
@@ -128,7 +160,7 @@ export function recommendSchedule(episodes: Episode[], cfg: AppConfig, now = new
     .sort((a, b) => (a.render?.time ?? a.modified).localeCompare(b.render?.time ?? b.modified));
   const result = new Map<string, RecommendedSlot>();
   for (const ep of queue) {
-    const slot = firstFreeSlot(ep.idea.format ?? 'standard', taken, cfg, now);
+    const slot = firstFreeSlot(slotKind(ep), taken, cfg, now);
     if (!slot) continue;
     result.set(ep.id, slot);
     taken.push(slot);

@@ -10,6 +10,9 @@ import {
   publishPlan,
   isBusy,
   addDays,
+  weekPlan,
+  DAY_CONTENT_LABEL,
+  DAY_CONTENT_ICON,
   type Episode,
   type PublishPlan,
 } from '@kantor/shared';
@@ -220,6 +223,11 @@ function KalenderBulan({
                 );
               })}
               {libur && !luar ? <span className="kalender-libur kecil">tidak tayang</span> : null}
+              {!libur && !luar && weekPlan(rencana)[hari] !== 'all' ? (
+                <span className="kalender-libur kecil">
+                  {DAY_CONTENT_ICON[weekPlan(rencana)[hari]]} {DAY_CONTENT_LABEL[weekPlan(rencana)[hari]].toLowerCase()}
+                </span>
+              ) : null}
             </div>
           );
         })}
@@ -277,6 +285,16 @@ function PanelRencana({ rencana, zona, sibuk }: { rencana: PublishPlan; zona: st
           <div>
             <b>{rencana.videosPerDay} video per hari</b> · {rencana.days.length === 7 ? 'setiap hari' : rencana.days.map((h) => DAY_NAMES[h]).join(', ')}
           </div>
+          <div style={{ marginTop: 6 }}>
+            <b>Pola mingguan video biasa</b> <span className="muted">(Shorts tidak terikat)</span>
+            <div className="pola-minggu">
+              {URUTAN_HARI.map((h) => (
+                <span key={h} className={`pola-hari pola-${weekPlan(rencana)[h]}`}>
+                  <b>{DAY_NAMES[h]}</b> {DAY_CONTENT_ICON[weekPlan(rencana)[h]]} {DAY_CONTENT_LABEL[weekPlan(rencana)[h]]}
+                </span>
+              ))}
+            </div>
+          </div>
           <ul style={{ margin: '6px 0', paddingLeft: 18 }}>
             {rencana.slots.map((s) => (
               <li key={`${s.time}-${s.format}`}>
@@ -322,6 +340,23 @@ function PanelRencana({ rencana, zona, sibuk }: { rencana: PublishPlan; zona: st
                 <input type="checkbox" name="hari" value={i} defaultChecked={rencana.days.includes(i)} /> {h}
               </label>
             ))}
+          </div>
+          <div className="stack" style={{ gap: 6 }}>
+            <span className="kecil">Isi slot video biasa tiap hari (yang tidak cocok menunggu hari jenisnya; Shorts tidak terikat)</span>
+            <div className="pola-minggu">
+              {URUTAN_HARI.map((h) => (
+                <label key={h} className="kecil stack" style={{ gap: 2 }}>
+                  {DAY_NAMES[h]}
+                  <select name={`isiHari-${h}`} defaultValue={weekPlan(rencana)[h]}>
+                    {(['story', 'memorization', 'compilation', 'all'] as const).map((k) => (
+                      <option key={k} value={k}>
+                        {DAY_CONTENT_ICON[k]} {DAY_CONTENT_LABEL[k]}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            </div>
           </div>
           <div className="stack" style={{ gap: 6 }}>
             <span className="kecil">Jam tayang ({zona}); kosongkan untuk menghapus</span>
