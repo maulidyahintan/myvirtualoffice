@@ -88,7 +88,7 @@ const indonesianWords = (text: string) => text.match(INDONESIAN_WORDS)?.length ?
 /** Lowercase letters only, to compare a narration with a prayer's Latin text. */
 const lettersOnly = (text: string) => text.toLowerCase().replace(/[^a-z]/g, '');
 
-type SpokenScene = Pick<Scene, 'type' | 'narration'> & { prayer?: { latin?: string } };
+type SpokenScene = Pick<Scene, 'type' | 'narration'> & { prayer?: { latin?: string }; aiVoiceAllowed?: boolean };
 
 /** Whether the spoken narration itself contains an Arabic recitation (what is said, not what is shown). */
 function speaksArabic(scene: SpokenScene): boolean {
@@ -107,6 +107,8 @@ function speaksArabic(scene: SpokenScene): boolean {
  * that only speaks the meaning in Indonesian may use the AI voice; its prayer card still shows the Arabic.
  */
 export function needsHumanVoice(scene: SpokenScene): boolean {
+  // the owner may decide the AI voice is good enough for this scene
+  if (scene.aiVoiceAllowed) return false;
   return speaksArabic(scene);
 }
 
@@ -115,6 +117,8 @@ export function needsHumanVoice(scene: SpokenScene): boolean {
  * must be a scene of its own, so it can be recorded/uploaded separately and the AI voice can read the rest.
  */
 export function mixesArabicAndIndonesian(scene: SpokenScene): boolean {
+  // read entirely by the AI voice: no separate recitation upload, so no need to split it
+  if (scene.aiVoiceAllowed) return false;
   const recites = hasArabicRecitation(scene.narration) || (scene.prayer?.latin ? speaksArabic({ ...scene, type: 'story', prayer: scene.prayer }) : false);
   return recites && indonesianWords(scene.narration) >= 3;
 }

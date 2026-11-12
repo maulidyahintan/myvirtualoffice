@@ -140,6 +140,11 @@ export interface Scene {
    * screen instead of the animated characters.
    */
   illustration?: SceneIllustration;
+  /**
+   * Owner chose the AI voice for this scene although it contains an Arabic recitation (e.g. a short
+   * repeat-after-me of a prayer in Latin letters); the scene then no longer asks for an own recording.
+   */
+  aiVoiceAllowed?: boolean;
 }
 
 export interface SceneIllustration {

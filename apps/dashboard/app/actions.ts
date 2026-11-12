@@ -611,6 +611,23 @@ export async function fillAiVoices(form: FormData) {
   segarkan(id);
 }
 
+/**
+ * Pemilik memutuskan adegan berbacaan Arab (misal ajakan mengulang doa dalam huruf Latin) boleh dibacakan
+ * suara AI, atau membatalkannya supaya kembali direkam sendiri. Rekaman yang sudah ada tidak diubah.
+ */
+export async function setSceneAiVoiceAllowed(form: FormData) {
+  const id = teks(form, 'id');
+  const i = Number(teks(form, 'adegan')) - 1;
+  const boleh = teks(form, 'boleh') === 'ya';
+  const ep = getEpisode(id);
+  if (!ep.scenes?.[i] || ep.idea.type === 'memorization' || Boolean(ep.scenes[i].aiVoiceAllowed) === boleh) return;
+  updateEpisode(id, (e) => {
+    e.scenes![i].aiVoiceAllowed = boleh || undefined;
+  });
+  addLog(id, 'pemilik', boleh ? `Adegan ${i + 1} boleh memakai suara AI (walau ada bacaan Arab)` : `Adegan ${i + 1} kembali direkam sendiri (bacaan Arab)`);
+  segarkan(id);
+}
+
 /** Hapus permanen episode di Draft atau Arsip (ditolak / error), setelah pemilik mencentang konfirmasi. */
 export async function deleteArchivedEpisode(form: FormData) {
   const id = teks(form, 'id');

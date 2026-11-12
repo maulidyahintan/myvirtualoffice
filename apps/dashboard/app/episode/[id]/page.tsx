@@ -55,6 +55,7 @@ import {
   reviseOneScene,
   editSceneText,
   deleteScriptScene,
+  setSceneAiVoiceAllowed,
   deleteArchivedEpisode,
   removeIllustration,
   setEpisodeVisualStyle,
@@ -322,6 +323,20 @@ function AudioBacaanArab({ ep, index }: { ep: Episode; index: number }) {
       {rekamanUtuh ? (
         <span className="muted">Episode ini memakai satu rekaman utuh; upload per adegan memindahkannya ke mode rekam per adegan.</span>
       ) : null}
+      {file || ep.idea.type === 'memorization' ? null : (
+        <form action={setSceneAiVoiceAllowed} className="stack" style={{ gap: 4 }}>
+          <Id id={ep.id} />
+          <input type="hidden" name="adegan" value={index + 1} />
+          <input type="hidden" name="boleh" value="ya" />
+          <span className="muted">
+            Adegan ini mengandung lafaz Arab (ditulis Latin). Suara AI bisa salah makhraj & panjang-pendeknya; kalau menurutmu cukup,
+            boleh pakai suara AI.
+          </span>
+          <SubmitButton type="submit" className="sekunder" teksProses="Menyimpan…">
+            🤖 Pakai suara AI untuk adegan ini
+          </SubmitButton>
+        </form>
+      )}
     </div>
   );
 }
@@ -342,6 +357,17 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
         </span>
       ) : null}
       {needsHumanVoice(scene) ? <AudioBacaanArab ep={ep} index={index} /> : null}
+      {scene.aiVoiceAllowed && !ep.audioPerScene?.[index] ? (
+        <form action={setSceneAiVoiceAllowed} className="row kecil" style={{ gap: 8 }}>
+          <Id id={ep.id} />
+          <input type="hidden" name="adegan" value={index + 1} />
+          <input type="hidden" name="boleh" value="tidak" />
+          <span className="muted">🤖 Adegan ini boleh memakai suara AI walau ada lafaz Arab.</span>
+          <SubmitButton type="submit" className="sekunder" teksProses="Menyimpan…">
+            ↩️ Rekam sendiri saja
+          </SubmitButton>
+        </form>
+      ) : null}
       {pratinjau ? (
         <div className="stack" style={{ gap: 4 }}>
           <span className="kecil">
