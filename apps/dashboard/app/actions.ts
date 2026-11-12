@@ -43,6 +43,7 @@ import {
   isBusy,
   deleteBlockers,
   deleteEpisode,
+  compilationSources,
   DEFAULT_CHARACTER_LOOKS,
   DEFAULT_CHARACTER_PROFILES,
   BACKGROUND_LABEL,
@@ -139,6 +140,41 @@ export async function createMemorization(form: FormData) {
     'pemilik',
   );
   for (const id of terapkanFormat(ep.id, bacaFormat(form))) mulaiTulis(id, 'pemilik');
+  segarkan();
+  redirect(`/episode/${ep.id}`);
+}
+
+/** Buat kompilasi dari video-video yang dipilih (urut sesuai pilihan), lalu langsung digabung. */
+export async function createCompilation(form: FormData) {
+  const judul = teks(form, 'judul').slice(0, 100);
+  const usia = teks(form, 'usia') as AgeGroup;
+  const boleh = new Map(compilationSources().map((e) => [e.id, e]));
+  const dipilih = [...new Set(form.getAll('video').map(String))].filter((id) => boleh.has(id));
+  if (!judul) throw new Error('Isi judul kompilasi dulu');
+  if (dipilih.length < 2) throw new Error('Pilih minimal 2 video untuk kompilasi');
+  const ep = createEpisodeFromIdea(
+    {
+      title: judul,
+      series: 'kompilasi',
+      age: AGE_GROUPS.includes(usia) ? usia : '1-10',
+      moralMessage: `Kumpulan ${dipilih.length} video`,
+      format: 'standard',
+      type: 'compilation',
+      reason: 'Kompilasi dari pemilik channel',
+      references: [],
+    },
+    'pemilik',
+  );
+  updateEpisode(ep.id, (e) => {
+    e.compilation = {
+      items: dipilih.map((id) => {
+        const src = boleh.get(id)!;
+        return { id, title: src.metadata?.title ?? src.script?.title ?? src.idea.title };
+      }),
+    };
+  });
+  setStatus(ep.id, 'rendering', 'pemilik', `Kompilasi ${dipilih.length} video dibuat; menggabungkan video`);
+  runOfficeCommand(['render', ep.id], ep.id);
   segarkan();
   redirect(`/episode/${ep.id}`);
 }
@@ -533,6 +569,13 @@ export async function restoreFromDraft(form: FormData) {
 export async function recover(form: FormData) {
   const id = teks(form, 'id');
   const ep = getEpisode(id);
+  if (ep.idea.type === 'compilation' && !ep.render) {
+    // a compilation has no script or recording: just join the videos again
+    setStatus(id, 'rendering', 'pemilik', 'Dipulihkan; menggabungkan video lagi');
+    runOfficeCommand(['render', id], id);
+    segarkan(id);
+    return;
+  }
   const status = ep.render ? 'needs_video_approval' : ep.scenes ? 'needs_audio' : ep.script ? 'needs_script_approval' : 'idea';
   setStatus(id, status, 'pemilik', 'Dipulihkan');
   segarkan(id);

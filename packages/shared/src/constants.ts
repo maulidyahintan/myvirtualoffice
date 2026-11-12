@@ -30,7 +30,7 @@ export const MOODS = ['rain', 'stars', 'birds', 'light', 'leaves', 'butterflies'
 export const CHAT_AGENTS = ['manajer', 'riset', 'penulis', 'reviewer', 'sutradara', 'channel'] as const;
 
 /** Content type: story (script + characters) or memorization (Quranic recitation). */
-export const CONTENT_TYPES = ['story', 'memorization'] as const;
+export const CONTENT_TYPES = ['story', 'memorization', 'compilation'] as const;
 
 export const CHARACTERS = ['mamas', 'mother', 'mochi'] as const;
 

@@ -121,6 +121,26 @@ export function autoShortsCount(seconds: number | undefined): number {
 /** Default playlists: memorization → "Hafalan", Asbabun Nuzul → "Asbabun Nuzul", other series → "Obrolan Islami Anak". */
 export const DEFAULT_PLAYLISTS = ['Hafalan', 'Asbabun Nuzul', 'Obrolan Islami Anak'] as const;
 
+/**
+ * Finished videos that can go into a compilation: regular (16:9) videos rendered with sound, not
+ * compilations themselves, oldest first.
+ */
+export function compilationSources(all: Episode[] = listEpisodes()): Episode[] {
+  return all
+    .filter(
+      (e) =>
+        e.idea.type !== 'compilation' &&
+        (e.idea.format ?? 'standard') === 'standard' &&
+        Boolean(e.audioFile) &&
+        Boolean(e.render?.video) &&
+        fs.existsSync(path.join(paths.renders(), e.render!.video)),
+    )
+    .sort((a, b) => a.created.localeCompare(b.created));
+}
+
+/** Playlist for compilations (several videos joined into one long video). */
+export const COMPILATION_PLAYLIST = 'Kompilasi';
+
 /** Shorts get a playlist of their own next to the regular videos: "Hafalan" → "Hafalan Shorts". */
 export function formatPlaylist(base: string, format: Format | undefined): string {
   return format === 'short' ? `${base} Shorts` : base;
@@ -128,6 +148,7 @@ export function formatPlaylist(base: string, format: Format | undefined): string
 
 /** Series playlist of an episode, regardless of format (memorization always goes to the memorization series). */
 export function basePlaylistName(ep: Episode, cfg: AppConfig = loadConfig()): string {
+  if (ep.idea.type === 'compilation') return COMPILATION_PLAYLIST;
   if (ep.idea.type === 'memorization' && ep.idea.series !== 'hafalan') return seriesPlaylist('hafalan', cfg);
   return seriesPlaylist(ep.idea.series, cfg);
 }
@@ -265,6 +286,35 @@ function slug(s: string) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 40);
+}
+
+/**
+ * YouTube chapter list ("0:00 Title" per line) for a rendered compilation, or undefined when YouTube would
+ * not show chapters (needs at least 3, the first at 0:00, each at least 10 seconds long).
+ */
+export function compilationChapters(ep: Episode): string | undefined {
+  const items = ep.compilation?.items ?? [];
+  if (items.length < 3 || items.some((x) => x.start === undefined) || items[0].start !== 0) return undefined;
+  if (items.some((x, i) => i > 0 && x.start! - items[i - 1].start! < 10)) return undefined;
+  const time = (s: number) => {
+    const t = Math.floor(s);
+    const h = Math.floor(t / 3600);
+    const m = Math.floor((t % 3600) / 60);
+    const sec = String(t % 60).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
+  };
+  return items.map((x) => `${time(x.start!)} ${x.title}`).join('\n');
+}
+
+/** Description with the chapter list placed after the first paragraph (replacing an older list). */
+export function withChapters(description: string, chapters: string | undefined): string {
+  const marker = 'Daftar isi:';
+  const paragraphs = description
+    .trim()
+    .split(/\n\s*\n/)
+    .filter((p) => !p.trim().startsWith(marker));
+  if (chapters) paragraphs.splice(1, 0, `${marker}\n${chapters}`);
+  return paragraphs.join('\n\n');
 }
 
 export function createEpisodeFromIdea(idea: Idea, by = 'riset'): Episode {

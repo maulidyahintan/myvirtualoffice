@@ -177,6 +177,16 @@ export interface LogEntry {
   message: string;
 }
 
+/** One video inside a compilation, in playing order. */
+export interface CompilationItem {
+  /** Source episode id */
+  id: string;
+  /** Title shown as the chapter name */
+  title: string;
+  /** Second where it starts in the compilation; filled by the render */
+  start?: number;
+}
+
 export interface Episode {
   id: string;
   created: string;
@@ -205,6 +215,8 @@ export interface Episode {
   previousRecordings?: { narration: string; file: string | null; offset: number | null; ai?: boolean }[];
   scenes?: Scene[];
   metadata?: YouTubeMetadata;
+  /** Videos joined into this compilation (only for compilation type), in playing order. */
+  compilation?: { items: CompilationItem[] };
   /** Verse text + visuals (only for memorization type) */
   memorization?: {
     surahName: string;

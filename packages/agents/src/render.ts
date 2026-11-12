@@ -18,6 +18,8 @@ import {
   visualStyle,
   thumbnailPlan,
   updateEpisode,
+  getEpisode,
+  type CompilationItem,
   type Episode,
   type EpisodeVideoProps,
   type KnownKeys,
@@ -418,4 +420,70 @@ export async function renderScenePreview(ep: Episode, index: number, onLine?: (s
   await jalankan(['render', 'src/index.ts', 'Episode', path.join(paths.renders(), file), `--props=${previewProps}`, `--frames=${first}-${last}`], onLine);
   fs.rmSync(previewProps, { force: true });
   return file;
+}
+
+/**
+ * Compilation: join the finished videos of other episodes, in order, into one long video. The sources are
+ * re-encoded together (robust against small differences between renders); nothing is re-rendered. Returns
+ * the video file and where each source starts, for the chapter list.
+ */
+export async function renderCompilationVideo(ep: Episode, onLine?: (s: string) => void): Promise<{ video: string; items: CompilationItem[] }> {
+  const items = ep.compilation?.items ?? [];
+  if (items.length < 2) throw new Error('Kompilasi butuh minimal 2 video');
+  const dir = ensureDir(paths.renders());
+  const files = items.map((x) => {
+    let src: Episode;
+    try {
+      src = getEpisode(x.id);
+    } catch {
+      throw new Error(`Video "${x.title}" (${x.id}) sudah tidak ada`);
+    }
+    const file = src.render?.video ? path.join(dir, src.render.video) : '';
+    if (!file || !fs.existsSync(file)) throw new Error(`Video "${x.title}" belum dirender atau filenya hilang`);
+    return file;
+  });
+
+  // where each video starts in the compilation
+  const placed: CompilationItem[] = [];
+  let t = 0;
+  for (const [i, f] of files.entries()) {
+    placed.push({ ...items[i], start: Math.round(t * 10) / 10 });
+    t += await durasiAudio(f);
+  }
+
+  const list = path.join(dir, `${ep.id}.concat.txt`);
+  fs.writeFileSync(list, files.map((f) => `file '${f.replace(/'/g, "'\\''")}'`).join('\n'));
+  const video = `${ep.id}.mp4`;
+  const out = path.join(dir, video);
+  fs.rmSync(out, { force: true });
+  onLine?.(`Menggabungkan ${files.length} video (±${Math.round(t / 60)} menit)`);
+  const log = await ffmpeg([
+    '-hide_banner', '-loglevel', 'error', '-y',
+    '-f', 'concat', '-safe', '0', '-i', list,
+    // same size & frame rate for every part, in case an older render differs (Remotion's ffmpeg has no
+    // pad/fps filters; all sources are 16:9 already, so a plain scale doesn't distort)
+    '-vf', 'scale=w=1920:h=1080', '-r', '30',
+    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p',
+    '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
+    '-movflags', '+faststart',
+    out,
+  ]);
+  fs.rmSync(list, { force: true });
+  if (!fs.existsSync(out)) throw new Error(`Gagal menggabungkan video: ${log.trim().split("\n").slice(-4).join(" | ")}`);
+  return { video, items: placed };
+}
+
+/** Thumbnail of a compilation (same cover style as other videos, from its metadata text). */
+export async function renderCompilationThumbnail(ep: Episode, onLine?: (s: string) => void): Promise<string> {
+  const cfg = loadConfig();
+  const dir = ensureDir(paths.renders());
+  const thumbProps: KnownKeys<ThumbnailProps> = {
+    ...thumbnailPlan(ep, ep.metadata?.thumbnailText ?? ep.idea.title, cfg),
+    characterLooks: cfg.characterLooks,
+  };
+  const thumbPropsFile = path.join(dir, `${ep.id}.thumb.json`);
+  fs.writeFileSync(thumbPropsFile, JSON.stringify(thumbProps));
+  const thumbnail = `${ep.id}.png`;
+  await jalankan(['still', 'src/index.ts', 'Thumbnail', path.join(dir, thumbnail), `--props=${thumbPropsFile}`], onLine);
+  return thumbnail;
 }

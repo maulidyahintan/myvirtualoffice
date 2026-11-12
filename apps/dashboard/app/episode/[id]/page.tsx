@@ -31,6 +31,7 @@ import {
   loadConfig,
   DAY_NAMES,
   playlistName,
+  compilationChapters,
   paths,
   nextFreeSlot,
   isBusy,
@@ -850,7 +851,15 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
             </SubmitButton>
           </form>
           <VideoLama ep={ep} />
-          {!ep.audioFile ? <p className="peringatan kecil">Ini masih pratinjau tanpa suara. Upload rekaman dulu sebelum tayang.</p> : null}
+          {ep.compilation ? (
+            <form action={renderVideo}>
+              <Id id={ep.id} />
+              <SubmitButton type="submit" className="sekunder" teksProses="Memulai…">
+                🔁 Gabung ulang videonya (kalau salah satu video sudah diperbarui)
+              </SubmitButton>
+            </form>
+          ) : null}
+          {!ep.audioFile && !ep.compilation ? <p className="peringatan kecil">Ini masih pratinjau tanpa suara. Upload rekaman dulu sebelum tayang.</p> : null}
           {ep.idea.type === 'memorization' && ep.audioFile ? (
             <details>
               <summary>Waktu tiap bacaan meleset? Koreksi di sini</summary>
@@ -868,6 +877,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               </form>
             </details>
           ) : null}
+          {ep.compilation ? null : (
           <details>
             <summary>Rekam ulang / render ulang</summary>
             <p style={{ marginTop: 10 }}>
@@ -889,6 +899,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               </form>
             )}
           </details>
+          )}
           <MintaRevisiVideo ep={ep} />
           <MintaRevisiNaskah ep={ep} />
           <FormTolak id={ep.id} />
@@ -915,9 +926,13 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               })}
             </div>
           ) : null}
-          <VersiLain ep={ep} />
-          <PecahShorts ep={ep} />
-          <EditUlang ep={ep} />
+          {ep.compilation ? null : (
+            <>
+              <VersiLain ep={ep} />
+              <PecahShorts ep={ep} />
+              <EditUlang ep={ep} />
+            </>
+          )}
         </div>
       );
 
@@ -1240,6 +1255,39 @@ function FormTolak({ id }: { id: string }) {
   );
 }
 
+/** Isi kompilasi: video-video yang digabung, urut, dengan waktu mulainya (bab di YouTube). */
+function IsiKompilasi({ ep }: { ep: Episode }) {
+  const items = ep.compilation?.items ?? [];
+  const jam = (s: number) => {
+    const t = Math.floor(s);
+    const h = Math.floor(t / 3600);
+    const m = Math.floor((t % 3600) / 60);
+    const d = String(t % 60).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${d}` : `${m}:${d}`;
+  };
+  const adaBab = Boolean(compilationChapters(ep));
+  return (
+    <div className="panel stack">
+      <h2>🎞️ Isi kompilasi ({items.length} video)</h2>
+      <ol style={{ margin: 0, paddingLeft: 20 }}>
+        {items.map((x) => (
+          <li key={x.id} style={{ marginBottom: 4 }}>
+            {x.start !== undefined ? <span className="muted" style={{ fontVariantNumeric: 'tabular-nums' }}>{jam(x.start)} · </span> : null}
+            <Link href={`/episode/${x.id}`}>{x.title}</Link>
+          </li>
+        ))}
+      </ol>
+      <span className="kecil muted">
+        {items.some((x) => x.start === undefined)
+          ? 'Waktu tiap video muncul setelah digabung.'
+          : adaBab
+            ? 'Daftar ini masuk ke deskripsi sebagai bab (chapters) YouTube, supaya penonton bisa lompat ke video tertentu.'
+            : 'Bab YouTube butuh minimal 3 video yang masing-masing ≥ 10 detik; daftar isi tidak ditambahkan ke deskripsi.'}
+      </span>
+    </div>
+  );
+}
+
 export default async function HalamanEpisode({
   params,
   searchParams,
@@ -1257,7 +1305,7 @@ export default async function HalamanEpisode({
   }
   const cfg = loadConfig();
   const namaTokoh = speakerNames(cfg);
-  const seri = cfg.series.find((s) => s.id === ep.idea.series)?.name ?? ep.idea.series;
+  const seri = ep.idea.type === 'compilation' ? '🎞️ Kompilasi' : (cfg.series.find((s) => s.id === ep.idea.series)?.name ?? ep.idea.series);
   const log = ekorLog(id);
 
   return (
@@ -1353,6 +1401,8 @@ export default async function HalamanEpisode({
                 </div>
               ))}
             </div>
+          ) : ep.compilation ? (
+            <IsiKompilasi ep={ep} />
           ) : (
             <div className="panel muted">Naskah belum ditulis.</div>
           )}

@@ -9,6 +9,8 @@ import {
   isoToLocal,
   latestFile,
   listEpisodes,
+  compilationChapters,
+  withChapters,
   AI_VOICES,
   voiceFilter,
   needsPlaylist,
@@ -52,7 +54,7 @@ import {
   DirectorSchema,
 } from './schemas.ts';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
-import { renderEpisode, renderScenePreview, ffmpeg } from './render.ts';
+import { renderEpisode, renderScenePreview, ffmpeg, durasiAudio, renderCompilationVideo, renderCompilationThumbnail } from './render.ts';
 import { makePrivate, uploadEpisode } from './youtube/upload.ts';
 import { removeFromPlaylist, addToPlaylist } from './youtube/playlist.ts';
 
@@ -279,9 +281,27 @@ async function directMemorization(ep: Episode) {
 
 // ---------------------------------------------------------------- METADATA
 /** Metadata YouTube dari Channel Manager, sesuai format episode (Shorts / video biasa). */
+/** One line per video in a compilation, with what it is about, for the metadata writer. */
+function compilationContents(ep: Episode): string {
+  return (ep.compilation?.items ?? [])
+    .map((x, i) => {
+      let about = '';
+      try {
+        const src = getEpisode(x.id);
+        about = src.memorization ? `hafalan Surat ${src.memorization.surahName}` : (src.script?.summary ?? src.idea.moralMessage);
+      } catch {
+        // source removed after the compilation was made: the title is enough
+      }
+      return `${i + 1}. ${x.title}${about ? ` — ${about.slice(0, 200)}` : ''}`;
+    })
+    .join('\n');
+}
+
 async function requestMetadata(ep: Episode) {
   const format = ep.idea.format ?? 'standard';
-  const isi = ep.memorization
+  const isi = ep.compilation
+    ? `JENIS: kompilasi, beberapa video channel digabung jadi satu video panjang (untuk diputar lama/berulang oleh orang tua).\nJudul kompilasi dari pemilik channel: ${ep.idea.title}\nIsi, urut:\n${compilationContents(ep)}\n\nJudul harus jelas menyebut ini kumpulan (misal "Kumpulan ..."/"... untuk Anak"), deskripsi menyebut isi videonya. Daftar isi dengan waktu ditambahkan otomatis, jangan menulisnya.`
+    : ep.memorization
     ? `JENIS: video hafalan surat.\nSurat ${ep.memorization.surahName} (${ep.memorization.surahMeaning}), ${ep.memorization.verses.filter((a) => a.number > 0).length} ayat, tiap ayat diulang ${ep.idea.memorization?.repetitions ?? 1}x.`
     : `Seri: ${ep.idea.series}\n\nNaskah:\n${JSON.stringify(ep.script, null, 2)}`;
   const metadata = await runAgent({
@@ -297,9 +317,11 @@ async function requestMetadata(ep: Episode) {
 /** Regenerate metadata (title, description, tags) according to episode format, e.g. for twin format version. */
 export async function regenerateMetadata(id: string) {
   const ep = getEpisode(id);
-  if (!ep.script && !ep.memorization) throw new Error('Episode belum punya naskah');
+  if (!ep.script && !ep.memorization && !ep.compilation) throw new Error('Episode belum punya naskah');
   log(id, 'channel-manager')(`Menyusun metadata ${ep.idea.format === 'short' ? 'Shorts' : 'video biasa'}`);
   const metadata = await requestMetadata(ep);
+  // compilation: keep the chapter list of the rendered video in the description
+  if (ep.compilation) metadata.description = withChapters(metadata.description, compilationChapters(ep));
   updateEpisode(id, (e) => {
     e.metadata = metadata;
   });
@@ -731,6 +753,7 @@ export async function illustrateEpisode(id: string, sceneNo?: number) {
 // ---------------------------------------------------------------- RENDER
 export async function render(id: string) {
   const ep = getEpisode(id);
+  if (ep.idea.type === 'compilation') return renderCompilation(id);
   // per-scene recordings are merged during the render, so they count as audio too
   const hasAudio = Boolean(ep.audioFile) || Boolean(ep.audioParts?.length) || Boolean(ep.audioPerScene?.some(Boolean));
   setStatus(id, 'rendering', 'video-creator', hasAudio ? 'Render dengan rekaman suara' : 'Render pratinjau tanpa suara');
@@ -754,6 +777,55 @@ export async function render(id: string) {
 }
 
 // ---------------------------------------------------------------- UPLOAD
+/**
+ * Compilation: join the chosen videos, then title/description (with chapter times) from the Channel Manager
+ * and a cover. The metadata falls back to a plain text when the agent is unavailable, so the video is
+ * never lost over it; it can be rewritten later from the episode page.
+ */
+async function renderCompilation(id: string) {
+  const ep = getEpisode(id);
+  const say = log(id, 'video-creator');
+  setStatus(id, 'rendering', 'video-creator', `Menggabungkan ${ep.compilation?.items.length ?? 0} video`);
+  const { video, items } = await renderCompilationVideo(ep, say);
+  const total = (await durasiAudio(path.join(paths.renders(), video))) || items.at(-1)!.start! + 60;
+  let joined = updateEpisode(id, (e) => {
+    e.compilation = { items };
+  });
+  say(`Video kompilasi jadi: ${Math.round(total / 60)} menit`);
+
+  if (!joined.metadata) {
+    let metadata;
+    try {
+      metadata = await requestMetadata(joined);
+    } catch (e) {
+      log(id, 'channel-manager')(`Metadata otomatis gagal (${(e as Error).message}); memakai judul kompilasi, bisa dibuat ulang nanti`);
+      metadata = normalizeMetadata({
+        title: joined.idea.title,
+        description: `${joined.idea.title}: kumpulan video ${loadConfig().channelName} untuk anak, bisa diputar berurutan.`,
+        tags: ['kumpulan video anak', 'cerita islami anak', 'kartun islami'],
+        thumbnailText: joined.idea.title.split(/\s+/).slice(0, 3).join(' '),
+      });
+    }
+    joined = updateEpisode(id, (e) => {
+      e.metadata = metadata;
+    });
+  }
+  joined = updateEpisode(id, (e) => {
+    e.metadata!.description = withChapters(e.metadata!.description, compilationChapters(e));
+  });
+
+  const thumbnail = await renderCompilationThumbnail(joined, say);
+  updateEpisode(id, (e) => {
+    e.render = {
+      video,
+      thumbnail,
+      time: new Date().toISOString(),
+      scenes: items.map((x, i) => ({ start: x.start!, duration: (items[i + 1]?.start ?? total) - x.start! })),
+    };
+  });
+  setStatus(id, 'needs_video_approval', 'video-creator', 'Kompilasi siap ditonton & disetujui');
+}
+
 export async function upload(id: string, publishTime?: string) {
   const ep = getEpisode(id);
   setStatus(id, 'uploading', 'channel-manager', 'Upload ke YouTube');

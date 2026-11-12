@@ -35,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         { href: '/board', ikon: '🗂️', label: 'Papan Kerja', badge: butuhKamu },
         { href: '/ideas/new', ikon: '💡', label: 'Ide Manual' },
         { href: '/memorization/new', ikon: '📖', label: 'Hafalan Baru' },
+        { href: '/compilation/new', ikon: '🎞️', label: 'Kompilasi Baru' },
       ],
     },
     {

@@ -483,3 +483,13 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .kotak-bacaan { gap: 6px; padding: 8px 10px; border-radius: 10px; border: 1px dashed var(--line); background: rgba(232, 176, 74, 0.08); font-size: 13px; }
 /* putaran loading juga dipakai di tombol "isi semua" */
 .putar { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: putar-suara 0.8s linear infinite; }
+
+/* kompilasi: daftar video (kiri) + urutan & total durasi (kanan, ikut menempel saat digulir) */
+.kompilasi-pilih { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 16px; align-items: start; }
+.kompilasi-urutan { position: sticky; top: 16px; }
+.kompilasi-video { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: pointer; }
+.kompilasi-judul { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .kompilasi-pilih { grid-template-columns: 1fr; }
+  .kompilasi-urutan { position: static; }
+}
