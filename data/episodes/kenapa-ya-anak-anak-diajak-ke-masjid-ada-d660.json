@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660",
   "created": "2026-11-06T04:57:59.428Z",
-  "modified": "2026-11-09T23:47:42.168Z",
+  "modified": "2026-11-12T11:05:42.568Z",
   "status": "needs_audio",
   "idea": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
@@ -177,6 +177,46 @@
       "time": "2026-11-09T23:47:42.168Z",
       "by": "pemilik",
       "message": "Rekaman adegan 9 diupload"
+    },
+    {
+      "time": "2026-11-12T11:04:49.658Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-12T11:04:50.590Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 15 adegan dengan suara AI gratis"
+    },
+    {
+      "time": "2026-11-12T11:05:08.037Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/15)"
+    },
+    {
+      "time": "2026-11-12T11:05:13.109Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/15)"
+    },
+    {
+      "time": "2026-11-12T11:05:20.997Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/15)"
+    },
+    {
+      "time": "2026-11-12T11:05:30.178Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (4/15)"
+    },
+    {
+      "time": "2026-11-12T11:05:37.614Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (5/15)"
+    },
+    {
+      "time": "2026-11-12T11:05:42.567Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (6/15)"
     }
   ],
   "twin": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-963a",
@@ -568,12 +608,12 @@
     "thumbnailText": "Kenapa Kaki Kanan?"
   },
   "audioPerScene": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-1-ai-mwdfyh8j.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-2-ai-mwdfyl5f.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-3-ai-mwdfyr8k.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-4-ai-mwdfyybl.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-5-ai-mwdfz424.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-6-ai-mwdfz7vq.wav",
     null,
     null,
     "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-9-mw9wvlcm.webm",
@@ -603,5 +643,23 @@
     null,
     null
   ],
-  "recordingMode": "per-scene"
+  "recordingMode": "per-scene",
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
 }
