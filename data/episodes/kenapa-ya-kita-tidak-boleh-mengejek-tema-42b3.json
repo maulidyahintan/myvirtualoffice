@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-kita-tidak-boleh-mengejek-tema-42b3",
   "created": "2026-11-12T02:52:27.974Z",
-  "modified": "2026-11-12T02:52:27.974Z",
-  "status": "idea",
+  "modified": "2026-11-12T11:11:33.061Z",
+  "status": "needs_script_approval",
   "idea": {
     "title": "Kenapa Ya Kita Tidak Boleh Mengejek Teman?",
     "series": "kenapa-ya",
@@ -16,12 +16,147 @@
       "QS. Al-Hujurat: 11"
     ]
   },
-  "revisionCount": 0,
+  "revisionCount": 1,
   "log": [
     {
       "time": "2026-11-12T02:52:27.974Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-12T11:09:46.150Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-12T11:09:47.013Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-12T11:10:56.481Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:10:56.965Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-12T11:11:32.576Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:11:33.061Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
     }
-  ]
+  ],
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Kenapa Ya Kita Tidak Boleh Mengejek Teman?",
+    "summary": "Di sekolah, Bimo mengejek Raka yang salah membaca. Ia memanggilnya \"Raka lambat\". Mamas membela Raka lalu mengajaknya bermain. Bimo dinasihati Bu Guru, tidak boleh ikut bermain dulu, lalu meminta maaf. Di rumah, Mamas bertanya kenapa tidak boleh mengejek kalau cuma bercanda. Saat itu Mochi terpeleset dari sofa lalu bersembunyi karena malu. Dari situ Ibu menjelaskan bahwa kata-kata bisa melukai hati. Ibu juga menyampaikan QS. Al-Hujurat ayat 11: bisa jadi yang diejek lebih baik di sisi Allah. Episode ditutup dengan doa memohon akhlak terbaik.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Hari ini di sekolah, Raka salah membaca di depan kelas. Bimo tertawa keras, 'Raka lambat! Raka lambat!' Raka menunduk, matanya berkaca-kaca.",
+        "visualDirection": "School: ruang kelas siang yang tenang dari sudut pandang Mamas yang duduk di bangku. Teman-temannya tidak digambar, cukup buku terbuka di meja depan kelas."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas berdiri. 'Jangan begitu, Bimo. Raka sedang belajar.' Saat istirahat, Mamas mengajak Raka bermain bola. Bimo dinasihati Bu Guru dan tidak boleh ikut bermain dulu. Bimo pun sadar, lalu meminta maaf kepada Raka.",
+        "visualDirection": "School: Mamas berdiri dengan wajah tegas tapi lembut, lalu berpindah ke halaman sekolah sambil memegang bola. Tokoh lain tidak digambar."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu, Bimo bilang dia cuma bercanda. Kenapa sih kita tidak boleh mengejek teman?",
+        "visualDirection": "Living-room sore hari: Mamas duduk di sofa di samping Ibu dengan wajah bingung, Mochi bermain bola benang di dekat mereka."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, menurut kalian, kenapa kita tidak boleh mengejek teman? Coba pikirkan dulu, ya.",
+        "visualDirection": "Living-room: kamera mendekat ke wajah Mamas yang sedang berpikir, suasana hening untuk jeda berpikir."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Gedebuk! Mochi terpeleset dari sofa saat mengejar bola benang. Mamas hampir tertawa. Tapi Mochi langsung bersembunyi di balik bantal, malu.",
+        "visualDirection": "Living-room: Mochi meluncur pelan dari sofa lalu mengintip malu-malu dari balik bantal, Mamas menutup mulut menahan tawa (efek suara jatuh yang lembut)."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Lihat, Mas. Mochi saja malu ditertawakan. Apalagi Raka. Bercanda yang membuat teman sedih, itu namanya mengejek. Kata-kata tidak terlihat, tapi bisa melukai hati. Allah juga melarangnya. Coba Mas baca Surat Al-Hujurat ayat sebelas.",
+        "visualDirection": "Living-room: Ibu mengelus Mochi sambil tersenyum lembut kepada Mamas, Mamas mengangguk pelan."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Yā ayyuhal-lażīna āmanū lā yaskhar qaumum min qaumin 'asā ay yakūnū khairam minhum.",
+        "visualDirection": "Living-room: Mamas duduk tegak membaca dengan khusyuk, cahaya sore yang hangat dan tenang."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, wahai orang beriman, janganlah suatu kaum mengolok-olok kaum lain. Bisa jadi yang diolok-olok lebih baik dari mereka. Jadi, bisa jadi Raka lebih baik di sisi Allah. Mas tadi sudah benar. Membela Raka dan mengajaknya bermain. Yuk, kita berdoa agar akhlak kita baik.",
+        "visualDirection": "Living-room: Ibu memeluk Mamas dengan bangga, Mochi keluar dari balik bantal dan naik ke pangkuan Mamas."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Wahdinī li-aḥsanil-akhlāqi, lā yahdī li-aḥsanihā illā anta. Waṣrif 'annī sayyi'ahā, lā yaṣrifu 'annī sayyi'ahā illā anta.",
+        "visualDirection": "Living-room: Mamas dan Ibu menengadahkan tangan berdoa bersama, Mochi duduk tenang di sebelah mereka."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Artinya, tunjukilah aku kepada akhlak terbaik, dan jauhkan aku dari akhlak yang buruk. Hanya Allah yang bisa melakukannya. Ingat, adik-adik: jangan mengejek, ayo bela dan ajak teman bermain! Wassalamu'alaikum.",
+        "visualDirection": "Yard senja: Mamas melambaikan tangan sambil tersenyum, Mochi mengejar bola benang dengan riang."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "يَا أَيُّهَا الَّذِينَ آمَنُوا لَا يَسْخَرْ قَوْمٌ مِّن قَوْمٍ عَسَىٰ أَن يَكُونُوا خَيْرًا مِّنْهُمْ",
+        "latin": "Yā ayyuhal-lażīna āmanū lā yaskhar qaumum min qaumin 'asā ay yakūnū khairam minhum.",
+        "translation": "Wahai orang-orang yang beriman, janganlah suatu kaum mengolok-olok kaum yang lain, (karena) boleh jadi mereka (yang diolok-olok) lebih baik dari mereka (yang mengolok-olok).",
+        "source": "QS. Al-Hujurat [49]: 11 (potongan awal ayat)"
+      },
+      {
+        "type": "doa",
+        "arabicText": "وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ، وَاصْرِفْ عَنِّي سَيِّئَهَا لَا يَصْرِفُ عَنِّي سَيِّئَهَا إِلَّا أَنْتَ",
+        "latin": "Wahdinī li-aḥsanil-akhlāqi, lā yahdī li-aḥsanihā illā anta. Waṣrif 'annī sayyi'ahā, lā yaṣrifu 'annī sayyi'ahā illā anta.",
+        "translation": "Tunjukilah aku kepada akhlak yang terbaik, tidak ada yang dapat menunjukkan kepadanya kecuali Engkau. Dan jauhkanlah dariku akhlak yang buruk, tidak ada yang dapat menjauhkannya dariku kecuali Engkau.",
+        "source": "HR. Muslim no. 771, dari Ali bin Abi Thalib radhiyallahu 'anhu (bagian dari doa iftitah Rasulullah ﷺ)"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Lolos. Syariat aman: tidak ada visualisasi Nabi, sahabat, atau malaikat. Kedua dalil punya sumber yang spesifik, dan teks serta terjemahannya cocok dengan yang saya ketahui.",
+      "Panjang dan tempo sudah pas. Naskah 236 kata (dalam batas 220–320), langsung masuk ke konflik di scene 1, dan tidak ada scene yang bertele-tele.",
+      "Bacaan Arab sudah terpisah dengan benar. Scene 7 (ayat) dan scene 9 (doa) hanya berisi latin. Pengantar ada di scene 6, artinya ada di scene 8 dan 10. Scene ayat sudah memakai speaker mamas.",
+      "Perilaku negatif ada konsekuensinya. Bimo dinasihati, tidak boleh ikut bermain dulu, lalu meminta maaf. Momen Mamas hampir tertawa melihat Mochi juga selesai dengan baik karena ia menahan tawa.",
+      "Momen interaktif (scene 4) dan pertanyaan 'kenapa' cocok untuk usia 7–10. Analogi Mochi yang malu itu orisinal dan konkret.",
+      "Saran kecil (tidak wajib) untuk scene 1: ejekan 'Raka lambat! Raka lambat!' diulang dua kali dan dikutip langsung. Ini berisiko diingat dan ditiru anak, dan bisa terdengar seperti dialog langsung dari tokoh yang tidak digambar. Pertimbangkan versi tidak langsung, misalnya: 'Bimo tertawa dan memanggilnya Raka lambat.' Cukup sekali, dan narator jangan menirukan nada mengejek.",
+      "Saran kecil (tidak wajib) untuk scene 1: ganti 'tertawa keras' dengan 'tertawa' saja. Ini untuk memastikan voice-over dan efek suaranya tidak keras atau overstimulating.",
+      "Opsional untuk scene 8: lanjutan QS. Al-Hujurat ayat 11 memuat 'wa lā tanābazū bil-alqāb' (jangan memanggil dengan gelar yang buruk). Bagian ini sangat pas dengan kasus 'Raka lambat'. Kalau mau ditambah, pastikan latinnya diletakkan di scene tersendiri, sumbernya ditulis, dan total kata tetap ≤ 320.",
+      "Opsional untuk scene 9: doa dimulai dengan 'Wa-' karena memang potongan dari tengah doa iftitah, jadi ini sah. Penulis boleh membiarkannya, atau menjelaskan di catatan produksi bahwa ini potongan."
+    ],
+    "humanCheck": [
+      "Dalil 1 – QS. Al-Hujurat [49]: 11 (potongan awal): 'يَا أَيُّهَا الَّذِينَ آمَنُوا لَا يَسْخَرْ قَوْمٌ مِّن قَوْمٍ عَسَىٰ أَن يَكُونُوا خَيْرًا مِّنْهُمْ'. Cocokkan teks Arab, latin 'Yā ayyuhal-lażīna āmanū lā yaskhar qaumum min qaumin 'asā ay yakūnū khairam minhum', dan terjemahannya dengan mushaf atau terjemah Kemenag.",
+      "Dalil 2 – Doa 'وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ، وَاصْرِفْ عَنِّي سَيِّئَهَا لَا يَصْرِفُ عَنِّي سَيِّئَهَا إِلَّا أَنْتَ', sumber HR. Muslim no. 771 dari Ali bin Abi Thalib (doa iftitah). Pastikan nomor hadits sesuai edisi yang dipakai (penomoran Fuad Abdul Baqi), dan cek ejaan latinnya.",
+      "Terjemah doa di scene 10 ('Hanya Allah yang bisa melakukannya') adalah parafrase ringkas. Pastikan Anda nyaman dengan penyederhanaan ini.",
+      "Dengarkan voice-over scene 1. Pastikan ejekan 'Raka lambat' tidak dibacakan dengan nada mengejek atau keras.",
+      "Cek visual scene 1–2: tokoh Bimo, Raka, dan Bu Guru benar-benar tidak tergambar (termasuk siluet atau tangan) di ruang kelas maupun halaman sekolah."
+    ]
+  }
 }

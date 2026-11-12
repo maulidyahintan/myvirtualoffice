@@ -1,8 +1,8 @@
 {
   "id": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660",
   "created": "2026-11-06T04:57:59.428Z",
-  "modified": "2026-11-12T11:05:42.568Z",
-  "status": "needs_audio",
+  "modified": "2026-11-12T11:19:51.355Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
     "series": "kenapa-ya",
@@ -217,10 +217,125 @@
       "time": "2026-11-12T11:05:42.567Z",
       "by": "pengisi-suara",
       "message": "Adegan 6 diisi suara AI (6/15)"
+    },
+    {
+      "time": "2026-11-12T11:06:07.188Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (7/15)"
+    },
+    {
+      "time": "2026-11-12T11:06:13.404Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (8/15)"
+    },
+    {
+      "time": "2026-11-12T11:06:26.968Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (9/15)"
+    },
+    {
+      "time": "2026-11-12T11:06:32.294Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (10/15)"
+    },
+    {
+      "time": "2026-11-12T11:06:39.163Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (11/15)"
+    },
+    {
+      "time": "2026-11-12T11:07:06.229Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (12/15)"
+    },
+    {
+      "time": "2026-11-12T11:07:17.553Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 14 diisi suara AI (13/15)"
+    },
+    {
+      "time": "2026-11-12T11:07:20.575Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 15 diisi suara AI (14/15)"
+    },
+    {
+      "time": "2026-11-12T11:08:07.299Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 16 diisi suara AI (15/15)"
+    },
+    {
+      "time": "2026-11-12T11:08:07.300Z",
+      "by": "pengisi-suara",
+      "message": "15 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-12T11:09:12.858Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-12T11:09:13.735Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-12T11:11:49.433Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-12T11:18:55.653Z",
+      "by": "pemilik",
+      "message": "Minta ilustrasi AI untuk adegan penting"
+    },
+    {
+      "time": "2026-11-12T11:18:56.259Z",
+      "by": "ilustrator",
+      "message": "Memilih adegan yang perlu digambar"
+    },
+    {
+      "time": "2026-11-12T11:19:09.902Z",
+      "by": "ilustrator",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:19:10.455Z",
+      "by": "ilustrator",
+      "message": "Adegan yang digambar: 1, 10, 13, 14, 16"
+    },
+    {
+      "time": "2026-11-12T11:19:20.044Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 1 selesai (1/5)"
+    },
+    {
+      "time": "2026-11-12T11:19:27.872Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 10 selesai (2/5)"
+    },
+    {
+      "time": "2026-11-12T11:19:35.677Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 13 selesai (3/5)"
+    },
+    {
+      "time": "2026-11-12T11:19:43.373Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 14 selesai (4/5)"
+    },
+    {
+      "time": "2026-11-12T11:19:51.353Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 16 selesai (5/5)"
+    },
+    {
+      "time": "2026-11-12T11:19:51.355Z",
+      "by": "ilustrator",
+      "message": "5 ilustrasi siap. Cek di halaman episode, lalu render ulang supaya masuk ke video."
     }
   ],
   "twin": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-963a",
-  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "statusNote": "Video siap ditonton & disetujui",
   "script": {
     "title": "Kenapa Ya Anak-Anak Diajak ke Masjid? Adab Kecil di Rumah Allah",
     "summary": "Mamas senang sekali ikut Ibu ke masjid. Ia bertanya kenapa anak kecil diajak ke sana. Sampai di masjid, Mamas berlari dan berteriak memanggil teman-temannya. Ibu menegurnya dengan lembut, lalu mengajarkan adab di rumah Allah: berjalan tenang, masuk dengan kaki kanan, dan membaca doa masuk masjid, Allāhummaftaḥ lī abwāba raḥmatik (HR. Muslim no. 713). Mamas bertanya kenapa harus kaki kanan. Ibu menjelaskan bahwa Rasulullah ﷺ suka mendahulukan yang kanan dalam hal-hal baik (HR. Bukhari dan Muslim). Ibu juga mengajak Mamas merapikan sandal dan tidak berlari di dalam masjid. Narator bercerita bahwa Rasulullah ﷺ pernah shalat sambil menggendong cucunya, Umamah, tanda sayangnya beliau kepada anak-anak.",
@@ -374,7 +489,11 @@
         "mother"
       ],
       "expression": "happy",
-      "screenText": "Ayo ke Masjid!"
+      "screenText": "Ayo ke Masjid!",
+      "illustration": {
+        "prompt": "A small, friendly neighborhood mosque seen from across a quiet street in the late afternoon, with a green dome, a slender minaret and a tidy courtyard with potted plants. Warm golden sunlight, soft orange sky with a few gentle clouds, calm and inviting atmosphere.",
+        "image": "ilustrasi/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-1-mwdggqnf.jpg"
+      }
     },
     {
       "type": "story",
@@ -505,7 +624,11 @@
         "mother"
       ],
       "expression": "happy",
-      "screenText": "Tenang, Kanan, Berdoa"
+      "screenText": "Tenang, Kanan, Berdoa",
+      "illustration": {
+        "prompt": "Close view of a mosque's tall wooden double doors wide open, with soft warm golden light glowing from inside onto the clean entrance steps. Gentle evening blue sky around the doorway, peaceful and welcoming mood.",
+        "image": "ilustrasi/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-10-mwdggwou.jpg"
+      }
     },
     {
       "type": "story",
@@ -539,7 +662,11 @@
         "mamas"
       ],
       "expression": "calm",
-      "screenText": "Rapikan Sandal"
+      "screenText": "Rapikan Sandal",
+      "illustration": {
+        "prompt": "Close view of a row of small and large sandals neatly lined up in pairs on a wooden shoe rack beside a mosque entrance, with one tiny pair of blue children's sandals in the middle. Soft afternoon light, clean tiled floor, calm and orderly feeling.",
+        "image": "ilustrasi/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-13-mwdgh2pn.jpg"
+      }
     },
     {
       "type": "story",
@@ -547,7 +674,11 @@
       "narration": "Adik-adik tahu? Dulu Rasulullah ﷺ pernah shalat sambil menggendong cucunya, Umamah. Rasulullah ﷺ sayang kepada anak-anak, bahkan saat shalat. Hadisnya diriwayatkan Imam Bukhari dan Muslim.",
       "background": "inside-mosque",
       "characters": [],
-      "expression": "calm"
+      "expression": "calm",
+      "illustration": {
+        "prompt": "A simple, very old-style mosque courtyard in ancient Madinah seen from a distance, with palm-trunk pillars, a roof of dried palm fronds and a sandy floor, empty and deserted. Soft warm morning sunlight filters through the palm-frond roof, date palm trees and a calm pale sky in the background, tender and peaceful mood.",
+        "image": "ilustrasi/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-14-mwdgh8ng.jpg"
+      }
     },
     {
       "type": "story",
@@ -583,7 +714,11 @@
           "character": "mochi",
           "action": "sleeping"
         }
-      ]
+      ],
+      "illustration": {
+        "prompt": "A neighborhood mosque with a green dome and slender minaret seen from a distance at dusk, its windows glowing with warm light. Pink and purple evening sky with the first small stars, quiet empty courtyard, serene and cozy atmosphere.",
+        "image": "ilustrasi/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-16-mwdghet4.jpg"
+      }
     }
   ],
   "metadata": {
@@ -614,16 +749,16 @@
     "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-4-ai-mwdfyybl.wav",
     "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-5-ai-mwdfz424.wav",
     "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-6-ai-mwdfz7vq.wav",
-    null,
-    null,
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-7-ai-mwdfzqvm.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-8-ai-mwdfzvoa.wav",
     "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-9-mw9wvlcm.webm",
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-10-ai-mwdg0652.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-11-ai-mwdg0a90.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-12-ai-mwdg0fju.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-13-ai-mwdg10fn.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-14-ai-mwdg1967.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-15-ai-mwdg1bi6.wav",
+    "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-adegan-16-ai-mwdg2bk2.wav"
   ],
   "sceneOffsets": [
     null,
@@ -651,15 +786,88 @@
     true,
     true,
     true,
+    true,
+    true,
     false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ]
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "audioFile": "audio/kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660-gabung.wav",
+  "render": {
+    "video": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660.mp4",
+    "thumbnail": "kenapa-ya-anak-anak-diajak-ke-masjid-ada-d660.png",
+    "scenes": [
+      {
+        "start": 10,
+        "duration": 13.5
+      },
+      {
+        "start": 23.5,
+        "duration": 6.066666666666666
+      },
+      {
+        "start": 29.566666666666666,
+        "duration": 11.4
+      },
+      {
+        "start": 40.96666666666667,
+        "duration": 12.8
+      },
+      {
+        "start": 53.766666666666666,
+        "duration": 10.1
+      },
+      {
+        "start": 63.86666666666667,
+        "duration": 4.866666666666666
+      },
+      {
+        "start": 68.73333333333333,
+        "duration": 12
+      },
+      {
+        "start": 80.73333333333333,
+        "duration": 11.366666666666667
+      },
+      {
+        "start": 92.1,
+        "duration": 10
+      },
+      {
+        "start": 102.1,
+        "duration": 34.233333333333334
+      },
+      {
+        "start": 136.33333333333334,
+        "duration": 8.033333333333333
+      },
+      {
+        "start": 144.36666666666667,
+        "duration": 13.2
+      },
+      {
+        "start": 157.56666666666666,
+        "duration": 10
+      },
+      {
+        "start": 167.56666666666666,
+        "duration": 24.733333333333334
+      },
+      {
+        "start": 192.3,
+        "duration": 4.733333333333333
+      },
+      {
+        "start": 197.03333333333333,
+        "duration": 12.633333333333333
+      }
+    ],
+    "time": "2026-11-12T11:11:49.433Z"
+  },
+  "visualStyle": "ai-illustration"
 }

@@ -1,8 +1,8 @@
 {
   "id": "besok-imunisasi-di-sekolah-mamas-belajar-653b",
   "created": "2026-11-10T00:28:05.723Z",
-  "modified": "2026-11-10T00:28:05.724Z",
-  "status": "idea",
+  "modified": "2026-11-12T11:12:59.638Z",
+  "status": "needs_script_approval",
   "idea": {
     "title": "Besok Imunisasi di Sekolah! Mamas Belajar Berani dan Berdoa",
     "series": "kisah-sebelum-tidur",
@@ -16,12 +16,191 @@
       "HR. Muslim no. 2202 (hadits Utsman bin Abil 'Ash)"
     ]
   },
-  "revisionCount": 0,
+  "revisionCount": 1,
   "log": [
     {
       "time": "2026-11-10T00:28:05.723Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-12T11:10:04.839Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-12T11:10:08.538Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-12T11:10:47.945Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:10:48.391Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-12T11:11:26.127Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:11:26.513Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-12T11:12:25.946Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:12:26.315Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-12T11:12:59.199Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-12T11:12:59.638Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
     }
-  ]
+  ],
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Besok Imunisasi di Sekolah! Mamas Belajar Berani dan Berdoa",
+    "summary": "Malam sebelum imunisasi di sekolah, Mamas takut disuntik dan tidak bisa tidur. Ibu menjelaskan bahwa imunisasi itu ikhtiar dan membantu badan belajar melawan kuman. Ibu lalu mengajarkan doa saat sakit dari hadits riwayat Imam Muslim no. 2202, yang diajarkan Rasulullah ﷺ kepada seorang sahabat yang sedang sakit. Caranya: letakkan tangan di bagian yang sakit, baca Bismillah 3 kali, lalu A'udzu billahi wa qudratihi min syarri ma ajidu wa uhadzir 7 kali sambil menghitung dengan jari. Paginya Mamas masih deg-degan, tapi ia ingat doanya. Setelah disuntik, Mamas mengucap Alhamdulillah dan berterima kasih kepada perawat. Pesannya: berani, berobat sebagai ikhtiar, berdoa, lalu bertawakal kepada Allah.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Malam ini Mamas belum bisa tidur. Besok ada imunisasi di sekolah.",
+        "visualDirection": "bedroom-night: Mamas duduk di kasur memeluk bantal, lampu tidur temaram, Mochi meringkuk di ujung kasur."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu, Mamas takut disuntik. Nanti sakit, ya?",
+        "visualDirection": "bedroom-night: Ibu duduk di tepi kasur mengelus kepala Mamas, Mochi menyembunyikan kepalanya di bawah selimut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Rasanya seperti digigit semut, Mas. Sebentar saja. Imunisasi itu ikhtiar, supaya badan Mamas kuat dan tidak mudah sakit.",
+        "visualDirection": "bedroom-night: Ibu tersenyum lembut sambil menyentuh lengan Mamas pelan dengan ujung jari."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Obatnya membantu badan Mamas belajar melawan kuman. Menjaga badan itu juga bentuk syukur kepada Allah.",
+        "visualDirection": "bedroom-night: Ibu mengangkat kedua tangan seperti pahlawan kecil yang kuat, Mamas memperhatikan dengan mata membulat."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Tapi kalau tetap sakit, bagaimana, Bu?",
+        "visualDirection": "bedroom-night: Wajah Mamas cemas sambil memegang lengannya, Mochi mendekat pelan dan menyandarkan kepala di pangkuan Mamas untuk menghibur."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Menurut adik-adik, apa yang bisa Mamas lakukan kalau merasa sakit? Coba pikirkan dulu, ya.",
+        "visualDirection": "bedroom-night: Mamas dan Ibu diam berpikir, Mochi duduk memiringkan kepala ke arah kamera."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Ada doanya, Mas. Doa ini ada dalam hadits riwayat Imam Muslim. Rasulullah ﷺ mengajarkannya kepada seorang sahabat yang sedang sakit. Letakkan tangan di bagian yang sakit. Baca Bismillah tiga kali. Lalu baca doa ini tujuh kali. Ikuti Ibu, ya.",
+        "visualDirection": "bedroom-night: Ibu memegang tangan Mamas dan meletakkannya di lengan Mamas sendiri."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Bismillāh. Bismillāh. Bismillāh.",
+        "visualDirection": "bedroom-night: Mamas memejamkan mata, tangan di lengan, membaca pelan."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "A'ūdzu billāhi wa qudratihi min syarri mā ajidu wa uḥādzir.",
+        "visualDirection": "bedroom-night: Mamas masih memegang lengannya, Ibu ikut menggerakkan bibir pelan."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas mengulang doa itu sambil menghitung dengan jari. Ayo adik-adik, ikut hitung pakai jari! Satu, dua, tiga, empat, lima, enam, tujuh!",
+        "visualDirection": "bedroom-night: Ibu dan Mamas mengangkat jari satu per satu bersama, angka kecil 1 sampai 7 muncul pelan di samping jari."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, aku berlindung kepada Allah dan kekuasaan-Nya, dari keburukan yang aku rasakan dan yang aku khawatirkan. Kita berobat dulu, lalu bertawakal kepada Allah.",
+        "visualDirection": "bedroom-night: Ibu menyelimuti Mamas yang kini tersenyum tenang, Mochi melompat naik mengejar ujung selimut lalu terguling pelan di kasur empuk, Mamas tertawa kecil."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Bu, Mamas masih sedikit deg-degan. Tapi Mamas sudah hafal doanya. Mamas mau berani. Allah yang menjaga Mamas!",
+        "visualDirection": "living-room: pagi hari, Mamas memakai tas sekolah dan menarik napas panjang, Ibu tersenyum memegang bahunya, Mochi duduk di dekat pintu."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Di sekolah, Ibu perawat menyuntik lengan Mamas. Cus! Mamas meletakkan tangan di lengannya. Ia membaca Bismillah tiga kali, lalu doa tadi tujuh kali, pelan-pelan. Setelah selesai, Mamas mengucap Alhamdulillah. Ia berterima kasih kepada Ibu perawat.",
+        "visualDirection": "school: Mamas duduk di bangku kelas memegang lengan berplester bulat sambil tersenyum, petugas tidak digambar, hanya latar meja dan kursi."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu! Sakitnya cuma sebentar. Mamas berani!",
+        "visualDirection": "living-room: Mamas menunjukkan plester di lengan kepada Ibu, Mochi mengendus plester lalu bersin kecil."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Adik-adik, kalau takut atau sakit, jadilah berani. Berikhtiar dengan berobat, berdoa, lalu bertawakal kepada Allah. Yuk, hafalkan doanya bersama Ibu dan Ayah! Wassalamu'alaikum!",
+        "visualDirection": "living-room: Mamas, Ibu, dan Mochi duduk bersama di sofa, cahaya sore yang hangat."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "ضَعْ يَدَكَ عَلَى الَّذِي تَأَلَّمَ مِنْ جَسَدِكَ، وَقُلْ: بِاسْمِ اللهِ ثَلَاثًا، وَقُلْ سَبْعَ مَرَّاتٍ: أَعُوذُ بِاللهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ",
+        "latin": "Ḍa' yadaka 'alalladzī ta'allama min jasadik, wa qul: bismillāh (tsalātsan), wa qul sab'a marrāt: a'ūdzu billāhi wa qudratihi min syarri mā ajidu wa uḥādzir.",
+        "translation": "Letakkan tanganmu pada bagian tubuhmu yang sakit, lalu ucapkan 'Bismillah' tiga kali, dan ucapkan tujuh kali: 'Aku berlindung kepada Allah dan kekuasaan-Nya dari keburukan yang aku rasakan dan yang aku khawatirkan.' (Diajarkan Rasulullah ﷺ kepada 'Utsman bin Abil 'Ash yang mengeluhkan sakit di badannya.)",
+        "source": "HR. Muslim no. 2202, dari 'Utsman bin Abil 'Ash radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 9,
+    "notes": [
+      "Lolos. Naskah ini tidak punya masalah serius di sisi syariat maupun kualitas konten anak. Panjangnya sekitar 265–275 kata, masih di batas 220–320. Ceritanya langsung ke inti, punya konflik kecil (takut disuntik) dan penyelesaian yang jelas, satu momen interaktif (scene 6), dan ajakan menghitung dengan jari (scene 10).",
+      "Syariat sudah aman. Tidak ada visualisasi Nabi, sahabat, atau malaikat. 'Seorang sahabat' hanya disebut di narasi Ibu. Perawat juga tidak digambar (scene 13). Teks Arab, latin, dan terjemah HR. Muslim no. 2202 sesuai dengan yang saya ketahui.",
+      "Bacaan Arab sudah terpisah dengan benar. Scene 8 (Bismillah 3x) dan scene 9 (A'udzu billahi...) hanya berisi lafaz latin. Pengantarnya ada di scene 7 dan artinya di scene 11. Ini doa dari hadits, bukan ayat Al-Qur'an, jadi `speaker: mamas` sudah tepat dan tidak melanggar aturan.",
+      "Usulan kecil (opsional), scene 4: ganti 'Obatnya' menjadi 'Vaksinnya' atau 'Imunisasinya'. Vaksin bukan obat, jadi kata 'obat' termasuk penyederhanaan yang kurang tepat. Contoh: 'Imunisasi membantu badan Mamas belajar melawan kuman.'",
+      "Usulan kecil (opsional), scene 3: kalimat 'supaya badan Mamas kuat dan tidak mudah sakit' agak berlebihan, karena imunisasi melindungi dari penyakit tertentu saja. Alternatif yang lebih akurat dan tetap sederhana: 'supaya badan Mamas terlindungi dari penyakit.'",
+      "Usulan kecil (opsional), scene 11: kata 'bertawakal' mungkin belum dipahami anak 4–6 tahun. Tambahkan satu kalimat pendek dari Ibu, misalnya 'Tawakal artinya kita serahkan hasilnya kepada Allah.' Ini juga membantu memahami scene 15.",
+      "Usulan kecil (opsional), scene 11: kalimat terjemahan doa cukup panjang (±16 kata). Boleh dipecah agar lebih mudah ditangkap, misalnya: 'Artinya, aku berlindung kepada Allah dan kekuasaan-Nya. Dari sakit yang aku rasakan. Dan dari yang aku takutkan.' Gunakan versi pecahan ini hanya kalau maknanya tetap setia pada terjemah di evidence.",
+      "Usulan kecil (opsional), scene 7: Ibu menyampaikan 6 kalimat sekaligus (±40 kata). Masih bisa diterima, tapi kalimat 'Ikuti Ibu, ya.' bisa dipindah ke awal scene 8 sebagai visual saja, atau dipotong sedikit supaya tempo lebih ringan."
+    ],
+    "humanCheck": [
+      "Dalil 1 – HR. Muslim no. 2202, dari 'Utsman bin Abil 'Ash radhiyallahu 'anhu. Cek nomor hadits dan perawinya di Shahih Muslim (Kitab as-Salam, bab anjuran meletakkan tangan di tempat yang sakit sambil berdoa).",
+      "Dalil 1 – teks Arab: 'ضَعْ يَدَكَ عَلَى الَّذِي تَأَلَّمَ مِنْ جَسَدِكَ، وَقُلْ: بِاسْمِ اللهِ ثَلَاثًا، وَقُلْ سَبْعَ مَرَّاتٍ: أَعُوذُ بِاللهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ'. Cocokkan harakat dan lafaznya dengan kitab aslinya.",
+      "Dalil 1 – latin yang dibaca di scene 9: 'A'ūdzu billāhi wa qudratihi min syarri mā ajidu wa uḥādzir'. Pastikan pengisi suara melafalkannya dengan benar, terutama 'qudratihi' dan 'uḥādzir' (huruf ḥa dan dzal).",
+      "Dalil 1 – terjemah di scene 11: 'Aku berlindung kepada Allah dan kekuasaan-Nya dari keburukan yang aku rasakan dan yang aku khawatirkan.' Pastikan sesuai dengan terjemah rujukan yang Anda percaya.",
+      "Penerapan doa: doa ini dipakai saat merasakan sakit setelah disuntik (scene 13), dan dilatih malam sebelumnya (scene 7–10). Saya menilai penerapan ini wajar. Mohon konfirmasi bahwa Anda nyaman dengan konteks ini.",
+      "Klaim medis di scene 3–4: imunisasi digambarkan 'seperti digigit semut', 'membantu badan belajar melawan kuman', dan membuat badan 'tidak mudah sakit'. Pastikan penyederhanaan ini bisa diterima dan tidak menyesatkan orang tua.",
+      "Visual scene 10: angka 1–7 muncul di samping jari. Pastikan animasinya muncul pelan dan tidak berkedip cepat."
+    ]
+  }
 }

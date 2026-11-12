@@ -1,7 +1,7 @@
 {
   "id": "buku-perpustakaan-sobek-mamas-belajar-me-d120",
   "created": "2026-11-06T04:57:59.428Z",
-  "modified": "2026-11-09T12:32:40.952Z",
+  "modified": "2026-11-12T11:13:21.866Z",
   "status": "needs_audio",
   "idea": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
@@ -222,6 +222,36 @@
       "time": "2026-11-09T12:32:40.952Z",
       "by": "pemilik",
       "message": "Adegan 9 dihapus: \"Artinya, Allah menyuruh kita menyampaikan amanah kepada yang berhak. Jadi, buku …\""
+    },
+    {
+      "time": "2026-11-12T11:12:41.149Z",
+      "by": "pemilik",
+      "message": "Narasi adegan 8 diubah; rekamannya perlu direkam ulang"
+    },
+    {
+      "time": "2026-11-12T11:13:03.042Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-12T11:13:03.935Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 6 adegan dengan suara AI gratis"
+    },
+    {
+      "time": "2026-11-12T11:13:13.405Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (1/6)"
+    },
+    {
+      "time": "2026-11-12T11:13:21.537Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 9 diisi suara AI (2/6)"
+    },
+    {
+      "time": "2026-11-12T11:13:21.866Z",
+      "by": "pengisi-suara",
+      "message": "2 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari) · rekam sendiri adegan 10, 11, 12, 13"
     }
   ],
   "twin": "buku-perpustakaan-sobek-mamas-belajar-me-aeca",
@@ -275,7 +305,7 @@
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan. Ayo, Mas, kita baca.",
+        "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan.",
         "visualDirection": "Kamar malam, Ibu duduk di tepi kasur dan merangkul Mamas dengan hangat."
       },
       {
@@ -491,7 +521,7 @@
     {
       "type": "story",
       "speaker": "mother",
-      "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan. Ayo, Mas, kita baca.",
+      "narration": "Terima kasih sudah jujur ke Ibu, Mas. Buku pinjaman itu amanah. Artinya, titipan yang harus kita jaga dan kembalikan. Allah berfirman di surat An-Nisa ayat lima puluh delapan.",
       "background": "bedroom-night",
       "characters": [
         "mother",
@@ -651,8 +681,8 @@
     "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-5-ai-mw98j5fp.wav",
     "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-6-ai-mw98jaro.wav",
     "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-7-ai-mw98jkpv.wav",
-    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-8-ai-mw98js4i.wav",
-    null,
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-8-ai-mwdg8vqz.wav",
+    "audio/buku-perpustakaan-sobek-mamas-belajar-me-d120-adegan-9-ai-mwdg920v.wav",
     null,
     null,
     null,
@@ -682,7 +712,7 @@
     true,
     true,
     true,
-    false,
+    true,
     false,
     false,
     false,

@@ -1,0 +1,299 @@
+{
+  "id": "tips-bangun-subuh-untuk-anak-doa-bangun--a921",
+  "created": "2026-11-12T11:08:35.738Z",
+  "modified": "2026-11-12T11:24:12.899Z",
+  "status": "scheduled",
+  "idea": {
+    "title": "Tips Bangun Subuh untuk Anak + Doa Bangun Tidur",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Orang yang shalat Subuh berada dalam jaminan (perlindungan) Allah (HR. Muslim no. 657). Dua rakaat sebelum Subuh lebih baik daripada dunia dan isinya (HR. Muslim no. 725). Isinya tips praktis: tidur lebih awal, menyiapkan alarm, dan membaca doa bangun tidur. Ditutup dengan ajakan agar adik-adik mencoba bangun Subuh besok.",
+    "format": "short",
+    "reason": "Video \"Alarm Subuh Berbunyi! Rafi Hampir Kesiangan\" dapat 8.273 views per hari, tapi formatnya Shorts dramatis tanpa penjelasan \"kenapa\". Anak usia 7–10 dan orang tuanya butuh alasan yang menyentuh hati, bukan hanya perintah. Topik ini belum ada di daftar episode kita.",
+    "references": [
+      "https://www.youtube.com/watch?v=EEcJZGf3yKs (Alarm Subuh Berbunyi! – 8.273 views/hari)",
+      "https://www.youtube.com/watch?v=eTrw9c43wpg (Adik Takut Tidur Sendirian – 13.002 views/hari, sinyal tema rutinitas tidur/bangun)",
+      "HR. Muslim no. 657; HR. Muslim no. 725"
+    ]
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-12T11:08:35.738Z",
+      "by": "sutradara",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-12T11:08:35.744Z",
+      "by": "sutradara",
+      "message": "Shorts 2 dari episode kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b: adegan 9, 10, 11. Berisi tiga tips praktis agar mudah bangun Subuh, ditutup dengan doa bangun tidur beserta artinya yang bisa langsung diamalkan anak."
+    },
+    {
+      "time": "2026-11-12T11:08:35.744Z",
+      "by": "sutradara",
+      "message": "Menunggu giliran render"
+    },
+    {
+      "time": "2026-11-12T11:09:09.967Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-12T11:09:38.821Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-12T11:21:50.554Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-14 12:00"
+    },
+    {
+      "time": "2026-11-12T11:21:51.174Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-12T11:21:51.339Z",
+      "by": "upload",
+      "message": "Login YouTube kedaluwarsa atau dicabut (invalid_grant). Hubungkan ulang channel: jalankan `npm run auth:youtube`, lalu ulangi. Supaya tidak terulang tiap 7 hari, ubah aplikasi OAuth di Google Cloud Console dari \"Testing\" ke \"In production\"."
+    },
+    {
+      "time": "2026-11-12T11:24:06.229Z",
+      "by": "pemilik",
+      "message": "Dipulihkan"
+    },
+    {
+      "time": "2026-11-12T11:24:07.770Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-14 18:30"
+    },
+    {
+      "time": "2026-11-12T11:24:08.538Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-12T11:24:12.898Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak Shorts\""
+    },
+    {
+      "time": "2026-11-12T11:24:12.899Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-14T11:30:00.000Z"
+    }
+  ],
+  "source": {
+    "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
+    "scenes": [
+      8,
+      9,
+      10
+    ]
+  },
+  "script": {
+    "title": "Tips Bangun Subuh untuk Anak + Doa Bangun Tidur",
+    "summary": "Pagi-pagi saat Subuh, Ibu masuk ke kamar dan membangunkan Mamas dengan lembut. Mamas masih mengantuk karena semalam main balok sampai larut. Ia bertanya kenapa Subuh harus sepagi itu. Ibu memberi dua alasan. Pertama, orang yang shalat Subuh berada dalam jaminan Allah (HR. Muslim no. 657). Kedua, dua rakaat sebelum Subuh lebih baik daripada dunia dan isinya (HR. Muslim no. 725). Lalu Ibu memberi tiga tips: tidur lebih awal, taruh alarm agak jauh dari kasur supaya Mamas bisa bangun sendiri, dan baca doa bangun tidur. Setelah wudhu, kantuk Mamas hilang. Video ditutup dengan ajakan mencoba bangun Subuh besok. Durasinya sekitar 3 menit.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Ini tiga tipsnya, Mas. Satu, tidur lebih awal. Dua, pasang alarm dan taruh agak jauh, supaya Mamas berdiri untuk mematikannya. Tiga, begitu bangun, langsung baca doa bangun tidur. Yuk, kita baca!",
+        "visualDirection": "Ibu menaruh jam weker di rak dekat pintu, lalu duduk kembali dan menengadahkan tangan bersama Mamas."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+        "visualDirection": "Mamas duduk bersila di kasur, menengadahkan tangan dengan mata terpejam, Mochi duduk tenang di sampingnya."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Artinya: segala puji bagi Allah yang menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali.",
+        "visualDirection": "Mamas membuka mata dan tersenyum pada Ibu, tangannya masih menengadah, Ibu mengangguk bangga di tepi kasur."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "مَنْ صَلَّى الصُّبْحَ فَهُوَ فِي ذِمَّةِ اللَّهِ",
+        "latin": "Man shallash shubha fahuwa fi dzimmatillah.",
+        "translation": "Barang siapa shalat Subuh, maka ia berada dalam jaminan (perlindungan) Allah.",
+        "source": "HR. Muslim no. 657, dari Jundub bin Abdillah radhiyallahu 'anhu"
+      },
+      {
+        "type": "hadits",
+        "arabicText": "رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا",
+        "latin": "Rak'atal fajri khairun minad dunya wa ma fiha.",
+        "translation": "Dua rakaat (sunnah) fajar lebih baik daripada dunia dan seisinya.",
+        "source": "HR. Muslim no. 725, dari Aisyah radhiyallahu 'anha"
+      },
+      {
+        "type": "doa",
+        "arabicText": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+        "latin": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+        "translation": "Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali.",
+        "source": "HR. Bukhari no. 6312, dari Hudzaifah bin al-Yaman radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Lolos. Sejauh pengetahuan saya, ketiga dalil tepat: sumbernya spesifik, haditsnya masyhur dan shahih, dan teks Arab, latin, serta terjemahnya sesuai. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Ada momen interaktif dan pesan moral yang jelas. Kebiasaan menunda bangun ('lima menit lagi') juga ada penyelesaiannya. Panjang naskah 237 kata, masih dalam batas. Catatan di bawah hanya penyempurnaan kecil dan tidak wajib.",
+      "Scene 6 (Ibu, dua rakaat fajar): sebutkan bahwa ini juga sabda Nabi. Misalnya: 'Ada lagi. Rasulullah ﷺ juga bersabda, dua rakaat sunnah sebelum Subuh lebih baik daripada dunia dan seisinya.' Dengan begitu anak tahu ini hadits, bukan pendapat Ibu.",
+      "Scene 7 (narator): 'Lebih baik dari semua mainan di dunia!' agak menyempitkan makna hadits. Saran: 'Lebih baik dari semua mainan, bahkan dari seluruh dunia!' Analoginya tetap ramah anak, dan makna 'dunia dan seisinya' tidak hilang.",
+      "Scene 4: kalimat 'Rasulullah shallallahu 'alaihi wa sallam bersabda, orang yang shalat Subuh berada dalam jaminan Allah' sekitar 14 kata, melebihi batas 12. Saran dipecah: 'Rasulullah ﷺ bersabda begini. Orang yang shalat Subuh, ada dalam jaminan Allah.'",
+      "Scene 12 (wudhu): ganti 'wastafel' dengan latar `ablution` (tempat wudhu) yang memang ada di daftar. Adegan shalat yang langsung sesudahnya taruh di latar `living-room` atau `bedroom-night` saat langit mulai terang. Jangan pakai latar di luar daftar.",
+      "Pastikan sumber setiap dalil tampil di layar (teks overlay) waktu dalil itu disebut. Di narasi, sumbernya tidak disebut lisan.",
+      "Catatan kecil: adegan doa dibacakan Mamas. Ini doa dari hadits, bukan ayat Al-Qur'an, jadi aturan pembicara `mamas` untuk bacaan Qur'an tidak berlaku di sini. Sudah benar."
+    ],
+    "humanCheck": [
+      "Dalil 1 – HR. Muslim no. 657, dari Jundub bin Abdillah r.a.: 'مَنْ صَلَّى الصُّبْحَ فَهُوَ فِي ذِمَّةِ اللَّهِ' / 'Barang siapa shalat Subuh, maka ia berada dalam jaminan (perlindungan) Allah.' Cek nomor haditsnya (penomoran Fuad Abdul Baqi). Cek juga apakah boleh mengutip potongan awalnya saja. Lanjutan haditsnya berisi peringatan agar tidak mengusik orang yang ada dalam jaminan Allah, dan itu sengaja tidak dimasukkan.",
+      "Dalil 2 – HR. Muslim no. 725, dari Aisyah r.a.: 'رَكْعَتَا الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا' / 'Dua rakaat (sunnah) fajar lebih baik daripada dunia dan seisinya.' Cek nomor dan redaksinya.",
+      "Dalil 3 – Doa bangun tidur, HR. Bukhari no. 6312, dari Hudzaifah bin al-Yaman r.a.: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ' / latin 'Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.' Cek nomor, harakat Arab, dan transliterasinya.",
+      "Cek apakah penjelasan 'jaminan Allah = dalam perlindungan Allah' di scene 4 sudah cukup tepat untuk anak, atau perlu bahasa yang lebih hati-hati.",
+      "Cek apakah analogi 'lebih hebat dari tameng pahlawan' dan 'lebih baik dari semua mainan' bisa diterima sebagai penyederhanaan untuk anak, dan tidak terkesan meremehkan isi hadits.",
+      "Cek apakah sumber dalil tampil sebagai teks di layar di video final."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Ini tiga tipsnya, Mas. Satu, tidur lebih awal. Dua, pasang alarm dan taruh agak jauh, supaya Mamas berdiri untuk mematikannya. Tiga, begitu bangun, langsung baca doa bangun tidur. Yuk, kita baca!",
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Tiga tips bangun Subuh",
+      "props": [
+        "building-blocks",
+        "pillow"
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+        "latin": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+        "meaning": "Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali."
+      },
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Artinya: segala puji bagi Allah yang menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+        "latin": "Alhamdulillahilladzi ahyana ba'da ma amatana wa ilaihin nusyur.",
+        "meaning": "Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan kepada-Nya kami kembali."
+      },
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "praying"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Tips Bangun Subuh untuk Anak + Doa Bangun Tidur",
+    "description": "Tiga tips mudah bangun Subuh untuk anak: tidur lebih awal, taruh alarm agak jauh, lalu baca doa bangun tidur (HR. Bukhari no. 6312) beserta artinya.\n#Shorts #DoaBangunTidur #ShalatSubuh",
+    "tags": [
+      "tips bangun subuh",
+      "doa bangun tidur",
+      "doa anak muslim",
+      "bangun pagi anak",
+      "shalat subuh",
+      "cerita anak islami",
+      "kartun islami anak",
+      "Mamas dan Ibu",
+      "Tasnie Office"
+    ],
+    "thumbnailText": "Tips Bangun Subuh"
+  },
+  "recordingMode": "per-scene",
+  "audioPerScene": [
+    "audio/tips-bangun-subuh-untuk-anak-doa-bangun--a921-adegan-1.wav",
+    "audio/tips-bangun-subuh-untuk-anak-doa-bangun--a921-adegan-2.webm",
+    "audio/tips-bangun-subuh-untuk-anak-doa-bangun--a921-adegan-3.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    2.135,
+    null
+  ],
+  "statusNote": "Terjadwal tayang 2026-11-14T11:30:00.000Z",
+  "audioFile": "audio/tips-bangun-subuh-untuk-anak-doa-bangun--a921-gabung.wav",
+  "render": {
+    "video": "tips-bangun-subuh-untuk-anak-doa-bangun--a921.mp4",
+    "scenes": [
+      {
+        "start": 1.5,
+        "duration": 21.733333333333334
+      },
+      {
+        "start": 23.233333333333334,
+        "duration": 11.733333333333333
+      },
+      {
+        "start": 34.96666666666667,
+        "duration": 11.266666666666667
+      }
+    ],
+    "time": "2026-11-12T11:09:38.820Z"
+  },
+  "selectedSchedule": "2026-11-14T11:30:00.000Z",
+  "youtube": {
+    "videoId": "NdgDFpgKDbo",
+    "url": "https://www.youtube.com/watch?v=NdgDFpgKDbo",
+    "publishTime": "2026-11-14T11:30:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak Shorts",
+      "id": "PLVmcdemlHVGc"
+    }
+  }
+}
