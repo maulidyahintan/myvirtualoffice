@@ -12,7 +12,7 @@ import {
 } from 'remotion';
 import { getAudioDurationInSeconds } from '@remotion/media-utils';
 import type { EpisodeVideoProps, MemorizationVideo } from '@kantor/shared/types';
-import { FPS, FORMAT_SPEC } from '@kantor/shared/constants';
+import { FPS, FORMAT_SPEC, INTRO_MUSIC_GAIN } from '@kantor/shared/constants';
 import { introOutroFrames, sceneFrames, memorizationFrames, memorizationSegments, totalFrames } from '@kantor/shared/timing';
 import { SceneView, stageStyle, clampCamera } from './SceneView';
 import { VerseView } from './Memorization';
@@ -267,7 +267,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
 
       {music?.intro ? (
         <Sequence durationInFrames={intro} name="Musik pembuka">
-          <Musik src={music.intro} volume={music.volume} durasi={intro} />
+          <Musik src={music.intro} volume={music.volume * INTRO_MUSIC_GAIN} durasi={intro} />
         </Sequence>
       ) : null}
       {music?.outro ? (
