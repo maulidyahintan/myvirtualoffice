@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
   "created": "2026-11-02T10:11:06.546Z",
-  "modified": "2026-11-10T00:28:03.309Z",
+  "modified": "2026-11-13T03:50:47.931Z",
   "status": "scheduled",
   "idea": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
@@ -198,6 +198,16 @@
       "time": "2026-11-10T00:28:03.309Z",
       "by": "channel-manager",
       "message": "Terjadwal tayang 2026-11-13T09:00:00.000Z"
+    },
+    {
+      "time": "2026-11-13T03:50:29.567Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-13T03:50:47.931Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-13T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/29219460734353331"
     }
   ],
   "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
@@ -708,5 +718,12 @@
       "name": "Obrolan Islami Anak",
       "id": "PLUgYsxxA9xw8"
     }
+  },
+  "facebook": {
+    "videoId": "29219460734353331",
+    "url": "https://www.facebook.com/1383005048238430/videos/29219460734353331",
+    "kind": "video",
+    "publishTime": "2026-11-13T09:00:00.000Z",
+    "pageId": "1383005048238430"
   }
 }

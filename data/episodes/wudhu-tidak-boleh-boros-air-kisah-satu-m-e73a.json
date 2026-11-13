@@ -1,7 +1,7 @@
 {
   "id": "wudhu-tidak-boleh-boros-air-kisah-satu-m-e73a",
   "created": "2026-11-10T00:30:51.975Z",
-  "modified": "2026-11-10T23:31:55.949Z",
+  "modified": "2026-11-13T03:50:16.188Z",
   "status": "scheduled",
   "idea": {
     "title": "Wudhu Tidak Boleh Boros Air? Kisah Satu Mud Rasulullah ﷺ",
@@ -61,6 +61,16 @@
       "time": "2026-11-10T23:31:55.949Z",
       "by": "channel-manager",
       "message": "Terjadwal tayang 2026-11-13T11:30:00.000Z"
+    },
+    {
+      "time": "2026-11-13T03:50:04.827Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai Reels"
+    },
+    {
+      "time": "2026-11-13T03:50:16.188Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-13T11:30:00.000Z: https://www.facebook.com/reel/1826878496106449"
     }
   ],
   "source": {
@@ -227,5 +237,12 @@
       "name": "Obrolan Islami Anak Shorts",
       "id": "PLVmcdemlHVGc"
     }
+  },
+  "facebook": {
+    "videoId": "1826878496106449",
+    "url": "https://www.facebook.com/reel/1826878496106449",
+    "kind": "reel",
+    "publishTime": "2026-11-13T11:30:00.000Z",
+    "pageId": "1383005048238430"
   }
 }

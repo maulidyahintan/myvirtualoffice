@@ -1,7 +1,7 @@
 {
   "id": "tips-bangun-subuh-untuk-anak-doa-bangun--a921",
   "created": "2026-11-12T11:08:35.738Z",
-  "modified": "2026-11-12T11:24:12.899Z",
+  "modified": "2026-11-13T03:49:34.211Z",
   "status": "scheduled",
   "idea": {
     "title": "Tips Bangun Subuh untuk Anak + Doa Bangun Tidur",
@@ -82,6 +82,16 @@
       "time": "2026-11-12T11:24:12.899Z",
       "by": "channel-manager",
       "message": "Terjadwal tayang 2026-11-14T11:30:00.000Z"
+    },
+    {
+      "time": "2026-11-13T03:49:19.136Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai Reels"
+    },
+    {
+      "time": "2026-11-13T03:49:34.211Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-14T11:30:00.000Z: https://www.facebook.com/reel/1355245626589907"
     }
   ],
   "source": {
@@ -295,5 +305,12 @@
       "name": "Obrolan Islami Anak Shorts",
       "id": "PLVmcdemlHVGc"
     }
+  },
+  "facebook": {
+    "videoId": "1355245626589907",
+    "url": "https://www.facebook.com/reel/1355245626589907",
+    "kind": "reel",
+    "publishTime": "2026-11-14T11:30:00.000Z",
+    "pageId": "1383005048238430"
   }
 }

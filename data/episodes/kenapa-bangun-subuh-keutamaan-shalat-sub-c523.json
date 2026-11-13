@@ -1,7 +1,7 @@
 {
   "id": "kenapa-bangun-subuh-keutamaan-shalat-sub-c523",
   "created": "2026-11-12T11:08:35.729Z",
-  "modified": "2026-11-12T11:24:02.379Z",
+  "modified": "2026-11-13T03:49:46.771Z",
   "status": "scheduled",
   "idea": {
     "title": "Kenapa Bangun Subuh? Keutamaan Shalat Subuh untuk Anak",
@@ -82,6 +82,16 @@
       "time": "2026-11-12T11:24:02.379Z",
       "by": "channel-manager",
       "message": "Terjadwal tayang 2026-11-14T05:00:00.000Z"
+    },
+    {
+      "time": "2026-11-13T03:49:34.212Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai Reels"
+    },
+    {
+      "time": "2026-11-13T03:49:46.771Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-14T05:00:00.000Z: https://www.facebook.com/reel/1617898223424861"
     }
   ],
   "source": {
@@ -338,5 +348,12 @@
       "name": "Obrolan Islami Anak Shorts",
       "id": "PLVmcdemlHVGc"
     }
+  },
+  "facebook": {
+    "videoId": "1617898223424861",
+    "url": "https://www.facebook.com/reel/1617898223424861",
+    "kind": "reel",
+    "publishTime": "2026-11-14T05:00:00.000Z",
+    "pageId": "1383005048238430"
   }
 }

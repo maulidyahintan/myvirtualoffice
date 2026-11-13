@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-kita-bangun-subuh-padahal-masi-bf0b",
   "created": "2026-11-04T01:25:32.576Z",
-  "modified": "2026-11-12T11:08:35.746Z",
+  "modified": "2026-11-13T03:50:04.826Z",
   "status": "scheduled",
   "idea": {
     "title": "Kenapa Ya Kita Bangun Subuh Padahal Masih Ngantuk?",
@@ -507,6 +507,16 @@
       "time": "2026-11-12T11:08:35.746Z",
       "by": "sutradara",
       "message": "2 Shorts dibuat: kenapa-bangun-subuh-keutamaan-shalat-sub-c523, tips-bangun-subuh-untuk-anak-doa-bangun--a921"
+    },
+    {
+      "time": "2026-11-13T03:49:46.774Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-13T03:50:04.826Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-14T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/2186370315289757"
     }
   ],
   "twin": "kenapa-ya-kita-bangun-subuh-padahal-masi-7aaf",
@@ -1053,5 +1063,12 @@
   "derivatives": [
     "kenapa-bangun-subuh-keutamaan-shalat-sub-c523",
     "tips-bangun-subuh-untuk-anak-doa-bangun--a921"
-  ]
+  ],
+  "facebook": {
+    "videoId": "2186370315289757",
+    "url": "https://www.facebook.com/1383005048238430/videos/2186370315289757",
+    "kind": "video",
+    "publishTime": "2026-11-14T09:00:00.000Z",
+    "pageId": "1383005048238430"
+  }
 }
