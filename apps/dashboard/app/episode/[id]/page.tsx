@@ -7,6 +7,7 @@ import {
   mixesArabicAndIndonesian,
   aiVoiceInProgress,
   sceneRevisionInProgress,
+  shortsSplitMarker,
   deleteBlockers,
   aiJobMarker,
   needsHumanVoice,
@@ -1163,7 +1164,7 @@ function PecahShorts({ ep }: { ep: Episode }) {
       return [];
     }
   });
-  const sibuk = isBusy(`shorts-${ep.id}`);
+  const sibuk = isBusy(shortsSplitMarker(ep.id));
   return (
     <details open={sibuk || turunan.length > 0}>
       <summary>✂️ Pecah jadi beberapa Shorts (adegan penting saja)</summary>
@@ -1370,7 +1371,7 @@ export default async function HalamanEpisode({
           <AutoRefresh
             aktif={
               BUSY_STATUSES.includes(ep.status) ||
-              isBusy(`shorts-${ep.id}`) ||
+              isBusy(shortsSplitMarker(ep.id)) ||
               isBusy(`${ep.id}-metadata`) ||
               isBusy(aiJobMarker(ep.id)) ||
               aiVoiceInProgress(ep.id) !== undefined ||

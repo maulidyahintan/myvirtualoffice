@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PHASES, listEpisodes, loadConfig, isBusy, deleteBlockers, shortsCoverage, BUSY_STATUSES, WAITING_STATUSES } from '@kantor/shared';
+import { PHASES, listEpisodes, loadConfig, isBusy, deleteBlockers, shortsCoverage, shortsSplitMarker, BUSY_STATUSES, WAITING_STATUSES, type Episode } from '@kantor/shared';
 import { startResearch } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { ArchiveDeleteButton } from '@/components/ArchiveDeleteButton';
@@ -12,6 +12,20 @@ export const dynamic = 'force-dynamic';
 const FILTER_FORMAT = { all: 'Semua', standard: '🎬 Video', short: '📱 Shorts' } as const;
 type FilterFormat = keyof typeof FILTER_FORMAT;
 
+/** A video being split into Shorts: the new Shorts then appear in the columns and are rendered one by one. */
+function ShortsSplitProgress({ episode }: { episode: Episode }) {
+  return (
+    <div className="panel row sedang-diperbaiki" role="status" style={{ gap: 10 }}>
+      <span className="putar" aria-hidden />
+      <span>
+        <b>✂️ Sutradara sedang memotong Shorts dari </b>
+        <Link href={`/episode/${episode.id}`}>{episode.script?.title ?? episode.idea.title}</Link>
+        <span className="muted"> · memilih adegan penting dan menyiapkan judulnya. Shorts baru muncul di kolom papan ini, lalu dirender satu per satu.</span>
+      </span>
+    </div>
+  );
+}
+
 export default async function PapanKerja({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const sp = await searchParams;
   const filter: FilterFormat = sp.format === 'standard' || sp.format === 'short' ? sp.format : 'all';
@@ -21,7 +35,8 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
   const draft = episodes.filter((e) => e.draftedAt);
   const cfg = loadConfig();
   const risetJalan = isBusy('riset');
-  const adaYangSibuk = risetJalan || semua.some((e) => BUSY_STATUSES.includes(e.status));
+  const sedangDipotong = semua.filter((e) => isBusy(shortsSplitMarker(e.id)));
+  const adaYangSibuk = risetJalan || sedangDipotong.length > 0 || semua.some((e) => BUSY_STATUSES.includes(e.status));
   const butuhKamu = aktif.filter((e) => WAITING_STATUSES.includes(e.status));
   const namaSeri = (id: string) => cfg.series.find((s) => s.id === id)?.name ?? id;
   const jumlahFormat = (f: FilterFormat) => (f === 'all' ? semua.length : semua.filter((e) => (e.idea.format ?? 'standard') === f).length);
@@ -73,6 +88,10 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
           </nav>
         </div>
       </div>
+
+      {sedangDipotong.map((e) => (
+        <ShortsSplitProgress key={e.id} episode={e} />
+      ))}
 
       <form action={startResearch} className="panel row">
         <div style={{ flex: 1, minWidth: 260 }}>

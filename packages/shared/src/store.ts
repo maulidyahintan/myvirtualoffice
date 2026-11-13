@@ -360,6 +360,9 @@ export function markBusy(name: string) {
   fs.writeFileSync(markerFile(name), String(process.pid));
 }
 
+/** Marker of the job splitting a video into Shorts. */
+export const shortsSplitMarker = (episodeId: string) => `shorts-${episodeId}`;
+
 /** Marker for an episode's optional AI helper job (AI voice, illustrations, fixing one scene): one at a time. */
 export const aiJobMarker = (episodeId: string) => `${episodeId}-ai`;
 
@@ -405,10 +408,28 @@ export function markDone(name: string) {
   fs.rmSync(markerFile(name), { force: true });
 }
 
+/** A job marked by the dashboard counts as running this long before its worker has taken over the marker. */
+const STARTING_GRACE_MS = 60_000;
+const STARTING_PREFIX = 'starting:';
+
+/**
+ * Mark a job as running the moment the owner starts it, before its worker process is up (which then
+ * overwrites the marker with its own pid). If the worker never starts, the marker expires after a minute.
+ */
+export function markStarting(name: string) {
+  fs.writeFileSync(markerFile(name), `${STARTING_PREFIX}${Date.now()}`);
+}
+
 export function isBusy(name: string): boolean {
   const f = markerFile(name);
   if (!fs.existsSync(f)) return false;
-  const pid = Number(fs.readFileSync(f, 'utf8'));
+  const content = fs.readFileSync(f, 'utf8');
+  if (content.startsWith(STARTING_PREFIX)) {
+    if (Date.now() - Number(content.slice(STARTING_PREFIX.length)) < STARTING_GRACE_MS) return true;
+    fs.rmSync(f, { force: true });
+    return false;
+  }
+  const pid = Number(content);
   try {
     process.kill(pid, 0); // Check if process still alive
     return true;

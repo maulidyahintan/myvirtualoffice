@@ -49,6 +49,8 @@ import {
   setSceneRevisionProgress,
   sceneRevisionInProgress,
   isBusy,
+  markStarting,
+  shortsSplitMarker,
   deleteBlockers,
   deleteEpisode,
   compilationSources,
@@ -459,9 +461,14 @@ export async function splitIntoShorts(form: FormData) {
 }
 
 function mulaiPecahShorts(id: string, jumlah: number, arahan = '') {
+  if (isBusy(shortsSplitMarker(id))) return;
   addLog(id, 'pemilik', `Minta ${jumlah} Shorts dari inti video${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
+  // shown as in progress right away, before the worker process is up
+  markStarting(shortsSplitMarker(id));
   runOfficeCommand(['shorts', id, String(jumlah), ...(arahan ? [arahan] : [])], `${id}-shorts`);
   segarkan(id);
+  // the new Shorts appear on the work board one by one, so follow the progress there
+  redirect('/board');
 }
 
 /** Channel Manager membuat ulang judul, deskripsi & tags sesuai format episode. */

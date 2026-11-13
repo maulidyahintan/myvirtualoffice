@@ -21,7 +21,7 @@
 //   npm run kantor -- laporan
 //   npm run kantor -- status
 import './env.ts';
-import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent, aiJobMarker, isBusy } from '@kantor/shared';
+import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent, aiJobMarker, isBusy, shortsSplitMarker } from '@kantor/shared';
 import { replyToChat } from './chat.ts';
 import { uninstallScheduler, installScheduler, runDailyResearchIfDue } from './automation.ts';
 import { splitIntoShorts } from './shorts.ts';
@@ -108,12 +108,12 @@ async function main() {
       return upload(need(arg1), arg2 ? new Date(arg2).toISOString() : undefined);
     case 'shorts': {
       const id = need(arg1);
-      markBusy(`shorts-${id}`);
+      markBusy(shortsSplitMarker(id));
       try {
         const count = Math.min(5, Math.max(1, Number(arg2) || autoShortsCount(contentDuration(getEpisode(id)))));
         return void (await splitIntoShorts(id, count, arg3, render));
       } finally {
-        markDone(`shorts-${id}`);
+        markDone(shortsSplitMarker(id));
       }
     }
     case 'metadata': {
