@@ -6,3 +6,4 @@ export * from './schedule.ts';
 export * from './metadata.ts';
 export * from './channel.ts';
 export * from './thumbnail.ts';
+export * from './facebook.ts';

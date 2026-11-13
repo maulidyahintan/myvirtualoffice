@@ -29,6 +29,8 @@ import {
   characterLooks,
   characterProfile,
   paths,
+  facebookConnection,
+  needsFacebookPost,
 } from '@kantor/shared';
 import {
   deleteMusic,
@@ -41,6 +43,9 @@ import {
   saveCharacters,
   saveBackgrounds,
   saveVisualStyle,
+  connectFacebookPage,
+  disconnectFacebookPage,
+  sendToFacebook,
 } from '../actions';
 import path from 'node:path';
 import { Collapsible } from '@/components/Collapsible';
@@ -55,7 +60,9 @@ const INFO: Record<MusicType, { title: string; part: string }> = {
   outro: { title: '🎶 Musik penutup', part: 'outro' },
 } as const;
 
-export default function Pengaturan() {
+export default async function Pengaturan({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const sp = await searchParams;
+  const hasilFacebook = typeof sp.facebook === 'string' ? sp.facebook : undefined;
   return (
     <div className="stack">
       <div>
@@ -73,6 +80,7 @@ export default function Pengaturan() {
         <PengaturanVolume />
         <PengaturanSuara />
         <PengaturanPlaylist />
+        <PengaturanFacebook hasil={hasilFacebook} />
         <PengaturanRisetHarian />
         <PengaturanInstruksi />
       </div>
@@ -249,6 +257,91 @@ function PengaturanPlaylist() {
           Semua video yang sudah diupload sudah masuk playlist.
         </p>
       )}
+    </Collapsible>
+  );
+}
+
+/** Page Facebook: video yang dijadwalkan di YouTube ikut terjadwal di Page pada jam yang sama (Shorts → Reels). */
+function PengaturanFacebook({ hasil }: { hasil?: string }) {
+  const conn = facebookConnection();
+  const belum = conn ? listEpisodes().filter((e) => needsFacebookPost(e)).length : 0;
+  const sibuk = isBusy('facebook');
+  const [jenis, ...isi] = (hasil ?? '').split(':');
+  const pesan = isi.join(':');
+  return (
+    <Collapsible
+      id="facebook"
+      judul="📘 Facebook"
+      ringkasan={conn ? `Terhubung: ${conn.pageName}` : 'Belum terhubung'}
+      bawaanBuka={Boolean(hasil)}
+      ingat={!hasil}
+    >
+      {hasil ? <p className={jenis === 'ok' ? 'kecil' : 'peringatan kecil'}>{jenis === 'ok' ? '✅ ' : '⚠️ '}{pesan}</p> : null}
+      <p className="muted kecil" style={{ margin: 0 }}>
+        Setiap video yang dijadwalkan tayang di YouTube otomatis ikut dijadwalkan di Page Facebook pada jam yang sama: video biasa sebagai
+        video Page (dengan thumbnail), Shorts sebagai Reels. Video yang diupload private tidak dikirim. Hanya Page yang bisa dihubungkan;
+        profil pribadi (juga mode profesional) tidak bisa diposting oleh aplikasi.
+      </p>
+      {conn ? (
+        <div className="stack" style={{ gap: 8 }}>
+          <div className="kecil">
+            Page:{' '}
+            <a href={`https://www.facebook.com/${conn.pageId}`} target="_blank" rel="noreferrer">
+              {conn.pageName} ↗
+            </a>{' '}
+            <span className="muted">· terhubung {new Date(conn.connectedAt).toLocaleDateString('id-ID')}</span>
+          </div>
+          {sibuk ? (
+            <p className="kecil">⏳ Mengirim video ke Facebook…</p>
+          ) : belum ? (
+            <form action={sendToFacebook}>
+              <SubmitButton className="sekunder" teksProses="Memproses…">📘 Kirim {belum} video terjadwal ke Facebook</SubmitButton>
+            </form>
+          ) : (
+            <p className="kecil muted" style={{ margin: 0 }}>Semua video terjadwal sudah ada di Facebook.</p>
+          )}
+          <form action={disconnectFacebookPage}>
+            <SubmitButton className="sekunder" teksProses="Memutus…">Putuskan Page</SubmitButton>
+          </form>
+        </div>
+      ) : null}
+      <details>
+        <summary className="kecil">{conn ? 'Hubungkan ulang / ganti Page' : 'Cara menghubungkan Page (sekali saja)'}</summary>
+        <ol className="kecil" style={{ paddingLeft: 20 }}>
+          <li>
+            Buka <a href="https://developers.facebook.com/apps" target="_blank" rel="noreferrer">developers.facebook.com/apps</a> → <b>Buat Aplikasi</b>{' '}
+            → pilih kasus penggunaan untuk <b>mengelola Page</b> (atau &quot;Lainnya&quot; → tipe <b>Bisnis</b>).
+          </li>
+          <li>
+            Di <b>Pengaturan Aplikasi → Dasar</b>, salin <b>ID Aplikasi</b> dan <b>Kunci Rahasia Aplikasi</b>.
+          </li>
+          <li>
+            Buka <a href="https://developers.facebook.com/tools/explorer" target="_blank" rel="noreferrer">Graph API Explorer</a>, pilih aplikasi tadi,
+            &quot;Token Pengguna&quot;, tambahkan izin <code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>pages_manage_posts</code>{' '}
+            (dan <code>publish_video</code> kalau ada) → <b>Generate Access Token</b> → login dan <b>centang Page Anda</b>. Salin tokennya.
+          </li>
+          <li>Tempel ketiganya di bawah. Token ditukar menjadi token Page yang tidak kedaluwarsa; Kunci Rahasia tidak disimpan.</li>
+        </ol>
+        <form action={connectFacebookPage} className="stack" style={{ gap: 8 }}>
+          <label className="kecil">
+            ID Aplikasi
+            <input type="text" name="appId" required inputMode="numeric" autoComplete="off" />
+          </label>
+          <label className="kecil">
+            Kunci Rahasia Aplikasi
+            <input type="password" name="appSecret" required autoComplete="off" />
+          </label>
+          <label className="kecil">
+            Token pengguna (dari Graph API Explorer)
+            <input type="password" name="token" required autoComplete="off" />
+          </label>
+          <label className="kecil">
+            ID atau link Page <span className="muted">(boleh kosong kalau akun hanya punya satu Page)</span>
+            <input type="text" name="page" defaultValue={conn?.pageId ?? ''} placeholder="https://www.facebook.com/profile.php?id=…" />
+          </label>
+          <SubmitButton teksProses="Menghubungkan…">📘 Hubungkan Page</SubmitButton>
+        </form>
+      </details>
     </Collapsible>
   );
 }

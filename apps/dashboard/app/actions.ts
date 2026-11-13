@@ -6,6 +6,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   addLog,
+  connectFacebook,
+  disconnectFacebook,
   createEpisodeFromIdea,
   getEpisode,
   loadConfig,
@@ -518,6 +520,36 @@ export async function savePlaylists(form: FormData) {
 }
 
 /** Masukkan video yang sudah diupload tapi belum masuk playlist. */
+/**
+ * Hubungkan Page Facebook: App ID & App Secret dari aplikasi Meta + token pengguna dari Graph API Explorer.
+ * App Secret hanya dipakai untuk menukar token, tidak disimpan. Hasil/galat ditampilkan di Pengaturan.
+ */
+export async function connectFacebookPage(form: FormData) {
+  let pesan: string;
+  try {
+    const conn = await connectFacebook({ appId: teks(form, 'appId'), appSecret: teks(form, 'appSecret'), userToken: teks(form, 'token'), page: teks(form, 'page') });
+    pesan = `ok:Terhubung ke Page "${conn.pageName}"`;
+  } catch (e) {
+    pesan = `gagal:${(e as Error).message}`;
+  }
+  revalidatePath('/settings');
+  redirect(`/settings?facebook=${encodeURIComponent(pesan)}#facebook`);
+}
+
+export async function disconnectFacebookPage() {
+  disconnectFacebook();
+  revalidatePath('/settings');
+}
+
+/** Kirim ke Page Facebook: satu episode, atau tanpa id semua video terjadwal yang belum ada di Facebook. */
+export async function sendToFacebook(form: FormData) {
+  const id = teks(form, 'id');
+  runOfficeCommand(id ? ['facebook', id] : ['facebook'], id || undefined);
+  revalidatePath('/settings');
+  revalidatePath('/published');
+  if (id) segarkan(id);
+}
+
 export async function addAllToPlaylists() {
   runOfficeCommand(['playlist']);
   revalidatePath('/published');

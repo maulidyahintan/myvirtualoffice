@@ -35,6 +35,8 @@ import {
   paths,
   nextFreeSlot,
   isBusy,
+  facebookConnection,
+  needsFacebookPost,
   BUSY_STATUSES,
   FORMAT_CHOICES,
   FORMAT_CHOICE_LABEL,
@@ -68,6 +70,7 @@ import {
   saveMemorizationTiming,
   reject,
   writeScript,
+  sendToFacebook,
 } from '../../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { Badge } from '@/components/Badge';
@@ -916,6 +919,7 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
               Buka di YouTube ↗
             </a>
           ) : null}
+          <KeFacebook ep={ep} />
           {ep.youtube?.publishTime ? (
             <div className="muted">
               Tayang:{' '}
@@ -1520,5 +1524,27 @@ export default async function HalamanEpisode({
         </div>
       </div>
     </div>
+  );
+}
+
+/** Status di Page Facebook: link postingannya, atau tombol kirim kalau Page terhubung dan video sudah dijadwalkan. */
+function KeFacebook({ ep }: { ep: Episode }) {
+  if (ep.facebook) {
+    return (
+      <a href={ep.facebook.url} target="_blank" rel="noreferrer">
+        Buka di Facebook ({ep.facebook.kind === 'reel' ? 'Reels' : 'video'}) ↗
+      </a>
+    );
+  }
+  if (!facebookConnection()) return null;
+  if (isBusy('facebook')) return <span className="kecil muted">⏳ Mengirim ke Facebook…</span>;
+  if (!needsFacebookPost(ep)) {
+    return ep.youtube?.publishTime ? null : <span className="kecil muted">Video private tidak dikirim ke Facebook.</span>;
+  }
+  return (
+    <form action={sendToFacebook}>
+      <input type="hidden" name="id" value={ep.id} />
+      <SubmitButton className="sekunder" teksProses="Mengirim…">📘 Jadwalkan juga di Facebook</SubmitButton>
+    </form>
   );
 }

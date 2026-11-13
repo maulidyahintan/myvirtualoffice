@@ -254,6 +254,8 @@ export interface Episode {
   /** false = no voice effects (story: character effects per scene, memorization: children's voice). Default: use effects. */
   characterEffects?: boolean;
   youtube?: { videoId: string; url: string; publishTime?: string; playlist?: { name: string; id: string } };
+  /** Same video on the connected Facebook Page: standard video as a Page video, Shorts as a Reel. */
+  facebook?: { videoId: string; url: string; kind: 'video' | 'reel'; publishTime?: string; pageId: string };
   /** Publish time selected when video was approved (ISO); holds slot during upload. */
   selectedSchedule?: string;
   /**

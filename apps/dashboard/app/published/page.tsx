@@ -196,6 +196,11 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
                     <a href={e.youtube!.url} target="_blank" rel="noreferrer" className="kecil">
                       Buka di YouTube ↗
                     </a>
+                    {e.facebook ? (
+                      <a href={e.facebook.url} target="_blank" rel="noreferrer" className="kecil">
+                        📘 Facebook ↗
+                      </a>
+                    ) : null}
                   </div>
                   <div className="kecil">
                     {e.youtube?.playlist ? (

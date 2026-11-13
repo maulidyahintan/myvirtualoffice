@@ -18,6 +18,8 @@ import {
   AI_VOICES,
   voiceFilter,
   needsPlaylist,
+  facebookConnection,
+  needsFacebookPost,
   loadConfig,
   allowedBackgrounds,
   visualStyle,
@@ -60,6 +62,7 @@ import {
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
 import { renderEpisode, renderScenePreview, ffmpeg, durasiAudio, renderCompilationVideo, renderCompilationThumbnail } from './render.ts';
 import { makePrivate, uploadEpisode } from './youtube/upload.ts';
+import { deleteFacebookVideo, postToFacebook } from './facebook.ts';
 import { removeFromPlaylist, addToPlaylist } from './youtube/playlist.ts';
 
 const log = (id: string | undefined, by: string) => (message: string) => {
@@ -854,6 +857,44 @@ export async function upload(id: string, publishTime?: string) {
   );
   // new version uploaded → old uploads (before edit) are hidden
   await withdrawOldVideos(id);
+  // the same video on the Facebook Page, scheduled at the same time
+  if (facebookConnection() && publishTime) await sendToFacebook(id);
+}
+
+/**
+ * Post an uploaded episode to the connected Facebook Page at its YouTube publish time. Without an id: every
+ * scheduled episode not on Facebook yet. Failures are logged and never undo the YouTube upload.
+ */
+export async function sendToFacebook(id?: string) {
+  const daftar = id ? [getEpisode(id)] : listEpisodes().filter((e) => needsFacebookPost(e));
+  for (const ep of daftar) {
+    const catat = log(ep.id, 'channel-manager');
+    if (!ep.youtube?.publishTime) {
+      catat('Facebook dilewati: video YouTube-nya private (belum dijadwalkan tayang)');
+      continue;
+    }
+    try {
+      // an older version of this episode already on Facebook: remove it if it hasn't gone live yet
+      const old = ep.facebook;
+      if (old) {
+        if (old.publishTime && new Date(old.publishTime).getTime() > Date.now()) {
+          await deleteFacebookVideo(old.videoId).then(
+            () => catat('Postingan Facebook versi lama (belum tayang) dihapus'),
+            (e) => catat(`Postingan Facebook versi lama gagal dihapus: ${(e as Error).message}`),
+          );
+        } else catat(`Versi lama sudah tayang di Facebook (${old.url}); hapus manual kalau tidak diperlukan`);
+      }
+      catat(`Mengirim ke Page Facebook sebagai ${ep.idea.format === 'short' ? 'Reels' : 'video'}`);
+      const post = await postToFacebook(ep, ep.youtube.publishTime);
+      updateEpisode(ep.id, (e) => {
+        e.facebook = post;
+      });
+      catat(post.publishTime ? `Terjadwal di Facebook ${post.publishTime}: ${post.url}` : `Tayang di Facebook: ${post.url}`);
+    } catch (e) {
+      catat(`Gagal mengirim ke Facebook: ${(e as Error).message}`);
+    }
+  }
+  console.log(`✅ Facebook: ${daftar.length} video diproses`);
 }
 
 /**
