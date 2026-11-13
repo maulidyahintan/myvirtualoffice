@@ -104,12 +104,14 @@ export const FORMAT_CHOICES = [...FORMATS, 'both'] as const;
 export type FormatChoice = (typeof FORMAT_CHOICES)[number];
 export const FORMAT_CHOICE_LABEL: Record<FormatChoice, string> = { ...FORMAT_LABEL, both: 'Keduanya (Video + Shorts)' };
 
-/** Size & intro/outro duration per format. */
 /**
  * Extra gain for the opening music on top of the music volume setting: intro tracks are mixed quieter than
- * the narration (about 6 dB here), so +30% keeps the opening from sounding faint. Rendering may go above 1.
+ * the narration (about 6 dB here). +30%, then another +25% at the owner's request (1.3 × 1.25); the current
+ * track still peaks at about 0.64, well below clipping. Rendering may go above 1.
  */
-export const INTRO_MUSIC_GAIN = 1.3;
+export const INTRO_MUSIC_GAIN = 1.625;
+
+/** Size & intro/outro duration per format. */
 
 export const FORMAT_SPEC = {
   // the opening stays short (at most 5 s, longer intro music fades out) so children reach the story quickly
