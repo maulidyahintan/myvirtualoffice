@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ACTIONS } from './constants.ts';
-import { MOCHI_ONLY_ACTIONS, canPerform } from './channel.ts';
+import { CHILD_ONLY_ACTIONS, MOCHI_ONLY_ACTIONS, canPerform } from './channel.ts';
 
 describe('canPerform', () => {
   it('lets Mochi do its own actions and play', () => {
@@ -18,10 +18,16 @@ describe('canPerform', () => {
   });
 
   it('lets Mamas and Mother do every action that is not cat-only', () => {
-    const humanActions = ACTIONS.filter((action) => !MOCHI_ONLY_ACTIONS.includes(action));
+    const humanActions = ACTIONS.filter((action) => !MOCHI_ONLY_ACTIONS.includes(action) && !CHILD_ONLY_ACTIONS.includes(action));
     for (const action of humanActions) {
       expect(canPerform('mamas', action)).toBe(true);
       expect(canPerform('mother', action)).toBe(true);
     }
+  });
+
+  it('gives the school bag to the children only', () => {
+    expect(canPerform('mamas', 'wearing-backpack')).toBe(true);
+    expect(canPerform('mother', 'wearing-backpack')).toBe(false);
+    expect(canPerform('mochi', 'wearing-backpack')).toBe(false);
   });
 });

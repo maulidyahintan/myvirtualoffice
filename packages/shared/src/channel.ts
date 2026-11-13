@@ -159,9 +159,15 @@ export const MOCHI_ONLY_ACTIONS: readonly Action[] = ['sleeping', 'circling', 'f
 /** Actions the cat can do besides its own: playing with a toy. */
 const MOCHI_SHARED_ACTIONS: readonly Action[] = ['playing'];
 
+/** Actions only the children can do (Mother has no school bag). */
+export const CHILD_ONLY_ACTIONS: readonly Action[] = ['wearing-backpack'];
+/** The drawn children. */
+export const CHILDREN: readonly Character[] = ['mamas'];
+
 /** Whether a character can perform this scene action (the Director sometimes gives Mamas a cat action). */
 export function canPerform(character: Character, action: Action): boolean {
   if (character === 'mochi') return MOCHI_ONLY_ACTIONS.includes(action) || MOCHI_SHARED_ACTIONS.includes(action);
+  if (CHILD_ONLY_ACTIONS.includes(action)) return CHILDREN.includes(character);
   return !MOCHI_ONLY_ACTIONS.includes(action);
 }
 

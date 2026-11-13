@@ -2,6 +2,7 @@ import React, { useId } from 'react';
 import { mixPose, eatingPhase, noise, noiseS, ballBounce, type ArmPose, type RigProps } from './motion';
 import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
+import { BackpackBag, BackpackStraps } from './Backpack';
 import { Face } from './Face';
 import { shade, useLook } from './looks';
 
@@ -186,6 +187,8 @@ export const Mamas: React.FC<RigProps> = (r) => {
         </clipPath>
       </defs>
 
+      {r.action === 'wearing-backpack' ? <BackpackBag /> : null}
+
       {/* kaki & sandal */}
       {[0, 1].map((i) => (
         <g key={i} transform={`rotate(${(i ? -1 : 1) * langkah} ${103 + i * 34} 316)`}>
@@ -234,6 +237,8 @@ export const Mamas: React.FC<RigProps> = (r) => {
       <path d="M134 272 L166 272 L166 300 L150 308 L134 300 Z" fill={k.baju} stroke={k.bajuGaris} strokeWidth={2.5} strokeLinejoin="round" />
       <rect x={134} y={278} width={34} height={5} fill="#A3927C" />
       <rect x={160} y={282} width={8} height={6} fill="#5C5C5C" />
+
+      {r.action === 'wearing-backpack' ? <BackpackStraps /> : null}
 
       {/* lengan */}
       {expression === 'thinking' ? null : tangan(false)}

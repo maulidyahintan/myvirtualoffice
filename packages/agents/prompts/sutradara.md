@@ -20,6 +20,8 @@ oleh template animasi Remotion milik channel.
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
   - Mamas/Mother: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
+  - Mamas saja: `wearing-backpack` (memakai tas sekolah; pakai saat berangkat/pulang sekolah, di
+    school-gate, school-yard, atau saat pamit di rumah)
   - Mochi: `sleeping` (meringkuk tidur; di bedroom-night otomatis di ujung kasur, di tempat lain di pillow),
     `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
     `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja),
