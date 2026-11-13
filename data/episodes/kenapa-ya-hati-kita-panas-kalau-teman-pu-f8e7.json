@@ -1,7 +1,7 @@
 {
   "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
   "created": "2026-11-02T10:11:06.546Z",
-  "modified": "2026-11-13T03:50:47.931Z",
+  "modified": "2026-11-13T19:14:26.073Z",
   "status": "scheduled",
   "idea": {
     "title": "Kenapa Ya Hati Kita Panas Kalau Teman Punya Mainan Baru?",
@@ -208,6 +208,26 @@
       "time": "2026-11-13T03:50:47.931Z",
       "by": "channel-manager",
       "message": "Terjadwal di Facebook 2026-11-13T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/29219460734353331"
+    },
+    {
+      "time": "2026-11-13T19:14:01.080Z",
+      "by": "pemilik",
+      "message": "Minta 2 Shorts dari inti video"
+    },
+    {
+      "time": "2026-11-13T19:14:04.578Z",
+      "by": "sutradara",
+      "message": "Menyiapkan 2 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "time": "2026-11-13T19:14:08.994Z",
+      "by": "sutradara",
+      "message": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "time": "2026-11-13T19:14:26.073Z",
+      "by": "sutradara",
+      "message": "2 Shorts dibuat: obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc, hadits-ikut-senang-untuk-teman-obat-iri--4ebd"
     }
   ],
   "twin": "kenapa-ya-hati-kita-panas-kalau-teman-pu-c75a",
@@ -725,5 +745,9 @@
     "kind": "video",
     "publishTime": "2026-11-13T09:00:00.000Z",
     "pageId": "1383005048238430"
-  }
+  },
+  "derivatives": [
+    "obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc",
+    "hadits-ikut-senang-untuk-teman-obat-iri--4ebd"
+  ]
 }

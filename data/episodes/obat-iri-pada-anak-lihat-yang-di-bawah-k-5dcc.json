@@ -1,0 +1,230 @@
+{
+  "id": "obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc",
+  "created": "2026-11-13T19:14:26.030Z",
+  "modified": "2026-11-13T19:16:22.463Z",
+  "status": "needs_video_approval",
+  "idea": {
+    "title": "Obat Iri pada Anak: Lihat yang di Bawah Kita",
+    "series": "kenapa-ya",
+    "age": "7-10",
+    "moralMessage": "Rasa iri dilawan dengan bersyukur dan ikut senang atas kebaikan teman. Ada dua dalil. Pertama, lihatlah orang yang di bawah kita supaya tidak meremehkan nikmat Allah (HR. Muslim no. 2963). Kedua, tidak sempurna iman seseorang sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya (HR. Bukhari no. 13, Muslim no. 45). Teman hanya disebut di narasi, tidak digambar.",
+    "format": "short",
+    "reason": "Topik berbagi dan cemburu menunjukkan permintaan tinggi. Abi & Andra 'Tidak Mau Berbagi Mainan' dapat ±19.800 views/hari, 'Kakak Mau Mengalah' ±8.000 views/hari, dan Kabi 'Hazeem Pelit' 518 ribu views. Pesaingnya fokus ke tindakan berbagi, jarang membahas 'kenapa' hati merasa iri dengan dalil untuk usia 7–10 tahun. Ini cocok dengan format diskusi seri Kenapa Ya.",
+    "references": [
+      "https://www.youtube.com/watch?v=6hZaLNIDASg",
+      "https://www.youtube.com/watch?v=bfc4a83HSp8",
+      "https://www.youtube.com/watch?v=kyK6IvOE0yo",
+      "Shahih Muslim no. 2963; Shahih Bukhari no. 13; Shahih Muslim no. 45"
+    ]
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-13T19:14:26.030Z",
+      "by": "sutradara",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-13T19:14:26.057Z",
+      "by": "sutradara",
+      "message": "Shorts 1 dari episode kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7: adegan 2, 6, 7. Mamas bertanya kenapa hatinya panas melihat mainan baru teman, lalu Ibu memberi obat pertama dari Rasulullah ﷺ, yaitu melihat orang yang di bawah kita, dan Mamas pun bersyukur."
+    },
+    {
+      "time": "2026-11-13T19:14:26.058Z",
+      "by": "sutradara",
+      "message": "Menunggu giliran render"
+    },
+    {
+      "time": "2026-11-13T19:14:26.074Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-13T19:16:22.462Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    }
+  ],
+  "source": {
+    "id": "kenapa-ya-hati-kita-panas-kalau-teman-pu-f8e7",
+    "scenes": [
+      1,
+      5,
+      6
+    ]
+  },
+  "script": {
+    "title": "Obat Iri pada Anak: Lihat yang di Bawah Kita",
+    "summary": "Mamas pulang dari taman bermain sambil cemberut. Temannya, Raka, punya mobil remot baru, sedangkan mobil Mamas hanya mobil kayu lama. Ibu menjelaskan bahwa rasa itu namanya iri. Saat Mochi berguling lucu mengejar mobil kayu, Mamas sadar bahwa mainannya juga menyenangkan. Ibu lalu mengajarkan dua obat iri dari Rasulullah ﷺ. Pertama, lihat orang yang keadaannya di bawah kita supaya tidak meremehkan nikmat Allah (HR. Muslim no. 2963). Kedua, cintai untuk saudara apa yang kita cintai untuk diri sendiri (HR. Bukhari no. 13, Muslim no. 45). Mamas bersyukur dan berniat ikut senang untuk Raka. Raka hanya disebut di narasi dan tidak digambar.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu, Raka punya mobil remot baru. Merah, bisa ngebut, ada lampunya! Mobil Mamas cuma mobil kayu lama. Kenapa ya, hati Mamas jadi panas?",
+        "visualDirection": "Ruang tamu, Mamas duduk di sofa sambil memegang mobil kayu yang catnya mengelupas, Ibu duduk di sampingnya dan mendengarkan."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Rasulullah ﷺ sudah mengajarkan obatnya, Mas. Pertama, lihatlah orang yang keadaannya di bawah kita, jangan yang di atas. Masih banyak anak yang tidak punya mainan sama sekali. Dengan begitu, kita tidak meremehkan nikmat Allah.",
+        "visualDirection": "Ruang tamu, Ibu berbicara lembut sambil menatap Mamas yang mendengarkan dengan serius."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Oh iya, Mamas masih punya mobil kayu, bola, dan Mochi. Alhamdulillah!",
+        "visualDirection": "Ruang tamu, Mamas tersenyum lebar sambil memeluk Mochi, mobil kayu dan bola tergeletak di dekatnya."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "انْظُرُوا إِلَى مَنْ أَسْفَلَ مِنْكُمْ وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ، فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ عَلَيْكُمْ",
+        "latin": "Unẓurū ilā man asfala minkum wa lā tanẓurū ilā man huwa fauqakum, fa huwa ajdaru allā tazdarū ni'matallāhi 'alaikum.",
+        "translation": "Lihatlah orang yang berada di bawah kalian dan jangan melihat orang yang berada di atas kalian. Hal itu lebih layak agar kalian tidak meremehkan nikmat Allah atas kalian.",
+        "source": "HR. Muslim no. 2963, dari Abu Hurairah radhiyallahu 'anhu"
+      },
+      {
+        "type": "hadits",
+        "arabicText": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+        "latin": "Lā yu'minu aḥadukum ḥattā yuḥibba li-akhīhi mā yuḥibbu li-nafsih.",
+        "translation": "Tidak sempurna iman salah seorang di antara kalian sampai ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri.",
+        "source": "HR. Bukhari no. 13 dan Muslim no. 45, dari Anas bin Malik radhiyallahu 'anhu"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 9,
+    "notes": [
+      "LOLOS. Saya tidak menemukan pelanggaran syariat. Hanya Mamas, Ibu, dan Mochi yang digambar. Raka cuma disebut lewat cerita. Tidak ada visual Nabi, sahabat, atau malaikat.",
+      "Naskah 230 kata, masih di batas 220–320. Alurnya langsung ke inti: masalah, lalu iri diberi nama, Mochi mencairkan suasana, ada pertanyaan, dua obat iri, lalu Mamas berniat baik. Tidak ada scene yang perlu dibuang.",
+      "Bacaan Arab sudah dipisah dengan benar. Scene 9 hanya berisi lafaz hadits (latin). Pengantarnya ada di scene 8 dan artinya di scene 10.",
+      "Rasa iri yang negatif sudah selesai dengan baik: Mamas bersyukur dan mau mengucapkan selamat ke Raka. Pesan moralnya jelas dan diulang di scene penutup.",
+      "Usulan kecil (opsional) untuk scene 6: tambahkan 'dalam urusan dunia, seperti mainan', supaya maknanya pas dengan hadits Muslim no. 2963. Hadits ini memang tentang urusan dunia, bukan ibadah. Contoh: 'Dalam urusan dunia, lihatlah orang yang di bawah kita.'",
+      "Usulan kecil (opsional) untuk scene 6 dan 8: sebutkan perawinya secara lisan agar anak 7–10 tahun kenal sumbernya. Contoh: 'Rasulullah ﷺ bersabda, diriwayatkan Imam Muslim...' dan '...diriwayatkan Imam Bukhari dan Muslim.'",
+      "Usulan kecil (opsional) untuk scene 5: kalimat pertanyaannya agak panjang. Bisa dipecah jadi: 'Nah, teman-teman, apa yang bisa Mamas lakukan? Supaya hatinya tidak panas lagi. Coba pikirkan dulu, ya.'",
+      "Scene 9 diucapkan Mamas. Itu tidak melanggar aturan, karena aturan pembicara 'mamas' khusus untuk ayat Al-Qur'an, dan bacaan ini hadits. Pilihan ini juga sudah pas."
+    ],
+    "humanCheck": [
+      "DALIL 1: HR. Muslim no. 2963, dari Abu Hurairah. Cek teks Arabnya: 'انْظُرُوا إِلَى مَنْ أَسْفَلَ مِنْكُمْ وَلَا تَنْظُرُوا إِلَى مَنْ هُوَ فَوْقَكُمْ، فَهُوَ أَجْدَرُ أَنْ لَا تَزْدَرُوا نِعْمَةَ اللَّهِ عَلَيْكُمْ'. Pastikan nomornya 2963 menurut penomoran Fuad Abdul Baqi. Cek juga terjemah di naskah: 'Lihatlah orang yang berada di bawah kalian... agar kalian tidak meremehkan nikmat Allah atas kalian.'",
+      "DALIL 1 (versi lisan di scene 6): Ibu hanya menceritakan isi hadits ini dalam bahasa Indonesia, tanpa lafaz Arab. Pastikan isinya tidak menyimpang. Pertimbangkan juga menambah keterangan 'dalam urusan dunia'.",
+      "DALIL 2: HR. Bukhari no. 13 dan Muslim no. 45, dari Anas bin Malik. Cek teks Arabnya: 'لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ'. Cek juga transliterasi latin di scene 9: 'Lā yu'minu aḥadukum ḥattā yuḥibba li-akhīhi mā yuḥibbu li-nafsih.'",
+      "DALIL 2 (terjemah di scene 10): Naskah memakai kata 'tidak sempurna iman'. Kata 'sempurna' itu penjelasan ulama, bukan terjemah harfiah. Pastikan pilihan kata ini sesuai dengan standar channel.",
+      "Cek audio di scene 4: efek suara Mochi terpeleset dan berguling harus tetap lembut, tidak keras dan tidak mengagetkan anak.",
+      "Cek visual di scene 2 dan scene 11: mainan yang tampil cukup mobil kayu milik Mamas. Jangan tampilkan mobil remot merek tertentu atau yang mirip produk komersial."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu, Raka punya mobil remot baru. Merah, bisa ngebut, ada lampunya! Mobil Mamas cuma mobil kayu lama. Kenapa ya, hati Mamas jadi panas?",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "sad",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Rasulullah ﷺ sudah mengajarkan obatnya, Mas. Pertama, lihatlah orang yang keadaannya di bawah kita, jangan yang di atas. Masih banyak anak yang tidak punya mainan sama sekali. Dengan begitu, kita tidak meremehkan nikmat Allah.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "calm",
+      "screenText": "Obat pertama: bersyukur",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Oh iya, Mamas masih punya mobil kayu, bola, dan Mochi. Alhamdulillah!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Alhamdulillah!",
+      "props": [
+        "ball"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "toy-car"
+        },
+        {
+          "character": "mochi",
+          "action": "playing"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Obat Iri pada Anak: Lihat yang di Bawah Kita",
+    "description": "Cerita anak muslim tentang rasa iri saat teman punya mainan baru dan cara mengobatinya dengan bersyukur (HR. Muslim no. 2963).\n#Shorts\n#CeritaAnakMuslim #Bersyukur",
+    "tags": [
+      "rasa iri anak",
+      "bersyukur",
+      "cerita anak muslim",
+      "akhlak anak",
+      "hadits anak",
+      "HR Muslim 2963",
+      "mainan baru teman",
+      "pendidikan islam anak"
+    ],
+    "thumbnailText": "Hati Panas?"
+  },
+  "recordingMode": "per-scene",
+  "audioPerScene": [
+    "audio/obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc-adegan-1.wav",
+    "audio/obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc-adegan-2.wav",
+    "audio/obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc-adegan-3.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null
+  ],
+  "statusNote": "Video siap ditonton & disetujui",
+  "audioFile": "audio/obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc-gabung.wav",
+  "render": {
+    "video": "obat-iri-pada-anak-lihat-yang-di-bawah-k-5dcc.mp4",
+    "scenes": [
+      {
+        "start": 1.5,
+        "duration": 13.166666666666666
+      },
+      {
+        "start": 14.666666666666666,
+        "duration": 23.2
+      },
+      {
+        "start": 37.86666666666667,
+        "duration": 10.466666666666667
+      }
+    ],
+    "time": "2026-11-13T19:16:22.461Z"
+  }
+}
