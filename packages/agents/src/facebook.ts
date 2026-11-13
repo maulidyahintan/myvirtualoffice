@@ -21,6 +21,7 @@ function caption(ep: Episode): { title: string; description: string } {
   const description = meta.description
     .replace(/#Shorts\b/gi, '')
     .replace(/[ \t]+\n/g, '\n')
+    .replace(/^[ \t]+/gm, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
   return { title: meta.title, description };
