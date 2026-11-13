@@ -1,7 +1,7 @@
 {
   "id": "buku-perpustakaan-sobek-mamas-belajar-me-aeca",
   "created": "2026-11-06T10:12:03.065Z",
-  "modified": "2026-11-10T00:35:25.833Z",
+  "modified": "2026-11-13T00:50:14.009Z",
   "status": "needs_audio",
   "idea": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",
@@ -94,7 +94,6 @@
       "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
-  "twin": "buku-perpustakaan-sobek-mamas-belajar-me-d120",
   "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Buku Perpustakaan Sobek! Mamas Belajar Menjaga Amanah",

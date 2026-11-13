@@ -1,7 +1,7 @@
 {
   "id": "pakai-baju-sendiri-mamas-baca-alhamdulil-4ddc",
   "created": "2026-11-05T03:35:15.737Z",
-  "modified": "2026-11-05T10:52:21.462Z",
+  "modified": "2026-11-13T00:50:14.036Z",
   "status": "scheduled",
   "idea": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
@@ -174,7 +174,6 @@
       "message": "Terjadwal tayang 2026-11-07T11:30:00.000Z"
     }
   ],
-  "twin": "pakai-baju-sendiri-mamas-baca-alhamdulil-a181",
   "statusNote": "Terjadwal tayang 2026-11-07T11:30:00.000Z",
   "script": {
     "title": "Pakai Baju Sendiri! Mamas Baca Alhamdulillah",
