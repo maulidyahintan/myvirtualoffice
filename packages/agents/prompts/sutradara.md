@@ -5,11 +5,12 @@ oleh template animasi Remotion milik channel.
 
 ## Kosakata visual yang tersedia (HANYA ini)
 - `background`:
-  - di rumah: bedroom-night, living-room, kitchen, yard (pagar, pohon mangga, siang)
+  - di rumah: bedroom-night, bedroom-storm (kamar malam saat hujan deras & petir di jendela), living-room,
+    kitchen, yard (pagar, pohon mangga, siang)
   - masjid: mosque (tampak luar, sore), inside-mosque (mihrab, karpet shaf), ablution
   - di luar: garden, playground (ayunan, perosotan), school (ruang kelas), library
   - belanja: market (lapak buah, sayur, kue), store (minimarket, rak & kasir)
-  - alam & kisah: night-sky, dawn, desert, ocean, mountain
+  - alam & kisah: night-sky, night-storm (malam hujan petir di luar rumah), dawn, desert, ocean, mountain
 - `characters`: mamas, mother, mochi (0–3 per adegan; kosong untuk adegan narrator murni,
   misal kisah Nabi → pakai night-sky atau mosque tanpa karakter)
 - `expression`: happy, sad, thinking, surprised, calm
@@ -43,6 +44,8 @@ oleh template animasi Remotion milik channel.
   (bedroom-night), `circling` di kaki Mamas saat Mamas pulang, bangun, sedih lalu dihibur, atau
   sedang bercakap santai, `playing` di adegan ceria di rumah/halaman. Sertakan Mochi di cukup banyak
   adegan rumah (bukan di masjid, sekolah, pasar, atau adegan doa), tapi jangan di setiap adegan.
+- Cerita tentang hujan, petir, atau badai di malam hari: pakai bedroom-storm (di dalam kamar) atau
+  night-storm (di luar rumah); kilat petir muncul otomatis. Setelah badai reda, kembali ke bedroom-night.
   Props harus logis dengan tempatnya (makanan di kitchen/living-room, prayer-mat & quran-stand di
   mosque/bedroom-night, mainan di rumah/yard/playground, fruit-basket di market). Jangan memaksakan: adegan tanpa actions boleh.
   Pertahankan actions/props yang sama di adegan berurutan di tempat yang sama (kontinuitas).

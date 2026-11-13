@@ -1,7 +1,8 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import type { Background as LatarId, Mood as SuasanaId } from '@kantor/shared/types';
-import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, SinarJendela, Uap } from './Ambience';
+import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, LightningBolt, SinarJendela, Uap } from './Ambience';
+import { lightningFlash } from './lightning';
 
 const W = 1920;
 const H = 1080;
@@ -22,14 +23,14 @@ const Bintang: React.FC<{ jumlah: number; seed: number; tinggiMaks: number }> = 
   );
 };
 
-const Awan: React.FC<{ y: number; skala: number; kecepatan: number; awal: number }> = ({ y, skala, kecepatan, awal }) => {
+const Awan: React.FC<{ y: number; skala: number; kecepatan: number; awal: number; color?: string }> = ({ y, skala, kecepatan, awal, color = '#fff' }) => {
   const frame = useCurrentFrame();
   const x = ((awal + frame * kecepatan) % (W + 400)) - 200;
   return (
     <g transform={`translate(${x} ${y}) scale(${skala})`} opacity={0.95}>
-      <ellipse cx={0} cy={0} rx={90} ry={40} fill="#fff" />
-      <ellipse cx={60} cy={-22} rx={70} ry={45} fill="#fff" />
-      <ellipse cx={120} cy={4} rx={80} ry={36} fill="#fff" />
+      <ellipse cx={0} cy={0} rx={90} ry={40} fill={color} />
+      <ellipse cx={60} cy={-22} rx={70} ry={45} fill={color} />
+      <ellipse cx={120} cy={4} rx={80} ry={36} fill={color} />
     </g>
   );
 };
@@ -63,17 +64,126 @@ const KamarMalam = () => (
     <Gorden x={1180} y={120} lebar={130} tinggi={430} warnaKain="#B98ACB" />
     <Gorden x={1630} y={120} lebar={130} tinggi={430} warnaKain="#B98ACB" kanan />
     <rect x={1170} y={110} width={600} height={20} rx={10} fill="#E9D8B4" />
-    {/* tempat tidur */}
+    <BedAndLamp />
+  </>
+);
+
+/** Bed on the left and bedside lamp, shared by the night bedroom and the stormy bedroom. */
+const BedAndLamp = () => (
+  <>
     <rect x={160} y={600} width={760} height={240} rx={30} fill="#8E6E9E" />
     <rect x={130} y={500} width={60} height={360} rx={20} fill="#6E4E7E" />
     <rect x={200} y={560} width={220} height={90} rx={40} fill="#F6EEDC" />
     <path d="M420 620 Q640 580 920 620 L920 840 L420 840 Z" fill="#7FB2D9" />
-    {/* lampu tidur */}
     <LampuBerdenyut />
     <rect x={1020} y={700} width={60} height={110} rx={10} fill="#B98A5E" />
     <path d="M990 700 L1110 700 L1080 620 L1020 620 Z" fill="#FFE2A6" />
   </>
 );
+
+const RAINDROP_XS = [1290, 1350, 1420, 1530, 1600, 1660];
+const RAINDROP_RUN_FRAMES = 160;
+
+/** The night bedroom during a thunderstorm: heavy rain and lightning outside the window. */
+const StormyBedroom = () => {
+  const frame = useCurrentFrame();
+  const { strength } = lightningFlash(frame);
+  return (
+    <>
+      <rect width={W} height={H} fill="#2C3560" />
+      <rect y={800} width={W} height={280} fill="#4E4062" />
+      {/* stormy window */}
+      <rect x={1240} y={140} width={460} height={380} rx={20} fill="#10142B" stroke="#E9D8B4" strokeWidth={16} />
+      <svg x={1248} y={148} width={444} height={364}>
+        <rect width={444} height={364} fill="#141A36" />
+        <rect width={444} height={364} fill="#C9D4FF" opacity={strength * 0.75} />
+        <Awan y={50} skala={1.1} kecepatan={0.5} awal={0} color="#2A3152" />
+        <Awan y={95} skala={0.9} kecepatan={0.35} awal={300} color="#232A47" />
+        <LightningBolt x={222} height={364} scale={0.6} />
+        <Hujan jumlah={60} width={444} height={364} heavy />
+      </svg>
+      <line x1={1470} y1={140} x2={1470} y2={520} stroke="#E9D8B4" strokeWidth={12} />
+      {/* raindrops running down the glass */}
+      {RAINDROP_XS.map((x, i) => {
+        const progress = ((frame + i * 37) % RAINDROP_RUN_FRAMES) / RAINDROP_RUN_FRAMES;
+        return <ellipse key={x} cx={x} cy={170 + progress * 320} rx={4} ry={7} fill="#DCE6FF" opacity={0.5 * (1 - progress)} />;
+      })}
+      <Gorden x={1180} y={120} lebar={130} tinggi={430} warnaKain="#B98ACB" />
+      <Gorden x={1630} y={120} lebar={130} tinggi={430} warnaKain="#B98ACB" kanan />
+      <rect x={1170} y={110} width={600} height={20} rx={10} fill="#E9D8B4" />
+      {/* lightning shining through the window onto the floor */}
+      <path d="M1240 520 L1700 520 L1820 1080 L1060 1080 Z" fill="#DDE5FF" opacity={strength * 0.22} />
+      <BedAndLamp />
+    </>
+  );
+};
+
+const STORM_CLOUDS = [
+  { y: 80, scale: 1.8, speed: 0.4, start: 0 },
+  { y: 140, scale: 1.5, speed: 0.25, start: 700 },
+  { y: 60, scale: 2.0, speed: 0.3, start: 1400 },
+  { y: 190, scale: 1.3, speed: 0.5, start: 400 },
+];
+const NEIGHBOUR_HOUSES = [
+  { x: 80, width: 300, height: 210 },
+  { x: 460, width: 260, height: 250 },
+  { x: 1240, width: 320, height: 230 },
+  { x: 1620, width: 280, height: 200 },
+];
+const STREET_LEVEL = 820;
+
+/** A stormy night outdoors: dark clouds, heavy rain, lightning and the lit windows of neighbouring houses. */
+const StormyNight = () => {
+  const frame = useCurrentFrame();
+  const { strength } = lightningFlash(frame);
+  return (
+    <>
+      <defs>
+        <linearGradient id="stormSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0D1124" />
+          <stop offset="1" stopColor="#2B3058" />
+        </linearGradient>
+      </defs>
+      <rect width={W} height={H} fill="url(#stormSky)" />
+      <rect width={W} height={760} fill="#C3CEFF" opacity={strength * 0.5} />
+      <LightningBolt x={700} height={640} />
+      <LightningBolt x={1400} height={560} scale={0.8} seed={3} />
+      {STORM_CLOUDS.map((cloud, i) => (
+        <Awan key={cloud.start} y={cloud.y} skala={cloud.scale} kecepatan={cloud.speed} awal={cloud.start} color={i % 2 ? '#262C4C' : '#1E233F'} />
+      ))}
+      {/* neighbouring houses with lit windows */}
+      {NEIGHBOUR_HOUSES.map(({ x, width, height }) => {
+        const top = STREET_LEVEL - height;
+        return (
+          <g key={x}>
+            <rect x={x} y={top} width={width} height={height} fill="#1C1F38" />
+            <path d={`M${x - 20} ${top} L${x + width / 2} ${top - 90} L${x + width + 20} ${top} Z`} fill="#161930" />
+            <rect x={x + width * 0.2} y={STREET_LEVEL - height * 0.7} width={width * 0.22} height={height * 0.25} rx={6} fill="#FFD98A" opacity={0.85} />
+            <rect x={x + width * 0.58} y={STREET_LEVEL - height * 0.7} width={width * 0.22} height={height * 0.25} rx={6} fill="#FFD98A" opacity={0.6} />
+          </g>
+        );
+      })}
+      {/* trees swaying in the wind */}
+      {[880, 1080].map((x, i) => {
+        const sway = Math.sin(frame / 14 + i) * 6 + 4;
+        return (
+          <g key={x} transform={`rotate(${sway} ${x} 840)`}>
+            <rect x={x - 14} y={640} width={28} height={200} fill="#2A2238" />
+            <ellipse cx={x} cy={600} rx={110} ry={120} fill="#1F3A35" />
+            <ellipse cx={x - 40} cy={560} rx={70} ry={70} fill="#24443D" />
+          </g>
+        );
+      })}
+      {/* wet road and puddles reflecting the flash */}
+      <rect y={STREET_LEVEL} width={W} height={H - STREET_LEVEL} fill="#2A2D45" />
+      <rect y={STREET_LEVEL} width={W} height={H - STREET_LEVEL} fill="#C3CEFF" opacity={strength * 0.15} />
+      {[300, 980, 1550].map((x, i) => (
+        <ellipse key={x} cx={x} cy={960 + i * 20} rx={160} ry={18} fill="#4A5280" opacity={0.6} />
+      ))}
+      <Hujan jumlah={140} heavy />
+    </>
+  );
+};
 
 const LampuBerdenyut = () => {
   const frame = useCurrentFrame();
@@ -766,6 +876,8 @@ export const AmbienceLayer: React.FC<{ moods: SuasanaId[] }> = ({ moods }) => (
 export const Backdrop: React.FC<{ id: LatarId }> = ({ id }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
     {id === 'bedroom-night' && <KamarMalam />}
+    {id === 'bedroom-storm' && <StormyBedroom />}
+    {id === 'night-storm' && <StormyNight />}
     {id === 'living-room' && <RuangTamu />}
     {id === 'garden' && <Taman />}
     {id === 'mosque' && <Masjid />}
@@ -787,4 +899,7 @@ export const Backdrop: React.FC<{ id: LatarId }> = ({ id }) => (
 );
 
 /** Latar gelap → text dibuat terang. */
-export const DARK_BACKGROUNDS: LatarId[] = ['bedroom-night', 'night-sky', 'dawn'];
+export const DARK_BACKGROUNDS: LatarId[] = ['bedroom-night', 'bedroom-storm', 'night-storm', 'night-sky', 'dawn'];
+
+/** Backgrounds with lightning: the flash lights up the whole frame, characters included. */
+export const STORM_BACKGROUNDS: LatarId[] = ['bedroom-storm', 'night-storm'];

@@ -4,6 +4,8 @@
 
 export const BACKGROUNDS = [
   'bedroom-night',
+  'bedroom-storm',
+  'night-storm',
   'living-room',
   'garden',
   'mosque',
@@ -180,6 +182,8 @@ export const EXPRESSION_LABEL: Record<(typeof EXPRESSIONS)[number], string> = {
 };
 export const BACKGROUND_LABEL: Record<(typeof BACKGROUNDS)[number], string> = {
   'bedroom-night': 'kamar malam',
+  'bedroom-storm': 'kamar malam saat hujan petir',
+  'night-storm': 'malam hujan petir (luar rumah)',
   'living-room': 'ruang tamu',
   garden: 'taman',
   mosque: 'masjid',

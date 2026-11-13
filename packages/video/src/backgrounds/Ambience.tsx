@@ -1,6 +1,10 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import { random } from '../characters/motion';
+import { lightningBoltPath, lightningFlash } from './lightning';
+
+/** The bolt itself is only drawn while the flash is at least this bright. */
+const VISIBLE_BOLT_STRENGTH = 0.25;
 
 // Gerak moods di latar supaya adegan tidak terasa diam.
 // Semua pelan & lembut, tidak ada kedip cepat.
@@ -193,15 +197,18 @@ export const Gorden: React.FC<{ x: number; y: number; lebar: number; tinggi: num
   );
 };
 
-export const Hujan: React.FC<{ jumlah?: number }> = ({ jumlah = 70 }) => {
+/** Rain streaks over an area (`width` × `height`, default the whole frame); `heavy` = faster & denser. */
+export const Hujan: React.FC<{ jumlah?: number; width?: number; height?: number; heavy?: boolean }> = ({ jumlah = 70, width = W, height = 1080, heavy = false }) => {
   const frame = useCurrentFrame();
+  const fallFrames = heavy ? 24 : 40;
+  const fallVariation = heavy ? 10 : 20;
   return (
-    <g opacity={0.55}>
+    <g opacity={heavy ? 0.7 : 0.55}>
       {Array.from({ length: jumlah }, (_, i) => {
-        const periode = 40 + random(i) * 20;
+        const periode = fallFrames + random(i) * fallVariation;
         const p = ((frame + random(i * 3) * periode) % periode) / periode;
-        const x = random(i * 7) * (W + 200) - 100 + p * 60;
-        const y = -60 + p * 1180;
+        const x = random(i * 7) * (width + 200) - 100 + p * 60;
+        const y = -60 + p * (height + 100);
         return <line key={i} x1={x} y1={y} x2={x + 10} y2={y + 34} stroke="#E8F4FF" strokeWidth={3} strokeLinecap="round" />;
       })}
     </g>
@@ -240,6 +247,20 @@ export const Cahaya: React.FC = () => {
       {[-50, -28, -8, 12, 32, 52].map((a, i) => (
         <path key={i} d="M960 -200 L900 1100 L1020 1100 Z" fill="#FFF7D6" transform={`rotate(${a} 960 -200)`} opacity={0.5 + (i % 2) * 0.3} />
       ))}
+    </g>
+  );
+};
+
+/** Zig-zag lightning bolt from the top, shown briefly while the flash is bright. */
+export const LightningBolt: React.FC<{ x: number; height: number; scale?: number; seed?: number }> = ({ x, height, scale = 1, seed = 0 }) => {
+  const frame = useCurrentFrame();
+  const { strength, index } = lightningFlash(frame);
+  if (strength < VISIBLE_BOLT_STRENGTH) return null;
+  const path = lightningBoltPath(index, x, height, scale, seed);
+  return (
+    <g opacity={strength}>
+      <path d={path} stroke="#B9C8FF" strokeWidth={18 * scale} fill="none" opacity={0.35} strokeLinejoin="round" />
+      <path d={path} stroke="#FFFFFF" strokeWidth={6 * scale} fill="none" strokeLinejoin="round" />
     </g>
   );
 };

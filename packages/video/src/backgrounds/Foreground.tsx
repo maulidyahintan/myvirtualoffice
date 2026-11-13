@@ -78,6 +78,7 @@ const Lentera: React.FC<{ x: number; y: number }> = ({ x, y }) => {
 const Isi: React.FC<{ id: LatarId }> = ({ id }) => {
   switch (id) {
     case 'bedroom-night':
+    case 'bedroom-storm':
       return (
         <>
           {/* bantal & boneka di pojok kiri, tumpukan buku di kanan */}

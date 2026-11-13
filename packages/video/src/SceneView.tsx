@@ -1,7 +1,8 @@
 import React from 'react';
 import { AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { Action, Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
-import { Backdrop, DARK_BACKGROUNDS } from './backgrounds/Backdrop';
+import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
+import { lightningFlash } from './backgrounds/lightning';
 import { Foreground } from './backgrounds/Foreground';
 import { ScenePropsLayer } from './props/SceneProps';
 import { CharacterFigure, CHARACTER_SCALE, type Entrance } from './characters/CharacterFigure';
@@ -14,9 +15,13 @@ const H = 1080;
 const LANTAI = 890;
 const TINGGI_DASAR = 560;
 
+/** Strongest white-out of the whole frame during a lightning flash. */
+const LIGHTNING_OVERLAY_OPACITY = 0.28;
+
 /** Ujung kasur (tengah-bawah tempat Mochi berbaring) di latar yang punya tempat tidur. */
 const UJUNG_KASUR: Partial<Record<AdeganData['background'], { x: number; y: number }>> = {
   'bedroom-night': { x: 790, y: 640 },
+  'bedroom-storm': { x: 790, y: 640 },
 };
 
 /**
@@ -753,6 +758,11 @@ export const SceneView: React.FC<{
           <BahuDepan id={urut[lensa.bahu]} kiri={xs[lensa.bahu] < (xs[iPembicara] ?? 960)} expression={data.expression} fw={fw} fh={fh} />
         ) : null}
       </AbsoluteFill>
+
+      {/* lightning briefly lights up the whole frame (soft, never a fast strobe) */}
+      {STORM_BACKGROUNDS.includes(data.background) && !isDoa ? (
+        <AbsoluteFill style={{ backgroundColor: '#DDE5FF', opacity: lightningFlash(frame).strength * LIGHTNING_OVERLAY_OPACITY, pointerEvents: 'none' }} />
+      ) : null}
 
       {/* vinyet lembut: mata tertuju ke tengah, menambah kesan kedalaman */}
       <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(20,15,40,0.28) 100%)', pointerEvents: 'none' }} />
