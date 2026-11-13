@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T19:17:21.606Z",
+  "modified": "2026-11-13T19:37:09.609Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -434,6 +434,11 @@
       "time": "2026-11-13T19:17:21.606Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-13T19:24:27.343Z",
+      "by": "pemilik",
+      "message": "Ilustrasi adegan 6 dihapus (kembali ke animasi)"
     }
   ],
   "statusNote": "Video siap ditonton & disetujui",
@@ -727,11 +732,7 @@
           "character": "mochi",
           "action": "circling"
         }
-      ],
-      "illustration": {
-        "prompt": "Close-up of a home garden in gentle rain during the day, raindrops sitting on fresh green leaves and bright colorful flowers, small puddles shining on the soil. Soft grey-blue sky with a faint distant lightning glow, a fresh and peaceful mood.",
-        "image": "ilustrasi/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-6-mwem70mc.jpg"
-      }
+      ]
     },
     {
       "type": "question",
