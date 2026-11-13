@@ -8,7 +8,7 @@ import { shade, useLook } from './looks';
 
 // Mamas: anak laki-laki ±4 tahun. Peci rajut biru, baju koko putih
 // berkerah abu-abu, kancing kayu, panel bawah abu-abu bermotif, saku di dada.
-const K_ASLI = {
+export const K_ASLI = {
   kulit: '#F6CBAE',
   kulitTerang: '#FFE3D0',
   kulitGelap: '#E9A687',
@@ -51,6 +51,67 @@ function paletMamas({ base, changed }: ReturnType<typeof useLook>) {
   if (changed('pants')) Object.assign(k, { celana: base.pants, celanaTerang: shade(base.pants, 0.12), celanaGelap: shade(base.pants, -0.15) });
   return k;
 }
+
+export type ChildPalette = Record<keyof typeof K_ASLI, string>;
+
+/** Baju koko: patterned lower panel, mandarin collar, wooden buttons and a breast pocket. */
+const KokoDetails: React.FC<{ k: ChildPalette; id: string }> = ({ k, id }) => (
+  <>
+    <g clipPath={`url(#panel-${id})`}>
+      <rect x={50} y={262} width={140} height={70} fill={`url(#motif-${id})`} />
+      <rect x={50} y={254} width={140} height={9} fill={k.pita} />
+      {Array.from({ length: 14 }, (_, i) => (
+        <path key={i} d={`M${56 + i * 10} 263 L${61 + i * 10} 256 L${66 + i * 10} 263 Z`} fill="#F8EFD0" />
+      ))}
+    </g>
+    {/* bayangan lembut di bawah dagu */}
+    <ellipse cx={120} cy={206} rx={44} ry={12} fill="#000000" opacity={0.1} />
+    {/* kerah shanghai abu-abu */}
+    <path d="M94 199 Q96 190 114 188 L114 208 Q100 207 94 199 Z" fill={k.kerah} stroke={k.garis} strokeWidth={2} />
+    <path d="M146 199 Q144 190 126 188 L126 208 Q140 207 146 199 Z" fill={k.kerah} stroke={k.garis} strokeWidth={2} />
+    <line x1={120} y1={208} x2={120} y2={322} stroke={k.bajuGaris} strokeWidth={2.5} />
+    {[220, 272, 306].map((y) => (
+      <g key={y}>
+        <circle cx={120} cy={y} r={5} fill={k.kancing} stroke="#A07C58" strokeWidth={1.5} />
+        <circle cx={118.5} cy={y - 1.5} r={0.9} fill="#6B4E33" />
+        <circle cx={121.5} cy={y - 1.5} r={0.9} fill="#6B4E33" />
+        <circle cx={118.5} cy={y + 1.5} r={0.9} fill="#6B4E33" />
+        <circle cx={121.5} cy={y + 1.5} r={0.9} fill="#6B4E33" />
+      </g>
+    ))}
+    {/* saku */}
+    <path d="M134 272 L166 272 L166 300 L150 308 L134 300 Z" fill={k.baju} stroke={k.bajuGaris} strokeWidth={2.5} strokeLinejoin="round" />
+    <rect x={134} y={278} width={34} height={5} fill="#A3927C" />
+    <rect x={160} y={282} width={8} height={6} fill="#5C5C5C" />
+  </>
+);
+
+/** Plain T-shirt: a crew neck and one stripe across the chest. */
+const TShirtDetails: React.FC<{ k: ChildPalette }> = ({ k }) => (
+  <>
+    <rect x={64} y={250} width={112} height={16} fill={k.bajuTerang} opacity={0.85} />
+    <path d="M98 200 Q120 216 142 200" stroke={k.bajuGaris} strokeWidth={6} fill="none" strokeLinecap="round" />
+    <ellipse cx={120} cy={206} rx={40} ry={10} fill="#000000" opacity={0.08} />
+  </>
+);
+
+/** Mamas's blue knitted cap. */
+const KnitCap: React.FC<{ k: ChildPalette; id: string }> = ({ k, id }) => (
+  <>
+    <path d="M58 96 Q56 52 92 40 Q120 32 148 40 Q184 52 182 96 Q120 84 58 96 Z" fill={`url(#rajut-${id})`} />
+    <path d="M58 96 Q56 52 92 40 Q120 32 148 40 Q184 52 182 96 Q120 84 58 96 Z" fill={`url(#kilap-${id})`} />
+    <path d="M78 56 Q104 42 132 42" stroke="#FFFFFF" strokeWidth={5} fill="none" opacity={0.35} strokeLinecap="round" />
+    <path d="M58 96 Q120 84 182 96 L182 90 Q120 77 58 90 Z" fill={k.peciGelap} />
+  </>
+);
+
+/** Short, slightly spiky hair on top of the head (a child without a cap). */
+const ShortHair: React.FC<{ k: ChildPalette }> = ({ k }) => (
+  <>
+    <path d="M56 104 Q50 50 120 40 Q190 50 184 104 Q176 84 160 92 Q148 74 132 88 Q120 70 106 88 Q92 74 80 92 Q64 86 56 104 Z" fill={k.rambut} />
+    <path d="M86 58 Q110 46 140 50" stroke="#FFFFFF" strokeWidth={4} fill="none" opacity={0.18} strokeLinecap="round" />
+  </>
+);
 
 function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
@@ -110,9 +171,15 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   return { kiri: diam, kanan: { bahu: 7 - ayun, siku: 6 } };
 }
 
-export const Mamas: React.FC<RigProps> = (r) => {
+export type ChildOutfit = 'koko' | 'tshirt';
+export type ChildHeadwear = 'knit-cap' | 'hair';
+
+/** Mamas: blue knitted cap and baju koko. */
+export const Mamas: React.FC<RigProps> = (r) => <Child {...r} look={paletMamas(useLook('mamas'))} outfit="koko" headwear="knit-cap" />;
+
+/** A drawn child (Mamas, his friend): shared body, face and motion; outfit and headwear differ. */
+export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfit; headwear: ChildHeadwear }> = ({ look: k, outfit, headwear, ...r }) => {
   const id = useId().replace(/:/g, '');
-  const k = paletMamas(useLook('mamas'));
   const { f, expression, bicara } = r;
   const pose = poseMamas(r);
 
@@ -211,32 +278,7 @@ export const Mamas: React.FC<RigProps> = (r) => {
         strokeWidth={3}
         strokeLinejoin="round"
       />
-      <g clipPath={`url(#panel-${id})`}>
-        <rect x={50} y={262} width={140} height={70} fill={`url(#motif-${id})`} />
-        <rect x={50} y={254} width={140} height={9} fill={k.pita} />
-        {Array.from({ length: 14 }, (_, i) => (
-          <path key={i} d={`M${56 + i * 10} 263 L${61 + i * 10} 256 L${66 + i * 10} 263 Z`} fill="#F8EFD0" />
-        ))}
-      </g>
-      {/* bayangan lembut di bawah dagu */}
-      <ellipse cx={120} cy={206} rx={44} ry={12} fill="#000000" opacity={0.1} />
-      {/* kerah shanghai abu-abu */}
-      <path d="M94 199 Q96 190 114 188 L114 208 Q100 207 94 199 Z" fill={k.kerah} stroke={k.garis} strokeWidth={2} />
-      <path d="M146 199 Q144 190 126 188 L126 208 Q140 207 146 199 Z" fill={k.kerah} stroke={k.garis} strokeWidth={2} />
-      <line x1={120} y1={208} x2={120} y2={322} stroke={k.bajuGaris} strokeWidth={2.5} />
-      {[220, 272, 306].map((y) => (
-        <g key={y}>
-          <circle cx={120} cy={y} r={5} fill={k.kancing} stroke="#A07C58" strokeWidth={1.5} />
-          <circle cx={118.5} cy={y - 1.5} r={0.9} fill="#6B4E33" />
-          <circle cx={121.5} cy={y - 1.5} r={0.9} fill="#6B4E33" />
-          <circle cx={118.5} cy={y + 1.5} r={0.9} fill="#6B4E33" />
-          <circle cx={121.5} cy={y + 1.5} r={0.9} fill="#6B4E33" />
-        </g>
-      ))}
-      {/* saku */}
-      <path d="M134 272 L166 272 L166 300 L150 308 L134 300 Z" fill={k.baju} stroke={k.bajuGaris} strokeWidth={2.5} strokeLinejoin="round" />
-      <rect x={134} y={278} width={34} height={5} fill="#A3927C" />
-      <rect x={160} y={282} width={8} height={6} fill="#5C5C5C" />
+      {outfit === 'koko' ? <KokoDetails k={k} id={id} /> : <TShirtDetails k={k} />}
 
       {r.action === 'wearing-backpack' ? <BackpackStraps /> : null}
 
@@ -272,11 +314,7 @@ export const Mamas: React.FC<RigProps> = (r) => {
           />
           <path d="M92 95 Q112 90 136 94" stroke="#6A564C" strokeWidth={3} fill="none" strokeLinecap="round" opacity={0.7} />
         </g>
-        {/* peci rajut biru */}
-        <path d="M58 96 Q56 52 92 40 Q120 32 148 40 Q184 52 182 96 Q120 84 58 96 Z" fill={`url(#rajut-${id})`} />
-        <path d="M58 96 Q56 52 92 40 Q120 32 148 40 Q184 52 182 96 Q120 84 58 96 Z" fill={`url(#kilap-${id})`} />
-        <path d="M78 56 Q104 42 132 42" stroke="#FFFFFF" strokeWidth={5} fill="none" opacity={0.35} strokeLinecap="round" />
-        <path d="M58 96 Q120 84 182 96 L182 90 Q120 77 58 90 Z" fill={k.peciGelap} />
+        {headwear === 'knit-cap' ? <KnitCap k={k} id={id} /> : <ShortHair k={k} />}
         <g transform="translate(120 132)">
           <Face
             expression={expression}
