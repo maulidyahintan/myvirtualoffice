@@ -3,6 +3,7 @@ import { useCurrentFrame } from 'remotion';
 import type { Background as LatarId, Mood as SuasanaId } from '@kantor/shared/types';
 import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, LightningBolt, SinarJendela, Uap } from './Ambience';
 import { lightningFlash } from './lightning';
+import { SchoolCanteen, SchoolGate, SchoolYard } from './SchoolScenes';
 
 const W = 1920;
 const H = 1080;
@@ -888,6 +889,9 @@ export const Backdrop: React.FC<{ id: LatarId }> = ({ id }) => (
     {id === 'mountain' && <Gunung />}
     {id === 'dawn' && <Fajar />}
     {id === 'school' && <Sekolah />}
+    {id === 'school-gate' && <SchoolGate />}
+    {id === 'school-yard' && <SchoolYard />}
+    {id === 'school-canteen' && <SchoolCanteen />}
     {id === 'yard' && <HalamanRumah />}
     {id === 'library' && <Perpustakaan />}
     {id === 'ablution' && <TempatWudhu />}

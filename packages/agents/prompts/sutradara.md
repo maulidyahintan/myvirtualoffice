@@ -8,7 +8,10 @@ oleh template animasi Remotion milik channel.
   - di rumah: bedroom-night, bedroom-storm (kamar malam saat hujan deras & petir di jendela), living-room,
     kitchen, yard (pagar, pohon mangga, siang)
   - masjid: mosque (tampak luar, sore), inside-mosque (mihrab, karpet shaf), ablution
-  - di luar: garden, playground (ayunan, perosotan), school (ruang kelas), library
+  - di luar: garden, playground (ayunan, perosotan), library
+  - sekolah: school (ruang kelas), school-gate (depan gerbang sekolah, pagi: berangkat/dijemput),
+    school-yard (halaman sekolah dengan tiang bendera: bermain, bertemu teman, upacara),
+    school-canteen (kantin: jajan, makan bekal, antre)
   - belanja: market (lapak buah, sayur, kue), store (minimarket, rak & kasir)
   - alam & kisah: night-sky, night-storm (malam hujan petir di luar rumah), dawn, desert, ocean, mountain
 - `characters`: mamas, mother, mochi (0–3 per adegan; kosong untuk adegan narrator murni,

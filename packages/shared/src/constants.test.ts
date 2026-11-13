@@ -11,3 +11,9 @@ describe('backgrounds', () => {
     for (const background of BACKGROUNDS) expect(BACKGROUND_LABEL[background]?.trim()).toBeTruthy();
   });
 });
+
+describe('school backgrounds', () => {
+  it('cover arriving, the yard and the canteen besides the classroom', () => {
+    for (const background of ['school', 'school-gate', 'school-yard', 'school-canteen'] as const) expect(BACKGROUNDS).toContain(background);
+  });
+});
