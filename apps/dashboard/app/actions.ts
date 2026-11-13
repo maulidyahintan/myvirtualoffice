@@ -556,6 +556,24 @@ export async function addAllToPlaylists() {
   revalidatePath('/settings');
 }
 
+/** Catat ulang angka YouTube & Facebook hari ini (menu Monetisasi). */
+export async function refreshMetrics() {
+  runOfficeCommand(['metrik']);
+  revalidatePath('/monetization');
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Target tanggal monetisasi per platform; kosong = tanpa target. */
+export async function saveMonetizationGoals(form: FormData) {
+  const cfg = loadConfig();
+  const date = (key: string) => (ISO_DATE.test(teks(form, key)) ? teks(form, key) : undefined);
+  const goals = { youtube: date('youtube'), facebook: date('facebook') };
+  cfg.monetizationGoals = goals.youtube || goals.facebook ? goals : undefined;
+  saveConfig(cfg);
+  revalidatePath('/monetization');
+}
+
 /** Pengaturan riset harian otomatis + pasang/lepas penjadwal macOS. */
 export async function saveDailyResearch(form: FormData) {
   const cfg = loadConfig();

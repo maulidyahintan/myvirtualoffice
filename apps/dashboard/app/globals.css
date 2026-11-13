@@ -499,3 +499,11 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .pola-hari { display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
 .pola-memorization { background: #eef4fb; border-color: #c9dbef; }
 .pola-compilation { background: #f6eef8; border-color: #e2cfe8; }
+
+/* Monetization: progress bars towards each requirement */
+.progress { height: 10px; border-radius: 999px; background: #efe7d6; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #6fb59a, #1f6b57); }
+.progress-fill.done { background: var(--hijau); }
+.requirement { display: grid; gap: 4px; }
+.requirement-head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.platform-forecast { font-size: 18px; font-weight: 700; }

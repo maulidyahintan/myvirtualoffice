@@ -45,7 +45,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         { href: '/published', ikon: '🎬', label: 'Video Tayang' },
       ],
     },
-    { title: 'Analisis', item: [{ href: '/reports', ikon: '📊', label: 'Riset & Laporan' }] },
+    {
+      title: 'Analisis',
+      item: [
+        { href: '/reports', ikon: '📊', label: 'Riset & Laporan' },
+        { href: '/monetization', ikon: '💰', label: 'Monetisasi' },
+      ],
+    },
     { title: 'Sistem', item: [{ href: '/settings', ikon: '⚙️', label: 'Pengaturan' }] },
   ];
 
