@@ -22,6 +22,10 @@ oleh template animasi Remotion milik channel.
 - `moods` (opsional): ekspresi tokoh yang BERBEDA dari `expression` adegan, misal Mamas `crying` sementara
   Mother `calm`. Boleh diberi `at` (frasa persis dari narasi) supaya ekspresinya berubah di tengah adegan,
   misal Mamas `happy` lalu `surprised` at "duar". Kamera otomatis berpindah ke tokoh itu saat ekspresinya berubah.
+- **Buat adegan hidup, jangan datar.** Adegan yang panjang sebaiknya punya 2–4 kejadian: gabungkan aksi
+  berurutan (`at`), perubahan ekspresi (`moods` + `at`), dan kilat (`lightningAt`). Kamera otomatis memotong
+  di setiap kejadian (zoom cepat saat kaget, shot lebar saat tokoh berpindah, close-up pada yang beraksi).
+  Saat Ibu menjelaskan panjang, Mamas cukup `happy` (otomatis mendengarkan dengan antusias, tanpa melompat).
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
   - Mamas/Mother/friend: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)

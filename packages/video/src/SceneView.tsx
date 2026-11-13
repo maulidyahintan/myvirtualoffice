@@ -7,6 +7,7 @@ import { activeActions, didEarlier, expressionAt, hasTimedActions, phraseFrame, 
 import { MochiFall } from './characters/MochiFall';
 import { HugArms } from './characters/HugArm';
 import { isSadLike } from './characters/emotion';
+import { actionBeat, beatShots, moodBeat } from './camera/beatShots';
 import { MOTHER_KNEEL_DROP } from './characters/Mother';
 import { approach, bedClimbY, hugArmAims } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
@@ -89,7 +90,16 @@ function potong(text: string, maks = 8): string[] {
 
 // ---------------------------------------------------------------- kamera
 
-type Shot = 'lebar' | 'sedang' | 'dekat' | 'geser' | 'reaksi' | 'bahu' | 'rendah' | 'dorong' | 'orbit';
+/**
+ * Shot types. New ones: 'kejut' = snap zoom onto a face (a fright), 'miring' = tilted (dutch) angle for fear and
+ * sadness, 'tinggi' = from above, making characters look small, 'fokus' = close on whoever acts at a beat.
+ */
+type Shot = 'lebar' | 'sedang' | 'dekat' | 'geser' | 'reaksi' | 'bahu' | 'rendah' | 'dorong' | 'orbit' | 'kejut' | 'miring' | 'tinggi' | 'fokus';
+type RencanaShot = { shot: Shot; mulai: number; durasi: number; focus?: KarakterId };
+
+/** Snap zoom: frames to rush in, and the camera's tilt for the dutch angle (degrees). */
+const SNAP_ZOOM_FRAMES = 6;
+const DUTCH_TILT_DEG = 5;
 
 export interface Kamera {
   x: number;
@@ -141,6 +151,8 @@ interface Lensa {
   depan: number;
   /** indeks karakter yang tampil besar & kabur di depan (shot dari balik bahu) */
   bahu?: number;
+  /** degrees the whole picture is tilted (dutch angle) */
+  putarZ?: number;
 }
 
 /**
@@ -162,7 +174,15 @@ interface KonteksShot {
   iPendengar: number;
 }
 
-function hitungLensa(shot: Shot, t: number, c: KonteksShot, frame: number, fw: number, fh: number): Lensa {
+function hitungLensa(
+  shot: Shot,
+  t: number,
+  c: KonteksShot,
+  frame: number,
+  fw: number,
+  fh: number,
+  beat: { lokal: number; fokus?: { x: number; y: number } } = { lokal: 0 },
+): Lensa {
   // sedikit goyang seperti kamera dipegang tangan, sangat halus
   const gx = noiseS(frame / 70, 3) * 8;
   const gy = noiseS(frame / 80, 4) * 5;
@@ -170,7 +190,21 @@ function hitungLensa(shot: Shot, t: number, c: KonteksShot, frame: number, fw: n
   const dengar = c.wajah[c.iPendengar] ?? c.tengah;
   const arah = Math.sign(bicara.x - c.tengah.x) || 1;
   const k = (z: number, x: number, y: number) => clampCamera({ z, x: x + gx, y: y + gy }, fw, fh);
+  const fokus = beat.fokus ?? bicara;
   switch (shot) {
+    case 'kejut': {
+      // snap zoom onto the frightened face, then a small shake
+      const rush = Easing.out(Easing.cubic)(Math.min(1, beat.lokal / SNAP_ZOOM_FRAMES));
+      const shake = beat.lokal < SNAP_ZOOM_FRAMES * 3 ? Math.sin(beat.lokal * 2.3) * 6 : 0;
+      return { kam: k(1.05 + rush * 0.6, fokus.x + shake, fokus.y), putarY: 0, putarX: 0, blurLatar: rush * 3, depan: 0 };
+    }
+    case 'fokus':
+      return { kam: k(1.4 + t * 0.1, fokus.x, fokus.y), putarY: (t - 0.5) * 4, putarX: 0, blurLatar: 2.5, depan: 0 };
+    case 'miring':
+      return { kam: k(1.28 + t * 0.08, bicara.x, bicara.y), putarY: -arah * 2, putarX: 0, blurLatar: 2, depan: 0, putarZ: -arah * DUTCH_TILT_DEG };
+    case 'tinggi':
+      // from above: the floor tilts towards us and the characters look small
+      return { kam: k(1.14 + t * 0.06, c.tengah.x, c.tengah.y - 40), putarY: 0, putarX: -6, blurLatar: 1, depan: 0.3 };
     case 'dekat':
       return { kam: k(1.32 + t * 0.14, bicara.x, bicara.y), putarY: -arah * (2 + t * 2), putarX: 0, blurLatar: 3, depan: 0 };
     case 'reaksi':
@@ -205,7 +239,11 @@ function hitungLensa(shot: Shot, t: number, c: KonteksShot, frame: number, fw: n
 }
 
 /** Lama minimal satu shot (detik). Shorts lebih cepat berganti, tapi tetap tenang untuk anak. */
-const DETIK_SHOT = { standard: 3.6, short: 2.6 };
+const DETIK_SHOT = { standard: 3, short: 2.2 };
+/** At most this many shots in one scene, so long scenes keep cutting. */
+const MAX_SHOTS = 10;
+/** A beat (something happening) gets its own shot only this long after the previous cut (seconds). */
+const MIN_BEAT_SHOT_SECONDS = 1.2;
 
 /**
  * Rencana shot satu scenes: adegan panjang dipecah jadi beberapa shot (establishing, close-up
@@ -218,7 +256,7 @@ function rencanaShot(
   fps: number,
   vertikal: boolean,
   c: { adaKarakter: boolean; adaPembicara: boolean; adaPendengar: boolean; latarBaru: boolean },
-): { shot: Shot; mulai: number; durasi: number }[] {
+): RencanaShot[] {
   // shot dekat (wajah) bergantian dengan shot bergerak (memperlihatkan ruang)
   let dekat: Shot[];
   let gerak: Shot[];
@@ -230,9 +268,15 @@ function rencanaShot(
     [dekat, gerak] = [vertikal ? ['dekat', 'reaksi'] : ['dekat', 'bahu', 'reaksi'], ['sedang', 'rendah', 'dorong', 'orbit']];
   else if (c.adaPembicara) [dekat, gerak] = [['dekat', 'rendah'], ['sedang', 'dorong', 'geser']];
   else [dekat, gerak] = [['sedang', 'rendah', 'dorong'], ['geser', 'orbit', 'lebar']];
+  // the mood chooses the angles: a fright snaps in, sadness tilts and looks down, joy looks up and circles
+  if (c.adaKarakter && data.type !== 'prayer') {
+    if (data.expression === 'surprised') dekat = ['kejut', ...dekat];
+    else if (isSadLike(data.expression)) [dekat, gerak] = [['miring', ...dekat], ['tinggi', ...gerak]];
+    else if (data.expression === 'happy') gerak = ['rendah', 'orbit', ...gerak];
+  }
 
   const per = Math.round(fps * DETIK_SHOT[vertikal ? 'short' : 'standard']);
-  const jumlah = data.type === 'prayer' && data.prayer ? 1 : Math.max(1, Math.min(6, Math.floor(durasi / per)));
+  const jumlah = data.type === 'prayer' && data.prayer ? 1 : Math.max(1, Math.min(MAX_SHOTS, Math.floor(durasi / per)));
   const shots = Array.from({ length: jumlah }, (_, i) => {
     const k = indeks + Math.floor(i / 2);
     return i % 2 === 0 ? dekat[k % dekat.length] : gerak[k % gerak.length];
@@ -742,6 +786,21 @@ export const SceneView: React.FC<{
   const wajah = urut.map((id, i) => ({ x: xs[i], y: lantai - tinggiDari(id) * 0.62 }));
   const tinggiMaks = urut.length ? Math.max(...urut.map(tinggiDari)) : 0;
   const tengah = urut.length ? { x: xs.reduce((a, b) => a + b, 0) / xs.length, y: lantai - tinggiMaks * 0.55 } : { x: 960, y: 560 };
+  /** Where a character's face is now: in the row, on the bed, or Mochi on the bed. */
+  const titikFokus = (id: KarakterId): { x: number; y: number } => {
+    const i = urut.indexOf(id);
+    if (i >= 0) return wajah[i];
+    if (id === staging.sitterOnBed && bedSeat) return { x: bedSeat.x, y: bedSeat.y - tinggiDari(id) * 0.55 };
+    const mochiSpot = id === 'mochi' ? (mochiOnBed ?? kasur) : undefined;
+    if (mochiSpot) return { x: mochiSpot.x, y: mochiSpot.y - tinggiDari('mochi') * 0.45 };
+    return tengah;
+  };
+  // a character whose expression changes at its words is a beat too
+  const moodBeats = (data.moods ?? [])
+    .filter((m) => m.at && data.characters.includes(m.character))
+    .map((m) => ({ mood: m, frame: phraseFrame(data.narration, m.at ?? '', transisi, speechFrames) }))
+    .filter((m): m is { mood: typeof m.mood; frame: number } => m.frame !== undefined && m.frame > 0)
+    .map((m) => moodBeat(m.mood.expression, m.frame, m.mood.character));
   // pendengar: tokoh manusia selain speaker (Mochi kalau hanya dia)
   const lain = urut.map((_, i) => i).filter((i) => i !== iPembicara);
   const iPendengar = iPembicara >= 0 ? (lain.find((i) => urut[i] !== 'mochi') ?? lain[0] ?? -1) : -1;
@@ -753,14 +812,26 @@ export const SceneView: React.FC<{
     adaPendengar: iPendengar >= 0,
     latarBaru,
   });
-  // the whole fall (and everything that happens in order) must stay in view: one wide shot for the scene
-  if (fall || sequenced) rencana.splice(0, rencana.length, { shot: 'lebar', mulai: 0, durasi });
+  // things happening in order: a cut at every beat (a fright snaps in, a move stays wide, else close on the actor)
+  if (sequenced || moodBeats.length) {
+    const beats = [
+      ...timed.filter((a) => a.at && a.startFrame > 0).map((a) => actionBeat(a.action, a.startFrame, a.character)),
+      ...moodBeats,
+    ];
+    rencana.splice(0, rencana.length, ...beatShots(beats, durasi, Math.round(fps * MIN_BEAT_SHOT_SECONDS), Math.round(fps * DETIK_SHOT.standard)));
+  } else if (fall) {
+    // the whole fall must stay in view: one wide shot for the scene
+    rencana.splice(0, rencana.length, { shot: 'lebar', mulai: 0, durasi });
+  }
   // karakter yang baru berjalan masuk harus terlihat: jangan buka dengan close-up
   if (adaYangBaru && ['dekat', 'reaksi', 'bahu'].includes(rencana[0].shot)) rencana[0].shot = 'sedang';
   const iShot = Math.max(0, rencana.findLastIndex((r) => frame >= r.mulai));
   const sekarang = rencana[iShot];
   const t = interpolate(frame - sekarang.mulai, [0, sekarang.durasi], [0, 1], { extrapolateRight: 'clamp', easing: Easing.inOut(Easing.sin) });
-  const lensa = hitungLensa(sekarang.shot, t, { wajah, tengah, iPembicara, iPendengar }, frame, fw, fh);
+  const lensa = hitungLensa(sekarang.shot, t, { wajah, tengah, iPembicara, iPendengar }, frame, fw, fh, {
+    lokal: frame - sekarang.mulai,
+    fokus: sekarang.focus ? titikFokus(sekarang.focus) : undefined,
+  });
   const kam = lensa.kam;
   // hentakan kecil saat pindah shot (cut), supaya potongan terasa hidup tapi tidak mengagetkan
   const hentak = iShot > 0 ? 1 + 0.025 * Math.max(0, 1 - (frame - sekarang.mulai) / 8) : 1;
@@ -833,7 +904,7 @@ export const SceneView: React.FC<{
   return (
     <LightningCuesProvider cues={lightningCues}>
     <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...transitionStyle(indeks, pTransisi) }}>
-      <AbsoluteFill style={{ transform: `scale(${hentak})` }}>
+      <AbsoluteFill style={{ transform: `scale(${hentak * (lensa.putarZ ? 1.08 : 1)}) rotate(${lensa.putarZ ?? 0}deg)` }}>
         {/* background: bidang belakang yang ikut berputar sedikit & kabur saat close-up (2.5D) */}
         <AbsoluteFill
           style={{
