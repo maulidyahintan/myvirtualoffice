@@ -13,6 +13,7 @@
 //   npm run kantor -- rencana ["arahan"]  (Channel Manager menyusun rencana jadwal tayang)
 //   npm run kantor -- playlist [id]    (masukkan video ke playlist sesuai tipenya; tanpa id: semua yang belum)
 //   npm run kantor -- facebook [id]    (kirim video terjadwal ke Page Facebook; tanpa id: semua yang belum)
+//   npm run kantor -- metrik           (catat angka YouTube & Facebook hari ini untuk menu Monetisasi)
 //   npm run kantor -- tarik <id>        (jadikan private upload lama episode yang diedit ulang)
 //   npm run kantor -- chat <agen>       (agen membalas pesan terakhir di kolom chat)
 //   npm run kantor -- harian           (riset harian kalau sudah waktunya; dipanggil penjadwal)
@@ -43,6 +44,8 @@ import {
   sendToFacebook,
 } from './workflow.ts';
 
+import { collectMetrics, collectMetricsIfDue } from './metrics.ts';
+
 const [cmd, arg1, arg2, arg3] = process.argv.slice(2);
 
 async function main() {
@@ -59,7 +62,16 @@ async function main() {
     // Daily research - English + Indonesian alias
     case 'daily':
     case 'harian':
+      await collectMetricsIfDue();
       return runDailyResearchIfDue();
+    case 'metrics':
+    case 'metrik':
+      markBusy('metrik');
+      try {
+        return void (await collectMetrics());
+      } finally {
+        markDone('metrik');
+      }
     case 'daily-install':
     case 'harian-pasang':
       return installScheduler();
@@ -169,7 +181,7 @@ async function main() {
       }
       return;
     default:
-      console.log('Commands: research|riset | daily|harian | daily-install|harian-pasang | daily-uninstall|harian-lepas | chat <agent> | write|tulis <id> | memorization|hafalan <id> | direct|sutradara <id> | render <id> | upload <id> [schedule] | shorts <id> [count] | metadata <id> [render] | plan|rencana [guidance] | playlist [id] | facebook [id] | withdraw|tarik <id> | report|laporan | status');
+      console.log('Commands: research|riset | daily|harian | daily-install|harian-pasang | daily-uninstall|harian-lepas | chat <agent> | write|tulis <id> | memorization|hafalan <id> | direct|sutradara <id> | render <id> | upload <id> [schedule] | shorts <id> [count] | metadata <id> [render] | plan|rencana [guidance] | playlist [id] | facebook [id] | metrics|metrik | withdraw|tarik <id> | report|laporan | status');
   }
 }
 

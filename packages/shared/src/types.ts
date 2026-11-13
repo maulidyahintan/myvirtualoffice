@@ -392,6 +392,8 @@ export interface AppConfig {
   }[];
   /** Cache playlist name → YouTube playlist ID (filled automatically when playlist found/created). */
   youtubePlaylists?: Record<string, string>;
+  /** Target dates (YYYY-MM-DD) the owner wants each platform to be monetized by. */
+  monetizationGoals?: { youtube?: string; facebook?: string };
   maxAutoRevisions: number;
   defaultPublishTime: string;
   timeZone: string;

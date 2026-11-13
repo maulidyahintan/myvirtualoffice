@@ -1,4 +1,5 @@
 // Fungsi baca data YouTube (riset & analytics). Semua gratis, hanya memakai kuota harian.
+import { PACE_WINDOW_DAYS, type YouTubeMetrics } from '@kantor/shared';
 import { analytics, youtubeRead } from './client.ts';
 
 function durasiDetik(iso?: string | null) {
@@ -95,5 +96,57 @@ export async function statistikChannel() {
       rataPersenDitonton: r[4],
       subscriberBaru: r[5],
     })),
+  };
+}
+
+const SHORTS_CONTENT_TYPE = /short/i;
+
+interface ViewsByType {
+  shortsViews: number;
+  longFormHours: number;
+  split: boolean;
+}
+
+/** Views of Shorts and watch hours of long videos in the last `days` days (falls back to totals). */
+async function viewsByContentType(days: number): Promise<ViewsByType> {
+  const ya = analytics()!;
+  const range = { ids: 'channel==MINE', startDate: tgl(days), endDate: tgl(0), metrics: 'views,estimatedMinutesWatched' };
+  try {
+    const res = await ya.reports.query({ ...range, dimensions: 'creatorContentType' });
+    const rows = (res.data.rows ?? []) as [string, number, number][];
+    const shorts = rows.filter(([type]) => SHORTS_CONTENT_TYPE.test(type));
+    const longForm = rows.filter(([type]) => !SHORTS_CONTENT_TYPE.test(type));
+    return {
+      shortsViews: shorts.reduce((sum, [, views]) => sum + Number(views), 0),
+      longFormHours: longForm.reduce((sum, [, , minutes]) => sum + Number(minutes), 0) / 60,
+      split: true,
+    };
+  } catch {
+    // older accounts or API changes: no content-type split, so use the channel totals
+    const res = await ya.reports.query(range);
+    const [views = 0, minutes = 0] = (res.data.rows?.[0] ?? []) as number[];
+    return { shortsViews: Number(views), longFormHours: Number(minutes) / 60, split: false };
+  }
+}
+
+/** Numbers needed for the YouTube Partner Program progress. */
+export async function youtubeMetrics(): Promise<YouTubeMetrics> {
+  const ya = analytics();
+  if (!ya) throw new Error('Channel YouTube belum terhubung (npm run auth:youtube)');
+  const channel = await youtubeRead().channels.list({ part: ['statistics'], mine: true });
+  const [year, quarter, month] = await Promise.all([viewsByContentType(365), viewsByContentType(90), viewsByContentType(PACE_WINDOW_DAYS)]);
+  const subs = await ya.reports.query({
+    ids: 'channel==MINE',
+    startDate: tgl(PACE_WINDOW_DAYS),
+    endDate: tgl(0),
+    metrics: 'subscribersGained,subscribersLost',
+  });
+  const [gained = 0, lost = 0] = (subs.data.rows?.[0] ?? []) as number[];
+  return {
+    subscribers: Number(channel.data.items?.[0]?.statistics?.subscriberCount ?? 0),
+    watchHours365: Math.round(year.longFormHours * 10) / 10,
+    shortsViews90: quarter.shortsViews,
+    recent: { subscribersNet: Number(gained) - Number(lost), watchHours: Math.round(month.longFormHours * 10) / 10, shortsViews: month.shortsViews },
+    splitByContentType: year.split,
   };
 }

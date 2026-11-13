@@ -8,3 +8,5 @@ export * from './channel.ts';
 export * from './thumbnail.ts';
 export * from './facebook.ts';
 export * from './voice.ts';
+export * from './monetization.ts';
+export * from './metricsStore.ts';

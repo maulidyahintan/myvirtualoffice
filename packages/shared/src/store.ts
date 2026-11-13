@@ -31,6 +31,7 @@ export const paths = {
   logs: () => path.join(rootDir(), 'data', 'logs'),
   chat: () => path.join(rootDir(), 'data', 'chat'),
   secrets: () => path.join(rootDir(), 'data', 'secrets'),
+  metrics: () => path.join(rootDir(), 'data', 'metrics'),
   videoPkg: () => path.join(rootDir(), 'packages', 'video'),
   audio: () => path.join(rootDir(), 'packages', 'video', 'public', 'audio'),
   musik: () => path.join(rootDir(), 'packages', 'video', 'public', 'musik'),
