@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T11:05:20.116Z",
+  "modified": "2026-11-13T19:17:21.606Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -324,6 +324,116 @@
       "time": "2026-11-13T11:05:20.116Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-13T18:49:07.566Z",
+      "by": "pemilik",
+      "message": "Minta adegan 5 diperbaiki: ini ada adegan mochi ketiban bantal loh"
+    },
+    {
+      "time": "2026-11-13T18:49:08.417Z",
+      "by": "sutradara",
+      "message": "Merevisi adegan 5: ini ada adegan mochi ketiban bantal loh"
+    },
+    {
+      "time": "2026-11-13T18:49:20.657Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T18:49:21.218Z",
+      "by": "video-creator",
+      "message": "Merender pratinjau adegan 5"
+    },
+    {
+      "time": "2026-11-13T18:49:35.581Z",
+      "by": "video-creator",
+      "message": "Pratinjau adegan 5 siap. Kalau sudah cocok, render ulang video lengkap."
+    },
+    {
+      "time": "2026-11-13T18:50:20.510Z",
+      "by": "pemilik",
+      "message": "Minta adegan 5 diperbaiki: mamas ketakutan, mochi jatuh dari kasur dan tertimpa bantal"
+    },
+    {
+      "time": "2026-11-13T18:50:21.364Z",
+      "by": "sutradara",
+      "message": "Merevisi adegan 5: mamas ketakutan, mochi jatuh dari kasur dan tertimpa bantal"
+    },
+    {
+      "time": "2026-11-13T18:50:34.613Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T18:50:35.169Z",
+      "by": "video-creator",
+      "message": "Merender pratinjau adegan 5"
+    },
+    {
+      "time": "2026-11-13T18:50:48.252Z",
+      "by": "video-creator",
+      "message": "Pratinjau adegan 5 siap. Kalau sudah cocok, render ulang video lengkap."
+    },
+    {
+      "time": "2026-11-13T18:57:13.432Z",
+      "by": "pemilik",
+      "message": "Minta adegan 5 diperbaiki: Mamas ketakutak, lalu mamas masuk kebawah selimut, mochi mendekat, lalu mochi te"
+    },
+    {
+      "time": "2026-11-13T18:57:14.320Z",
+      "by": "sutradara",
+      "message": "Merevisi adegan 5: Mamas ketakutak, lalu mamas masuk kebawah selimut, mochi mendekat, lalu mochi te"
+    },
+    {
+      "time": "2026-11-13T18:57:22.717Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T18:57:23.286Z",
+      "by": "video-creator",
+      "message": "Merender pratinjau adegan 5"
+    },
+    {
+      "time": "2026-11-13T18:57:37.710Z",
+      "by": "video-creator",
+      "message": "Pratinjau adegan 5 siap. Kalau sudah cocok, render ulang video lengkap."
+    },
+    {
+      "time": "2026-11-13T19:01:32.219Z",
+      "by": "pemilik",
+      "message": "Minta adegan 3 diperbaiki: ini adegannya ibu berpelukan dengan mamas, lalu mochi mendekati ibu dan mamas ik"
+    },
+    {
+      "time": "2026-11-13T19:01:33.155Z",
+      "by": "sutradara",
+      "message": "Merevisi adegan 3: ini adegannya ibu berpelukan dengan mamas, lalu mochi mendekati ibu dan mamas ik"
+    },
+    {
+      "time": "2026-11-13T19:01:46.150Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T19:01:46.714Z",
+      "by": "video-creator",
+      "message": "Merender pratinjau adegan 3"
+    },
+    {
+      "time": "2026-11-13T19:01:55.555Z",
+      "by": "video-creator",
+      "message": "Pratinjau adegan 3 siap. Kalau sudah cocok, render ulang video lengkap."
+    },
+    {
+      "time": "2026-11-13T19:12:41.450Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-13T19:17:21.606Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "statusNote": "Video siap ditonton & disetujui",
@@ -521,6 +631,16 @@
       "expression": "calm",
       "props": [
         "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mother",
+          "action": "hugging"
+        },
+        {
+          "character": "mochi",
+          "action": "approaching"
+        }
       ]
     },
     {
@@ -542,7 +662,7 @@
       "type": "story",
       "speaker": "narrator",
       "narration": "Mamas berteriak ke arah jendela. Tapi… duar! Guruh malah terdengar lagi. Mamas cepat-cepat menyelam ke bawah selimut. Mochi ikut kaget, lalu… gedebuk! Mochi jatuh dari kasur, tertimpa bantal.",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mochi"
@@ -550,6 +670,41 @@
       "expression": "surprised",
       "props": [
         "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "shouting"
+        },
+        {
+          "character": "mamas",
+          "action": "startled",
+          "at": "duar"
+        },
+        {
+          "character": "mamas",
+          "action": "hiding-under-blanket",
+          "at": "menyelam"
+        },
+        {
+          "character": "mochi",
+          "action": "approaching",
+          "at": "menyelam"
+        },
+        {
+          "character": "mochi",
+          "action": "startled",
+          "at": "kaget"
+        },
+        {
+          "character": "mochi",
+          "action": "falling",
+          "at": "lalu"
+        }
+      ],
+      "lightningAt": [
+        "duar",
+        "kaget"
       ]
     },
     {
@@ -925,6 +1080,6 @@
         "duration": 34.2
       }
     ],
-    "time": "2026-11-13T11:05:20.115Z"
+    "time": "2026-11-13T19:17:21.604Z"
   }
 }
