@@ -1,8 +1,8 @@
 {
   "id": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd",
   "created": "2026-11-13T00:52:53.162Z",
-  "modified": "2026-11-13T01:47:34.034Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-13T09:22:09.673Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
     "series": "asbabun-nuzul",
@@ -102,9 +102,89 @@
       "time": "2026-11-13T01:47:34.034Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-13T07:54:47.222Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-13T07:54:48.156Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-13T07:55:13.787Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T07:55:25.758Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T07:55:26.214Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-13T09:20:11.617Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-13T09:20:12.563Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 14 adegan dengan suara AI gratis (adegan 7, 14 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-13T09:20:20.916Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/14)"
+    },
+    {
+      "time": "2026-11-13T09:20:27.898Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/14)"
+    },
+    {
+      "time": "2026-11-13T09:20:37.248Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (3/14)"
+    },
+    {
+      "time": "2026-11-13T09:20:49.530Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (4/14)"
+    },
+    {
+      "time": "2026-11-13T09:20:55.612Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (5/14)"
+    },
+    {
+      "time": "2026-11-13T09:21:03.235Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (6/14)"
+    },
+    {
+      "time": "2026-11-13T09:21:12.482Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (7/14)"
+    },
+    {
+      "time": "2026-11-13T09:22:09.426Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 9 diisi suara AI (8/14)"
+    },
+    {
+      "time": "2026-11-13T09:22:09.673Z",
+      "by": "pengisi-suara",
+      "message": "8 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari); terisi lagi besok pukul 15.00 WIB (±22 jam 38 menit lagi) · rekam sendiri adegan 7, 10, 11, 12, 13, 14, 15, 16"
     }
   ],
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
     "summary": "Mamas sedih karena diejek \"cengeng\" oleh temannya. Ia merasa sendirian, lalu ingin membalas mengejek. Ibu menahannya dengan lembut dan menceritakan asbabun nuzul Surat Ad-Dhuha. Suatu ketika Rasulullah ﷺ sakit sehingga tidak bangun shalat malam selama dua atau tiga malam. Saat itu wahyu belum turun, lalu ada orang yang mengejek bahwa beliau sudah ditinggalkan Tuhannya. Allah kemudian menurunkan Surat Ad-Dhuha: \"Tuhanmu tidak meninggalkanmu dan tidak membencimu.\" Mamas sadar bahwa ia tidak benar-benar sendirian. Ibu mengajarinya cara menghadapi ejekan: tarik napas, bicara dengan tenang, cerita kepada guru, dan mendoakan teman. Mamas berlatih di depan Mochi, yang malah menguap dan menjilat hidungnya. Ibu menutup dengan ayat 9–10: sayangi anak yatim dan jangan menghardik orang yang meminta. Contohnya berbagi bekal dan menyapa teman yang sendirian. Esok paginya Mamas mengajak bermain teman yang kemarin mengejeknya, lalu temannya minta maaf.",
@@ -261,5 +341,386 @@
       "Narasi scene 4 bilang ejekannya 'beliau ditinggalkan oleh Tuhannya'. Dalam riwayat Bukhari redaksinya 'setanmu telah meninggalkanmu'. Pastikan Anda setuju dengan parafrase yang lebih halus ini, yang lebih dekat ke riwayat Muslim.",
       "Karakter Mamas berusia 4 tahun, sedangkan target penonton 7–10 tahun. Pastikan adegan Mamas membaca ayat dan berangkat sekolah (TK) masih terasa wajar untuk penonton."
     ]
-  }
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Assalamu'alaikum, adik-adik! Malam ini Mamas duduk diam di kasur. Matanya basah. Mochi mendekat dan mengeong pelan.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "hugging-knees"
+        },
+        {
+          "character": "mochi",
+          "action": "approaching"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu, tadi teman bilang aku cengeng. Tidak ada yang mau main denganku. Aku merasa sendirian. Besok aku balas, ah! Aku ejek dia juga!",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "hugging-knees"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Hmm, kalau Mas membalas, apa sedihnya hilang? Nanti temanmu ikut sakit hati, lalu kalian bertengkar. Mas, Ibu mau cerita dulu, ya. Dulu Rasulullah shallallahu 'alaihi wa sallam juga pernah diejek orang.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mother",
+          "action": "hugging"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Suatu waktu, Rasulullah shallallahu 'alaihi wa sallam sakit. Beliau tidak bangun shalat malam, dua atau tiga malam. Wahyu dari Allah juga belum turun lagi. Lalu ada orang yang mengejek. Katanya, beliau sudah ditinggalkan oleh Tuhannya. Ejekan itu tentu menyakitkan.",
+      "background": "desert",
+      "characters": [],
+      "expression": "sad"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Terus, apa Allah benar-benar meninggalkan beliau, Bu?",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "thinking"
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Tidak, Mas. Allah lalu menurunkan Surat Ad-Dhuha. Allah bersumpah dengan waktu dhuha, saat cahaya pagi bersinar. Coba Mas baca ayat ketiganya.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "calm",
+      "screenText": "Surat Ad-Dhuha"
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Mā wadda'aka rabbuka wa mā qalā.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
+        "latin": "Mā wadda'aka rabbuka wa mā qalā.",
+        "meaning": "Tuhanmu tidak meninggalkanmu dan tidak (pula) membencimu. (QS. Ad-Dhuha: 3)"
+      },
+      "props": [
+        "prayer-mat",
+        "quran-stand"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "reading-quran"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Artinya, Tuhanmu tidak meninggalkanmu, dan tidak membencimu. Jadi ejekan orang itu salah, Mas. Allah tetap sayang kepada Rasul-Nya. Allah juga selalu dekat dengan Mas, walau teman sedang menjauh.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "happy",
+      "screenText": "Allah selalu dekat",
+      "actions": [
+        {
+          "character": "mother",
+          "action": "hugging"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Jadi aku tidak benar-benar sendirian, ya, Bu? Tapi kalau tidak membalas, aku harus bagaimana? Aku masih kesal sekali.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Kesal itu wajar, Mas. Tarik napas dulu. Lalu bilang dengan tenang, 'Aku tidak suka dipanggil begitu.' Kalau dia terus mengejek, ceritakan kepada Bu Guru. Dan jangan lupa, doakan temanmu supaya hatinya baik.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Tarik napas, bicara tenang",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mamas mencoba berlatih di depan Mochi. \"Aku tidak suka dipanggil cengeng. Yuk, kita main bareng saja!\" Mochi memiringkan kepala, lalu menguap lebar sekali. Kemudian ia menjilat hidung Mamas. \"Hihi, Mochi! Aku kan sedang latihan serius!\"",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "licking"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Adik-adik, kalau kita sedih dan merasa sendirian, siapa yang selalu dekat dengan kita? Coba jawab, ya.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Siapa selalu dekat?",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "carrying-cat"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Benar, Allah. Saat sedih, Mas boleh berdoa dan bercerita kepada Allah. Di akhir surat ini, Allah juga mengajari kita berbuat baik. Yuk, Mas baca.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Allah",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Fa ammal-yatīma fa lā taqhar. Wa ammas-sā'ila fa lā tanhar.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ ۝ وَأَمَّا السَّائِلَ فَلَا تَنْهَرْ",
+        "latin": "Fa ammal-yatīma fa lā taqhar. Wa ammas-sā'ila fa lā tanhar.",
+        "meaning": "Maka terhadap anak yatim, janganlah engkau berlaku sewenang-wenang. Dan terhadap orang yang meminta-minta, janganlah engkau menghardik(nya). (QS. Ad-Dhuha: 9–10)"
+      },
+      "props": [
+        "prayer-mat",
+        "quran-stand"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "reading-quran"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Artinya, terhadap anak yatim janganlah berlaku sewenang-wenang. Terhadap orang yang meminta, janganlah menghardik. Kita sayangi dan tolong mereka, ya, Mas. Misalnya, berbagi bekal dengan teman yang lupa membawa. Atau menyapa teman yang duduk sendirian.",
+      "background": "bedroom-night",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "happy",
+      "screenText": "Sayangi dan tolong",
+      "actions": [
+        {
+          "character": "mother",
+          "action": "hugging"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Besok paginya, Mamas berangkat sekolah. Teman yang kemarin mengejek ternyata duduk sendirian. Mamas menarik napas, lalu menyapanya. \"Yuk, main bareng!\" Temannya tersenyum malu dan minta maaf. Ingat, adik-adik, Allah tidak pernah meninggalkan kita, dan selalu mendengar doa kita. Wassalamu'alaikum!",
+      "background": "school-yard",
+      "characters": [
+        "mamas"
+      ],
+      "expression": "happy",
+      "screenText": "Allah tidak meninggalkan kita",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "wearing-backpack"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Asbabun Nuzul Surat Ad-Dhuha | Allah Tidak Pernah Meninggalkan Kita",
+    "description": "Asbabun nuzul Surat Ad-Dhuha untuk anak: kisah turunnya ayat \"Tuhanmu tidak meninggalkanmu\". Ayat ini menenangkan hati anak saat sedih atau diejek teman.\n\nMamas sedih karena diejek \"cengeng\" dan ingin membalas. Ibu menahannya dengan lembut, lalu bercerita. Suatu waktu Rasulullah ﷺ sakit dan tidak bangun shalat malam selama dua atau tiga malam. Wahyu belum turun lagi, lalu ada orang yang mengejek bahwa beliau sudah ditinggalkan Tuhannya. Allah pun menurunkan Surat Ad-Dhuha. Mamas lalu berlatih menghadapi ejekan di depan Mochi, dan esok paginya ia mengajak temannya bermain.\n\nPelajaran hari ini:\n• Allah selalu dekat dan tidak meninggalkan kita, walau teman sedang menjauh.\n• Saat diejek: tarik napas, bicara dengan tenang, cerita kepada guru, dan doakan teman.\n• Sayangi anak yatim, dan jangan menghardik orang yang meminta.\n\nDalil:\n• QS. Ad-Dhuha (93): 3 dan 9–10\n• QS. Al-Baqarah (2): 186\n• Kisah turunnya surat: HR. Bukhari no. 4950 dan HR. Muslim no. 1797\n\nAyah dan Bunda, yuk dampingi adik saat menonton. Setelah itu, tanyakan: \"Kalau kita sedih, siapa yang selalu dekat dengan kita?\" Tonton juga episode lain dari seri Asbabun Nuzul bersama Mamas dan Ibu.\n\n#CeritaIslamiAnak #AsbabunNuzul #SuratAdDhuha",
+    "tags": [
+      "cerita islami anak",
+      "asbabun nuzul",
+      "asbabun nuzul untuk anak",
+      "surat ad dhuha",
+      "asbabun nuzul surat ad dhuha",
+      "kisah turunnya surat ad dhuha",
+      "tafsir surat ad dhuha untuk anak",
+      "allah tidak meninggalkan kita",
+      "cerita anak diejek teman",
+      "cara menghadapi ejekan untuk anak",
+      "akhlak anak muslim",
+      "kisah rasulullah untuk anak",
+      "animasi islami anak",
+      "mamas dan ibu",
+      "belajar islam anak 7-10 tahun"
+    ],
+    "thumbnailText": "Kenapa Turun Ad-Dhuha?"
+  },
+  "audioPerScene": [
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-1-ai-mwernkqb.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-2-ai-mwernq49.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-3-ai-mwernxbx.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-4-ai-mwero6t4.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-5-ai-mwerobi2.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-6-ai-mwerohdt.wav",
+    null,
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-8-ai-mwerooio.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-9-ai-mwerpwgh.wav",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "recordingMode": "per-scene"
 }
