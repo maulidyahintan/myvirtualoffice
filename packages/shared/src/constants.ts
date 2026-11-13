@@ -70,6 +70,8 @@ export const SCENE_PROPS = [
  * Anyone but Mochi: opening-door (opens the front door of the house; house-front only).
  * Children only: craving (+ heldItem food, default chocolate-cake): amazed by a treat in front of them and
  * eager to eat it: star eyes, hands under the chin, little hops, licking the lips.
+ * Children only: hiding-under-blanket (sits wrapped in a blanket from head to toe, only the eyes peeking out;
+ * on the bed in the bedrooms).
  */
 export const ACTIONS = [
   'holding',
@@ -88,6 +90,7 @@ export const ACTIONS = [
   'hugging',
   'opening-door',
   'craving',
+  'hiding-under-blanket',
 ] as const;
 
 export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;

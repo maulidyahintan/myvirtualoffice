@@ -795,7 +795,7 @@ export const SceneView: React.FC<{
                   tinggi={tinggiDari(staging.sitterOnBed)}
                   offset={11}
                   masuk="ada"
-                  action="hugging-knees"
+                  action={data.actions?.find((a) => a.character === staging.sitterOnBed)?.action}
                   carriedCat={staging.carrier === staging.sitterOnBed ? staging.carriedCat : undefined}
                 />
               </div>

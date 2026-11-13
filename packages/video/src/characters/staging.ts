@@ -2,9 +2,11 @@
 import type { Action, Character, Scene } from '@kantor/shared/types';
 
 const CHILDREN: readonly Character[] = ['mamas', 'friend'];
+/** Actions a child does sitting on the bed when the room has one. */
+const BED_ACTIONS: readonly Action[] = ['hugging-knees', 'hiding-under-blanket'];
 
 export interface Staging {
-  /** Child sitting on the bed hugging its knees (bedrooms in standard videos). */
+  /** Child sitting on the bed hugging its knees or hiding under the blanket (bedrooms in standard videos). */
   sitterOnBed?: Character;
   /** Child holding Mochi in its arms, and whether Mochi licks its cheek. */
   carrier?: Character;
@@ -21,7 +23,11 @@ export function stageInteractions(scene: Pick<Scene, 'characters' | 'actions'>, 
   const children = CHILDREN.filter(present);
   const mochiAction = actionOf('mochi');
 
-  const sitterOnBed = options.hasBed ? children.find((id) => actionOf(id) === 'hugging-knees') : undefined;
+  const sitsOnBed = (id: Character) => {
+    const action = actionOf(id);
+    return action !== undefined && BED_ACTIONS.includes(action);
+  };
+  const sitterOnBed = options.hasBed ? children.find(sitsOnBed) : undefined;
   // a licking Mochi needs someone to hold it: the child told to carry it, else the first child in the scene
   const carrier = children.find((id) => actionOf(id) === 'carrying-cat') ?? (mochiAction === 'licking' ? children[0] : undefined);
   const approachTarget = mochiAction === 'approaching' ? (sitterOnBed ?? children[0] ?? (present('mother') ? 'mother' : undefined)) : undefined;

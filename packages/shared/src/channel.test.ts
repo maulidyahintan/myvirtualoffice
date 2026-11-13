@@ -42,6 +42,13 @@ describe('canPerform', () => {
     expect(canPerform('mochi', 'craving')).toBe(false);
   });
 
+  it('lets only the children hide under the blanket', () => {
+    expect(canPerform('mamas', 'hiding-under-blanket')).toBe(true);
+    expect(canPerform('friend', 'hiding-under-blanket')).toBe(true);
+    expect(canPerform('mother', 'hiding-under-blanket')).toBe(false);
+    expect(canPerform('mochi', 'hiding-under-blanket')).toBe(false);
+  });
+
   it('lets everyone but the cat open the front door', () => {
     for (const character of ['mamas', 'mother', 'friend'] as const) expect(canPerform(character, 'opening-door')).toBe(true);
     expect(canPerform('mochi', 'opening-door')).toBe(false);

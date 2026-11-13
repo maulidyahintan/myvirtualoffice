@@ -4,6 +4,7 @@ import { mixPose, eatingPhase, eyelid, noise, noiseS, ballBounce, type ArmPose, 
 import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
 import { BackpackBag, BackpackStraps } from './Backpack';
+import { Blanket } from './Blanket';
 import { Mochi } from './Mochi';
 import { lipLick, sparkleTwinkle } from './craving';
 import { Face } from './Face';
@@ -226,7 +227,8 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
       const shake = Math.sin(f / 2.5) * 3;
       return { kiri: { bahu: 24 + shake, siku: -150 }, kanan: { bahu: 24 - shake, siku: -150 } };
     }
-    case 'hugging-knees': {
+    case 'hugging-knees':
+    case 'hiding-under-blanket': {
       // both forearms wrapped around the knees in front of the chest
       const hug: ArmPose = { bahu: 2 + Math.sin(f / 40), siku: -74 };
       return { kiri: hug, kanan: hug };
@@ -292,14 +294,17 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
   if (expression === 'surprised') turun -= 4;
   // menunduk membaca / khusyuk berdoa
   if (r.action === 'reading-quran') turun += 5;
-  const sitting = r.action === 'hugging-knees';
+  const huggingKnees = r.action === 'hugging-knees';
+  const underBlanket = r.action === 'hiding-under-blanket';
+  // hiding under the blanket the child sits too, peeking out with the eyes level
+  const sitting = huggingKnees || underBlanket;
   const craving = r.action === 'craving';
   // looking down: sad, reading, hugging the knees; a little down at the treat while craving
-  const lookingDown = expression === 'sad' || r.action === 'reading-quran' || sitting;
+  const lookingDown = (expression === 'sad' && !underBlanket) || r.action === 'reading-quran' || huggingKnees;
   const gazeDown = lookingDown ? 1 : Number(craving) * 0.7;
   const licked = r.carriedCat === 'licking';
   // sitting with the head resting low over the knees; leaning away, giggling, while Mochi licks the cheek
-  if (sitting) turun += 8;
+  if (huggingKnees) turun += 8;
   if (licked) miring -= 7;
   const alisNaik = bicara ? Math.max(0, noiseS(f / 10, r.seed + 7)) : 0;
   const rambutAyun = Math.sin(f / 14) * 1.5;
@@ -446,6 +451,9 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
         <g transform={`translate(120 ${262 + Math.sin(f / 30) * 1.5}) scale(1.15)`}>
           <Quran buka />
         </g>
+      ) : null}
+      {underBlanket ? (
+        <Blanket f={f} isScared={expression === 'sad' || expression === 'surprised'} isTalking={bicara} skin={k.kulit} outline={k.garis} />
       ) : null}
       {/* bola yang dipantulkan */}
       {r.action === 'playing' && (r.heldItem ?? 'ball') === 'ball' ? (

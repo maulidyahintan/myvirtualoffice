@@ -173,6 +173,7 @@ const ACTION_PERFORMERS: Partial<Record<Action, readonly Character[]>> = {
   'hugging-knees': CHILDREN,
   'carrying-cat': CHILDREN,
   craving: CHILDREN,
+  'hiding-under-blanket': CHILDREN,
   hugging: ['mother'],
 };
 

@@ -25,6 +25,11 @@ oleh template animasi Remotion milik channel.
     school-gate, school-yard, atau saat pamit di rumah)
   - Mamas & friend: `hugging-knees` (duduk memeluk lutut; di bedroom-night/bedroom-storm otomatis di atas
     kasur; untuk sedih, takut, merenung), `carrying-cat` (menggendong Mochi di dada)
+  - Mamas & friend: `hiding-under-blanket` (bersembunyi di bawah selimut dari kepala sampai kaki, hanya mata
+    yang mengintip dari celah sambil jari memegang tepi selimut; sesekali menunduk bersembunyi lalu mengintip
+    lagi; selimut gemetar kalau expression "sad"/"surprised". Di bedroom-night/bedroom-storm otomatis di atas
+    kasur). Cocok saat takut petir/gelap atau malu, sebelum Ibu datang menenangkan; bisa disusul Mochi
+    `approaching` dan Mother `hugging`.
   - Mamas & friend: `craving` + `heldItem` makanan (bawaan chocolate-cake): terpesona melihat makanan enak
     dan tidak sabar ingin memakannya — mata berbinar seperti bintang, tangan mengepal di bawah dagu,
     melompat-lompat kecil, menjilat bibir; makanannya tampil berkilau di samping anak. Pakai expression

@@ -11,6 +11,12 @@ describe('stageInteractions', () => {
     expect(stageInteractions(s, { hasBed: false }).sitterOnBed).toBeUndefined();
   });
 
+  it('puts a child hiding under the blanket on the bed', () => {
+    const s = scene(['mother', 'mamas'], [{ character: 'mamas', action: 'hiding-under-blanket' }]);
+    expect(stageInteractions(s, { hasBed: true }).sitterOnBed).toBe('mamas');
+    expect(stageInteractions(s, { hasBed: false }).sitterOnBed).toBeUndefined();
+  });
+
   it('lets Mochi walk up to the child on the bed first', () => {
     const s = scene(['mother', 'mamas', 'mochi'], [
       { character: 'mamas', action: 'hugging-knees' },
