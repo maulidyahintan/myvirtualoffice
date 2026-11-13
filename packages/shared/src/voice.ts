@@ -1,5 +1,6 @@
 // Which voice effect a recording gets when the video is rendered or previewed.
-import { voiceFilter } from './constants.ts';
+import { SPEAKING_TEMPO_LIMITS, voiceFilter } from './constants.ts';
+import { countWords } from './timing.ts';
 import { speaksArabic } from './channel.ts';
 import { memorizationVoice, speakerVoice } from './store.ts';
 import type { AppConfig, Episode } from './types.ts';
@@ -25,6 +26,24 @@ export function sceneVoice(ep: Episode, index: number, cfg: AppConfig): SceneVoi
   if (!scene || ep.aiVoiceScenes?.[index]) return undefined;
   if (speaksArabic(scene)) return { kind: 'recitation', ...memorizationVoice(cfg) };
   return { kind: 'speaker', ...speakerVoice(scene.speaker, cfg) };
+}
+
+/**
+ * Fastest pace an AI voice may keep for young children, in words per second with its pauses (Indonesian
+ * words are long: about 3.5 syllables per second). Generated voices measured 1.6–1.7 for Mother and Mamas.
+ */
+export const MAX_AI_WORDS_PER_SECOND = 1.4;
+
+/**
+ * Tempo that brings a generated AI voice down to a pace young children can follow: 1 when it is slow
+ * enough, otherwise slower, but never below the speaking tempo limit (further sounds dragged).
+ */
+export function childFriendlyTempo(text: string, seconds: number): number {
+  const words = countWords(text);
+  if (!words || seconds <= 0) return 1;
+  const pace = words / seconds;
+  if (pace <= MAX_AI_WORDS_PER_SECOND) return 1;
+  return Math.max(SPEAKING_TEMPO_LIMITS.min, MAX_AI_WORDS_PER_SECOND / pace);
 }
 
 /** FFmpeg filter for that voice effect (undefined = keep the recording unchanged). */

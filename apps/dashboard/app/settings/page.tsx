@@ -31,6 +31,8 @@ import {
   paths,
   facebookConnection,
   needsFacebookPost,
+  clampSpeakingTempo,
+  SPEAKING_TEMPO_LIMITS,
 } from '@kantor/shared';
 import {
   deleteMusic,
@@ -50,6 +52,9 @@ import {
 import path from 'node:path';
 import { Collapsible } from '@/components/Collapsible';
 import { SubmitButton } from '@/components/SubmitButton';
+
+/** Tempo field range in percent, from the speaking tempo limits. */
+const TEMPO_PERCENT = { min: SPEAKING_TEMPO_LIMITS.min * 100, max: SPEAKING_TEMPO_LIMITS.max * 100 };
 
 const NAMA_SPEAKERS = { narrator: '📖 Narator', mother: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', friend: '🧒 Teman Mamas', memorization: '🕌 Bacaan hafalan' } as const;
 
@@ -161,7 +166,8 @@ function PengaturanSuara() {
         <p className="muted kecil" style={{ margin: 0 }}>
           Cerita yang direkam <b>per adegan</b> (Studio Rekam): tiap adegan diberi efek sesuai pembicaranya. Video <b>hafalan</b>: seluruh
           bacaan diberi efek suara anak-anak, lebih pelan (otomatis, bisa dimatikan per episode di Studio). <b>Nada</b> dalam semiton: +
-          terdengar lebih kecil seperti anak-anak, − lebih berat. <b>Tempo</b> 100% = kecepatan bicaramu, di bawah 100% lebih pelan.
+          terdengar lebih kecil seperti anak-anak, − lebih berat. <b>Tempo</b> 100% = kecepatan bicaramu, di bawah 100% lebih pelan. Supaya
+          mudah dipahami anak, suara tidak pernah dipercepat (maksimal 100%).
         </p>
         {[...SPEAKERS, 'memorization' as const].map((p) => {
           const s = p === 'memorization' ? memorizationVoice(cfg) : speakerVoice(p, cfg);
@@ -187,7 +193,15 @@ function PengaturanSuara() {
                 </label>
                 <label className="kecil">
                   Tempo (%)
-                  <input type="number" name={`${p}-tempo`} min={70} max={140} step={1} defaultValue={Math.round(s.tempo * 100)} style={{ width: 80 }} />
+                  <input
+                    type="number"
+                    name={`${p}-tempo`}
+                    min={TEMPO_PERCENT.min}
+                    max={TEMPO_PERCENT.max}
+                    step={1}
+                    defaultValue={Math.round(clampSpeakingTempo(s.tempo) * 100)}
+                    style={{ width: 80 }}
+                  />
                 </label>
                 <label className="kecil" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                   <input type="checkbox" name={`${p}-reset`} /> kembalikan ke bawaan

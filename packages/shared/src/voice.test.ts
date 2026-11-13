@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_CHARACTER_VOICE, DEFAULT_MEMORIZATION_VOICE, voiceFilter } from './constants.ts';
-import { sceneVoice, sceneVoiceFilter } from './voice.ts';
+import { DEFAULT_CHARACTER_VOICE, DEFAULT_MEMORIZATION_VOICE, SPEAKING_TEMPO_LIMITS, voiceFilter } from './constants.ts';
+import { speakerVoice } from './store.ts';
+import { MAX_AI_WORDS_PER_SECOND, childFriendlyTempo, sceneVoice, sceneVoiceFilter } from './voice.ts';
 import type { AppConfig, Episode, Scene } from './types.ts';
 
 const cfg = {} as AppConfig;
@@ -55,5 +56,39 @@ describe('sceneVoiceFilter', () => {
 
   it('returns no filter for a missing scene', () => {
     expect(sceneVoiceFilter(story([]), 5, cfg)).toBeUndefined();
+  });
+});
+
+describe('speaking tempo', () => {
+  it('never speeds speech up, even with an older faster setting', () => {
+    const fast = { characterVoices: { mamas: { pitch: 4, tempo: 1.1 } } } as AppConfig;
+    expect(speakerVoice('mamas', fast).tempo).toBe(1);
+    expect(voiceFilter({ pitch: 0, tempo: 1.2 })).toBeUndefined();
+  });
+
+  it('keeps every default character voice at or below the original speed', () => {
+    for (const voice of Object.values(DEFAULT_CHARACTER_VOICE)) expect(voice.tempo).toBeLessThanOrEqual(1);
+  });
+});
+
+describe('childFriendlyTempo', () => {
+  const TEN_WORDS = 'satu dua tiga empat lima enam tujuh delapan sembilan sepuluh';
+
+  it('leaves a voice that is already slow enough unchanged', () => {
+    expect(childFriendlyTempo(TEN_WORDS, 10 / MAX_AI_WORDS_PER_SECOND)).toBe(1);
+  });
+
+  it('slows a fast voice down to the child-friendly pace', () => {
+    const seconds = 10 / 1.68;
+    expect(childFriendlyTempo(TEN_WORDS, seconds)).toBeCloseTo(MAX_AI_WORDS_PER_SECOND / 1.68);
+  });
+
+  it('does not drag a very fast voice below the tempo limit', () => {
+    expect(childFriendlyTempo(TEN_WORDS, 2)).toBe(SPEAKING_TEMPO_LIMITS.min);
+  });
+
+  it('keeps the tempo for empty text or audio', () => {
+    expect(childFriendlyTempo('', 3)).toBe(1);
+    expect(childFriendlyTempo(TEN_WORDS, 0)).toBe(1);
   });
 });

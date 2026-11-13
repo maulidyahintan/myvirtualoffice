@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import type { ChatAgent, Episode, EpisodeStatus, Format, Idea, AppConfig, ChatMessage, DailyResearch } from './types.ts';
-import { BUSY_STATUSES, voiceFilter, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
+import { BUSY_STATUSES, voiceFilter, clampSpeakingTempo, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
 
 let rootCache: string | undefined;
 
@@ -58,7 +58,9 @@ export function loadConfig(): AppConfig {
 export function speakerVoice(speaker: string, cfg: AppConfig = loadConfig()): { pitch: number; tempo: number } {
   const p = speaker as (typeof SPEAKERS)[number];
   const def = DEFAULT_CHARACTER_VOICE[p] ?? DEFAULT_CHARACTER_VOICE.narrator;
-  return { pitch: def.pitch, tempo: def.tempo, ...cfg.characterVoices?.[p] };
+  const voice = { pitch: def.pitch, tempo: def.tempo, ...cfg.characterVoices?.[p] };
+  // settings saved before speech was capped may still speed a voice up
+  return { ...voice, tempo: clampSpeakingTempo(voice.tempo) };
 }
 
 /** Voice settings for memorization recitation: from kantor.config.json, or default. */

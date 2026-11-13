@@ -16,6 +16,7 @@ import {
   compilationChapters,
   withChapters,
   AI_VOICES,
+  childFriendlyTempo,
   voiceFilter,
   needsPlaylist,
   facebookConnection,
@@ -45,7 +46,7 @@ import {
 } from '@kantor/shared';
 import { fetchSurah, BASMALAH } from './quran.ts';
 import { runAgent } from './run-agent.ts';
-import { AiVoiceUnavailable, speak } from './tts.ts';
+import { AiVoiceUnavailable, speak, wavSeconds } from './tts.ts';
 import { IllustrationUnavailable, drawPicture, illustrationReady } from './illustrate.ts';
 import {
   IllustratorSchema,
@@ -513,11 +514,12 @@ export async function fillAiVoices(id: string, sceneNo?: number) {
 
 /** With a scene number (1-based) only that scene is filled; without, every empty scene. */
 /**
- * Raise the pitch of a generated AI voice when its speaker asks for it (a child from a male voice), so the
- * file already sounds like the character; render keeps leaving AI voices untouched.
+ * Shape a generated AI voice into the character, so render can leave AI voices untouched: raise the pitch
+ * when the speaker asks for it (a child from a male voice), and slow it down when it speaks faster than
+ * young children can follow.
  */
-async function withAiPitch(audio: Buffer, speaker: Speaker, dir: string): Promise<Buffer> {
-  const filter = voiceFilter({ pitch: AI_VOICES[speaker].pitch ?? 0 });
+async function withAiVoiceEffects(audio: Buffer, text: string, speaker: Speaker, dir: string): Promise<Buffer> {
+  const filter = voiceFilter({ pitch: AI_VOICES[speaker].pitch ?? 0, tempo: childFriendlyTempo(text, wavSeconds(audio)) });
   if (!filter) return audio;
   const tag = `ai-pitch-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
   const input = path.join(dir, `${tag}-in.wav`);
@@ -525,7 +527,7 @@ async function withAiPitch(audio: Buffer, speaker: Speaker, dir: string): Promis
   fs.writeFileSync(input, audio);
   try {
     const out = await ffmpeg(['-hide_banner', '-loglevel', 'error', '-y', '-i', input, '-af', filter, output]);
-    if (!fs.existsSync(output)) throw new Error(`Nada suara AI gagal dinaikkan: ${out.slice(0, 200)}`);
+    if (!fs.existsSync(output)) throw new Error(`Efek suara AI gagal dipasang: ${out.slice(0, 200)}`);
     return fs.readFileSync(output);
   } finally {
     fs.rmSync(input, { force: true });
@@ -569,7 +571,7 @@ async function fillAiVoicesNow(id: string, sceneNo?: number) {
     setAiVoiceProgress(id, i);
     let audio: Buffer;
     try {
-      audio = await withAiPitch(await speak(scenes[i].narration, scenes[i].speaker), scenes[i].speaker, dir);
+      audio = await withAiVoiceEffects(await speak(scenes[i].narration, scenes[i].speaker), scenes[i].narration, scenes[i].speaker, dir);
     } catch (e) {
       if (!(e instanceof AiVoiceUnavailable)) throw e;
       stopped = e.message;

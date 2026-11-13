@@ -6,6 +6,8 @@ import { AI_VOICES, aiVoiceUsage, loadConfig, quotaResetText, saveAiVoiceUsage, 
 /** Newest first; the first one that exists for this key is remembered in the usage file. */
 const MODELS = ['gemini-3.1-flash-tts-preview', 'gemini-2.5-flash-preview-tts'];
 const SAMPLE_RATE = 24_000;
+const WAV_HEADER_BYTES = 44;
+const BYTES_PER_SAMPLE = 2;
 
 /** Free quota used up (for today) or the key is not allowed to use TTS: stop and record by hand. */
 export class AiVoiceUnavailable extends Error {}
@@ -32,6 +34,11 @@ export function wav(pcm: Buffer): Buffer {
   h.write('data', 36);
   h.writeUInt32LE(pcm.length, 40);
   return Buffer.concat([h, pcm]);
+}
+
+/** Length in seconds of a WAV made by `wav()` (16-bit mono at the Gemini sample rate). */
+export function wavSeconds(file: Buffer): number {
+  return Math.max(0, file.length - WAV_HEADER_BYTES) / (SAMPLE_RATE * BYTES_PER_SAMPLE);
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

@@ -17,6 +17,7 @@ import {
   updateEpisode,
   MUSIC_TYPES,
   MAX_PITCH,
+  clampSpeakingTempo,
   CHARACTER_PITCH_LIMITS,
   SPEAKERS,
   SHORTS_LIMIT_SECONDS,
@@ -679,7 +680,8 @@ export async function saveCharacterVoices(form: FormData) {
       ? undefined
       : {
           pitch: Math.max(CHARACTER_PITCH_LIMITS.min, Math.min(CHARACTER_PITCH_LIMITS.max, Number(teks(form, `${p}-nada`)) || 0)),
-          tempo: Math.max(70, Math.min(140, Number(teks(form, `${p}-tempo`)) || 100)) / 100,
+          // children's education: speech may be slowed down, never sped up
+          tempo: clampSpeakingTempo((Number(teks(form, `${p}-tempo`)) || 100) / 100),
         };
   const suara: NonNullable<typeof cfg.characterVoices> = {};
   for (const p of SPEAKERS) {

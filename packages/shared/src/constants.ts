@@ -123,12 +123,23 @@ export const FORMAT_SPEC = {
 export const MAX_PITCH = 4;
 
 /**
+ * Speech tempo range for voice effects. This is children's education: speech may be slowed down to be
+ * easier to follow, but never sped up beyond how it was spoken.
+ */
+export const SPEAKING_TEMPO_LIMITS = { min: 0.7, max: 1 } as const;
+
+/** Tempo clamped to SPEAKING_TEMPO_LIMITS. */
+export function clampSpeakingTempo(tempo: number): number {
+  return Math.max(SPEAKING_TEMPO_LIMITS.min, Math.min(SPEAKING_TEMPO_LIMITS.max, tempo));
+}
+
+/**
  * FFmpeg voice transformation filter. `pitch` (semitones) shifts pitch and timbre
- * (+ sounds younger/childlike, − heavier); `tempo` 1 = original speech speed.
+ * (+ sounds younger/childlike, − heavier); `tempo` 1 = original speech speed (never faster, see above).
  */
 export function voiceFilter({ pitch = 0, tempo = 1 }: { pitch?: number; tempo?: number }): string | undefined {
   const st = Math.round(pitch * 2) / 2;
-  const tp = Math.max(0.7, Math.min(1.4, tempo));
+  const tp = clampSpeakingTempo(tempo);
   if (!st && Math.abs(tp - 1) < 0.005) return undefined;
   const f = 2 ** (st / 12);
   return `aresample=48000,asetrate=${(48000 * f).toFixed(0)},aresample=48000,atempo=${(tp / f).toFixed(5)}`;
@@ -145,9 +156,9 @@ export const DEFAULT_CHARACTER_VOICE: Record<(typeof SPEAKERS)[number], { pitch:
   narrator: { pitch: 0, tempo: 1, note: 'suara asli' },
   // Small pitch shifts only: too much shift sounds like robot/chipmunk
   mother: { pitch: -1.5, tempo: 0.96, note: 'sedikit lebih berat, kalem & pelan' },
-  mamas: { pitch: 2.5, tempo: 1.04, note: 'lebih muda & ceria, tetap natural' },
-  mochi: { pitch: 4, tempo: 1.05, note: 'kecil & menggemaskan' },
-  friend: { pitch: 3.5, tempo: 1.06, note: 'anak-anak, sedikit beda dari Mamas' },
+  mamas: { pitch: 2.5, tempo: 1, note: 'lebih muda & ceria, tetap natural' },
+  mochi: { pitch: 4, tempo: 1, note: 'kecil & menggemaskan' },
+  friend: { pitch: 3.5, tempo: 1, note: 'anak-anak, sedikit beda dari Mamas' },
 };
 export const CHARACTER_PITCH_LIMITS = { min: -6, max: 9 };
 /** Memorization video recitation voice: higher like children & slower for easy following. */
@@ -300,10 +311,13 @@ export const EDITABLE_PROMPTS = {
  * Free AI voice per speaker (Gemini TTS prebuilt voice + speaking style). Gemini has no child voices, so a
  * child is a cheerful male voice with `pitch` (semitones) raised; the shift is baked into the generated file.
  */
+/** Pace every AI voice keeps: the audience are young children who must follow every word. */
+const CHILD_PACE = 'dengan tempo pelan dan jelas yang mudah dipahami anak kecil, tidak terburu-buru, dan beri jeda di setiap koma dan titik';
+
 export const AI_VOICES: Record<(typeof SPEAKERS)[number], { voice: string; style: string; pitch?: number }> = {
-  narrator: { voice: 'Sulafat', style: 'Bacakan dengan hangat, tenang, dan pelan seperti mendongeng sebelum tidur untuk anak-anak' },
-  mother: { voice: 'Vindemiatrix', style: 'Ucapkan dengan lembut, sabar, dan penuh kasih seperti seorang ibu berbicara kepada anaknya' },
-  mamas: { voice: 'Achird', style: 'Ucapkan dengan ceria, polos, dan bersemangat seperti anak laki-laki berumur empat tahun', pitch: 4 },
-  mochi: { voice: 'Puck', style: 'Ucapkan dengan lucu dan riang' },
-  friend: { voice: 'Fenrir', style: 'Ucapkan dengan riang, aktif, dan bersemangat seperti anak laki-laki berumur lima tahun', pitch: 4 },
+  narrator: { voice: 'Sulafat', style: `Bacakan dengan hangat, tenang, dan pelan seperti mendongeng sebelum tidur untuk anak-anak, ${CHILD_PACE}` },
+  mother: { voice: 'Vindemiatrix', style: `Ucapkan dengan lembut, sabar, dan penuh kasih seperti seorang ibu berbicara kepada anaknya, ${CHILD_PACE}` },
+  mamas: { voice: 'Achird', style: `Ucapkan dengan ceria dan polos seperti anak laki-laki berumur empat tahun, ${CHILD_PACE}`, pitch: 4 },
+  mochi: { voice: 'Puck', style: `Ucapkan dengan lucu dan riang, ${CHILD_PACE}` },
+  friend: { voice: 'Fenrir', style: `Ucapkan dengan riang seperti anak laki-laki berumur lima tahun, ${CHILD_PACE}`, pitch: 4 },
 };
