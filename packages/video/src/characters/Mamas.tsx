@@ -1,9 +1,11 @@
 import React, { useId } from 'react';
+import type { HeldItem } from '@kantor/shared/types';
 import { mixPose, eatingPhase, eyelid, noise, noiseS, ballBounce, type ArmPose, type RigProps } from './motion';
 import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
 import { BackpackBag, BackpackStraps } from './Backpack';
 import { Mochi } from './Mochi';
+import { lipLick, sparkleTwinkle } from './craving';
 import { Face } from './Face';
 import { shade, useLook } from './looks';
 
@@ -117,6 +119,39 @@ const ShortHair: React.FC<{ k: ChildPalette }> = ({ k }) => (
 /** Left arm stretched sideways, slightly up, to a door handle. */
 const CHILD_DOOR_REACH: ArmPose = { bahu: 95, siku: -8 };
 
+/** Where the treat stands: on a cake stand at the child's right (screen right), at chest height. */
+const TREAT = { x: 300, plateY: 286 };
+const SPARKLES = [
+  { x: TREAT.x - 70, y: 200, size: 1 },
+  { x: TREAT.x + 70, y: 196, size: 0.8 },
+  { x: TREAT.x + 82, y: 262, size: 0.6 },
+  { x: TREAT.x - 80, y: 258, size: 0.7 },
+];
+
+/** The treat the child can't wait to eat, on a little cake stand beside the child, sparkling. */
+const CravingTreat: React.FC<{ item: HeldItem; f: number }> = ({ item, f }) => (
+  <g>
+    <rect x={TREAT.x - 8} y={TREAT.plateY + 2} width={16} height={392 - TREAT.plateY - 4} rx={6} fill="#D9C6A5" stroke="#B8A27C" strokeWidth={2} />
+    <ellipse cx={TREAT.x} cy={390} rx={40} ry={9} fill="#D9C6A5" />
+    <ellipse cx={TREAT.x} cy={TREAT.plateY} rx={68} ry={12} fill="#FFFFFF" stroke="#DCD6CA" strokeWidth={3} />
+    <g transform={`translate(${TREAT.x} ${TREAT.plateY - 16}) scale(2.3)`}>
+      <ItemArt id={item} />
+    </g>
+    {SPARKLES.map((s, i) => {
+      const twinkle = sparkleTwinkle(f, i);
+      return (
+        <path
+          key={i}
+          transform={`translate(${s.x} ${s.y}) scale(${s.size * (0.5 + twinkle * 0.6)})`}
+          d="M0 -12 Q2 -2 12 0 Q2 2 0 12 Q-2 2 -12 0 Q-2 -2 0 -12 Z"
+          fill="#FFE07A"
+          opacity={0.4 + twinkle * 0.6}
+        />
+      );
+    })}
+  </g>
+);
+
 /** Knees pulled up in front of the body, for a child sitting and hugging its knees. */
 const SittingLegs: React.FC<{ k: ChildPalette; id: string }> = ({ k, id }) => (
   <g>
@@ -186,6 +221,11 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
           { kiri: kiriAksi, kanan: { bahu: 36, siku: 30 - ballBounce(f) * 34 } };
     case 'holding':
       return { kiri: kiriAksi, kanan: pegang };
+    case 'craving': {
+      // fists clasped under the chin, trembling with excitement
+      const shake = Math.sin(f / 2.5) * 3;
+      return { kiri: { bahu: 24 + shake, siku: -150 }, kanan: { bahu: 24 - shake, siku: -150 } };
+    }
     case 'hugging-knees': {
       // both forearms wrapped around the knees in front of the chest
       const hug: ArmPose = { bahu: 2 + Math.sin(f / 40), siku: -74 };
@@ -253,6 +293,10 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
   // menunduk membaca / khusyuk berdoa
   if (r.action === 'reading-quran') turun += 5;
   const sitting = r.action === 'hugging-knees';
+  const craving = r.action === 'craving';
+  // looking down: sad, reading, hugging the knees; a little down at the treat while craving
+  const lookingDown = expression === 'sad' || r.action === 'reading-quran' || sitting;
+  const gazeDown = lookingDown ? 1 : Number(craving) * 0.7;
   const licked = r.carriedCat === 'licking';
   // sitting with the head resting low over the knees; leaning away, giggling, while Mochi licks the cheek
   if (sitting) turun += 8;
@@ -341,6 +385,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
 
       {r.action === 'wearing-backpack' ? <BackpackStraps /> : null}
       {sitting ? <SittingLegs k={k} id={id} /> : null}
+      {craving ? <CravingTreat item={r.heldItem ?? 'chocolate-cake'} f={f} /> : null}
 
       {/* lengan (saat menggendong Mochi digambar sesudah Mochi) */}
       {expression === 'thinking' || r.carriedCat ? null : tangan(false)}
@@ -383,8 +428,10 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
             tutup={licked ? 1 : r.tutup}
             mulut={r.mulut}
             bicara={bicara}
-            lihatX={r.lihatX}
-            lihatY={expression === 'sad' || r.action === 'reading-quran' || sitting ? 1 : 0}
+            lihatX={craving ? 1 : r.lihatX}
+            lihatY={gazeDown}
+            starEyes={craving}
+            lickLips={craving && !bicara ? lipLick(f) : 0}
             alisNaik={alisNaik}
           />
         </g>

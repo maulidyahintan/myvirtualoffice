@@ -6,6 +6,7 @@ import { Mother } from './Mother';
 import { Mamas } from './Mamas';
 import { Mochi } from './Mochi';
 import { Friend } from './Friend';
+import { cravingHop } from './craving';
 
 /** Cara karakter muncul di adegan. */
 export type Entrance = 'kiri' | 'kanan' | 'muncul' | 'ada';
@@ -101,6 +102,8 @@ export const CharacterFigure: React.FC<Props> = ({
       naik += Math.sin(t * Math.PI) * 30;
       regang += Math.sin(t * Math.PI) * 0.08;
     }
+    // can't wait to eat: quick little hops
+    if (action === 'craving') naik += cravingHop(f);
     if ((id === 'mamas' || id === 'friend') && expression === 'happy' && !bicara && !action) {
       const p = (f % 50) / 50;
       if (p < 0.4) {

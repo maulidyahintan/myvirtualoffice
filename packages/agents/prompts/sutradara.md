@@ -25,6 +25,11 @@ oleh template animasi Remotion milik channel.
     school-gate, school-yard, atau saat pamit di rumah)
   - Mamas & friend: `hugging-knees` (duduk memeluk lutut; di bedroom-night/bedroom-storm otomatis di atas
     kasur; untuk sedih, takut, merenung), `carrying-cat` (menggendong Mochi di dada)
+  - Mamas & friend: `craving` + `heldItem` makanan (bawaan chocolate-cake): terpesona melihat makanan enak
+    dan tidak sabar ingin memakannya — mata berbinar seperti bintang, tangan mengepal di bawah dagu,
+    melompat-lompat kecil, menjilat bibir; makanannya tampil berkilau di samping anak. Pakai expression
+    "happy" (atau "surprised" di saat pertama melihat). Cocok sebelum belajar adab makan, sabar menunggu,
+    atau berdoa sebelum makan.
   - Mother: `hugging` (memeluk anak yang ada di adegan dari samping; untuk menenangkan, memaafkan, bangga)
   - Mamas/Mother/friend: `opening-door` (membuka pintu masuk rumah; HANYA di house-front — pintunya
     terbuka dan cahaya dari dalam rumah terlihat; cocok saat pulang sambil mengucap salam, atau Ibu
@@ -39,9 +44,9 @@ oleh template animasi Remotion milik channel.
     menggendong Mochi dan tertawa geli)
 - Adegan menghibur yang hangat bisa disusun berurutan: Mamas `hugging-knees` (sad) → Mochi `approaching` →
   Mamas `carrying-cat` → Mochi `licking` (happy) → Mother `hugging` (calm).
-- `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower
+- `heldItem`: quran, apple, banana, date, cake, chocolate-cake (kue cokelat bulat dengan ceri), milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower
 - `props` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
-  - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, date, apple, banana, milk-glass
+  - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, chocolate-cake, date, apple, banana, milk-glass
   - mainan: ball, toy-car, toy-elephant, doll, building-blocks, toy-box
   - ibadah: prayer-mat (di bawah tokoh yang berdoa/membaca), quran-stand, quran
   - lain: potted-tree, fruit-basket, book, flower, pillow

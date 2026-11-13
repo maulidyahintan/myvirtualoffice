@@ -65,6 +65,21 @@ export const ItemArt: React.FC<{ id: BendaId; skala?: number }> = ({ id, skala =
         <path d="M-20 4 L20 4" stroke="#C9965A" strokeWidth={2} />
       </g>
     )}
+    {id === 'chocolate-cake' && (
+      <g>
+        {/* round chocolate cake: sponge layers, glossy ganache dripping over the edge, cream and a cherry */}
+        <rect x={-24} y={-10} width={48} height={26} rx={5} fill="#6B3A22" stroke="#4A2614" strokeWidth={2} />
+        <rect x={-24} y={1} width={48} height={4} fill="#F4D6B0" />
+        <path d="M-25 -10 Q-25 -18 0 -18 Q25 -18 25 -10 L25 -4 Q21 2 18 -4 Q14 4 10 -4 Q5 3 0 -4 Q-6 4 -10 -4 Q-15 3 -19 -4 Q-23 1 -25 -4 Z" fill="#3E1E10" />
+        <path d="M-16 -15 Q-6 -19 6 -16" stroke="#8A5236" strokeWidth={2.5} fill="none" strokeLinecap="round" opacity={0.8} />
+        {[-14, 0, 14].map((x) => (
+          <circle key={x} cx={x} cy={-19} r={4.5} fill="#FFF6EA" />
+        ))}
+        <circle cx={0} cy={-25} r={5} fill="#D7263D" />
+        <path d="M0 -29 q3 -6 7 -7" stroke="#4E8A3A" strokeWidth={1.8} fill="none" strokeLinecap="round" />
+        <circle cx={-1.8} cy={-26.5} r={1.4} fill="#FFFFFF" opacity={0.8} />
+      </g>
+    )}
     {id === 'milk-glass' && (
       <g>
         <path d="M-13 -20 L13 -20 L10 20 L-10 20 Z" fill="#E8F4FA" stroke="#9FC4D6" strokeWidth={2} />
@@ -162,7 +177,7 @@ const Piring: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   </g>
 );
 
-const MAKANAN: PropertiId[] = ['apple', 'banana', 'date', 'cake', 'milk-glass', 'fruit-plate', 'rice-plate'];
+const MAKANAN: PropertiId[] = ['apple', 'banana', 'date', 'cake', 'chocolate-cake', 'milk-glass', 'fruit-plate', 'rice-plate'];
 export const isTableFood = (p: PropertiId) => MAKANAN.includes(p);
 
 /** Isi meja makan (dipanggil sekali untuk semua properti makanan sebuah adegan). */
@@ -191,7 +206,7 @@ export const FoodTable: React.FC<{ isi: PropertiId[] }> = ({ isi }) => {
               <circle cx={16} cy={-6} r={6} fill="#F2E9A0" />
               <path d="M-26 2 q6 -6 14 -2" stroke="#5FA35A" strokeWidth={5} fill="none" strokeLinecap="round" />
             </Piring>
-          ) : p === 'cake' || p === 'date' ? (
+          ) : p === 'cake' || p === 'chocolate-cake' || p === 'date' ? (
             <Piring>
               <ItemArt id={p} />
             </Piring>

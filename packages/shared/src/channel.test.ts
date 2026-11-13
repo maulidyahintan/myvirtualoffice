@@ -35,6 +35,13 @@ describe('canPerform', () => {
     expect(canPerform('mamas', 'approaching')).toBe(false);
   });
 
+  it('lets only the children crave a treat', () => {
+    expect(canPerform('mamas', 'craving')).toBe(true);
+    expect(canPerform('friend', 'craving')).toBe(true);
+    expect(canPerform('mother', 'craving')).toBe(false);
+    expect(canPerform('mochi', 'craving')).toBe(false);
+  });
+
   it('lets everyone but the cat open the front door', () => {
     for (const character of ['mamas', 'mother', 'friend'] as const) expect(canPerform(character, 'opening-door')).toBe(true);
     expect(canPerform('mochi', 'opening-door')).toBe(false);

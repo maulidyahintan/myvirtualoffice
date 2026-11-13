@@ -23,7 +23,11 @@ export const Face: React.FC<{
   lihatY: number;
   /** 0..1, alis terangkat saat menekankan kata */
   alisNaik: number;
-}> = ({ expression, gaya, kulit, tutup, mulut, bicara, lihatX, lihatY, alisNaik }) => {
+  /** amazed by something delicious: big sparkling star highlights in the eyes */
+  starEyes?: boolean;
+  /** 0..1: tongue licking the lips */
+  lickLips?: number;
+}> = ({ expression, gaya, kulit, tutup, mulut, bicara, lihatX, lihatY, alisNaik, starEyes = false, lickLips = 0 }) => {
   const uid = useId().replace(/:/g, '');
   const anak = gaya === 'anak';
   const mataX = anak ? 31 : 22;
@@ -42,12 +46,12 @@ export const Face: React.FC<{
   if (expression === 'happy' && bicara) pipiNaik = 0.22;
   const atas = Math.max(kelopakAtas, tutup);
   // mata tersenyum "^^" saat senang & diam
-  const mataSenyum = expression === 'happy' && !bicara;
+  const mataSenyum = expression === 'happy' && !bicara && !starEyes;
 
   // pandangan
   const px = lihatX * rx * 0.22 + (berpikir ? rx * 0.15 : 0);
   const py = lihatY * ry * 0.12 + (berpikir ? -ry * 0.22 : 0);
-  const sk = kaget ? 1.08 : 1;
+  const sk = kaget || starEyes ? 1.1 : 1;
 
   const mata = (x: number, kiri: boolean) => {
     const sx = rx * sk;
@@ -94,8 +98,16 @@ export const Face: React.FC<{
           {/* iris besar hampir memenuhi mata */}
           <ellipse cx={x + px} cy={mataY + py + sy * 0.04} rx={sx * (kaget ? 0.78 : 0.9)} ry={sy * (kaget ? 0.8 : 0.92)} fill={`url(#iris-${uid})`} />
           <ellipse cx={x + px} cy={mataY + py + sy * 0.08} rx={sx * 0.45} ry={sy * 0.47} fill="#1A0D08" opacity={0.85} />
-          {/* kilau */}
-          <ellipse cx={x + px + sx * 0.32} cy={mataY + py - sy * 0.34} rx={sx * 0.36} ry={sy * 0.32} fill="#FFFFFF" />
+          {/* kilau (bintang berkilau saat terpesona) */}
+          {starEyes ? (
+            <path
+              transform={`translate(${x + px + sx * 0.18} ${mataY + py - sy * 0.2}) scale(${sx / 17})`}
+              d="M0 -13 Q2 -2 13 0 Q2 2 0 13 Q-2 2 -13 0 Q-2 -2 0 -13 Z"
+              fill="#FFFFFF"
+            />
+          ) : (
+            <ellipse cx={x + px + sx * 0.32} cy={mataY + py - sy * 0.34} rx={sx * 0.36} ry={sy * 0.32} fill="#FFFFFF" />
+          )}
           <circle cx={x + px - sx * 0.34} cy={mataY + py + sy * 0.38} r={sx * 0.13} fill="#FFFFFF" opacity={0.9} />
           <ellipse cx={x + px} cy={mataY + py + sy * 0.6} rx={sx * 0.5} ry={sy * 0.18} fill="#C88A60" opacity={0.35} />
           {/* tirai eyelid */}
@@ -150,7 +162,15 @@ export const Face: React.FC<{
       <ellipse cx={0} cy={mulutY + tinggi * 0.72} rx={lebar * 0.6} ry={tinggi * 0.3} fill={lidah} />
     </g>
   );
-  if (mulut.buka > 0.06) {
+  if (starEyes && mulut.buka <= 0.06) {
+    // wide-open delighted mouth; the tongue tip licks the upper lip now and then
+    isiMulut = (
+      <g>
+        {mulutTerbuka(anak ? 12 : 10, anak ? 13 : 10)}
+        {lickLips > 0.05 ? <ellipse cx={7} cy={mulutY - 1 - lickLips * 2} rx={5} ry={3 + lickLips * 4} fill={lidah} stroke="#D06A70" strokeWidth={1.2} /> : null}
+      </g>
+    );
+  } else if (mulut.buka > 0.06) {
     const w = (mulut.bulat ? 6.5 : 10.5) * (anak ? 1 : 0.85);
     isiMulut = mulutTerbuka(w, 4 + mulut.buka * (anak ? 13 : 10));
   } else if (expression === 'happy') {

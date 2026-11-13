@@ -43,7 +43,7 @@ export const CHARACTERS = ['mamas', 'mother', 'mochi', 'friend'] as const;
 export const EXPRESSIONS = ['happy', 'sad', 'thinking', 'surprised', 'calm'] as const;
 
 /** Small items that characters can hold (can also be placed in scene). */
-export const HELD_ITEMS = ['quran', 'apple', 'banana', 'date', 'cake', 'milk-glass', 'ball', 'toy-car', 'toy-elephant', 'doll', 'book', 'flower'] as const;
+export const HELD_ITEMS = ['quran', 'apple', 'banana', 'date', 'cake', 'chocolate-cake', 'milk-glass', 'ball', 'toy-car', 'toy-elephant', 'doll', 'book', 'flower'] as const;
 
 /** Supporting props in scene (placed on floor/small table around characters). */
 export const SCENE_PROPS = [
@@ -68,6 +68,8 @@ export const SCENE_PROPS = [
  * Children only: wearing-backpack (school bag on the back; arms stay free), hugging-knees (sits hugging the
  * knees, on the bed in the bedrooms), carrying-cat (holds Mochi in the arms). Mother only: hugging (hugs the child).
  * Anyone but Mochi: opening-door (opens the front door of the house; house-front only).
+ * Children only: craving (+ heldItem food, default chocolate-cake): amazed by a treat in front of them and
+ * eager to eat it: star eyes, hands under the chin, little hops, licking the lips.
  */
 export const ACTIONS = [
   'holding',
@@ -85,6 +87,7 @@ export const ACTIONS = [
   'carrying-cat',
   'hugging',
   'opening-door',
+  'craving',
 ] as const;
 
 export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
