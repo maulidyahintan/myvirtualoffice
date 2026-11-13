@@ -1,6 +1,9 @@
 import React, { useId } from 'react';
 import type { Expression } from '@kantor/shared/types';
 import type { Mouth } from './motion';
+import { faceMood, isKeenListener, lipQuiver, tearDrop } from './emotion';
+
+const TEAR_COLOR = '#8EC5F0';
 
 /**
  * Face gaya chibi lembut untuk Mamas & Mother: mata besar dengan iris gelap
@@ -27,7 +30,11 @@ export const Face: React.FC<{
   starEyes?: boolean;
   /** 0..1: tongue licking the lips */
   lickLips?: number;
-}> = ({ expression, gaya, kulit, tutup, mulut, bicara, lihatX, lihatY, alisNaik, starEyes = false, lickLips = 0 }) => {
+  /** frame, for trembling lips and running tears */
+  frame?: number;
+  /** someone else is talking: a happy face listens keenly */
+  listening?: boolean;
+}> = ({ expression, gaya, kulit, tutup, mulut, bicara, lihatX, lihatY, alisNaik, starEyes = false, lickLips = 0, frame = 0, listening = false }) => {
   const uid = useId().replace(/:/g, '');
   const anak = gaya === 'anak';
   const mataX = anak ? 31 : 22;
@@ -37,21 +44,21 @@ export const Face: React.FC<{
   const kaget = expression === 'surprised';
   const berpikir = expression === 'thinking';
   const garisMata = '#2A1A14';
+  const mood = faceMood(expression, listening);
+  const keen = isKeenListener(expression, listening, bicara);
 
   // eyelid atas (0..1) & pipi naik dari bawah (0..1) per expression
-  let kelopakAtas = 0;
+  const kelopakAtas = mood.lidTop;
   let pipiNaik = 0;
-  if (expression === 'sad') kelopakAtas = 0.22;
-  if (expression === 'calm') kelopakAtas = 0.2;
   if (expression === 'happy' && bicara) pipiNaik = 0.22;
   const atas = Math.max(kelopakAtas, tutup);
   // mata tersenyum "^^" saat senang & diam
-  const mataSenyum = expression === 'happy' && !bicara && !starEyes;
+  const mataSenyum = expression === 'happy' && !bicara && !starEyes && !keen;
 
   // pandangan
   const px = lihatX * rx * 0.22 + (berpikir ? rx * 0.15 : 0);
   const py = lihatY * ry * 0.12 + (berpikir ? -ry * 0.22 : 0);
-  const sk = kaget || starEyes ? 1.1 : 1;
+  const sk = starEyes ? 1.1 : mood.eyeScale;
 
   const mata = (x: number, kiri: boolean) => {
     const sx = rx * sk;
@@ -71,6 +78,22 @@ export const Face: React.FC<{
       </g>
     );
 
+    if (mood.eyesSqueezed) {
+      // crying: eyes squeezed shut into thick chevrons pointing at the nose
+      const arah = kiri ? 1 : -1;
+      return (
+        <g key={x}>
+          <path
+            d={`M${x - arah * sx * 0.85} ${mataY - sy * 0.45} L${x + arah * sx * 0.7} ${mataY + 2} L${x - arah * sx * 0.85} ${mataY + sy * 0.45}`}
+            stroke={garisMata}
+            strokeWidth={anak ? 5 : 4.5}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      );
+    }
     if (mataSenyum) {
       return (
         <g key={x}>
@@ -96,8 +119,8 @@ export const Face: React.FC<{
         <g clipPath={`url(#${idKlip})`}>
           <ellipse cx={x} cy={mataY} rx={sx} ry={sy} fill="#FFFFFF" />
           {/* iris besar hampir memenuhi mata */}
-          <ellipse cx={x + px} cy={mataY + py + sy * 0.04} rx={sx * (kaget ? 0.78 : 0.9)} ry={sy * (kaget ? 0.8 : 0.92)} fill={`url(#iris-${uid})`} />
-          <ellipse cx={x + px} cy={mataY + py + sy * 0.08} rx={sx * 0.45} ry={sy * 0.47} fill="#1A0D08" opacity={0.85} />
+          <ellipse cx={x + px} cy={mataY + py + sy * 0.04} rx={sx * 0.9 * mood.irisScale} ry={sy * 0.92 * mood.irisScale} fill={`url(#iris-${uid})`} />
+          <ellipse cx={x + px} cy={mataY + py + sy * 0.08} rx={sx * 0.45 * mood.irisScale} ry={sy * 0.47 * mood.irisScale} fill="#1A0D08" opacity={0.85} />
           {/* kilau (bintang berkilau saat terpesona) */}
           {starEyes ? (
             <path
@@ -111,6 +134,13 @@ export const Face: React.FC<{
           <circle cx={x + px - sx * 0.34} cy={mataY + py + sy * 0.38} r={sx * 0.13} fill="#FFFFFF" opacity={0.9} />
           <ellipse cx={x + px} cy={mataY + py + sy * 0.6} rx={sx * 0.5} ry={sy * 0.18} fill="#C88A60" opacity={0.35} />
           {/* tirai eyelid */}
+          {/* tears welling up along the lower lid, glistening */}
+          {mood.tearPool > 0 ? (
+            <>
+              <ellipse cx={x} cy={mataY + sy * 0.95} rx={sx * 1.05} ry={sy * 0.42 * mood.tearPool} fill={TEAR_COLOR} opacity={0.75} />
+              <ellipse cx={x + sx * 0.35} cy={mataY + sy * 0.68} rx={sx * 0.18} ry={sy * 0.1} fill="#FFFFFF" opacity={0.9} />
+            </>
+          ) : null}
           {tirai > 0.5 ? <rect x={x - sx - 2} y={top - 2} width={sx * 2 + 4} height={tirai + 2} fill={kulit} /> : null}
           {pipiNaik > 0 ? <ellipse cx={x} cy={mataY + sy * 1.75 - pipiNaik * sy} rx={sx * 1.3} ry={sy} fill={kulit} /> : null}
         </g>
@@ -129,11 +159,11 @@ export const Face: React.FC<{
 
   const alis = (x: number, kiri: boolean) => {
     // alis tipis & tinggi, jauh dari mata supaya wajah terlihat polos
-    const naik = alisNaik * 4 + (kaget ? 7 : 0) + (berpikir && !kiri ? 5 : 0);
+    const naik = alisNaik * 4 + mood.browLift + (berpikir && !kiri ? 5 : 0);
     const y = mataY - ry - (anak ? 17 : 14) - naik;
     const w = 9;
     // sedih: ujung dalam terangkat (wajah memelas, bukan marah)
-    const dalamNaik = expression === 'sad' ? 5 : 0;
+    const dalamNaik = mood.browInnerLift;
     const dx = kiri ? 1 : -1; // arah ke tengah wajah
     const xDalam = x + dx * w;
     const xLuar = x - dx * w;
@@ -173,12 +203,33 @@ export const Face: React.FC<{
   } else if (mulut.buka > 0.06) {
     const w = (mulut.bulat ? 6.5 : 10.5) * (anak ? 1 : 0.85);
     isiMulut = mulutTerbuka(w, 4 + mulut.buka * (anak ? 13 : 10));
+  } else if (keen) {
+    // listening keenly: a small, open smile
+    isiMulut = mulutTerbuka(anak ? 8 : 7, anak ? 7 : 6);
   } else if (expression === 'happy') {
     isiMulut = mulutTerbuka(anak ? 11 : 9, anak ? 11 : 8);
+  } else if (expression === 'crying') {
+    // wailing: wide open with the corners pulled down (∩), trembling
+    const w = anak ? 14 : 11;
+    const h = (anak ? 18 : 14) + lipQuiver(expression, frame) * 2;
+    isiMulut = (
+      <g>
+        <path
+          d={`M${-w} ${mulutY + 8} Q0 ${mulutY - 8} ${w} ${mulutY + 8} Q${w * 0.7} ${mulutY + h} 0 ${mulutY + h} Q${-w * 0.7} ${mulutY + h} ${-w} ${mulutY + 8} Z`}
+          fill={dalam}
+        />
+        <ellipse cx={0} cy={mulutY + h * 0.8} rx={w * 0.5} ry={h * 0.18} fill={lidah} />
+      </g>
+    );
   } else if (expression === 'sad') {
-    isiMulut = <path d={`M-7 ${mulutY + 4} Q0 ${mulutY - 3} 7 ${mulutY + 4}`} stroke="#B05050" strokeWidth={3.2} fill="none" strokeLinecap="round" />;
+    // a pouting, trembling frown
+    const quiver = lipQuiver(expression, frame);
+    isiMulut = (
+      <path d={`M-8 ${mulutY + 5} Q0 ${mulutY - 4 + quiver} 8 ${mulutY + 5}`} stroke="#B05050" strokeWidth={3.4} fill="none" strokeLinecap="round" />
+    );
   } else if (kaget) {
-    isiMulut = <ellipse cx={0} cy={mulutY + 4} rx={6.5} ry={8} fill={dalam} />;
+    // a gasp: big round open mouth
+    isiMulut = <ellipse cx={0} cy={mulutY + 5} rx={anak ? 8.5 : 7} ry={anak ? 11 : 9} fill={dalam} />;
   } else if (berpikir) {
     isiMulut = <ellipse cx={4} cy={mulutY + 1} rx={4.5} ry={3.5} fill={dalam} />;
   } else {
@@ -209,6 +260,22 @@ export const Face: React.FC<{
       <ellipse cx={0} cy={anak ? 25 : 18} rx={anak ? 4.5 : 3.5} ry={anak ? 3.2 : 3} fill="#D0866A" opacity={0.45} />
       <ellipse cx={-1} cy={anak ? 23.5 : 16.5} rx={1.6} ry={1.1} fill="#FFFFFF" opacity={0.6} />
       {isiMulut}
+      {/* crying: tears running from the outer eye corners down the cheeks */}
+      {mood.tearStreams
+        ? [-1, 1].map((side) => {
+            const startX = side * (mataX + rx * 0.6);
+            const startY = mataY + ry * 0.4;
+            return (
+              <g key={side}>
+                <path d={`M${startX} ${startY} q${side * 6} 24 ${side * 2} 44`} stroke={TEAR_COLOR} strokeWidth={anak ? 6 : 5} fill="none" strokeLinecap="round" opacity={0.85} />
+                {[0, 1].map((i) => {
+                  const drop = tearDrop(frame, i + (side > 0 ? 1 : 0));
+                  return <ellipse key={i} cx={startX + side * 3} cy={startY + drop.y} rx={4} ry={5.5} fill={TEAR_COLOR} opacity={drop.opacity} />;
+                })}
+              </g>
+            );
+          })
+        : null}
     </g>
   );
 };

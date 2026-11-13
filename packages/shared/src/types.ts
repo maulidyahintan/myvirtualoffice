@@ -137,6 +137,11 @@ export interface Scene {
   /** Words of the narration at which lightning flashes (storm backgrounds only; at most one per second). */
   lightningAt?: string[];
   /**
+   * Expression of one character that differs from the scene's `expression` (e.g. Mamas crying while Mother
+   * stays calm), from the words `at` on (whole scene without `at`).
+   */
+  moods?: CharacterMood[];
+  /**
    * AI illustration of what is happening (story told by the narrator, an object being discussed). Used
    * only when the episode's visual style is 'ai-illustration'; the scene then shows the picture full
    * screen instead of the animated characters.
@@ -158,6 +163,13 @@ export interface SceneIllustration {
 
 /** 'animation' = drawn characters & backgrounds (default); 'ai-illustration' = plus AI pictures for key scenes. */
 export type VisualStyle = 'animation' | 'ai-illustration';
+
+export interface CharacterMood {
+  character: Character;
+  expression: Expression;
+  /** Words of the narration from which this expression shows. */
+  at?: string;
+}
 
 export interface CharacterAction {
   character: Character;

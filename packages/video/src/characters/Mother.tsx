@@ -1,4 +1,5 @@
 import React, { useId } from 'react';
+import { isSadLike } from './emotion';
 import { mixPose, eatingPhase, noise, noiseS, type ArmPose, type RigProps } from './motion';
 import { Quran } from '../props/ItemArt';
 import { heldItemArt } from './Mamas';
@@ -118,7 +119,7 @@ export const Mother: React.FC<RigProps> = (r) => {
     miring += noiseS(f / 14, r.seed + 4) * 3;
     turun = r.mulut.buka * 1.5;
   }
-  if (expression === 'sad') {
+  if (isSadLike(expression)) {
     miring += 4;
     turun += 3;
   }
@@ -212,6 +213,7 @@ export const Mother: React.FC<RigProps> = (r) => {
         <path d="M80 86 Q120 60 160 86" stroke={w.ciput} strokeWidth={4} fill="none" strokeLinecap="round" />
         <g transform="translate(120 108)">
           <Face
+            frame={f}
             expression={expression}
             gaya="mother"
             kulit={w.kulit}

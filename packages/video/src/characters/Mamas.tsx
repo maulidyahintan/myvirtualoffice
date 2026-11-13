@@ -5,6 +5,7 @@ import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
 import { BackpackBag, BackpackStraps } from './Backpack';
 import { Blanket } from './Blanket';
+import { isKeenListener, isSadLike } from './emotion';
 import { blanketDrape } from './blanketMotion';
 
 /** Without a known start the blanket is already covering the child. */
@@ -256,6 +257,8 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
     // tangan kanan layar menyentuh dagu, tangan lain menyilang
     return { kiri: { bahu: -16, siku: -62 }, kanan: { bahu: -24, siku: -128 + Math.sin(f / 20) * 4 } };
   }
+  // crying: the front hand rubs the eye (solved for the 50 + 44 px arm), the other hangs limp
+  if (expression === 'crying') return { kiri: { bahu: -8, siku: -30 }, kanan: { bahu: 142, siku: 64 + Math.sin(f / 4) * 8 } };
   if (expression === 'sad') return { kiri: { bahu: -8, siku: -30 }, kanan: { bahu: -8, siku: -30 } };
   if (expression === 'calm') return { kiri: { bahu: -14, siku: -48 }, kanan: { bahu: -14, siku: -48 } };
   if (bicara) {
@@ -266,6 +269,11 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
       kiri: { bahu: 10 + g1 * 30, siku: 20 + g1 * 70 },
       kanan: { bahu: 8 + g2 * 22, siku: 10 + g2 * 55 },
     };
+  }
+  // listening keenly: hands clasped in front of the chest, swaying a little
+  if (isKeenListener(expression, r.listening ?? false, bicara)) {
+    const sway = Math.sin(f / 30) * 3;
+    return { kiri: { bahu: 16 + sway, siku: -112 }, kanan: { bahu: 16 - sway, siku: -112 } };
   }
   if (expression === 'happy') {
     const lompat = Math.sin(f / 9) * 6;
@@ -295,7 +303,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
     miring += noiseS(f / 12, r.seed + 4) * 4;
     turun = r.mulut.buka * 2.5;
   }
-  if (expression === 'sad') {
+  if (isSadLike(expression)) {
     miring -= 5;
     turun += 6;
   }
@@ -309,7 +317,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
   const sitting = huggingKnees || underBlanket;
   const craving = r.action === 'craving';
   // looking down: sad, reading, hugging the knees; a little down at the treat while craving
-  const lookingDown = (expression === 'sad' && !underBlanket) || r.action === 'reading-quran' || huggingKnees;
+  const lookingDown = (isSadLike(expression) && !underBlanket) || r.action === 'reading-quran' || huggingKnees;
   const gazeDown = lookingDown ? 1 : Number(craving) * 0.7;
   const licked = r.carriedCat === 'licking';
   // sitting with the head resting low over the knees; leaning away, giggling, while Mochi licks the cheek
@@ -436,6 +444,8 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
         {headwear === 'knit-cap' ? <KnitCap k={k} id={id} /> : <ShortHair k={k} />}
         <g transform="translate(120 132)">
           <Face
+            frame={f}
+            listening={r.listening}
             expression={licked ? 'happy' : expression}
             gaya="anak"
             kulit={k.kulit}
@@ -462,7 +472,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
         </g>
       ) : null}
       {underBlanket ? (
-        <Blanket f={f} drape={blanketDrape(r.actionFrames ?? DRAPED)} isScared={expression === 'sad' || expression === 'surprised'} isTalking={bicara} skin={k.kulit} outline={k.garis} />
+        <Blanket f={f} drape={blanketDrape(r.actionFrames ?? DRAPED)} isScared={isSadLike(expression) || expression === 'surprised'} isTalking={bicara} skin={k.kulit} outline={k.garis} />
       ) : null}
       {/* bola yang dipantulkan */}
       {r.action === 'playing' && (r.heldItem ?? 'ball') === 'ball' ? (

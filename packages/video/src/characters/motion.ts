@@ -88,6 +88,8 @@ export interface RigProps {
   reach?: number;
   /** Frames since the current action started (a blanket dropping over the child, a fright). */
   actionFrames?: number;
+  /** Someone else is talking and this character listens. */
+  listening?: boolean;
 }
 
 /**

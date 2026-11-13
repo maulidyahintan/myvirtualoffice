@@ -3,9 +3,10 @@ import { AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentF
 import type { Action, Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
 import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
 import { LightningCuesProvider, lightningAt } from './backgrounds/LightningCues';
-import { activeActions, didEarlier, hasTimedActions, phraseFrame, timeActions } from '@kantor/shared/sceneTimeline';
+import { activeActions, didEarlier, expressionAt, hasTimedActions, phraseFrame, timeActions } from '@kantor/shared/sceneTimeline';
 import { MochiFall } from './characters/MochiFall';
 import { HugArms } from './characters/HugArm';
+import { isSadLike } from './characters/emotion';
 import { MOTHER_KNEEL_DROP } from './characters/Mother';
 import { approach, bedClimbY, hugArmAims } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
@@ -661,6 +662,9 @@ export const SceneView: React.FC<{
   const nowActions = sequenced ? activeActions(timed, frame) : timed;
   const aktif: AdeganData = sequenced ? { ...data, actions: nowActions } : data;
   const startOf = (id: KarakterId) => nowActions.find((a) => a.character === id)?.startFrame ?? 0;
+  // each character's own expression (moods), changing at its words; else the scene's expression
+  const ekspresi = (id: KarakterId) =>
+    expressionAt(data.moods, id, frame, { narration: data.narration, expression: data.expression, speechStart: transisi, speechFrames });
   const lightningCues = (data.lightningAt ?? [])
     .map((words) => phraseFrame(data.narration, words, transisi, speechFrames))
     .filter((cue): cue is number => cue !== undefined);
@@ -804,7 +808,7 @@ export const SceneView: React.FC<{
             transform: `scale(${p.hadap * p.skala}, ${p.skala})`,
           }}
         >
-          <CharacterFigure id="mochi" expression={data.expression === 'sad' ? 'calm' : 'happy'} bicara={false} tinggi={tinggi} offset={37} lihatX={-1} masuk="ada" langkah={frame * 0.6} />
+          <CharacterFigure id="mochi" expression={isSadLike(data.expression) ? 'calm' : 'happy'} bicara={false} tinggi={tinggi} offset={37} lihatX={-1} masuk="ada" langkah={frame * 0.6} />
         </div>
       ),
     };
@@ -866,7 +870,7 @@ export const SceneView: React.FC<{
               <div style={{ position: 'absolute', left: bedSeat.x - (tinggiDari(staging.sitterOnBed) * 240) / 400 / 2, top: bedSeat.y - tinggiDari(staging.sitterOnBed) }}>
                 <CharacterFigure
                   id={staging.sitterOnBed}
-                  expression={data.expression}
+                  expression={ekspresi(staging.sitterOnBed)}
                   bicara={data.speaker === staging.sitterOnBed}
                   tinggi={tinggiDari(staging.sitterOnBed)}
                   offset={11}
@@ -935,7 +939,7 @@ export const SceneView: React.FC<{
               >
                 <CharacterFigure
                   id={id}
-                  expression={data.expression}
+                  expression={ekspresi(id)}
                   bicara={data.speaker === id}
                   tinggi={tinggi}
                   offset={i * 37}
@@ -946,6 +950,7 @@ export const SceneView: React.FC<{
                   carriedCat={staging.carrier === id ? staging.carriedCat : undefined}
                   reach={i === iPembuka ? doorReach(sejakPintu) : undefined}
                   actionStart={startOf(id)}
+                  listening={iPembicara >= 0 && i !== iPembicara}
                 />
               </div>
               {id === staging.hugged && iIbu >= 0 ? <HugArms {...titikPelukan(iIbu, i)} /> : null}
@@ -956,7 +961,7 @@ export const SceneView: React.FC<{
           {mochiMendekat ? <ApproachingMochi {...mochiMendekat} height={tinggiDari('mochi')} y={lantai} start={transisi + APPROACH_DELAY_FRAMES} /> : null}
           {iEfek >= 0 && data.type !== 'question' ? (
             <ExpressionEffect
-              expression={data.expression}
+              expression={ekspresi(urut[iEfek])}
               x={xs[iEfek] + tinggiDari(urut[iEfek]) * 0.22}
               y={lantai - tinggiDari(urut[iEfek]) * 1.02}
               mulai={transisi + 6}
@@ -973,7 +978,7 @@ export const SceneView: React.FC<{
 
         {/* dari balik bahu: pendengar tampil besar & kabur di tepi depan */}
         {lensa.bahu !== undefined && lensa.bahu >= 0 ? (
-          <BahuDepan id={urut[lensa.bahu]} kiri={xs[lensa.bahu] < (xs[iPembicara] ?? 960)} expression={data.expression} fw={fw} fh={fh} />
+          <BahuDepan id={urut[lensa.bahu]} kiri={xs[lensa.bahu] < (xs[iPembicara] ?? 960)} expression={ekspresi(urut[lensa.bahu])} fw={fw} fh={fh} />
         ) : null}
       </AbsoluteFill>
 

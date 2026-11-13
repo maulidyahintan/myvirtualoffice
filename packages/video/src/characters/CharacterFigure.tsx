@@ -8,6 +8,7 @@ import { Mochi } from './Mochi';
 import { Friend } from './Friend';
 import { cravingHop } from './craving';
 import { shoutMouth, startleJump, startleTremble } from './reactions';
+import { sobBounce } from './emotion';
 
 /** Cara karakter muncul di adegan. */
 export type Entrance = 'kiri' | 'kanan' | 'muncul' | 'ada';
@@ -37,6 +38,8 @@ interface Props {
   reach?: number;
   /** scene frame at which the current action started (actions that change during the scene) */
   actionStart?: number;
+  /** someone else is talking: a happy child listens keenly instead of hopping */
+  listening?: boolean;
 }
 
 const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3, friend: 4 };
@@ -58,6 +61,7 @@ export const CharacterFigure: React.FC<Props> = ({
   carriedCat,
   reach,
   actionStart = 0,
+  listening = false,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -108,12 +112,14 @@ export const CharacterFigure: React.FC<Props> = ({
     }
     // can't wait to eat: quick little hops
     if (action === 'craving') naik += cravingHop(f);
+    // crying: the shoulders jerk with every sob
+    naik += sobBounce(expression, f);
     // fright: a jump the moment it happens, then trembling
     if (action === 'startled') {
       naik += startleJump(frame - actionStart);
       geserMasuk += startleTremble(frame - actionStart);
     }
-    if ((id === 'mamas' || id === 'friend') && expression === 'happy' && !bicara && !action) {
+    if ((id === 'mamas' || id === 'friend') && expression === 'happy' && !bicara && !action && !listening) {
       const p = (f % 50) / 50;
       if (p < 0.4) {
         const t = p / 0.4;
@@ -142,6 +148,7 @@ export const CharacterFigure: React.FC<Props> = ({
     carriedCat,
     reach,
     actionFrames: frame - actionStart,
+    listening,
   };
 
   return (

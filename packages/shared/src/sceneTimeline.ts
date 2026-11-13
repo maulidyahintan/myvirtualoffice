@@ -1,6 +1,6 @@
 // Timing inside one scene: when each character action starts and when cued lightning strikes, taken from the
 // phrase of the narration it is tied to (`at`). Pure functions, unit-tested.
-import type { Character, CharacterAction } from './types.ts';
+import type { Character, CharacterAction, CharacterMood, Expression } from './types.ts';
 
 /**
  * Weights that estimate where a phrase falls in the spoken narration: every word costs its letters plus a
@@ -75,6 +75,24 @@ export function activeActions(timed: readonly TimedAction[], frame: number): Tim
 export function didEarlier(timed: readonly TimedAction[], character: Character, action: CharacterAction['action'], frame: number): boolean {
   const current = activeActions(timed, frame).find((a) => a.character === character);
   return timed.some((a) => a.character === character && a.action === action && a !== current && a.startFrame <= frame);
+}
+
+/**
+ * Expression of `character` at `frame`: its latest mood that has started, else the scene's expression.
+ */
+export function expressionAt(
+  moods: readonly CharacterMood[] | undefined,
+  character: Character,
+  frame: number,
+  scene: { narration: string; expression: Expression; speechStart: number; speechFrames: number },
+): Expression {
+  let current: { expression: Expression; startFrame: number } | undefined;
+  for (const mood of moods ?? []) {
+    if (mood.character !== character) continue;
+    const startFrame = mood.at ? (phraseFrame(scene.narration, mood.at, scene.speechStart, scene.speechFrames) ?? 0) : 0;
+    if (startFrame <= frame && (!current || startFrame >= current.startFrame)) current = { expression: mood.expression, startFrame };
+  }
+  return current?.expression ?? scene.expression;
 }
 
 /** Whether the scene's actions change during the scene (some action has a cue). */

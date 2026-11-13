@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { activeActions, didEarlier, hasTimedActions, phraseFrame, phraseStart, timeActions } from './sceneTimeline.ts';
+import { activeActions, didEarlier, expressionAt, hasTimedActions, phraseFrame, phraseStart, timeActions } from './sceneTimeline.ts';
 import type { CharacterAction } from './types.ts';
 
 const STORM =
@@ -74,5 +74,29 @@ describe('timeActions and activeActions', () => {
     expect(hasTimedActions(actions)).toBe(true);
     expect(hasTimedActions([{ character: 'mamas', action: 'shouting' }])).toBe(false);
     expect(hasTimedActions(undefined)).toBe(false);
+  });
+});
+
+describe('expressionAt', () => {
+  const scene = { narration: STORM, expression: 'surprised' as const, speechStart: 0, speechFrames: 800 };
+  const moods = [
+    { character: 'mother' as const, expression: 'calm' as const },
+    { character: 'mamas' as const, expression: 'happy' as const },
+    { character: 'mamas' as const, expression: 'crying' as const, at: 'menyelam' },
+  ];
+  const cryFrame = phraseFrame(STORM, 'menyelam', 0, 800) ?? 0;
+
+  it('gives a character its own expression for the whole scene', () => {
+    expect(expressionAt(moods, 'mother', 0, scene)).toBe('calm');
+  });
+
+  it('changes the expression of a character at the words of the narration', () => {
+    expect(expressionAt(moods, 'mamas', cryFrame - 1, scene)).toBe('happy');
+    expect(expressionAt(moods, 'mamas', cryFrame, scene)).toBe('crying');
+  });
+
+  it('falls back to the scene expression', () => {
+    expect(expressionAt(moods, 'mochi', 100, scene)).toBe('surprised');
+    expect(expressionAt(undefined, 'mamas', 100, scene)).toBe('surprised');
   });
 });

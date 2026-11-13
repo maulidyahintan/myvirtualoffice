@@ -57,13 +57,18 @@ export const ExpressionEffect: React.FC<{ expression: Expression; x: number; y: 
         </g>
       </g>
     );
-  } else if (expression === 'sad') {
-    const p = (frame % 70) / 70;
-    isi = (
-      <g transform={`translate(44 ${30 + p * 26})`} opacity={Math.sin(p * Math.PI)}>
-        <path d="M0 -16 Q12 2 0 10 Q-12 2 0 -16 Z" fill="#8EC5F0" stroke="#fff" strokeWidth={3} />
-      </g>
-    );
+  } else if (expression === 'sad' || expression === 'crying') {
+    // one slow drop when sad; drops on both sides, faster, when crying
+    const crying = expression === 'crying';
+    const period = crying ? 40 : 70;
+    isi = (crying ? [-1, 1] : [1]).map((side, i) => {
+      const p = ((frame + i * (period / 2)) % period) / period;
+      return (
+        <g key={side} transform={`translate(${side * 44} ${30 + p * 26})`} opacity={Math.sin(p * Math.PI)}>
+          <path d="M0 -16 Q12 2 0 10 Q-12 2 0 -16 Z" fill="#8EC5F0" stroke="#fff" strokeWidth={3} />
+        </g>
+      );
+    });
   } else {
     isi = [0, 1, 2, 3].map((i) => {
       const op = 0.5 + 0.5 * Math.sin(frame / 14 + i * 1.7);

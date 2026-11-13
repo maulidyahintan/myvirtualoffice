@@ -75,6 +75,11 @@ export const SceneSchema = z.object({
     .optional()
     .describe('what characters are doing in this scene; several per character when things happen in order'),
   lightningAt: z.array(z.string()).max(4).optional().describe('words of the narration where lightning flashes (storm backgrounds)'),
+  moods: z
+    .array(z.object({ character: z.enum(CHARACTERS), expression: z.enum(EXPRESSIONS), at: z.string().optional() }))
+    .max(6)
+    .optional()
+    .describe('a character whose expression differs from the scene expression, optionally from words of the narration on'),
 });
 
 export const DirectorSchema = z.object({ scenes: z.array(SceneSchema) });

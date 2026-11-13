@@ -17,7 +17,11 @@ oleh template animasi Remotion milik channel.
   - alam & kisah: night-sky, night-storm (malam hujan petir di luar rumah), dawn, desert, ocean, mountain
 - `characters`: mamas, mother, mochi, friend (teman Mamas) (0–3 per adegan; kosong untuk adegan narrator murni,
   misal kisah Nabi → pakai night-sky atau mosque tanpa karakter)
-- `expression`: happy, sad, thinking, surprised, calm
+- `expression`: happy, sad, thinking, surprised, calm, crying (menangis: mata terpejam, air mata mengalir, anak
+  mengusap mata; pakai seperlunya, untuk momen sedih yang sungguh-sungguh)
+- `moods` (opsional): ekspresi tokoh yang BERBEDA dari `expression` adegan, misal Mamas `crying` sementara
+  Mother `calm`. Boleh diberi `at` (frasa persis dari narasi) supaya ekspresinya berubah di tengah adegan,
+  misal Mamas `happy` lalu `surprised` at "duar". Kamera otomatis berpindah ke tokoh itu saat ekspresinya berubah.
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
   - Mamas/Mother/friend: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)

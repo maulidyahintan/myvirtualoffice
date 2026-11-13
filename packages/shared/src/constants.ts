@@ -40,7 +40,7 @@ export const CONTENT_TYPES = ['story', 'memorization', 'compilation'] as const;
 
 export const CHARACTERS = ['mamas', 'mother', 'mochi', 'friend'] as const;
 
-export const EXPRESSIONS = ['happy', 'sad', 'thinking', 'surprised', 'calm'] as const;
+export const EXPRESSIONS = ['happy', 'sad', 'thinking', 'surprised', 'calm', 'crying'] as const;
 
 /** Small items that characters can hold (can also be placed in scene). */
 export const HELD_ITEMS = ['quran', 'apple', 'banana', 'date', 'cake', 'chocolate-cake', 'milk-glass', 'ball', 'toy-car', 'toy-elephant', 'doll', 'book', 'flower'] as const;
@@ -228,6 +228,7 @@ export const EXPRESSION_LABEL: Record<(typeof EXPRESSIONS)[number], string> = {
   thinking: 'berpikir',
   surprised: 'kaget',
   calm: 'tenang',
+  crying: 'menangis',
 };
 export const BACKGROUND_LABEL: Record<(typeof BACKGROUNDS)[number], string> = {
   'bedroom-night': 'kamar malam',
