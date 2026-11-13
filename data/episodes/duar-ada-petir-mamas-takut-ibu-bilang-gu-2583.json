@@ -1,8 +1,8 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T06:48:08.278Z",
-  "status": "needs_audio",
+  "modified": "2026-11-13T09:23:58.297Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
     "series": "kisah-sebelum-tidur",
@@ -224,9 +224,99 @@
       "time": "2026-11-13T06:48:08.278Z",
       "by": "pemilik",
       "message": "Rekaman adegan 9 diupload"
+    },
+    {
+      "time": "2026-11-13T09:11:46.949Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-13T09:11:47.911Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 12 adegan dengan suara AI gratis"
+    },
+    {
+      "time": "2026-11-13T09:11:53.715Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (1/12)"
+    },
+    {
+      "time": "2026-11-13T09:12:02.690Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (2/12)"
+    },
+    {
+      "time": "2026-11-13T09:12:17.720Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (3/12)"
+    },
+    {
+      "time": "2026-11-13T09:12:34.285Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (4/12)"
+    },
+    {
+      "time": "2026-11-13T09:13:07.261Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (5/12)"
+    },
+    {
+      "time": "2026-11-13T09:13:19.581Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (6/12)"
+    },
+    {
+      "time": "2026-11-13T09:13:36.825Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (7/12)"
+    },
+    {
+      "time": "2026-11-13T09:13:44.771Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (8/12)"
+    },
+    {
+      "time": "2026-11-13T09:14:14.206Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (9/12)"
+    },
+    {
+      "time": "2026-11-13T09:14:28.124Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (10/12)"
+    },
+    {
+      "time": "2026-11-13T09:14:42.165Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 15 diisi suara AI (11/12)"
+    },
+    {
+      "time": "2026-11-13T09:14:55.962Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 16 diisi suara AI (12/12)"
+    },
+    {
+      "time": "2026-11-13T09:14:55.962Z",
+      "by": "pengisi-suara",
+      "message": "12 adegan diisi suara AI · semua adegan sudah ada suaranya, dengarkan lalu render"
+    },
+    {
+      "time": "2026-11-13T09:20:02.761Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-13T09:20:03.706Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-13T09:23:58.297Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
-  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "statusNote": "Video siap ditonton & disetujui",
   "script": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
     "summary": "Malam itu hujan deras, lalu terdengar suara duar. Mamas kaget dan takut. Mochi ikut bersembunyi di balik selimut, tapi ekornya masih kelihatan. Mamas lalu keliru: ia berdiri di kasur dan berteriak mengusir petir. Guruh malah datang lagi, Mamas menyelam ke bawah selimut, dan Mochi jatuh dari kasur tertimpa bantal. Ibu menjelaskan bahwa petir tidak bisa diusir dengan teriakan. Ibu juga menjelaskan bedanya guruh dan kilat, dan bahwa petir dan hujan diatur oleh Allah. Penonton diajak berpikir apa yang sebaiknya Mamas lakukan. Ibu mengajarkan QS. Ar-Ra'd ayat 13: guruh bertasbih memuji Allah. Lalu Ibu bercerita tentang dzikir yang dibaca Abdullah bin Zubair radhiyallahu 'anhuma saat mendengar guruh. Saat guruh terdengar lagi, Mamas mencoba lagi. Kali ini ia tidak berteriak. Ia memeluk Ibu, diam sebentar, lalu membaca dzikir bersama penonton. Ibu memberi contoh di keseharian: di sekolah tetap tenang dan berdzikir, dan kalau sedang di halaman, cepat masuk rumah dan jangan berteduh di bawah pohon. Pesannya: petir diatur Allah, jadi tidak perlu panik. Kalau takut, dekati Ayah atau Ibu, lalu berdzikir.",
@@ -702,20 +792,20 @@
   "audioPerScene": [
     "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-1-ai-mwelqxbp.wav",
     "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-2-ai-mwelr1tp.wav",
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-3-ai-mwercpdd.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-4-ai-mwercwap.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-5-ai-mwerd7w6.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-6-ai-mwerdkob.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-7-ai-mwerea4c.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-8-ai-mwerejmj.wav",
     "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-9-mwem7txr.mp3",
-    null,
-    null,
-    null,
-    null,
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-10-ai-mwerewxj.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-11-ai-mwerf32a.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-12-ai-mwerfprw.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-13-ai-mwerg0ii.wav",
     "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-14-mwelw2xq.mp3",
-    null,
-    null
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-15-ai-mwergbcj.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-16-ai-mwerglzs.wav"
   ],
   "sceneOffsets": [
     null,
@@ -738,21 +828,93 @@
   "aiVoiceScenes": [
     true,
     true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
     false,
+    true,
+    true,
+    true,
+    true,
     false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
+    true,
+    true
   ],
   "recordingMode": "per-scene",
-  "visualStyle": "ai-illustration"
+  "visualStyle": "ai-illustration",
+  "audioFile": "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-gabung.wav",
+  "render": {
+    "video": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583.mp4",
+    "thumbnail": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583.png",
+    "scenes": [
+      {
+        "start": 5,
+        "duration": 16.366666666666667
+      },
+      {
+        "start": 21.366666666666667,
+        "duration": 6.466666666666667
+      },
+      {
+        "start": 27.833333333333332,
+        "duration": 7.7
+      },
+      {
+        "start": 35.53333333333333,
+        "duration": 11.133333333333333
+      },
+      {
+        "start": 46.666666666666664,
+        "duration": 27.1
+      },
+      {
+        "start": 73.76666666666667,
+        "duration": 27.366666666666667
+      },
+      {
+        "start": 101.13333333333334,
+        "duration": 13.566666666666666
+      },
+      {
+        "start": 114.7,
+        "duration": 20.3
+      },
+      {
+        "start": 135,
+        "duration": 33.4
+      },
+      {
+        "start": 168.4,
+        "duration": 33.36666666666667
+      },
+      {
+        "start": 201.76666666666668,
+        "duration": 9
+      },
+      {
+        "start": 210.76666666666668,
+        "duration": 25.6
+      },
+      {
+        "start": 236.36666666666667,
+        "duration": 28.6
+      },
+      {
+        "start": 264.96666666666664,
+        "duration": 16.7
+      },
+      {
+        "start": 281.6666666666667,
+        "duration": 31.8
+      },
+      {
+        "start": 313.46666666666664,
+        "duration": 34.2
+      }
+    ],
+    "time": "2026-11-13T09:23:58.296Z"
+  }
 }
