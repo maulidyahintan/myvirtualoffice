@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FORMAT_LABEL, listEpisodes, loadConfig, playlistName, needsPlaylist, isBusy, type Episode } from '@kantor/shared';
+import { FORMAT_LABEL, listEpisodes, loadConfig, playlistName, needsPlaylist, isBusy, shortsCoverage, type Episode } from '@kantor/shared';
+import { ShortsCoverageBadge } from '@/components/ShortsCoverageBadge';
 import { addAllToPlaylists } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { SubmitButton } from '@/components/SubmitButton';
@@ -12,7 +13,7 @@ export const dynamic = 'force-dynamic';
 const URUT = { baru: 'Terbaru tayang', lama: 'Terlama tayang', az: 'Judul A–Z', za: 'Judul Z–A' } as const;
 const STATUS = { tayang: 'Sudah tayang', terjadwal: 'Terjadwal (belum tayang)', semua: 'Semua yang diupload' } as const;
 const TIPE = { semua: 'Semua tipe', standard: 'Video biasa', short: 'Shorts' } as const;
-const LENGKAP = { semua: 'Semua', lengkap: 'Punya video & Shorts', satu: 'Hanya satu format' } as const;
+const LENGKAP = { semua: 'Semua', lengkap: 'Punya video & Shorts', satu: 'Hanya satu format', belumDipotong: 'Video belum dipotong jadi Shorts' } as const;
 
 type Kunci<T> = keyof T & string;
 const pilih = <T extends object>(daftar: T, nilai: string | string[] | undefined, bawaan: Kunci<T>): Kunci<T> =>
@@ -49,12 +50,23 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
   const formatnya = (e: Episode) => e.idea.format ?? 'standard';
   // lengkap = ada versi format lain (yang juga sudah diupload / sedang dikerjakan)
   const punyaFormatLain = (e: Episode) => kerabat(e, semua).some((k) => formatnya(k) !== formatnya(e));
+  const daftarSemua = [...semua.values()];
+  const belumDipotong = (e: Episode) => {
+    const coverage = shortsCoverage(e, daftarSemua);
+    return coverage.applies && coverage.clips === 0;
+  };
+  const filterLengkap: Record<keyof typeof LENGKAP, (e: Episode) => boolean> = {
+    semua: () => true,
+    lengkap: punyaFormatLain,
+    satu: (e) => !punyaFormatLain(e),
+    belumDipotong,
+  };
 
   const kata = q.toLowerCase();
   const hasil = diupload
     .filter((e) => (status === 'tayang' ? sudahTayang(e) : status === 'terjadwal' ? !sudahTayang(e) : true))
     .filter((e) => tipe === 'semua' || formatnya(e) === tipe)
-    .filter((e) => (lengkap === 'lengkap' ? punyaFormatLain(e) : lengkap === 'satu' ? !punyaFormatLain(e) : true))
+    .filter(filterLengkap[lengkap])
     .filter((e) => !kata || judulDari(e).toLowerCase().includes(kata) || e.idea.title.toLowerCase().includes(kata))
     .sort((a, b) => {
       if (urut === 'az' || urut === 'za') {
@@ -71,6 +83,7 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
     biasa: diupload.filter((e) => formatnya(e) === 'standard').length,
     short: diupload.filter((e) => formatnya(e) === 'short').length,
     lengkap: diupload.filter(punyaFormatLain).length,
+    belumDipotong: diupload.filter(belumDipotong).length,
   };
   // belum masuk playlist, atau masih di playlist yang salah (Shorts di playlist video biasa)
   const belumPlaylist = diupload.filter((e) => needsPlaylist(e, cfg)).length;
@@ -85,7 +98,7 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
         <h1>🎬 Video Tayang</h1>
         <div className="muted kecil">
           {ringkas.tayang} sudah tayang · {ringkas.terjadwal} terjadwal · {ringkas.biasa} video biasa · {ringkas.short} Shorts ·{' '}
-          {ringkas.lengkap} punya versi video & Shorts
+          {ringkas.lengkap} punya versi video & Shorts · {ringkas.belumDipotong} video belum dipotong jadi Shorts
         </div>
       </div>
 
@@ -193,6 +206,7 @@ export default async function HalamanTayang({ searchParams }: { searchParams: Pr
                     <span className={`badge ${tayang ? 'selesai' : 'tunggu'}`}>
                       {!e.youtube?.publishTime ? 'Private' : tayang ? 'Sudah tayang' : 'Terjadwal'}
                     </span>
+                    <ShortsCoverageBadge coverage={shortsCoverage(e, daftarSemua)} />
                     <a href={e.youtube!.url} target="_blank" rel="noreferrer" className="kecil">
                       Buka di YouTube ↗
                     </a>

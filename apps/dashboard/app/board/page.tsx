@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { PHASES, listEpisodes, loadConfig, isBusy, deleteBlockers, BUSY_STATUSES, WAITING_STATUSES } from '@kantor/shared';
+import { PHASES, listEpisodes, loadConfig, isBusy, deleteBlockers, shortsCoverage, BUSY_STATUSES, WAITING_STATUSES } from '@kantor/shared';
 import { startResearch } from '../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { ArchiveDeleteButton } from '@/components/ArchiveDeleteButton';
 import { Badge } from '@/components/Badge';
+import { ShortsCoverageBadge } from '@/components/ShortsCoverageBadge';
 import { SubmitButton } from '@/components/SubmitButton';
 
 export const dynamic = 'force-dynamic';
@@ -123,7 +124,10 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
                       <Link key={e.id} href={`/episode/${e.id}`} className="kartu">
                         <div className="judul">{judul}</div>
                         {keterangan}
-                        <Badge status={e.status} />
+                        <div className="row" style={{ gap: 6 }}>
+                          <Badge status={e.status} />
+                          {k.key === 'tayang' ? <ShortsCoverageBadge coverage={shortsCoverage(e, semua)} /> : null}
+                        </div>
                       </Link>
                     );
                   }
