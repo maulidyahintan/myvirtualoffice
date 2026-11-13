@@ -43,9 +43,9 @@ a { color: var(--hijau); }
 main { padding: 32px 36px 96px; max-width: 1480px; width: 100%; margin: 0 auto; }
 
 .sidebar {
-  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden;
   display: flex; flex-direction: column; gap: 18px;
-  padding: 20px 16px 24px;
+  padding: 20px 16px 0;
   color: #dcefe7;
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 6l5 9 10-2-2 10 9 5-9 5 2 10-10-2-5 9-5-9-10 2 2-10-9-5 9-5-2-10 10 2z' fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1.2'/%3E%3C/svg%3E"),
@@ -75,9 +75,29 @@ main { padding: 32px 36px 96px; max-width: 1480px; width: 100%; margin: 0 auto; 
 .kartu-butuh.ada b { color: #3a2700; }
 .kartu-butuh.ada .kartu-butuh-angka { background: #fff; color: #b8741a; }
 
-.sidebar-nav { display: grid; gap: 14px; }
-.sidebar-judul { font-size: 11px; font-weight: 800; letter-spacing: 0.9px; text-transform: uppercase; color: rgba(220, 239, 231, 0.55); padding: 0 10px 6px; }
+.sidebar-atas { flex: none; display: grid; gap: 18px; }
+/* only the menu scrolls; the logo and the "Butuh kamu" card above it stay put */
+.sidebar-nav {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  display: flex; flex-direction: column; gap: 10px; padding-bottom: 24px;
+  scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+.sidebar-judul {
+  display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 10px; border-radius: 10px;
+  background: none; box-shadow: none; border: 0; cursor: pointer; text-align: left;
+  font-family: inherit; font-size: 11px; font-weight: 800; letter-spacing: 0.9px; text-transform: uppercase; color: rgba(220, 239, 231, 0.55);
+}
+.sidebar-judul > span:first-child { flex: 1; }
+.sidebar-judul:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+.sidebar-judul:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.6); outline-offset: 1px; }
+/* a plain row, not a green button: cancel the generic button lift on hover/press */
+.sidebar .sidebar-judul:hover:not(:disabled), .sidebar .sidebar-judul:active:not(:disabled) { transform: none; filter: none; }
+.sidebar-judul .sidebar-badge.kecil { min-width: 18px; height: 18px; font-size: 11px; letter-spacing: 0; padding: 0 5px; }
+.sidebar-panah { width: 20px; height: 20px; display: grid; place-items: center; border-radius: 6px; font-size: 13px; color: rgba(220, 239, 231, 0.8); background: rgba(255, 255, 255, 0.08); }
+.sidebar-judul:hover .sidebar-panah { background: rgba(255, 255, 255, 0.16); color: #fff; }
 .sidebar-grup { display: grid; gap: 2px; }
+.sidebar-grup-isi { display: grid; gap: 2px; }
+.sidebar-grup-isi[hidden] { display: none; }
 .sidebar-item {
   display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 12px;
   color: #e4f2ec; text-decoration: none; font-weight: 600; font-size: 14px;
