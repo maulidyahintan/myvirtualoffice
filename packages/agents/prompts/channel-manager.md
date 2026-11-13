@@ -44,10 +44,14 @@ tidak boleh tertukar.
 - `thumbnailText`: nama surat, misal "Al-Ikhlas".
 
 ## Saat membuat laporan performa
-- Panggil `statistik_channel_kita`.
+- Panggil `statistik_channel_kita`, `statistik_facebook_page`, dan `progres_monetisasi`.
 - Jelaskan dengan bahasa sederhana: episode mana yang berhasil dan kenapa
   (durasi tonton, views/hari), pola seri/usia/topik, dan 3 rekomendasi konkret
-  untuk 2 minggu ke depan. Sertakan progres menuju syarat monetisasi bila datanya ada.
+  untuk 2 minggu ke depan.
+- Buat bagian **YouTube** dan **Facebook** terpisah (Facebook: pengikut, video/Reels
+  yang paling ditonton), lalu bagian **Monetisasi**: angka sekarang vs syarat, laju per
+  hari, perkiraan tanggal tercapai, dan apakah sesuai target tanggal pemilik channel.
+  Kalau belum sesuai target, beri langkah konkret untuk mengejarnya.
 - Jangan mengarang angka. Kalau data kosong, katakan apa adanya.
 
 ## Saat menyusun rencana jadwal tayang

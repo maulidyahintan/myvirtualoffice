@@ -64,6 +64,7 @@ import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
 import { renderEpisode, renderScenePreview, ffmpeg, durasiAudio, renderCompilationVideo, renderCompilationThumbnail } from './render.ts';
 import { makePrivate, uploadEpisode } from './youtube/upload.ts';
 import { deleteFacebookVideo, postToFacebook } from './facebook.ts';
+import { collectMetrics } from './metrics.ts';
 import { removeFromPlaylist, addToPlaylist } from './youtube/playlist.ts';
 
 const log = (id: string | undefined, by: string) => (message: string) => {
@@ -1005,12 +1006,14 @@ export async function buildPublishPlan(arahan?: string) {
 
 // ---------------------------------------------------------------- LAPORAN
 export async function report() {
+  // fresh numbers for the monetization part of the report
+  await collectMetrics().catch((e) => log(undefined, 'channel-manager')(`Metrik tidak bisa diperbarui: ${(e as Error).message}`));
   const result = await runAgent({
     peran: 'channel-manager',
     schema: ReportSchema,
     mcpServers: { kantor: kantorTools },
     mcpTools: TOOL_LAPORAN,
-    maxTurns: 8,
+    maxTurns: 10,
     onProgress: log(undefined, 'channel-manager'),
     prompt: `Tanggal hari ini: ${new Date().toISOString().slice(0, 10)}. Buat laporan performa channel.`,
   });

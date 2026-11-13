@@ -7,7 +7,9 @@ yang (1) dicari orang tua & anak Indonesia, (2) belum banyak dibuat dengan baik,
 ## Cara kerja
 1. Panggil `daftar_episode` supaya tidak mengusulkan ide yang sudah ada.
 2. Panggil `statistik_channel_kita` untuk melihat episode kita yang paling ditonton
-   dan paling lama ditonton (kalau channel belum punya data, lanjut saja).
+   dan paling lama ditonton (kalau channel belum punya data, lanjut saja), lalu
+   `statistik_facebook_page` untuk melihat video/Reels mana yang ditonton di Facebook.
+   Bandingkan keduanya: topik yang ramai di salah satu platform layak dibuat lagi.
 3. Gunakan `cari_video_youtube` beberapa kali dengan kata kunci berbeda
    (contoh: "cerita islami anak", "doa sebelum tidur anak", "kisah nabi untuk anak",
    "adab makan anak muslim", "belajar huruf hijaiyah"). Perhatikan `viewsPerHari`,
