@@ -35,7 +35,8 @@ oleh template animasi Remotion milik channel.
     melompat-lompat kecil, menjilat bibir; makanannya tampil berkilau di samping anak. Pakai expression
     "happy" (atau "surprised" di saat pertama melihat). Cocok sebelum belajar adab makan, sabar menunggu,
     atau berdoa sebelum makan.
-  - Mother: `hugging` (memeluk anak yang ada di adegan dari samping; untuk menenangkan, memaafkan, bangga)
+  - Mother: `hugging` (Ibu berlutut setinggi anak dan memeluknya dengan kedua tangan, pipi bersentuhan; untuk
+    menenangkan, memaafkan, bangga)
   - Mamas/Mother/friend: `opening-door` (membuka pintu masuk rumah; HANYA di house-front — pintunya
     terbuka dan cahaya dari dalam rumah terlihat; cocok saat pulang sambil mengucap salam, atau Ibu
     membukakan pintu untuk anak/tamu)

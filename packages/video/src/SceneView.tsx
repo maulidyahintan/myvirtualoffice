@@ -5,8 +5,9 @@ import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Bac
 import { LightningCuesProvider, lightningAt } from './backgrounds/LightningCues';
 import { activeActions, didEarlier, hasTimedActions, phraseFrame, timeActions } from '@kantor/shared/sceneTimeline';
 import { MochiFall } from './characters/MochiFall';
-import { HugArm } from './characters/HugArm';
-import { approach, bedClimbY } from './characters/interactions';
+import { HugArms } from './characters/HugArm';
+import { MOTHER_KNEEL_DROP } from './characters/Mother';
+import { approach, bedClimbY, hugArmAims } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
 import { FRONT_DOOR, FrontDoor } from './backgrounds/HouseFront';
 import { DOOR_STANCE_X, doorOpen, doorReach, placeAroundDoor } from './backgrounds/door';
@@ -27,7 +28,7 @@ const FALL_DELAY_SECONDS = 1.2;
 /** A child hugging its knees sits this far left of the bed's foot, on the mattress. */
 const BED_SEAT_OFFSET = { x: -270, y: 15 };
 /** Mother's hug: the child stands this far to her right, in front of her. */
-const HUG_OFFSET_X = 165;
+const HUG_OFFSET_X = 130;
 /** Mochi stops this far beside the character it walks up to (further from a child wrapped in a blanket). */
 const APPROACH_GAP_X = 170;
 const BLANKET_APPROACH_GAP_X = 300;
@@ -809,20 +810,11 @@ export const SceneView: React.FC<{
     };
   };
 
-  /** Mother's right shoulder and the hugged child's shoulders, in stage coordinates. */
+  /** Where Mother's two arms go around the hugged child (she kneels to the child's height). */
   const titikPelukan = (iMother: number, iChild: number) => {
     const motherHeight = tinggiDari('mother');
-    const childHeight = tinggiDari(urut[iChild]);
-    const motherLeft = xs[iMother] - (motherHeight * 240) / 400 / 2;
-    const childLeft = xs[iChild] - (childHeight * 240) / 400 / 2;
-    const rig = (left: number, height: number, x: number, y: number) => ({ x: left + (x * height) / 400, y: lantai - height + (y * height) / 400 });
-    return {
-      shoulder: rig(motherLeft, motherHeight, 166, 196),
-      // across the upper back, below the child's (large) head
-      nearShoulder: rig(childLeft, childHeight, 62, 250),
-      farShoulder: rig(childLeft, childHeight, 168, 262),
-      motherHeight,
-    };
+    const aims = hugArmAims({ x: xs[iMother], height: motherHeight, drop: MOTHER_KNEEL_DROP }, { x: xs[iChild], height: tinggiDari(urut[iChild]) }, lantai);
+    return { ...aims, motherHeight };
   };
 
   // Mochi walking up to someone standing in the row: in from the side and stopping beside them
@@ -956,7 +948,7 @@ export const SceneView: React.FC<{
                   actionStart={startOf(id)}
                 />
               </div>
-              {id === staging.hugged && iIbu >= 0 ? <HugArm {...titikPelukan(iIbu, i)} /> : null}
+              {id === staging.hugged && iIbu >= 0 ? <HugArms {...titikPelukan(iIbu, i)} /> : null}
               {keliling?.depan ? keliling.el : null}
               </React.Fragment>
             );

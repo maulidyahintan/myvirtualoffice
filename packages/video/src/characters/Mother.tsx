@@ -167,6 +167,9 @@ export const Mother: React.FC<RigProps> = (r) => {
           <stop offset="1" stopColor={w.abayaGelap} />
         </linearGradient>
       </defs>
+      <g transform={hugging ? `translate(0 ${MOTHER_KNEEL_DROP})` : undefined}>
+      {hugging ? <KneelingAbaya w={w} id={id} /> : (
+      <>
       {/* abaya navy, ujung bawah bergoyang pelan */}
       <path
         d={`M80 186 Q64 290 ${44 + kibarBawah} 386 Q120 400 ${196 + kibarBawah} 386 Q176 290 160 186 Z`}
@@ -181,6 +184,8 @@ export const Mother: React.FC<RigProps> = (r) => {
       <path d={`M${46 + kibarBawah} 380 Q120 394 ${194 + kibarBawah} 380`} stroke={w.abayaAksen} strokeWidth={5} fill="none" strokeLinecap="round" />
       <ellipse cx={100 + (r.jalan !== null ? Math.sin(r.jalan) * 8 : 0)} cy={394} rx={16} ry={7} fill={w.sepatu} />
       <ellipse cx={140 - (r.jalan !== null ? Math.sin(r.jalan) * 8 : 0)} cy={394} rx={16} ry={7} fill={w.sepatu} />
+      </>
+      )}
 
       {/* lengan keluar dari bawah kerudung (saat beraksi, tangan di depan kerudung) */}
       {tanganDepan ? null : tangan(false)}
@@ -220,13 +225,29 @@ export const Mother: React.FC<RigProps> = (r) => {
         </g>
       </g>
 
-      {tanganDepan ? tangan(false) : null}
+      {/* hugging: both arms are drawn around the child (HugArms) */}
+      {tanganDepan && !hugging ? tangan(false) : null}
       {tanganDepan && !hugging ? tangan(true) : null}
       {r.action === 'reading-quran' ? (
         <g transform={`translate(120 ${258 + Math.sin(f / 30) * 1.5}) scale(1.3)`}>
           <Quran buka />
         </g>
       ) : null}
+      </g>
     </g>
   );
 };
+
+/** Mother kneels to hug a child at its height: drawn this much lower (rig px), the abaya spread on the floor. */
+export const MOTHER_KNEEL_DROP = 80;
+
+/** Kneeling abaya: the upper body down to the hips, and the skirt spread around the knees on the floor. */
+const KneelingAbaya: React.FC<{ w: ReturnType<typeof paletIbu>; id: string }> = ({ w, id }) => (
+  <>
+    <path d="M20 320 Q28 262 76 250 L164 250 Q214 262 222 320 Z" fill={`url(#abaya-${id})`} stroke={w.abayaBayang} strokeWidth={3} strokeLinejoin="round" />
+    <path d="M80 186 Q66 230 70 262 L170 262 Q174 230 160 186 Z" fill={`url(#abaya-${id})`} stroke={w.abayaBayang} strokeWidth={3} strokeLinejoin="round" />
+    <path d="M26 312 Q120 330 216 312" stroke={w.abayaAksen} strokeWidth={5} fill="none" strokeLinecap="round" />
+    <path d="M120 214 L120 300" stroke={w.abayaAksen} strokeWidth={5} strokeLinecap="round" />
+    <path d="M90 262 Q84 290 70 316 M150 262 Q156 290 170 316" stroke={w.abayaBayang} strokeWidth={4} fill="none" strokeLinecap="round" />
+  </>
+);

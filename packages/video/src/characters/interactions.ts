@@ -62,3 +62,46 @@ export function bedClimbY(x: number, bedEdgeX: number, floorY: number, bedY: num
   const progress = (bedEdgeX + BED_HOP_RUN_X - x) / BED_HOP_RUN_X;
   return floorY + (bedY - floorY) * progress - Math.sin(progress * Math.PI) * BED_HOP_ARC_HEIGHT;
 }
+
+/** Rig size every character is drawn in (240 × 400 units, scaled to its height). */
+const RIG_WIDTH = 240;
+const RIG_HEIGHT = 400;
+/** Mother's shoulders in her rig, and where her hands hold the hugged child (in the child's rig). */
+const MOTHER_SHOULDERS = { near: { x: 166, y: 196 }, far: { x: 74, y: 196 } };
+const CHILD_HUG_AIMS = {
+  // across the top of the child.s chest, the hand holding the far shoulder
+  near: { elbow: { x: 150, y: 250 }, hand: { x: 186, y: 226 } },
+  // across Mother's front to the child's waist
+  far: { elbow: { x: 30, y: 330 }, hand: { x: 66, y: 318 } },
+};
+
+export interface HugArmAim {
+  shoulder: Point;
+  elbowAim: Point;
+  handAim: Point;
+}
+
+/** A character standing at `x` (centre) on the floor, `height` tall, and lowered by `drop` rig units. */
+interface Figure {
+  x: number;
+  height: number;
+  drop?: number;
+}
+
+function rigPoint(figure: Figure, floorY: number, point: Point): Point {
+  const scale = figure.height / RIG_HEIGHT;
+  return { x: figure.x + (point.x - RIG_WIDTH / 2) * scale, y: floorY - figure.height + (point.y + (figure.drop ?? 0)) * scale };
+}
+
+/**
+ * Both of Mother's arms around the child at her right: the near arm over the child's shoulders to the far
+ * shoulder, the far arm across her front to the child's waist. Stage coordinates.
+ */
+export function hugArmAims(mother: Figure, child: Figure, floorY: number): { near: HugArmAim; far: HugArmAim } {
+  const arm = (side: 'near' | 'far'): HugArmAim => ({
+    shoulder: rigPoint(mother, floorY, MOTHER_SHOULDERS[side]),
+    elbowAim: rigPoint(child, floorY, CHILD_HUG_AIMS[side].elbow),
+    handAim: rigPoint(child, floorY, CHILD_HUG_AIMS[side].hand),
+  });
+  return { near: arm('near'), far: arm('far') };
+}

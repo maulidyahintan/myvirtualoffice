@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { APPROACH_FRAMES, BED_HOP_RUN_X, approach, armPoseTowards, bedClimbY, hangingAngle } from './interactions';
+import { APPROACH_FRAMES, BED_HOP_RUN_X, approach, armPoseTowards, bedClimbY, hangingAngle, hugArmAims } from './interactions';
 
 describe('hangingAngle', () => {
   it('is 0 straight down and turns clockwise', () => {
@@ -58,5 +58,28 @@ describe('bedClimbY', () => {
 
   it('walks on the mattress once past the edge', () => {
     expect(bedClimbY(EDGE - 10, EDGE, FLOOR, BED)).toBe(BED);
+  });
+});
+
+describe('hugArmAims', () => {
+  const FLOOR = 890;
+  const MOTHER = { x: 700, height: 683, drop: 80 };
+  const CHILD = { x: 830, height: 459 };
+  const MOTHER_ARM_REACH = (66 + 58) * (683 / 400);
+  const { near, far } = hugArmAims(MOTHER, CHILD, FLOOR);
+  const distance = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);
+
+  it('uses both arms, one from each shoulder', () => {
+    expect(near.shoulder.x).toBeGreaterThan(MOTHER.x);
+    expect(far.shoulder.x).toBeLessThan(MOTHER.x);
+  });
+
+  it('reaches the child with both hands', () => {
+    expect(distance(near.shoulder, near.handAim)).toBeLessThanOrEqual(MOTHER_ARM_REACH);
+    expect(distance(far.shoulder, far.handAim)).toBeLessThanOrEqual(MOTHER_ARM_REACH);
+  });
+
+  it('wraps the near arm across to the far side of the child', () => {
+    expect(near.handAim.x).toBeGreaterThan(CHILD.x);
   });
 });
