@@ -13,3 +13,4 @@ export * from './metricsStore.ts';
 export * from './aiVoiceQuota.ts';
 export * from './shortsCoverage.ts';
 export * from './sceneTimeline.ts';
+export * from './subtitleTiming.ts';

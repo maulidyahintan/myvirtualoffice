@@ -4,6 +4,7 @@ import type { Action, Scene as AdeganData, Character as KarakterId } from '@kant
 import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
 import { LightningCuesProvider, lightningAt } from './backgrounds/LightningCues';
 import { activeActions, didEarlier, expressionAt, hasTimedActions, phraseFrame, timeActions } from '@kantor/shared/sceneTimeline';
+import { SPEECH_BREATH_SECONDS as BREATH_SECONDS, SUBTITLE_MAX_WORDS, subtitleLines, subtitleStarts } from '@kantor/shared/subtitleTiming';
 import { MochiFall } from './characters/MochiFall';
 import { HugArms } from './characters/HugArm';
 import { isSadLike } from './characters/emotion';
@@ -37,8 +38,6 @@ const APPROACH_GAP_X = 170;
 const BLANKET_APPROACH_GAP_X = 300;
 /** Frames into the scene before Mochi starts walking. */
 const APPROACH_DELAY_FRAMES = 12;
-/** The voice ends this long before the scene does (the breath after each scene). */
-const BREATH_SECONDS = 1;
 /** A child diving from the floor onto the bed: frames in the air and height of the leap. */
 const DIVE_FRAMES = 14;
 const DIVE_ARC_HEIGHT = 150;
@@ -71,22 +70,6 @@ function posisiX(jumlah: number, vertikal: boolean): number[] {
   if (vertikal) return jumlah === 2 ? [860, 1080] : [800, 980, 1150];
   if (jumlah === 2) return [700, 1220];
   return [560, 960, 1360];
-}
-
-/** Bagi narasi jadi potongan pendek (≤ 8 kata) supaya mudah dibaca. */
-function potong(text: string, maks = 8): string[] {
-  const kata = text.split(/\s+/).filter(Boolean);
-  const hasil: string[] = [];
-  let buf: string[] = [];
-  for (const k of kata) {
-    buf.push(k);
-    if (buf.length >= maks || /[.!?]$/.test(k)) {
-      hasil.push(buf.join(' '));
-      buf = [];
-    }
-  }
-  if (buf.length) hasil.push(buf.join(' '));
-  return hasil;
 }
 
 // ---------------------------------------------------------------- kamera
@@ -298,28 +281,26 @@ const WARNA_PEMBICARA: Record<string, { nama: string; warna: string }> = {
 };
 
 /** Subtitle ala karaoke: kata muncul satu per satu sesuai perkiraan waktu bicara. */
-const Subtitle: React.FC<{ text: string; durasi: number; speaker: string; mulai: number }> = ({ text, durasi, speaker, mulai }) => {
+const Subtitle: React.FC<{ text: string; durasi: number; speaker: string; mulai: number; shifts?: (number | null)[] }> = ({
+  text,
+  durasi,
+  speaker,
+  mulai,
+  shifts,
+}) => {
   const { fps, width, height } = useVideoConfig();
   const vertikal = height > width;
   const frame = useCurrentFrame() - mulai;
   if (frame < 0) return null;
-  const potongan = potong(text, vertikal ? 6 : 8);
-  const total = potongan.reduce((s, p) => s + p.length, 0);
-  let acc = 0;
-  let aktif = potongan.length - 1;
-  let awalPotongan = 0;
-  for (let i = 0; i < potongan.length; i++) {
-    const panjang = (potongan[i].length / total) * durasi;
-    if (frame < acc + panjang) {
-      aktif = i;
-      awalPotongan = acc;
-      break;
-    }
-    acc += panjang;
-    awalPotongan = acc - panjang;
-  }
+  // lines timed by the spoken weight of their words (punctuation pauses included) over the speech, which
+  // ends a breath before the scene does; the owner's corrections move single lines
+  const potongan = subtitleLines(text, SUBTITLE_MAX_WORDS[vertikal ? 'short' : 'standard']);
+  const speechSeconds = Math.max(1, durasi / fps - BREATH_SECONDS);
+  const awal = subtitleStarts(potongan, speechSeconds, shifts).map((s) => Math.round(s * fps));
+  const aktif = Math.max(0, awal.findLastIndex((start) => frame >= start));
+  const awalPotongan = awal[aktif];
   const lokal = frame - awalPotongan;
-  const durasiPotongan = (potongan[aktif].length / total) * durasi;
+  const durasiPotongan = Math.max(1, (awal[aktif + 1] ?? durasi) - awalPotongan);
   const kata = potongan[aktif].split(' ');
   const totalHuruf = kata.reduce((s, k) => s + k.length + 1, 0);
   const pop = spring({ frame: lokal, fps, config: { damping: 14, stiffness: 200 } });
@@ -1040,7 +1021,7 @@ export const SceneView: React.FC<{
 
       {data.type === 'question' ? <TitikBerpikir mulai={durasi - fps * 3} gelap={gelap} /> : null}
 
-      {denganSubtitle && !isDoa ? <Subtitle text={data.narration} durasi={durasiIsi} speaker={data.speaker} mulai={transisi} /> : null}
+      {denganSubtitle && !isDoa ? <Subtitle text={data.narration} durasi={durasiIsi} speaker={data.speaker} mulai={transisi} shifts={data.subtitleShifts} /> : null}
     </AbsoluteFill>
     </LightningCuesProvider>
   );

@@ -8,7 +8,8 @@
     "./types": "./src/types.ts",
     "./constants": "./src/constants.ts",
     "./timing": "./src/timing.ts",
-    "./sceneTimeline": "./src/sceneTimeline.ts"
+    "./sceneTimeline": "./src/sceneTimeline.ts",
+    "./subtitleTiming": "./src/subtitleTiming.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p ."

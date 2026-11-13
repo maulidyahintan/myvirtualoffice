@@ -7,6 +7,9 @@ import {
   mixesArabicAndIndonesian,
   aiVoiceInProgress,
   sceneRevisionInProgress,
+  sceneSubtitleTimeline,
+  SUBTITLE_MAX_WORDS,
+  SUBTITLE_NUDGE_SECONDS,
   shortsSplitMarker,
   deleteBlockers,
   aiJobMarker,
@@ -77,6 +80,7 @@ import {
   sendToFacebook,
 } from '../../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
+import { SubtitleTimingEditor, type SubtitleSceneRow } from '@/components/SubtitleTimingEditor';
 import { Badge } from '@/components/Badge';
 import { AskAgentButton } from '@/components/AskAgentButton';
 import { SubmitButton } from '@/components/SubmitButton';
@@ -346,6 +350,21 @@ function AudioBacaanArab({ ep, index }: { ep: Episode; index: number }) {
         </form>
       )}
     </div>
+  );
+}
+
+/**
+ * Subtitle lines of a rendered story with their moment in the video, for the timing editor; undefined when
+ * the video has no per-scene timing (memorization videos, renders from before the timing was stored).
+ */
+function subtitleRows(ep: Episode): SubtitleSceneRow[] | undefined {
+  const rendered = ep.render?.scenes;
+  if (ep.idea.type === 'memorization' || !ep.scenes?.length || !rendered || rendered.length !== ep.scenes.length) return undefined;
+  const maxWords = SUBTITLE_MAX_WORDS[ep.idea.format === 'short' ? 'short' : 'standard'];
+  return ep.scenes.flatMap((scene, i) =>
+    scene.type === 'prayer' && scene.prayer
+      ? []
+      : [{ scene: i + 1, speaker: scene.speaker, lines: sceneSubtitleTimeline(scene.narration, rendered[i], maxWords, scene.subtitleShifts) }],
   );
 }
 
@@ -1404,12 +1423,22 @@ export default async function HalamanEpisode({
           {ep.render ? (
             <div className="panel stack">
               <h2>Hasil render</h2>
-              <video
-                controls
-                preload="metadata"
-                src={`/api/media/${ep.render.video}?v=${ep.render.time}`}
-                style={ep.idea.format === 'short' ? { maxWidth: 360, aspectRatio: '9 / 16', margin: '0 auto' } : undefined}
-              />
+              {subtitleRows(ep) ? (
+                <SubtitleTimingEditor
+                  episodeId={ep.id}
+                  videoSrc={`/api/media/${ep.render.video}?v=${ep.render.time}`}
+                  isShort={ep.idea.format === 'short'}
+                  scenes={subtitleRows(ep)!.map((row) => ({ ...row, speaker: namaTokoh[row.speaker as keyof typeof namaTokoh] ?? row.speaker }))}
+                  nudgeSeconds={SUBTITLE_NUDGE_SECONDS}
+                />
+              ) : (
+                <video
+                  controls
+                  preload="metadata"
+                  src={`/api/media/${ep.render.video}?v=${ep.render.time}`}
+                  style={ep.idea.format === 'short' ? { maxWidth: 360, aspectRatio: '9 / 16', margin: '0 auto' } : undefined}
+                />
+              )}
               {ep.render.thumbnail ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img className="thumb" alt="thumbnail" src={`/api/media/${ep.render.thumbnail}?v=${ep.render.time}`} />

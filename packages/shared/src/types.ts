@@ -141,6 +141,8 @@ export interface Scene {
    * stays calm), from the words `at` on (whole scene without `at`).
    */
   moods?: CharacterMood[];
+  /** Owner's corrections to when each subtitle line appears (seconds, + = later), per line. */
+  subtitleShifts?: (number | null)[];
   /**
    * AI illustration of what is happening (story told by the narrator, an object being discussed). Used
    * only when the episode's visual style is 'ai-illustration'; the scene then shows the picture full

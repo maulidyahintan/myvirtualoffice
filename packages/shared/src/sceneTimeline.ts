@@ -11,7 +11,8 @@ const COMMA_PAUSE_WEIGHT = 3;
 const STOP_PAUSE_WEIGHT = 12;
 const ELLIPSIS_PAUSE_WEIGHT = 15;
 
-function wordWeight(word: string): number {
+/** How long a word takes to say, relative to the others (letters, plus a pause after punctuation). */
+export function wordWeight(word: string): number {
   const letters = word.replace(/[^\p{L}\p{N}]/gu, '').length;
   let pause = 0;
   if (/(…|\.\.\.)$/.test(word)) pause = ELLIPSIS_PAUSE_WEIGHT;

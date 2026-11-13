@@ -6,6 +6,11 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   addLog,
+  moveSubtitleLine,
+  subtitleLines,
+  subtitleStarts,
+  SPEECH_BREATH_SECONDS,
+  SUBTITLE_MAX_WORDS,
   connectFacebook,
   disconnectFacebook,
   createEpisodeFromIdea,
@@ -944,6 +949,33 @@ export async function deleteRecordings(form: FormData) {
     e.sceneOffsets = undefined;
     e.audioFile = undefined;
     if (e.memorization) e.memorization.segmentStarts = undefined;
+  });
+  segarkan(id);
+}
+
+/**
+ * Move one subtitle line of a rendered scene: a little earlier/later (`geser` seconds), or to the moment the
+ * owner marked while watching (`waktu` = seconds into the video). Takes effect at the next render.
+ */
+export async function moveSubtitle(form: FormData) {
+  const id = teks(form, 'id');
+  const sceneIndex = Number(teks(form, 'adegan')) - 1;
+  const line = Number(teks(form, 'baris'));
+  const nudge = Number(teks(form, 'geser'));
+  const markedAt = Number(teks(form, 'waktu'));
+  const ep = getEpisode(id);
+  const scene = ep.scenes?.[sceneIndex];
+  const rendered = ep.render?.scenes?.[sceneIndex];
+  if (!scene || !rendered || !Number.isInteger(line) || line < 0) return;
+  const lines = subtitleLines(scene.narration, SUBTITLE_MAX_WORDS[ep.idea.format === 'short' ? 'short' : 'standard']);
+  if (line >= lines.length) return;
+  const speech = Math.max(1, rendered.duration - SPEECH_BREATH_SECONDS);
+  const shifts = scene.subtitleShifts ?? [];
+  const current = subtitleStarts(lines, speech, shifts)[line];
+  const wanted = teks(form, 'waktu') && Number.isFinite(markedAt) ? markedAt - rendered.start : current + (Number.isFinite(nudge) ? nudge : 0);
+  updateEpisode(id, (e) => {
+    const s = e.scenes?.[sceneIndex];
+    if (s) s.subtitleShifts = moveSubtitleLine(lines, speech, shifts, line, wanted);
   });
   segarkan(id);
 }
