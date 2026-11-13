@@ -28,7 +28,7 @@ const W_ASLI = {
 };
 
 /** Original palette; only the parts whose base color was changed in Settings are recomputed. */
-function paletIbu({ base, changed }: ReturnType<typeof useLook>) {
+export function paletIbu({ base, changed }: ReturnType<typeof useLook>) {
   const w = { ...W_ASLI };
   if (changed('skin')) Object.assign(w, { kulit: base.skin, kulitTerang: shade(base.skin, 0.45), kulitGelap: shade(base.skin, -0.2) });
   if (changed('hijab')) {
@@ -65,6 +65,11 @@ function poseIbu(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const pegang: ArmPose = { bahu: 8 + taut, siku: -88 };
   const kiriAksi: ArmPose = bicara ? { bahu: 6 + noise(f / 24, r.seed + 5) * 22, siku: 30 + noise(f / 24, r.seed + 5) * 60 } : bertaut;
   switch (r.action) {
+    case 'hugging': {
+      // the right arm lies over the child (HugArm); the left one hangs relaxed at her side
+      const relaxed: ArmPose = { bahu: 6 + Math.sin(f / 40), siku: 8 };
+      return { kiri: relaxed, kanan: relaxed };
+    }
     case 'reading-quran':
       return { kiri: { bahu: -16, siku: -70 }, kanan: { bahu: -16, siku: -70 } };
     case 'praying': {
@@ -114,6 +119,9 @@ export const Mother: React.FC<RigProps> = (r) => {
   }
   if (expression === 'thinking') miring += 5;
   if (r.action === 'reading-quran') turun += 4;
+  // hugging the child at her side: the right arm is drawn over the child (HugArm), the head leans towards it
+  const hugging = r.action === 'hugging';
+  if (hugging) miring += 7;
   const tanganDepan = r.action !== undefined && r.action !== 'sleeping';
   const alisNaik = bicara ? Math.max(0, noiseS(f / 11, r.seed + 7)) : 0;
 
@@ -171,7 +179,7 @@ export const Mother: React.FC<RigProps> = (r) => {
 
       {/* lengan keluar dari bawah kerudung (saat beraksi, tangan di depan kerudung) */}
       {tanganDepan ? null : tangan(false)}
-      {tanganDepan ? null : tangan(true)}
+      {tanganDepan || hugging ? null : tangan(true)}
 
       {/* kepala + kerudung */}
       <g transform={`translate(0 ${turun}) rotate(${miring} 120 180) translate(120 180) scale(1.12) translate(-120 -180)`}>
@@ -208,7 +216,7 @@ export const Mother: React.FC<RigProps> = (r) => {
       </g>
 
       {tanganDepan ? tangan(false) : null}
-      {tanganDepan ? tangan(true) : null}
+      {tanganDepan && !hugging ? tangan(true) : null}
       {r.action === 'reading-quran' ? (
         <g transform={`translate(120 ${258 + Math.sin(f / 30) * 1.5}) scale(1.3)`}>
           <Quran buka />

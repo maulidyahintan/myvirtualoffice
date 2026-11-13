@@ -29,6 +29,8 @@ interface Props {
   heldItem?: HeldItem;
   /** fase langkah dari luar (tokoh yang terus berjalan, misal Mochi berputar di kaki Mamas) */
   langkah?: number;
+  /** a child carrying Mochi (drawn in the child's arms) */
+  carriedCat?: 'calm' | 'licking';
 }
 
 const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3, friend: 4 };
@@ -47,6 +49,7 @@ export const CharacterFigure: React.FC<Props> = ({
   action,
   heldItem,
   langkah,
+  carriedCat,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -121,6 +124,7 @@ export const CharacterFigure: React.FC<Props> = ({
     jalan,
     action,
     heldItem,
+    carriedCat,
   };
 
   return (

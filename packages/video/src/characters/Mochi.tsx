@@ -102,6 +102,12 @@ const BolaMochi: React.FC<{ f: number }> = ({ f }) => {
   );
 };
 
+/** Little pink tongue flicking out of the mouth (licking a cheek). */
+const LickingTongue: React.FC<{ f: number }> = ({ f }) => {
+  const out = Math.max(0, Math.sin(f / 3.5));
+  return <ellipse cx={124} cy={264 + out * 6} rx={7} ry={3 + out * 7} fill="#F28C9A" stroke="#C0605A" strokeWidth={1.5} />;
+};
+
 export const Mochi: React.FC<RigProps> = (r) => {
   const warna = useWarnaMochi();
   const { f, expression, tutup } = r;
@@ -187,6 +193,7 @@ export const Mochi: React.FC<RigProps> = (r) => {
           <path d="M120 257 q-7 10 -14 4 M120 257 q7 10 14 4" stroke={g} strokeWidth={3} fill="none" strokeLinecap="round" />
         )}
         <path d="M70 252 L38 245 M70 261 L40 265 M170 252 L202 245 M170 261 L200 265" stroke={g} strokeWidth={2.5} strokeLinecap="round" />
+        {r.action === 'licking' ? <LickingTongue f={f} /> : null}
       </g>
     </g>
   );

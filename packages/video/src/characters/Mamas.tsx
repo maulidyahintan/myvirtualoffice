@@ -1,8 +1,9 @@
 import React, { useId } from 'react';
-import { mixPose, eatingPhase, noise, noiseS, ballBounce, type ArmPose, type RigProps } from './motion';
+import { mixPose, eatingPhase, eyelid, noise, noiseS, ballBounce, type ArmPose, type RigProps } from './motion';
 import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
 import { BackpackBag, BackpackStraps } from './Backpack';
+import { Mochi } from './Mochi';
 import { Face } from './Face';
 import { shade, useLook } from './looks';
 
@@ -113,6 +114,44 @@ const ShortHair: React.FC<{ k: ChildPalette }> = ({ k }) => (
   </>
 );
 
+/** Knees pulled up in front of the body, for a child sitting and hugging its knees. */
+const SittingLegs: React.FC<{ k: ChildPalette; id: string }> = ({ k, id }) => (
+  <g>
+    {[0, 1].map((i) => (
+      <g key={i}>
+        <rect x={84 + i * 40} y={236} width={34} height={98} rx={16} fill={`url(#celana-${id})`} stroke={k.garis} strokeWidth={2} />
+        <ellipse cx={101 + i * 40} cy={244} rx={18} ry={13} fill={k.celanaTerang} />
+        <path d={`M${78 + i * 40} 344 Q${78 + i * 40} 324 ${101 + i * 40} 322 Q${124 + i * 40} 324 ${124 + i * 40} 344 Z`} fill={k.sandal} />
+        <rect x={76 + i * 40} y={340} width={50} height={7} rx={3.5} fill="#D9D9D5" />
+      </g>
+    ))}
+  </g>
+);
+
+/** Mochi held in the child's arms: calm against the chest, or lifted to the face licking the cheek. */
+const CarriedMochi: React.FC<{ f: number; licking: boolean }> = ({ f, licking }) => {
+  const rig: RigProps = {
+    expression: 'happy',
+    bicara: false,
+    lambai: false,
+    f,
+    tutup: licking ? 0 : eyelid(f, 3),
+    mulut: { buka: 0, bulat: 0 },
+    lihatX: licking ? 1 : 0,
+    seed: 3,
+    jalan: null,
+    action: licking ? 'licking' : undefined,
+  };
+  const transform = licking
+    ? `translate(166 ${178 + Math.sin(f / 3.5) * 2}) rotate(-14) scale(0.55) translate(-124 -262)`
+    : `translate(120 ${300 + Math.sin(f / 20) * 2}) scale(0.58) translate(-120 -330)`;
+  return (
+    <g transform={transform}>
+      <Mochi {...rig} />
+    </g>
+  );
+};
+
 function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
   const ayun = Math.sin(f / 26) * 3;
@@ -144,6 +183,16 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
           { kiri: kiriAksi, kanan: { bahu: 36, siku: 30 - ballBounce(f) * 34 } };
     case 'holding':
       return { kiri: kiriAksi, kanan: pegang };
+    case 'hugging-knees': {
+      // both forearms wrapped around the knees in front of the chest
+      const hug: ArmPose = { bahu: 2 + Math.sin(f / 40), siku: -74 };
+      return { kiri: hug, kanan: hug };
+    }
+  }
+  if (r.carriedCat) {
+    // cradling Mochi in front of the chest; raised towards the face while it licks the cheek
+    const cradle: ArmPose = r.carriedCat === 'licking' ? { bahu: 20, siku: -126 } : { bahu: 14, siku: -104 + Math.sin(f / 24) * 3 };
+    return { kiri: cradle, kanan: cradle };
   }
   if (expression === 'surprised') {
     const getar = Math.sin(f / 3) * 2;
@@ -198,6 +247,11 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
   if (expression === 'surprised') turun -= 4;
   // menunduk membaca / khusyuk berdoa
   if (r.action === 'reading-quran') turun += 5;
+  const sitting = r.action === 'hugging-knees';
+  const licked = r.carriedCat === 'licking';
+  // sitting with the head resting low over the knees; leaning away, giggling, while Mochi licks the cheek
+  if (sitting) turun += 8;
+  if (licked) miring -= 7;
   const alisNaik = bicara ? Math.max(0, noiseS(f / 10, r.seed + 7)) : 0;
   const rambutAyun = Math.sin(f / 14) * 1.5;
   const langkah = r.jalan !== null ? Math.sin(r.jalan) * 20 : 0;
@@ -221,7 +275,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
   );
 
   return (
-    <g>
+    <g transform={sitting ? 'translate(0 64)' : undefined}>
       <defs>
         <pattern id={`motif-${id}`} width={10} height={10} patternUnits="userSpaceOnUse">
           <rect width={10} height={10} fill={k.panel} />
@@ -257,7 +311,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
       {r.action === 'wearing-backpack' ? <BackpackBag /> : null}
 
       {/* kaki & sandal */}
-      {[0, 1].map((i) => (
+      {sitting ? null : [0, 1].map((i) => (
         <g key={i} transform={`rotate(${(i ? -1 : 1) * langkah} ${103 + i * 34} 316)`}>
           <rect x={90 + i * 34} y={312} width={26} height={60} rx={11} fill={`url(#celana-${id})`} />
           {/* sepatu putih */}
@@ -281,9 +335,10 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
       {outfit === 'koko' ? <KokoDetails k={k} id={id} /> : <TShirtDetails k={k} />}
 
       {r.action === 'wearing-backpack' ? <BackpackStraps /> : null}
+      {sitting ? <SittingLegs k={k} id={id} /> : null}
 
-      {/* lengan */}
-      {expression === 'thinking' ? null : tangan(false)}
+      {/* lengan (saat menggendong Mochi digambar sesudah Mochi) */}
+      {expression === 'thinking' || r.carriedCat ? null : tangan(false)}
 
       {/* kepala */}
       <g transform={`translate(0 ${turun}) rotate(${miring} 120 196) translate(120 196) scale(1.14) translate(-120 -196)`}>
@@ -317,19 +372,21 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
         {headwear === 'knit-cap' ? <KnitCap k={k} id={id} /> : <ShortHair k={k} />}
         <g transform="translate(120 132)">
           <Face
-            expression={expression}
+            expression={licked ? 'happy' : expression}
             gaya="anak"
             kulit={k.kulit}
-            tutup={r.tutup}
+            tutup={licked ? 1 : r.tutup}
             mulut={r.mulut}
             bicara={bicara}
             lihatX={r.lihatX}
-            lihatY={expression === 'sad' || r.action === 'reading-quran' ? 1 : 0}
+            lihatY={expression === 'sad' || r.action === 'reading-quran' || sitting ? 1 : 0}
             alisNaik={alisNaik}
           />
         </g>
       </g>
 
+      {r.carriedCat ? <CarriedMochi f={f} licking={licked} /> : null}
+      {r.carriedCat ? tangan(false) : null}
       {tangan(true)}
 
       {/* mushaf terbuka di depan dada, dipegang kedua tangan */}

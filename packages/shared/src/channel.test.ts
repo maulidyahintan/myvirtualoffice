@@ -19,11 +19,20 @@ describe('canPerform', () => {
   });
 
   it('lets Mamas and Mother do every action that is not cat-only', () => {
-    const humanActions = ACTIONS.filter((action) => !MOCHI_ONLY_ACTIONS.includes(action) && !CHILD_ONLY_ACTIONS.includes(action));
+    const humanActions = ACTIONS.filter((action) => !MOCHI_ONLY_ACTIONS.includes(action) && !CHILD_ONLY_ACTIONS.includes(action) && action !== 'hugging');
     for (const action of humanActions) {
       expect(canPerform('mamas', action)).toBe(true);
       expect(canPerform('mother', action)).toBe(true);
     }
+  });
+
+  it('lets only Mother hug, and only the children hug their knees or carry the cat', () => {
+    expect(canPerform('mother', 'hugging')).toBe(true);
+    expect(canPerform('mamas', 'hugging')).toBe(false);
+    expect(canPerform('friend', 'hugging-knees')).toBe(true);
+    expect(canPerform('mother', 'carrying-cat')).toBe(false);
+    expect(canPerform('mochi', 'licking')).toBe(true);
+    expect(canPerform('mamas', 'approaching')).toBe(false);
   });
 
   it('gives the school bag to the children only', () => {

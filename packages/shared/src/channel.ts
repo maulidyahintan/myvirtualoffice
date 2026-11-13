@@ -155,21 +155,37 @@ export function fillPrayerCards(scenes: Scene[], evidences: Evidence[]): number[
   return filled;
 }
 
-/** Actions only the cat can do (curl up asleep, circle someone's legs, fall off the bed). */
-export const MOCHI_ONLY_ACTIONS: readonly Action[] = ['sleeping', 'circling', 'falling'];
-/** Actions the cat can do besides its own: playing with a toy. */
-const MOCHI_SHARED_ACTIONS: readonly Action[] = ['playing'];
-
-/** Actions only the children can do (Mother has no school bag). */
-export const CHILD_ONLY_ACTIONS: readonly Action[] = ['wearing-backpack'];
 /** The drawn children. */
 export const CHILDREN: readonly Character[] = ['mamas', 'friend'];
 
-/** Whether a character can perform this scene action (the Director sometimes gives Mamas a cat action). */
+/**
+ * Who may perform the actions that not everybody can do. Actions missing here are for Mamas, Mother and the
+ * friend (not the cat). The Director sometimes gives a cat action to Mamas, or a hug to the cat.
+ */
+const ACTION_PERFORMERS: Partial<Record<Action, readonly Character[]>> = {
+  sleeping: ['mochi'],
+  circling: ['mochi'],
+  falling: ['mochi'],
+  approaching: ['mochi'],
+  licking: ['mochi'],
+  playing: ['mamas', 'mother', 'mochi', 'friend'],
+  'wearing-backpack': CHILDREN,
+  'hugging-knees': CHILDREN,
+  'carrying-cat': CHILDREN,
+  hugging: ['mother'],
+};
+
+/** Actions only the cat can do (curl up asleep, circle someone's legs, fall off the bed, come closer, lick). */
+export const MOCHI_ONLY_ACTIONS: readonly Action[] = (Object.keys(ACTION_PERFORMERS) as Action[]).filter(
+  (a) => ACTION_PERFORMERS[a]?.length === 1 && ACTION_PERFORMERS[a]?.[0] === 'mochi',
+);
+/** Actions only the children can do (school bag, hugging their knees, carrying the cat). */
+export const CHILD_ONLY_ACTIONS: readonly Action[] = (Object.keys(ACTION_PERFORMERS) as Action[]).filter((a) => ACTION_PERFORMERS[a] === CHILDREN);
+
+/** Whether a character can perform this scene action. */
 export function canPerform(character: Character, action: Action): boolean {
-  if (character === 'mochi') return MOCHI_ONLY_ACTIONS.includes(action) || MOCHI_SHARED_ACTIONS.includes(action);
-  if (CHILD_ONLY_ACTIONS.includes(action)) return CHILDREN.includes(character);
-  return !MOCHI_ONLY_ACTIONS.includes(action);
+  const performers = ACTION_PERFORMERS[action];
+  return performers ? performers.includes(character) : character !== 'mochi';
 }
 
 /** Visual style used when rendering this episode (episode choice, else the channel default). */

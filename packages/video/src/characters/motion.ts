@@ -82,6 +82,8 @@ export interface RigProps {
   /** sedang melakukan apa (memegang benda, membaca Al-Qur'an, tidur, ...) */
   action?: Action;
   heldItem?: HeldItem;
+  /** A child holding Mochi in the arms: calm, or licking the child's cheek. */
+  carriedCat?: 'calm' | 'licking';
 }
 
 /**

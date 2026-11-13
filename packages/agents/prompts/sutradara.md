@@ -22,11 +22,19 @@ oleh template animasi Remotion milik channel.
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
   - Mamas & friend: `wearing-backpack` (memakai tas sekolah; pakai saat berangkat/pulang sekolah, di
     school-gate, school-yard, atau saat pamit di rumah)
+  - Mamas & friend: `hugging-knees` (duduk memeluk lutut; di bedroom-night/bedroom-storm otomatis di atas
+    kasur; untuk sedih, takut, merenung), `carrying-cat` (menggendong Mochi di dada)
+  - Mother: `hugging` (memeluk anak yang ada di adegan dari samping; untuk menenangkan, memaafkan, bangga)
   - Mochi: `sleeping` (meringkuk tidur; di bedroom-night otomatis di ujung kasur, di tempat lain di pillow),
     `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
     `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja),
     `falling` (tidur di ujung kasur, lalu bantal jatuh menimpanya dan Mochi terguling jatuh ke lantai, pusing;
     HANYA di bedroom-night / bedroom-storm — momen lucu, cocok saat suara petir mengagetkan)
+    `approaching` (berjalan pelan mendekati Mamas/teman, lalu duduk di sampingnya; kalau Mamas duduk di
+    kasur, Mochi berjalan di atas kasur), `licking` (menjilat pipi anak yang menggendongnya; anaknya otomatis
+    menggendong Mochi dan tertawa geli)
+- Adegan menghibur yang hangat bisa disusun berurutan: Mamas `hugging-knees` (sad) → Mochi `approaching` →
+  Mamas `carrying-cat` → Mochi `licking` (happy) → Mother `hugging` (calm).
 - `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower
 - `props` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
   - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, date, apple, banana, milk-glass

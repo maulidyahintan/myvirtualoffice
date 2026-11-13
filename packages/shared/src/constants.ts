@@ -63,9 +63,26 @@ export const SCENE_PROPS = [
  * playing (ball/toy). Mochi: sleeping (at the foot of the bed in bedroom-night), playing (yarn, or ball),
  * circling (walks around the legs of Mamas, or Mother when Mamas isn't shown), falling (sleeping at the foot
  * of the bed, a pillow drops on it and it tumbles to the floor, dizzy; bedroom backgrounds only).
- * Children only: wearing-backpack (school bag on the back; arms stay free).
+ * approaching (walks slowly up to Mamas, or the friend), licking (licks the cheek of the child carrying it).
+ * Children only: wearing-backpack (school bag on the back; arms stay free), hugging-knees (sits hugging the
+ * knees, on the bed in the bedrooms), carrying-cat (holds Mochi in the arms). Mother only: hugging (hugs the child).
  */
-export const ACTIONS = ['holding', 'reading-quran', 'praying', 'eating', 'playing', 'sleeping', 'circling', 'falling', 'wearing-backpack'] as const;
+export const ACTIONS = [
+  'holding',
+  'reading-quran',
+  'praying',
+  'eating',
+  'playing',
+  'sleeping',
+  'circling',
+  'falling',
+  'approaching',
+  'licking',
+  'wearing-backpack',
+  'hugging-knees',
+  'carrying-cat',
+  'hugging',
+] as const;
 
 export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
 

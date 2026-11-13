@@ -4,6 +4,9 @@ import type { Action, Scene as AdeganData, Character as KarakterId } from '@kant
 import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
 import { lightningFlash } from './backgrounds/lightning';
 import { MochiFall } from './characters/MochiFall';
+import { HugArm } from './characters/HugArm';
+import { approach } from './characters/interactions';
+import { drawOrder, mochiLeavesRow, stageInteractions } from './characters/staging';
 import { Foreground } from './backgrounds/Foreground';
 import { ScenePropsLayer } from './props/SceneProps';
 import { CharacterFigure, CHARACTER_SCALE, type Entrance } from './characters/CharacterFigure';
@@ -18,6 +21,14 @@ const TINGGI_DASAR = 560;
 
 /** Seconds Mochi sleeps before the pillow drops (action 'falling'). */
 const FALL_DELAY_SECONDS = 1.2;
+/** A child hugging its knees sits this far left of the bed's foot, on the mattress. */
+const BED_SEAT_OFFSET = { x: -270, y: 15 };
+/** Mother's hug: the child stands this far to her right, in front of her. */
+const HUG_OFFSET_X = 165;
+/** Mochi stops this far beside the character it walks up to. */
+const APPROACH_GAP_X = 170;
+/** Frames into the scene before Mochi starts walking. */
+const APPROACH_DELAY_FRAMES = 12;
 /** Strongest white-out of the whole frame during a lightning flash. */
 const LIGHTNING_OVERLAY_OPACITY = 0.28;
 
@@ -488,6 +499,36 @@ function gerakHidup(
   return { x: 0, y: 0, miring: Math.sin(f / 60) * 1, skala: 1 };
 }
 
+/** Mochi walking slowly up to someone and then standing beside them, facing the way it walked. */
+const ApproachingMochi: React.FC<{ fromX: number; toX: number; y: number; height: number; start: number }> = ({ fromX, toX, y, height, start }) => {
+  const frame = useCurrentFrame();
+  const state = approach(frame - start, fromX, toX);
+  const width = (height * 240) / 400;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: state.x - width / 2,
+        top: y - height,
+        transformOrigin: '50% 100%',
+        // Mochi's tail is on its right: walking to the left needs no mirroring
+        transform: `scaleX(${state.facing === 1 ? -1 : 1})`,
+      }}
+    >
+      <CharacterFigure
+        id="mochi"
+        expression={state.step === null ? 'happy' : 'calm'}
+        bicara={false}
+        tinggi={height}
+        offset={37}
+        lihatX={-1}
+        masuk="ada"
+        langkah={state.step ?? undefined}
+      />
+    </div>
+  );
+};
+
 /** Tokoh pendengar besar & kabur di tepi depan layar (shot dari balik bahu). */
 const BahuDepan: React.FC<{ id: KarakterId; kiri: boolean; expression: AdeganData['expression']; fw: number; fh: number }> = ({ id, kiri, expression, fw, fh }) => {
   const tinggi = fh * (id === 'mochi' ? 0.8 : 1.25);
@@ -583,13 +624,26 @@ export const SceneView: React.FC<{
   // Mochi falls off the bed under a pillow: asleep for about a second, then lands on the floor in front of the bed
   const fall = kasur && aksiMochi === 'falling' ? { start: transisi + Math.round(fps * FALL_DELAY_SECONDS), landing: { x: kasur.x - 110, y: 885 } } : undefined;
   const dikelilingi = aksiMochi === 'circling' ? (['mamas', 'mother'] as const).find((id) => data.characters.includes(id)) : undefined;
-  const mochiLepas = Boolean(kasur || dikelilingi);
+  // touching characters: a child on the bed, Mochi carried or walking up to someone, Mother hugging a child
+  const bedFoot = vertikal ? undefined : UJUNG_KASUR[data.background];
+  const staging = isDoa ? {} : stageInteractions(data, { hasBed: Boolean(bedFoot) });
+  const bedSeat = staging.sitterOnBed && bedFoot ? { x: bedFoot.x + BED_SEAT_OFFSET.x, y: bedFoot.y + BED_SEAT_OFFSET.y } : undefined;
+  const mochiLepas = Boolean(kasur || dikelilingi || mochiLeavesRow(staging));
   // abaikan id karakter lama yang sudah tidak ada (misal dari episode sebelum konsep berubah)
-  const urut = isDoa ? [] : data.characters.filter((id) => id in CHARACTER_SCALE && !(mochiLepas && id === 'mochi'));
+  const urut = isDoa
+    ? []
+    : data.characters.filter((id) => id in CHARACTER_SCALE && !(mochiLepas && id === 'mochi') && id !== staging.sitterOnBed);
   const tinggiDari = (id: KarakterId) => (vertikal ? 470 : TINGGI_DASAR) * CHARACTER_SCALE[id];
-  // tokoh berdiri di kanan kasur supaya Mochi yang tidur di ujungnya tidak tertutup badan mereka
-  const geserKasur = kasur && urut.length ? Math.max(0, kasur.x + 110 + (tinggiDari(urut[0]) * 240) / 400 / 2 - posisiX(urut.length, vertikal)[0]) : 0;
+  // tokoh berdiri di kanan kasur supaya Mochi yang tidur di ujungnya (atau anak yang duduk di kasur) tidak tertutup
+  const kasurDipakai = kasur ?? (bedSeat ? bedFoot : undefined);
+  const geserKasur = kasurDipakai && urut.length ? Math.max(0, kasurDipakai.x + 110 + (tinggiDari(urut[0]) * 240) / 400 / 2 - posisiX(urut.length, vertikal)[0]) : 0;
   const xs = posisiX(urut.length, vertikal).map((x) => x + geserKasur);
+  const iIbu = urut.indexOf('mother');
+  const iDipeluk = staging.hugged ? urut.indexOf(staging.hugged) : -1;
+  // hugged: the child stands in front of Mother, at her right side
+  if (iIbu >= 0 && iDipeluk >= 0) xs[iDipeluk] = xs[iIbu] + HUG_OFFSET_X;
+  // Mother is drawn before the child she hugs, so her arm can lie over the child
+  const urutanGambar = drawOrder(urut.length, iIbu, iDipeluk);
   const iPembicara = urut.findIndex((id) => id === data.speaker);
 
   // titik wajah tiap karakter & tengah rombongan, untuk membidik kamera
@@ -668,6 +722,28 @@ export const SceneView: React.FC<{
     };
   };
 
+  /** Mother's right shoulder and the hugged child's shoulders, in stage coordinates. */
+  const titikPelukan = (iMother: number, iChild: number) => {
+    const motherHeight = tinggiDari('mother');
+    const childHeight = tinggiDari(urut[iChild]);
+    const motherLeft = xs[iMother] - (motherHeight * 240) / 400 / 2;
+    const childLeft = xs[iChild] - (childHeight * 240) / 400 / 2;
+    const rig = (left: number, height: number, x: number, y: number) => ({ x: left + (x * height) / 400, y: lantai - height + (y * height) / 400 });
+    return {
+      shoulder: rig(motherLeft, motherHeight, 166, 196),
+      // across the upper back, below the child's (large) head
+      nearShoulder: rig(childLeft, childHeight, 62, 250),
+      farShoulder: rig(childLeft, childHeight, 168, 262),
+      motherHeight,
+    };
+  };
+
+  // Mochi walking up to someone standing in the row: in from the side and stopping beside them
+  const iTujuan = staging.approachTarget && staging.approachTarget !== staging.sitterOnBed ? urut.indexOf(staging.approachTarget) : -1;
+  const sisiDatang = iTujuan >= 0 && xs[iTujuan] < W / 2 ? 1 : -1;
+  const mochiMendekat =
+    iTujuan >= 0 ? { fromX: xs[iTujuan] + sisiDatang * (APPROACH_GAP_X + 650), toX: xs[iTujuan] + sisiDatang * APPROACH_GAP_X } : undefined;
+
   // siapa yang diberi efek expression: speaker, atau tokoh manusia pertama
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
 
@@ -691,6 +767,23 @@ export const SceneView: React.FC<{
                 <CharacterFigure id="mochi" expression="calm" bicara={false} tinggi={tinggiDari('mochi')} offset={37} masuk="ada" action="sleeping" />
               </div>
             ) : null}
+            {bedSeat && staging.sitterOnBed ? (
+              <div style={{ position: 'absolute', left: bedSeat.x - (tinggiDari(staging.sitterOnBed) * 240) / 400 / 2, top: bedSeat.y - tinggiDari(staging.sitterOnBed) }}>
+                <CharacterFigure
+                  id={staging.sitterOnBed}
+                  expression={data.expression}
+                  bicara={data.speaker === staging.sitterOnBed}
+                  tinggi={tinggiDari(staging.sitterOnBed)}
+                  offset={11}
+                  masuk="ada"
+                  action="hugging-knees"
+                  carriedCat={staging.carrier === staging.sitterOnBed ? staging.carriedCat : undefined}
+                />
+              </div>
+            ) : null}
+            {bedSeat && bedFoot && staging.approachTarget === staging.sitterOnBed && staging.sitterOnBed ? (
+              <ApproachingMochi fromX={bedFoot.x + 100} toX={bedSeat.x + APPROACH_GAP_X} y={bedFoot.y + 5} height={tinggiDari('mochi')} start={transisi + APPROACH_DELAY_FRAMES} />
+            ) : null}
           </div>
         </AbsoluteFill>
 
@@ -699,20 +792,23 @@ export const SceneView: React.FC<{
         <div style={stageStyle(kam, fw, fh)}>
           {propertiAdegan('bawah')}
           {propertiAdegan('belakang')}
-          {urut.map((id: KarakterId, i) => {
+          {urutanGambar.map((i) => {
+            const id: KarakterId = urut[i];
             const keliling = dikelilingi === id ? mochiKeliling(xs[i]) : null;
             const tinggi = tinggiDari(id);
             const lebar = (tinggi * 240) / 400;
             // yang mendengarkan menoleh ke speaker; speaker menatap penonton
             let lihatX = iPembicara >= 0 && iPembicara !== i ? Math.sign(xs[iPembicara] - xs[i]) : 0;
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
-            const masuk: Entrance = sebelumnya.includes(id) ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
+            const dalamPelukan = Boolean(staging.hugged) && (id === 'mother' || id === staging.hugged);
+            const masuk: Entrance = sebelumnya.includes(id) || dalamPelukan ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
             const aksiIni = data.actions?.find((a) => a.character === id);
             const gaya = gerakHidup(id, i, frame, {
               bicara: data.speaker === id,
               mendengar: i !== iPembicara && iPembicara >= 0,
               lihatX,
-              beraksi: !!aksiIni && aksiIni.action !== 'circling',
+              // the hug pair stays still, so Mother's arm stays on the child's shoulders
+              beraksi: (!!aksiIni && aksiIni.action !== 'circling') || dalamPelukan,
               aksi: aksiIni?.action,
             });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
@@ -740,12 +836,15 @@ export const SceneView: React.FC<{
                   masuk={masuk}
                   action={aksiIni?.action}
                   heldItem={aksiIni?.heldItem}
+                  carriedCat={staging.carrier === id ? staging.carriedCat : undefined}
                 />
               </div>
+              {id === staging.hugged && iIbu >= 0 ? <HugArm {...titikPelukan(iIbu, i)} /> : null}
               {keliling?.depan ? keliling.el : null}
               </React.Fragment>
             );
           })}
+          {mochiMendekat ? <ApproachingMochi {...mochiMendekat} height={tinggiDari('mochi')} y={lantai} start={transisi + APPROACH_DELAY_FRAMES} /> : null}
           {iEfek >= 0 && data.type !== 'question' ? (
             <ExpressionEffect
               expression={data.expression}
