@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getEpisode, SPEAKER_LABEL, speakerNames, countWords, loadConfig, MAX_PITCH, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, memorizationVoice, speakerVoice, type Episode } from '@kantor/shared';
+import { getEpisode, SPEAKER_LABEL, speakerNames, countWords, loadConfig, MAX_PITCH, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, memorizationVoice, speakerVoice, speaksArabic, type Episode } from '@kantor/shared';
 import { RecordingStudio, type StudioPart } from '@/components/RecordingStudio';
 
 export const dynamic = 'force-dynamic';
@@ -46,7 +46,7 @@ function daftarBagian(ep: Episode): StudioPart[] {
           silenceStop: 2.5,
           // ±2,3 kata per detik (membaca pelan untuk anak)
           estimate: countWords(a.narration) / 2.3,
-          voice: ketSuara(a.speaker),
+          voice: speaksArabic(a) ? `Bacaan Arab · ${ketHafalan()}` : ketSuara(a.speaker),
         }));
   const cocok = waktu?.length === bagian.length;
   return bagian.map((b, i) => ({

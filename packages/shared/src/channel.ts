@@ -91,7 +91,7 @@ const lettersOnly = (text: string) => text.toLowerCase().replace(/[^a-z]/g, '');
 type SpokenScene = Pick<Scene, 'type' | 'narration'> & { prayer?: { latin?: string }; aiVoiceAllowed?: boolean };
 
 /** Whether the spoken narration itself contains an Arabic recitation (what is said, not what is shown). */
-function speaksArabic(scene: SpokenScene): boolean {
+export function speaksArabic(scene: SpokenScene): boolean {
   if (hasArabicRecitation(scene.narration)) return true;
   // the prayer card's Latin wording read aloud, even without recognisable words or marks
   const latin = lettersOnly(scene.prayer?.latin ?? '');

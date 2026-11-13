@@ -6,7 +6,6 @@ import {
   ensureDir,
   memorizationFilter,
   pitchFilter,
-  voiceFilter,
   FPS,
   introOutroFrames,
   sceneFrames,
@@ -14,7 +13,7 @@ import {
   loadConfig,
   paths,
   memorizationSegments,
-  speakerVoice,
+  sceneVoiceFilter,
   visualStyle,
   thumbnailPlan,
   updateEpisode,
@@ -255,17 +254,10 @@ async function siapkanAudioPerScene(ep: Episode, onLine?: (s: string) => void) {
   }
   const files = per.slice(0, jumlah) as string[];
   const jeda = files.map((_, i) => JEDA_PER_ADEGAN + (!hafal && ep.scenes?.[i]?.type === 'question' ? JEDA_PERTANYAAN : 0));
-  // cerita: efek suara per pembicara (Ibu, Mamas, …); memorization: satu efek suara anak-anak untuk semua ayat
+  // story: each speaker's voice, Arabic recitations the memorization voice; memorization: that voice for every verse
   const cfg = loadConfig();
   const memorizationEffect = memorizationFilter(ep, cfg);
-  const efek = files.map((_, i) =>
-    hafal
-      ? memorizationEffect
-      : // AI voices already sound like the character; the effect is only for the owner's own voice
-        ep.characterEffects !== false && ep.scenes?.[i] && !ep.aiVoiceScenes?.[i]
-        ? voiceFilter(speakerVoice(ep.scenes[i].speaker, cfg))
-        : undefined,
-  );
+  const efek = files.map((_, i) => (hafal ? memorizationEffect : sceneVoiceFilter(ep, i, cfg)));
   const { file, mulai, durasi, olahan } = await gabungAudio(ep.id, files, { jeda, rapikan: true, efek, mulaiDari: ep.sceneOffsets }, onLine);
   ep.audioFile = file;
 

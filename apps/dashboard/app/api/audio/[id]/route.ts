@@ -5,12 +5,11 @@ import {
   addLog,
   ensureDir,
   pitchFilter,
-  voiceFilter,
   getEpisode,
   paths,
   setStatus,
-  memorizationVoice,
-  speakerVoice,
+  loadConfig,
+  sceneVoiceFilter,
   updateEpisode,
   type Episode,
 } from '@kantor/shared';
@@ -29,13 +28,13 @@ const EKSTENSI = Object.keys(TIPE);
 
 /**
  * Filter pratinjau satu rekaman, sama seperti hasil render: cerita → efek suara karakter
- * sesuai pembicara scenes, memorization → suara anak-anak. Nada episode hanya dipakai kalau
- * efek tidak aktif (supaya tidak menumpuk, misal Ibu jadi ikut tinggi).
+ * sesuai pembicara (bacaan Arab → suara hafalan), memorization → suara anak-anak. Nada episode
+ * hanya dipakai kalau efek tidak aktif (supaya tidak menumpuk, misal Ibu jadi ikut tinggi).
  */
 function filterPratinjau(ep: Episode, adegan: number | undefined, opsi: { efek: boolean;  pitch: number; offset: number }) {
-  const pembicara = adegan !== undefined && ep.idea.type !== 'memorization' ? ep.scenes?.[adegan]?.speaker : undefined;
-  const efek = !opsi.efek ? undefined : ep.idea.type === 'memorization' ? voiceFilter(memorizationVoice()) : pembicara ? voiceFilter(speakerVoice(pembicara)) : undefined;
-  const pakaiEfek = opsi.efek && (ep.idea.type === 'memorization' || pembicara);
+  const pakaiEfek = opsi.efek && (ep.idea.type === 'memorization' || adegan !== undefined);
+  // the preview applies the effect even when the episode setting is off: the owner is trying it out
+  const efek = pakaiEfek ? sceneVoiceFilter({ ...ep, characterEffects: true }, adegan ?? 0, loadConfig()) : undefined;
   return [
     // rekaman Studio: mulai dari saat video mulai (lewati hitung mundur), sama seperti render
     opsi.offset > 0.05 ? `atrim=start=${opsi.offset.toFixed(3)},asetpts=PTS-STARTPTS` : undefined,
