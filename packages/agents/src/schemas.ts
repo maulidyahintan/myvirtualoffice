@@ -8,7 +8,7 @@ export const IdeaSchema = z.object({
   series: z.string().describe('series id from kantor.config.json'),
   age: z.enum(AGE_GROUPS),
   moralMessage: z.string(),
-  format: z.enum(FORMATS).describe("'standard' = 16:9 video 3–5 minutes, 'short' = vertical YouTube Shorts < 60 seconds"),
+  format: z.enum(FORMATS).describe("'standard' = 16:9 video 5–8 minutes, 'short' = vertical YouTube Shorts < 60 seconds"),
   reason: z.string().describe('reason based on research data'),
   references: z.array(z.string()),
 });

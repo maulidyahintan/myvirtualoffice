@@ -78,7 +78,7 @@ function formatInfo(ep: Episode): string {
   const { min, max } = SCRIPT_WORD_LIMIT[ep.idea.format ?? 'standard'];
   return (ep.idea.format ?? 'standard') === 'short'
     ? `FORMAT: YouTube Shorts (video vertikal 9:16, total < 60 detik, naskah ${min}–${max} kata). Ikuti aturan bagian "Format Shorts" di peranmu.`
-    : `FORMAT: Video biasa (16:9, MAKSIMAL 5 menit, naskah ${min}–${max} kata). Langsung ke inti cerita, tidak bertele-tele.`;
+    : `FORMAT: Video biasa (16:9, 5–8 menit, naskah ${min}–${max} kata). Cerita utuh dan hidup, tapi tidak bertele-tele.`;
 }
 
 function seriesList() {
@@ -144,9 +144,14 @@ export async function writeScript(id: string) {
       e.script = script;
     });
 
-    // too long → back to the writer to tighten it before spending a review on it
+    // too long or too short → back to the writer before spending a review on it
     const limit = SCRIPT_WORD_LIMIT[ep.idea.format ?? 'standard'];
     const words = scriptWordCount(script);
+    if (words < limit.min && round < cfg.maxAutoRevisions && !ep.previousRecordings?.length) {
+      log(id, 'penulis')(`Naskah ${words} kata, kurang dari ${limit.min} kata — dikembangkan`);
+      feedback = `Naskah terlalu pendek: ${words} kata, minimal ${limit.min} kata (target ${limit.min}–${limit.max}). Kembangkan ceritanya, bukan diulang-ulang: tambah satu kejadian kecil yang memajukan konflik, dialog Mamas ↔ Ibu yang hidup, momen lucu Mochi, dan contoh penerapan pelajaran dalam keseharian. Pesan moral tetap satu dan jelas.`;
+      continue;
+    }
     // a revision of an already-recorded script must not be condensed: that would change narration that is reused
     if (words > limit.max && round < cfg.maxAutoRevisions && !ep.previousRecordings?.length) {
       log(id, 'penulis')(`Naskah ${words} kata, melebihi batas ${limit.max} kata — dipadatkan`);

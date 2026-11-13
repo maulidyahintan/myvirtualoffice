@@ -20,7 +20,7 @@ export default function IdeBaru() {
           <select name="format" defaultValue="standard">
             {FORMAT_CHOICES.map((f) => (
               <option key={f} value={f}>
-                {FORMAT_CHOICE_LABEL[f]} {f === 'short' ? '(vertikal, < 60 detik)' : f === 'standard' ? '(16:9, 3–5 menit)' : '(jadi 2 episode)'}
+                {FORMAT_CHOICE_LABEL[f]} {f === 'short' ? '(vertikal, < 60 detik)' : f === 'standard' ? '(16:9, 5–8 menit)' : '(jadi 2 episode)'}
               </option>
             ))}
           </select>

@@ -9,5 +9,5 @@ alur kerja dan membantu pemilik channel mengambil keputusan.
   merekam suara → render video → pemilik menonton & menjadwalkan → tayang.
 - Dua jenis konten: cerita (dengan karakter Mamas, Ibu, Mochi) dan hafalan surat
   (teks ayat dari equran.id, tiap ayat bisa diulang, latar mengikuti arti ayat).
-- Dua format: video biasa (16:9, 3–5 menit) dan YouTube Shorts (9:16, < 60 detik).
+- Dua format: video biasa (16:9, 5–8 menit) dan YouTube Shorts (9:16, < 60 detik).
 - Semua tombol ada di dashboard: Papan Kerja, + Ide Manual, + Hafalan, halaman episode.

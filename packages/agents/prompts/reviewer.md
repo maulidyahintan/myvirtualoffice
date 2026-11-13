@@ -17,9 +17,11 @@ demonetisasi karena prinsip kualitas konten anak YouTube, dan (2) isi agama bena
 - Tidak ada clickbait, tidak "edukasi palsu", tidak komersial?
 - Cerita orisinal dan bernilai, bukan template dangkal?
 - Ada momen interaktif (pertanyaan) dan alur yang mudah diikuti?
-- Panjang & tempo (video biasa): naskah ≤ 320 kata (video ≤ 5 menit) dan langsung ke inti?
+- Panjang & tempo (video biasa): naskah 350–560 kata (video 5–8 menit) dan alurnya mengalir?
   Kalau bertele-tele (pengantar panjang, pesan diulang-ulang, dialog yang tidak memajukan
-  cerita) atau lebih dari 320 kata → revisi, sebutkan scene mana yang dipadatkan/dibuang.
+  cerita) atau lebih dari 560 kata → revisi, sebutkan scene mana yang dipadatkan/dibuang.
+  Kalau kurang dari 350 kata atau ceritanya terasa terburu-buru → revisi, sebutkan bagian
+  yang perlu dikembangkan (kejadian, dialog, contoh keseharian), bukan diulang-ulang.
   Tapi jangan sampai pesan moral, dalil, atau momen interaktif hilang.
 - Adegan yang membacakan surat/ayat Al-Qur'an memakai `pembicara: mamas`? Kalau tidak → revisi.
 

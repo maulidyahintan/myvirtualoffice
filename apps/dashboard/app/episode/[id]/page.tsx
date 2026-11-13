@@ -1042,19 +1042,21 @@ function TombolDraft({ ep }: { ep: Episode }) {
 
 const cfgZona = () => loadConfig().timeZone;
 
-/** Jumlah kata & perkiraan durasi naskah; peringatan bila melebihi batas (video biasa ≤ 5 menit). */
+/** Jumlah kata & perkiraan durasi naskah; peringatan bila di luar batas (video biasa 5–8 menit). */
 function PanjangNaskah({ ep }: { ep: Episode }) {
   if (!ep.script) return null;
   const format = ep.idea.format ?? 'standard';
-  const { max } = SCRIPT_WORD_LIMIT[format];
+  const { min, max } = SCRIPT_WORD_LIMIT[format];
   const kata = scriptWordCount(ep.script);
   const detik = estimatedScriptSeconds(ep.script, format);
   const durasi = `${Math.floor(detik / 60)}:${String(Math.round(detik % 60)).padStart(2, '0')}`;
   const lewat = kata > max;
+  const kurang = format === 'standard' && kata < min;
   return (
-    <p className={lewat ? 'peringatan kecil' : 'kecil muted'} style={{ margin: '0 0 8px' }}>
-      📏 {kata} kata · perkiraan video ±{durasi} (batas {max} kata{format === 'standard' ? ', maks. 5 menit' : ''})
+    <p className={lewat || kurang ? 'peringatan kecil' : 'kecil muted'} style={{ margin: '0 0 8px' }}>
+      📏 {kata} kata · perkiraan video ±{durasi} ({format === 'standard' ? `target ${min}–${max} kata, 5–8 menit` : `batas ${max} kata`})
       {lewat ? ' — terlalu panjang, minta revisi untuk dipadatkan.' : ''}
+      {kurang ? ' — terlalu pendek, minta revisi untuk dikembangkan.' : ''}
     </p>
   );
 }

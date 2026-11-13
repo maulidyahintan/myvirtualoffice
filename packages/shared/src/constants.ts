@@ -64,7 +64,7 @@ export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
 
 export const AGE_GROUPS = ['1-3', '4-6', '7-10', '1-10'] as const;
 
-/** Video format: standard (16:9, 3–5 minutes) or YouTube Shorts (9:16, < 60 seconds). */
+/** Video format: standard (16:9, 5–8 minutes) or YouTube Shorts (9:16, < 60 seconds). */
 export const FORMATS = ['standard', 'short'] as const;
 
 export const FORMAT_LABEL = { standard: 'Video biasa', short: 'YouTube Shorts' } as const;

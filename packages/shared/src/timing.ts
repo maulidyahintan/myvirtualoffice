@@ -11,11 +11,11 @@ const QUESTION_PAUSE_SECONDS = 3; // Child given time to think
 const RECORDED_WORDS_PER_SECOND = 1.2;
 
 /**
- * Script length limits (narration words). Standard videos stay under 5 minutes: 320 words at the
- * recorded pace ≈ 4.4 minutes of content, plus intro/outro.
+ * Script length limits (narration words). Standard videos run 5–8 minutes: at the recorded pace
+ * 350 words ≈ 4:50 and 560 words ≈ 7:45 of content, plus intro/outro.
  */
 export const SCRIPT_WORD_LIMIT: Record<Format, { min: number; max: number }> = {
-  standard: { min: 220, max: 320 },
+  standard: { min: 350, max: 560 },
   short: { min: 45, max: 65 },
 };
 
