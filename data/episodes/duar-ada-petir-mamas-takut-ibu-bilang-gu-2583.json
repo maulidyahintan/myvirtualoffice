@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T06:18:47.194Z",
+  "modified": "2026-11-13T06:43:01.177Z",
   "status": "needs_audio",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -134,6 +134,41 @@
       "time": "2026-11-13T06:18:47.194Z",
       "by": "orchestrator",
       "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-13T06:34:50.566Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-13T06:34:51.545Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 14 adegan dengan suara AI gratis (adegan 9, 14 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-13T06:34:59.510Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/14)"
+    },
+    {
+      "time": "2026-11-13T06:35:05.342Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (2/14)"
+    },
+    {
+      "time": "2026-11-13T06:35:05.606Z",
+      "by": "pengisi-suara",
+      "message": "2 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari) · rekam sendiri adegan 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16"
+    },
+    {
+      "time": "2026-11-13T06:39:00.065Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 14 diupload"
+    },
+    {
+      "time": "2026-11-13T06:43:01.176Z",
+      "by": "pemilik",
+      "message": "Adegan 9 memakai QS. Ar-Ra'd ayat 13 utuh (bukan penggalan); arti di adegan 10 dilengkapi"
     }
   ],
   "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
@@ -192,13 +227,13 @@
       {
         "type": "story",
         "speaker": "mamas",
-        "narration": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+        "narration": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih, wa yursiluṣ-ṣawā‘iqa fa yuṣību bihā may yasyā'u wa hum yujādilūna fillāh, wa huwa syadīdul-miḥāl.",
         "visualDirection": "night-sky: awan hujan gelap yang tenang dengan kilat samar di kejauhan, tanpa sorotan cahaya dan tanpa sosok apa pun."
       },
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
+        "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Allah jugalah yang mengirim petir, dan Allah Mahakuat. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
         "visualDirection": "bedroom-night: Ibu dan Mamas bersandar di bantal, Mamas mendengarkan dengan mata berbinar."
       },
       {
@@ -241,9 +276,9 @@
     "evidences": [
       {
         "type": "ayat",
-        "arabicText": "وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ",
-        "latin": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
-        "translation": "Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya. (Penggalan awal ayat)",
+        "arabicText": "وَيُسَبِّحُ ٱلرَّعْدُ بِحَمْدِهِۦ وَٱلْمَلَـٰٓئِكَةُ مِنْ خِيفَتِهِۦ وَيُرْسِلُ ٱلصَّوَٰعِقَ فَيُصِيبُ بِهَا مَن يَشَآءُ وَهُمْ يُجَـٰدِلُونَ فِى ٱللَّهِ وَهُوَ شَدِيدُ ٱلْمِحَالِ",
+        "latin": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih, wa yursiluṣ-ṣawā‘iqa fa yuṣību bihā may yasyā'u wa hum yujādilūna fillāh, wa huwa syadīdul-miḥāl.",
+        "translation": "Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya, dan Allah melepaskan halilintar, lalu menimpakannya kepada siapa yang Dia kehendaki, sementara mereka berbantah-bantahan tentang Allah, dan Dia Mahakeras siksaan-Nya.",
         "source": "QS. Ar-Ra'd [13]: 13"
       },
       {
@@ -412,7 +447,7 @@
     {
       "type": "prayer",
       "speaker": "mamas",
-      "narration": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+      "narration": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih, wa yursiluṣ-ṣawā‘iqa fa yuṣību bihā may yasyā'u wa hum yujādilūna fillāh, wa huwa syadīdul-miḥāl.",
       "background": "bedroom-night",
       "characters": [
         "mamas",
@@ -431,15 +466,15 @@
         }
       ],
       "prayer": {
-        "arabic": "وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ",
-        "latin": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
-        "meaning": "Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya. (Penggalan awal ayat) (QS. Ar-Ra'd [13]: 13)"
+        "arabic": "وَيُسَبِّحُ ٱلرَّعْدُ بِحَمْدِهِۦ وَٱلْمَلَـٰٓئِكَةُ مِنْ خِيفَتِهِۦ وَيُرْسِلُ ٱلصَّوَٰعِقَ فَيُصِيبُ بِهَا مَن يَشَآءُ وَهُمْ يُجَـٰدِلُونَ فِى ٱللَّهِ وَهُوَ شَدِيدُ ٱلْمِحَالِ",
+        "latin": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih, wa yursiluṣ-ṣawā‘iqa fa yuṣību bihā may yasyā'u wa hum yujādilūna fillāh, wa huwa syadīdul-miḥāl.",
+        "meaning": "Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya, dan Allah melepaskan halilintar, lalu menimpakannya kepada siapa yang Dia kehendaki, sementara mereka berbantah-bantahan tentang Allah, dan Dia Mahakeras siksaan-Nya. (QS. Ar-Ra'd [13]: 13)"
       }
     },
     {
       "type": "story",
       "speaker": "mother",
-      "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
+      "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Allah jugalah yang mengirim petir, dan Allah Mahakuat. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
       "background": "bedroom-night",
       "characters": [
         "mother",
@@ -592,5 +627,60 @@
       "pendidikan islam anak usia dini"
     ],
     "thumbnailText": "Ada Petir, Baca Apa?"
-  }
+  },
+  "audioPerScene": [
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-1-ai-mwelqxbp.wav",
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-2-ai-mwelr1tp.wav",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-14-mwelw2xq.mp3",
+    null,
+    null
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "recordingMode": "per-scene"
 }
