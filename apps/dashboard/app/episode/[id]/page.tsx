@@ -35,6 +35,8 @@ import {
   paths,
   nextFreeSlot,
   isBusy,
+  aiVoiceUsage,
+  quotaResetText,
   facebookConnection,
   needsFacebookPost,
   BUSY_STATUSES,
@@ -130,15 +132,10 @@ function envAda(...nama: string[]): boolean {
 
 const suaraAiSiap = () => envAda('GEMINI_API_KEY');
 
-/** Pemakaian suara AI hari ini (ditulis pengisi suara di data/suara-ai.json). */
-function pemakaianSuaraAi(): { requests: number; exhausted: boolean } {
-  try {
-    const u = JSON.parse(fs.readFileSync(path.join(paths.data(), 'suara-ai.json'), 'utf8'));
-    const today = u.date === new Date().toISOString().slice(0, 10);
-    return { requests: today ? u.requests : 0, exhausted: today && Boolean(u.exhaustedAt) };
-  } catch {
-    return { requests: 0, exhausted: false };
-  }
+/** Free AI voice use in the current quota day, and when the quota refills (in the channel's time zone). */
+function pemakaianSuaraAi(): { requests: number; exhausted: boolean; reset: string } {
+  const usage = aiVoiceUsage();
+  return { requests: usage.requests, exhausted: Boolean(usage.exhaustedAt), reset: quotaResetText(new Date(), loadConfig().timeZone) };
 }
 
 /** Status suara AI gratis di atas daftar rekaman: cara pakai, jatah hari ini, atau cara menyiapkannya. */
@@ -152,7 +149,9 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
         <summary>🤖 Mau diisi suara AI gratis?</summary>
         <p className="muted" style={{ marginBottom: 0 }}>
           Buat API key di <b>aistudio.google.com/apikey</b> dengan proyek <b>tanpa akun penagihan</b> (supaya tidak pernah ada biaya), lalu
-          isi <code>GEMINI_API_KEY=</code> di file <code>.env</code> proyek. Setelah itu tombolnya muncul di tiap adegan.
+          isi <code>GEMINI_API_KEY=</code> di file <code>.env</code> proyek. Setelah itu tombolnya muncul di tiap adegan. Jatah gratisnya
+          ±10 adegan per model per hari dan terisi lagi setiap hari pukul 15.00 WIB (tengah malam waktu Pasifik; 14.00 WIB saat musim
+          panas di Amerika).
         </p>
       </details>
     );
@@ -191,11 +190,18 @@ function IsiSuaraAi({ ep }: { ep: Episode }) {
       </SubmitButton>
       <span className="kecil muted">
         {pakai.exhausted
-          ? 'Jatah suara AI gratis hari ini sudah habis; rekam sendiri atau coba lagi besok.'
-          : `Diisi satu per satu, berurutan; adegan yang sedang dikerjakan ditandai ⏳. Bisa juga per adegan lewat tombol 🤖 di adegannya. Bacaan Arab tetap rekam sendiri. Jatah Google ±20 adegan per hari; hari ini terpakai ${pakai.requests}.`}
+          ? `Jatah suara AI gratis sudah habis; terisi lagi ${pakai.reset}. Rekam sendiri atau tunggu jatahnya terisi.`
+          : `Diisi satu per satu, berurutan; adegan yang sedang dikerjakan ditandai ⏳. Bisa juga per adegan lewat tombol 🤖 di adegannya. Bacaan Arab tetap rekam sendiri. Jatah Google ±20 adegan per hari; hari ini terpakai ${pakai.requests}, jatah baru ${pakai.reset}.`}
       </span>
     </form>
   );
+}
+
+/** Tooltip for a disabled AI voice button: another scene is busy (index, -1 = unknown) or the quota ran out. */
+function alasanTombolSuaraAi(sedangDikerjakan: number | undefined, pakai: { exhausted: boolean; reset: string }): string | undefined {
+  if (sedangDikerjakan !== undefined) return `Tunggu adegan ${sedangDikerjakan >= 0 ? sedangDikerjakan + 1 : 'lain'} selesai dulu`;
+  if (pakai.exhausted) return `Jatah suara AI gratis habis; terisi lagi ${pakai.reset}`;
+  return undefined;
 }
 
 /** Tombol suara AI untuk satu adegan, atau tanda loading kalau adegan ini sedang dibuatkan suaranya. */
@@ -211,17 +217,13 @@ function TombolSuaraAi({ ep, index }: { ep: Episode; index: number }) {
     );
   }
   const sibuk = dikerjakan !== undefined || isBusy(aiJobMarker(ep.id));
+  const pakai = pemakaianSuaraAi();
+  const alasan = alasanTombolSuaraAi(sibuk ? dikerjakan ?? -1 : undefined, pakai);
   return (
     <form action={fillAiVoices}>
       <Id id={ep.id} />
       <input type="hidden" name="adegan" value={index + 1} />
-      <SubmitButton
-        type="submit"
-        className="sekunder"
-        disabled={sibuk || pemakaianSuaraAi().exhausted}
-        teksProses="Memulai…"
-        title={sibuk ? `Tunggu adegan ${dikerjakan !== undefined ? dikerjakan + 1 : 'lain'} selesai dulu` : undefined}
-      >
+      <SubmitButton type="submit" className="sekunder" disabled={sibuk || pakai.exhausted} teksProses="Memulai…" title={alasan}>
         🤖 Isi suara AI
       </SubmitButton>
     </form>
