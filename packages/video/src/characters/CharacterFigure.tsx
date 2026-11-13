@@ -5,6 +5,7 @@ import { eatingPhase, eyelid, talkingMouth, type Mouth, type RigProps } from './
 import { Mother } from './Mother';
 import { Mamas } from './Mamas';
 import { Mochi } from './Mochi';
+import { Friend } from './Friend';
 
 /** Cara karakter muncul di adegan. */
 export type Entrance = 'kiri' | 'kanan' | 'muncul' | 'ada';
@@ -30,7 +31,7 @@ interface Props {
   langkah?: number;
 }
 
-const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3 };
+const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3, friend: 4 };
 export const DURASI_JALAN = 34;
 
 export const CharacterFigure: React.FC<Props> = ({
@@ -94,7 +95,7 @@ export const CharacterFigure: React.FC<Props> = ({
       naik += Math.sin(t * Math.PI) * 30;
       regang += Math.sin(t * Math.PI) * 0.08;
     }
-    if (id === 'mamas' && expression === 'happy' && !bicara && !action) {
+    if ((id === 'mamas' || id === 'friend') && expression === 'happy' && !bicara && !action) {
       const p = (f % 50) / 50;
       if (p < 0.4) {
         const t = p / 0.4;
@@ -138,6 +139,7 @@ export const CharacterFigure: React.FC<Props> = ({
         {id === 'mamas' && <Mamas {...rig} />}
         {id === 'mother' && <Mother {...rig} />}
         {id === 'mochi' && <Mochi {...rig} />}
+        {id === 'friend' && <Friend {...rig} />}
       </g>
     </svg>
   );
@@ -152,4 +154,4 @@ function mulutMakan(f: number): Mouth {
 }
 
 /** Tinggi relatif tiap karakter supaya proporsinya masuk akal. */
-export const CHARACTER_SCALE: Record<KarakterId, number> = { mamas: 0.82, mother: 1.22, mochi: 0.5 };
+export const CHARACTER_SCALE: Record<KarakterId, number> = { mamas: 0.82, mother: 1.22, mochi: 0.5, friend: 0.86 };

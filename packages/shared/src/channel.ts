@@ -28,6 +28,7 @@ export function characterLooks(cfg: AppConfig): Required<{ [K in keyof Character
     mamas: { ...DEFAULT_CHARACTER_LOOKS.mamas, ...own.mamas },
     mother: { ...DEFAULT_CHARACTER_LOOKS.mother, ...own.mother },
     mochi: { ...DEFAULT_CHARACTER_LOOKS.mochi, ...own.mochi },
+    friend: { ...DEFAULT_CHARACTER_LOOKS.friend, ...own.friend },
   };
 }
 
@@ -162,7 +163,7 @@ const MOCHI_SHARED_ACTIONS: readonly Action[] = ['playing'];
 /** Actions only the children can do (Mother has no school bag). */
 export const CHILD_ONLY_ACTIONS: readonly Action[] = ['wearing-backpack'];
 /** The drawn children. */
-export const CHILDREN: readonly Character[] = ['mamas'];
+export const CHILDREN: readonly Character[] = ['mamas', 'friend'];
 
 /** Whether a character can perform this scene action (the Director sometimes gives Mamas a cat action). */
 export function canPerform(character: Character, action: Action): boolean {

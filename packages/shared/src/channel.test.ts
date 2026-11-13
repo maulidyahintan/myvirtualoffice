@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { ACTIONS } from './constants.ts';
-import { CHILD_ONLY_ACTIONS, MOCHI_ONLY_ACTIONS, canPerform } from './channel.ts';
+import { ACTIONS, DEFAULT_CHARACTER_LOOKS } from './constants.ts';
+import type { AppConfig } from './types.ts';
+import { CHILD_ONLY_ACTIONS, MOCHI_ONLY_ACTIONS, canPerform, characterLooks } from './channel.ts';
 
 describe('canPerform', () => {
   it('lets Mochi do its own actions and play', () => {
@@ -26,8 +27,17 @@ describe('canPerform', () => {
   });
 
   it('gives the school bag to the children only', () => {
+    expect(canPerform('friend', 'wearing-backpack')).toBe(true);
     expect(canPerform('mamas', 'wearing-backpack')).toBe(true);
     expect(canPerform('mother', 'wearing-backpack')).toBe(false);
     expect(canPerform('mochi', 'wearing-backpack')).toBe(false);
+  });
+});
+
+describe('characterLooks', () => {
+  it('includes the friend with his default colors and the owner overrides', () => {
+    const looks = characterLooks({ characterLooks: { friend: { shirt: '#123456' } } } as AppConfig);
+    expect(looks.friend.shirt).toBe('#123456');
+    expect(looks.friend.hair).toBe(DEFAULT_CHARACTER_LOOKS.friend.hair);
   });
 });

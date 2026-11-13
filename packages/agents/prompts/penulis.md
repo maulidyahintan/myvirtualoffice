@@ -34,7 +34,9 @@ direkam dengan suara manusia (pemilik channel membaca naskahmu sendiri).
 ## Aturan menulis
 - `narration` adalah teks yang DIBACA keras. Tulis persis seperti diucapkan
   (termasuk bacaan doa dalam latin bila dibaca). Kalimat pendek.
-- `speaker`: siapa yang bicara di scene itu (mamas, mother, atau narrator).
+- `speaker`: siapa yang bicara di scene itu (mamas, mother, friend, atau narrator). `friend` adalah
+  teman Mamas (lihat bagian karakter); pakai hanya di cerita yang memang melibatkan teman, misalnya di
+  sekolah, bermain bersama, berbagi, atau berselisih lalu berbaikan.
   Mochi tidak bicara.
 - **Setiap bacaan berbahasa Arab = SATU scene sendiri** (WAJIB): doa, dzikir (misal
   Ḥasbunallāh), ayat/surat Al-Qur'an, atau lafaz hadits. Scene itu HANYA berisi bacaannya

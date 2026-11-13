@@ -376,6 +376,7 @@ export interface CharacterLooks {
   mamas?: { skin?: string; cap?: string; shirt?: string; pants?: string };
   mother?: { skin?: string; hijab?: string; dress?: string };
   mochi?: { fur?: string; belly?: string };
+  friend?: { skin?: string; hair?: string; shirt?: string; pants?: string };
 }
 
 export interface AppConfig {
@@ -402,7 +403,7 @@ export interface AppConfig {
   /** Publish schedule plan from Channel Manager (owner can edit); basis for default schedule when approving video. */
   publishPlan?: PublishPlan;
   /** Voice effect per speaker (overrides DEFAULT_CHARACTER_VOICE). */
-  characterVoices?: Partial<Record<'narrator' | 'mother' | 'mamas' | 'mochi', { pitch: number; tempo: number }>>;
+  characterVoices?: Partial<Record<Speaker, { pitch: number; tempo: number }>>;
   /** Name & personality per speaker, read by the agents (overrides DEFAULT_CHARACTER_PROFILES). */
   characters?: Partial<Record<Speaker, CharacterProfile>>;
   /** Colors of the drawn characters (overrides DEFAULT_CHARACTER_LOOKS). */

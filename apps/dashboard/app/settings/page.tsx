@@ -51,7 +51,7 @@ import path from 'node:path';
 import { Collapsible } from '@/components/Collapsible';
 import { SubmitButton } from '@/components/SubmitButton';
 
-const NAMA_SPEAKERS = { narrator: '📖 Narator', mother: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', memorization: '🕌 Bacaan hafalan' } as const;
+const NAMA_SPEAKERS = { narrator: '📖 Narator', mother: '🧕 Ibu', mamas: '👦 Mamas', mochi: '🐱 Mochi', friend: '🧒 Teman Mamas', memorization: '🕌 Bacaan hafalan' } as const;
 
 export const dynamic = 'force-dynamic';
 

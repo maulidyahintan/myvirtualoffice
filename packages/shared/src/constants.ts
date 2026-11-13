@@ -37,7 +37,7 @@ export const CHAT_AGENTS = ['manajer', 'riset', 'penulis', 'reviewer', 'sutradar
 /** Content type: story (script + characters) or memorization (Quranic recitation). */
 export const CONTENT_TYPES = ['story', 'memorization', 'compilation'] as const;
 
-export const CHARACTERS = ['mamas', 'mother', 'mochi'] as const;
+export const CHARACTERS = ['mamas', 'mother', 'mochi', 'friend'] as const;
 
 export const EXPRESSIONS = ['happy', 'sad', 'thinking', 'surprised', 'calm'] as const;
 
@@ -115,13 +115,14 @@ export function pitchFilter(semitones: number): string | undefined {
 }
 
 /** Voice per speaker in per-scene recording. Can be changed in Settings page. */
-export const SPEAKERS = ['narrator', 'mother', 'mamas', 'mochi'] as const;
+export const SPEAKERS = ['narrator', 'mother', 'mamas', 'mochi', 'friend'] as const;
 export const DEFAULT_CHARACTER_VOICE: Record<(typeof SPEAKERS)[number], { pitch: number; tempo: number; note: string }> = {
   narrator: { pitch: 0, tempo: 1, note: 'suara asli' },
   // Small pitch shifts only: too much shift sounds like robot/chipmunk
   mother: { pitch: -1.5, tempo: 0.96, note: 'sedikit lebih berat, kalem & pelan' },
   mamas: { pitch: 2.5, tempo: 1.04, note: 'lebih muda & ceria, tetap natural' },
   mochi: { pitch: 4, tempo: 1.05, note: 'kecil & menggemaskan' },
+  friend: { pitch: 3.5, tempo: 1.06, note: 'anak-anak, sedikit beda dari Mamas' },
 };
 export const CHARACTER_PITCH_LIMITS = { min: -6, max: 9 };
 /** Memorization video recitation voice: higher like children & slower for easy following. */
@@ -176,7 +177,7 @@ export const NO_DRAFT_STATUSES: EpisodeStatus[] = ['uploading', 'scheduled', 'pu
 export const FPS = 30;
 
 /** Indonesian display labels for code-level enum values (the UI stays Indonesian). */
-export const SPEAKER_LABEL: Record<(typeof SPEAKERS)[number], string> = { narrator: 'Narator', mother: 'Ibu', mamas: 'Mamas', mochi: 'Mochi' };
+export const SPEAKER_LABEL: Record<(typeof SPEAKERS)[number], string> = { narrator: 'Narator', mother: 'Ibu', mamas: 'Mamas', mochi: 'Mochi', friend: 'Ali' };
 export const SCENE_TYPE_LABEL: Record<(typeof SCENE_TYPES)[number], string> = { story: 'cerita', prayer: 'doa', question: 'pertanyaan' };
 export const EXPRESSION_LABEL: Record<(typeof EXPRESSIONS)[number], string> = {
   happy: 'senang',
@@ -224,6 +225,11 @@ export const DEFAULT_CHARACTER_PROFILES: Record<(typeof SPEAKERS)[number], { nam
       'Ibunda Mamas. Kerudung pink panjang, abaya navy. Lembut, sabar, menjelaskan dengan bahasa sederhana dan contoh sehari-hari. Mamas memanggilnya "Ibu".',
   },
   mochi: { name: 'Mochi', description: 'Kucing oranye milik keluarga. Tidak bicara, hanya bereaksi lucu.' },
+  friend: {
+    name: 'Ali',
+    description:
+      'Teman sebaya Mamas di sekolah dan tetangga, anak laki-laki 5 tahun. Rambut hitam pendek, kaos hijau bergaris, celana biru. Ramah, aktif, suka bermain bola; kadang berbeda pendapat dengan Mamas, lalu mereka belajar saling mengalah.',
+  },
   narrator: { name: 'Narator', description: 'Suara hangat yang bercerita sebelum tidur.' },
 };
 
@@ -232,6 +238,7 @@ export const DEFAULT_CHARACTER_LOOKS = {
   mamas: { skin: '#F6CBAE', cap: '#3E6E9E', shirt: '#F8F7F2', pants: '#4B5468' },
   mother: { skin: '#F7CFB4', hijab: '#F3A9C2', dress: '#24305E' },
   mochi: { fur: '#F0A04B', belly: '#FCE3C4' },
+  friend: { skin: '#E3AD87', hair: '#2A1E1A', shirt: '#3FA27A', pants: '#3E5A8C' },
 } as const;
 
 /** Indonesian labels of the editable color parts, for the Settings form. */
@@ -243,6 +250,7 @@ export const CHARACTER_LOOK_LABEL: Record<string, string> = {
   hijab: 'Kerudung',
   dress: 'Abaya / gamis',
   fur: 'Bulu',
+  hair: 'Rambut',
   belly: 'Perut',
 };
 
@@ -271,4 +279,5 @@ export const AI_VOICES: Record<(typeof SPEAKERS)[number], { voice: string; style
   mother: { voice: 'Vindemiatrix', style: 'Ucapkan dengan lembut, sabar, dan penuh kasih seperti seorang ibu berbicara kepada anaknya' },
   mamas: { voice: 'Achird', style: 'Ucapkan dengan ceria, polos, dan bersemangat seperti anak laki-laki berumur empat tahun', pitch: 4 },
   mochi: { voice: 'Puck', style: 'Ucapkan dengan lucu dan riang' },
+  friend: { voice: 'Fenrir', style: 'Ucapkan dengan riang, aktif, dan bersemangat seperti anak laki-laki berumur lima tahun', pitch: 4 },
 };

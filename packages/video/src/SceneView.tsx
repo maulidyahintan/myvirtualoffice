@@ -223,6 +223,7 @@ function rencanaShot(
 const WARNA_PEMBICARA: Record<string, { nama: string; warna: string }> = {
   mother: { nama: 'Ibu', warna: '#E0709A' },
   mamas: { nama: 'Mamas', warna: '#3E6E9E' },
+  friend: { nama: 'Ali', warna: '#2F8A63' },
 };
 
 /** Subtitle ala karaoke: kata muncul satu per satu sesuai perkiraan waktu bicara. */

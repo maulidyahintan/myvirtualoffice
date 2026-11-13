@@ -14,13 +14,13 @@ oleh template animasi Remotion milik channel.
     school-canteen (kantin: jajan, makan bekal, antre)
   - belanja: market (lapak buah, sayur, kue), store (minimarket, rak & kasir)
   - alam & kisah: night-sky, night-storm (malam hujan petir di luar rumah), dawn, desert, ocean, mountain
-- `characters`: mamas, mother, mochi (0–3 per adegan; kosong untuk adegan narrator murni,
+- `characters`: mamas, mother, mochi, friend (teman Mamas) (0–3 per adegan; kosong untuk adegan narrator murni,
   misal kisah Nabi → pakai night-sky atau mosque tanpa karakter)
 - `expression`: happy, sad, thinking, surprised, calm
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
   - Mamas/Mother: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
-  - Mamas saja: `wearing-backpack` (memakai tas sekolah; pakai saat berangkat/pulang sekolah, di
+  - Mamas & friend: `wearing-backpack` (memakai tas sekolah; pakai saat berangkat/pulang sekolah, di
     school-gate, school-yard, atau saat pamit di rumah)
   - Mochi: `sleeping` (meringkuk tidur; di bedroom-night otomatis di ujung kasur, di tempat lain di pillow),
     `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
@@ -38,7 +38,7 @@ oleh template animasi Remotion milik channel.
 ## Aturan
 - Jumlah dan urutan adegan HARUS sama dengan naskah; `narration` dan `speaker`
   disalin persis dari naskah (jangan diubah sedikit pun — sudah direkam).
-- Pembicara (mamas/mother) harus ada di `characters` adegannya.
+- Pembicara (mamas/mother/friend) harus ada di `characters` adegannya.
 - Adegan yang membacakan surat/ayat Al-Qur'an dibacakan Mamas: `characters` memuat mamas,
   expression "calm", background yang teduh (mosque, bedroom-night, atau living-room).
 - Buat video terasa hidup: pakai beberapa tempat yang logis dengan alur cerita (misal
