@@ -6,6 +6,7 @@ import {
   effectiveRecordingMode,
   mixesArabicAndIndonesian,
   aiVoiceInProgress,
+  sceneRevisionInProgress,
   deleteBlockers,
   aiJobMarker,
   needsHumanVoice,
@@ -347,6 +348,13 @@ function AudioBacaanArab({ ep, index }: { ep: Episode; index: number }) {
   );
 }
 
+/** Why the fix-scene button is locked: another scene is being fixed, or another AI job runs on this episode. */
+function BusyHint({ otherScene, otherJob }: { otherScene?: number; otherJob: boolean }) {
+  if (otherScene !== undefined) return <span className="muted">Tunggu adegan {otherScene + 1} selesai diperbaiki dulu.</span>;
+  if (otherJob) return <span className="muted">Tunggu pekerjaan AI lain di episode ini selesai dulu.</span>;
+  return null;
+}
+
 /** Perbaiki satu adegan dengan arahan, lalu lihat pratinjau adegan itu saja (narasi & rekaman tetap). */
 function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
   if (ep.idea.type === 'memorization' || !['needs_audio', 'needs_video_approval', 'error'].includes(ep.status)) return null;
@@ -354,6 +362,7 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
   const gambar = visualStyle(ep, loadConfig()) === 'ai-illustration' && scene.illustration;
   const pratinjau = ep.scenePreviews?.[index];
   const sedang = isBusy(aiJobMarker(ep.id));
+  const diperbaiki = sceneRevisionInProgress(ep.id);
   return (
     <div className="stack" style={{ gap: 6, marginTop: 6 }}>
       {mixesArabicAndIndonesian(scene) ? (
@@ -383,6 +392,18 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
         </div>
       ) : null}
       <UbahNarasi ep={ep} index={index} />
+      {diperbaiki === index ? (
+        <div className="kecil row sedang-diperbaiki" role="status" style={{ gap: 8 }}>
+          <span className="putar" aria-hidden />
+          <span>
+            <b>Adegan {index + 1} sedang diperbaiki.</b>{' '}
+            <span className="muted">
+              {gambar ? 'Gambar AI dibuat ulang' : 'Sutradara menyusun ulang adegan'}
+              {ep.render ? ', lalu pratinjaunya dirender (±1–2 menit)' : ''}. Halaman ini diperbarui otomatis.
+            </span>
+          </span>
+        </div>
+      ) : (
       <details className="kecil">
         <summary>🎬 Perbaiki adegan ini</summary>
         <form action={reviseOneScene} className="stack" style={{ marginTop: 8, gap: 6 }}>
@@ -402,11 +423,13 @@ function PerbaikiAdegan({ ep, index }: { ep: Episode; index: number }) {
             {gambar ? 'Gambar AI adegan ini dibuat ulang sesuai arahan.' : 'Sutradara menyusun ulang latar, tokoh, ekspresi, aksi & properti adegan ini.'} Narasi &
             rekaman tetap. {ep.render ? 'Setelah itu pratinjau adegan ini saja dirender (±1 menit).' : ''}
           </span>
-          <SubmitButton type="submit" className="sekunder" disabled={sedang} teksProses="Mengirim…">
+          <SubmitButton type="submit" className="sekunder" disabled={sedang || diperbaiki !== undefined} teksProses="Mengirim…">
             🎬 Perbaiki adegan {index + 1}
           </SubmitButton>
+          <BusyHint otherScene={diperbaiki} otherJob={sedang} />
         </form>
       </details>
+      )}
     </div>
   );
 }
@@ -1345,7 +1368,14 @@ export default async function HalamanEpisode({
           <TombolDraft ep={ep} />
           <AskAgentButton />
           <AutoRefresh
-            aktif={BUSY_STATUSES.includes(ep.status) || isBusy(`shorts-${ep.id}`) || isBusy(`${ep.id}-metadata`) || isBusy(aiJobMarker(ep.id)) || aiVoiceInProgress(ep.id) !== undefined}
+            aktif={
+              BUSY_STATUSES.includes(ep.status) ||
+              isBusy(`shorts-${ep.id}`) ||
+              isBusy(`${ep.id}-metadata`) ||
+              isBusy(aiJobMarker(ep.id)) ||
+              aiVoiceInProgress(ep.id) !== undefined ||
+              sceneRevisionInProgress(ep.id) !== undefined
+            }
           />
         </div>
       </div>

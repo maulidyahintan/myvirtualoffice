@@ -29,6 +29,7 @@ import {
   mixesArabicAndIndonesian,
   fillPrayerCards,
   setAiVoiceProgress,
+  setSceneRevisionProgress,
   ensureDir,
   type Background,
   paths,
@@ -610,7 +611,16 @@ async function fillAiVoicesNow(id: string, sceneNo?: number) {
  * Fix one scene (1-based) from the owner's note, narration unchanged: an AI-illustration scene gets a new
  * picture, any other scene is redone by the Director. Then only that scene is rendered as a preview.
  */
+/** Fix one scene at the owner's request; the episode page shows it as in progress until this ends. */
 export async function reviseScene(id: string, sceneNo: number, note: string) {
+  try {
+    await reviseSceneNow(id, sceneNo, note);
+  } finally {
+    setSceneRevisionProgress(id, null);
+  }
+}
+
+async function reviseSceneNow(id: string, sceneNo: number, note: string) {
   const ep = getEpisode(id);
   const i = sceneNo - 1;
   const scene = ep.scenes?.[i];

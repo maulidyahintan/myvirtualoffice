@@ -46,6 +46,8 @@ import {
   aiVoiceInProgress,
   needsHumanVoice,
   setAiVoiceProgress,
+  setSceneRevisionProgress,
+  sceneRevisionInProgress,
   isBusy,
   deleteBlockers,
   deleteEpisode,
@@ -804,10 +806,12 @@ export async function editSceneText(form: FormData) {
 export async function reviseOneScene(form: FormData) {
   const id = teks(form, 'id');
   // one AI helper job per episode at a time (repeated clicks would spend the free quota twice)
-  if (isBusy(aiJobMarker(id))) return;
+  if (isBusy(aiJobMarker(id)) || sceneRevisionInProgress(id) !== undefined) return;
   const adegan = teks(form, 'adegan');
   const arahan = teks(form, 'arahan');
   if (!arahan) return;
+  // marked before the worker starts, so the page shows the scene as being fixed right away
+  setSceneRevisionProgress(id, Number(adegan) - 1);
   addLog(id, 'pemilik', `Minta adegan ${adegan} diperbaiki: ${arahan.slice(0, 80)}`);
   runOfficeCommand(['revisi-adegan', id, adegan, arahan], id);
   segarkan(id);

@@ -527,3 +527,6 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .requirement { display: grid; gap: 4px; }
 .requirement-head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .platform-forecast { font-size: 18px; font-weight: 700; }
+
+/* a scene the Director is fixing: replaces the fix form until the preview is ready */
+.sedang-diperbaiki { align-items: center; padding: 8px 10px; border-radius: 8px; background: rgba(120, 140, 255, 0.12); border: 1px solid rgba(120, 140, 255, 0.35); }
