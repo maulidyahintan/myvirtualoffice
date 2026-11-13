@@ -1,7 +1,7 @@
 {
   "id": "mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8",
   "created": "2026-11-13T01:01:30.473Z",
-  "modified": "2026-11-13T01:45:33.435Z",
+  "modified": "2026-11-13T07:59:35.375Z",
   "status": "needs_script_approval",
   "idea": {
     "title": "Mamas Pulang, Lupa Salam! Kenapa Masuk Rumah Harus Sebut Nama Allah?",
@@ -16,7 +16,7 @@
       "QS. An-Nur: 61; HR. Muslim no. 2018"
     ]
   },
-  "revisionCount": 2,
+  "revisionCount": 3,
   "log": [
     {
       "time": "2026-11-13T01:01:30.473Z",
@@ -167,6 +167,36 @@
       "time": "2026-11-13T01:45:33.435Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-13T07:58:21.761Z",
+      "by": "pemilik",
+      "message": "Minta revisi: sekalian saja HAPUS adegan 1, jadi tidak mengucapkan salam, langsung ke adegan 2"
+    },
+    {
+      "time": "2026-11-13T07:58:22.663Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-13T07:59:03.361Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T07:59:03.815Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-13T07:59:34.958Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T07:59:35.375Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
     }
   ],
   "statusNote": "Naskah siap diperiksa pemilik channel",
@@ -174,12 +204,6 @@
     "title": "Mamas Pulang, Lupa Salam! Kenapa Masuk Rumah Harus Sebut Nama Allah?",
     "summary": "Mamas pulang dari masjid dengan perut lapar. Ia berlari masuk rumah dan lupa mengucap Bismillah dan salam. Ibu menjelaskan dengan lembut. Di Surat An-Nur ayat 61, Allah menyuruh kita memberi salam saat masuk rumah, dan salam adalah doa yang penuh berkah. Ibu juga menyampaikan sabda Rasulullah ﷺ: kalau kita menyebut nama Allah saat masuk rumah dan saat makan, setan tidak dapat tempat menginap dan tidak dapat makan malam (HR. Muslim no. 2018). Mamas mencoba lagi, tapi keliru. Ia berlari dan meneriakkan salam cepat-cepat, lupa Bismillah lagi, sandalnya terlempar, dan Mochi kaget lalu bersembunyi di balik sofa. Ibu membimbingnya: salam itu doa, jadi diucapkan dengan jelas, tidak sambil berteriak dan berlari, nama Allah disebut dulu, dan kalau buru-buru kita gampang lupa. Ibu juga memberi contoh dari kebiasaannya sendiri setiap pulang dari pasar. Mamas minta maaf kepada Mochi, merapikan sandal, lalu masuk pelan-pelan sambil mengucap Bismillah dan salam. Ibu menjawab salamnya. Ada momen lucu saat Mochi mengendus kue cokelat, lalu Mamas membaca Bismillah sebelum makan. Di penutup, narator memberi contoh untuk sehari-hari: pulang sekolah, berkunjung ke rumah Nenek, dan menjawab salam. Episode ini sengaja tidak memakai doa masuk rumah dari riwayat yang derajatnya diperselisihkan.",
     "scenes": [
-      {
-        "type": "prayer",
-        "speaker": "narrator",
-        "narration": "Assalāmu'alaikum.",
-        "visualDirection": "Halaman rumah (yard) saat sore yang hangat, langit jingga lembut, rumah Mamas tampak tenang dari luar."
-      },
       {
         "type": "story",
         "speaker": "narrator",
@@ -306,21 +330,22 @@
     "decision": "approved",
     "score": 8.5,
     "notes": [
-      "Syariat aman. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Rasulullah ﷺ hanya disebut lewat dialog Ibu. Keempat dalil punya sumber spesifik dan lafaznya sesuai dengan yang saya ketahui.",
-      "Pemisahan bacaan Arab sudah benar. Scene 1, 12, 13, dan 15 hanya berisi bacaan latin, tanpa pengantar atau arti bahasa Indonesia. Tidak ada scene yang membacakan ayat Al-Qur'an, jadi aturan `speaker: mamas` untuk ayat tidak berlaku.",
-      "Panjang 401 kata sudah dalam batas. Alurnya runtut: konflik, pertanyaan, penjelasan, mencoba lalu keliru, dibimbing, berhasil, lalu penutup. Perilaku negatif (berlari dan berteriak sampai Mochi takut) diberi penyelesaian dengan minta maaf dan merapikan sandal. Adegan Mochi dan kue cokelat juga menambah pesan keamanan hewan yang baik.",
-      "Saran opsional untuk scene 11: dialog Ibu cukup padat (sekitar 70 kata, 4–5 pesan sekaligus) untuk usia 4–6. Bisa dipecah jadi dua scene. Misalnya, kalimat 'Ibu juga begitu, lho. Setiap pulang dari pasar…' dijadikan scene sendiri supaya anak tidak kebanjiran informasi.",
-      "Saran opsional: permintaan maaf Mamas ke Mochi sekarang hanya ada di visualDirection. Pertimbangkan satu kalimat pendek dari Mamas, misalnya 'Maaf ya, Mochi. Mamas bikin kaget.' Dengan begitu konsekuensi dan penyelesaiannya terdengar, bukan hanya terlihat.",
-      "Saran opsional untuk scene 2: 'pulang dari masjid' bisa diberi keterangan 'bersama Ayah' di narasi. Tujuannya supaya tidak terkesan anak 4 tahun pulang sendirian. Ayah cukup disebut, tidak digambar.",
-      "Penjelasan Ibu 'salam itu doa, diucapkan dengan jelas, tidak sambil berteriak' adalah adab umum dan tidak diklaim sebagai dalil, jadi aman. Kalimat 'Salam itu ucapan yang diajarkan Allah. Isinya penuh berkah dan baik' adalah parafrase wajar dari 'taḥiyyatan min 'indillāhi mubārakatan ṭayyibah'."
+      "Lolos syariat. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Setan hanya disebut dalam kutipan hadits dan tidak digambar. Keempat dalil punya sumber spesifik, dan teksnya sesuai dengan yang saya ketahui. Tidak ada keutamaan yang dikarang. Keputusan tidak memakai doa masuk rumah yang derajatnya diperselisihkan sudah tepat.",
+      "Lolos kualitas konten anak. Perilaku negatif ada konsekuensi dan penyelesaiannya: lupa salam, berlari, berteriak, sandal terlempar, Mochi kaget. Lalu ada teguran lembut, Mamas minta maaf ke Mochi, merapikan sandal, dan mengulang dengan benar. Ibu juga memberi contoh dari kebiasaannya sendiri. Ada momen interaktif di scene 4. Penyebutan setan dibingkai positif dan tidak menakutkan untuk usia 4–6.",
+      "Pemisahan bacaan Arab sudah benar. Scene 11, 12, dan 14 hanya berisi bacaan latin, tanpa pengantar atau arti. Scene 7 berisi terjemah hadits dalam bahasa Indonesia, bukan lafaz Arab, jadi tidak melanggar aturan.",
+      "Panjang sekitar 400 kata, masih dalam batas 350–560. Tempo mengalir dan tidak ada scene yang bertele-tele.",
+      "Perbaikan opsional di scene 1: 'Brak!' bisa memicu efek suara keras. Sebaiknya ganti dengan 'Krek!' atau beri catatan untuk editor suara agar efeknya pelan dan tidak mengagetkan.",
+      "Perbaikan opsional di scene 9: visualDirection memakai dua latar, 'Dari halaman ke ruang tamu'. Untuk konsistensi render, pilih satu latar saja (living-room) dan tampilkan Mamas masuk dari pintu.",
+      "Perbaikan opsional di scene 11: masuk rumah dengan kaki kanan hanya ada di visual dan tidak diucapkan di narasi. Ini adab umum (mendahulukan yang kanan untuk hal yang baik), tapi tidak ada dalil khusus di naskah. Biarkan tetap hanya di visual, jangan dijadikan klaim di narasi."
     ],
     "humanCheck": [
-      "Dalil 1, QS. An-Nur: 61. Periksa potongan teks Arab 'فَإِذَا دَخَلْتُم بُيُوتًا فَسَلِّمُوا عَلَىٰ أَنفُسِكُمْ تَحِيَّةً مِّنْ عِندِ اللَّهِ مُبَارَكَةً طَيِّبَةً', latinnya, dan terjemahnya terhadap mushaf atau terjemah Kemenag.",
-      "Dalil 2, HR. Muslim no. 2018, dari Jabir bin Abdillah. Periksa lafaz 'إِذَا دَخَلَ الرَّجُلُ بَيْتَهُ فَذَكَرَ اللَّهَ عِنْدَ دُخُولِهِ وَعِنْدَ طَعَامِهِ قَالَ الشَّيْطَانُ: لَا مَبِيتَ لَكُمْ وَلَا عَشَاءَ' dan nomornya. Hadits ini masih punya lanjutan tentang orang yang tidak menyebut nama Allah; naskah hanya memakai bagian pertama, dan itu wajar. Pastikan juga parafrase Ibu di scene 8 ('Setan bilang ke teman-temannya…') bisa diterima.",
-      "Dalil 3, QS. An-Nisa: 86. Periksa teks 'وَإِذَا حُيِّيتُم بِتَحِيَّةٍ فَحَيُّوا بِأَحْسَنَ مِنْهَا أَوْ رُدُّوهَا', latinnya, dan terjemahnya.",
-      "Dalil 4, HR. Bukhari no. 5376 dan Muslim no. 2022, dari Umar bin Abi Salamah. Periksa lafaz 'يَا غُلَامُ، سَمِّ اللَّهَ، وَكُلْ بِيَمِينِكَ، وَكُلْ مِمَّا يَلِيكَ' dan kedua nomor haditsnya.",
-      "VisualDirection scene 12 menampilkan Mamas masuk dengan kaki kanan. Ini tidak disebut di narasi dan hanya didasarkan pada anjuran umum mendahulukan yang kanan. Silakan putuskan apakah detail visual ini tetap dipakai.",
-      "Pastikan tidak ada musik instrumen saat produksi. Efek 'Brak!' dan 'Wuss!' juga perlu dibuat pelan supaya tidak mengagetkan anak."
+      "Dalil 1 – QS. An-Nur: 61. Cek teks Arab 'فَإِذَا دَخَلْتُم بُيُوتًا فَسَلِّمُوا عَلَىٰ أَنفُسِكُمْ تَحِيَّةً مِّنْ عِندِ اللَّهِ مُبَارَكَةً طَيِّبَةً' dan terjemahnya di mushaf atau terjemah Kemenag.",
+      "Dalil 2 – HR. Muslim no. 2018 dari Jabir bin Abdillah: 'إِذَا دَخَلَ الرَّجُلُ بَيْتَهُ فَذَكَرَ اللَّهَ عِنْدَ دُخُولِهِ وَعِنْدَ طَعَامِهِ قَالَ الشَّيْطَانُ: لَا مَبِيتَ لَكُمْ وَلَا عَشَاءَ'. Cek nomor hadits sesuai penomoran Fuad Abdul Baqi. Ini potongan awal dari hadits yang lebih panjang.",
+      "Dalil 2 (lanjutan) – scene 7 menyebut setan berkata 'ke teman-temannya'. Ini tafsiran dari kata 'lakum' (kalian) dan sudah umum dipakai dalam terjemah. Pastikan Anda nyaman dengan parafrase ini.",
+      "Dalil 3 – QS. An-Nisa: 86: 'وَإِذَا حُيِّيتُم بِتَحِيَّةٍ فَحَيُّوا بِأَحْسَنَ مِنْهَا أَوْ رُدُّوهَا'. Cek teks dan terjemahnya.",
+      "Dalil 4 – HR. Bukhari no. 5376 dan Muslim no. 2022 dari Umar bin Abi Salamah: 'يَا غُلَامُ، سَمِّ اللَّهَ، وَكُلْ بِيَمِينِكَ، وَكُلْ مِمَّا يَلِيكَ'. Cek nomor dan lafaznya.",
+      "Scene 5 menyebut salam sebagai 'ucapan yang diajarkan Allah… penuh berkah dan baik'. Ini parafrase dari 'tahiyyatan min 'indillah mubarakatan thayyibah'. Pastikan Anda setuju dengan penyederhanaan ini untuk anak.",
+      "Efek suara 'Brak!' (scene 1) dan adegan Mochi kaget (scene 9). Pastikan saat produksi suaranya lembut dan tidak mengagetkan, sesuai aturan visual dan audio yang tenang."
     ]
   }
 }
