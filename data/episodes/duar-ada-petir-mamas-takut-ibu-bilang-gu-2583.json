@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T06:43:01.177Z",
+  "modified": "2026-11-13T06:46:22.986Z",
   "status": "needs_audio",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -169,6 +169,11 @@
       "time": "2026-11-13T06:43:01.176Z",
       "by": "pemilik",
       "message": "Adegan 9 memakai QS. Ar-Ra'd ayat 13 utuh (bukan penggalan); arti di adegan 10 dilengkapi"
+    },
+    {
+      "time": "2026-11-13T06:46:22.986Z",
+      "by": "pemilik",
+      "message": "Adegan 10 membacakan terjemahan lengkap QS. Ar-Ra'd ayat 13"
     }
   ],
   "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
@@ -233,7 +238,7 @@
       {
         "type": "story",
         "speaker": "mother",
-        "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Allah jugalah yang mengirim petir, dan Allah Mahakuat. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
+        "narration": "Artinya, dan guruh bertasbih memuji-Nya, demikian pula para malaikat karena takut kepada-Nya. Dan Allah melepaskan halilintar, lalu menimpakannya kepada siapa yang Dia kehendaki, sementara mereka berbantah-bantahan tentang Allah, dan Dia Mahakeras siksaan-Nya. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
         "visualDirection": "bedroom-night: Ibu dan Mamas bersandar di bantal, Mamas mendengarkan dengan mata berbinar."
       },
       {
@@ -474,7 +479,7 @@
     {
       "type": "story",
       "speaker": "mother",
-      "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Allah jugalah yang mengirim petir, dan Allah Mahakuat. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
+      "narration": "Artinya, dan guruh bertasbih memuji-Nya, demikian pula para malaikat karena takut kepada-Nya. Dan Allah melepaskan halilintar, lalu menimpakannya kepada siapa yang Dia kehendaki, sementara mereka berbantah-bantahan tentang Allah, dan Dia Mahakeras siksaan-Nya. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
       "background": "bedroom-night",
       "characters": [
         "mother",
