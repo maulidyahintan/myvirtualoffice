@@ -89,6 +89,19 @@ const GulunganBenang: React.FC<{ f: number }> = ({ f }) => {
   );
 };
 
+/** Bola kecil yang didorong-dorong Mochi dengan kaki depan. */
+const BolaMochi: React.FC<{ f: number }> = ({ f }) => {
+  const geser = Math.sin(f / 20) * 18;
+  return (
+    <g transform={`translate(${2 + geser} 362) rotate(${geser * 10}) scale(1.45)`}>
+      <circle r={22} fill="#5FA8E8" stroke="#3E7FBF" strokeWidth={2.5} />
+      <path d="M-22 0 Q0 -12 22 0" stroke="#FFE07A" strokeWidth={7} fill="none" />
+      <path d="M-20 9 Q0 -3 20 9" stroke="#F28C8C" strokeWidth={5} fill="none" opacity={0.9} />
+      <circle cx={-8} cy={-10} r={4} fill="#fff" opacity={0.6} />
+    </g>
+  );
+};
+
 export const Mochi: React.FC<RigProps> = (r) => {
   const warna = useWarnaMochi();
   const { f, expression, tutup } = r;
@@ -111,7 +124,7 @@ export const Mochi: React.FC<RigProps> = (r) => {
 
   return (
     <g transform={`translate(0 ${lompat})`}>
-      {main ? <GulunganBenang f={f} /> : null}
+      {main ? r.heldItem === 'ball' ? <BolaMochi f={f} /> : <GulunganBenang f={f} /> : null}
       <path d={jalurEkor(f, kaget || senang)} stroke={warna.mochiBelang} strokeWidth={kaget ? 30 : 24} fill="none" strokeLinecap="round" strokeLinejoin="round" />
       <path d={jalurEkor(f, kaget || senang)} stroke={warna.mochi} strokeWidth={kaget ? 24 : 18} fill="none" strokeLinecap="round" strokeLinejoin="round" />
       <g transform={`translate(120 380) scale(${mengembang} ${napas * mengembang}) translate(-120 -380)`}>

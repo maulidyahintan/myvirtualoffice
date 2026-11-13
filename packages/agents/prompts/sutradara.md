@@ -16,7 +16,9 @@ oleh template animasi Remotion milik channel.
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
   - Mamas/Mother: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
-  - Mochi: `sleeping` (meringkuk di pillow), `playing` (gulungan benang)
+  - Mochi: `sleeping` (meringkuk tidur; di bedroom-night otomatis di ujung kasur, di tempat lain di pillow),
+    `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
+    `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja)
 - `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower
 - `props` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
   - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, date, apple, banana, milk-glass
@@ -37,7 +39,10 @@ oleh template animasi Remotion milik channel.
   di tempat yang sama (kontinuitas).
 - Hidupkan adegan dengan `actions` & `props` yang sesuai narasi: Mamas makan apple saat
   cerita tentang makan, membaca Al-Qur'an saat mengaji, berdoa saat membaca doa, bermain
-  ball di halaman; Mochi tidur di adegan malam/tenang atau bermain di adegan ceria.
+  ball di halaman. Mochi membuat cerita lebih hidup: tidur di ujung kasur di adegan malam/kamar
+  (bedroom-night), `circling` di kaki Mamas saat Mamas pulang, bangun, sedih lalu dihibur, atau
+  sedang bercakap santai, `playing` di adegan ceria di rumah/halaman. Sertakan Mochi di cukup banyak
+  adegan rumah (bukan di masjid, sekolah, pasar, atau adegan doa), tapi jangan di setiap adegan.
   Props harus logis dengan tempatnya (makanan di kitchen/living-room, prayer-mat & quran-stand di
   mosque/bedroom-night, mainan di rumah/yard/playground, fruit-basket di market). Jangan memaksakan: adegan tanpa actions boleh.
   Pertahankan actions/props yang sama di adegan berurutan di tempat yang sama (kontinuitas).

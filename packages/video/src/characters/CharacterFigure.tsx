@@ -26,6 +26,8 @@ interface Props {
   diam?: boolean;
   action?: Action;
   heldItem?: HeldItem;
+  /** fase langkah dari luar (tokoh yang terus berjalan, misal Mochi berputar di kaki Mamas) */
+  langkah?: number;
 }
 
 const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3 };
@@ -43,6 +45,7 @@ export const CharacterFigure: React.FC<Props> = ({
   diam,
   action,
   heldItem,
+  langkah,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -68,6 +71,7 @@ export const CharacterFigure: React.FC<Props> = ({
   } else if (cara === 'muncul') {
     skalaMuncul = spring({ frame: frame - (offset % 9), fps, config: { damping: 11, stiffness: 140 } });
   }
+  if (jalan === null && langkah !== undefined) jalan = langkah;
 
   // --- napas, pindah tumpuan, tekanan saat bicara
   const napas = Math.sin(f / 24);

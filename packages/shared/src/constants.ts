@@ -55,9 +55,10 @@ export const SCENE_PROPS = [
 
 /**
  * Character action in one scene. Mamas/Mother: holding (item), reading-quran, praying, eating (item),
- * playing (ball/toy). Mochi: sleeping, playing (yarn ball).
+ * playing (ball/toy). Mochi: sleeping (at the foot of the bed in bedroom-night), playing (yarn, or ball),
+ * circling (walks around the legs of Mamas, or Mother when Mamas isn't shown).
  */
-export const ACTIONS = ['holding', 'reading-quran', 'praying', 'eating', 'playing', 'sleeping'] as const;
+export const ACTIONS = ['holding', 'reading-quran', 'praying', 'eating', 'playing', 'sleeping', 'circling'] as const;
 
 export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
 

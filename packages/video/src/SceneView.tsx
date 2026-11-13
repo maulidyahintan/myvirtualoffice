@@ -1,6 +1,6 @@
 import React from 'react';
 import { AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
-import type { Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
+import type { Action, Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
 import { Backdrop, DARK_BACKGROUNDS } from './backgrounds/Backdrop';
 import { Foreground } from './backgrounds/Foreground';
 import { ScenePropsLayer } from './props/SceneProps';
@@ -13,6 +13,21 @@ const W = 1920;
 const H = 1080;
 const LANTAI = 890;
 const TINGGI_DASAR = 560;
+
+/** Ujung kasur (tengah-bawah tempat Mochi berbaring) di latar yang punya tempat tidur. */
+const UJUNG_KASUR: Partial<Record<AdeganData['background'], { x: number; y: number }>> = {
+  'bedroom-night': { x: 790, y: 640 },
+};
+
+/**
+ * Mochi berjalan memutari kaki tokoh (±7 detik sekali putaran): di depan kaki ia lebih besar & lebih
+ * rendah, di belakang lebih kecil & tertutup tokoh; berbalik badan di kedua sisi.
+ */
+function putaranMochi(frame: number) {
+  const sudut = Math.PI / 4 + (frame / 210) * Math.PI * 2;
+  const s = Math.sin(sudut);
+  return { dx: Math.cos(sudut) * 170, dy: s * 18, skala: 1 + s * 0.06, depan: s > 0, hadap: Math.max(-1, Math.min(1, s * 4)) };
+}
 
 function posisiX(jumlah: number, vertikal: boolean): number[] {
   if (jumlah === 1) return [960];
@@ -432,9 +447,15 @@ function gerakHidup(
   id: KarakterId,
   i: number,
   frame: number,
-  s: { bicara: boolean; mendengar: boolean; lihatX: number; beraksi: boolean },
+  s: { bicara: boolean; mendengar: boolean; lihatX: number; beraksi: boolean; aksi?: Action },
 ): { x: number; y: number; miring: number; skala: number; lihatX?: number } {
   const f = frame + i * 53;
+  // Mochi bermain: mengikuti mainannya ke kiri-kanan & sesekali menerkam
+  if (id === 'mochi' && s.aksi === 'playing') {
+    const p = (f % 80) / 80;
+    const terkam = p < 0.22 ? Math.sin((p / 0.22) * Math.PI) : 0;
+    return { x: Math.sin(f / 45) * 40, y: -terkam * 34, miring: -terkam * 8, skala: 1 };
+  }
   // tokoh yang sedang tidur/membaca/bermain tetap di tempatnya
   if (s.beraksi) return { x: 0, y: 0, miring: id === 'mochi' ? 0 : Math.sin(f / 60) * 0.8, skala: 1 };
   if (id === 'mochi') {
@@ -546,11 +567,19 @@ export const SceneView: React.FC<{
     return <AdeganIlustrasi data={data} durasi={durasi} denganSubtitle={denganSubtitle} indeks={indeks} transisi={transisi} />;
   }
 
+  // Mochi bisa keluar dari barisan tokoh: tidur di ujung kasur (video biasa; di Shorts kasurnya terpotong)
+  // atau berputar di kaki Mamas/Ibu
+  const aksiMochi = isDoa || !data.characters.includes('mochi') ? undefined : data.actions?.find((a) => a.character === 'mochi')?.action;
+  const kasur = aksiMochi === 'sleeping' && !vertikal ? UJUNG_KASUR[data.background] : undefined;
+  const dikelilingi = aksiMochi === 'circling' ? (['mamas', 'mother'] as const).find((id) => data.characters.includes(id)) : undefined;
+  const mochiLepas = Boolean(kasur || dikelilingi);
   // abaikan id karakter lama yang sudah tidak ada (misal dari episode sebelum konsep berubah)
-  const urut = isDoa ? [] : data.characters.filter((id) => id in CHARACTER_SCALE);
-  const xs = posisiX(urut.length, vertikal);
-  const iPembicara = urut.findIndex((id) => id === data.speaker);
+  const urut = isDoa ? [] : data.characters.filter((id) => id in CHARACTER_SCALE && !(mochiLepas && id === 'mochi'));
   const tinggiDari = (id: KarakterId) => (vertikal ? 470 : TINGGI_DASAR) * CHARACTER_SCALE[id];
+  // tokoh berdiri di kanan kasur supaya Mochi yang tidur di ujungnya tidak tertutup badan mereka
+  const geserKasur = kasur && urut.length ? Math.max(0, kasur.x + 110 + (tinggiDari(urut[0]) * 240) / 400 / 2 - posisiX(urut.length, vertikal)[0]) : 0;
+  const xs = posisiX(urut.length, vertikal).map((x) => x + geserKasur);
+  const iPembicara = urut.findIndex((id) => id === data.speaker);
 
   // titik wajah tiap karakter & tengah rombongan, untuk membidik kamera
   const wajah = urut.map((id, i) => ({ x: xs[i], y: lantai - tinggiDari(id) * 0.62 }));
@@ -602,6 +631,30 @@ export const SceneView: React.FC<{
       />
     );
 
+  const mochiKeliling = (xTokoh: number) => {
+    const p = putaranMochi(frame);
+    const tinggi = tinggiDari('mochi');
+    const lebar = (tinggi * 240) / 400;
+    return {
+      depan: p.depan,
+      el: (
+        <div
+          key="mochi-keliling"
+          style={{
+            position: 'absolute',
+            left: xTokoh + p.dx - lebar / 2,
+            top: lantai - tinggi + p.dy,
+            transformOrigin: '50% 100%',
+            // ekor Mochi di kanan badan: berjalan ke kiri = tidak dicerminkan
+            transform: `scale(${p.hadap * p.skala}, ${p.skala})`,
+          }}
+        >
+          <CharacterFigure id="mochi" expression={data.expression === 'sad' ? 'calm' : 'happy'} bicara={false} tinggi={tinggi} offset={37} lihatX={-1} masuk="ada" langkah={frame * 0.6} />
+        </div>
+      ),
+    };
+  };
+
   // siapa yang diberi efek expression: speaker, atau tokoh manusia pertama
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
 
@@ -617,6 +670,12 @@ export const SceneView: React.FC<{
         >
           <div style={stageStyle(kamLatar, fw, fh)}>
             <Backdrop id={data.background} />
+            {/* Mochi di kasur ikut bidang latar, supaya tidak bergeser dari kasurnya saat kamera bergerak */}
+            {kasur ? (
+              <div style={{ position: 'absolute', left: kasur.x - (tinggiDari('mochi') * 240) / 400 / 2, top: kasur.y - tinggiDari('mochi') }}>
+                <CharacterFigure id="mochi" expression="calm" bicara={false} tinggi={tinggiDari('mochi')} offset={37} masuk="ada" action="sleeping" />
+              </div>
+            ) : null}
           </div>
         </AbsoluteFill>
 
@@ -626,6 +685,7 @@ export const SceneView: React.FC<{
           {propertiAdegan('bawah')}
           {propertiAdegan('belakang')}
           {urut.map((id: KarakterId, i) => {
+            const keliling = dikelilingi === id ? mochiKeliling(xs[i]) : null;
             const tinggi = tinggiDari(id);
             const lebar = (tinggi * 240) / 400;
             // yang mendengarkan menoleh ke speaker; speaker menatap penonton
@@ -633,11 +693,18 @@ export const SceneView: React.FC<{
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
             const masuk: Entrance = sebelumnya.includes(id) ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
             const aksiIni = data.actions?.find((a) => a.character === id);
-            const gaya = gerakHidup(id, i, frame, { bicara: data.speaker === id, mendengar: i !== iPembicara && iPembicara >= 0, lihatX, beraksi: !!aksiIni });
+            const gaya = gerakHidup(id, i, frame, {
+              bicara: data.speaker === id,
+              mendengar: i !== iPembicara && iPembicara >= 0,
+              lihatX,
+              beraksi: !!aksiIni && aksiIni.action !== 'circling',
+              aksi: aksiIni?.action,
+            });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
             return (
+              <React.Fragment key={id}>
+              {keliling && !keliling.depan ? keliling.el : null}
               <div
-                key={id}
                 style={{
                   position: 'absolute',
                   left: xs[i] - lebar / 2,
@@ -660,6 +727,8 @@ export const SceneView: React.FC<{
                   heldItem={aksiIni?.heldItem}
                 />
               </div>
+              {keliling?.depan ? keliling.el : null}
+              </React.Fragment>
             );
           })}
           {iEfek >= 0 && data.type !== 'question' ? (
