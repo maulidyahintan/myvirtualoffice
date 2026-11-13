@@ -3,6 +3,7 @@ import { AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentF
 import type { Action, Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
 import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
 import { lightningFlash } from './backgrounds/lightning';
+import { MochiFall } from './characters/MochiFall';
 import { Foreground } from './backgrounds/Foreground';
 import { ScenePropsLayer } from './props/SceneProps';
 import { CharacterFigure, CHARACTER_SCALE, type Entrance } from './characters/CharacterFigure';
@@ -15,6 +16,8 @@ const H = 1080;
 const LANTAI = 890;
 const TINGGI_DASAR = 560;
 
+/** Seconds Mochi sleeps before the pillow drops (action 'falling'). */
+const FALL_DELAY_SECONDS = 1.2;
 /** Strongest white-out of the whole frame during a lightning flash. */
 const LIGHTNING_OVERLAY_OPACITY = 0.28;
 
@@ -575,7 +578,9 @@ export const SceneView: React.FC<{
   // Mochi bisa keluar dari barisan tokoh: tidur di ujung kasur (video biasa; di Shorts kasurnya terpotong)
   // atau berputar di kaki Mamas/Ibu
   const aksiMochi = isDoa || !data.characters.includes('mochi') ? undefined : data.actions?.find((a) => a.character === 'mochi')?.action;
-  const kasur = aksiMochi === 'sleeping' && !vertikal ? UJUNG_KASUR[data.background] : undefined;
+  const kasur = (aksiMochi === 'sleeping' || aksiMochi === 'falling') && !vertikal ? UJUNG_KASUR[data.background] : undefined;
+  // Mochi falls off the bed under a pillow: asleep for about a second, then lands on the floor in front of the bed
+  const fall = kasur && aksiMochi === 'falling' ? { start: transisi + Math.round(fps * FALL_DELAY_SECONDS), landing: { x: kasur.x - 110, y: 885 } } : undefined;
   const dikelilingi = aksiMochi === 'circling' ? (['mamas', 'mother'] as const).find((id) => data.characters.includes(id)) : undefined;
   const mochiLepas = Boolean(kasur || dikelilingi);
   // abaikan id karakter lama yang sudah tidak ada (misal dari episode sebelum konsep berubah)
@@ -601,6 +606,8 @@ export const SceneView: React.FC<{
     adaPendengar: iPendengar >= 0,
     latarBaru,
   });
+  // the whole fall must stay in view: one wide shot for the entire scene
+  if (fall) rencana.splice(0, rencana.length, { shot: 'lebar', mulai: 0, durasi });
   // karakter yang baru berjalan masuk harus terlihat: jangan buka dengan close-up
   if (adaYangBaru && ['dekat', 'reaksi', 'bahu'].includes(rencana[0].shot)) rencana[0].shot = 'sedang';
   const iShot = Math.max(0, rencana.findLastIndex((r) => frame >= r.mulai));
@@ -676,7 +683,9 @@ export const SceneView: React.FC<{
           <div style={stageStyle(kamLatar, fw, fh)}>
             <Backdrop id={data.background} />
             {/* Mochi di kasur ikut bidang latar, supaya tidak bergeser dari kasurnya saat kamera bergerak */}
-            {kasur ? (
+            {fall && kasur ? (
+              <MochiFall height={tinggiDari('mochi')} from={kasur} to={fall.landing} start={fall.start} />
+            ) : kasur ? (
               <div style={{ position: 'absolute', left: kasur.x - (tinggiDari('mochi') * 240) / 400 / 2, top: kasur.y - tinggiDari('mochi') }}>
                 <CharacterFigure id="mochi" expression="calm" bicara={false} tinggi={tinggiDari('mochi')} offset={37} masuk="ada" action="sleeping" />
               </div>

@@ -8,7 +8,7 @@ import {
   DEFAULT_CHARACTER_PROFILES,
   SPEAKERS,
 } from './constants.ts';
-import type { AppConfig, Background, CharacterLooks, CharacterProfile, Episode, Evidence, RecordingMode, Scene, Speaker, VisualStyle } from './types.ts';
+import type { Action, AppConfig, Background, Character, CharacterLooks, CharacterProfile, Episode, Evidence, RecordingMode, Scene, Speaker, VisualStyle } from './types.ts';
 
 export function characterProfile(cfg: AppConfig, id: Speaker): CharacterProfile {
   const own = cfg.characters?.[id];
@@ -152,6 +152,17 @@ export function fillPrayerCards(scenes: Scene[], evidences: Evidence[]): number[
     filled.push(i);
   });
   return filled;
+}
+
+/** Actions only the cat can do (curl up asleep, circle someone's legs, fall off the bed). */
+export const MOCHI_ONLY_ACTIONS: readonly Action[] = ['sleeping', 'circling', 'falling'];
+/** Actions the cat can do besides its own: playing with a toy. */
+const MOCHI_SHARED_ACTIONS: readonly Action[] = ['playing'];
+
+/** Whether a character can perform this scene action (the Director sometimes gives Mamas a cat action). */
+export function canPerform(character: Character, action: Action): boolean {
+  if (character === 'mochi') return MOCHI_ONLY_ACTIONS.includes(action) || MOCHI_SHARED_ACTIONS.includes(action);
+  return !MOCHI_ONLY_ACTIONS.includes(action);
 }
 
 /** Visual style used when rendering this episode (episode choice, else the channel default). */

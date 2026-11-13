@@ -19,7 +19,9 @@ oleh template animasi Remotion milik channel.
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
   - Mochi: `sleeping` (meringkuk tidur; di bedroom-night otomatis di ujung kasur, di tempat lain di pillow),
     `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
-    `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja)
+    `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja),
+    `falling` (tidur di ujung kasur, lalu bantal jatuh menimpanya dan Mochi terguling jatuh ke lantai, pusing;
+    HANYA di bedroom-night / bedroom-storm — momen lucu, cocok saat suara petir mengagetkan)
 - `heldItem`: quran, apple, banana, date, cake, milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower
 - `props` (opsional, maks. 3): benda di sekitar tokoh, dipakai berulang antar episode
   - makanan (otomatis di meja kecil): fruit-plate, rice-plate, cake, date, apple, banana, milk-glass

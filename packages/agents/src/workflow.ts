@@ -20,6 +20,7 @@ import {
   needsPlaylist,
   facebookConnection,
   needsFacebookPost,
+  canPerform,
   loadConfig,
   allowedBackgrounds,
   visualStyle,
@@ -469,13 +470,8 @@ function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
 function normalizeScene(n: Pick<Scene, 'type' | 'speaker' | 'narration'>, s: Scene, pick: (bg: Background) => Background): Scene {
   const characters = s.characters.slice();
   if (n.speaker !== 'narrator' && !characters.includes(n.speaker)) characters.push(n.speaker);
-  // actions only for characters present, and sensible (Mochi: sleep/play/circle; Mamas/Mother: anything except those two)
-  const mochiOnly = ['sleeping', 'circling'];
-  const actions = s.actions?.filter(
-    (x) =>
-      characters.includes(x.character) &&
-      (x.character === 'mochi' ? mochiOnly.includes(x.action) || x.action === 'playing' : !mochiOnly.includes(x.action)),
-  );
+  // actions only for characters present, and only ones that character can do
+  const actions = s.actions?.filter((x) => characters.includes(x.character) && canPerform(x.character, x.action));
   return {
     ...s,
     background: pick(s.background),
