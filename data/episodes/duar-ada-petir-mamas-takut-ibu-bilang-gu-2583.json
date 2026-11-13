@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T06:46:22.986Z",
+  "modified": "2026-11-13T06:48:08.278Z",
   "status": "needs_audio",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -174,6 +174,56 @@
       "time": "2026-11-13T06:46:22.986Z",
       "by": "pemilik",
       "message": "Adegan 10 membacakan terjemahan lengkap QS. Ar-Ra'd ayat 13"
+    },
+    {
+      "time": "2026-11-13T06:46:59.435Z",
+      "by": "pemilik",
+      "message": "Minta ilustrasi AI untuk adegan penting"
+    },
+    {
+      "time": "2026-11-13T06:47:00.295Z",
+      "by": "ilustrator",
+      "message": "Memilih adegan yang perlu digambar"
+    },
+    {
+      "time": "2026-11-13T06:47:15.896Z",
+      "by": "ilustrator",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T06:47:16.456Z",
+      "by": "ilustrator",
+      "message": "Adegan yang digambar: 1, 6, 12, 16"
+    },
+    {
+      "time": "2026-11-13T06:47:23.930Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 1 selesai (1/4)"
+    },
+    {
+      "time": "2026-11-13T06:47:30.278Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 6 selesai (2/4)"
+    },
+    {
+      "time": "2026-11-13T06:47:39.746Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 12 selesai (3/4)"
+    },
+    {
+      "time": "2026-11-13T06:47:48.720Z",
+      "by": "ilustrator",
+      "message": "Ilustrasi adegan 16 selesai (4/4)"
+    },
+    {
+      "time": "2026-11-13T06:47:48.721Z",
+      "by": "ilustrator",
+      "message": "4 ilustrasi siap. Cek di halaman episode, lalu render ulang supaya masuk ke video."
+    },
+    {
+      "time": "2026-11-13T06:48:08.278Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 9 diupload"
     }
   ],
   "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
@@ -338,7 +388,11 @@
           "character": "mochi",
           "action": "sleeping"
         }
-      ]
+      ],
+      "illustration": {
+        "prompt": "A cozy small house at night seen from the garden, heavy rain falling, warm yellow light glowing from one bedroom window. A soft, gentle flash of lightning far away lights up the deep blue clouds, calm and not scary.",
+        "image": "ilustrasi/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-1-mwem6vq1.jpg"
+      }
     },
     {
       "type": "story",
@@ -418,7 +472,11 @@
           "character": "mochi",
           "action": "circling"
         }
-      ]
+      ],
+      "illustration": {
+        "prompt": "Close-up of a home garden in gentle rain during the day, raindrops sitting on fresh green leaves and bright colorful flowers, small puddles shining on the soil. Soft grey-blue sky with a faint distant lightning glow, a fresh and peaceful mood.",
+        "image": "ilustrasi/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-6-mwem70mc.jpg"
+      }
     },
     {
       "type": "question",
@@ -525,7 +583,11 @@
           "character": "mochi",
           "action": "circling"
         }
-      ]
+      ],
+      "illustration": {
+        "prompt": "An old quiet empty, deserted courtyard of flat-roofed clay houses with palm trees in an ancient Arabian town, seen from a distance under dark rain clouds. Light rain falls and a soft distant flash of lightning glows on the horizon, calm and peaceful mood.",
+        "image": "ilustrasi/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-12-mwem77xb.jpg"
+      }
     },
     {
       "type": "question",
@@ -609,7 +671,11 @@
           "character": "mochi",
           "action": "sleeping"
         }
-      ]
+      ],
+      "illustration": {
+        "prompt": "A small house at night after the rain, seen from the yard, wet leaves and shining puddles reflecting a calm sky. The clouds are parting to show a few gentle stars and a crescent moon, with soft blue and warm window light, very peaceful and sleepy.",
+        "image": "ilustrasi/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-16-mwem7eum.jpg"
+      }
     }
   ],
   "metadata": {
@@ -642,7 +708,7 @@
     null,
     null,
     null,
-    null,
+    "audio/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-adegan-9-mwem7txr.mp3",
     null,
     null,
     null,
@@ -687,5 +753,6 @@
     false,
     false
   ],
-  "recordingMode": "per-scene"
+  "recordingMode": "per-scene",
+  "visualStyle": "ai-illustration"
 }
