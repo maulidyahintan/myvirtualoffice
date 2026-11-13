@@ -50,6 +50,9 @@ export function paletIbu({ base, changed }: ReturnType<typeof useLook>) {
   return w;
 }
 
+/** Left arm stretched down-sideways to a door handle at her waist height. */
+const MOTHER_DOOR_REACH: ArmPose = { bahu: 60, siku: -6 };
+
 function poseIbu(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
   const { f, expression, bicara, lambai } = r;
   // posisi dasar: kedua tangan bertaut lembut di depan
@@ -104,6 +107,8 @@ export const Mother: React.FC<RigProps> = (r) => {
   const w = paletIbu(useLook('mother'));
   const { f, expression, bicara } = r;
   const pose = poseIbu(r);
+  // opening the front door: the left arm stretches down-sideways to the handle
+  if (r.action === 'opening-door') pose.kiri = mixPose(pose.kiri, MOTHER_DOOR_REACH, r.reach ?? 0);
   const kibar = Math.sin(f / 28) * 3 + (r.jalan !== null ? Math.sin(r.jalan * 2) * 3 : 0);
   const kibarBawah = Math.sin(f / 34 + 1) * 4 + (r.jalan !== null ? Math.sin(r.jalan) * 8 : 0);
 

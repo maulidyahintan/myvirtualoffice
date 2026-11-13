@@ -17,3 +17,10 @@ describe('school backgrounds', () => {
     for (const background of ['school', 'school-gate', 'school-yard', 'school-canteen'] as const) expect(BACKGROUNDS).toContain(background);
   });
 });
+
+describe('house front', () => {
+  it('is a background with an Indonesian label', () => {
+    expect(BACKGROUNDS).toContain('house-front');
+    expect(BACKGROUND_LABEL['house-front']).toContain('pintu');
+  });
+});

@@ -7,6 +7,8 @@ import { MochiFall } from './characters/MochiFall';
 import { HugArm } from './characters/HugArm';
 import { approach } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, stageInteractions } from './characters/staging';
+import { FRONT_DOOR, FrontDoor } from './backgrounds/HouseFront';
+import { DOOR_STANCE_X, doorOpen, doorReach, placeAroundDoor } from './backgrounds/door';
 import { Foreground } from './backgrounds/Foreground';
 import { ScenePropsLayer } from './props/SceneProps';
 import { CharacterFigure, CHARACTER_SCALE, type Entrance } from './characters/CharacterFigure';
@@ -29,6 +31,8 @@ const HUG_OFFSET_X = 165;
 const APPROACH_GAP_X = 170;
 /** Frames into the scene before Mochi starts walking. */
 const APPROACH_DELAY_FRAMES = 12;
+/** Frames into the scene before the front door is opened. */
+const DOOR_DELAY_FRAMES = 8;
 /** Strongest white-out of the whole frame during a lightning flash. */
 const LIGHTNING_OVERLAY_OPACITY = 0.28;
 
@@ -642,6 +646,20 @@ export const SceneView: React.FC<{
   const iDipeluk = staging.hugged ? urut.indexOf(staging.hugged) : -1;
   // hugged: the child stands in front of Mother, at her right side
   if (iIbu >= 0 && iDipeluk >= 0) xs[iDipeluk] = xs[iIbu] + HUG_OFFSET_X;
+  // opening the front door: the opener stands right of the door with the left arm on the handle
+  const adaPintu = data.background === 'house-front';
+  const iPembuka = adaPintu ? urut.findIndex((id) => data.actions?.some((a) => a.character === id && a.action === 'opening-door')) : -1;
+  const jarakPintu = iPembuka >= 0 ? DOOR_STANCE_X[urut[iPembuka]] : undefined;
+  if (iPembuka >= 0 && jarakPintu !== undefined) {
+    xs[iPembuka] = FRONT_DOOR.handle.x + jarakPintu;
+    // everyone else steps aside so nobody stands in front of the opener
+    const lebarTokoh = (id: KarakterId) => (tinggiDari(id) * 240) / 400;
+    const lainnya = urut.map((_, i) => i).filter((i) => i !== iPembuka);
+    const tempat = placeAroundDoor({ x: xs[iPembuka], width: lebarTokoh(urut[iPembuka]) }, lainnya.map((i) => lebarTokoh(urut[i])), FRONT_DOOR.left);
+    lainnya.forEach((i, k) => (xs[i] = tempat[k]));
+  }
+  const sejakPintu = frame - transisi - DOOR_DELAY_FRAMES;
+  const bukaPintu = iPembuka >= 0 ? doorOpen(sejakPintu) : 0;
   // Mother is drawn before the child she hugs, so her arm can lie over the child
   const urutanGambar = drawOrder(urut.length, iIbu, iDipeluk);
   const iPembicara = urut.findIndex((id) => id === data.speaker);
@@ -759,6 +777,7 @@ export const SceneView: React.FC<{
         >
           <div style={stageStyle(kamLatar, fw, fh)}>
             <Backdrop id={data.background} />
+            {adaPintu ? <FrontDoor open={bukaPintu} /> : null}
             {/* Mochi di kasur ikut bidang latar, supaya tidak bergeser dari kasurnya saat kamera bergerak */}
             {fall && kasur ? (
               <MochiFall height={tinggiDari('mochi')} from={kasur} to={fall.landing} start={fall.start} />
@@ -801,7 +820,7 @@ export const SceneView: React.FC<{
             let lihatX = iPembicara >= 0 && iPembicara !== i ? Math.sign(xs[iPembicara] - xs[i]) : 0;
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
             const dalamPelukan = Boolean(staging.hugged) && (id === 'mother' || id === staging.hugged);
-            const masuk: Entrance = sebelumnya.includes(id) || dalamPelukan ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
+            const masuk: Entrance = sebelumnya.includes(id) || dalamPelukan || i === iPembuka ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
             const aksiIni = data.actions?.find((a) => a.character === id);
             const gaya = gerakHidup(id, i, frame, {
               bicara: data.speaker === id,
@@ -812,6 +831,8 @@ export const SceneView: React.FC<{
               aksi: aksiIni?.action,
             });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
+            // the one opening the door looks at it
+            if (i === iPembuka) lihatX = -1;
             return (
               <React.Fragment key={id}>
               {keliling && !keliling.depan ? keliling.el : null}
@@ -837,6 +858,7 @@ export const SceneView: React.FC<{
                   action={aksiIni?.action}
                   heldItem={aksiIni?.heldItem}
                   carriedCat={staging.carrier === id ? staging.carriedCat : undefined}
+                  reach={i === iPembuka ? doorReach(sejakPintu) : undefined}
                 />
               </div>
               {id === staging.hugged && iIbu >= 0 ? <HugArm {...titikPelukan(iIbu, i)} /> : null}

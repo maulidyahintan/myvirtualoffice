@@ -5,7 +5,8 @@ oleh template animasi Remotion milik channel.
 
 ## Kosakata visual yang tersedia (HANYA ini)
 - `background`:
-  - di rumah: bedroom-night, bedroom-storm (kamar malam saat hujan deras & petir di jendela), living-room,
+  - di rumah: house-front (depan pintu rumah: teras, pintu kayu, keset, rak sepatu), bedroom-night,
+    bedroom-storm (kamar malam saat hujan deras & petir di jendela), living-room,
     kitchen, yard (pagar, pohon mangga, siang)
   - masjid: mosque (tampak luar, sore), inside-mosque (mihrab, karpet shaf), ablution
   - di luar: garden, playground (ayunan, perosotan), library
@@ -25,6 +26,9 @@ oleh template animasi Remotion milik channel.
   - Mamas & friend: `hugging-knees` (duduk memeluk lutut; di bedroom-night/bedroom-storm otomatis di atas
     kasur; untuk sedih, takut, merenung), `carrying-cat` (menggendong Mochi di dada)
   - Mother: `hugging` (memeluk anak yang ada di adegan dari samping; untuk menenangkan, memaafkan, bangga)
+  - Mamas/Mother/friend: `opening-door` (membuka pintu masuk rumah; HANYA di house-front — pintunya
+    terbuka dan cahaya dari dalam rumah terlihat; cocok saat pulang sambil mengucap salam, atau Ibu
+    membukakan pintu untuk anak/tamu)
   - Mochi: `sleeping` (meringkuk tidur; di bedroom-night otomatis di ujung kasur, di tempat lain di pillow),
     `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
     `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja),
@@ -67,6 +71,8 @@ oleh template animasi Remotion milik channel.
 - Cerita sekolah: berangkat di school-gate dengan `wearing-backpack`, bertemu atau bermain dengan friend di
   school-yard, jajan/makan bekal di school-canteen, belajar di school/library. Mochi tidak ikut ke sekolah.
   Friend boleh juga muncul di rumah atau halaman saat main bersama.
+- Pulang ke rumah: house-front dengan `opening-door` sambil mengucap salam (bisa juga `wearing-backpack`
+  di adegan sebelumnya), lalu adegan berikutnya di living-room.
 - Satu tokoh hanya punya satu action per adegan. Untuk Mochi `licking` tidak perlu memberi Mamas
   `carrying-cat` (otomatis digendong); Mother `hugging` butuh Mamas atau friend di adegan yang sama.
 - Kalau Mamas sedang `reading-quran` atau `praying`, expressionnya "calm".

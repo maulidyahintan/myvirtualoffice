@@ -114,6 +114,9 @@ const ShortHair: React.FC<{ k: ChildPalette }> = ({ k }) => (
   </>
 );
 
+/** Left arm stretched sideways, slightly up, to a door handle. */
+const CHILD_DOOR_REACH: ArmPose = { bahu: 95, siku: -8 };
+
 /** Knees pulled up in front of the body, for a child sitting and hugging its knees. */
 const SittingLegs: React.FC<{ k: ChildPalette; id: string }> = ({ k, id }) => (
   <g>
@@ -231,6 +234,8 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
   const id = useId().replace(/:/g, '');
   const { f, expression, bicara } = r;
   const pose = poseMamas(r);
+  // opening the front door: the left arm stretches out to the handle
+  if (r.action === 'opening-door') pose.kiri = mixPose(pose.kiri, CHILD_DOOR_REACH, r.reach ?? 0);
 
   // kepala: miring pelan, mengangguk saat bicara, tertunduk saat sedih
   let miring = noiseS(f / 45, r.seed) * 3;

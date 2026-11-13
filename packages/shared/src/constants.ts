@@ -5,6 +5,7 @@
 export const BACKGROUNDS = [
   'bedroom-night',
   'bedroom-storm',
+  'house-front',
   'night-storm',
   'living-room',
   'garden',
@@ -66,6 +67,7 @@ export const SCENE_PROPS = [
  * approaching (walks slowly up to Mamas, or the friend), licking (licks the cheek of the child carrying it).
  * Children only: wearing-backpack (school bag on the back; arms stay free), hugging-knees (sits hugging the
  * knees, on the bed in the bedrooms), carrying-cat (holds Mochi in the arms). Mother only: hugging (hugs the child).
+ * Anyone but Mochi: opening-door (opens the front door of the house; house-front only).
  */
 export const ACTIONS = [
   'holding',
@@ -82,6 +84,7 @@ export const ACTIONS = [
   'hugging-knees',
   'carrying-cat',
   'hugging',
+  'opening-door',
 ] as const;
 
 export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
@@ -206,6 +209,7 @@ export const EXPRESSION_LABEL: Record<(typeof EXPRESSIONS)[number], string> = {
 export const BACKGROUND_LABEL: Record<(typeof BACKGROUNDS)[number], string> = {
   'bedroom-night': 'kamar malam',
   'bedroom-storm': 'kamar malam saat hujan petir',
+  'house-front': 'depan pintu rumah (teras)',
   'night-storm': 'malam hujan petir (luar rumah)',
   'living-room': 'ruang tamu',
   garden: 'taman',

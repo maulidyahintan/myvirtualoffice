@@ -4,6 +4,7 @@ import type { Background as LatarId, Mood as SuasanaId } from '@kantor/shared/ty
 import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, LightningBolt, SinarJendela, Uap } from './Ambience';
 import { lightningFlash } from './lightning';
 import { SchoolCanteen, SchoolGate, SchoolYard } from './SchoolScenes';
+import { HouseFront } from './HouseFront';
 
 const W = 1920;
 const H = 1080;
@@ -878,6 +879,7 @@ export const Backdrop: React.FC<{ id: LatarId }> = ({ id }) => (
   <svg viewBox={`0 0 ${W} ${H}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
     {id === 'bedroom-night' && <KamarMalam />}
     {id === 'bedroom-storm' && <StormyBedroom />}
+    {id === 'house-front' && <HouseFront />}
     {id === 'night-storm' && <StormyNight />}
     {id === 'living-room' && <RuangTamu />}
     {id === 'garden' && <Taman />}

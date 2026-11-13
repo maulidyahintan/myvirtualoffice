@@ -84,6 +84,8 @@ export interface RigProps {
   heldItem?: HeldItem;
   /** A child holding Mochi in the arms: calm, or licking the child's cheek. */
   carriedCat?: 'calm' | 'licking';
+  /** Opening the front door: how far the left arm is stretched to the handle (0..1). */
+  reach?: number;
 }
 
 /**
