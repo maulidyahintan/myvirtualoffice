@@ -1,8 +1,8 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T00:52:53.160Z",
-  "status": "idea",
+  "modified": "2026-11-13T01:49:47.806Z",
+  "status": "needs_script_approval",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
     "series": "kisah-sebelum-tidur",
@@ -18,12 +18,234 @@
       "QS. Ar-Ra'd: 13"
     ]
   },
-  "revisionCount": 0,
+  "revisionCount": 2,
   "log": [
     {
       "time": "2026-11-13T00:52:53.160Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-13T01:16:10.591Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-13T01:16:11.489Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-13T01:16:52.916Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T01:16:53.362Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-13T01:17:37.522Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T01:17:37.931Z",
+      "by": "penulis",
+      "message": "Revisi otomatis ke-1"
+    },
+    {
+      "time": "2026-11-13T01:18:42.224Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T01:18:42.603Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-13T01:19:15.402Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T01:19:15.797Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-13T01:39:28.541Z",
+      "by": "pemilik",
+      "message": "Minta revisi: panjangkan jadi 5–8 menit"
+    },
+    {
+      "time": "2026-11-13T01:47:35.073Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-13T01:49:12.779Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T01:49:13.330Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-13T01:49:47.268Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-13T01:49:47.806Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
     }
-  ]
+  ],
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
+    "summary": "Malam itu hujan deras, lalu terdengar suara duar. Mamas kaget dan takut. Mochi ikut bersembunyi di balik selimut, tapi ekornya masih kelihatan. Mamas lalu keliru: ia berdiri di kasur dan berteriak mengusir petir. Guruh malah datang lagi, Mamas menyelam ke bawah selimut, dan Mochi jatuh dari kasur tertimpa bantal. Ibu menjelaskan bahwa petir tidak bisa diusir dengan teriakan. Ibu juga menjelaskan bedanya guruh dan kilat, dan bahwa petir dan hujan diatur oleh Allah. Penonton diajak berpikir apa yang sebaiknya Mamas lakukan. Ibu mengajarkan QS. Ar-Ra'd ayat 13: guruh bertasbih memuji Allah. Lalu Ibu bercerita tentang dzikir yang dibaca Abdullah bin Zubair radhiyallahu 'anhuma saat mendengar guruh. Saat guruh terdengar lagi, Mamas mencoba lagi. Kali ini ia tidak berteriak. Ia memeluk Ibu, diam sebentar, lalu membaca dzikir bersama penonton. Ibu memberi contoh di keseharian: di sekolah tetap tenang dan berdzikir, dan kalau sedang di halaman, cepat masuk rumah dan jangan berteduh di bawah pohon. Pesannya: petir diatur Allah, jadi tidak perlu panik. Kalau takut, dekati Ayah atau Ibu, lalu berdzikir.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Malam itu hujan turun deras sekali. Mamas baru mau tidur, tiba-tiba… duar!",
+        "visualDirection": "bedroom-night: Mamas di tempat tidur, hujan di jendela, kilat lembut menerangi kamar sebentar (tanpa kedip cepat, efek suara petir pelan)."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibuuu! Mamas takut! Suaranya keras sekali! Jendelanya tadi juga terang sekali!",
+        "visualDirection": "bedroom-night: Mamas menarik selimut sampai ke dagu, Mochi melompat masuk ke bawah selimut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Sini, Mas, peluk Ibu. Eh, lihat, Mochi juga ikut sembunyi.",
+        "visualDirection": "bedroom-night: Ibu duduk di tepi kasur dan memeluk Mamas; gundukan selimut bergerak-gerak."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Hihi, ekor Mochi masih kelihatan! Tapi, Bu, petir itu jahat, ya? Mamas usir saja, ah. Hei, petir! Pergi sana! Jangan berisik!",
+        "visualDirection": "bedroom-night: ekor oranye Mochi mencuat dari selimut, lalu Mamas berdiri di atas kasur sambil menunjuk jendela dengan wajah berani."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas berteriak ke arah jendela. Tapi… duar! Guruh malah terdengar lagi. Mamas cepat-cepat menyelam ke bawah selimut. Mochi ikut kaget, lalu… gedebuk! Mochi jatuh dari kasur, tertimpa bantal.",
+        "visualDirection": "bedroom-night: kilat lembut di jendela (efek suara guruh pelan), Mamas meringkuk di bawah selimut, Mochi terduduk bingung di lantai dengan bantal di punggungnya."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Aduh, Mochi, kamu tidak apa-apa? Mas, petir tidak bisa diusir dengan teriakan. Petir juga tidak jahat. Suara duar itu namanya guruh. Cahayanya namanya kilat. Petir dan hujan itu diatur oleh Allah. Hujan membuat tanaman tumbuh dan bunga di halaman jadi segar.",
+        "visualDirection": "bedroom-night: Ibu mengangkat Mochi ke kasur sambil tersenyum, lalu gambar beralih ke yard: halaman basah dengan daun dan bunga yang segar, suasana tenang."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, kalau mendengar petir, sebaiknya Mamas berbuat apa? Ayo, pikirkan dulu…",
+        "visualDirection": "bedroom-night: Mamas memandang jendela dengan wajah berpikir, hujan turun pelan."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Tadi Mamas berteriak, tapi petirnya tetap datang, kan? Kalau takut, tidak usah teriak atau lari-lari, Mas. Dekati Ibu, lalu ingat Allah. Di Al-Qur'an, Allah berfirman bahwa guruh pun bertasbih memuji-Nya. Yuk, Mamas baca.",
+        "visualDirection": "bedroom-night: Ibu tersenyum lembut sambil membelai kepala Mamas."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+        "visualDirection": "night-sky: awan hujan gelap yang tenang dengan kilat samar di kejauhan, tanpa sorotan cahaya dan tanpa sosok apa pun."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, guruh bertasbih memuji Allah, begitu juga para malaikat karena takut kepada-Nya. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
+        "visualDirection": "bedroom-night: Ibu dan Mamas bersandar di bantal, Mamas mendengarkan dengan mata berbinar."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Wah, guruhnya ternyata bertasbih, ya, Bu? Mamas juga mau bertasbih! Tapi Mamas harus baca apa kalau ada guruh?",
+        "visualDirection": "bedroom-night: Mamas duduk tegak dengan semangat, kepala Mochi mulai mengintip dari selimut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Pintar! Dulu ada sahabat Nabi, namanya Abdullah bin Zubair radhiyallahu 'anhuma. Kalau mendengar guruh, beliau berhenti bicara. Lalu beliau membaca dzikir. Bacaannya mirip ayat tadi, hanya ditambah pujian kepada Allah di depannya. Nanti kalau guruh datang lagi, kita coba bersama, ya.",
+        "visualDirection": "living-room: Ibu menggandeng Mamas ke ruang tamu yang hangat, lampu temaram, hujan terlihat dari jendela."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Benar saja. Duar! Guruh terdengar lagi. Kali ini Mamas tidak berteriak. Mamas memeluk Ibu, lalu berhenti bicara sebentar. Adik-adik, kalau mendengar guruh, kita baca dzikir apa? Ayo, ucapkan bersama Mamas!",
+        "visualDirection": "living-room: kilat lembut di jendela (efek suara guruh pelan), Mamas memeluk lengan Ibu dan menutup mulut sebentar, lalu menoleh tenang ke arah penonton."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Subḥānalladzī yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+        "visualDirection": "living-room: Mamas dan Ibu duduk bersebelahan di sofa, Mamas membaca dzikir dengan tenang sambil tersenyum, Mochi di pangkuannya."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, Maha Suci Allah, yang guruh bertasbih memuji-Nya, begitu juga para malaikat karena takut kepada-Nya. Masyaallah, Mamas hebat, tidak panik lagi! Besok, kalau ada guruh di sekolah, Mas diam sebentar lalu baca dzikir ini, ya. Kalau sedang main di halaman, cepat masuk ke rumah. Jangan berteduh di bawah pohon.",
+        "visualDirection": "living-room: Ibu menjelaskan pelan sambil mengacungkan jempol, Mamas mengangguk-angguk, Mochi menggulung badan di pangkuan Mamas."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas berbisik, besok ia mau mengajari Mochi berdzikir. Tapi Mochi cuma menguap lebar, lalu tertidur. Mamas pun tertidur pulas, dan hujan reda perlahan. Adik-adik, petir diatur oleh Allah, jadi kita tidak perlu panik. Kalau takut, dekati Ayah atau Ibu, lalu berdzikir, ya. Wassalamu'alaikum!",
+        "visualDirection": "bedroom-night: Mochi menguap lebar lalu meringkuk, Mamas tertidur pulas berselimut di sampingnya, hujan reda perlahan."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ",
+        "latin": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+        "translation": "Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya. (Penggalan awal ayat)",
+        "source": "QS. Ar-Ra'd [13]: 13"
+      },
+      {
+        "type": "atsar",
+        "arabicText": "سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ",
+        "latin": "Subḥānalladzī yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+        "translation": "Maha Suci Allah, yang guruh bertasbih memuji-Nya, begitu pula para malaikat karena takut kepada-Nya. (Dibaca Abdullah bin Zubair radhiyallahu 'anhuma saat mendengar guruh; ia berhenti bicara lalu membacanya.)",
+        "source": "Atsar mauquf dari Abdullah bin Zubair radhiyallahu 'anhuma, HR. Malik dalam Al-Muwaththa' (Kitab al-Kalam, bab ucapan saat mendengar guruh) dan Al-Bukhari dalam Al-Adab Al-Mufrad no. 723; dinilai shahih mauquf oleh Al-Albani dalam Shahih Al-Adab Al-Mufrad."
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Syariat aman. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Scene 9 memakai langit malam berawan tanpa sosok. Kisah Abdullah bin Zubair hanya disampaikan lewat dialog Ibu, dan visual scene 12 cuma menampilkan Ibu dan Mamas.",
+      "Ayat QS. Ar-Ra'd: 13 (penggalan awal) dan dzikir dari atsar Ibnu Zubair sudah sesuai dengan yang saya ketahui. Naskah dengan benar menyebut dzikir itu sebagai bacaan sahabat, bukan sabda Nabi ﷺ, jadi tidak ada klaim keutamaan yang dikarang.",
+      "Bacaan Arab sudah terpisah dengan benar. Scene 9 (ayat) dan scene 14 (dzikir) hanya berisi latin, dan artinya ada di scene 10 dan 15. Bacaan ayat sudah memakai pembicara mamas.",
+      "Perilaku negatif ada konsekuensi dan penyelesaiannya. Mamas berteriak ke petir, guruh tetap datang, lalu Ibu meluruskan. Di scene 13 Mamas mencoba lagi dengan cara yang benar. Alurnya bagus dan jelas untuk usia 4–6.",
+      "Panjang 396 kata, sudah dalam batas. Ada 2 momen interaktif (scene 7 dan 13). Tempo mengalir, tidak bertele-tele.",
+      "Perbaikan opsional (scene 4–6): Mamas berdiri di atas kasur, lalu Mochi jatuh. Pertimbangkan menambah satu kalimat Ibu: 'Mas, duduk dulu, ya, nanti jatuh.' Ini supaya berdiri di kasur tidak terkesan aman untuk ditiru.",
+      "Perbaikan opsional (kesinambungan latar): di scene 12 Ibu dan Mamas pindah ke ruang tamu, tapi di scene 16 Mamas tiba-tiba tidur di kamar. Pilih salah satu: (a) scene 12–15 tetap di bedroom-night, atau (b) di scene 16 tambahkan narasi singkat 'Ibu mengantar Mamas kembali ke kamar.'",
+      "Perbaikan opsional (panjang kalimat): kalimat di scene 15 'Besok, kalau ada guruh di sekolah, Mas diam sebentar lalu baca dzikir ini, ya.' berisi 14 kata. Bisa dipecah jadi 'Besok, kalau ada guruh di sekolah, Mas diam sebentar. Lalu baca dzikir ini, ya.'",
+      "Judul tidak menyesatkan karena isinya memang tentang petir dan tasbih guruh. Tidak ada unsur yang menakut-nakuti berlebihan, dan saran keselamatan (masuk rumah, jangan berteduh di bawah pohon) sudah tepat."
+    ],
+    "humanCheck": [
+      "Dalil 1 – Ayat: QS. Ar-Ra'd [13]: 13, penggalan awal. Teks: وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ. Latin: 'Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.' Terjemah: 'Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya.' Cocokkan dengan mushaf dan terjemah Kemenag.",
+      "Dalil 2 – Atsar Abdullah bin Zubair radhiyallahu 'anhuma. Teks: سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ. Sumber: Al-Muwaththa' Imam Malik (Kitab al-Kalam, bab ucapan saat mendengar guruh) dan Al-Bukhari dalam Al-Adab Al-Mufrad no. 723. Pastikan nomornya sesuai dengan cetakan yang dirujuk, karena penomoran Al-Muwaththa' berbeda-beda antar riwayat atau cetakan.",
+      "Penilaian Al-Albani untuk atsar ini (setahu saya 'shahih al-isnad mauquf' dalam Shahih Al-Adab Al-Mufrad). Mohon dicek langsung di kitabnya.",
+      "Penjelasan di scene 12 bahwa Ibnu Zubair 'berhenti bicara' saat mendengar guruh berasal dari lafaz atsar 'taraka al-hadits'. Pastikan penyederhanaan ini bisa diterima.",
+      "Penulisan latin dan pelafalan oleh pengisi suara Mamas (ḥ, ‘ain pada ra‘du, khīfatih) perlu didengar ulang oleh orang yang paham tajwid sebelum video dirilis.",
+      "Efek visual kilat dan suara guruh (scene 1, 5, 13) harus benar-benar lembut, tanpa kedip cepat dan suara keras, supaya tidak melanggar aturan visual tenang."
+    ]
+  }
 }
