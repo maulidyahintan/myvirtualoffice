@@ -1,8 +1,8 @@
 {
   "id": "hadits-ikut-senang-untuk-teman-obat-iri--4ebd",
   "created": "2026-11-13T19:14:26.058Z",
-  "modified": "2026-11-13T19:16:31.969Z",
-  "status": "rendering",
+  "modified": "2026-11-13T19:17:33.349Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Hadits Ikut Senang untuk Teman | Obat Iri Anak",
     "series": "kenapa-ya",
@@ -38,6 +38,11 @@
       "time": "2026-11-13T19:16:22.466Z",
       "by": "video-creator",
       "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-13T19:17:33.349Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "source": {
@@ -207,6 +212,24 @@
     2.133,
     null
   ],
-  "statusNote": "Render dengan rekaman suara",
-  "audioFile": "audio/hadits-ikut-senang-untuk-teman-obat-iri--4ebd-gabung.wav"
+  "statusNote": "Video siap ditonton & disetujui",
+  "audioFile": "audio/hadits-ikut-senang-untuk-teman-obat-iri--4ebd-gabung.wav",
+  "render": {
+    "video": "hadits-ikut-senang-untuk-teman-obat-iri--4ebd.mp4",
+    "scenes": [
+      {
+        "start": 1.5,
+        "duration": 13.166666666666666
+      },
+      {
+        "start": 14.666666666666666,
+        "duration": 14.4
+      },
+      {
+        "start": 29.066666666666666,
+        "duration": 21.033333333333335
+      }
+    ],
+    "time": "2026-11-13T19:17:33.348Z"
+  }
 }
