@@ -37,3 +37,10 @@ export function blanketTremble(frame: number, isScared: boolean): number {
 export function blanketBreath(frame: number): number {
   return 1 + Math.sin((frame / BREATH_PERIOD_FRAMES) * Math.PI) * BREATH_SCALE;
 }
+
+const DRAPE_FRAMES = 8;
+
+/** How far the blanket has dropped over the child, 0 (just thrown up) .. 1 (covering), `elapsed` frames in. */
+export function blanketDrape(elapsed: number): number {
+  return Math.min(1, Math.max(0, elapsed / DRAPE_FRAMES));
+}

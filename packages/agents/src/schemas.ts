@@ -63,10 +63,18 @@ export const SceneSchema = z.object({
   prayer: z.object({ arabic: z.string(), latin: z.string(), meaning: z.string() }).optional(),
   props: z.array(z.enum(SCENE_PROPS)).max(3).optional().describe('supporting props around characters'),
   actions: z
-    .array(z.object({ character: z.enum(CHARACTERS), action: z.enum(ACTIONS), heldItem: z.enum(HELD_ITEMS).optional() }))
-    .max(3)
+    .array(
+      z.object({
+        character: z.enum(CHARACTERS),
+        action: z.enum(ACTIONS),
+        heldItem: z.enum(HELD_ITEMS).optional(),
+        at: z.string().optional().describe('words of the narration where this action starts; omit = whole scene'),
+      }),
+    )
+    .max(6)
     .optional()
-    .describe('what characters are doing in this scene'),
+    .describe('what characters are doing in this scene; several per character when things happen in order'),
+  lightningAt: z.array(z.string()).max(4).optional().describe('words of the narration where lightning flashes (storm backgrounds)'),
 });
 
 export const DirectorSchema = z.object({ scenes: z.array(SceneSchema) });

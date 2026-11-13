@@ -2,7 +2,7 @@ import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import type { Background as LatarId, Mood as SuasanaId } from '@kantor/shared/types';
 import { BintangJatuh, BintangKelip, Burung, BungaGoyang, Cahaya, DaunJatuh, Debu, Gorden, Hujan, KunangKunang, KupuKupu, LightningBolt, SinarJendela, Uap } from './Ambience';
-import { lightningFlash } from './lightning';
+import { useLightningFlash } from './LightningCues';
 import { SchoolCanteen, SchoolGate, SchoolYard } from './SchoolScenes';
 import { HouseFront } from './HouseFront';
 
@@ -89,7 +89,7 @@ const RAINDROP_RUN_FRAMES = 160;
 /** The night bedroom during a thunderstorm: heavy rain and lightning outside the window. */
 const StormyBedroom = () => {
   const frame = useCurrentFrame();
-  const { strength } = lightningFlash(frame);
+  const { strength } = useLightningFlash();
   return (
     <>
       <rect width={W} height={H} fill="#2C3560" />
@@ -137,7 +137,7 @@ const STREET_LEVEL = 820;
 /** A stormy night outdoors: dark clouds, heavy rain, lightning and the lit windows of neighbouring houses. */
 const StormyNight = () => {
   const frame = useCurrentFrame();
-  const { strength } = lightningFlash(frame);
+  const { strength } = useLightningFlash();
   return (
     <>
       <defs>

@@ -12,3 +12,4 @@ export * from './monetization.ts';
 export * from './metricsStore.ts';
 export * from './aiVoiceQuota.ts';
 export * from './shortsCoverage.ts';
+export * from './sceneTimeline.ts';

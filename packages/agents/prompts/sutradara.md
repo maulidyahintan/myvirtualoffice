@@ -47,6 +47,17 @@ oleh template animasi Remotion milik channel.
     `approaching` (berjalan pelan mendekati Mamas/teman, lalu duduk di sampingnya; kalau Mamas duduk di
     kasur, Mochi berjalan di atas kasur), `licking` (menjilat pipi anak yang menggendongnya; anaknya otomatis
     menggendong Mochi dan tertawa geli)
+- Mamas/Mother/friend: `shouting` (berteriak: satu tangan di mulut, kepalan teracung; misal mengusir petir).
+  Semua tokoh termasuk Mochi: `startled` (kaget: melompat lalu gemetar; cocok tepat saat petir menyambar).
+- **Kejadian berurutan dalam satu adegan**: beri `at` = kata/frasa PERSIS dari narasi saat aksi itu mulai;
+  satu tokoh boleh punya beberapa aksi berurutan (aksi tanpa `at` berlaku sejak awal adegan). Kilat di
+  bedroom-storm/night-storm bisa diatur tepat waktunya dengan `lightningAt` (frasa dari narasi, maks. 1 per
+  detik). Contoh untuk narasi "Mamas berteriak ke arah jendela. Tapi… duar! … Mamas cepat-cepat menyelam ke
+  bawah selimut. Mochi ikut kaget, lalu… gedebuk! …":
+  `actions`: mamas `shouting`; mamas `startled` at "duar"; mamas `hiding-under-blanket` at "menyelam";
+  mochi `approaching` at "menyelam"; mochi `startled` at "kaget"; mochi `falling` at "lalu"
+  dan `lightningAt`: ["duar", "kaget"]. Jangan langsung memakai keadaan akhir (misal langsung di bawah
+  selimut) kalau narasinya menceritakan prosesnya.
 - Adegan menghibur yang hangat bisa disusun berurutan: Mamas `hugging-knees` (sad) → Mochi `approaching` →
   Mamas `carrying-cat` → Mochi `licking` (happy) → Mother `hugging` (calm).
 - `heldItem`: quran, apple, banana, date, cake, chocolate-cake (kue cokelat bulat dengan ceri), milk-glass, ball, toy-car, toy-elephant (mainan gajah kayu), doll, book, flower

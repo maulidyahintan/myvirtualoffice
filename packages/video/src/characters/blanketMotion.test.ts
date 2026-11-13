@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { blanketBreath, blanketPeek, blanketTremble } from './blanketMotion';
+import { blanketBreath, blanketDrape, blanketPeek, blanketTremble } from './blanketMotion';
 
 describe('blanketPeek', () => {
   it('starts peeking out of the gap', () => {
@@ -38,5 +38,13 @@ describe('blanketBreath', () => {
     const scales = Array.from({ length: 50 }, (_, f) => blanketBreath(f));
     expect(Math.min(...scales)).toBeGreaterThan(0.98);
     expect(Math.max(...scales)).toBeLessThan(1.02);
+  });
+});
+
+describe('blanketDrape', () => {
+  it('drops the blanket over the child in a few frames', () => {
+    expect(blanketDrape(0)).toBe(0);
+    expect(blanketDrape(4)).toBeCloseTo(0.5);
+    expect(blanketDrape(30)).toBe(1);
   });
 });

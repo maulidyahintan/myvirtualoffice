@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   FIRST_FLASH_FRAME,
+  FLASH_DECAY_FRAMES,
   FLASH_RISE_FRAMES,
   MAX_FLASH_GAP_FRAMES,
   MIN_FLASH_GAP_FRAMES,
@@ -8,6 +9,8 @@ import {
   flashStrength,
   lightningBoltPath,
   lightningFlash,
+  cuedLightningFlash,
+  photosafeCues,
 } from './lightning';
 
 const FPS = 30;
@@ -77,5 +80,22 @@ describe('lightningBoltPath', () => {
 
   it('draws a different bolt for every flash', () => {
     expect(lightningBoltPath(1, 500, 640)).not.toBe(lightningBoltPath(2, 500, 640));
+  });
+});
+
+describe('cued lightning', () => {
+  it('strikes exactly at the cue and fades out', () => {
+    expect(cuedLightningFlash(99, [100]).strength).toBe(0);
+    expect(cuedLightningFlash(100 + FLASH_RISE_FRAMES, [100]).strength).toBe(1);
+    expect(cuedLightningFlash(100 + FLASH_RISE_FRAMES + FLASH_DECAY_FRAMES, [100]).strength).toBe(0);
+  });
+
+  it('numbers the flashes so each bolt looks different', () => {
+    expect(cuedLightningFlash(205, [100, 200]).index).toBe(1);
+  });
+
+  it('never flashes twice within a second', () => {
+    expect(photosafeCues([100, 110, 160])).toEqual([100, 160]);
+    expect(photosafeCues([160, 100])).toEqual([100, 160]);
   });
 });

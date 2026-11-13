@@ -86,6 +86,8 @@ export interface RigProps {
   carriedCat?: 'calm' | 'licking';
   /** Opening the front door: how far the left arm is stretched to the handle (0..1). */
   reach?: number;
+  /** Frames since the current action started (a blanket dropping over the child, a fright). */
+  actionFrames?: number;
 }
 
 /**

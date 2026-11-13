@@ -46,3 +46,19 @@ export function approach(elapsed: number, fromX: number, toX: number, frames = A
   const eased = 1 - (1 - progress) * (1 - progress);
   return { x: fromX + (toX - fromX) * eased, step: elapsed * STEP_PACE, facing };
 }
+
+/** Horizontal run of the cat's hop from the floor onto the mattress (px), and how high it arcs above it. */
+export const BED_HOP_RUN_X = 90;
+const BED_HOP_ARC_HEIGHT = 60;
+
+/**
+ * Height (feet) of the cat walking from the floor in front of the bed onto the mattress: on the floor until it
+ * reaches the bed's edge, a short hop across `BED_HOP_RUN_X`, then on the mattress. `bedEdgeX` is the end of
+ * the bed it walks towards (the cat comes from the right).
+ */
+export function bedClimbY(x: number, bedEdgeX: number, floorY: number, bedY: number): number {
+  if (x >= bedEdgeX + BED_HOP_RUN_X) return floorY;
+  if (x <= bedEdgeX) return bedY;
+  const progress = (bedEdgeX + BED_HOP_RUN_X - x) / BED_HOP_RUN_X;
+  return floorY + (bedY - floorY) * progress - Math.sin(progress * Math.PI) * BED_HOP_ARC_HEIGHT;
+}

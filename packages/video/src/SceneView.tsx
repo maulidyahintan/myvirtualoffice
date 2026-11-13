@@ -2,11 +2,12 @@ import React from 'react';
 import { AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { Action, Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
 import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
-import { lightningFlash } from './backgrounds/lightning';
+import { LightningCuesProvider, lightningAt } from './backgrounds/LightningCues';
+import { activeActions, didEarlier, hasTimedActions, phraseFrame, timeActions } from '@kantor/shared/sceneTimeline';
 import { MochiFall } from './characters/MochiFall';
 import { HugArm } from './characters/HugArm';
-import { approach } from './characters/interactions';
-import { drawOrder, mochiLeavesRow, stageInteractions } from './characters/staging';
+import { approach, bedClimbY } from './characters/interactions';
+import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
 import { FRONT_DOOR, FrontDoor } from './backgrounds/HouseFront';
 import { DOOR_STANCE_X, doorOpen, doorReach, placeAroundDoor } from './backgrounds/door';
 import { Foreground } from './backgrounds/Foreground';
@@ -27,10 +28,18 @@ const FALL_DELAY_SECONDS = 1.2;
 const BED_SEAT_OFFSET = { x: -270, y: 15 };
 /** Mother's hug: the child stands this far to her right, in front of her. */
 const HUG_OFFSET_X = 165;
-/** Mochi stops this far beside the character it walks up to. */
+/** Mochi stops this far beside the character it walks up to (further from a child wrapped in a blanket). */
 const APPROACH_GAP_X = 170;
+const BLANKET_APPROACH_GAP_X = 300;
 /** Frames into the scene before Mochi starts walking. */
 const APPROACH_DELAY_FRAMES = 12;
+/** The voice ends this long before the scene does (the breath after each scene). */
+const BREATH_SECONDS = 1;
+/** A child diving from the floor onto the bed: frames in the air and height of the leap. */
+const DIVE_FRAMES = 14;
+const DIVE_ARC_HEIGHT = 150;
+/** The right-hand end of the bed, measured from the spot where Mochi sleeps at its foot. */
+const BED_END_OFFSET_X = 130;
 /** Frames into the scene before the front door is opened. */
 const DOOR_DELAY_FRAMES = 8;
 /** Strongest white-out of the whole frame during a lightning flash. */
@@ -504,16 +513,25 @@ function gerakHidup(
 }
 
 /** Mochi walking slowly up to someone and then standing beside them, facing the way it walked. */
-const ApproachingMochi: React.FC<{ fromX: number; toX: number; y: number; height: number; start: number }> = ({ fromX, toX, y, height, start }) => {
+const ApproachingMochi: React.FC<{
+  fromX: number;
+  toX: number;
+  y: number;
+  height: number;
+  start: number;
+  /** walking from the floor up onto the bed: the floor height and the bed end it hops over */
+  climb?: { floorY: number; bedEdgeX: number };
+}> = ({ fromX, toX, y, height, start, climb }) => {
   const frame = useCurrentFrame();
   const state = approach(frame - start, fromX, toX);
   const width = (height * 240) / 400;
+  const feetY = climb ? bedClimbY(state.x, climb.bedEdgeX, climb.floorY, y) : y;
   return (
     <div
       style={{
         position: 'absolute',
         left: state.x - width / 2,
-        top: y - height,
+        top: feetY - height,
         transformOrigin: '50% 100%',
         // Mochi's tail is on its right: walking to the left needs no mirroring
         transform: `scaleX(${state.facing === 1 ? -1 : 1})`,
@@ -529,6 +547,25 @@ const ApproachingMochi: React.FC<{ fromX: number; toX: number; y: number; height
         masuk="ada"
         langkah={state.step ?? undefined}
       />
+    </div>
+  );
+};
+
+/** A frightened child leaping from its spot on the floor onto the bed, before the blanket covers it. */
+const DivingChild: React.FC<{ id: KarakterId; from: { x: number; y: number }; to: { x: number; y: number }; progress: number; height: number }> = ({
+  id,
+  from,
+  to,
+  progress,
+  height,
+}) => {
+  const t = Math.min(1, Math.max(0, progress));
+  const x = from.x + (to.x - from.x) * t;
+  const y = from.y + (to.y - from.y) * t - Math.sin(t * Math.PI) * DIVE_ARC_HEIGHT;
+  const width = (height * 240) / 400;
+  return (
+    <div style={{ position: 'absolute', left: x - width / 2, top: y - height, transformOrigin: '50% 60%', transform: `rotate(${-t * 20}deg)` }}>
+      <CharacterFigure id={id} expression="surprised" bicara={false} tinggi={height} offset={11} lihatX={-1} masuk="ada" action="startled" actionStart={-100} />
     </div>
   );
 };
@@ -616,6 +653,16 @@ export const SceneView: React.FC<{
   const gelap = DARK_BACKGROUNDS.includes(data.background);
   const isDoa = data.type === 'prayer' && data.prayer;
   const durasiIsi = durasi - transisi;
+  // actions that change during the scene start at their words in the narration (`at`)
+  const speechFrames = Math.max(1, durasiIsi - fps * BREATH_SECONDS);
+  const timed = timeActions(data.actions ?? [], data.narration, transisi, speechFrames);
+  const sequenced = hasTimedActions(data.actions);
+  const nowActions = sequenced ? activeActions(timed, frame) : timed;
+  const aktif: AdeganData = sequenced ? { ...data, actions: nowActions } : data;
+  const startOf = (id: KarakterId) => nowActions.find((a) => a.character === id)?.startFrame ?? 0;
+  const lightningCues = (data.lightningAt ?? [])
+    .map((words) => phraseFrame(data.narration, words, transisi, speechFrames))
+    .filter((cue): cue is number => cue !== undefined);
 
   if (data.illustration?.image && !isDoa) {
     return <AdeganIlustrasi data={data} durasi={durasi} denganSubtitle={denganSubtitle} indeks={indeks} transisi={transisi} />;
@@ -623,16 +670,26 @@ export const SceneView: React.FC<{
 
   // Mochi bisa keluar dari barisan tokoh: tidur di ujung kasur (video biasa; di Shorts kasurnya terpotong)
   // atau berputar di kaki Mamas/Ibu
-  const aksiMochi = isDoa || !data.characters.includes('mochi') ? undefined : data.actions?.find((a) => a.character === 'mochi')?.action;
-  const kasur = (aksiMochi === 'sleeping' || aksiMochi === 'falling') && !vertikal ? UJUNG_KASUR[data.background] : undefined;
-  // Mochi falls off the bed under a pillow: asleep for about a second, then lands on the floor in front of the bed
-  const fall = kasur && aksiMochi === 'falling' ? { start: transisi + Math.round(fps * FALL_DELAY_SECONDS), landing: { x: kasur.x - 110, y: 885 } } : undefined;
+  const aksiMochi = isDoa || !data.characters.includes('mochi') ? undefined : aktif.actions?.find((a) => a.character === 'mochi')?.action;
+  const bedFoot = vertikal ? undefined : UJUNG_KASUR[data.background];
+  // Mochi that walked onto the bed earlier in the scene stays there, beside the child on the bed
+  const mochiOnBed =
+    sequenced && bedFoot && didEarlier(timed, 'mochi', 'approaching', frame)
+      ? { x: bedFoot.x + BED_SEAT_OFFSET.x + BLANKET_APPROACH_GAP_X, y: bedFoot.y + 5 }
+      : undefined;
+  const kasur = (aksiMochi === 'sleeping' || aksiMochi === 'falling') && !vertikal ? (mochiOnBed ?? UJUNG_KASUR[data.background]) : undefined;
+  // Mochi falls off the bed under a pillow: asleep for about a second (or awake on the bed, startled), then
+  // lands on the floor in front of the bed
+  const fall =
+    kasur && aksiMochi === 'falling'
+      ? { start: sequenced ? startOf('mochi') : transisi + Math.round(fps * FALL_DELAY_SECONDS), landing: { x: kasur.x - 110, y: 885 } }
+      : undefined;
+  const mochiStartledOnBed = aksiMochi === 'startled' && mochiOnBed ? mochiOnBed : undefined;
   const dikelilingi = aksiMochi === 'circling' ? (['mamas', 'mother'] as const).find((id) => data.characters.includes(id)) : undefined;
   // touching characters: a child on the bed, Mochi carried or walking up to someone, Mother hugging a child
-  const bedFoot = vertikal ? undefined : UJUNG_KASUR[data.background];
-  const staging = isDoa ? {} : stageInteractions(data, { hasBed: Boolean(bedFoot) });
+  const staging = isDoa ? {} : stageInteractions(aktif, { hasBed: Boolean(bedFoot) });
   const bedSeat = staging.sitterOnBed && bedFoot ? { x: bedFoot.x + BED_SEAT_OFFSET.x, y: bedFoot.y + BED_SEAT_OFFSET.y } : undefined;
-  const mochiLepas = Boolean(kasur || dikelilingi || mochiLeavesRow(staging));
+  const mochiLepas = Boolean(kasur || dikelilingi || mochiStartledOnBed || mochiLeavesRow(staging));
   // abaikan id karakter lama yang sudah tidak ada (misal dari episode sebelum konsep berubah)
   const urut = isDoa
     ? []
@@ -642,13 +699,25 @@ export const SceneView: React.FC<{
   const kasurDipakai = kasur ?? (bedSeat ? bedFoot : undefined);
   const geserKasur = kasurDipakai && urut.length ? Math.max(0, kasurDipakai.x + 110 + (tinggiDari(urut[0]) * 240) / 400 / 2 - posisiX(urut.length, vertikal)[0]) : 0;
   const xs = posisiX(urut.length, vertikal).map((x) => x + geserKasur);
+  // a scene whose actions change keeps everyone at the spot they started on
+  const barisAwal = sequenced ? rowAtStart(data.characters.filter((id) => id in CHARACTER_SCALE), activeActions(timed, 0), { hasBed: Boolean(bedFoot) }) : [];
+  const xsAwal = posisiX(barisAwal.length, vertikal);
+  urut.forEach((id, i) => {
+    const k = barisAwal.indexOf(id);
+    if (k >= 0) xs[i] = xsAwal[k];
+  });
+  // a child diving onto the bed at its cue: in the air from its spot in the row to the seat on the bed
+  const sitterStart = staging.sitterOnBed && sequenced ? startOf(staging.sitterOnBed) : 0;
+  const sejakLoncat = frame - sitterStart;
+  const sedangLoncat = sitterStart > 0 && sejakLoncat < DIVE_FRAMES;
+  const loncatDari = staging.sitterOnBed ? xsAwal[barisAwal.indexOf(staging.sitterOnBed)] : undefined;
   const iIbu = urut.indexOf('mother');
   const iDipeluk = staging.hugged ? urut.indexOf(staging.hugged) : -1;
   // hugged: the child stands in front of Mother, at her right side
   if (iIbu >= 0 && iDipeluk >= 0) xs[iDipeluk] = xs[iIbu] + HUG_OFFSET_X;
   // opening the front door: the opener stands right of the door with the left arm on the handle
   const adaPintu = data.background === 'house-front';
-  const iPembuka = adaPintu ? urut.findIndex((id) => data.actions?.some((a) => a.character === id && a.action === 'opening-door')) : -1;
+  const iPembuka = adaPintu ? urut.findIndex((id) => aktif.actions?.some((a) => a.character === id && a.action === 'opening-door')) : -1;
   const jarakPintu = iPembuka >= 0 ? DOOR_STANCE_X[urut[iPembuka]] : undefined;
   if (iPembuka >= 0 && jarakPintu !== undefined) {
     xs[iPembuka] = FRONT_DOOR.handle.x + jarakPintu;
@@ -679,8 +748,8 @@ export const SceneView: React.FC<{
     adaPendengar: iPendengar >= 0,
     latarBaru,
   });
-  // the whole fall must stay in view: one wide shot for the entire scene
-  if (fall) rencana.splice(0, rencana.length, { shot: 'lebar', mulai: 0, durasi });
+  // the whole fall (and everything that happens in order) must stay in view: one wide shot for the scene
+  if (fall || sequenced) rencana.splice(0, rencana.length, { shot: 'lebar', mulai: 0, durasi });
   // karakter yang baru berjalan masuk harus terlihat: jangan buka dengan close-up
   if (adaYangBaru && ['dekat', 'reaksi', 'bahu'].includes(rencana[0].shot)) rencana[0].shot = 'sedang';
   const iShot = Math.max(0, rencana.findLastIndex((r) => frame >= r.mulai));
@@ -706,7 +775,7 @@ export const SceneView: React.FC<{
     isDoa ? null : (
       <ScenePropsLayer
         props={data.props ?? []}
-        actions={data.actions ?? []}
+        actions={aktif.actions ?? []}
         urut={urut}
         xs={xs}
         lantai={lantai}
@@ -766,6 +835,7 @@ export const SceneView: React.FC<{
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
 
   return (
+    <LightningCuesProvider cues={lightningCues}>
     <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...transitionStyle(indeks, pTransisi) }}>
       <AbsoluteFill style={{ transform: `scale(${hentak})` }}>
         {/* background: bidang belakang yang ikut berputar sedikit & kabur saat close-up (2.5D) */}
@@ -780,13 +850,27 @@ export const SceneView: React.FC<{
             {adaPintu ? <FrontDoor open={bukaPintu} /> : null}
             {/* Mochi di kasur ikut bidang latar, supaya tidak bergeser dari kasurnya saat kamera bergerak */}
             {fall && kasur ? (
-              <MochiFall height={tinggiDari('mochi')} from={kasur} to={fall.landing} start={fall.start} />
+              <MochiFall height={tinggiDari('mochi')} from={kasur} to={fall.landing} start={fall.start} awake={Boolean(mochiOnBed)} />
             ) : kasur ? (
               <div style={{ position: 'absolute', left: kasur.x - (tinggiDari('mochi') * 240) / 400 / 2, top: kasur.y - tinggiDari('mochi') }}>
                 <CharacterFigure id="mochi" expression="calm" bicara={false} tinggi={tinggiDari('mochi')} offset={37} masuk="ada" action="sleeping" />
               </div>
             ) : null}
-            {bedSeat && staging.sitterOnBed ? (
+            {mochiStartledOnBed ? (
+              <div style={{ position: 'absolute', left: mochiStartledOnBed.x - (tinggiDari('mochi') * 240) / 400 / 2, top: mochiStartledOnBed.y - tinggiDari('mochi') }}>
+                <CharacterFigure id="mochi" expression="surprised" bicara={false} tinggi={tinggiDari('mochi')} offset={37} lihatX={1} masuk="ada" action="startled" actionStart={startOf('mochi')} />
+              </div>
+            ) : null}
+            {bedSeat && staging.sitterOnBed && sedangLoncat && loncatDari !== undefined ? (
+              <DivingChild
+                id={staging.sitterOnBed}
+                from={{ x: loncatDari, y: lantai }}
+                to={bedSeat}
+                progress={sejakLoncat / DIVE_FRAMES}
+                height={tinggiDari(staging.sitterOnBed)}
+              />
+            ) : null}
+            {bedSeat && staging.sitterOnBed && !sedangLoncat ? (
               <div style={{ position: 'absolute', left: bedSeat.x - (tinggiDari(staging.sitterOnBed) * 240) / 400 / 2, top: bedSeat.y - tinggiDari(staging.sitterOnBed) }}>
                 <CharacterFigure
                   id={staging.sitterOnBed}
@@ -795,13 +879,22 @@ export const SceneView: React.FC<{
                   tinggi={tinggiDari(staging.sitterOnBed)}
                   offset={11}
                   masuk="ada"
-                  action={data.actions?.find((a) => a.character === staging.sitterOnBed)?.action}
+                  action={aktif.actions?.find((a) => a.character === staging.sitterOnBed)?.action}
+                  actionStart={sitterStart + (sitterStart > 0 ? DIVE_FRAMES : 0)}
                   carriedCat={staging.carrier === staging.sitterOnBed ? staging.carriedCat : undefined}
                 />
               </div>
             ) : null}
             {bedSeat && bedFoot && staging.approachTarget === staging.sitterOnBed && staging.sitterOnBed ? (
-              <ApproachingMochi fromX={bedFoot.x + 100} toX={bedSeat.x + APPROACH_GAP_X} y={bedFoot.y + 5} height={tinggiDari('mochi')} start={transisi + APPROACH_DELAY_FRAMES} />
+              <ApproachingMochi
+                fromX={sequenced ? (xsAwal[barisAwal.indexOf('mochi')] ?? bedFoot.x + 100) : bedFoot.x + 100}
+                toX={bedSeat.x + (aktif.actions?.some((a) => a.action === 'hiding-under-blanket') ? BLANKET_APPROACH_GAP_X : APPROACH_GAP_X)}
+                y={bedFoot.y + 5}
+                // in a scene with cues Mochi comes from its spot on the floor and hops onto the bed
+                climb={sequenced ? { floorY: lantai, bedEdgeX: bedFoot.x + BED_END_OFFSET_X } : undefined}
+                height={tinggiDari('mochi')}
+                start={sequenced ? startOf('mochi') : transisi + APPROACH_DELAY_FRAMES}
+              />
             ) : null}
           </div>
         </AbsoluteFill>
@@ -821,7 +914,7 @@ export const SceneView: React.FC<{
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
             const dalamPelukan = Boolean(staging.hugged) && (id === 'mother' || id === staging.hugged);
             const masuk: Entrance = sebelumnya.includes(id) || dalamPelukan || i === iPembuka ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
-            const aksiIni = data.actions?.find((a) => a.character === id);
+            const aksiIni = aktif.actions?.find((a) => a.character === id);
             const gaya = gerakHidup(id, i, frame, {
               bicara: data.speaker === id,
               mendengar: i !== iPembicara && iPembicara >= 0,
@@ -831,8 +924,9 @@ export const SceneView: React.FC<{
               aksi: aksiIni?.action,
             });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
-            // the one opening the door looks at it
+            // the one opening the door looks at it; someone shouting calls out towards the window
             if (i === iPembuka) lihatX = -1;
+            if (aksiIni?.action === 'shouting') lihatX = 1;
             return (
               <React.Fragment key={id}>
               {keliling && !keliling.depan ? keliling.el : null}
@@ -859,6 +953,7 @@ export const SceneView: React.FC<{
                   heldItem={aksiIni?.heldItem}
                   carriedCat={staging.carrier === id ? staging.carriedCat : undefined}
                   reach={i === iPembuka ? doorReach(sejakPintu) : undefined}
+                  actionStart={startOf(id)}
                 />
               </div>
               {id === staging.hugged && iIbu >= 0 ? <HugArm {...titikPelukan(iIbu, i)} /> : null}
@@ -892,7 +987,9 @@ export const SceneView: React.FC<{
 
       {/* lightning briefly lights up the whole frame (soft, never a fast strobe) */}
       {STORM_BACKGROUNDS.includes(data.background) && !isDoa ? (
-        <AbsoluteFill style={{ backgroundColor: '#DDE5FF', opacity: lightningFlash(frame).strength * LIGHTNING_OVERLAY_OPACITY, pointerEvents: 'none' }} />
+        <AbsoluteFill
+          style={{ backgroundColor: '#DDE5FF', opacity: lightningAt(frame, lightningCues.length ? lightningCues : undefined).strength * LIGHTNING_OVERLAY_OPACITY, pointerEvents: 'none' }}
+        />
       ) : null}
 
       {/* vinyet lembut: mata tertuju ke tengah, menambah kesan kedalaman */}
@@ -908,5 +1005,6 @@ export const SceneView: React.FC<{
 
       {denganSubtitle && !isDoa ? <Subtitle text={data.narration} durasi={durasiIsi} speaker={data.speaker} mulai={transisi} /> : null}
     </AbsoluteFill>
+    </LightningCuesProvider>
   );
 };

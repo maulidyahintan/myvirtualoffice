@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Scene } from '@kantor/shared/types';
-import { drawOrder, mochiLeavesRow, stageInteractions } from './staging';
+import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './staging';
 
 const scene = (characters: Scene['characters'], actions: Scene['actions'] = []): Pick<Scene, 'characters' | 'actions'> => ({ characters, actions });
 
@@ -64,5 +64,20 @@ describe('drawOrder', () => {
   it('keeps the row order without a pair', () => {
     expect(drawOrder(3, -1, 0)).toEqual([0, 1, 2]);
     expect(drawOrder(2, 1, -1)).toEqual([0, 1]);
+  });
+});
+
+describe('rowAtStart', () => {
+  it('keeps everyone standing at the start in the row', () => {
+    expect(rowAtStart(['mamas', 'mochi'], [{ character: 'mamas', action: 'shouting' }], { hasBed: true })).toEqual(['mamas', 'mochi']);
+  });
+
+  it('leaves out a child already on the bed and a sleeping Mochi', () => {
+    const start = [
+      { character: 'mamas', action: 'hiding-under-blanket' },
+      { character: 'mochi', action: 'sleeping' },
+    ] as const;
+    expect(rowAtStart(['mother', 'mamas', 'mochi'], start, { hasBed: true })).toEqual(['mother']);
+    expect(rowAtStart(['mother', 'mamas'], start, { hasBed: false })).toEqual(['mother', 'mamas']);
   });
 });

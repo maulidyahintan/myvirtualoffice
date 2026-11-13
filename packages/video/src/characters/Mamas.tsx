@@ -5,6 +5,11 @@ import { ItemArt, Quran } from '../props/ItemArt';
 import { Arm } from './Arm';
 import { BackpackBag, BackpackStraps } from './Backpack';
 import { Blanket } from './Blanket';
+import { blanketDrape } from './blanketMotion';
+
+/** Without a known start the blanket is already covering the child. */
+const DRAPED = Number.POSITIVE_INFINITY;
+import { childShoutArms, childStartleArms } from './reactions';
 import { Mochi } from './Mochi';
 import { lipLick, sparkleTwinkle } from './craving';
 import { Face } from './Face';
@@ -227,6 +232,10 @@ function poseMamas(r: RigProps): { kiri: ArmPose; kanan: ArmPose } {
       const shake = Math.sin(f / 2.5) * 3;
       return { kiri: { bahu: 24 + shake, siku: -150 }, kanan: { bahu: 24 - shake, siku: -150 } };
     }
+    case 'shouting':
+      return childShoutArms(f);
+    case 'startled':
+      return childStartleArms(f);
     case 'hugging-knees':
     case 'hiding-under-blanket': {
       // both forearms wrapped around the knees in front of the chest
@@ -453,7 +462,7 @@ export const Child: React.FC<RigProps & { look: ChildPalette; outfit: ChildOutfi
         </g>
       ) : null}
       {underBlanket ? (
-        <Blanket f={f} isScared={expression === 'sad' || expression === 'surprised'} isTalking={bicara} skin={k.kulit} outline={k.garis} />
+        <Blanket f={f} drape={blanketDrape(r.actionFrames ?? DRAPED)} isScared={expression === 'sad' || expression === 'surprised'} isTalking={bicara} skin={k.kulit} outline={k.garis} />
       ) : null}
       {/* bola yang dipantulkan */}
       {r.action === 'playing' && (r.heldItem ?? 'ball') === 'ball' ? (

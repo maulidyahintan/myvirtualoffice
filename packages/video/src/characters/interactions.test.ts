@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { APPROACH_FRAMES, approach, armPoseTowards, hangingAngle } from './interactions';
+import { APPROACH_FRAMES, BED_HOP_RUN_X, approach, armPoseTowards, bedClimbY, hangingAngle } from './interactions';
 
 describe('hangingAngle', () => {
   it('is 0 straight down and turns clockwise', () => {
@@ -40,5 +40,23 @@ describe('approach', () => {
 
   it('faces right when walking to the right', () => {
     expect(approach(10, 100, 400).facing).toBe(1);
+  });
+});
+
+describe('bedClimbY', () => {
+  const EDGE = 920;
+  const FLOOR = 890;
+  const BED = 645;
+
+  it('walks on the floor until the bed edge', () => {
+    expect(bedClimbY(EDGE + BED_HOP_RUN_X + 50, EDGE, FLOOR, BED)).toBe(FLOOR);
+  });
+
+  it('hops up in an arc above the mattress', () => {
+    expect(bedClimbY(EDGE + BED_HOP_RUN_X / 2, EDGE, FLOOR, BED)).toBeLessThan((FLOOR + BED) / 2);
+  });
+
+  it('walks on the mattress once past the edge', () => {
+    expect(bedClimbY(EDGE - 10, EDGE, FLOOR, BED)).toBe(BED);
   });
 });

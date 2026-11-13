@@ -77,15 +77,15 @@ const LandingDust: React.FC<{ at: Point; elapsed: number }> = ({ at, elapsed }) 
 };
 
 /**
- * Mochi asleep at the foot of the bed is hit by a falling pillow, tumbles to the floor in front of the bed
+ * Mochi asleep at the foot of the bed (or awake on the bed, startled) is hit by a falling pillow, tumbles to the floor in front of the bed
  * and sits there dizzy with the pillow on its head. Drawn in stage coordinates on the background plane, so
  * the bed and Mochi move together with the camera. `start` = frame the pillow starts to drop.
  */
-export const MochiFall: React.FC<{ height: number; from: Point; to: Point; start: number }> = ({ height, from, to, start }) => {
+export const MochiFall: React.FC<{ height: number; from: Point; to: Point; start: number; awake?: boolean }> = ({ height, from, to, start, awake = false }) => {
   const frame = useCurrentFrame();
   const elapsed = frame - start;
   const width = (height * 240) / 400;
-  const { mochi, pillow, dizzy } = fallPose(elapsed, from, to, height);
+  const { mochi, pillow, dizzy } = fallPose(elapsed, from, to, height, awake);
 
   return (
     <>

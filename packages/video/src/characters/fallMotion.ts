@@ -40,9 +40,10 @@ export function headTop(y: number, mochiHeight: number, scale = 1): number {
   return y - mochiHeight * 0.6 * scale - 8;
 }
 
-function mochiPose(elapsed: number, from: Point, to: Point): FallPose['mochi'] {
+function mochiPose(elapsed: number, from: Point, to: Point, awake: boolean): FallPose['mochi'] {
   if (elapsed < PILLOW_HIT_FRAME) {
-    return { x: from.x, y: from.y, rotation: 0, scaleX: 1, scaleY: 1, expression: 'calm', asleep: true };
+    // asleep at the foot of the bed, or awake and frightened (after a thunderclap)
+    return { x: from.x, y: from.y, rotation: 0, scaleX: 1, scaleY: 1, expression: awake ? 'surprised' : 'calm', asleep: !awake };
   }
   const progress = interpolate(elapsed, [PILLOW_HIT_FRAME + TAKE_OFF_DELAY_FRAMES, LANDING_FRAME], [0, 1], clampRange);
   const x = from.x + (to.x - from.x) * progress;
@@ -75,10 +76,13 @@ function pillowPose(elapsed: number, from: Point, to: Point, mochiHeight: number
   };
 }
 
-/** Pose at `elapsed` frames after the pillow starts to drop (negative = Mochi still asleep, no pillow). */
-export function fallPose(elapsed: number, from: Point, to: Point, mochiHeight: number): FallPose {
+/**
+ * Pose at `elapsed` frames after the pillow starts to drop (negative = no pillow yet). Mochi waits asleep,
+ * or `awake` (it walked onto the bed and was startled) with a frightened face.
+ */
+export function fallPose(elapsed: number, from: Point, to: Point, mochiHeight: number, awake = false): FallPose {
   const closerScale = 1 + interpolate(elapsed, [PILLOW_HIT_FRAME, LANDING_FRAME], [0, CLOSER_SCALE], clampRange);
-  const mochi = mochiPose(elapsed, from, to);
+  const mochi = mochiPose(elapsed, from, to, awake);
   return {
     mochi: { ...mochi, scaleX: mochi.scaleX * closerScale, scaleY: mochi.scaleY * closerScale },
     pillow: pillowPose(elapsed, from, to, mochiHeight, closerScale),

@@ -134,6 +134,8 @@ export interface Scene {
   props?: SceneProp[];
   /** What specific characters are doing (holding items, reading Quran, sleeping, ...). */
   actions?: CharacterAction[];
+  /** Words of the narration at which lightning flashes (storm backgrounds only; at most one per second). */
+  lightningAt?: string[];
   /**
    * AI illustration of what is happening (story told by the narrator, an object being discussed). Used
    * only when the episode's visual style is 'ai-illustration'; the scene then shows the picture full
@@ -162,6 +164,11 @@ export interface CharacterAction {
   action: Action;
   /** Item being held/eaten/played with */
   heldItem?: HeldItem;
+  /**
+   * Words of the narration at which this action starts (e.g. "menyelam"); without it the action lasts the
+   * whole scene. A character can have several actions in one scene, each starting at its own words.
+   */
+  at?: string;
 }
 
 export interface YouTubeMetadata {

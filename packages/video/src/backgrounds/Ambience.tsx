@@ -1,7 +1,8 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import { random } from '../characters/motion';
-import { lightningBoltPath, lightningFlash } from './lightning';
+import { lightningBoltPath } from './lightning';
+import { useLightningFlash } from './LightningCues';
 
 /** The bolt itself is only drawn while the flash is at least this bright. */
 const VISIBLE_BOLT_STRENGTH = 0.25;
@@ -253,8 +254,7 @@ export const Cahaya: React.FC = () => {
 
 /** Zig-zag lightning bolt from the top, shown briefly while the flash is bright. */
 export const LightningBolt: React.FC<{ x: number; height: number; scale?: number; seed?: number }> = ({ x, height, scale = 1, seed = 0 }) => {
-  const frame = useCurrentFrame();
-  const { strength, index } = lightningFlash(frame);
+  const { strength, index } = useLightningFlash();
   if (strength < VISIBLE_BOLT_STRENGTH) return null;
   const path = lightningBoltPath(index, x, height, scale, seed);
   return (

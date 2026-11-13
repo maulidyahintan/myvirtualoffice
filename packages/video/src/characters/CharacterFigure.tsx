@@ -7,6 +7,7 @@ import { Mamas } from './Mamas';
 import { Mochi } from './Mochi';
 import { Friend } from './Friend';
 import { cravingHop } from './craving';
+import { shoutMouth, startleJump, startleTremble } from './reactions';
 
 /** Cara karakter muncul di adegan. */
 export type Entrance = 'kiri' | 'kanan' | 'muncul' | 'ada';
@@ -34,6 +35,8 @@ interface Props {
   carriedCat?: 'calm' | 'licking';
   /** opening the front door: arm stretched to the handle (0..1) */
   reach?: number;
+  /** scene frame at which the current action started (actions that change during the scene) */
+  actionStart?: number;
 }
 
 const SEED: Record<KarakterId, number> = { mamas: 1, mother: 2, mochi: 3, friend: 4 };
@@ -54,6 +57,7 @@ export const CharacterFigure: React.FC<Props> = ({
   langkah,
   carriedCat,
   reach,
+  actionStart = 0,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -104,6 +108,11 @@ export const CharacterFigure: React.FC<Props> = ({
     }
     // can't wait to eat: quick little hops
     if (action === 'craving') naik += cravingHop(f);
+    // fright: a jump the moment it happens, then trembling
+    if (action === 'startled') {
+      naik += startleJump(frame - actionStart);
+      geserMasuk += startleTremble(frame - actionStart);
+    }
     if ((id === 'mamas' || id === 'friend') && expression === 'happy' && !bicara && !action) {
       const p = (f % 50) / 50;
       if (p < 0.4) {
@@ -119,12 +128,12 @@ export const CharacterFigure: React.FC<Props> = ({
   const sx = (1 - napas * 0.006 + tekanBicara * 0.5 - regang * 0.6) * skalaMuncul;
 
   const rig: RigProps = {
-    expression,
+    expression: action === 'startled' ? 'surprised' : expression,
     bicara,
     lambai,
     f,
     tutup: eyelid(f, seed),
-    mulut: bicara && id !== 'mochi' ? talkingMouth(f, seed) : action === 'eating' ? mulutMakan(f) : { buka: 0, bulat: 0 },
+    mulut: mouthFor(id, f, seed, bicara, action),
     lihatX: lihat,
     seed,
     jalan,
@@ -132,6 +141,7 @@ export const CharacterFigure: React.FC<Props> = ({
     heldItem,
     carriedCat,
     reach,
+    actionFrames: frame - actionStart,
   };
 
   return (
@@ -155,6 +165,14 @@ export const CharacterFigure: React.FC<Props> = ({
     </svg>
   );
 };
+
+/** Mouth for the frame: shouting wide open, talking, eating, else closed. */
+function mouthFor(id: KarakterId, f: number, seed: number, bicara: boolean, action?: Action): Mouth {
+  if (action === 'shouting') return shoutMouth(f);
+  if (bicara && id !== 'mochi') return talkingMouth(f, seed);
+  if (action === 'eating') return mulutMakan(f);
+  return { buka: 0, bulat: 0 };
+}
 
 /** Mouth saat makan: terbuka menyambut makanan, lalu mengunyah. */
 function mulutMakan(f: number): Mouth {

@@ -48,3 +48,15 @@ describe('fallPose', () => {
     expect(pillow.y).toBeLessThan(FLOOR.y - MOCHI_HEIGHT / 2);
   });
 });
+
+describe('fallPose when Mochi is awake', () => {
+  it('waits frightened instead of asleep before the pillow hits', () => {
+    const awake = fallPose(PILLOW_HIT_FRAME - 1, BED, FLOOR, MOCHI_HEIGHT, true);
+    expect(awake.mochi.asleep).toBe(false);
+    expect(awake.mochi.expression).toBe('surprised');
+  });
+
+  it('still lands on the floor', () => {
+    expect(fallPose(LANDING_FRAME, BED, FLOOR, MOCHI_HEIGHT, true).mochi.y).toBeCloseTo(FLOOR.y);
+  });
+});

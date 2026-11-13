@@ -64,3 +64,24 @@ export function lightningBoltPath(flashIndex: number, x: number, height: number,
   }
   return points.join(' ');
 }
+
+/** Cued flashes keep at least a second apart, like the automatic ones (WCAG 2.3.1). */
+export const MIN_CUED_FLASH_GAP_FRAMES = 30;
+
+/** Cue frames in order, dropping any that would flash within a second of the previous one. */
+export function photosafeCues(cues: readonly number[]): number[] {
+  const kept: number[] = [];
+  for (const cue of [...cues].sort((a, b) => a - b)) {
+    const last = kept.at(-1);
+    if (last === undefined || cue - last >= MIN_CUED_FLASH_GAP_FRAMES) kept.push(cue);
+  }
+  return kept;
+}
+
+/** Lightning that strikes exactly at the given frames (a scene's cued flashes) instead of at random. */
+export function cuedLightningFlash(frame: number, cues: readonly number[]): LightningFlash {
+  const safe = photosafeCues(cues);
+  const index = safe.findLastIndex((cue) => cue <= frame);
+  if (index < 0) return { strength: 0, index: 0 };
+  return { strength: flashStrength(frame - safe[index]), index };
+}

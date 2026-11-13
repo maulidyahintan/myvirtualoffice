@@ -19,6 +19,8 @@ const DOTS = [
   [120, 300],
   [90, 40],
 ];
+/** Height of the blanket (share of its full height) the moment the child pulls it up. */
+const DRAPE_START_SCALE = 0.55;
 /** Fingers peek out only once the gap is this tall (rig px). */
 const MIN_GAP_FOR_FINGERS = 6;
 
@@ -27,8 +29,9 @@ function gapPath(halfHeight: number): string {
   return `M${x - halfWidth} ${y} Q${x} ${y - halfHeight * 2} ${x + halfWidth} ${y} Q${x} ${y + halfHeight * 2} ${x - halfWidth} ${y} Z`;
 }
 
-export const Blanket: React.FC<{ f: number; isScared: boolean; isTalking: boolean; skin: string; outline: string }> = ({
+export const Blanket: React.FC<{ f: number; drape: number; isScared: boolean; isTalking: boolean; skin: string; outline: string }> = ({
   f,
+  drape,
   isScared,
   isTalking,
   skin,
@@ -38,10 +41,12 @@ export const Blanket: React.FC<{ f: number; isScared: boolean; isTalking: boolea
   const isOpen = halfHeight >= 1;
   const shift = blanketTremble(f, isScared);
   const breath = blanketBreath(f);
+  // pulled down over the child's head: it grows from the bed up while it drops
+  const drapeScale = DRAPE_START_SCALE + (1 - DRAPE_START_SCALE) * drape;
   // the lower edge of the gap, where the fingers hold the blanket open
   const fingerY = GAP.y + halfHeight;
   return (
-    <g transform={`translate(${shift} 0) translate(120 ${BOTTOM_Y}) scale(1 ${breath}) translate(-120 -${BOTTOM_Y})`}>
+    <g transform={`translate(${shift} 0) translate(120 ${BOTTOM_Y}) scale(1 ${breath * drapeScale}) translate(-120 -${BOTTOM_Y})`}>
       <path d={isOpen ? `${OUTLINE} ${gapPath(halfHeight)}` : OUTLINE} fill={BLANKET.base} fillRule="evenodd" stroke={BLANKET.shade} strokeWidth={4} strokeLinejoin="round" />
       {/* light falling on the top of the head */}
       <path d="M60 70 Q120 10 180 70 Q120 40 60 70 Z" fill={BLANKET.light} opacity={0.6} />

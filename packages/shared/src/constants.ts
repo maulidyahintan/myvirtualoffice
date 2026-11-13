@@ -72,6 +72,8 @@ export const SCENE_PROPS = [
  * eager to eat it: star eyes, hands under the chin, little hops, licking the lips.
  * Children only: hiding-under-blanket (sits wrapped in a blanket from head to toe, only the eyes peeking out;
  * on the bed in the bedrooms).
+ * Anyone but Mochi: shouting (hands cupped around the wide-open mouth, calling out towards the window).
+ * Everyone: startled (jumps with fright, then trembles), e.g. at a thunderclap.
  */
 export const ACTIONS = [
   'holding',
@@ -91,6 +93,8 @@ export const ACTIONS = [
   'opening-door',
   'craving',
   'hiding-under-blanket',
+  'shouting',
+  'startled',
 ] as const;
 
 export const SCENE_TYPES = ['story', 'prayer', 'question'] as const;
