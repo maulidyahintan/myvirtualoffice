@@ -18,7 +18,7 @@ oleh template animasi Remotion milik channel.
   misal kisah Nabi → pakai night-sky atau mosque tanpa karakter)
 - `expression`: happy, sad, thinking, surprised, calm
 - `actions` (opsional, per tokoh yang tampil): apa yang sedang dilakukan tokoh
-  - Mamas/Mother: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
+  - Mamas/Mother/friend: `holding` + `heldItem`, `reading-quran`, `praying`, `eating` + `heldItem`
     (apple/banana/date/cake/milk-glass), `playing` + `heldItem` (ball/toy-car/toy-elephant/doll)
   - Mamas & friend: `wearing-backpack` (memakai tas sekolah; pakai saat berangkat/pulang sekolah, di
     school-gate, school-yard, atau saat pamit di rumah)
@@ -29,7 +29,7 @@ oleh template animasi Remotion milik channel.
     `playing` (menerkam gulungan benang; `heldItem: ball` = bola kecil),
     `circling` (berjalan memutari kaki Mamas — atau Ibu kalau Mamas tidak tampil — seperti kucing manja),
     `falling` (tidur di ujung kasur, lalu bantal jatuh menimpanya dan Mochi terguling jatuh ke lantai, pusing;
-    HANYA di bedroom-night / bedroom-storm — momen lucu, cocok saat suara petir mengagetkan)
+    HANYA di bedroom-night / bedroom-storm — momen lucu, cocok saat suara petir mengagetkan),
     `approaching` (berjalan pelan mendekati Mamas/teman, lalu duduk di sampingnya; kalau Mamas duduk di
     kasur, Mochi berjalan di atas kasur), `licking` (menjilat pipi anak yang menggendongnya; anaknya otomatis
     menggendong Mochi dan tertawa geli)
@@ -59,15 +59,20 @@ oleh template animasi Remotion milik channel.
   (bedroom-night), `circling` di kaki Mamas saat Mamas pulang, bangun, sedih lalu dihibur, atau
   sedang bercakap santai, `playing` di adegan ceria di rumah/halaman. Sertakan Mochi di cukup banyak
   adegan rumah (bukan di masjid, sekolah, pasar, atau adegan doa), tapi jangan di setiap adegan.
+  Props harus logis dengan tempatnya (makanan di kitchen/living-room/school-canteen, prayer-mat & quran-stand di
+  mosque/bedroom-night, mainan di rumah/yard/playground/school-yard, fruit-basket di market). Jangan memaksakan: adegan tanpa actions boleh.
+  Pertahankan actions/props yang sama di adegan berurutan di tempat yang sama (kontinuitas).
 - Cerita tentang hujan, petir, atau badai di malam hari: pakai bedroom-storm (di dalam kamar) atau
   night-storm (di luar rumah); kilat petir muncul otomatis. Setelah badai reda, kembali ke bedroom-night.
-  Props harus logis dengan tempatnya (makanan di kitchen/living-room, prayer-mat & quran-stand di
-  mosque/bedroom-night, mainan di rumah/yard/playground, fruit-basket di market). Jangan memaksakan: adegan tanpa actions boleh.
-  Pertahankan actions/props yang sama di adegan berurutan di tempat yang sama (kontinuitas).
+- Cerita sekolah: berangkat di school-gate dengan `wearing-backpack`, bertemu atau bermain dengan friend di
+  school-yard, jajan/makan bekal di school-canteen, belajar di school/library. Mochi tidak ikut ke sekolah.
+  Friend boleh juga muncul di rumah atau halaman saat main bersama.
+- Satu tokoh hanya punya satu action per adegan. Untuk Mochi `licking` tidak perlu memberi Mamas
+  `carrying-cat` (otomatis digendong); Mother `hugging` butuh Mamas atau friend di adegan yang sama.
 - Kalau Mamas sedang `reading-quran` atau `praying`, expressionnya "calm".
 - Kamera (close-up, reaksi, dari balik bahu, sudut bawah, orbit) diatur otomatis oleh
   template; tugasmu memilih tempat, siapa yang tampil, dan expression yang jelas
-  berganti mengikuti emosi cerita. Tampilkan pendengar (mother/mamas/mochi) di adegan
+  berganti mengikuti emosi cerita. Tampilkan pendengar (mother/mamas/friend/mochi) di adegan
   dialog supaya ada reaksi.
 - `screenText` (opsional, ≤ 5 kata): kata kunci besar di layar, misal "Jujur itu indah".
 - Untuk type `prayer`: isi `prayer` dengan arabic, latin, meaning yang sama dengan evidences di naskah.
