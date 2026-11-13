@@ -294,6 +294,8 @@ export interface EpisodeVideoProps {
   sceneFrames?: number[];
   introFrame?: number;
   outroFrame?: number;
+  /** Speed of the opening music so the whole track fits the opening (1 = normal). */
+  introMusicRate?: number;
 }
 
 export type RecordingMode = 'sequential' | 'per-scene';

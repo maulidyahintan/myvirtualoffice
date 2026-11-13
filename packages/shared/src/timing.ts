@@ -72,6 +72,35 @@ export function sceneFrames(scenes: Scene[], audioDurationSeconds?: number, scen
   });
 }
 
+/** Samples quieter than this (about -60 dBFS) count as silence at the end of a music track. */
+const SILENCE_AMPLITUDE = 0.001;
+
+/**
+ * Length of a track up to its last audible sample, so silence padded at the end of a music file does not count
+ * as music. `channels` hold samples between -1 and 1; returns 0 for a silent track.
+ */
+export function audibleSeconds(channels: ArrayLike<number>[], sampleRate: number): number {
+  let lastAudible = -1;
+  for (const samples of channels) {
+    for (let i = samples.length - 1; i > lastAudible; i--) {
+      if (Math.abs(samples[i]) > SILENCE_AMPLITUDE) {
+        lastAudible = i;
+        break;
+      }
+    }
+  }
+  return sampleRate > 0 ? (lastAudible + 1) / sampleRate : 0;
+}
+
+/**
+ * Playback speed for the opening music so the whole track fits the opening instead of being cut off:
+ * 1 when it already fits, otherwise the track length divided by the opening length.
+ */
+export function introMusicPlaybackRate(musicSeconds: number | undefined, introFrames: number): number {
+  if (!musicSeconds || introFrames <= 0) return 1;
+  return Math.max(1, (musicSeconds * FPS) / introFrames);
+}
+
 /** Intro/outro length: format default, extended to match music (limited to format maximum). */
 export function introOutroFrames(format: Format = 'standard', introSeconds?: number, outroSeconds?: number) {
   const spec = FORMAT_SPEC[format];

@@ -10,10 +10,10 @@ import {
   useVideoConfig,
   type CalculateMetadataFunction,
 } from 'remotion';
-import { getAudioDurationInSeconds } from '@remotion/media-utils';
+import { getAudioData, getAudioDurationInSeconds } from '@remotion/media-utils';
 import type { EpisodeVideoProps, MemorizationVideo } from '@kantor/shared/types';
 import { FPS, FORMAT_SPEC, INTRO_MUSIC_GAIN } from '@kantor/shared/constants';
-import { introOutroFrames, sceneFrames, memorizationFrames, memorizationSegments, totalFrames } from '@kantor/shared/timing';
+import { audibleSeconds, introMusicPlaybackRate, introOutroFrames, sceneFrames, memorizationFrames, memorizationSegments, totalFrames } from '@kantor/shared/timing';
 import { SceneView, stageStyle, clampCamera } from './SceneView';
 import { VerseView } from './Memorization';
 import { Backdrop } from './backgrounds/Backdrop';
@@ -164,15 +164,32 @@ const Outro: React.FC = () => {
 const TRANSISI = 14;
 
 /** Musik pembuka/penutup: masuk lembut, keluar pelan di akhir bagiannya. */
-const Musik: React.FC<{ src: string; volume: number; durasi: number }> = ({ src, volume, durasi }) => (
-  <Html5Audio
-    src={staticFile(src)}
-    volume={(f) =>
-      volume *
-      interpolate(f, [0, 6, durasi - FPS, durasi], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
-    }
-  />
-);
+const MUSIC_FADE_IN_FRAMES = 6;
+/** A track that is cut off fades out over one second; a sped-up track that ends on its own only needs a short fade. */
+const MUSIC_FADE_OUT_FRAMES = FPS;
+const SPED_UP_MUSIC_FADE_OUT_FRAMES = 6;
+
+const Musik: React.FC<{ src: string; volume: number; durasi: number; playbackRate?: number }> = ({
+  src,
+  volume,
+  durasi,
+  playbackRate = 1,
+}) => {
+  const fadeOut = playbackRate > 1 ? SPED_UP_MUSIC_FADE_OUT_FRAMES : MUSIC_FADE_OUT_FRAMES;
+  return (
+    <Html5Audio
+      src={staticFile(src)}
+      playbackRate={playbackRate}
+      volume={(f) =>
+        volume *
+        interpolate(f, [0, MUSIC_FADE_IN_FRAMES, durasi - fadeOut, durasi], [0, 1, 1, 0], {
+          extrapolateLeft: 'clamp',
+          extrapolateRight: 'clamp',
+        })
+      }
+    />
+  );
+};
 
 /** Susun ayat memorization: tiap ayat jadi satu sequence berisi semua bacaan ulangnya. */
 function kelompokHafalan(h: MemorizationVideo, frames: number[]) {
@@ -197,6 +214,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
   music,
   introFrame,
   outroFrame,
+  introMusicRate = 1,
 }) => {
   const frames = sceneFrameCounts ?? (memorization ? memorizationFrames(memorization.verses, memorization.repetitions) : sceneFrames(scenes));
   const bawaan = introOutroFrames(format);
@@ -267,7 +285,7 @@ export const Episode: React.FC<EpisodeVideoProps> = ({
 
       {music?.intro ? (
         <Sequence durationInFrames={intro} name="Musik pembuka">
-          <Musik src={music.intro} volume={music.volume * INTRO_MUSIC_GAIN} durasi={intro} />
+          <Musik src={music.intro} volume={music.volume * INTRO_MUSIC_GAIN} durasi={intro} playbackRate={introMusicRate} />
         </Sequence>
       ) : null}
       {music?.outro ? (
@@ -292,12 +310,17 @@ export const calculateEpisodeMetadata: CalculateMetadataFunction<EpisodeVideoPro
     : sceneFrames(props.scenes, durasiAudio, props.sceneStarts);
   const format = props.format ?? 'standard';
   const detik = async (m?: string) => (m ? getAudioDurationInSeconds(staticFile(m)) : undefined);
-  const { intro: introFrame, outro: outroFrame } = introOutroFrames(format, await detik(props.music?.intro), await detik(props.music?.outro));
+  // trailing silence in the music file is not music: only the audible part is fitted into the opening
+  const introMusic = props.music?.intro ? await getAudioData(staticFile(props.music.intro)) : undefined;
+  const introMusicSeconds = introMusic ? audibleSeconds(introMusic.channelWaveforms, introMusic.sampleRate) : undefined;
+  const { intro: introFrame, outro: outroFrame } = introOutroFrames(format, introMusicSeconds, await detik(props.music?.outro));
+  // the whole opening tune plays, sped up to fit, instead of being cut off at the end of the opening
+  const introMusicRate = introMusicPlaybackRate(introMusicSeconds, introFrame);
   return {
     durationInFrames: totalFrames(sceneFrameCounts, format, introFrame, outroFrame),
     // ukuran video mengikuti format: 1920x1080 (biasa) atau 1080x1920 (Shorts)
     width: FORMAT_SPEC[format].width,
     height: FORMAT_SPEC[format].height,
-    props: { ...props, sceneFrames: sceneFrameCounts, introFrame, outroFrame },
+    props: { ...props, sceneFrames: sceneFrameCounts, introFrame, outroFrame, introMusicRate },
   };
 };
