@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import type { Action, Scene as AdeganData, Character as KarakterId } from '@kantor/shared/types';
 import { Backdrop, DARK_BACKGROUNDS, STORM_BACKGROUNDS } from './backgrounds/Backdrop';
 import { LightningCuesProvider, lightningAt } from './backgrounds/LightningCues';
@@ -8,6 +8,7 @@ import { MochiFall } from './characters/MochiFall';
 import { HugArms } from './characters/HugArm';
 import { isSadLike } from './characters/emotion';
 import { actionBeat, beatShots, moodBeat } from './camera/beatShots';
+import { IllustrationLayer } from './illustration/IllustrationLayer';
 import { MOTHER_KNEEL_DROP } from './characters/Mother';
 import { approach, bedClimbY, hugArmAims } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
@@ -639,45 +640,6 @@ const BahuDepan: React.FC<{ id: KarakterId; kiri: boolean; expression: AdeganDat
 
 // ---------------------------------------------------------------- adegan
 
-/**
- * Adegan ilustrasi AI: gambar kejadian penuh layar dengan gerak kamera pelan (Ken Burns) yang arahnya
- * bergantian tiap adegan, supaya gambar diam tetap terasa hidup. Tokoh animasi tidak tampil di sini.
- */
-const AdeganIlustrasi: React.FC<{ data: AdeganData; durasi: number; denganSubtitle: boolean; indeks: number; transisi: number }> = ({
-  data,
-  durasi,
-  denganSubtitle,
-  indeks,
-  transisi,
-}) => {
-  const frame = useCurrentFrame();
-  const t = interpolate(frame, [0, durasi], [0, 1], { extrapolateRight: 'clamp', easing: Easing.inOut(Easing.sin) });
-  const pTransisi = transisi > 0 ? interpolate(frame, [0, transisi], [0, 1], { extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) }) : 1;
-  // zoom masuk / keluar dan geser kiri / kanan / naik, bergiliran per adegan
-  const arah = [
-    { z: [1.04, 1.16], x: [0, -2.5], y: [0, -1] },
-    { z: [1.16, 1.05], x: [-2, 2], y: [0, 0] },
-    { z: [1.06, 1.14], x: [2.5, 0], y: [-1.5, 1] },
-    { z: [1.12, 1.04], x: [0, 0], y: [2, -1.5] },
-  ][indeks % 4];
-  const z = arah.z[0] + (arah.z[1] - arah.z[0]) * t;
-  const x = arah.x[0] + (arah.x[1] - arah.x[0]) * t;
-  const y = arah.y[0] + (arah.y[1] - arah.y[0]) * t;
-  // cahaya lembut yang bernapas pelan
-  const napas = 0.06 + Math.sin(frame / 40) * 0.03;
-  return (
-    <AbsoluteFill style={{ backgroundColor: '#000', overflow: 'hidden', ...transitionStyle(indeks, pTransisi) }}>
-      <AbsoluteFill style={{ transform: `scale(${z}) translate(${x}%, ${y}%)` }}>
-        <Img src={staticFile(data.illustration!.image!)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-      </AbsoluteFill>
-      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 35% 25%, rgba(255,240,200,${napas}) 0%, transparent 60%)` }} />
-      <AbsoluteFill style={{ background: 'radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(20,15,40,0.32) 100%)', pointerEvents: 'none' }} />
-      {data.screenText ? <TeksLayar text={data.screenText} gelap={false} besar /> : null}
-      {denganSubtitle ? <Subtitle text={data.narration} durasi={durasi - transisi} speaker={data.speaker} mulai={transisi} /> : null}
-    </AbsoluteFill>
-  );
-};
-
 export const SceneView: React.FC<{
   data: AdeganData;
   /** total frame sequence, termasuk transisi */
@@ -713,9 +675,6 @@ export const SceneView: React.FC<{
     .map((words) => phraseFrame(data.narration, words, transisi, speechFrames))
     .filter((cue): cue is number => cue !== undefined);
 
-  if (data.illustration?.image && !isDoa) {
-    return <AdeganIlustrasi data={data} durasi={durasi} denganSubtitle={denganSubtitle} indeks={indeks} transisi={transisi} />;
-  }
 
   // Mochi bisa keluar dari barisan tokoh: tidur di ujung kasur (video biasa; di Shorts kasurnya terpotong)
   // atau berputar di kaki Mamas/Ibu
@@ -1057,6 +1016,16 @@ export const SceneView: React.FC<{
       {STORM_BACKGROUNDS.includes(data.background) && !isDoa ? (
         <AbsoluteFill
           style={{ backgroundColor: '#DDE5FF', opacity: lightningAt(frame, lightningCues.length ? lightningCues : undefined).strength * LIGHTNING_OVERLAY_OPACITY, pointerEvents: 'none' }}
+        />
+      ) : null}
+
+      {/* an AI picture alternating with the animated characters, moving and with live weather */}
+      {data.illustration?.image && !isDoa ? (
+        <IllustrationLayer
+          image={data.illustration.image}
+          prompt={data.illustration.prompt}
+          duration={durasi}
+          hasCharacters={urut.length > 0 || Boolean(staging.sitterOnBed)}
         />
       ) : null}
 
