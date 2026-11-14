@@ -45,6 +45,33 @@ export function illustrationCuts(duration: number, fps: number, hasCharacters: b
   return cuts;
 }
 
+/** Around a beat the characters are shown: from a moment before it to this long after (seconds). */
+const BEAT_LEAD_SECONDS = 0.3;
+const BEAT_HOLD_SECONDS = 2;
+
+/**
+ * The cuts with the animated characters shown around every beat (an action or a change of expression at its
+ * words), so what happens is never hidden behind the picture.
+ */
+export function showBeats(cuts: readonly IllustrationCut[], beats: readonly number[], fps: number): IllustrationCut[] {
+  const windows = beats.map((beat) => [Math.max(0, beat - Math.round(BEAT_LEAD_SECONDS * fps)), beat + Math.round(BEAT_HOLD_SECONDS * fps)] as const);
+  const inBeat = (frame: number) => windows.some(([from, to]) => frame >= from && frame < to);
+  const bounds = new Set<number>(cuts.flatMap((c) => [c.start, c.end]));
+  const end = cuts.at(-1)?.end ?? 0;
+  windows.forEach(([from, to]) => [from, to].forEach((f) => f > 0 && f < end && bounds.add(f)));
+  const edges = [...bounds].sort((a, b) => a - b);
+  const result: IllustrationCut[] = [];
+  edges.slice(0, -1).forEach((start, i) => {
+    const original = cuts.find((c) => start >= c.start && start < c.end)!;
+    const kind = inBeat(start) ? 'animation' : original.kind;
+    const last = result.at(-1);
+    // neighbouring pieces of the same kind (and move) stay one stretch
+    if (last && last.kind === kind && last.move === original.move) last.end = edges[i + 1];
+    else result.push({ kind, start, end: edges[i + 1], move: original.move });
+  });
+  return result;
+}
+
 /** The camera move of picture stretch `move`: zoom from/to and pan (percent) from/to. */
 export function pictureMove(move: number): { z: [number, number]; x: [number, number]; y: [number, number] } {
   const MOVES = [

@@ -1012,6 +1012,7 @@ export const SceneView: React.FC<{
           prompt={data.illustration.prompt}
           duration={durasi}
           hasCharacters={urut.length > 0 || Boolean(staging.sitterOnBed)}
+          beats={[...timed.filter((a) => a.at && a.startFrame > 0).map((a) => a.startFrame), ...moodBeats.map((b) => b.frame)]}
         />
       ) : null}
 

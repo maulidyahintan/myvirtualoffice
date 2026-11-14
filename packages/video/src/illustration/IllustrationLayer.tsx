@@ -3,7 +3,7 @@
 import React from 'react';
 import { AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { random } from '../characters/motion';
-import { ambienceFor, illustrationCuts, pictureMove, type Ambience } from './illustrationPlan';
+import { ambienceFor, illustrationCuts, pictureMove, showBeats, type Ambience } from './illustrationPlan';
 
 /** Frames to cross-fade between the picture and the animated characters. */
 const CROSS_FADE_FRAMES = 10;
@@ -63,15 +63,16 @@ const Weather: React.FC<{ kind: Ambience; frame: number }> = ({ kind, frame }) =
   }
 };
 
-export const IllustrationLayer: React.FC<{ image: string; prompt: string; duration: number; hasCharacters: boolean }> = ({
+export const IllustrationLayer: React.FC<{ image: string; prompt: string; duration: number; hasCharacters: boolean; beats?: number[] }> = ({
   image,
   prompt,
   duration,
   hasCharacters,
+  beats = [],
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const cuts = illustrationCuts(duration, fps, hasCharacters);
+  const cuts = hasCharacters ? showBeats(illustrationCuts(duration, fps, true), beats, fps) : illustrationCuts(duration, fps, false);
   const cut = cuts.find((c) => frame >= c.start && frame < c.end) ?? cuts[cuts.length - 1];
   const pictureCut = cut.kind === 'illustration' ? cut : cuts.find((c) => c.kind === 'illustration' && c.start >= cut.end) ?? cut;
   // cross-fade at the edges of a picture stretch (the first stretch starts fully visible)
