@@ -2,7 +2,8 @@
 // Scheduled at the same time as on YouTube, so both go live together.
 import fs from 'node:fs';
 import path from 'node:path';
-import { GRAPH, GRAPH_VERSION, facebookConnection, graphFetch, normalizeMetadata, paths, type Episode } from '@kantor/shared';
+import { GRAPH, GRAPH_VERSION, facebookConnection, facebookShortKind, graphFetch, normalizeMetadata, paths, type Episode } from '@kantor/shared';
+import { durasiAudio } from './render.ts';
 
 /** Meta only schedules at least 10 minutes ahead; closer than this the post goes live right away. */
 const MIN_SCHEDULE_MS = 15 * 60_000;
@@ -36,7 +37,8 @@ export async function postToFacebook(ep: Episode, publishTime?: string): Promise
   const unix = when ? String(Math.floor(new Date(when).getTime() / 1000)) : undefined;
   const { title, description } = caption(ep);
 
-  if (ep.idea.format === 'short') {
+  // a Short goes as a Reel, unless it is longer than the Reels API takes: then as an ordinary Page video
+  if (ep.idea.format === 'short' && facebookShortKind(await durasiAudio(file)) === 'reel') {
     // Reels: start an upload session, send the bytes to rupload, then finish (publish or schedule)
     const start = await graphFetch<{ video_id: string; upload_url: string }>(`${GRAPH}/${conn.pageId}/video_reels`, {
       method: 'POST',

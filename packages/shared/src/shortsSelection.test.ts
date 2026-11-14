@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { FORMAT_SPEC } from './constants.ts';
-import { PICKED_SHORT_CONTENT_LIMIT_SECONDS, PICKED_SHORT_TOTAL_SECONDS, parseSceneSelection, selectionProblem, selectionSeconds } from './shortsSelection.ts';
+import { facebookShortKind, parseSceneSelection, pickedShortNotes, pickedShortSeconds, selectionProblem, selectionSeconds } from './shortsSelection.ts';
 
 describe('parseSceneSelection', () => {
   it('reads scene numbers in story order without repeats', () => {
@@ -20,21 +20,30 @@ describe('selectionSeconds and selectionProblem', () => {
     expect(selectionSeconds(seconds, [1, 3])).toBe(25);
   });
 
-  it('accepts picked scenes of up to about 80 seconds', () => {
-    expect(selectionProblem(seconds, [1, 2, 3, 4])).toBeUndefined();
-  });
-
-  it('explains when nothing is picked or the Short gets too long', () => {
+  it('has no length limit for the owner picks, only a picked scene is needed', () => {
+    expect(selectionProblem(seconds, [1, 2, 3, 4, 5])).toBeUndefined();
     expect(selectionProblem(seconds, [])).toMatch(/minimal satu/);
-    expect(selectionProblem(seconds, [2, 3, 4, 5])).toMatch(String(PICKED_SHORT_CONTENT_LIMIT_SECONDS));
-  });
-
-  it('keeps a picked Short with its intro and outro within 90 seconds', () => {
-    const longest = PICKED_SHORT_CONTENT_LIMIT_SECONDS + FORMAT_SPEC.short.maxIntroSeconds + FORMAT_SPEC.short.maxOutroSeconds;
-    expect(longest).toBe(PICKED_SHORT_TOTAL_SECONDS);
   });
 
   it('can check against another limit', () => {
     expect(selectionProblem(seconds, [1, 2, 3, 4], 52)).toMatch(/52/);
+  });
+});
+
+describe('long picked Shorts', () => {
+  it('adds the Shorts intro and outro to the scenes', () => {
+    expect(pickedShortSeconds(80)).toBeGreaterThan(80);
+  });
+
+  it('only informs about what a long Short means on each platform', () => {
+    expect(pickedShortNotes(40)).toEqual([]);
+    expect(pickedShortNotes(100)).toHaveLength(1);
+    expect(pickedShortNotes(200)).toHaveLength(2);
+  });
+
+  it('sends a Short longer than the Reels limit to Facebook as a Page video', () => {
+    expect(facebookShortKind(59)).toBe('reel');
+    expect(facebookShortKind(90)).toBe('reel');
+    expect(facebookShortKind(120)).toBe('video');
   });
 });

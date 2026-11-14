@@ -916,7 +916,7 @@ export async function sendToFacebook(id?: string) {
           );
         } else catat(`Versi lama sudah tayang di Facebook (${old.url}); hapus manual kalau tidak diperlukan`);
       }
-      catat(`Mengirim ke Page Facebook sebagai ${ep.idea.format === 'short' ? 'Reels' : 'video'}`);
+      catat(`Mengirim ke Page Facebook${ep.idea.format === 'short' ? ' (Reels, atau video biasa kalau lebih dari 90 detik)' : ' sebagai video'}`);
       const post = await postToFacebook(ep, ep.youtube.publishTime);
       updateEpisode(ep.id, (e) => {
         e.facebook = post;

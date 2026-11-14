@@ -14,7 +14,6 @@ import {
   setStatus,
   updateEpisode,
   SHORTS_CONTENT_LIMIT_SECONDS,
-  PICKED_SHORT_CONTENT_LIMIT_SECONDS,
   type Episode,
 } from '@kantor/shared';
 import { runAgent } from './run-agent.ts';
@@ -221,11 +220,7 @@ export async function shortFromScenes(id: string, sceneNumbers: number[], arahan
   if (!idx.length) throw new Error('Tidak ada adegan yang dipilih');
   addLog(id, 'sutradara', `Menyiapkan Shorts dari adegan pilihan pemilik: ${idx.map((i) => i + 1).join(', ')}`);
   const potongan = await rekamanPerScene(ep);
-  const total = idx.reduce((sum, i) => sum + potongan[i].detik, 0);
-  // the owner may pick a longer Short than the automatic cut, up to 90 seconds with intro and outro
-  if (total > PICKED_SHORT_CONTENT_LIMIT_SECONDS) {
-    throw new Error(`Adegan pilihan totalnya ${Math.round(total)} detik, melebihi batas ${PICKED_SHORT_CONTENT_LIMIT_SECONDS} detik untuk Shorts pilihan`);
-  }
+  // the owner's pick has no length limit (a long one goes to Facebook as a Page video, see facebookShortKind)
   const meta = await runAgent({
     peran: 'sutradara',
     schema: ShortMetadataSchema,
