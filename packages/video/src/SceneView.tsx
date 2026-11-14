@@ -840,6 +840,9 @@ export const SceneView: React.FC<{
 
   // siapa yang diberi efek expression: speaker, atau tokoh manusia pertama
   const iEfek = iPembicara >= 0 ? iPembicara : urut.findIndex((id) => id !== 'mochi');
+  // no hearts or sparkles over someone shouting or frightened: the action already shows the feeling
+  const aksiEfek = iEfek >= 0 ? aktif.actions?.find((a) => a.character === urut[iEfek])?.action : undefined;
+  const efekTampil = iEfek >= 0 && aksiEfek !== 'shouting' && aksiEfek !== 'startled';
 
   return (
     <LightningCuesProvider cues={lightningCues}>
@@ -972,7 +975,7 @@ export const SceneView: React.FC<{
             );
           })}
           {mochiMendekat ? <ApproachingMochi {...mochiMendekat} height={tinggiDari('mochi')} y={lantai} start={transisi + APPROACH_DELAY_FRAMES} /> : null}
-          {iEfek >= 0 && data.type !== 'question' ? (
+          {efekTampil && data.type !== 'question' ? (
             <ExpressionEffect
               expression={ekspresi(urut[iEfek])}
               x={xs[iEfek] + tinggiDari(urut[iEfek]) * 0.22}
