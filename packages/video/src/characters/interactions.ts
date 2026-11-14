@@ -25,6 +25,17 @@ export function armPoseTowards(shoulder: Point, elbowAim: Point, handAim: Point,
   return { bahu, siku: hangingAngle(elbow, handAim) - bahu };
 }
 
+/** Where the hand of an unmirrored two-part Arm at `shoulder` ends up with `pose`. */
+export function armEnd(shoulder: Point, pose: ArmPose, upperLength: number, lowerLength: number): Point {
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+  const upper = toRadians(pose.bahu);
+  const lower = toRadians(pose.bahu + pose.siku);
+  return {
+    x: shoulder.x - Math.sin(upper) * upperLength - Math.sin(lower) * lowerLength,
+    y: shoulder.y + Math.cos(upper) * upperLength + Math.cos(lower) * lowerLength,
+  };
+}
+
 /** Frames the cat needs to walk up to the child, and the pace of its little steps. */
 export const APPROACH_FRAMES = 120;
 const STEP_PACE = 0.35;
@@ -69,8 +80,8 @@ const RIG_HEIGHT = 400;
 /** Mother's shoulders in her rig, and where her hands hold the hugged child (in the child's rig). */
 const MOTHER_SHOULDERS = { near: { x: 166, y: 196 }, far: { x: 74, y: 196 } };
 const CHILD_HUG_AIMS = {
-  // across the top of the child.s chest, the hand holding the far shoulder
-  near: { elbow: { x: 150, y: 250 }, hand: { x: 186, y: 226 } },
+  // around the child's back (drawn behind the child), the hand holding the far shoulder
+  near: { elbow: { x: 120, y: 262 }, hand: { x: 178, y: 228 } },
   // across Mother's front to the child's waist
   far: { elbow: { x: 30, y: 330 }, hand: { x: 66, y: 318 } },
 };

@@ -937,6 +937,8 @@ export const SceneView: React.FC<{
             return (
               <React.Fragment key={id}>
               {keliling && !keliling.depan ? keliling.el : null}
+              {/* the arm around the child's back is drawn behind the child */}
+              {id === staging.hugged && iIbu >= 0 ? <HugArms {...titikPelukan(iIbu, i)} layer="behind" /> : null}
               <div
                 style={{
                   position: 'absolute',
@@ -964,7 +966,7 @@ export const SceneView: React.FC<{
                   listening={iPembicara >= 0 && i !== iPembicara}
                 />
               </div>
-              {id === staging.hugged && iIbu >= 0 ? <HugArms {...titikPelukan(iIbu, i)} /> : null}
+              {id === staging.hugged && iIbu >= 0 ? <HugArms {...titikPelukan(iIbu, i)} layer="front" /> : null}
               {keliling?.depan ? keliling.el : null}
               </React.Fragment>
             );

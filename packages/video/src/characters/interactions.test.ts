@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { APPROACH_FRAMES, BED_HOP_RUN_X, approach, armPoseTowards, bedClimbY, hangingAngle, hugArmAims } from './interactions';
+import { APPROACH_FRAMES, BED_HOP_RUN_X, approach, armEnd, armPoseTowards, bedClimbY, hangingAngle, hugArmAims } from './interactions';
 
 describe('hangingAngle', () => {
   it('is 0 straight down and turns clockwise', () => {
@@ -81,5 +81,19 @@ describe('hugArmAims', () => {
 
   it('wraps the near arm across to the far side of the child', () => {
     expect(near.handAim.x).toBeGreaterThan(CHILD.x);
+  });
+});
+
+describe('armEnd', () => {
+  it('ends where armPoseTowards aimed when the target is in reach', () => {
+    const shoulder = { x: 0, y: 0 };
+    const pose = armPoseTowards(shoulder, { x: 100, y: 0 }, { x: 100, y: 100 }, 100);
+    const hand = armEnd(shoulder, pose, 100, 100);
+    expect(hand.x).toBeCloseTo(100);
+    expect(hand.y).toBeCloseTo(100);
+  });
+
+  it('hangs straight down with a neutral pose', () => {
+    expect(armEnd({ x: 5, y: 0 }, { bahu: 0, siku: 0 }, 50, 40)).toEqual({ x: 5, y: 90 });
   });
 });
