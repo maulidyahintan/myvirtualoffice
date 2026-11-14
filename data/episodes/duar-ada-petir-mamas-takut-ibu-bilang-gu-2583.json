@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-13T19:37:09.609Z",
+  "modified": "2026-11-14T02:22:29.463Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -439,6 +439,16 @@
       "time": "2026-11-13T19:24:27.343Z",
       "by": "pemilik",
       "message": "Ilustrasi adegan 6 dihapus (kembali ke animasi)"
+    },
+    {
+      "time": "2026-11-14T02:18:05.410Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-14T02:22:29.463Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "statusNote": "Video siap ditonton & disetujui",
@@ -1081,6 +1091,6 @@
         "duration": 34.2
       }
     ],
-    "time": "2026-11-13T19:17:21.604Z"
+    "time": "2026-11-14T02:22:29.462Z"
   }
 }
