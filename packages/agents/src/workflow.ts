@@ -21,6 +21,10 @@ import {
   needsPlaylist,
   facebookConnection,
   needsFacebookPost,
+  actionSlug,
+  getActionRequest,
+  mergeActionRequest,
+  saveActionRequest,
   canPerform,
   loadConfig,
   allowedBackgrounds,
@@ -374,6 +378,7 @@ export async function direct(id: string) {
   ]);
 
   const scenes = alignWithScript(ep, direction.scenes);
+  recordActionRequests(id, scenes.map((scene, index) => ({ scene, index })));
   const reuse = reuseRecordings(ep, scenes);
   updateEpisode(id, (e) => {
     e.scenes = scenes;
@@ -449,10 +454,12 @@ export async function reviseDirection(id: string) {
       'Susun ulang adegannya.',
     ].join('\n\n'),
   });
+  const revised = alignWithScript(ep, direction.scenes);
   updateEpisode(id, (e) => {
-    e.scenes = alignWithScript(ep, direction.scenes);
+    e.scenes = revised;
     e.directionFeedback = undefined;
   });
+  recordActionRequests(id, revised.map((scene, index) => ({ scene, index })));
   const hasAudio = Boolean(ep.audioFile) || Boolean(ep.audioParts?.length) || Boolean(ep.audioPerScene?.some(Boolean));
   if (hasAudio) return render(id);
   setStatus(id, 'needs_audio', 'orchestrator', 'Adegan direvisi; siap direkam');
@@ -467,6 +474,21 @@ function alignWithScript(ep: Episode, scenes: Scene[]): Scene[] {
   const filled = fillPrayerCards(aligned, ep.script!.evidences);
   if (filled.length) log(ep.id, 'sutradara')(`Kartu doa (teks Arab) dipasang otomatis di adegan ${filled.map((i) => i + 1).join(', ')}`);
   return aligned;
+}
+
+/**
+ * Movements the Director asked to be built because no action covers them: each becomes (or joins) an action
+ * request the owner can have built from the "Aksi Baru" page.
+ */
+function recordActionRequests(episodeId: string, scenes: { scene: Scene; index: number }[]) {
+  const now = new Date().toISOString();
+  for (const { scene, index } of scenes) {
+    const wanted = scene.requestedAction;
+    const name = wanted ? actionSlug(wanted.name) : undefined;
+    if (!wanted || !name || !scene.characters.includes(wanted.character)) continue;
+    saveActionRequest(mergeActionRequest(getActionRequest(name), { ...wanted, name }, { episodeId, scene: index + 1 }, now));
+    log(episodeId, 'sutradara')(`Adegan ${index + 1} butuh aksi baru "${name}" (${wanted.description}); bisa dibuatkan di halaman Aksi Baru`);
+  }
 }
 
 /** One Director scene made safe: narration, speaker & type copied verbatim, sensible actions, allowed background. */
@@ -680,6 +702,7 @@ async function reviseSceneNow(id: string, sceneNo: number, note: string) {
       const before = e.scenes![i];
       e.scenes![i] = { ...normalizeScene(before, result.scene, backgroundPicker()), illustration: before.illustration };
     });
+    recordActionRequests(id, [{ scene: getEpisode(id).scenes![i], index: i }]);
   }
 
   const say = log(id, 'video-creator');

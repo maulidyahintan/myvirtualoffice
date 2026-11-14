@@ -144,6 +144,11 @@ export interface Scene {
   /** Owner's corrections to when each subtitle line appears (seconds, + = later), per line. */
   subtitleShifts?: (number | null)[];
   /**
+   * A movement the story needs that no action covers yet (e.g. tearing a book): the Director asks for it to
+   * be built, and meanwhile uses the closest existing action.
+   */
+  requestedAction?: { name: string; character: Character; description: string };
+  /**
    * AI illustration of what is happening (story told by the narrator, an object being discussed). Used
    * only when the episode's visual style is 'ai-illustration'; the scene then shows the picture full
    * screen instead of the animated characters.

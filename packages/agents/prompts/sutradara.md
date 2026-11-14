@@ -58,6 +58,11 @@ oleh template animasi Remotion milik channel.
     menggendong Mochi dan tertawa geli)
 - Mamas/Mother/friend: `shouting` (berteriak: satu tangan di mulut, kepalan teracung; misal mengusir petir).
   Semua tokoh termasuk Mochi: `startled` (kaget: melompat lalu gemetar; cocok tepat saat petir menyambar).
+- **Aksi belum ada?** Kalau narasi menceritakan gerakan yang tidak ada di daftar aksi (misal Mamas merobek
+  kertas, melempar bola ke atas, mengayuh sepeda), JANGAN diam-diam memakai aksi yang tidak cocok. Isi
+  `requestedAction` di adegan itu: `name` = id kebab-case bahasa Inggris (misal "tearing-paper"), `character`,
+  dan `description` = gerakannya dalam bahasa Indonesia sejelas mungkin. Sementara itu pakai aksi terdekat yang
+  ada (atau tanpa aksi). Pemilik channel lalu bisa menyuruh Pembuat Aksi membuatnya.
 - **Kejadian berurutan dalam satu adegan**: beri `at` = kata/frasa PERSIS dari narasi saat aksi itu mulai;
   satu tokoh boleh punya beberapa aksi berurutan (aksi tanpa `at` berlaku sejak awal adegan). Kilat di
   bedroom-storm/night-storm bisa diatur tepat waktunya dengan `lightningAt` (frasa dari narasi, maks. 1 per

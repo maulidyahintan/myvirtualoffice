@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Fredoka, Plus_Jakarta_Sans } from 'next/font/google';
-import { listEpisodes, loadConfig, WAITING_STATUSES } from '@kantor/shared';
+import { listEpisodes, loadConfig, WAITING_STATUSES, listActionRequests } from '@kantor/shared';
 import { FloatingChat } from '@/components/FloatingChat';
 import { TasnieLogo } from '@/components/TasnieLogo';
 import { Sidebar, type MenuGroup } from '@/components/Sidebar';
@@ -26,6 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const episodes = listEpisodes();
   const butuhKamu = episodes.filter((e) => WAITING_STATUSES.includes(e.status) && !e.draftedAt).length;
   const siapTayang = episodes.filter((e) => e.status === 'needs_video_approval' && !e.draftedAt).length;
+  // actions the Director asked for, waiting for the owner to have them built or approved
+  const aksiMenunggu = listActionRequests().filter((r) => r.status === 'requested' || r.status === 'ready').length;
 
   const grup: MenuGroup[] = [
     { title: 'Beranda', item: [{ href: '/', ikon: '🏢', label: 'Kantor' }] },
@@ -36,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         { href: '/ideas/new', ikon: '💡', label: 'Ide Manual' },
         { href: '/memorization/new', ikon: '📖', label: 'Hafalan Baru' },
         { href: '/compilation/new', ikon: '🎞️', label: 'Kompilasi Baru' },
+        { href: '/action-requests', ikon: '🧩', label: 'Aksi Baru', badge: aksiMenunggu },
       ],
     },
     {

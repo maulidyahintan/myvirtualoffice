@@ -6,6 +6,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   addLog,
+  getActionRequest,
+  updateActionRequest,
   moveSubtitleLine,
   subtitleLines,
   subtitleStarts,
@@ -978,4 +980,45 @@ export async function moveSubtitle(form: FormData) {
     if (s) s.subtitleShifts = moveSubtitleLine(lines, speech, shifts, line, wanted);
   });
   segarkan(id);
+}
+
+/** Have the action builder write an action the Director asked for (on its own branch, with a sample clip). */
+export async function buildAction(form: FormData) {
+  await startActionJob(form, 'aksi-baru', { status: 'building', note: 'Menyiapkan salinan proyek untuk Pembuat Aksi…' });
+}
+
+/** Merge a built action into the project after the owner watched its sample. */
+export async function approveAction(form: FormData) {
+  await startActionJob(form, 'aksi-setujui', { note: 'Menggabungkan aksi ke proyek…' });
+}
+
+/** Drop a built action (or a request the owner does not want). */
+export async function rejectAction(form: FormData) {
+  await startActionJob(form, 'aksi-tolak', { note: 'Membuang aksi ini…' });
+}
+
+async function startActionJob(form: FormData, command: string, change: Parameters<typeof updateActionRequest>[1]) {
+  const name = teks(form, 'nama');
+  const marker = `aksi-${name}`;
+  if (!getActionRequest(name) || isBusy(marker)) return;
+  markStarting(marker);
+  updateActionRequest(name, change);
+  runOfficeCommand([command, name], marker);
+  revalidatePath('/action-requests');
+}
+
+/** Let the Director redo a scene with an action that was just built for it. */
+export async function applyNewAction(form: FormData) {
+  const name = teks(form, 'nama');
+  const id = teks(form, 'id');
+  const scene = Number(teks(form, 'adegan'));
+  const request = getActionRequest(name);
+  if (!request || request.status !== 'approved' || !Number.isInteger(scene) || scene < 1) return;
+  if (isBusy(aiJobMarker(id)) || sceneRevisionInProgress(id) !== undefined) return;
+  setSceneRevisionProgress(id, scene - 1);
+  const arahan = `Pakai aksi baru "${name}" di adegan ini: ${request.description}`;
+  addLog(id, 'pemilik', `Minta adegan ${scene} memakai aksi baru "${name}"`);
+  runOfficeCommand(['revisi-adegan', id, String(scene), arahan], id);
+  segarkan(id);
+  redirect(`/episode/${id}`);
 }

@@ -75,6 +75,14 @@ export const SceneSchema = z.object({
     .optional()
     .describe('what characters are doing in this scene; several per character when things happen in order'),
   lightningAt: z.array(z.string()).max(4).optional().describe('words of the narration where lightning flashes (storm backgrounds)'),
+  requestedAction: z
+    .object({
+      name: z.string().describe('new action id in kebab-case English, e.g. tearing-book'),
+      character: z.enum(CHARACTERS),
+      description: z.string().describe('what the movement looks like, in Indonesian'),
+    })
+    .optional()
+    .describe('only when the story needs a movement that no action covers; use the closest action meanwhile'),
   moods: z
     .array(z.object({ character: z.enum(CHARACTERS), expression: z.enum(EXPRESSIONS), at: z.string().optional() }))
     .max(6)

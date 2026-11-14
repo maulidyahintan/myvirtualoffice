@@ -20,6 +20,7 @@
 //   npm run kantor -- harian-pasang    (pasang penjadwal macOS) | harian-lepas
 //   npm run kantor -- laporan
 //   npm run kantor -- status
+//   npm run kantor -- aksi-baru <nama> | aksi-setujui <nama> | aksi-tolak <nama>  (Pembuat Aksi: aksi baru yang diminta Sutradara)
 import './env.ts';
 import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent, aiJobMarker, isBusy, shortsSplitMarker } from '@kantor/shared';
 import { replyToChat } from './chat.ts';
@@ -43,10 +44,21 @@ import {
   upload,
   sendToFacebook,
 } from './workflow.ts';
+import { approveActionRequest, buildActionRequest, rejectActionRequest } from './actionBuilder.ts';
 
 import { collectMetrics, collectMetricsIfDue } from './metrics.ts';
 
 const [cmd, arg1, arg2, arg3] = process.argv.slice(2);
+
+/** Run a job under a busy marker, so the dashboard shows it as running until it ends. */
+async function runMarked(marker: string, job: () => Promise<unknown>) {
+  markBusy(marker);
+  try {
+    await job();
+  } finally {
+    markDone(marker);
+  }
+}
 
 async function main() {
   switch (cmd) {
@@ -96,6 +108,12 @@ async function main() {
     case 'ai-voice':
     case 'suara-ai':
       return oneAtATime(need(arg1), () => fillAiVoices(arg1, arg2 ? Number(arg2) : undefined));
+    case 'aksi-baru':
+      return runMarked(`aksi-${need(arg1)}`, () => buildActionRequest(arg1));
+    case 'aksi-setujui':
+      return runMarked(`aksi-${need(arg1)}`, () => approveActionRequest(arg1));
+    case 'aksi-tolak':
+      return runMarked(`aksi-${need(arg1)}`, () => rejectActionRequest(arg1));
     case 'revise-scene':
     case 'revisi-adegan':
       return oneAtATime(need(arg1), () => reviseScene(arg1, Number(arg2), arg3 ?? ''));
