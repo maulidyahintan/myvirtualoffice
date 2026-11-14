@@ -63,22 +63,73 @@ export async function postToFacebook(ep: Episode, publishTime?: string): Promise
     return { videoId: start.video_id, url: `https://www.facebook.com/reel/${start.video_id}`, kind: 'reel', publishTime: when, pageId: conn.pageId };
   }
 
-  // Page video (16:9) with the episode thumbnail
-  const form = new FormData();
-  form.set('access_token', conn.pageToken);
-  form.set('title', title);
-  form.set('description', description);
+  // Page video (16:9) with the episode thumbnail, sent in chunks: a long video is too big for one request
+  const endpoint = `https://graph-video.facebook.com/${GRAPH_VERSION}/${conn.pageId}/videos`;
+  const post = (form: FormData) => {
+    form.set('access_token', conn.pageToken);
+    return graphFetch<UploadResponse>(endpoint, { method: 'POST', body: form });
+  };
+  const finish = new FormData();
+  finish.set('title', title);
+  finish.set('description', description);
   if (unix) {
-    form.set('published', 'false');
-    form.set('scheduled_publish_time', unix);
+    finish.set('published', 'false');
+    finish.set('scheduled_publish_time', unix);
   }
-  form.set('source', await fs.openAsBlob(file, { type: 'video/mp4' }), path.basename(file));
   if (ep.render.thumbnail) {
     const thumb = path.join(paths.renders(), ep.render.thumbnail);
-    if (fs.existsSync(thumb)) form.set('thumb', await fs.openAsBlob(thumb, { type: 'image/png' }), path.basename(thumb));
+    if (fs.existsSync(thumb)) finish.set('thumb', await fs.openAsBlob(thumb, { type: 'image/png' }), path.basename(thumb));
   }
-  const res = await graphFetch<{ id: string }>(`https://graph-video.facebook.com/${GRAPH_VERSION}/${conn.pageId}/videos`, { method: 'POST', body: form });
-  return { videoId: res.id, url: `https://www.facebook.com/${conn.pageId}/videos/${res.id}`, kind: 'video', publishTime: when, pageId: conn.pageId };
+  const videoId = await resumableUpload(post, await fs.openAsBlob(file, { type: 'video/mp4' }), finish);
+  return { videoId, url: `https://www.facebook.com/${conn.pageId}/videos/${videoId}`, kind: 'video', publishTime: when, pageId: conn.pageId };
+}
+
+/** What the Page videos endpoint answers during a resumable upload. */
+export interface UploadResponse {
+  upload_session_id?: string;
+  video_id?: string;
+  start_offset?: string;
+  end_offset?: string;
+  success?: boolean;
+}
+
+/** Safety cap so a misbehaving answer can never loop forever (a 2 GB video in 4 MB chunks needs ~500). */
+const MAX_UPLOAD_CHUNKS = 2000;
+
+/**
+ * Resumable upload to the Page videos endpoint: start a session for the file size, send the bytes Facebook
+ * asks for chunk by chunk (it answers with the next offsets), then finish with the post's fields. `post`
+ * sends one form (with the token) and returns Facebook's answer.
+ */
+export async function resumableUpload(post: (form: FormData) => Promise<UploadResponse>, video: Blob, finishFields: FormData): Promise<string> {
+  const startForm = new FormData();
+  startForm.set('upload_phase', 'start');
+  startForm.set('file_size', String(video.size));
+  const started = await post(startForm);
+  const session = started.upload_session_id;
+  const videoId = started.video_id;
+  if (!session || !videoId) throw new Error('Facebook tidak memulai sesi upload');
+  let start = Number(started.start_offset ?? 0);
+  let end = Number(started.end_offset ?? video.size);
+  for (let chunk = 0; start < end; chunk++) {
+    if (chunk >= MAX_UPLOAD_CHUNKS) throw new Error('Upload ke Facebook tidak selesai (terlalu banyak potongan)');
+    const transfer = new FormData();
+    transfer.set('upload_phase', 'transfer');
+    transfer.set('upload_session_id', session);
+    transfer.set('start_offset', String(start));
+    transfer.set('video_file_chunk', video.slice(start, end), 'chunk');
+    const next = await post(transfer);
+    const nextStart = Number(next.start_offset);
+    const nextEnd = Number(next.end_offset);
+    if (!Number.isFinite(nextStart) || !Number.isFinite(nextEnd) || nextStart <= start) throw new Error('Facebook tidak melanjutkan upload');
+    start = nextStart;
+    end = nextEnd;
+  }
+  finishFields.set('upload_phase', 'finish');
+  finishFields.set('upload_session_id', session);
+  const finished = await post(finishFields);
+  if (finished.success === false) throw new Error('Facebook menolak menyelesaikan upload');
+  return videoId;
 }
 
 /** Delete a Facebook video/Reel (used for a scheduled post of an older version that has not gone live yet). */
