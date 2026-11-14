@@ -14,6 +14,7 @@ import {
   setStatus,
   updateEpisode,
   SHORTS_CONTENT_LIMIT_SECONDS,
+  PICKED_SHORT_CONTENT_LIMIT_SECONDS,
   type Episode,
 } from '@kantor/shared';
 import { runAgent } from './run-agent.ts';
@@ -221,8 +222,9 @@ export async function shortFromScenes(id: string, sceneNumbers: number[], arahan
   addLog(id, 'sutradara', `Menyiapkan Shorts dari adegan pilihan pemilik: ${idx.map((i) => i + 1).join(', ')}`);
   const potongan = await rekamanPerScene(ep);
   const total = idx.reduce((sum, i) => sum + potongan[i].detik, 0);
-  if (total > BATAS_ISI_SHORTS) {
-    throw new Error(`Adegan pilihan totalnya ${Math.round(total)} detik, melebihi batas Shorts ${BATAS_ISI_SHORTS} detik`);
+  // the owner may pick a longer Short than the automatic cut, up to 90 seconds with intro and outro
+  if (total > PICKED_SHORT_CONTENT_LIMIT_SECONDS) {
+    throw new Error(`Adegan pilihan totalnya ${Math.round(total)} detik, melebihi batas ${PICKED_SHORT_CONTENT_LIMIT_SECONDS} detik untuk Shorts pilihan`);
   }
   const meta = await runAgent({
     peran: 'sutradara',

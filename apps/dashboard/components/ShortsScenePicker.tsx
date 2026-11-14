@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SHORTS_CONTENT_LIMIT_SECONDS, selectionProblem, selectionSeconds } from '@kantor/shared/shortsSelection';
+import { PICKED_SHORT_CONTENT_LIMIT_SECONDS, PICKED_SHORT_TOTAL_SECONDS, selectionProblem, selectionSeconds } from '@kantor/shared/shortsSelection';
 import { shortFromPickedScenes } from '@/app/actions';
 import { SubmitButton } from './SubmitButton';
 
@@ -46,7 +46,7 @@ export function ShortsScenePicker({ episodeId, scenes }: { episodeId: string; sc
         <div className="kecil peringatan">{problem}</div>
       ) : (
         <div className="kecil muted">
-          Total {Math.round(total)} / {SHORTS_CONTENT_LIMIT_SECONDS} detik
+          Total adegan {Math.round(total)} / {PICKED_SHORT_CONTENT_LIMIT_SECONDS} detik (video jadi maks. {PICKED_SHORT_TOTAL_SECONDS} detik dengan pembuka &amp; penutup)
         </div>
       )}
       <textarea name="arahan" rows={2} placeholder="Arahan judul (opsional), misal: tekankan dzikir saat mendengar guruh" />
