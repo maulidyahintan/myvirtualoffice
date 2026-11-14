@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-14T02:22:29.463Z",
+  "modified": "2026-11-14T02:51:04.232Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -449,6 +449,16 @@
       "time": "2026-11-14T02:22:29.463Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-14T02:47:37.360Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-14T02:51:04.232Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "statusNote": "Video siap ditonton & disetujui",
@@ -598,12 +608,12 @@
       "type": "story",
       "speaker": "narrator",
       "narration": "Assalamu'alaikum, adik-adik! Malam itu hujan turun deras sekali. Mamas baru mau tidur, tiba-tiba… duar!",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mochi"
       ],
-      "expression": "surprised",
+      "expression": "calm",
       "screenText": "Duar! Ada petir",
       "props": [
         "pillow"
@@ -612,18 +622,33 @@
         {
           "character": "mochi",
           "action": "sleeping"
+        },
+        {
+          "character": "mamas",
+          "action": "startled",
+          "at": "duar"
         }
       ],
       "illustration": {
         "prompt": "A cozy small house at night seen from the garden, heavy rain falling, warm yellow light glowing from one bedroom window. A soft, gentle flash of lightning far away lights up the deep blue clouds, calm and not scary.",
         "image": "ilustrasi/duar-ada-petir-mamas-takut-ibu-bilang-gu-2583-1-mwem6vq1.jpg"
-      }
+      },
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "surprised",
+          "at": "duar"
+        }
+      ],
+      "lightningAt": [
+        "duar"
+      ]
     },
     {
       "type": "story",
       "speaker": "mamas",
       "narration": "Ibuuu! Mamas takut! Suaranya keras sekali! Jendelanya tadi juga terang sekali!",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mochi"
@@ -637,7 +662,7 @@
       "type": "story",
       "speaker": "mother",
       "narration": "Sini, Mas, peluk Ibu. Eh, lihat, Mochi juga ikut sembunyi.",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mother",
         "mamas",
@@ -662,7 +687,7 @@
       "type": "story",
       "speaker": "mamas",
       "narration": "Hihi, ekor Mochi masih kelihatan! Tapi, Bu, petir itu jahat, ya? Mamas usir saja, ah. Hei, petir! Pergi sana! Jangan berisik!",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mother",
@@ -671,6 +696,25 @@
       "expression": "happy",
       "props": [
         "pillow"
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "thinking",
+          "at": "Tapi, Bu"
+        },
+        {
+          "character": "mamas",
+          "expression": "surprised",
+          "at": "Hei, petir"
+        }
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "shouting",
+          "at": "Hei, petir"
+        }
       ]
     },
     {
@@ -726,7 +770,7 @@
       "type": "story",
       "speaker": "mother",
       "narration": "Aduh, Mochi, kamu tidak apa-apa? Mas, petir tidak bisa diusir dengan teriakan. Petir juga tidak jahat. Suara duar itu namanya guruh. Cahayanya namanya kilat. Petir dan hujan itu diatur oleh Allah. Hujan membuat tanaman tumbuh dan bunga di halaman jadi segar.",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mother",
         "mamas",
@@ -748,7 +792,7 @@
       "type": "question",
       "speaker": "narrator",
       "narration": "Adik-adik, kalau mendengar petir, sebaiknya Mamas berbuat apa? Ayo, pikirkan dulu…",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas"
       ],
@@ -762,7 +806,7 @@
       "type": "story",
       "speaker": "mother",
       "narration": "Tadi Mamas berteriak, tapi petirnya tetap datang, kan? Kalau takut, tidak usah teriak atau lari-lari, Mas. Dekati Ibu, lalu ingat Allah. Di Al-Qur'an, Allah berfirman bahwa guruh pun bertasbih memuji-Nya. Yuk, Mamas baca.",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mother",
         "mamas",
@@ -777,7 +821,7 @@
       "type": "prayer",
       "speaker": "mamas",
       "narration": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih, wa yursiluṣ-ṣawā‘iqa fa yuṣību bihā may yasyā'u wa hum yujādilūna fillāh, wa huwa syadīdul-miḥāl.",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mother"
@@ -804,7 +848,7 @@
       "type": "story",
       "speaker": "mother",
       "narration": "Artinya, dan guruh bertasbih memuji-Nya, demikian pula para malaikat karena takut kepada-Nya. Dan Allah melepaskan halilintar, lalu menimpakannya kepada siapa yang Dia kehendaki, sementara mereka berbantah-bantahan tentang Allah, dan Dia Mahakeras siksaan-Nya. Itu surat Ar-Ra'd ayat tiga belas. Malaikat sangat taat kepada Allah. Jadi, guruh itu tidak sedang marah, Mas. Guruh sedang memuji Allah.",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mother",
         "mamas"
@@ -819,7 +863,7 @@
       "type": "story",
       "speaker": "mamas",
       "narration": "Wah, guruhnya ternyata bertasbih, ya, Bu? Mamas juga mau bertasbih! Tapi Mamas harus baca apa kalau ada guruh?",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mother",
@@ -834,7 +878,7 @@
       "type": "story",
       "speaker": "mother",
       "narration": "Pintar! Dulu ada sahabat Nabi, namanya Abdullah bin Zubair radhiyallahu 'anhuma. Kalau mendengar guruh, beliau berhenti bicara. Lalu beliau membaca dzikir. Bacaannya mirip ayat tadi, hanya ditambah pujian kepada Allah di depannya. Nanti kalau guruh datang lagi, kita coba bersama, ya.",
-      "background": "living-room",
+      "background": "bedroom-storm",
       "characters": [
         "mother",
         "mamas",
@@ -859,7 +903,7 @@
       "type": "question",
       "speaker": "narrator",
       "narration": "Benar saja. Duar! Guruh terdengar lagi. Kali ini Mamas tidak berteriak. Mamas memeluk Ibu, lalu berhenti bicara sebentar. Adik-adik, kalau mendengar guruh, kita baca dzikir apa? Ayo, ucapkan bersama Mamas!",
-      "background": "living-room",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mother"
@@ -868,13 +912,23 @@
       "screenText": "Baca dzikir apa?",
       "props": [
         "pillow"
+      ],
+      "lightningAt": [
+        "Duar"
+      ],
+      "actions": [
+        {
+          "character": "mother",
+          "action": "hugging",
+          "at": "memeluk"
+        }
       ]
     },
     {
       "type": "prayer",
       "speaker": "mamas",
       "narration": "Subḥānalladzī yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
-      "background": "living-room",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mother"
@@ -900,7 +954,7 @@
       "type": "story",
       "speaker": "mother",
       "narration": "Artinya, Maha Suci Allah, yang guruh bertasbih memuji-Nya, begitu juga para malaikat karena takut kepada-Nya. Masyaallah, Mamas hebat, tidak panik lagi! Besok, kalau ada guruh di sekolah, Mas diam sebentar lalu baca dzikir ini, ya. Kalau sedang main di halaman, cepat masuk ke rumah. Jangan berteduh di bawah pohon.",
-      "background": "living-room",
+      "background": "bedroom-storm",
       "characters": [
         "mother",
         "mamas",
@@ -922,7 +976,7 @@
       "type": "story",
       "speaker": "narrator",
       "narration": "Mamas berbisik, besok ia mau mengajari Mochi berdzikir. Tapi Mochi cuma menguap lebar, lalu tertidur. Mamas pun tertidur pulas, dan hujan reda perlahan. Adik-adik, petir diatur oleh Allah, jadi kita tidak perlu panik. Kalau takut, dekati Ayah atau Ibu, lalu berdzikir, ya. Wassalamu'alaikum!",
-      "background": "bedroom-night",
+      "background": "bedroom-storm",
       "characters": [
         "mamas",
         "mochi"
@@ -1091,6 +1145,6 @@
         "duration": 34.2
       }
     ],
-    "time": "2026-11-14T02:22:29.462Z"
+    "time": "2026-11-14T02:51:04.232Z"
   }
 }
