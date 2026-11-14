@@ -1,7 +1,7 @@
 {
   "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
   "created": "2026-11-13T00:52:53.160Z",
-  "modified": "2026-11-14T03:30:03.660Z",
+  "modified": "2026-11-14T03:35:29.168Z",
   "status": "scheduled",
   "idea": {
     "title": "Duar! Ada Petir, Mamas Takut — Ibu Bilang Guruh pun Bertasbih",
@@ -529,6 +529,21 @@
       "time": "2026-11-14T03:30:03.660Z",
       "by": "channel-manager",
       "message": "Terjadwal di Facebook 2026-11-15T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/1039767352464808"
+    },
+    {
+      "time": "2026-11-14T03:35:06.092Z",
+      "by": "pemilik",
+      "message": "Minta Shorts dari adegan 1, 5, 7, 9"
+    },
+    {
+      "time": "2026-11-14T03:35:12.616Z",
+      "by": "sutradara",
+      "message": "Menyiapkan Shorts dari adegan pilihan pemilik: 1, 5, 7, 9"
+    },
+    {
+      "time": "2026-11-14T03:35:29.168Z",
+      "by": "sutradara",
+      "message": "1 Shorts dibuat: petir-duar-mamas-takut-ternyata-guruh-be-bdda"
     }
   ],
   "statusNote": "Terjadwal tayang 2026-11-15T09:00:00.000Z",
@@ -1229,7 +1244,8 @@
   },
   "derivatives": [
     "takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd",
-    "dzikir-saat-mendengar-guruh-untuk-anak-m-8c6c"
+    "dzikir-saat-mendengar-guruh-untuk-anak-m-8c6c",
+    "petir-duar-mamas-takut-ternyata-guruh-be-bdda"
   ],
   "facebook": {
     "videoId": "1039767352464808",

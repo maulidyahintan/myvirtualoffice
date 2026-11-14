@@ -1,0 +1,238 @@
+{
+  "id": "takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd",
+  "created": "2026-11-14T03:03:44.615Z",
+  "modified": "2026-11-14T03:04:16.964Z",
+  "status": "needs_video_approval",
+  "idea": {
+    "title": "Takut Petir? Ibu Jelaskan Guruh & Kilat Diatur Allah",
+    "series": "kisah-sebelum-tidur",
+    "age": "4-6",
+    "moralMessage": "Petir dan hujan diatur Allah, jadi kita tidak perlu panik. Saat takut, kita mendekat kepada Ibu lalu berdzikir. Dalilnya QS. Ar-Ra'd ayat 13: guruh bertasbih memuji Allah. Kalau tim syariat setuju, boleh ditambah dzikir Abdullah bin Zubair saat mendengar guruh (atsar shahih mauquf; HR. Malik dalam Al-Muwaththa' dan Bukhari dalam Al-Adab Al-Mufrad no. 723). Kalau ragu, cukup pakai ayatnya. Malaikat yang disebut dalam ayat tidak digambar, hanya dinarasikan.",
+    "format": "short",
+    "reason": "Ini lanjutan langsung dari video terbaik kita (Takut Gelap: 6.813 views, 75,6% ditonton, 10 subscriber), dengan ketakutan yang berbeda. Momennya pas karena puncak musim hujan. Video 'Nio Takut Petir' (terbit 10 Nov) sudah 9.568 views/hari. Semua pesaing berupa Shorts, belum ada cerita 16:9 dengan konflik. Latar: bedroom-night, living-room, yard. Efek petir dibuat pelan.",
+    "references": [
+      "https://www.youtube.com/watch?v=xsWSb4bZ4bg",
+      "https://www.youtube.com/watch?v=WYUkRfs2aKs",
+      "https://www.youtube.com/watch?v=gx2kh3vCeVA",
+      "Video kita: Takut Gelap? Ingat Allah Tidak Pernah Tidur (43QIbkC4TFs)",
+      "QS. Ar-Ra'd: 13"
+    ]
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-14T03:03:44.615Z",
+      "by": "sutradara",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-14T03:03:44.625Z",
+      "by": "sutradara",
+      "message": "Shorts 1 dari episode duar-ada-petir-mamas-takut-ibu-bilang-gu-2583: adegan 2, 4, 6. Mamas takut lalu mencoba mengusir petir dengan teriakan, kemudian Ibu menjelaskan dengan lembut bahwa petir tidak jahat dan diatur oleh Allah. Konfliknya jelas dan langsung terjawab."
+    },
+    {
+      "time": "2026-11-14T03:03:44.626Z",
+      "by": "sutradara",
+      "message": "Menunggu giliran render"
+    },
+    {
+      "time": "2026-11-14T03:03:44.638Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-14T03:04:16.964Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    }
+  ],
+  "source": {
+    "id": "duar-ada-petir-mamas-takut-ibu-bilang-gu-2583",
+    "scenes": [
+      1,
+      3,
+      5
+    ]
+  },
+  "script": {
+    "title": "Takut Petir? Ibu Jelaskan Guruh & Kilat Diatur Allah",
+    "summary": "Malam itu hujan deras, lalu terdengar suara duar. Mamas kaget dan takut. Mochi ikut bersembunyi di balik selimut, tapi ekornya masih kelihatan. Mamas lalu keliru: ia berdiri di kasur dan berteriak mengusir petir. Guruh malah datang lagi, Mamas menyelam ke bawah selimut, dan Mochi jatuh dari kasur tertimpa bantal. Ibu menjelaskan bahwa petir tidak bisa diusir dengan teriakan. Ibu juga menjelaskan bedanya guruh dan kilat, dan bahwa petir dan hujan diatur oleh Allah. Penonton diajak berpikir apa yang sebaiknya Mamas lakukan. Ibu mengajarkan QS. Ar-Ra'd ayat 13: guruh bertasbih memuji Allah. Lalu Ibu bercerita tentang dzikir yang dibaca Abdullah bin Zubair radhiyallahu 'anhuma saat mendengar guruh. Saat guruh terdengar lagi, Mamas mencoba lagi. Kali ini ia tidak berteriak. Ia memeluk Ibu, diam sebentar, lalu membaca dzikir bersama penonton. Ibu memberi contoh di keseharian: di sekolah tetap tenang dan berdzikir, dan kalau sedang di halaman, cepat masuk rumah dan jangan berteduh di bawah pohon. Pesannya: petir diatur Allah, jadi tidak perlu panik. Kalau takut, dekati Ayah atau Ibu, lalu berdzikir.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibuuu! Mamas takut! Suaranya keras sekali! Jendelanya tadi juga terang sekali!",
+        "visualDirection": "bedroom-night: Mamas menarik selimut sampai ke dagu, Mochi melompat masuk ke bawah selimut."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Hihi, ekor Mochi masih kelihatan! Tapi, Bu, petir itu jahat, ya? Mamas usir saja, ah. Hei, petir! Pergi sana! Jangan berisik!",
+        "visualDirection": "bedroom-night: ekor oranye Mochi mencuat dari selimut, lalu Mamas berdiri di atas kasur sambil menunjuk jendela dengan wajah berani."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Aduh, Mochi, kamu tidak apa-apa? Mas, petir tidak bisa diusir dengan teriakan. Petir juga tidak jahat. Suara duar itu namanya guruh. Cahayanya namanya kilat. Petir dan hujan itu diatur oleh Allah. Hujan membuat tanaman tumbuh dan bunga di halaman jadi segar.",
+        "visualDirection": "bedroom-night: Ibu mengangkat Mochi ke kasur sambil tersenyum, lalu gambar beralih ke yard: halaman basah dengan daun dan bunga yang segar, suasana tenang."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "وَيُسَبِّحُ ٱلرَّعْدُ بِحَمْدِهِۦ وَٱلْمَلَـٰٓئِكَةُ مِنْ خِيفَتِهِۦ وَيُرْسِلُ ٱلصَّوَٰعِقَ فَيُصِيبُ بِهَا مَن يَشَآءُ وَهُمْ يُجَـٰدِلُونَ فِى ٱللَّهِ وَهُوَ شَدِيدُ ٱلْمِحَالِ",
+        "latin": "Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih, wa yursiluṣ-ṣawā‘iqa fa yuṣību bihā may yasyā'u wa hum yujādilūna fillāh, wa huwa syadīdul-miḥāl.",
+        "translation": "Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya, dan Allah melepaskan halilintar, lalu menimpakannya kepada siapa yang Dia kehendaki, sementara mereka berbantah-bantahan tentang Allah, dan Dia Mahakeras siksaan-Nya.",
+        "source": "QS. Ar-Ra'd [13]: 13"
+      },
+      {
+        "type": "atsar",
+        "arabicText": "سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ",
+        "latin": "Subḥānalladzī yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.",
+        "translation": "Maha Suci Allah, yang guruh bertasbih memuji-Nya, begitu pula para malaikat karena takut kepada-Nya. (Dibaca Abdullah bin Zubair radhiyallahu 'anhuma saat mendengar guruh; ia berhenti bicara lalu membacanya.)",
+        "source": "Atsar mauquf dari Abdullah bin Zubair radhiyallahu 'anhuma, HR. Malik dalam Al-Muwaththa' (Kitab al-Kalam, bab ucapan saat mendengar guruh) dan Al-Bukhari dalam Al-Adab Al-Mufrad no. 723; dinilai shahih mauquf oleh Al-Albani dalam Shahih Al-Adab Al-Mufrad."
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Syariat aman. Tidak ada visualisasi Nabi, sahabat, atau malaikat. Scene 9 memakai langit malam berawan tanpa sosok. Kisah Abdullah bin Zubair hanya disampaikan lewat dialog Ibu, dan visual scene 12 cuma menampilkan Ibu dan Mamas.",
+      "Ayat QS. Ar-Ra'd: 13 (penggalan awal) dan dzikir dari atsar Ibnu Zubair sudah sesuai dengan yang saya ketahui. Naskah dengan benar menyebut dzikir itu sebagai bacaan sahabat, bukan sabda Nabi ﷺ, jadi tidak ada klaim keutamaan yang dikarang.",
+      "Bacaan Arab sudah terpisah dengan benar. Scene 9 (ayat) dan scene 14 (dzikir) hanya berisi latin, dan artinya ada di scene 10 dan 15. Bacaan ayat sudah memakai pembicara mamas.",
+      "Perilaku negatif ada konsekuensi dan penyelesaiannya. Mamas berteriak ke petir, guruh tetap datang, lalu Ibu meluruskan. Di scene 13 Mamas mencoba lagi dengan cara yang benar. Alurnya bagus dan jelas untuk usia 4–6.",
+      "Panjang 396 kata, sudah dalam batas. Ada 2 momen interaktif (scene 7 dan 13). Tempo mengalir, tidak bertele-tele.",
+      "Perbaikan opsional (scene 4–6): Mamas berdiri di atas kasur, lalu Mochi jatuh. Pertimbangkan menambah satu kalimat Ibu: 'Mas, duduk dulu, ya, nanti jatuh.' Ini supaya berdiri di kasur tidak terkesan aman untuk ditiru.",
+      "Perbaikan opsional (kesinambungan latar): di scene 12 Ibu dan Mamas pindah ke ruang tamu, tapi di scene 16 Mamas tiba-tiba tidur di kamar. Pilih salah satu: (a) scene 12–15 tetap di bedroom-night, atau (b) di scene 16 tambahkan narasi singkat 'Ibu mengantar Mamas kembali ke kamar.'",
+      "Perbaikan opsional (panjang kalimat): kalimat di scene 15 'Besok, kalau ada guruh di sekolah, Mas diam sebentar lalu baca dzikir ini, ya.' berisi 14 kata. Bisa dipecah jadi 'Besok, kalau ada guruh di sekolah, Mas diam sebentar. Lalu baca dzikir ini, ya.'",
+      "Judul tidak menyesatkan karena isinya memang tentang petir dan tasbih guruh. Tidak ada unsur yang menakut-nakuti berlebihan, dan saran keselamatan (masuk rumah, jangan berteduh di bawah pohon) sudah tepat."
+    ],
+    "humanCheck": [
+      "Dalil 1 – Ayat: QS. Ar-Ra'd [13]: 13, penggalan awal. Teks: وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ. Latin: 'Wa yusabbiḥur-ra‘du biḥamdihī wal-malā'ikatu min khīfatih.' Terjemah: 'Dan guruh bertasbih memuji-Nya, (demikian pula) para malaikat karena takut kepada-Nya.' Cocokkan dengan mushaf dan terjemah Kemenag.",
+      "Dalil 2 – Atsar Abdullah bin Zubair radhiyallahu 'anhuma. Teks: سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ. Sumber: Al-Muwaththa' Imam Malik (Kitab al-Kalam, bab ucapan saat mendengar guruh) dan Al-Bukhari dalam Al-Adab Al-Mufrad no. 723. Pastikan nomornya sesuai dengan cetakan yang dirujuk, karena penomoran Al-Muwaththa' berbeda-beda antar riwayat atau cetakan.",
+      "Penilaian Al-Albani untuk atsar ini (setahu saya 'shahih al-isnad mauquf' dalam Shahih Al-Adab Al-Mufrad). Mohon dicek langsung di kitabnya.",
+      "Penjelasan di scene 12 bahwa Ibnu Zubair 'berhenti bicara' saat mendengar guruh berasal dari lafaz atsar 'taraka al-hadits'. Pastikan penyederhanaan ini bisa diterima.",
+      "Penulisan latin dan pelafalan oleh pengisi suara Mamas (ḥ, ‘ain pada ra‘du, khīfatih) perlu didengar ulang oleh orang yang paham tajwid sebelum video dirilis.",
+      "Efek visual kilat dan suara guruh (scene 1, 5, 13) harus benar-benar lembut, tanpa kedip cepat dan suara keras, supaya tidak melanggar aturan visual tenang."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibuuu! Mamas takut! Suaranya keras sekali! Jendelanya tadi juga terang sekali!",
+      "background": "bedroom-storm",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "sad",
+      "props": [
+        "pillow"
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Hihi, ekor Mochi masih kelihatan! Tapi, Bu, petir itu jahat, ya? Mamas usir saja, ah. Hei, petir! Pergi sana! Jangan berisik!",
+      "background": "bedroom-storm",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "pillow"
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "thinking",
+          "at": "Tapi, Bu"
+        },
+        {
+          "character": "mamas",
+          "expression": "surprised",
+          "at": "Hei, petir"
+        }
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "shouting",
+          "at": "Hei, petir"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Aduh, Mochi, kamu tidak apa-apa? Mas, petir tidak bisa diusir dengan teriakan. Petir juga tidak jahat. Suara duar itu namanya guruh. Cahayanya namanya kilat. Petir dan hujan itu diatur oleh Allah. Hujan membuat tanaman tumbuh dan bunga di halaman jadi segar.",
+      "background": "bedroom-storm",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Petir diatur Allah",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "circling"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Takut Petir? Ibu Jelaskan Guruh & Kilat Diatur Allah",
+    "description": "Mamas takut petir dan mau mengusirnya. Ibu menjelaskan bahwa guruh dan kilat diatur oleh Allah, jadi kita tidak perlu panik (lihat QS. Ar-Ra'd: 13).\n#Shorts #CeritaAnakMuslim #TakutPetir",
+    "tags": [
+      "takut petir",
+      "cerita anak muslim",
+      "petir diatur Allah",
+      "guruh dan kilat",
+      "adab saat hujan",
+      "animasi islami anak",
+      "Mamas dan Ibu",
+      "belajar islam anak"
+    ],
+    "thumbnailText": "Petir Itu Jahat?"
+  },
+  "recordingMode": "per-scene",
+  "audioPerScene": [
+    "audio/takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd-adegan-1.wav",
+    "audio/takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd-adegan-2.wav",
+    "audio/takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd-adegan-3.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null
+  ],
+  "statusNote": "Video siap ditonton & disetujui",
+  "audioFile": "audio/takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd-gabung.wav",
+  "render": {
+    "video": "takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd.mp4",
+    "scenes": [
+      {
+        "start": 1.5,
+        "duration": 6.433333333333334
+      },
+      {
+        "start": 7.933333333333334,
+        "duration": 11.133333333333333
+      },
+      {
+        "start": 19.066666666666666,
+        "duration": 29.8
+      }
+    ],
+    "time": "2026-11-14T03:04:16.963Z"
+  }
+}
