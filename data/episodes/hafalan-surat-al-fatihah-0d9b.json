@@ -1,0 +1,525 @@
+{
+  "id": "hafalan-surat-al-fatihah-0d9b",
+  "created": "2026-11-14T03:05:22.601Z",
+  "modified": "2026-11-14T03:49:33.940Z",
+  "status": "scheduled",
+  "idea": {
+    "title": "Hafalan Surat Al-Fatihah",
+    "series": "memorization",
+    "age": "1-10",
+    "moralMessage": "Menghafal Surat Al-Fatihah (Pembukaan)",
+    "type": "memorization",
+    "memorization": {
+      "surah": 1,
+      "surahName": "Al-Fatihah",
+      "verseFrom": 1,
+      "verseTo": 7,
+      "repetitions": 1,
+      "basmalah": true
+    },
+    "reason": "Ide hafalan dari pemilik channel",
+    "references": [],
+    "format": "standard"
+  },
+  "revisionCount": 0,
+  "log": [
+    {
+      "time": "2026-11-14T03:05:22.601Z",
+      "by": "pemilik",
+      "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-14T03:05:22.604Z",
+      "by": "pemilik",
+      "message": "Mengambil teks surat"
+    },
+    {
+      "time": "2026-11-14T03:05:23.511Z",
+      "by": "orchestrator",
+      "message": "Mengambil teks Surat Al-Fatihah dari equran.id"
+    },
+    {
+      "time": "2026-11-14T03:05:23.691Z",
+      "by": "orchestrator",
+      "message": "Teks surat siap dicek pemilik channel"
+    },
+    {
+      "time": "2026-11-14T03:06:03.741Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-14T03:06:04.381Z",
+      "by": "sutradara",
+      "message": "Memilih latar sesuai arti ayat & menyusun metadata"
+    },
+    {
+      "time": "2026-11-14T03:06:08.063Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-14T03:06:21.030Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-14T03:06:21.509Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: baca surat ayat demi ayat, jeda ±1 detik antar bacaan"
+    },
+    {
+      "time": "2026-11-14T03:34:08.902Z",
+      "by": "pemilik",
+      "message": "Bagian 1 rekaman diupload (1.4 MB), total 1 bagian"
+    },
+    {
+      "time": "2026-11-14T03:34:09.841Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-14T03:35:34.672Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-14T03:41:18.909Z",
+      "by": "pemilik",
+      "message": "Waktu bacaan dikoreksi manual"
+    },
+    {
+      "time": "2026-11-14T03:41:19.513Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-14T03:42:11.035Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-14T03:48:47.098Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-16 16:00"
+    },
+    {
+      "time": "2026-11-14T03:48:47.941Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-14T03:48:59.122Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Hafalan\""
+    },
+    {
+      "time": "2026-11-14T03:48:59.123Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-16T09:00:00.000Z"
+    },
+    {
+      "time": "2026-11-14T03:48:59.125Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-14T03:49:04.561Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-14T03:49:12.367Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-16T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/29571969109082642"
+    },
+    {
+      "time": "2026-11-14T03:49:17.821Z",
+      "by": "channel-manager",
+      "message": "Postingan Facebook versi lama (belum tayang) dihapus"
+    },
+    {
+      "time": "2026-11-14T03:49:17.823Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-14T03:49:19.751Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-16T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/1107962872011846"
+    },
+    {
+      "time": "2026-11-14T03:49:33.940Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-16T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/1869870280855066"
+    }
+  ],
+  "statusNote": "Terjadwal tayang 2026-11-16T09:00:00.000Z",
+  "memorization": {
+    "surahName": "Al-Fatihah",
+    "surahMeaning": "Pembukaan",
+    "verses": [
+      {
+        "number": 1,
+        "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i). ",
+        "meaning": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "background": "dawn",
+        "moods": [
+          "light"
+        ]
+      },
+      {
+        "number": 2,
+        "arabic": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَۙ",
+        "latin": "Al-ḥamdu lillāhi rabbil-‘ālamīn(a). ",
+        "meaning": "Segala puji bagi Allah, Tuhan semesta alam",
+        "background": "mountain",
+        "moods": [
+          "birds",
+          "light"
+        ]
+      },
+      {
+        "number": 3,
+        "arabic": "الرَّحْمٰنِ الرَّحِيْمِۙ",
+        "latin": "Ar-raḥmānir-raḥīm(i). ",
+        "meaning": "Yang Maha Pengasih lagi Maha Penyayang,",
+        "background": "garden",
+        "moods": [
+          "butterflies",
+          "light"
+        ]
+      },
+      {
+        "number": 4,
+        "arabic": "مٰلِكِ يَوْمِ الدِّيْنِۗ",
+        "latin": "Māliki yaumid-dīn(i). ",
+        "meaning": "Pemilik hari Pembalasan.",
+        "background": "night-sky",
+        "moods": []
+      },
+      {
+        "number": 5,
+        "arabic": "اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُۗ",
+        "latin": "Iyyāka na‘budu wa iyyāka nasta‘īn(u), ",
+        "meaning": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan.",
+        "background": "inside-mosque",
+        "moods": [
+          "light"
+        ]
+      },
+      {
+        "number": 6,
+        "arabic": "اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَۙ",
+        "latin": "Ihdinaṣ-ṣirāṭal-mustaqīm(a). ",
+        "meaning": "Bimbinglah kami ke jalan yang lurus,",
+        "background": "dawn",
+        "moods": [
+          "light"
+        ]
+      },
+      {
+        "number": 7,
+        "arabic": "صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ەۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ࣖ",
+        "latin": "Ṣirāṭal-lażīna an‘amta ‘alaihim, gairil-magḍūbi ‘alaihim wa laḍ-ḍāllīn(a). ",
+        "meaning": "(yaitu) jalan orang-orang yang telah Engkau beri nikmat, bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) orang-orang yang sesat.",
+        "background": "dawn",
+        "moods": [
+          "birds"
+        ]
+      }
+    ],
+    "segmentStarts": [
+      0,
+      25,
+      34,
+      42,
+      50,
+      60,
+      70
+    ],
+    "segmentEffect": "aresample=48000,asetrate=57082,aresample=48000,atempo=0.71476"
+  },
+  "script": {
+    "title": "Hafalan Surat Al-Fatihah",
+    "summary": "Surat ke-1 (Pembukaan), 7 ayat. Tiap ayat dibaca 1x.",
+    "scenes": [
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Bismillāhir-raḥmānir-raḥīm(i). ",
+        "visualDirection": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Al-ḥamdu lillāhi rabbil-‘ālamīn(a). ",
+        "visualDirection": "Segala puji bagi Allah, Tuhan semesta alam"
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Ar-raḥmānir-raḥīm(i). ",
+        "visualDirection": "Yang Maha Pengasih lagi Maha Penyayang,"
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Māliki yaumid-dīn(i). ",
+        "visualDirection": "Pemilik hari Pembalasan."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Iyyāka na‘budu wa iyyāka nasta‘īn(u), ",
+        "visualDirection": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan."
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Ihdinaṣ-ṣirāṭal-mustaqīm(a). ",
+        "visualDirection": "Bimbinglah kami ke jalan yang lurus,"
+      },
+      {
+        "type": "prayer",
+        "speaker": "narrator",
+        "narration": "Ṣirāṭal-lażīna an‘amta ‘alaihim, gairil-magḍūbi ‘alaihim wa laḍ-ḍāllīn(a). ",
+        "visualDirection": "(yaitu) jalan orang-orang yang telah Engkau beri nikmat, bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) orang-orang yang sesat."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i). ",
+        "translation": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
+        "source": "QS. Al-Fatihah: 1"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَۙ",
+        "latin": "Al-ḥamdu lillāhi rabbil-‘ālamīn(a). ",
+        "translation": "Segala puji bagi Allah, Tuhan semesta alam",
+        "source": "QS. Al-Fatihah: 2"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "الرَّحْمٰنِ الرَّحِيْمِۙ",
+        "latin": "Ar-raḥmānir-raḥīm(i). ",
+        "translation": "Yang Maha Pengasih lagi Maha Penyayang,",
+        "source": "QS. Al-Fatihah: 3"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "مٰلِكِ يَوْمِ الدِّيْنِۗ",
+        "latin": "Māliki yaumid-dīn(i). ",
+        "translation": "Pemilik hari Pembalasan.",
+        "source": "QS. Al-Fatihah: 4"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُۗ",
+        "latin": "Iyyāka na‘budu wa iyyāka nasta‘īn(u), ",
+        "translation": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan.",
+        "source": "QS. Al-Fatihah: 5"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَۙ",
+        "latin": "Ihdinaṣ-ṣirāṭal-mustaqīm(a). ",
+        "translation": "Bimbinglah kami ke jalan yang lurus,",
+        "source": "QS. Al-Fatihah: 6"
+      },
+      {
+        "type": "ayat",
+        "arabicText": "صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ەۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ࣖ",
+        "latin": "Ṣirāṭal-lażīna an‘amta ‘alaihim, gairil-magḍūbi ‘alaihim wa laḍ-ḍāllīn(a). ",
+        "translation": "(yaitu) jalan orang-orang yang telah Engkau beri nikmat, bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) orang-orang yang sesat.",
+        "source": "QS. Al-Fatihah: 7"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 10,
+    "notes": [
+      "Teks diambil otomatis dari equran.id (Kemenag RI), tidak ditulis AI."
+    ],
+    "humanCheck": [
+      "Cocokkan teks Arab & harakat dengan mushaf kamu.",
+      "Pastikan rentang ayat sesuai yang ingin dihafalkan."
+    ]
+  },
+  "scenes": [
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Bismillāhir-raḥmānir-raḥīm(i). ",
+      "background": "dawn",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "latin": "Bismillāhir-raḥmānir-raḥīm(i). ",
+        "meaning": "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Al-ḥamdu lillāhi rabbil-‘ālamīn(a). ",
+      "background": "mountain",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَۙ",
+        "latin": "Al-ḥamdu lillāhi rabbil-‘ālamīn(a). ",
+        "meaning": "Segala puji bagi Allah, Tuhan semesta alam"
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Ar-raḥmānir-raḥīm(i). ",
+      "background": "garden",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "الرَّحْمٰنِ الرَّحِيْمِۙ",
+        "latin": "Ar-raḥmānir-raḥīm(i). ",
+        "meaning": "Yang Maha Pengasih lagi Maha Penyayang,"
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Māliki yaumid-dīn(i). ",
+      "background": "night-sky",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "مٰلِكِ يَوْمِ الدِّيْنِۗ",
+        "latin": "Māliki yaumid-dīn(i). ",
+        "meaning": "Pemilik hari Pembalasan."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Iyyāka na‘budu wa iyyāka nasta‘īn(u), ",
+      "background": "inside-mosque",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُۗ",
+        "latin": "Iyyāka na‘budu wa iyyāka nasta‘īn(u), ",
+        "meaning": "Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan."
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Ihdinaṣ-ṣirāṭal-mustaqīm(a). ",
+      "background": "dawn",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَۙ",
+        "latin": "Ihdinaṣ-ṣirāṭal-mustaqīm(a). ",
+        "meaning": "Bimbinglah kami ke jalan yang lurus,"
+      }
+    },
+    {
+      "type": "prayer",
+      "speaker": "narrator",
+      "narration": "Ṣirāṭal-lażīna an‘amta ‘alaihim, gairil-magḍūbi ‘alaihim wa laḍ-ḍāllīn(a). ",
+      "background": "dawn",
+      "characters": [],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ەۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ࣖ",
+        "latin": "Ṣirāṭal-lażīna an‘amta ‘alaihim, gairil-magḍūbi ‘alaihim wa laḍ-ḍāllīn(a). ",
+        "meaning": "(yaitu) jalan orang-orang yang telah Engkau beri nikmat, bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) orang-orang yang sesat."
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Hafalan Surat Al-Fatihah untuk Anak | Belajar Ayat demi Ayat",
+    "description": "Hafalan Surat Al-Fatihah untuk anak, pelan dan jelas ayat demi ayat. Yuk, adik-adik menghafal surat pembuka Al-Qur'an bersama!\n\nSurat Al-Fatihah (Pembukaan) terdiri dari 7 ayat. Di video ini setiap ayat diulang 1 kali, supaya anak mudah mendengar dan menirukan. Bacaannya tenang dan cocok untuk anak usia 1–10 tahun.\n\nArti singkat surat:\nAl-Fatihah berisi pujian kepada Allah, Tuhan seluruh alam, Yang Maha Pengasih lagi Maha Penyayang, dan Pemilik hari pembalasan. Kita menyembah hanya kepada Allah dan memohon pertolongan hanya kepada-Nya. Lalu kita berdoa agar ditunjukkan jalan yang lurus.\n\nPelajaran hari ini:\n• Al-Fatihah adalah surat pertama dalam Al-Qur'an.\n• Kita memuji Allah dan meminta tolong hanya kepada-Nya.\n• Al-Fatihah dibaca di setiap rakaat shalat.\n\nDalil: Rasulullah ﷺ bersabda, \"Tidak ada shalat bagi orang yang tidak membaca Al-Fatihah.\" (HR. Bukhari no. 756 dan Muslim no. 394)\n\nSumber teks Arab dan terjemah: Al-Qur'an dan Terjemahannya, Kemenag RI (via equran.id).\n\nAyah dan Bunda, yuk dampingi si kecil mengulang hafalan ini setiap hari, misalnya sebelum tidur atau sebelum shalat. Tonton juga video hafalan surat lainnya di Tasnie Office.\n\n#HafalanSuratAnak #AlFatihah #CeritaIslamiAnak",
+    "tags": [
+      "hafalan surat al fatihah",
+      "surat al fatihah untuk anak",
+      "hafalan al fatihah anak",
+      "belajar al fatihah",
+      "al fatihah ayat per ayat",
+      "hafalan surat pendek anak",
+      "hafalan juz amma anak",
+      "belajar mengaji anak",
+      "murottal anak",
+      "al fatihah dan artinya",
+      "surat al fatihah 7 ayat",
+      "video islami anak",
+      "hafalan quran anak",
+      "Tasnie Office"
+    ],
+    "thumbnailText": "Al-Fatihah"
+  },
+  "recordingMode": "sequential",
+  "audioParts": [
+    "audio/hafalan-surat-al-fatihah-0d9b-mwfuq7lw-1.mp3"
+  ],
+  "audioFile": "audio/hafalan-surat-al-fatihah-0d9b-mwfuq7lw-1.mp3",
+  "render": {
+    "video": "hafalan-surat-al-fatihah-0d9b.mp4",
+    "thumbnail": "hafalan-surat-al-fatihah-0d9b.png",
+    "scenes": [
+      {
+        "start": 5,
+        "duration": 25
+      },
+      {
+        "start": 30,
+        "duration": 9
+      },
+      {
+        "start": 39,
+        "duration": 8
+      },
+      {
+        "start": 47,
+        "duration": 8
+      },
+      {
+        "start": 55,
+        "duration": 10
+      },
+      {
+        "start": 65,
+        "duration": 10
+      },
+      {
+        "start": 75,
+        "duration": 32.9
+      }
+    ],
+    "time": "2026-11-14T03:42:11.034Z"
+  },
+  "selectedSchedule": "2026-11-16T09:00:00.000Z",
+  "youtube": {
+    "videoId": "qLBF8D8q8f8",
+    "url": "https://www.youtube.com/watch?v=qLBF8D8q8f8",
+    "publishTime": "2026-11-16T09:00:00.000Z",
+    "playlist": {
+      "name": "Hafalan",
+      "id": "PLQpeKIzmWSxQ"
+    }
+  },
+  "facebook": {
+    "videoId": "1869870280855066",
+    "url": "https://www.facebook.com/1383005048238430/videos/1869870280855066",
+    "kind": "video",
+    "publishTime": "2026-11-16T09:00:00.000Z",
+    "pageId": "1383005048238430"
+  }
+}
