@@ -67,23 +67,24 @@ export default async function HalamanJadwal({ searchParams }: { searchParams: Pr
 
   return (
     <div className="stack">
-      <div className="row" style={{ justifyContent: 'space-between' }}>
-        <div>
-          <h1>📅 Jadwal Tayang</h1>
-          <div className="muted kecil">
-            Saat menyetujui video, jadwalnya otomatis terisi slot kosong paling dekat (hari ini/besok lebih dulu), dan tetap bisa kamu ganti tanggal & jamnya. Rekomendasi di kalender bergeser sendiri setiap ada video yang terjadwal.
+      <div className="stack" style={{ gap: 6 }}>
+        {/* title on the left, the calendar/list switch on the right */}
+        <div className="row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+          <h1 style={{ margin: 0 }}>📅 Jadwal Tayang</h1>
+          <div className="row">
+            <AutoRefresh aktif={sibuk} detik={6} />
+            <nav className="pilih-tampilan" aria-label="Pilih tampilan">
+              <Link href={tautan('kalender')} className={tampilan === 'kalender' ? 'aktif' : ''}>
+                🗓️ Kalender
+              </Link>
+              <Link href={tautan('daftar')} className={tampilan === 'daftar' ? 'aktif' : ''}>
+                ☰ Daftar
+              </Link>
+            </nav>
           </div>
         </div>
-        <div className="row">
-          <AutoRefresh aktif={sibuk} detik={6} />
-          <nav className="pilih-tampilan" aria-label="Pilih tampilan">
-            <Link href={tautan('kalender')} className={tampilan === 'kalender' ? 'aktif' : ''}>
-              🗓️ Kalender
-            </Link>
-            <Link href={tautan('daftar')} className={tampilan === 'daftar' ? 'aktif' : ''}>
-              ☰ Daftar
-            </Link>
-          </nav>
+        <div className="muted kecil">
+          Saat menyetujui video, jadwalnya otomatis terisi slot kosong paling dekat (hari ini/besok lebih dulu), dan tetap bisa kamu ganti tanggal & jamnya. Rekomendasi di kalender bergeser sendiri setiap ada video yang terjadwal.
         </div>
       </div>
 
