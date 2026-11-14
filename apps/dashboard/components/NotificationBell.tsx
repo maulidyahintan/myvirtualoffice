@@ -49,11 +49,12 @@ export function NotificationBell({ notifications }: { notifications: AppNotifica
           <button type="button" className="notif-banner" onClick={() => setOpen(true)}>
             ⚠️ {unread.length} {unread.length === 1 ? 'masalah' : 'masalah'} perlu dilihat: <b>{unread[0].title}</b>
           </button>
-        ) : (
-          <span />
-        )}
+        ) : null}
         <button type="button" className="notif-bell" onClick={() => setOpen(true)} aria-label={`Notifikasi, ${unread.length} belum dibaca`}>
-          🔔{unread.length ? <span className="notif-count">{unread.length > 99 ? '99+' : unread.length}</span> : null}
+          <span className="notif-bell-icon" aria-hidden>
+            🔔
+          </span>
+          {unread.length ? <span className="notif-count">{unread.length > 99 ? '99+' : unread.length}</span> : null}
         </button>
       </div>
       {open ? (
