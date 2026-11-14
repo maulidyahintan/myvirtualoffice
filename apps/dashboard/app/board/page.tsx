@@ -15,12 +15,12 @@ type FilterFormat = keyof typeof FILTER_FORMAT;
 /** A video being split into Shorts: the new Shorts then appear in the columns and are rendered one by one. */
 function ShortsSplitProgress({ episode }: { episode: Episode }) {
   return (
-    <div className="panel row sedang-diperbaiki" role="status" style={{ gap: 10 }}>
+    <div className="panel row sedang-diperbaiki progres-ringkas" role="status" style={{ gap: 10 }}>
       <span className="putar" aria-hidden />
       <span>
         <b>✂️ Sutradara sedang memotong Shorts dari </b>
         <Link href={`/episode/${episode.id}`}>{episode.script?.title ?? episode.idea.title}</Link>
-        <span className="muted"> · memilih adegan penting dan menyiapkan judulnya. Shorts baru muncul di kolom papan ini, lalu dirender satu per satu.</span>
+        <span className="muted"> · Shorts baru muncul di kolom papan ini lalu dirender satu per satu.</span>
       </span>
     </div>
   );
