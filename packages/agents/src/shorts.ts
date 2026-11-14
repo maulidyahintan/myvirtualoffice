@@ -13,29 +13,34 @@ import {
   normalizeMetadata,
   setStatus,
   updateEpisode,
+  SHORTS_CONTENT_LIMIT_SECONDS,
   type Episode,
 } from '@kantor/shared';
 import { runAgent } from './run-agent.ts';
 import { durasiAudio, ffmpeg } from './render.ts';
 
 /** Batas isi (adegan) satu Shorts; ditambah intro/outro Shorts tetap di bawah 60 detik. */
-export const BATAS_ISI_SHORTS = 52;
+export const BATAS_ISI_SHORTS = SHORTS_CONTENT_LIMIT_SECONDS;
 /** Jeda yang ditambahkan render per adegan (lihat siapkanAudioPerScene). */
 const JEDA_ADEGAN = 0.6;
 const JEDA_PERTANYAAN = 3;
 
-const PotonganSchema = z.object({
-  shorts: z.array(
-    z.object({
-      scenes: z.array(z.number().int()).describe('nomor adegan (mulai 1) yang dipakai, urut naik'),
-      alasan: z.string().describe('kenapa potongan ini penting & bermakna, 1 kalimat'),
-      title: z.string().max(100),
-      description: z.string(),
-      tags: z.array(z.string()),
-      thumbnailText: z.string(),
-    }),
-  ),
+/** YouTube Shorts metadata the Director writes for one Short. */
+const ShortMetadataSchema = z.object({
+  alasan: z.string().describe('kenapa potongan ini penting & bermakna, 1 kalimat'),
+  title: z.string().max(100),
+  description: z.string(),
+  tags: z.array(z.string()),
+  thumbnailText: z.string(),
 });
+type ShortMetadata = z.infer<typeof ShortMetadataSchema>;
+
+const PotonganSchema = z.object({
+  shorts: z.array(ShortMetadataSchema.extend({ scenes: z.array(z.number().int()).describe('nomor adegan (mulai 1) yang dipakai, urut naik') })),
+});
+
+const SHORTS_METADATA_RULES =
+  'Metadata YouTube Shorts (SEO, jangan pakai gaya video biasa): judul ≤ 60 karakter dengan kata kunci utama di depan (menarik untuk anak & orang tua); deskripsi 1–2 kalimat berisi kata kunci + sumber dalil singkat, diakhiri baris `#Shorts` dan 1–2 tagar topik; 5–10 tags relevan; teksThumbnail ≤ 3 kata.';
 
 interface Potongan {
   /** path relatif ke packages/video/public */
@@ -140,7 +145,7 @@ Aturan:
 - Buat maksimal ${jumlah} Shorts. Kalau bagian yang benar-benar penting hanya cukup untuk lebih sedikit, buat lebih sedikit (jangan mengisi dengan bagian yang kurang bermakna).
 - Scene boleh dilompati, tapi urutannya tetap sesuai cerita (nomor naik). Jangan memotong dialog sehingga jawaban muncul tanpa pertanyaannya.
 - Tiap Shorts sebaiknya membahas sisi yang berbeda; satu adegan boleh dipakai di lebih dari satu Shorts kalau memang perlu.
-- Buat juga metadata YouTube Shorts untuk tiap Shorts (SEO, jangan pakai gaya video biasa): judul ≤ 60 karakter dengan kata kunci utama di depan (menarik untuk anak & orang tua); deskripsi 1–2 kalimat berisi kata kunci + sumber dalil singkat, diakhiri baris \`#Shorts\` dan 1–2 tagar topik; 5–10 tags relevan; teksThumbnail ≤ 3 kata.
+- Buat juga untuk tiap Shorts: ${SHORTS_METADATA_RULES}
 ${arahan ? `\nArahan dari pemilik channel: ${arahan}\n` : ''}
 Daftar adegan (detik = lama di video):
 ${JSON.stringify(daftar, null, 2)}`,
@@ -149,41 +154,49 @@ ${JSON.stringify(daftar, null, 2)}`,
   const created: string[] = [];
   for (const [k, s] of result.shorts.slice(0, jumlah).entries()) {
     const idx = rapikanPilihan(s.scenes, potongan);
-    if (!idx.length) continue;
-    const baru = createEpisodeFromIdea({ ...ep.idea, title: s.title, format: 'short' }, 'sutradara');
-    const salin = idx.map((i, n) => {
-      const tujuan = `audio/${baru.id}-adegan-${n + 1}${path.extname(potongan[i].file)}`;
-      fs.copyFileSync(path.join(pub(), potongan[i].file), path.join(pub(), tujuan));
-      return tujuan;
-    });
-    updateEpisode(baru.id, (e) => {
-      const asal = structuredClone(ep);
-      e.source = { id, scenes: idx };
-      e.script = { ...asal.script!, title: s.title, scenes: idx.map((i) => asal.script!.scenes[i]).filter(Boolean) };
-      e.review = asal.review;
-      e.scenes = idx.map((i) => asal.scenes![i]);
-      e.metadata = normalizeMetadata({ title: s.title, description: s.description, tags: s.tags, thumbnailText: s.thumbnailText }, 'short');
-      e.recordingMode = 'per-scene';
-      e.audioPerScene = salin;
-      e.sceneOffsets = idx.map((i) => potongan[i].offset);
-      // rekaman berurutan direkam tanpa efek karakter → tetap suara yang sama dengan video asal
-      e.characterEffects = ep.recordingMode === 'per-scene' ? asal.characterEffects : false;
-      e.voicePitch = asal.voicePitch;
-      e.log.push({
-        time: new Date().toISOString(),
-        by: 'sutradara',
-        message: `Shorts ${k + 1} dari episode ${id}: adegan ${idx.map((i) => i + 1).join(', ')}. ${s.alasan}`,
-      });
-    });
-    setStatus(baru.id, 'rendering', 'sutradara', 'Menunggu giliran render');
-    created.push(baru.id);
+    if (idx.length) created.push(createShortEpisode(ep, potongan, idx, s, `Shorts ${k + 1}`));
   }
+  return finishShorts(ep, potongan, created, onRender);
+}
+
+/** One new Short from the scenes `idx` (0-based) of `ep`, with its own copy of their recordings; waits to be rendered. */
+function createShortEpisode(ep: Episode, potongan: Potongan[], idx: number[], meta: ShortMetadata, label: string): string {
+  const baru = createEpisodeFromIdea({ ...ep.idea, title: meta.title, format: 'short' }, 'sutradara');
+  const salin = idx.map((i, n) => {
+    const tujuan = `audio/${baru.id}-adegan-${n + 1}${path.extname(potongan[i].file)}`;
+    fs.copyFileSync(path.join(pub(), potongan[i].file), path.join(pub(), tujuan));
+    return tujuan;
+  });
+  updateEpisode(baru.id, (e) => {
+    const asal = structuredClone(ep);
+    e.source = { id: ep.id, scenes: idx };
+    e.script = { ...asal.script!, title: meta.title, scenes: idx.map((i) => asal.script!.scenes[i]).filter(Boolean) };
+    e.review = asal.review;
+    e.scenes = idx.map((i) => asal.scenes![i]);
+    e.metadata = normalizeMetadata({ title: meta.title, description: meta.description, tags: meta.tags, thumbnailText: meta.thumbnailText }, 'short');
+    e.recordingMode = 'per-scene';
+    e.audioPerScene = salin;
+    e.sceneOffsets = idx.map((i) => potongan[i].offset);
+    // rekaman berurutan direkam tanpa efek karakter → tetap suara yang sama dengan video asal
+    e.characterEffects = ep.recordingMode === 'per-scene' ? asal.characterEffects : false;
+    e.voicePitch = asal.voicePitch;
+    e.log.push({
+      time: new Date().toISOString(),
+      by: 'sutradara',
+      message: `${label} dari episode ${ep.id}: adegan ${idx.map((i) => i + 1).join(', ')}. ${meta.alasan}`,
+    });
+  });
+  setStatus(baru.id, 'rendering', 'sutradara', 'Menunggu giliran render');
+  return baru.id;
+}
+
+/** Tidy up the cut recordings, link the new Shorts to the video and render them one by one. */
+async function finishShorts(ep: Episode, potongan: Potongan[], created: string[], onRender?: (id: string) => Promise<void>) {
   if (ep.recordingMode !== 'per-scene') for (const p of potongan) fs.rmSync(path.join(pub(), p.file), { force: true });
-  updateEpisode(id, (e) => {
+  updateEpisode(ep.id, (e) => {
     e.derivatives = [...(e.derivatives ?? []), ...created];
   });
-  catat(`${created.length} Shorts dibuat: ${created.join(', ')}`);
-
+  addLog(ep.id, 'sutradara', `${created.length} Shorts dibuat: ${created.join(', ')}`);
   // render satu per satu; satu gagal tidak menghentikan yang lain
   for (const b of created) {
     try {
@@ -193,4 +206,34 @@ ${JSON.stringify(daftar, null, 2)}`,
     }
   }
   return created;
+}
+
+/**
+ * One Short from the scenes the owner picked (1-based numbers), used exactly as picked; the Director only
+ * writes its title, description and tags.
+ */
+export async function shortFromScenes(id: string, sceneNumbers: number[], arahan?: string, onRender?: (id: string) => Promise<void>) {
+  const ep = getEpisode(id);
+  if (!ep.scenes?.length || !ep.script) throw new Error('Episode belum punya adegan');
+  if (ep.idea.type === 'memorization') throw new Error('Video hafalan: pakai "Buat versi Shorts" saja');
+  const idx = [...new Set(sceneNumbers)].filter((n) => n >= 1 && n <= ep.scenes!.length).sort((a, b) => a - b).map((n) => n - 1);
+  if (!idx.length) throw new Error('Tidak ada adegan yang dipilih');
+  addLog(id, 'sutradara', `Menyiapkan Shorts dari adegan pilihan pemilik: ${idx.map((i) => i + 1).join(', ')}`);
+  const potongan = await rekamanPerScene(ep);
+  const total = idx.reduce((sum, i) => sum + potongan[i].detik, 0);
+  if (total > BATAS_ISI_SHORTS) {
+    throw new Error(`Adegan pilihan totalnya ${Math.round(total)} detik, melebihi batas Shorts ${BATAS_ISI_SHORTS} detik`);
+  }
+  const meta = await runAgent({
+    peran: 'sutradara',
+    schema: ShortMetadataSchema,
+    maxTurns: 4,
+    prompt: `Pemilik channel memilih adegan berikut dari video "${ep.script.title}" untuk dijadikan satu YouTube Shorts. Pesan moral: ${ep.idea.moralMessage}
+Adegan dan narasinya TIDAK diubah. Tugasmu hanya menulis ${SHORTS_METADATA_RULES}
+${arahan ? `\nArahan dari pemilik channel: ${arahan}\n` : ''}
+Adegan pilihan:
+${JSON.stringify(idx.map((i) => ({ nomor: i + 1, pembicara: ep.scenes![i].speaker, narasi: ep.scenes![i].narration })), null, 2)}`,
+  });
+  const created = [createShortEpisode(ep, potongan, idx, { ...meta, alasan: `Dipilih pemilik channel. ${meta.alasan}` }, 'Shorts pilihan')];
+  return finishShorts(ep, potongan, created, onRender);
 }

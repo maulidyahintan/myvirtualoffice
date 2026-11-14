@@ -81,6 +81,7 @@ import {
 } from '../../actions';
 import { AutoRefresh } from '@/components/AutoRefresh';
 import { SubtitleTimingEditor, type SubtitleSceneRow } from '@/components/SubtitleTimingEditor';
+import { ShortsScenePicker, type PickableScene } from '@/components/ShortsScenePicker';
 import { Badge } from '@/components/Badge';
 import { AskAgentButton } from '@/components/AskAgentButton';
 import { SubmitButton } from '@/components/SubmitButton';
@@ -366,6 +367,19 @@ function subtitleRows(ep: Episode): SubtitleSceneRow[] | undefined {
       ? []
       : [{ scene: i + 1, speaker: scene.speaker, lines: sceneSubtitleTimeline(scene.narration, rendered[i], maxWords, scene.subtitleShifts) }],
   );
+}
+
+/** Scenes of a rendered story with their length in the video, for picking the scenes of a Short. */
+function pickableScenes(ep: Episode): PickableScene[] | undefined {
+  const rendered = ep.render?.scenes;
+  if (!ep.scenes?.length || !rendered || rendered.length !== ep.scenes.length) return undefined;
+  const names = speakerNames(loadConfig());
+  return ep.scenes.map((scene, i) => ({
+    number: i + 1,
+    speaker: names[scene.speaker as keyof typeof names] ?? scene.speaker,
+    narration: scene.narration,
+    seconds: rendered[i].duration,
+  }));
 }
 
 /** Why the fix-scene button is locked: another scene is being fixed, or another AI job runs on this episode. */
@@ -1227,6 +1241,14 @@ function PecahShorts({ ep }: { ep: Episode }) {
             </SubmitButton>
           </form>
         )}
+        {!sibuk && pickableScenes(ep) ? (
+          <details className="kecil">
+            <summary>☑️ Pilih sendiri adegan untuk satu Shorts</summary>
+            <div style={{ marginTop: 8 }}>
+              <ShortsScenePicker episodeId={ep.id} scenes={pickableScenes(ep)!} />
+            </div>
+          </details>
+        ) : null}
       </div>
     </details>
   );

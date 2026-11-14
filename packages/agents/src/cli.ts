@@ -9,6 +9,7 @@
 //   npm run kantor -- ilustrasi <id> [adegan]  (gambar AI gratis untuk adegan penting; nomor adegan = gambar ulang)
 //   npm run kantor -- upload <id> [2026-11-01T16:30:00+07:00]
 //   npm run kantor -- shorts <id> [jumlah] ["arahan"]  (pecah video biasa jadi beberapa Shorts)
+//   npm run kantor -- shorts-pilih <id> <3,4,7> ["arahan"]  (satu Shorts dari adegan pilihan pemilik)
 //   npm run kantor -- metadata <id> [render]  (buat ulang judul/deskripsi sesuai format, lalu render)
 //   npm run kantor -- rencana ["arahan"]  (Channel Manager menyusun rencana jadwal tayang)
 //   npm run kantor -- playlist [id]    (masukkan video ke playlist sesuai tipenya; tanpa id: semua yang belum)
@@ -22,10 +23,10 @@
 //   npm run kantor -- status
 //   npm run kantor -- aksi-baru <nama> | aksi-setujui <nama> | aksi-tolak <nama>  (Pembuat Aksi: aksi baru yang diminta Sutradara)
 import './env.ts';
-import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent, aiJobMarker, isBusy, shortsSplitMarker } from '@kantor/shared';
+import { CHAT_AGENTS, contentDuration, getEpisode, autoShortsCount, listEpisodes, setStatus, STATUS_LABEL, markDone, markBusy, addChatMessage, type ChatAgent, aiJobMarker, isBusy, shortsSplitMarker, parseSceneSelection } from '@kantor/shared';
 import { replyToChat } from './chat.ts';
 import { uninstallScheduler, installScheduler, runDailyResearchIfDue } from './automation.ts';
-import { splitIntoShorts } from './shorts.ts';
+import { shortFromScenes, splitIntoShorts } from './shorts.ts';
 import {
   regenerateMetadata,
   report,
@@ -130,6 +131,16 @@ async function main() {
       try {
         const count = Math.min(5, Math.max(1, Number(arg2) || autoShortsCount(contentDuration(getEpisode(id)))));
         return void (await splitIntoShorts(id, count, arg3, render));
+      } finally {
+        markDone(shortsSplitMarker(id));
+      }
+    }
+    case 'shorts-pilih': {
+      // one Short from the scenes the owner picked, e.g. "3,4,7"
+      const id = need(arg1);
+      markBusy(shortsSplitMarker(id));
+      try {
+        return void (await shortFromScenes(id, parseSceneSelection(arg2 ?? '', getEpisode(id).scenes?.length ?? 0), arg3, render));
       } finally {
         markDone(shortsSplitMarker(id));
       }

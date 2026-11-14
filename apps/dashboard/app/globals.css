@@ -537,3 +537,7 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 /* subtitle timing editor: the line on screen right now is highlighted */
 .subtitle-line { align-items: center; padding: 2px 6px; border-radius: 6px; }
 .subtitle-line.aktif { background: rgba(120, 140, 255, 0.14); }
+
+/* picking the scenes of a Short: the ticked rows stand out */
+.shorts-pick { align-items: center; padding: 3px 6px; border-radius: 6px; cursor: pointer; }
+.shorts-pick.aktif { background: rgba(120, 140, 255, 0.14); }

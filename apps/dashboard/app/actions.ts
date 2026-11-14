@@ -6,6 +6,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   addLog,
+  parseSceneSelection,
+  selectionProblem,
   getActionRequest,
   updateActionRequest,
   moveSubtitleLine,
@@ -465,6 +467,21 @@ export async function splitIntoShorts(form: FormData) {
   // 'otomatis' (atau kosong) = sesuai panjang video
   const jumlah = Math.min(5, Math.max(1, Number(teks(form, 'jumlah')) || autoShortsCount(contentDuration(getEpisode(id)))));
   mulaiPecahShorts(id, jumlah, teks(form, 'arahan'));
+}
+
+/** One Short from the scenes the owner ticked; the Director only writes its title and description. */
+export async function shortFromPickedScenes(form: FormData) {
+  const id = teks(form, 'id');
+  const ep = getEpisode(id);
+  const picked = parseSceneSelection(form.getAll('adegan').map(String), ep.scenes?.length ?? 0);
+  const seconds = ep.render?.scenes?.map((s) => s.duration) ?? [];
+  if (selectionProblem(seconds, picked) || isBusy(shortsSplitMarker(id))) return;
+  const arahan = teks(form, 'arahan');
+  addLog(id, 'pemilik', `Minta Shorts dari adegan ${picked.join(', ')}${arahan ? `: ${arahan.slice(0, 80)}` : ''}`);
+  markStarting(shortsSplitMarker(id));
+  runOfficeCommand(['shorts-pilih', id, picked.join(','), ...(arahan ? [arahan] : [])], `${id}-shorts`);
+  segarkan(id);
+  redirect('/board');
 }
 
 function mulaiPecahShorts(id: string, jumlah: number, arahan = '') {

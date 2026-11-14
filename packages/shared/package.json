@@ -9,7 +9,8 @@
     "./constants": "./src/constants.ts",
     "./timing": "./src/timing.ts",
     "./sceneTimeline": "./src/sceneTimeline.ts",
-    "./subtitleTiming": "./src/subtitleTiming.ts"
+    "./subtitleTiming": "./src/subtitleTiming.ts",
+    "./shortsSelection": "./src/shortsSelection.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p ."
