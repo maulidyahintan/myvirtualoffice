@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   addLog,
+  markNotificationsRead,
   parseSceneSelection,
   selectionProblem,
   getActionRequest,
@@ -1043,4 +1044,16 @@ export async function applyNewAction(form: FormData) {
   runOfficeCommand(['revisi-adegan', id, String(scene), arahan], id);
   segarkan(id);
   redirect(`/episode/${id}`);
+}
+
+/** Mark one notification read (the owner opened it). */
+export async function markNotificationRead(id: string) {
+  markNotificationsRead(id);
+  revalidatePath('/', 'layout');
+}
+
+/** Mark every notification read. */
+export async function markAllNotificationsRead() {
+  markNotificationsRead();
+  revalidatePath('/', 'layout');
 }

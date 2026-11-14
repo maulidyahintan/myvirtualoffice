@@ -13,6 +13,7 @@ import {
   addLog,
   getActionRequest,
   loadConfig,
+  notify,
   paths,
   rootDir,
   updateActionRequest,
@@ -180,7 +181,9 @@ export async function buildActionRequest(name: string) {
     const sample = await renderSample(request, result.sample, worktree);
     updateActionRequest(name, { status: 'ready', note: result.summary, branch: branchOf(name), sample });
   } catch (error) {
-    updateActionRequest(name, { status: 'failed', note: error instanceof Error ? error.message.slice(0, ERROR_EXCERPT_CHARS) : String(error) });
+    const reason = error instanceof Error ? error.message.slice(0, ERROR_EXCERPT_CHARS) : String(error);
+    updateActionRequest(name, { status: 'failed', note: reason });
+    notify({ title: `Gagal membuat aksi baru "${name}"`, message: reason.slice(0, 300), link: '/action-requests' });
     throw error;
   }
 }

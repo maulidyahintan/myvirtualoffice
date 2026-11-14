@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import type { ChatAgent, Episode, EpisodeStatus, Format, Idea, AppConfig, ChatMessage, DailyResearch } from './types.ts';
+import { notify } from './notifications.ts';
 import { BUSY_STATUSES, voiceFilter, clampSpeakingTempo, DEFAULT_MEMORIZATION_VOICE, DEFAULT_CHARACTER_VOICE, type SPEAKERS } from './constants.ts';
 
 let rootCache: string | undefined;
@@ -269,11 +270,19 @@ export function updateEpisode(id: string, fn: (ep: Episode) => void): Episode {
 }
 
 export function setStatus(id: string, status: EpisodeStatus, by: string, message?: string): Episode {
-  return updateEpisode(id, (ep) => {
-    ep.status = status;
-    ep.statusNote = message;
-    ep.log.push({ time: new Date().toISOString(), by, message: message ?? `Status → ${status}` });
+  const ep = updateEpisode(id, (e) => {
+    e.status = status;
+    e.statusNote = message;
+    e.log.push({ time: new Date().toISOString(), by, message: message ?? `Status → ${status}` });
   });
+  // a job that failed shows up in the dashboard's notifications
+  if (status === 'error') notify({ title: `Gagal: ${episodeTitle(ep)}`, message: message ?? 'Proses berhenti dengan error', link: `/episode/${id}` });
+  return ep;
+}
+
+/** The title an episode is known by: its YouTube title, else its script's, else the idea's. */
+export function episodeTitle(ep: Episode): string {
+  return ep.metadata?.title ?? ep.script?.title ?? ep.idea.title;
 }
 
 export function addLog(id: string, by: string, message: string) {

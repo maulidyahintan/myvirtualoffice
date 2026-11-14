@@ -10,7 +10,8 @@
     "./timing": "./src/timing.ts",
     "./sceneTimeline": "./src/sceneTimeline.ts",
     "./subtitleTiming": "./src/subtitleTiming.ts",
-    "./shortsSelection": "./src/shortsSelection.ts"
+    "./shortsSelection": "./src/shortsSelection.ts",
+    "./notifications": "./src/notifications.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p ."

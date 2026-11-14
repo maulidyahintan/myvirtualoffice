@@ -25,6 +25,8 @@ import {
   getActionRequest,
   mergeActionRequest,
   saveActionRequest,
+  notify,
+  episodeTitle,
   canPerform,
   loadConfig,
   allowedBackgrounds,
@@ -944,6 +946,7 @@ export async function sendToFacebook(id?: string) {
       catat(post.publishTime ? `Terjadwal di Facebook ${post.publishTime}: ${post.url}` : `Tayang di Facebook: ${post.url}`);
     } catch (e) {
       catat(`Gagal mengirim ke Facebook: ${(e as Error).message}`);
+      notify({ title: `Gagal mengirim ke Facebook: ${episodeTitle(ep)}`, message: (e as Error).message, link: `/episode/${ep.id}` });
     }
   }
   console.log(`✅ Facebook: ${daftar.length} video diproses`);

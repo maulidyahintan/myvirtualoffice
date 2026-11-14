@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Fredoka, Plus_Jakarta_Sans } from 'next/font/google';
-import { listEpisodes, loadConfig, WAITING_STATUSES, listActionRequests } from '@kantor/shared';
+import { listEpisodes, loadConfig, WAITING_STATUSES, listActionRequests, listNotifications } from '@kantor/shared';
+import { NotificationBell } from '@/components/NotificationBell';
 import { FloatingChat } from '@/components/FloatingChat';
 import { TasnieLogo } from '@/components/TasnieLogo';
 import { Sidebar, type MenuGroup } from '@/components/Sidebar';
@@ -67,7 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             grup={grup}
             butuhKamu={butuhKamu}
           />
-          <main>{children}</main>
+          <main>
+            <NotificationBell notifications={listNotifications()} />
+            {children}
+          </main>
         </div>
         <FloatingChat />
       </body>

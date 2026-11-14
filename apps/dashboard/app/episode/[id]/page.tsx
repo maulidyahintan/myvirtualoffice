@@ -905,7 +905,9 @@ function PanelAksi({ ep, jadwalTerlaluDekat = false }: { ep: Episode; jadwalTerl
           <form action={approveVideo} className="stack">
             <Id id={ep.id} />
             <JadwalTayang ep={ep} />
-            <SubmitButton type="submit" teksProses="Mengupload ke YouTube…">🚀 Setujui & jadwalkan di YouTube</SubmitButton>
+            <SubmitButton type="submit" teksProses="Mengupload ke YouTube…">
+              🚀 Setujui & jadwalkan di YouTube{facebookConnection() ? ' & Facebook' : ''}
+            </SubmitButton>
           </form>
           <form action={approveVideo}>
             <Id id={ep.id} />
