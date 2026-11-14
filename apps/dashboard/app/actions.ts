@@ -498,7 +498,12 @@ function mulaiPecahShorts(id: string, jumlah: number, arahan = '') {
 /** Channel Manager membuat ulang judul, deskripsi & tags sesuai format episode. */
 export async function regenerateMetadata(form: FormData) {
   const id = teks(form, 'id');
-  runOfficeCommand(['metadata', id], `${id}-metadata`);
+  if (isBusy(`${id}-metadata`)) return;
+  const arahan = teks(form, 'arahan');
+  if (arahan) addLog(id, 'pemilik', `Minta judul & SEO diubah: ${arahan.slice(0, 120)}`);
+  // shown as busy right away, before the worker is up
+  markStarting(`${id}-metadata`);
+  runOfficeCommand(['metadata', id, '-', ...(arahan ? [arahan] : [])], `${id}-metadata`);
   segarkan(id);
 }
 

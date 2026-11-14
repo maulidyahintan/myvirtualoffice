@@ -67,7 +67,7 @@ import {
   DirectorSchema,
 } from './schemas.ts';
 import { kantorTools, TOOL_LAPORAN, TOOL_RISET } from './youtube/tools.ts';
-import { renderEpisode, renderScenePreview, ffmpeg, durasiAudio, renderCompilationVideo, renderCompilationThumbnail } from './render.ts';
+import { renderEpisode, renderScenePreview, ffmpeg, durasiAudio, renderCompilationVideo, renderThumbnail } from './render.ts';
 import { makePrivate, uploadEpisode } from './youtube/upload.ts';
 import { deleteFacebookVideo, postToFacebook } from './facebook.ts';
 import { collectMetrics } from './metrics.ts';
@@ -317,7 +317,7 @@ function compilationContents(ep: Episode): string {
     .join('\n');
 }
 
-async function requestMetadata(ep: Episode) {
+async function requestMetadata(ep: Episode, arahan?: string) {
   const format = ep.idea.format ?? 'standard';
   const isi = ep.compilation
     ? `JENIS: kompilasi, beberapa video channel digabung jadi satu video panjang (untuk diputar lama/berulang oleh orang tua).\nJudul kompilasi dari pemilik channel: ${ep.idea.title}\nIsi, urut:\n${compilationContents(ep)}\n\nJudul harus jelas menyebut ini kumpulan (misal "Kumpulan ..."/"... untuk Anak"), deskripsi menyebut isi videonya. Daftar isi dengan waktu ditambahkan otomatis, jangan menulisnya.`
@@ -329,23 +329,43 @@ async function requestMetadata(ep: Episode) {
     schema: MetadataSchema,
     maxTurns: 4,
     onProgress: log(ep.id, 'channel-manager'),
-    prompt: `${formatInfo(ep)}\nNama channel: ${loadConfig().channelName}\nUsia: ${ep.idea.age}\n${isi}\n\nBuat metadata YouTube untuk ${format === 'short' ? 'Shorts' : 'video biasa'} ini, sesuai aturan format ${format === 'short' ? 'Shorts' : 'video biasa'} di peranmu.`,
+    prompt: [
+      `${formatInfo(ep)}\nNama channel: ${loadConfig().channelName}\nUsia: ${ep.idea.age}\n${isi}`,
+      ep.metadata ? `Metadata sekarang:\n${JSON.stringify(ep.metadata, null, 1)}` : '',
+      arahan
+        ? `Arahan pemilik channel untuk judul & SEO (WAJIB diikuti, tapi tetap tepat sasaran: kata kunci yang benar-benar dicari orang tua di depan, jujur sesuai isi video, tanpa clickbait; dalil ditulis dengan nama surat & nomor ayat yang benar):\n${arahan}`
+        : '',
+      `Buat metadata YouTube untuk ${format === 'short' ? 'Shorts' : 'video biasa'} ini, sesuai aturan format ${format === 'short' ? 'Shorts' : 'video biasa'} di peranmu.`,
+    ]
+      .filter(Boolean)
+      .join('\n\n'),
   });
   return normalizeMetadata(metadata, format);
 }
 
-/** Regenerate metadata (title, description, tags) according to episode format, e.g. for twin format version. */
-export async function regenerateMetadata(id: string) {
+/**
+ * Regenerate metadata (title, description, tags) according to episode format, e.g. for twin format version,
+ * optionally following the owner's direction. A rendered video's thumbnail follows the new thumbnail text.
+ */
+export async function regenerateMetadata(id: string, arahan?: string) {
   const ep = getEpisode(id);
   if (!ep.script && !ep.memorization && !ep.compilation) throw new Error('Episode belum punya naskah');
-  log(id, 'channel-manager')(`Menyusun metadata ${ep.idea.format === 'short' ? 'Shorts' : 'video biasa'}`);
-  const metadata = await requestMetadata(ep);
+  log(id, 'channel-manager')(`Menyusun metadata ${ep.idea.format === 'short' ? 'Shorts' : 'video biasa'}${arahan ? ` sesuai arahan: ${arahan.slice(0, 80)}` : ''}`);
+  const metadata = await requestMetadata(ep, arahan);
   // compilation: keep the chapter list of the rendered video in the description
   if (ep.compilation) metadata.description = withChapters(metadata.description, compilationChapters(ep));
   updateEpisode(id, (e) => {
     e.metadata = metadata;
   });
   log(id, 'channel-manager')(`Metadata baru: "${metadata.title}"`);
+  // Shorts have no custom thumbnail; a rendered regular video gets its cover redrawn with the new text
+  const updated = getEpisode(id);
+  if (updated.render?.thumbnail && updated.idea.format !== 'short') {
+    const thumbnail = await renderThumbnail(updated, log(id, 'video-creator'));
+    updateEpisode(id, (e) => {
+      if (e.render) e.render = { ...e.render, thumbnail, time: new Date().toISOString() };
+    });
+  }
 }
 
 // ---------------------------------------------------------------- SUTRADARA + METADATA
@@ -861,7 +881,7 @@ async function renderCompilation(id: string) {
     e.metadata!.description = withChapters(e.metadata!.description, compilationChapters(e));
   });
 
-  const thumbnail = await renderCompilationThumbnail(joined, say);
+  const thumbnail = await renderThumbnail(joined, say);
   updateEpisode(id, (e) => {
     e.render = {
       video,

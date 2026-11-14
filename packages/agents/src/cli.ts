@@ -10,7 +10,7 @@
 //   npm run kantor -- upload <id> [2026-11-01T16:30:00+07:00]
 //   npm run kantor -- shorts <id> [jumlah] ["arahan"]  (pecah video biasa jadi beberapa Shorts)
 //   npm run kantor -- shorts-pilih <id> <3,4,7> ["arahan"]  (satu Shorts dari adegan pilihan pemilik)
-//   npm run kantor -- metadata <id> [render]  (buat ulang judul/deskripsi sesuai format, lalu render)
+//   npm run kantor -- metadata <id> [render|-] ["arahan"]  (buat ulang judul/deskripsi/SEO, bisa dengan arahan)
 //   npm run kantor -- rencana ["arahan"]  (Channel Manager menyusun rencana jadwal tayang)
 //   npm run kantor -- playlist [id]    (masukkan video ke playlist sesuai tipenya; tanpa id: semua yang belum)
 //   npm run kantor -- facebook [id]    (kirim video terjadwal ke Page Facebook; tanpa id: semua yang belum)
@@ -149,7 +149,8 @@ async function main() {
       const id = need(arg1);
       markBusy(`${id}-metadata`);
       try {
-        await regenerateMetadata(id);
+        // metadata <id> [render|-] ["arahan"]
+        await regenerateMetadata(id, arg3);
       } finally {
         markDone(`${id}-metadata`);
       }

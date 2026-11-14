@@ -465,8 +465,8 @@ export async function renderCompilationVideo(ep: Episode, onLine?: (s: string) =
   return { video, items: placed };
 }
 
-/** Thumbnail of a compilation (same cover style as other videos, from its metadata text). */
-export async function renderCompilationThumbnail(ep: Episode, onLine?: (s: string) => void): Promise<string> {
+/** Thumbnail of a video (compilations too) from its metadata text, in its playlist cover style. */
+export async function renderThumbnail(ep: Episode, onLine?: (s: string) => void): Promise<string> {
   const cfg = loadConfig();
   const dir = ensureDir(paths.renders());
   const thumbProps: KnownKeys<ThumbnailProps> = {

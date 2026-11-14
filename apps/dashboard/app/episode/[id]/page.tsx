@@ -1139,11 +1139,19 @@ function CekMetadata({ ep }: { ep: Episode }) {
         </p>
       ))}
       {bolehUbah ? (
-        <form action={regenerateMetadata}>
+        <form action={regenerateMetadata} className="stack" style={{ gap: 6 }}>
           <Id id={ep.id} />
-          <SubmitButton type="submit" className="sekunder" disabled={sibuk}>
-            {sibuk ? '⏳ Channel Manager sedang menulis…' : `✍️ Buat ulang metadata ${ep.idea.format === 'short' ? 'Shorts' : 'video biasa'} (SEO)`}
-          </SubmitButton>
+          <textarea
+            name="arahan"
+            rows={2}
+            disabled={sibuk}
+            placeholder="Arahan judul & SEO (opsional), misal: sebut anak takut petir dan dalilnya QS Ar-Ra'd ayat 13"
+          />
+          <div>
+            <SubmitButton type="submit" className="sekunder" disabled={sibuk} teksProses="Memulai…">
+              {sibuk ? '⏳ Channel Manager sedang menulis…' : `✍️ Ubah judul & SEO ${ep.idea.format === 'short' ? 'Shorts' : 'video biasa'}`}
+            </SubmitButton>
+          </div>
         </form>
       ) : null}
     </>
