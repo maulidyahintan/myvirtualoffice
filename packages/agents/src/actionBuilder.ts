@@ -199,7 +199,7 @@ export async function approveActionRequest(name: string) {
   }
   await removeWorktree(name);
   await git(['branch', '-d', request.branch]).catch(() => undefined); // already merged, deleting is tidy-up only
-  updateActionRequest(name, { status: 'approved', branch: undefined });
+  updateActionRequest(name, { status: 'approved', branch: undefined, note: 'Sudah digabung ke proyek dan siap dipakai Sutradara.' });
   for (const ref of request.scenes) {
     addLog(ref.episodeId, 'pembuat-aksi', `Aksi baru "${name}" sudah tersedia untuk adegan ${ref.scene}; klik "Pakai di adegan" di halaman Aksi Baru`);
   }
@@ -212,5 +212,5 @@ export async function rejectActionRequest(name: string) {
   await removeWorktree(name);
   await git(['branch', '-D', branchOf(name)]).catch(() => undefined); // never built: no branch
   fs.rmSync(path.join(paths.renders(), sampleFile(name)), { force: true });
-  updateActionRequest(name, { status: 'rejected', branch: undefined, sample: undefined });
+  updateActionRequest(name, { status: 'rejected', branch: undefined, sample: undefined, note: 'Ditolak pemilik channel; cabang dan klip contohnya sudah dibuang.' });
 }
