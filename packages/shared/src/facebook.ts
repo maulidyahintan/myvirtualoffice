@@ -76,6 +76,18 @@ export async function connectFacebook(opts: { appId: string; appSecret: string; 
  * Uploaded to YouTube with a publish time still ahead, but not yet on the connected Facebook Page. Private
  * uploads (no publish time) are left out: they are not meant to be public yet.
  */
+const FACEBOOK_FAILURE = 'Gagal mengirim ke Facebook';
+
+/**
+ * Why the last try to post this episode to Facebook failed, or undefined when it has not failed (never
+ * tried, succeeded, or still to be tried after the failure).
+ */
+export function lastFacebookFailure(ep: Pick<Episode, 'facebook' | 'log'>): string | undefined {
+  if (ep.facebook) return undefined;
+  const last = [...ep.log].reverse().find((entry) => /facebook/i.test(entry.message));
+  return last?.message.startsWith(FACEBOOK_FAILURE) ? last.message.slice(FACEBOOK_FAILURE.length).replace(/^[:\s]+/, '') : undefined;
+}
+
 export function needsFacebookPost(ep: Episode, now = Date.now()): boolean {
   if (!ep.youtube?.publishTime || ep.facebook || ep.status !== 'scheduled') return false;
   return new Date(ep.youtube.publishTime).getTime() > now + 15 * 60_000;

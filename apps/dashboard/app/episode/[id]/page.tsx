@@ -44,6 +44,7 @@ import {
   quotaResetText,
   facebookConnection,
   needsFacebookPost,
+  lastFacebookFailure,
   BUSY_STATUSES,
   FORMAT_CHOICES,
   FORMAT_CHOICE_LABEL,
@@ -1625,10 +1626,15 @@ function KeFacebook({ ep }: { ep: Episode }) {
   if (!needsFacebookPost(ep)) {
     return ep.youtube?.publishTime ? null : <span className="kecil muted">Video private tidak dikirim ke Facebook.</span>;
   }
+  // a failed try says so and offers to try again, instead of looking as if it was never sent
+  const failure = lastFacebookFailure(ep);
   return (
-    <form action={sendToFacebook}>
+    <form action={sendToFacebook} className="stack" style={{ gap: 4 }}>
       <input type="hidden" name="id" value={ep.id} />
-      <SubmitButton className="sekunder" teksProses="Mengirim…">📘 Jadwalkan juga di Facebook</SubmitButton>
+      {failure ? <span className="kecil peringatan">⚠️ Gagal terkirim ke Facebook: {failure}</span> : null}
+      <SubmitButton className="sekunder" teksProses="Mengirim…">
+        📘 {failure ? 'Coba kirim lagi ke Facebook' : 'Jadwalkan juga di Facebook'}
+      </SubmitButton>
     </form>
   );
 }
