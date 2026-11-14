@@ -1,0 +1,14 @@
+{
+  "name": "tearing-book",
+  "description": "Mamas merobek-robek halaman buku cerita biasa (bukan Al-Qur'an) dengan kedua tangan: memegang buku, menarik selembar halaman sampai sobek, lalu sobekan kertas kecil berjatuhan ke lantai.",
+  "characters": [
+    "mamas"
+  ],
+  "scenes": [],
+  "status": "ready",
+  "created": "2026-11-14T02:23:15.928Z",
+  "updated": "2026-11-14T02:29:05.678Z",
+  "note": "Aksi baru `tearing-book`: Mamas memegang buku cerita biasa yang terbuka di depan dada. Bukunya bersampul oranye dengan gambar rumah, matahari, dan bukit, jadi tidak mirip mushaf. Tangan kirinya memegang tepi buku, tangan kanannya pelan-pelan menarik halaman kanan ke atas dan ke samping sampai sobek. Sobekan kecil lalu melayang turun dan menumpuk di lantai, dan gerakan ini berulang tiap 4 detik dengan halaman berikutnya. Semua typecheck dan test lolos.",
+  "branch": "action/tearing-book",
+  "sample": "aksi-tearing-book.mp4"
+}
