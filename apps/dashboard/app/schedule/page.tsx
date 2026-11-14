@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { PlatformIcons } from '@/components/PlatformIcons';
 import {
   FORMAT_LABEL,
   isoToLocal,
@@ -217,6 +218,7 @@ function KalenderBulan({
                   <Link key={x.ep.id} href={`/episode/${x.ep.id}`} className={`jadwal-chip ${k.kelas}`} title={`${judulDari(x.ep)} · ${k.label}`}>
                     <span className="jadwal-jam">
                       {x.local.slice(11)} {x.ep.idea.format === 'short' ? '📱' : '🎬'}
+                      {x.recommendation ? null : <PlatformIcons ep={x.ep} />}
                     </span>
                     <span className="jadwal-judul">{judulDari(x.ep)}</span>
                   </Link>
@@ -259,6 +261,7 @@ function DaftarHari({ hariIni, lokalSekarang, isi, rencana }: { hariIni: string;
                   <span style={{ fontVariantNumeric: 'tabular-nums' }}>{x.local.slice(11)}</span>
                   <span>{x.ep.idea.format === 'short' ? '📱' : '🎬'}</span>
                   <Link href={`/episode/${x.ep.id}`}>{judulDari(x.ep)}</Link>
+                  {x.recommendation ? null : <PlatformIcons ep={x.ep} />}
                   {x.recommendation ? <span className="muted">(rekomendasi, menunggu persetujuanmu)</span> : <span className={`badge ${k.kelas === 'tayang' ? 'selesai' : 'tunggu'}`}>{k.label}</span>}
                 </div>
               );

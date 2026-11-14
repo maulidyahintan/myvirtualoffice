@@ -555,3 +555,7 @@ main:has(.halaman-papan) { padding-bottom: 20px; }
 .notif-text { display: grid; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
 .halaman-papan .notif-bar { margin-bottom: 0; }
 
+/* where an episode is uploaded: YouTube / Facebook icons, faded where it is not yet */
+.platform-icons { display: inline-flex; gap: 4px; align-items: center; vertical-align: middle; margin-left: 4px; }
+.platform-icons > span { display: inline-flex; }
+.platform-icons .belum { opacity: 0.22; filter: grayscale(1); }

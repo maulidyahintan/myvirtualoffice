@@ -5,6 +5,7 @@ import { AutoRefresh } from '@/components/AutoRefresh';
 import { ArchiveDeleteButton } from '@/components/ArchiveDeleteButton';
 import { Badge } from '@/components/Badge';
 import { ShortsCoverageBadge } from '@/components/ShortsCoverageBadge';
+import { PlatformIcons } from '@/components/PlatformIcons';
 import { SubmitButton } from '@/components/SubmitButton';
 
 export const dynamic = 'force-dynamic';
@@ -146,6 +147,7 @@ export default async function PapanKerja({ searchParams }: { searchParams: Promi
                         <div className="row" style={{ gap: 6 }}>
                           <Badge status={e.status} />
                           {k.key === 'tayang' ? <ShortsCoverageBadge coverage={shortsCoverage(e, semua)} /> : null}
+                          {k.key === 'tayang' ? <PlatformIcons ep={e} /> : null}
                         </div>
                       </Link>
                     );

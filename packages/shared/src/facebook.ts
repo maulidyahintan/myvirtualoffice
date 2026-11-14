@@ -76,6 +76,11 @@ export async function connectFacebook(opts: { appId: string; appSecret: string; 
  * Uploaded to YouTube with a publish time still ahead, but not yet on the connected Facebook Page. Private
  * uploads (no publish time) are left out: they are not meant to be public yet.
  */
+/** Where an episode is uploaded: on YouTube (scheduled or live) and/or posted to the Facebook Page. */
+export function publishedPlatforms(ep: Pick<Episode, 'youtube' | 'facebook'>): { youtube: boolean; facebook: boolean } {
+  return { youtube: Boolean(ep.youtube?.videoId), facebook: Boolean(ep.facebook?.videoId) };
+}
+
 const FACEBOOK_FAILURE = 'Gagal mengirim ke Facebook';
 
 /**
