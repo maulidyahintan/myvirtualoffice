@@ -1,8 +1,8 @@
 {
   "id": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd",
   "created": "2026-11-13T00:52:53.162Z",
-  "modified": "2026-11-16T13:51:59.725Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-16T13:57:07.237Z",
+  "status": "scheduled",
   "idea": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
     "series": "asbabun-nuzul",
@@ -272,9 +272,79 @@
       "time": "2026-11-16T13:51:59.725Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-16T13:54:40.739Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-17 16:00"
+    },
+    {
+      "time": "2026-11-16T13:54:41.734Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-16T13:55:06.373Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Asbabun Nuzul\""
+    },
+    {
+      "time": "2026-11-16T13:55:06.374Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-17T09:00:00.000Z"
+    },
+    {
+      "time": "2026-11-16T13:55:06.377Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-16T13:55:15.470Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-16T13:55:27.295Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook sebagai video"
+    },
+    {
+      "time": "2026-11-16T13:55:49.661Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-17T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/1141495094933759"
+    },
+    {
+      "time": "2026-11-16T13:55:59.642Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-17T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/1394617209412292"
+    },
+    {
+      "time": "2026-11-16T13:56:14.625Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-17T09:00:00.000Z: https://www.facebook.com/1383005048238430/videos/1179158114624584"
+    },
+    {
+      "time": "2026-11-16T13:56:45.306Z",
+      "by": "pemilik",
+      "message": "Minta 2 Shorts dari inti video"
+    },
+    {
+      "time": "2026-11-16T13:56:46.255Z",
+      "by": "sutradara",
+      "message": "Menyiapkan 2 Shorts: memotong rekaman per adegan"
+    },
+    {
+      "time": "2026-11-16T13:56:48.643Z",
+      "by": "sutradara",
+      "message": "Memilih adegan yang paling penting & bermakna"
+    },
+    {
+      "time": "2026-11-16T13:57:07.237Z",
+      "by": "sutradara",
+      "message": "2 Shorts dibuat: surat-ad-dhuha-ayat-3-allah-tidak-mening-190e, diejek-teman-cara-islami-anak-tidak-memb-b00e"
     }
   ],
-  "statusNote": "Video siap ditonton & disetujui",
+  "statusNote": "Terjadwal tayang 2026-11-17T09:00:00.000Z",
   "script": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
     "summary": "Mamas sedih karena diejek \"cengeng\" oleh temannya. Ia merasa sendirian, lalu ingin membalas mengejek. Ibu menahannya dengan lembut dan menceritakan asbabun nuzul Surat Ad-Dhuha. Suatu ketika Rasulullah ﷺ sakit sehingga tidak bangun shalat malam selama dua atau tiga malam. Saat itu wahyu belum turun, lalu ada orang yang mengejek bahwa beliau sudah ditinggalkan Tuhannya. Allah kemudian menurunkan Surat Ad-Dhuha: \"Tuhanmu tidak meninggalkanmu dan tidak membencimu.\" Mamas sadar bahwa ia tidak benar-benar sendirian. Ibu mengajarinya cara menghadapi ejekan: tarik napas, bicara dengan tenang, cerita kepada guru, dan mendoakan teman. Mamas berlatih di depan Mochi, yang malah menguap dan menjilat hidungnya. Ibu menutup dengan ayat 9–10: sayangi anak yatim dan jangan menghardik orang yang meminta. Contohnya berbagi bekal dan menyapa teman yang sendirian. Esok paginya Mamas mengajak bermain teman yang kemarin mengejeknya, lalu temannya minta maaf.",
@@ -934,5 +1004,26 @@
       }
     ],
     "time": "2026-11-16T13:51:59.724Z"
-  }
+  },
+  "selectedSchedule": "2026-11-17T09:00:00.000Z",
+  "youtube": {
+    "videoId": "HQ2_otXltD8",
+    "url": "https://www.youtube.com/watch?v=HQ2_otXltD8",
+    "publishTime": "2026-11-17T09:00:00.000Z",
+    "playlist": {
+      "name": "Asbabun Nuzul",
+      "id": "PLD-usmJsNuYc"
+    }
+  },
+  "facebook": {
+    "videoId": "1179158114624584",
+    "url": "https://www.facebook.com/1383005048238430/videos/1179158114624584",
+    "kind": "video",
+    "publishTime": "2026-11-17T09:00:00.000Z",
+    "pageId": "1383005048238430"
+  },
+  "derivatives": [
+    "surat-ad-dhuha-ayat-3-allah-tidak-mening-190e",
+    "diejek-teman-cara-islami-anak-tidak-memb-b00e"
+  ]
 }
