@@ -1,7 +1,7 @@
 {
   "id": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd",
   "created": "2026-11-13T00:52:53.162Z",
-  "modified": "2026-11-16T12:30:08.745Z",
+  "modified": "2026-11-16T13:51:59.725Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
@@ -262,6 +262,16 @@
       "time": "2026-11-16T12:30:08.745Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-16T13:49:02.706Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-16T13:51:59.725Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
   "statusNote": "Video siap ditonton & disetujui",
@@ -501,9 +511,30 @@
       "type": "story",
       "speaker": "narrator",
       "narration": "Suatu waktu, Rasulullah shallallahu 'alaihi wa sallam sakit. Beliau tidak bangun shalat malam, dua atau tiga malam. Wahyu dari Allah juga belum turun lagi. Lalu ada orang yang mengejek. Katanya, beliau sudah ditinggalkan oleh Tuhannya. Ejekan itu tentu menyakitkan.",
-      "background": "desert",
-      "characters": [],
-      "expression": "sad"
+      "background": "bedroom-night",
+      "characters": [
+        "mother",
+        "mamas"
+      ],
+      "expression": "sad",
+      "moods": [
+        {
+          "character": "mother",
+          "expression": "calm"
+        }
+      ],
+      "cutaways": [
+        {
+          "background": "night-sky",
+          "at": "Beliau tidak bangun",
+          "until": "Wahyu dari Allah"
+        },
+        {
+          "background": "desert",
+          "at": "Wahyu dari Allah",
+          "until": "Lalu ada orang"
+        }
+      ]
     },
     {
       "type": "story",
@@ -526,7 +557,14 @@
         "mother"
       ],
       "expression": "calm",
-      "screenText": "Surat Ad-Dhuha"
+      "screenText": "Surat Ad-Dhuha",
+      "cutaways": [
+        {
+          "background": "dawn",
+          "at": "Allah bersumpah dengan waktu dhuha",
+          "until": "Coba Mas baca"
+        }
+      ]
     },
     {
       "type": "story",
@@ -895,6 +933,6 @@
         "duration": 36.43333333333333
       }
     ],
-    "time": "2026-11-16T12:30:08.745Z"
+    "time": "2026-11-16T13:51:59.724Z"
   }
 }
