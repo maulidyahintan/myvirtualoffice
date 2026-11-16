@@ -1,0 +1,19 @@
+{
+  "name": "hiding-behind-sofa",
+  "description": "Mochi melompat pelan ke balik sofa lalu bersembunyi, hanya ekornya yang mengembang menyembul dari balik sandaran sofa dan bergoyang pelan.",
+  "characters": [
+    "mochi"
+  ],
+  "scenes": [
+    {
+      "episodeId": "mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8",
+      "scene": 9
+    }
+  ],
+  "status": "ready",
+  "created": "2026-11-16T13:58:58.317Z",
+  "updated": "2026-11-16T14:05:19.917Z",
+  "note": "Aksi `hiding-behind-sofa` sudah jadi, khusus untuk Mochi. Mochi melompat pelan dalam satu lengkungan selama sekitar 1,2 detik, dari samping sofa ke balik sandarannya. Setelah itu tubuhnya tidak terlihat lagi, lalu ekornya yang mengembang naik perlahan dari balik sandaran dan bergoyang ke kiri dan kanan setiap 3 detik. Sofa hijau toska yang senada dengan sofa ruang tamu ikut digambar di depan Mochi, sehingga aksi ini bisa dipakai di latar mana pun. Semua typecheck dan test sudah lolos. Satu hal perlu dicek di klip: posisi awal Mochi di samping sofa dan sofanya sendiri cukup lebar, jadi bisa saja menutupi tokoh yang berdiri di sebelahnya.",
+  "branch": "action/hiding-behind-sofa",
+  "sample": "aksi-hiding-behind-sofa.mp4"
+}

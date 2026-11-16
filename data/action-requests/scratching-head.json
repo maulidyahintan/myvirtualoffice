@@ -1,0 +1,19 @@
+{
+  "name": "scratching-head",
+  "description": "Mamas menggaruk-garuk peci birunya dengan satu tangan sambil memiringkan kepala, wajah bingung.",
+  "characters": [
+    "mamas"
+  ],
+  "scenes": [
+    {
+      "episodeId": "mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8",
+      "scene": 4
+    }
+  ],
+  "status": "ready",
+  "created": "2026-11-16T13:58:58.317Z",
+  "updated": "2026-11-16T14:05:17.895Z",
+  "note": "Aksi baru `scratching-head` sudah jadi dan hanya bisa dipakai Mamas. Kepalanya miring dan sedikit menunduk ke arah tangan kanan, lalu tangan itu terangkat ke sisi peci biru dan menggaruk pelan naik-turun. Di sisi lain kepala ada tanda tanya kecil yang melayang lembut. Semua typecheck dan test lolos; yang belum dicek adalah tampilan aslinya di klip, misalnya apakah tangan benar-benar menyentuh peci.",
+  "branch": "action/scratching-head",
+  "sample": "aksi-scratching-head.mp4"
+}
