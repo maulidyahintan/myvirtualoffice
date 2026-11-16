@@ -324,8 +324,8 @@ export const EDITABLE_PROMPTS = {
 const CHILD_PACE = 'dengan tempo pelan dan jelas yang mudah dipahami anak kecil, tidak terburu-buru, dan beri jeda di setiap koma dan titik';
 
 export const AI_VOICES: Record<(typeof SPEAKERS)[number], { voice: string; style: string; pitch?: number }> = {
-  narrator: { voice: 'Sulafat', style: `Bacakan dengan hangat, tenang, dan pelan seperti mendongeng sebelum tidur untuk anak-anak, ${CHILD_PACE}` },
-  mother: { voice: 'Vindemiatrix', style: `Ucapkan dengan lembut, sabar, dan penuh kasih seperti seorang ibu berbicara kepada anaknya, ${CHILD_PACE}` },
+  narrator: { voice: 'Vindemiatrix', style: `Bacakan dengan hangat, tenang, dan pelan seperti mendongeng sebelum tidur untuk anak-anak, ${CHILD_PACE}` },
+  mother: { voice: 'Sulafat', style: `Ucapkan dengan lembut, sabar, dan penuh kasih seperti seorang ibu berbicara kepada anaknya, ${CHILD_PACE}` },
   mamas: { voice: 'Achird', style: `Ucapkan dengan ceria dan polos seperti anak laki-laki berumur empat tahun, ${CHILD_PACE}`, pitch: 4 },
   mochi: { voice: 'Puck', style: `Ucapkan dengan lucu dan riang, ${CHILD_PACE}` },
   friend: { voice: 'Fenrir', style: `Ucapkan dengan riang seperti anak laki-laki berumur lima tahun, ${CHILD_PACE}`, pitch: 4 },
