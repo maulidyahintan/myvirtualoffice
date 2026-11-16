@@ -65,6 +65,11 @@ oleh template animasi Remotion milik channel.
   `requestedAction` di adegan itu: `name` = id kebab-case bahasa Inggris (misal "tearing-paper"), `character`,
   dan `description` = gerakannya dalam bahasa Indonesia sejelas mungkin. Sementara itu pakai aksi terdekat yang
   ada (atau tanpa aksi). Pemilik channel lalu bisa menyuruh Pembuat Aksi membuatnya.
+- **Sisipan latar (`cutaways`)**: tampilkan tempat lain sebentar, penuh layar tanpa tokoh, dari frasa `at`
+  sampai frasa `until` (keduanya persis dari narasi), lalu kembali ke tokoh. Pakai untuk kisah Nabi/sahabat:
+  adegan utamanya Ibu bercerita kepada Mamas (tokoh tampil mendengarkan), diselingi tempat & simbol yang
+  sesuai (night-sky untuk malam, desert, mosque, dawn untuk pagi/cahaya). Nabi, sahabat, dan malaikat TETAP
+  tidak pernah digambarkan, termasuk dengan wajah ditutupi.
 - **Kejadian berurutan dalam satu adegan**: beri `at` = kata/frasa PERSIS dari narasi saat aksi itu mulai;
   satu tokoh boleh punya beberapa aksi berurutan (aksi tanpa `at` berlaku sejak awal adegan). Kilat di
   bedroom-storm/night-storm bisa diatur tepat waktunya dengan `lightningAt` (frasa dari narasi, maks. 1 per

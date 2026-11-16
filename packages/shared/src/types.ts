@@ -141,6 +141,11 @@ export interface Scene {
    * stays calm), from the words `at` on (whole scene without `at`).
    */
   moods?: CharacterMood[];
+  /**
+   * Other places shown full screen for a while, without the characters (e.g. the night sky, the desert, the
+   * dawn while a story about the Prophet ﷺ is told), from the words `at` until the words `until`.
+   */
+  cutaways?: { background: Background; at: string; until?: string }[];
   /** Owner's corrections to when each subtitle line appears (seconds, + = later), per line. */
   subtitleShifts?: (number | null)[];
   /**

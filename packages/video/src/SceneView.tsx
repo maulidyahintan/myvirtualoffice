@@ -10,6 +10,8 @@ import { HugArms } from './characters/HugArm';
 import { isSadLike } from './characters/emotion';
 import { actionBeat, beatShots, moodBeat } from './camera/beatShots';
 import { IllustrationLayer } from './illustration/IllustrationLayer';
+import { CutawayLayer } from './camera/CutawayLayer';
+import { cutawayWindows } from './camera/cutaways';
 import { MOTHER_KNEEL_DROP } from './characters/Mother';
 import { approach, bedClimbY, childApproachGoal, hugArmAims } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
@@ -38,6 +40,8 @@ const APPROACH_GAP_X = 170;
 const BLANKET_APPROACH_GAP_X = 300;
 /** Frames into the scene before Mochi starts walking. */
 const APPROACH_DELAY_FRAMES = 12;
+/** A cutaway without an end shows its place this long (seconds). */
+const DEFAULT_CUTAWAY_SECONDS = 4;
 /** Actions done sitting down: such a character does not walk into the scene. */
 const SITTING_ACTIONS: readonly Action[] = ['hugging-knees', 'hiding-under-blanket'];
 /** A child diving from the floor onto the bed: frames in the air and height of the leap. */
@@ -654,6 +658,12 @@ export const SceneView: React.FC<{
   // each character's own expression (moods), changing at its words; else the scene's expression
   const ekspresi = (id: KarakterId) =>
     expressionAt(data.moods, id, frame, { narration: data.narration, expression: data.expression, speechStart: transisi, speechFrames });
+  const cutaways = cutawayWindows(
+    data.cutaways ?? [],
+    (words) => phraseFrame(data.narration, words, transisi, speechFrames),
+    durasi,
+    Math.round(fps * DEFAULT_CUTAWAY_SECONDS),
+  );
   const lightningCues = (data.lightningAt ?? [])
     .map((words) => phraseFrame(data.narration, words, transisi, speechFrames))
     .filter((cue): cue is number => cue !== undefined);
@@ -1021,6 +1031,9 @@ export const SceneView: React.FC<{
           style={{ backgroundColor: '#DDE5FF', opacity: lightningAt(frame, lightningCues.length ? lightningCues : undefined).strength * LIGHTNING_OVERLAY_OPACITY, pointerEvents: 'none' }}
         />
       ) : null}
+
+      {/* another place shown for a while (night sky, desert, dawn), without the characters */}
+      {cutaways.length && !isDoa ? <CutawayLayer windows={cutaways} /> : null}
 
       {/* an AI picture alternating with the animated characters, moving and with live weather */}
       {data.illustration?.image && !isDoa ? (

@@ -75,6 +75,11 @@ export const SceneSchema = z.object({
     .optional()
     .describe('what characters are doing in this scene; several per character when things happen in order'),
   lightningAt: z.array(z.string()).max(4).optional().describe('words of the narration where lightning flashes (storm backgrounds)'),
+  cutaways: z
+    .array(z.object({ background: z.enum(BACKGROUNDS), at: z.string(), until: z.string().optional() }))
+    .max(4)
+    .optional()
+    .describe('another place shown full screen without characters, from words `at` until words `until` (stories of prophets: places & symbols only)'),
   requestedAction: z
     .object({
       name: z.string().describe('new action id in kebab-case English, e.g. tearing-book'),
