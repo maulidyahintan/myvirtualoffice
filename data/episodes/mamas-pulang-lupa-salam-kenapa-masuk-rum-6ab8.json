@@ -1,8 +1,8 @@
 {
   "id": "mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8",
   "created": "2026-11-13T01:01:30.473Z",
-  "modified": "2026-11-13T07:59:35.375Z",
-  "status": "needs_script_approval",
+  "modified": "2026-11-16T13:58:58.321Z",
+  "status": "needs_audio",
   "idea": {
     "title": "Mamas Pulang, Lupa Salam! Kenapa Masuk Rumah Harus Sebut Nama Allah?",
     "series": "kisah-sebelum-tidur",
@@ -197,9 +197,44 @@
       "time": "2026-11-13T07:59:35.375Z",
       "by": "orchestrator",
       "message": "Naskah siap diperiksa pemilik channel"
+    },
+    {
+      "time": "2026-11-16T13:58:04.571Z",
+      "by": "pemilik",
+      "message": "Naskah disetujui (dalil sudah dicek pemilik)"
+    },
+    {
+      "time": "2026-11-16T13:58:09.057Z",
+      "by": "sutradara",
+      "message": "Menyusun adegan & metadata"
+    },
+    {
+      "time": "2026-11-16T13:58:21.553Z",
+      "by": "channel-manager",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-16T13:58:57.877Z",
+      "by": "sutradara",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-16T13:58:58.318Z",
+      "by": "sutradara",
+      "message": "Adegan 4 butuh aksi baru \"scratching-head\" (Mamas menggaruk-garuk peci birunya dengan satu tangan sambil memiringkan kepala, wajah bingung.); bisa dibuatkan di halaman Aksi Baru"
+    },
+    {
+      "time": "2026-11-16T13:58:58.319Z",
+      "by": "sutradara",
+      "message": "Adegan 9 butuh aksi baru \"hiding-behind-sofa\" (Mochi melompat pelan ke balik sofa lalu bersembunyi, hanya ekornya yang mengembang menyembul dari balik sandaran sofa dan bergoyang pelan.); bisa dibuatkan di halaman Aksi Baru"
+    },
+    {
+      "time": "2026-11-16T13:58:58.321Z",
+      "by": "orchestrator",
+      "message": "Siap direkam: bacakan narasi adegan secara berurutan"
     }
   ],
-  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
   "script": {
     "title": "Mamas Pulang, Lupa Salam! Kenapa Masuk Rumah Harus Sebut Nama Allah?",
     "summary": "Mamas pulang dari masjid dengan perut lapar. Ia berlari masuk rumah dan lupa mengucap Bismillah dan salam. Ibu menjelaskan dengan lembut. Di Surat An-Nur ayat 61, Allah menyuruh kita memberi salam saat masuk rumah, dan salam adalah doa yang penuh berkah. Ibu juga menyampaikan sabda Rasulullah ﷺ: kalau kita menyebut nama Allah saat masuk rumah dan saat makan, setan tidak dapat tempat menginap dan tidak dapat makan malam (HR. Muslim no. 2018). Mamas mencoba lagi, tapi keliru. Ia berlari dan meneriakkan salam cepat-cepat, lupa Bismillah lagi, sandalnya terlempar, dan Mochi kaget lalu bersembunyi di balik sofa. Ibu membimbingnya: salam itu doa, jadi diucapkan dengan jelas, tidak sambil berteriak dan berlari, nama Allah disebut dulu, dan kalau buru-buru kita gampang lupa. Ibu juga memberi contoh dari kebiasaannya sendiri setiap pulang dari pasar. Mamas minta maaf kepada Mochi, merapikan sandal, lalu masuk pelan-pelan sambil mengucap Bismillah dan salam. Ibu menjawab salamnya. Ada momen lucu saat Mochi mengendus kue cokelat, lalu Mamas membaca Bismillah sebelum makan. Di penutup, narator memberi contoh untuk sehari-hari: pulang sekolah, berkunjung ke rumah Nenek, dan menjawab salam. Episode ini sengaja tidak memakai doa masuk rumah dari riwayat yang derajatnya diperselisihkan.",
@@ -347,5 +382,547 @@
       "Scene 5 menyebut salam sebagai 'ucapan yang diajarkan Allah… penuh berkah dan baik'. Ini parafrase dari 'tahiyyatan min 'indillah mubarakatan thayyibah'. Pastikan Anda setuju dengan penyederhanaan ini untuk anak.",
       "Efek suara 'Brak!' (scene 1) dan adegan Mochi kaget (scene 9). Pastikan saat produksi suaranya lembut dan tidak mengagetkan, sesuai aturan visual dan audio yang tenang."
     ]
+  },
+  "scenes": [
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Adik-adik, sore itu Mamas pulang dari masjid. Perutnya keroncongan. Brak! Pintu dibuka, Mamas langsung berlari masuk.",
+      "background": "house-front",
+      "characters": [
+        "mamas"
+      ],
+      "expression": "happy",
+      "screenText": "Mamas pulang!",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "opening-door",
+          "at": "Brak"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ibu! Ibu! Mamas lapar sekali! Kue cokelat tadi pagi masih ada, kan?",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        },
+        {
+          "character": "mochi",
+          "action": "startled",
+          "at": "lapar sekali"
+        },
+        {
+          "character": "mamas",
+          "action": "craving",
+          "heldItem": "chocolate-cake",
+          "at": "Kue cokelat"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mochi",
+          "expression": "surprised",
+          "at": "lapar sekali"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Ada, Mas. Tapi tunggu dulu. Tadi waktu masuk rumah, ada yang Mamas lupa, nggak?",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mother",
+          "action": "holding",
+          "heldItem": "chocolate-cake"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "happy"
+        },
+        {
+          "character": "mamas",
+          "expression": "surprised",
+          "at": "ada yang Mamas lupa"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "speaker": "narrator",
+      "narration": "Hmm… Mamas garuk-garuk peci. Mochi ikut memiringkan kepala, lalu malah tiduran di atas sandal Mamas. Adik-adik, menurut kalian, apa yang Mamas lupa? Coba pikirkan dulu, ya.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "thinking",
+      "screenText": "Apa yang Mamas lupa?",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "approaching",
+          "at": "Mochi ikut"
+        },
+        {
+          "character": "mochi",
+          "action": "sleeping",
+          "at": "lalu malah tiduran"
+        }
+      ],
+      "requestedAction": {
+        "name": "scratching-head",
+        "character": "mamas",
+        "description": "Mamas menggaruk-garuk peci birunya dengan satu tangan sambil memiringkan kepala, wajah bingung."
+      },
+      "moods": [
+        {
+          "character": "mother",
+          "expression": "calm"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mamas lupa sebut nama Allah, dan lupa memberi salam. Allah berfirman dalam Surat An-Nur ayat 61. Kalau masuk rumah, kita memberi salam. Salam itu ucapan yang diajarkan Allah. Isinya penuh berkah dan baik. Jadi, saat kita salam, kita saling mendoakan.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Salam itu doa",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "surprised"
+        },
+        {
+          "character": "mamas",
+          "expression": "happy",
+          "at": "Salam itu ucapan"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Ooh, salam itu doa, ya, Bu. Terus, kenapa harus sebut nama Allah juga?",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "pillow"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "sleeping"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "thinking",
+          "at": "Terus, kenapa"
+        },
+        {
+          "character": "mother",
+          "expression": "calm"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Mamas, dengar ya. Rasulullah ﷺ bersabda dalam hadits riwayat Muslim. Kalau kita sebut nama Allah saat masuk rumah dan saat makan... Setan bilang ke teman-temannya: 'Tidak ada tempat menginap. Tidak ada makan malam untuk kalian.'",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "screenText": "Sebut nama Allah",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "approaching",
+          "at": "Rasulullah"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "happy"
+        },
+        {
+          "character": "mamas",
+          "expression": "surprised",
+          "at": "Setan bilang"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mamas",
+      "narration": "Waah, berarti setan nggak bisa ikut tidur di rumah kita? Nggak bisa ikut makan kue Mamas juga? Asyik! Mamas ulang dari pintu, ya, Bu. Ayo, Mochi, ikut keluar!",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "circling",
+          "at": "Ayo, Mochi"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "surprised"
+        },
+        {
+          "character": "mamas",
+          "expression": "happy",
+          "at": "Asyik"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Mamas berlari keluar, lalu berbalik. Wuss! Mamas berlari masuk lagi. Sandalnya terlempar ke pojok. Mamas berteriak salam cepat-cepat, sampai kata-katanya tidak jelas. Tapi Bismillah-nya lupa lagi! Mochi yang ikut di belakangnya kaget sekali. Bulunya berdiri, ekornya mengembang. Mochi melompat dan sembunyi di balik sofa. Hanya ekornya yang kelihatan. Mamas berhenti dan bingung. Lho, kok Ibu tertawa?",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "approaching",
+          "at": "Wuss"
+        },
+        {
+          "character": "mamas",
+          "action": "shouting",
+          "at": "Mamas berteriak"
+        },
+        {
+          "character": "mochi",
+          "action": "startled",
+          "at": "kaget sekali"
+        }
+      ],
+      "requestedAction": {
+        "name": "hiding-behind-sofa",
+        "character": "mochi",
+        "description": "Mochi melompat pelan ke balik sofa lalu bersembunyi, hanya ekornya yang mengembang menyembul dari balik sandaran sofa dan bergoyang pelan."
+      },
+      "moods": [
+        {
+          "character": "mochi",
+          "expression": "surprised",
+          "at": "kaget sekali"
+        },
+        {
+          "character": "mamas",
+          "expression": "thinking",
+          "at": "Mamas berhenti"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "mother",
+      "narration": "Hihi, Mamas sudah salam. Pintar! Tapi Mamas lupa menyebut nama Allah lagi, Mas. Lalu, salam itu doa. Salam diucapkan dengan jelas, tidak sambil berteriak dan berlari. Kalau buru-buru, kita jadi gampang lupa. Ibu juga begitu, lho. Setiap pulang dari pasar, Ibu sebut nama Allah dan memberi salam pelan-pelan. Yuk, minta maaf ke Mochi, lalu rapikan sandalnya. Setelah itu coba sekali lagi. Sebut nama Allah dulu, baru beri salam.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Pelan dan jelas",
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "approaching",
+          "at": "Yuk, minta maaf"
+        },
+        {
+          "character": "mamas",
+          "action": "carrying-cat",
+          "at": "lalu rapikan"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mother",
+          "expression": "calm",
+          "at": "Lalu, salam itu doa"
+        },
+        {
+          "character": "mamas",
+          "expression": "thinking",
+          "at": "Tapi Mamas lupa"
+        },
+        {
+          "character": "mamas",
+          "expression": "happy",
+          "at": "Yuk"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Bismillāh. Assalāmu'alaikum.",
+      "background": "house-front",
+      "characters": [
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "بِسْمِ اللَّهِ، السَّلَامُ عَلَيْكُمْ",
+        "latin": "Bismillāh. Assalāmu'alaikum.",
+        "meaning": "Dengan nama Allah. Semoga keselamatan untuk kalian. (Perintah salam saat masuk rumah: QS. An-Nur: 61; menyebut nama Allah saat masuk rumah: HR. Muslim no. 2018)"
+      },
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "opening-door"
+        },
+        {
+          "character": "mochi",
+          "action": "circling"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mother",
+      "narration": "Wa'alaikumussalām.",
+      "background": "living-room",
+      "characters": [
+        "mother",
+        "mamas",
+        "mochi"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "وَعَلَيْكُمُ السَّلَامُ",
+        "latin": "Wa'alaikumussalām.",
+        "meaning": "Dan semoga keselamatan juga untukmu. (Menjawab salam: QS. An-Nisa: 86)"
+      },
+      "actions": [
+        {
+          "character": "mother",
+          "action": "hugging"
+        },
+        {
+          "character": "mochi",
+          "action": "circling"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mamas",
+          "expression": "happy"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Ibu tersenyum senang. Mochi ikut masuk, ekornya bergoyang senang. Ibu menyodorkan kue cokelat. Mochi langsung mendekat, hidungnya mengendus-endus kue. Ibu tertawa sambil menggendong Mochi. Kue cokelat bukan untuk kucing, Mochi. Sebelum makan kue, Mamas membaca…",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "props": [
+        "chocolate-cake"
+      ],
+      "actions": [
+        {
+          "character": "mochi",
+          "action": "circling",
+          "at": "Mochi ikut masuk"
+        },
+        {
+          "character": "mother",
+          "action": "holding",
+          "heldItem": "chocolate-cake",
+          "at": "Ibu menyodorkan"
+        },
+        {
+          "character": "mamas",
+          "action": "craving",
+          "heldItem": "chocolate-cake",
+          "at": "Ibu menyodorkan"
+        },
+        {
+          "character": "mochi",
+          "action": "approaching",
+          "at": "Mochi langsung mendekat"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mochi",
+          "expression": "surprised",
+          "at": "Mochi langsung mendekat"
+        },
+        {
+          "character": "mamas",
+          "expression": "thinking",
+          "at": "Sebelum makan kue"
+        }
+      ]
+    },
+    {
+      "type": "prayer",
+      "speaker": "mamas",
+      "narration": "Bismillāh.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother"
+      ],
+      "expression": "calm",
+      "prayer": {
+        "arabic": "بِسْمِ اللَّهِ",
+        "latin": "Bismillāh.",
+        "meaning": "Dengan nama Allah. (HR. Bukhari no. 5376 dan Muslim no. 2022)"
+      },
+      "props": [
+        "chocolate-cake"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "holding",
+          "heldItem": "cake"
+        }
+      ]
+    },
+    {
+      "type": "story",
+      "speaker": "narrator",
+      "narration": "Adik-adik, kalau masuk rumah, jangan lupa sebut nama Allah dan beri salam, ya. Pulang sekolah, main ke rumah Nenek, atau pulang dari masjid seperti Mamas. Kalau ada yang memberi salam, kita jawab. Sebelum makan, sebut nama Allah juga, walau cuma makan camilan. Biar kita saling mendoakan, dan setan tidak ikut menginap dan makan.",
+      "background": "living-room",
+      "characters": [
+        "mamas",
+        "mother",
+        "mochi"
+      ],
+      "expression": "happy",
+      "screenText": "Bismillah, lalu salam",
+      "props": [
+        "chocolate-cake"
+      ],
+      "actions": [
+        {
+          "character": "mamas",
+          "action": "eating",
+          "heldItem": "cake"
+        },
+        {
+          "character": "mochi",
+          "action": "approaching",
+          "at": "Kalau ada yang memberi salam"
+        },
+        {
+          "character": "mother",
+          "action": "hugging",
+          "at": "Biar kita saling"
+        }
+      ],
+      "moods": [
+        {
+          "character": "mother",
+          "expression": "calm"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Adab Masuk Rumah: Bismillah & Salam | Kisah Sebelum Tidur Mamas",
+    "description": "Adab masuk rumah untuk anak: sebut nama Allah (Bismillah) lalu ucapkan salam. Di kisah sebelum tidur ini, Mamas belajar kenapa Bismillah dan salam itu penting.\n\nSore itu Mamas pulang dari masjid dengan perut lapar. Ia langsung berlari masuk dan lupa Bismillah serta salam. Ibu menjelaskan dengan lembut. Mamas mencoba lagi, tapi masih terburu-buru, sampai sandalnya terlempar dan Mochi kaget lalu bersembunyi di balik sofa. Akhirnya Mamas minta maaf ke Mochi dan merapikan sandalnya. Ia pun masuk pelan-pelan sambil membaca Bismillah dan memberi salam.\n\nPelajaran hari ini:\n• Saat masuk rumah, sebut nama Allah dulu, lalu beri salam.\n• Salam itu doa, jadi ucapkan dengan jelas, tidak sambil berteriak atau berlari.\n• Jawab salam, dan baca Bismillah sebelum makan.\n\nDalil:\n• QS. An-Nur: 61, perintah memberi salam saat masuk rumah.\n• HR. Muslim no. 2018 (dari Jabir bin Abdillah), menyebut nama Allah saat masuk rumah dan saat makan.\n• QS. An-Nisa: 86, membalas salam.\n• HR. Bukhari no. 5376 & Muslim no. 2022, membaca Bismillah sebelum makan.\n\nAyah dan Bunda, yuk temani si kecil menonton lalu berlatih bersama di depan pintu rumah. Tonton juga kisah sebelum tidur Mamas lainnya.\n\n#CeritaIslamiAnak #AdabAnakMuslim #KisahSebelumTidur",
+    "tags": [
+      "cerita islami anak",
+      "adab masuk rumah",
+      "adab masuk rumah untuk anak",
+      "mengucap salam",
+      "belajar salam untuk anak",
+      "bismillah sebelum masuk rumah",
+      "bismillah sebelum makan",
+      "kisah sebelum tidur",
+      "dongeng islami anak",
+      "adab anak muslim",
+      "cerita anak muslim",
+      "kartun islami anak",
+      "pendidikan akhlak anak",
+      "Mamas dan Ibu"
+    ],
+    "thumbnailText": "Lupa Salam?"
   }
 }

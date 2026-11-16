@@ -1,8 +1,8 @@
 {
   "id": "kenapa-shalat-kita-lima-waktu-hadiah-dar-f9e5",
   "created": "2026-11-14T02:36:16.636Z",
-  "modified": "2026-11-14T02:36:16.636Z",
-  "status": "idea",
+  "modified": "2026-11-16T14:00:39.375Z",
+  "status": "needs_script_approval",
   "idea": {
     "title": "Kenapa Shalat Kita Lima Waktu? Hadiah dari Malam Isra Mi'raj",
     "series": "asbabun-nuzul",
@@ -18,12 +18,194 @@
       "HR. Muslim no. 162"
     ]
   },
-  "revisionCount": 0,
+  "revisionCount": 1,
   "log": [
     {
       "time": "2026-11-14T02:36:16.636Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-16T13:58:22.262Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-16T13:58:22.983Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-16T14:00:05.945Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-16T14:00:06.479Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-16T14:00:38.914Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-16T14:00:39.375Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
     }
-  ]
+  ],
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Kenapa Shalat Kita Lima Waktu? Hadiah dari Malam Isra Mi'raj",
+    "summary": "Mamas menunda shalat Ashar karena asyik main bola, lalu shalat dengan terburu-buru. Setelah shalat, Ibu bercerita di dalam masjid. Kisahnya disampaikan narator: shalat diwajibkan pada malam Isra Mi'raj. Awalnya 50 waktu, lalu menjadi 5 waktu, tetapi pahalanya tetap seperti 50 (HR. Bukhari no. 349, Muslim no. 162). Mamas berniat menjaga shalat lima waktu. Ia membaca QS. Al-Isra: 1, lalu berdoa dengan QS. Ibrahim: 40. Nabi ﷺ, malaikat, dan Buraq tidak digambar. Visual kisahnya hanya langit malam, gurun, dan cahaya.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Sore itu, Mamas dan Ali sedang asyik main bola di halaman, lalu adzan Ashar berkumandang.",
+        "visualDirection": "Halaman rumah (yard) sore hari yang hangat, Mamas dan Ali bermain bola, Mochi berbaring di rumput."
+      },
+      {
+        "type": "story",
+        "speaker": "friend",
+        "narration": "Mas, dengar! Itu adzan. Yuk, kita ke masjid dulu!",
+        "visualDirection": "Yard, Ali berhenti dan memegang bola sambil menunjuk ke arah suara adzan, wajahnya bersemangat."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Sebentar, Ali. Satu gol lagi! Kenapa sih shalat harus lima kali sehari? Banyak sekali.",
+        "visualDirection": "Yard, Mamas merebut bola dari Ali sambil cemberut kecil, tangannya membentuk angka lima."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Ali sudah berlari ke masjid. Mamas menendang bola keras-keras. Bola meleset, lalu mendarat tepat di samping Mochi! Mochi melompat tinggi, lalu pura-pura sibuk menjilati ekornya.",
+        "visualDirection": "Yard, bola menggelinding pelan di samping Mochi yang melompat kaget lalu duduk menjilati ekornya. Mamas menutup mulut menahan tawa."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Mas, Ali benar. Bola bisa menunggu, shalat jangan ditunda. Yuk, berangkat. Sepulang shalat, Ibu ceritakan rahasia lima waktu.",
+        "visualDirection": "Teras depan rumah (house-front), Ibu berdiri tersenyum lembut sambil memegang sajadah dan mengulurkan tangan kepada Mamas."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas ikut shalat berjamaah. Tapi gerakannya cepat sekali, karena pikirannya masih di lapangan. Selesai shalat, Ibu mengajak Mamas duduk di pojok masjid.",
+        "visualDirection": "Dalam masjid (inside-mosque) yang tenang dan terang, Mamas terlihat dari belakang di saf anak-anak, lalu duduk bersama Ibu di pojok masjid."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Mas, tadi shalatnya buru-buru, seperti dikejar kucing. Padahal shalat itu hadiah istimewa dari Allah. Mau tahu ceritanya?",
+        "visualDirection": "Inside-mosque, Ibu duduk bersimpuh di karpet dan berbicara pelan. Mamas memandang Ibu dengan mata penasaran."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Dahulu, pada suatu malam, Allah memperjalankan Nabi Muhammad shallallahu 'alaihi wa sallam. Dari Masjidil Haram di Makkah, sampai Masjidil Aqsa di Palestina. Peristiwa ini disebut Isra. Lalu Nabi dinaikkan ke langit yang sangat tinggi. Itulah Mi'raj. Di sanalah Allah mewajibkan shalat untuk kita.",
+        "visualDirection": "Langit malam (night-sky) penuh bintang dengan seberkas cahaya lembut naik ke atas. Tidak ada sosok tokoh apa pun, hanya cahaya dan bintang."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Awalnya, shalat diwajibkan lima puluh kali sehari semalam. Dalam perjalanan pulang, Nabi Musa 'alaihissalam berpesan, umatmu tidak akan sanggup. Maka Nabi memohon keringanan kepada Allah, berkali-kali. Akhirnya, shalat menjadi lima waktu. Tetapi pahalanya tetap seperti lima puluh! Setiap shalat dihitung sepuluh.",
+        "visualDirection": "Gurun (desert) di bawah langit malam yang tenang, cahaya lembut di cakrawala. Angka 50 perlahan berganti menjadi 5 di langit dengan transisi halus. Tanpa sosok apa pun."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, Allah sudah memberi keringanan yang begitu besar. Menurut kalian, apa yang harus Mamas lakukan dengan hadiah ini? Coba pikirkan dulu, ya...",
+        "visualDirection": "Inside-mosque, Mamas termenung dengan jari di dagu dan Ibu tersenyum menunggu. Suasananya hening untuk memberi jeda berpikir."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Wah, dari lima puluh jadi lima! Ibu, Mamas malu tadi buru-buru. Mulai sekarang, Mamas mau jaga shalat lima waktu. Tepat waktu, pelan-pelan, dan tidak ditunda karena main bola!",
+        "visualDirection": "Inside-mosque, Mamas berbinar dan mengangkat lima jari dengan mantap, Ibu mengangguk bangga."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Masyaallah, itu jawaban yang tepat, Mas. Shalat yang dijaga adalah cara kita berterima kasih kepada Allah. Kisah malam Isra itu Allah sebutkan di awal Surah Al-Isra. Yuk, Mas baca ayat pertamanya.",
+        "visualDirection": "Inside-mosque, Ibu mengusap kepala Mamas lalu membuka mushaf di atas rehal di depan mereka."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Subḥānalladzī asrā bi'abdihī lailam minal-masjidil-ḥarāmi ilal-masjidil-aqṣalladzī bāraknā ḥaulahū linuriyahū min āyātinā, innahū huwas-samī'ul-baṣīr.",
+        "visualDirection": "Inside-mosque, Mamas membaca mushaf dengan khusyuk dan suara pelan. Cahaya sore masuk lembut dari jendela."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya: Mahasuci Allah, yang telah memperjalankan hamba-Nya pada malam hari, dari Masjidil Haram ke Masjidil Aqsa, yang telah Kami berkahi sekelilingnya, agar Kami perlihatkan kepadanya sebagian tanda-tanda kebesaran Kami. Sesungguhnya Dia Maha Mendengar, Maha Melihat. Sekarang, yuk kita berdoa agar dimudahkan menjaga shalat.",
+        "visualDirection": "Inside-mosque, Ibu menjelaskan dengan lembut sambil menutup mushaf, lalu keduanya menengadahkan tangan."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Rabbij'alnī muqīmash-shalāti wa min dzurriyyatī, rabbanā wa taqabbal du'ā'.",
+        "visualDirection": "Inside-mosque, Mamas dan Ibu menengadahkan tangan berdoa dengan tenang dan khusyuk."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Artinya: Ya Tuhanku, jadikanlah aku dan anak cucuku orang yang tetap mendirikan shalat. Ya Tuhan kami, kabulkanlah doaku. Adik-adik, lima waktu itu hadiah dari Allah. Yuk, kita jaga bersama Mamas. Wassalamu'alaikum warahmatullahi wabarakatuh!",
+        "visualDirection": "Halaman masjid berganti ke teras rumah (house-front) saat senja, Mamas dan Ibu pulang bergandengan tangan, Mochi menyambut sambil mengeong pelan."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "ayat",
+        "arabicText": "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ",
+        "latin": "Subḥānalladzī asrā bi'abdihī lailam minal-masjidil-ḥarāmi ilal-masjidil-aqṣalladzī bāraknā ḥaulahū linuriyahū min āyātinā, innahū huwas-samī'ul-baṣīr.",
+        "translation": "Mahasuci Allah, yang telah memperjalankan hamba-Nya pada malam hari dari Masjidil Haram ke Masjidil Aqsa yang telah Kami berkahi sekelilingnya, agar Kami perlihatkan kepadanya sebagian tanda-tanda kebesaran Kami. Sesungguhnya Dia Maha Mendengar, Maha Melihat.",
+        "source": "QS. Al-Isra' (17): 1"
+      },
+      {
+        "type": "hadits",
+        "translation": "Dalam kisah Mi'raj, Allah mewajibkan 50 shalat. Atas saran Nabi Musa 'alaihissalam bahwa umatnya tidak akan sanggup, Nabi ﷺ berulang kali kembali memohon keringanan hingga menjadi lima. Allah berfirman: 'Ia lima, dan ia (pahalanya) lima puluh. Keputusan di sisi-Ku tidak berubah.'",
+        "source": "HR. Bukhari no. 349 (Kitab ash-Shalat), dari Anas bin Malik dari Abu Dzar radhiyallahu 'anhuma"
+      },
+      {
+        "type": "hadits",
+        "translation": "'Wahai Muhammad, itu adalah lima shalat setiap sehari semalam. Setiap shalat (pahalanya) sepuluh, maka itulah lima puluh shalat.'",
+        "source": "HR. Muslim no. 162 (Kitab al-Iman), dari Anas bin Malik radhiyallahu 'anhu"
+      },
+      {
+        "type": "doa",
+        "arabicText": "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ",
+        "latin": "Rabbij'alnī muqīmash-shalāti wa min dzurriyyatī, rabbanā wa taqabbal du'ā'.",
+        "translation": "Ya Tuhanku, jadikanlah aku dan anak cucuku orang yang tetap mendirikan shalat. Ya Tuhan kami, perkenankanlah doaku.",
+        "source": "QS. Ibrahim (14): 40"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 8.5,
+    "notes": [
+      "Syariat aman. Nabi ﷺ, Nabi Musa 'alaihissalam, malaikat, dan Buraq tidak digambar. Visual kisah hanya langit malam, gurun, cahaya, dan angka. Tidak ada keutamaan amalan yang dikarang. Pesan '5 waktu, pahala 50' sesuai dengan Bukhari 349 dan Muslim 162.",
+      "Pemisahan bacaan Arab sudah benar. Scene 13 (QS. Al-Isra: 1) dan scene 15 (QS. Ibrahim: 40) hanya berisi bacaan latin. Artinya ada di scene 14 dan 16. Keduanya dibaca oleh `mamas`, jadi sudah sesuai aturan.",
+      "Panjang naskah 385 kata, masih dalam batas 350–560. Alurnya mengalir: konflik (menunda dan terburu-buru), lalu kisah, pertanyaan interaktif, tekad, ayat, dan doa. Tidak perlu dipadatkan.",
+      "Perbaikan kecil di scene 3: arahan visual 'Mamas merebut bola dari Ali' adalah perilaku negatif yang tidak diselesaikan. Ganti menjadi 'Mamas memegang bola sambil cemberut kecil, tangannya membentuk angka lima'.",
+      "Perbaikan kecil di scene 4: setelah Mochi kaget, Mamas 'menahan tawa' tanpa ada penyelesaian. Sebaiknya Mamas mengelus Mochi dan berkata 'Maaf ya, Mochi'. Bisa juga dengan narasi singkat 'Mamas buru-buru mengelus Mochi.'",
+      "Scene 4: narasi menyebut bola 'mendarat tepat di samping Mochi', tetapi visualnya 'menggelinding pelan'. Samakan keduanya, misalnya 'Bola meleset dan menggelinding ke dekat Mochi'.",
+      "Scene 16: visualnya pindah dari halaman masjid ke house-front dalam satu scene. Sebaiknya cukup pakai `house-front` saja supaya latarnya konsisten.",
+      "Opsional di scene 9: 'Dalam perjalanan pulang' bisa diganti 'Saat kembali, Nabi bertemu Nabi Musa 'alaihissalam'. Kalimat ini lebih dekat dengan lafaz hadits (marartu 'ala Musa)."
+    ],
+    "humanCheck": [
+      "QS. Al-Isra' (17): 1. Cocokkan teks Arab, latin, dan terjemahan dengan mushaf atau terjemah Kemenag.",
+      "HR. Bukhari no. 349 (Kitab ash-Shalat, Bab Kaifa Furidat ash-Shalawat), dari Anas dari Abu Dzar. Pastikan nomornya sesuai dengan penomoran yang dipakai (Fath al-Bari), dan lafaz 'hiya khamsun wa hiya khamsun, la yubaddalul qaulu ladayya' memang ada.",
+      "HR. Muslim no. 162 (Kitab al-Iman), dari Anas bin Malik. Pastikan lafaz 'innahunna khamsu shalawatin kulla yaumin wa lailatin, likulli shalatin 'asyr, fadzalika khamsuna shalah' ada di nomor tersebut (penomoran Fuad Abdul Baqi).",
+      "QS. Ibrahim (14): 40. Cocokkan teks Arab, latin (akhir 'du'ā'' saat waqaf), dan terjemahan. Di naskah tertulis 'kabulkanlah', di evidence 'perkenankanlah'. Pilih salah satu dan samakan.",
+      "Narasi scene 9 meringkas proses keringanan ('berkali-kali'). Pastikan ringkasan ini bisa diterima tanpa merinci jumlah pengurangan, karena riwayat Bukhari dan Muslim berbeda rinciannya.",
+      "Pastikan visual scene 8–9 benar-benar tanpa siluet atau sosok apa pun, termasuk hewan tunggangan.",
+      "Pastikan latar inside-mosque saat Ibu duduk bersama Mamas di pojok masjid terlihat wajar, misalnya area keluarga atau serambi."
+    ]
+  }
 }

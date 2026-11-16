@@ -1,7 +1,7 @@
 {
   "id": "hadits-ikut-senang-untuk-teman-obat-iri--4ebd",
   "created": "2026-11-13T19:14:26.058Z",
-  "modified": "2026-11-13T19:17:33.349Z",
+  "modified": "2026-11-16T13:56:30.948Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Hadits Ikut Senang untuk Teman | Obat Iri Anak",
@@ -43,6 +43,11 @@
       "time": "2026-11-13T19:17:33.349Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-16T13:56:30.948Z",
+      "by": "pemilik",
+      "message": "Dipindah ke Draft (tidak ditayangkan dulu)"
     }
   ],
   "source": {
@@ -231,5 +236,6 @@
       }
     ],
     "time": "2026-11-13T19:17:33.348Z"
-  }
+  },
+  "draftedAt": "2026-11-16T13:56:30.947Z"
 }

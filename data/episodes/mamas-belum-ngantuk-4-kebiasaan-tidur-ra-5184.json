@@ -1,8 +1,8 @@
 {
   "id": "mamas-belum-ngantuk-4-kebiasaan-tidur-ra-5184",
   "created": "2026-11-16T10:18:01.203Z",
-  "modified": "2026-11-16T10:18:01.204Z",
-  "status": "idea",
+  "modified": "2026-11-16T14:00:44.975Z",
+  "status": "needs_script_approval",
   "idea": {
     "title": "Mamas Belum Ngantuk: 4 Kebiasaan Tidur Rasulullah ﷺ bersama Ibu",
     "series": "kisah-sebelum-tidur",
@@ -17,12 +17,189 @@
       "Video kita: Takut Gelap? Ingat Allah Tidak Pernah Tidur"
     ]
   },
-  "revisionCount": 0,
+  "revisionCount": 1,
   "log": [
     {
       "time": "2026-11-16T10:18:01.203Z",
       "by": "riset",
       "message": "Ide dibuat"
+    },
+    {
+      "time": "2026-11-16T13:58:42.152Z",
+      "by": "dashboard",
+      "message": "Penulis mulai bekerja"
+    },
+    {
+      "time": "2026-11-16T13:58:42.794Z",
+      "by": "penulis",
+      "message": "Mulai menulis naskah"
+    },
+    {
+      "time": "2026-11-16T14:00:15.473Z",
+      "by": "penulis",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-16T14:00:16.006Z",
+      "by": "reviewer",
+      "message": "Memeriksa naskah"
+    },
+    {
+      "time": "2026-11-16T14:00:44.511Z",
+      "by": "reviewer",
+      "message": "memakai StructuredOutput"
+    },
+    {
+      "time": "2026-11-16T14:00:44.975Z",
+      "by": "orchestrator",
+      "message": "Naskah siap diperiksa pemilik channel"
     }
-  ]
+  ],
+  "statusNote": "Naskah siap diperiksa pemilik channel",
+  "script": {
+    "title": "Mamas Belum Ngantuk: 4 Kebiasaan Tidur Rasulullah ﷺ bersama Ibu",
+    "summary": "Sudah malam, tapi Mamas belum ngantuk. Ia mencoba menghitung kambing, tapi malah menirukan suara kambing sampai Mochi kaget. Ibu lalu mengajaknya melakukan empat kebiasaan tidur yang diajarkan Rasulullah ﷺ. Setiap kebiasaan menjadi satu bab: berwudhu, mengibaskan kasur (selimut Mamas sempat terbang menutupi Mochi), berbaring miring ke kanan, lalu membaca doa \"Bismikallāhumma amūtu wa aḥyā\". Hati Mamas jadi tenang dan ia pun tertidur. Di akhir cerita, adik-adik diajak melakukannya malam ini. Panjang naskah ±423 kata, sekitar 6 menit.",
+    "scenes": [
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Assalamu'alaikum, adik-adik! Malam sudah gelap, tapi mata Mamas masih terbuka lebar.",
+        "visualDirection": "bedroom-night: kamar redup dengan lampu tidur kuning, Mamas duduk di kasur dengan mata terbuka lebar, Mochi berbaring di ujung kasur."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Ibu, Mamas belum ngantuk! Mamas sudah guling ke kiri. Guling ke kanan. Tengkurap juga. Mamas masih ingat main bola sama Ali tadi sore. Mata Mamas tetap melek, Bu!",
+        "visualDirection": "bedroom-night: Mamas berguling gelisah di kasur, Ibu duduk di tepi kasur sambil tersenyum sabar."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Mamas lalu mencoba menghitung kambing. Satu, dua, tiga... Sampai sepuluh, Mamas malah duduk dan menirukan suara kambing. Mbeeek! Mochi kaget, lalu bersembunyi di balik bantal.",
+        "visualDirection": "bedroom-night: Mamas duduk tegak dan menirukan kambing, Mochi kaget dengan telinga tegak lalu menyelinap ke balik bantal; suasana tetap lembut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Hihi, kambingnya malah bikin ramai, ya. Mas, Ibu punya ide. Rasulullah shallallahu 'alaihi wa sallam mengajarkan kebiasaan sebelum tidur. Kita lakukan satu per satu, seperti membaca buku. Setiap kebiasaan satu bab. Siap?",
+        "visualDirection": "bedroom-night: Ibu mengangkat empat jari sambil tersenyum, Mamas mengangguk penasaran, ekor Mochi menyembul dari balik bantal."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Bab satu: berwudhu dulu. Ibu menggandeng Mamas ke tempat wudhu. Mamas membasuh tangan, berkumur, membasuh wajah, sampai kaki. Persis seperti wudhu mau shalat.",
+        "visualDirection": "ablution: tempat wudhu rumah yang tenang di malam hari, Ibu mendampingi Mamas yang membasuh wajah dengan air."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Brrr, airnya dingin, Bu! Tapi wajah Mamas jadi segar. Kenapa sih kita wudhu sebelum tidur?",
+        "visualDirection": "ablution: Mamas menggigil kecil dengan wajah basah tapi tersenyum, menoleh ke Ibu dengan wajah bertanya."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Karena Rasulullah mengajarkannya, Mas. Kalau mau tidur, berwudhulah seperti wudhu untuk shalat. Jadi kita tidur dalam keadaan bersih dan suci. Hati pun lebih tenang.",
+        "visualDirection": "ablution: Ibu mengeringkan wajah Mamas dengan handuk kecil, suasana hangat dan tenang."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Bab dua: mengibaskan kasur. Mamas semangat sekali. Ia mengibas selimut kuat-kuat. Wusss! Selimutnya terbang, lalu jatuh menutupi Mochi. Selimut itu bergerak-gerak sendiri. Meong! Mochi keluar dengan bulu berantakan.",
+        "visualDirection": "bedroom-night: selimut melayang pelan lalu menutupi Mochi, gundukan selimut bergerak, Mochi muncul dengan bulu acak-acakan; gerakan lembut, tidak heboh."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Aduh, kasihan Mochi. Pelan-pelan saja, Mas. Pegang ujungnya, lalu kibaskan dengan lembut, begini. Rasulullah mengajarkan kita mengibaskan kasur sebelum berbaring. Sebab kita tidak tahu apa yang ada di atasnya.",
+        "visualDirection": "bedroom-night: Ibu mengelus Mochi, lalu mencontohkan mengibas seprai dengan lembut, Mamas memperhatikan."
+      },
+      {
+        "type": "story",
+        "speaker": "mamas",
+        "narration": "Wah, lihat, Bu! Ada remah biskuit. Ada bola kecil punya Mochi juga! Untung dikibas dulu. Kalau tidak, punggung Mamas bisa gatal. Mamas lalu mengibas bantalnya juga, pelan-pelan sekali.",
+        "visualDirection": "bedroom-night: remah biskuit dan bola kecil jatuh ke lantai, Mochi senang mengejar bolanya, Mamas mengibas bantal dengan hati-hati."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Bab tiga: berbaring miring ke kanan. Mamas langsung melompat dan tengkurap lagi. Ibu tersenyum, lalu membantu Mamas berbaring miring ke kanan. Begitulah cara berbaring yang diajarkan Rasulullah. Mochi pun ikut meringkuk di dekat kaki Mamas.",
+        "visualDirection": "bedroom-night: Mamas tengkurap, lalu Ibu dengan lembut membantunya berbaring miring ke kanan; Mochi meringkuk di dekat kakinya."
+      },
+      {
+        "type": "question",
+        "speaker": "narrator",
+        "narration": "Adik-adik, sudah tiga bab. Berwudhu, mengibaskan kasur, berbaring miring ke kanan. Menurut adik, apa yang Mamas lakukan di bab terakhir? ... Ya, betul! Berdoa sebelum tidur.",
+        "visualDirection": "bedroom-night: tiga ikon sederhana (tetes air, kasur, Mamas miring ke kanan) muncul pelan, lalu tanda tanya lembut; beri jeda berpikir."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Bab empat: berdoa. Rasulullah membaca doa pendek ini saat mau tidur. Doanya pendek, jadi mudah dihafal. Yuk, Mas, kita baca bersama, pelan-pelan.",
+        "visualDirection": "bedroom-night: Ibu duduk di samping Mamas yang berbaring miring ke kanan, keduanya bersiap berdoa dengan suasana tenang."
+      },
+      {
+        "type": "prayer",
+        "speaker": "mamas",
+        "narration": "Bismikallāhumma amūtu wa aḥyā.",
+        "visualDirection": "bedroom-night: close-up Mamas berbaring miring ke kanan membaca doa dengan mata setengah terpejam, cahaya lampu tidur lembut."
+      },
+      {
+        "type": "story",
+        "speaker": "mother",
+        "narration": "Artinya, dengan nama-Mu ya Allah, aku mati dan aku hidup. Maksudnya, tidur itu seperti istirahat yang sangat dalam. Allah menjaga kita sepanjang malam. Besok pagi, Allah membangunkan kita lagi. Jadi Mamas tidak perlu khawatir, ya.",
+        "visualDirection": "bedroom-night: Ibu membelai kepala Mamas dengan lembut, dari jendela tampak bintang-bintang tenang."
+      },
+      {
+        "type": "story",
+        "speaker": "narrator",
+        "narration": "Hati Mamas jadi tenang. Matanya pelan-pelan terpejam. Mamas tertidur dengan senyum kecil, Mochi mendengkur di dekat kakinya. Adik-adik, kalau belum ngantuk, jangan gelisah. Ikuti kebiasaan Rasulullah, yuk. Malam ini kita coba juga: berwudhu, kibaskan kasur, miring ke kanan, lalu berdoa. Selamat tidur. Wassalamu'alaikum.",
+        "visualDirection": "bedroom-night: Mamas tertidur pulas miring ke kanan, Mochi meringkuk, Ibu menyelimuti lalu meredupkan lampu; kamera perlahan mundur ke jendela berbintang."
+      }
+    ],
+    "evidences": [
+      {
+        "type": "hadits",
+        "arabicText": "إِذَا أَتَيْتَ مَضْجَعَكَ فَتَوَضَّأْ وُضُوءَكَ لِلصَّلَاةِ، ثُمَّ اضْطَجِعْ عَلَى شِقِّكَ الْأَيْمَنِ",
+        "latin": "Idzā ataita maḍja'aka fatawaḍḍa' wuḍū'aka liṣ-ṣalāh, tsummaḍṭaji' 'alā syiqqikal-aiman.",
+        "translation": "Jika kamu hendak tidur, berwudhulah seperti wudhu untuk shalat, kemudian berbaringlah di atas sisi tubuhmu yang kanan.",
+        "source": "HR. Bukhari no. 247 dan Muslim no. 2710, dari Al-Bara' bin 'Azib radhiyallahu 'anhu"
+      },
+      {
+        "type": "hadits",
+        "arabicText": "إِذَا أَوَى أَحَدُكُمْ إِلَى فِرَاشِهِ فَلْيَنْفُضْ فِرَاشَهُ بِدَاخِلَةِ إِزَارِهِ، فَإِنَّهُ لَا يَدْرِي مَا خَلَفَهُ عَلَيْهِ",
+        "latin": "Idzā awā aḥadukum ilā firāsyihi falyanfuḍ firāsyahu bidākhilati izārihi, fa innahu lā yadrī mā khalafahu 'alaih.",
+        "translation": "Jika salah seorang dari kalian hendak berbaring di tempat tidurnya, hendaklah ia mengibaskan kasurnya dengan bagian dalam kainnya, karena ia tidak tahu apa yang ada di atasnya sepeninggalnya.",
+        "source": "HR. Bukhari no. 6320, dari Abu Hurairah radhiyallahu 'anhu"
+      },
+      {
+        "type": "doa",
+        "arabicText": "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+        "latin": "Bismikallāhumma amūtu wa aḥyā.",
+        "translation": "Dengan nama-Mu ya Allah, aku mati dan aku hidup.",
+        "source": "HR. Bukhari no. 6324, dari Hudzaifah bin Al-Yaman radhiyallahu 'anhu (doa Nabi ﷺ ketika hendak tidur)"
+      }
+    ]
+  },
+  "review": {
+    "decision": "approved",
+    "score": 9,
+    "notes": [
+      "Naskah lolos. Tidak ada Nabi, sahabat, atau malaikat yang digambarkan. Ali hanya disebut di dialog, tidak digambar. Semua latar ada di daftar yang diizinkan.",
+      "Panjang naskah pas (408 kata). Alurnya jelas: Mamas gelisah, mencoba hitung kambing dan gagal, lalu menjalani 4 bab, ada pertanyaan, dan cerita ditutup dengan tenang. Tidak ada scene yang perlu dibuang.",
+      "Perilaku negatif selalu diluruskan dengan lembut. Mengibas selimut terlalu keras sampai Mochi tertutup diperbaiki Ibu ('Pelan-pelan saja, Mas'). Tengkurap juga dibetulkan Ibu. Tidak ada yang menakut-nakuti. Kata 'mati' di arti doa sudah dijelaskan Ibu dengan menenangkan.",
+      "Bacaan doa di scene 14 sudah berdiri sendiri, hanya berisi latin, dan dibacakan oleh Mamas. Pengantar ada di scene 13 dan arti ada di scene 15. Sudah sesuai aturan pemisahan.",
+      "Opsional, scene 7: kalimat 'Hati pun lebih tenang' bisa terdengar seperti keutamaan wudhu sebelum tidur. Hadits tidak menyebut itu. Sebaiknya diganti, misalnya 'Jadi kita tidur dalam keadaan bersih dan suci, seperti yang Rasulullah ajarkan.'",
+      "Opsional, scene 2: kata 'ngantuk' dan 'melek' bisa diganti 'mengantuk' dan 'terbuka' agar lebih baku. Tetap boleh dipakai karena ini dialog anak.",
+      "Opsional: summary menulis '±423 kata', padahal hitungan sebenarnya 408 kata. Samakan angkanya.",
+      "Opsional: tambahkan 'shallallahu 'alaihi wa sallam' atau ﷺ satu kali lagi di scene 15 atau 16 sebagai pembiasaan adab menyebut Nabi."
+    ],
+    "humanCheck": [
+      "Dalil 1: 'Idzā ataita maḍja'aka fatawaḍḍa' wuḍū'aka liṣ-ṣalāh, tsummaḍṭaji' 'alā syiqqikal-aiman.' Sumber: HR. Bukhari no. 247 dan Muslim no. 2710, dari Al-Bara' bin 'Azib. Saya cukup yakin nomornya benar. Mohon dicek teks Arab dan nomornya di kitab atau aplikasi hadits.",
+      "Dalil 2: 'Idzā awā aḥadukum ilā firāsyihi falyanfuḍ firāsyahu bidākhilati izārihi, fa innahu lā yadrī mā khalafahu 'alaih.' Sumber: HR. Bukhari no. 6320, dari Abu Hurairah. Hadits ini juga ada di Muslim no. 2714 dan bisa ditambahkan ke sumber. Mohon dicek nomornya.",
+      "Dalil 3: doa 'Bismikallāhumma amūtu wa aḥyā' (بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا). Sumber: HR. Bukhari no. 6324, dari Hudzaifah bin Al-Yaman. Doanya shahih dan masyhur. Tapi hadits Hudzaifah dengan doa ini muncul di beberapa nomor Bukhari (sekitar 6312, 6314, 6324). Mohon pastikan nomor 6324 memang sesuai. Ada juga riwayat dari Al-Bara' di Muslim no. 2711.",
+      "Cek ejaan transliterasi latin di layar dan pelafalan suara AI untuk doa di scene 14. Pastikan 'Bismika' tidak terbaca 'Bismilla'.",
+      "Cek visual scene 12: ikon 'Mamas miring ke kanan' harus benar-benar menghadap atau berbaring di sisi kanan tubuh, jangan terbalik. Cek juga gerakan selimut di scene 8 tetap lembut dan tidak terlalu ramai."
+    ]
+  }
 }
