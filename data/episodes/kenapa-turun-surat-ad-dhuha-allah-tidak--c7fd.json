@@ -1,7 +1,7 @@
 {
   "id": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd",
   "created": "2026-11-13T00:52:53.162Z",
-  "modified": "2026-11-16T09:14:34.023Z",
+  "modified": "2026-11-16T12:30:08.745Z",
   "status": "needs_video_approval",
   "idea": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
@@ -250,6 +250,16 @@
     },
     {
       "time": "2026-11-16T09:14:34.023Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-16T12:26:50.592Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-16T12:30:08.745Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
     }
@@ -704,14 +714,36 @@
       "narration": "Besok paginya, Mamas berangkat sekolah. Teman yang kemarin mengejek ternyata duduk sendirian. Mamas menarik napas, lalu menyapanya. \"Yuk, main bareng!\" Temannya tersenyum malu dan minta maaf. Ingat, adik-adik, Allah tidak pernah meninggalkan kita, dan selalu mendengar doa kita. Wassalamu'alaikum!",
       "background": "school-yard",
       "characters": [
-        "mamas"
+        "mamas",
+        "friend"
       ],
-      "expression": "happy",
+      "expression": "calm",
       "screenText": "Allah tidak meninggalkan kita",
       "actions": [
         {
+          "character": "friend",
+          "action": "hugging-knees"
+        },
+        {
           "character": "mamas",
-          "action": "wearing-backpack"
+          "action": "approaching",
+          "at": "Mamas menarik napas"
+        }
+      ],
+      "moods": [
+        {
+          "character": "friend",
+          "expression": "sad"
+        },
+        {
+          "character": "mamas",
+          "expression": "happy",
+          "at": "Yuk, main bareng"
+        },
+        {
+          "character": "friend",
+          "expression": "happy",
+          "at": "tersenyum"
         }
       ]
     }
@@ -863,6 +895,6 @@
         "duration": 36.43333333333333
       }
     ],
-    "time": "2026-11-16T09:14:34.023Z"
+    "time": "2026-11-16T12:30:08.745Z"
   }
 }
