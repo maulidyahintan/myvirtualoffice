@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-16",
+  "takenAt": "2026-11-16T10:16:17.603Z",
+  "youtube": {
+    "subscribers": 97,
+    "watchHours365": 28.1,
+    "shortsViews90": 13046,
+    "recent": {
+      "subscribersNet": 21,
+      "watchHours": 27.9,
+      "shortsViews": 9540
+    },
+    "splitByContentType": true
+  },
+  "facebook": {
+    "followers": 2,
+    "videoViews": 39,
+    "activeVideos": 15,
+    "minutesViewed60": null
+  }
+}
