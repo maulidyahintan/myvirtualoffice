@@ -116,3 +116,17 @@ export function hugArmAims(mother: Figure, child: Figure, floorY: number): { nea
   });
   return { near: arm('near'), far: arm('far') };
 }
+
+/** A child walking up to someone stops this far beside them (px). */
+export const CHILD_APPROACH_GAP_X = 210;
+
+/**
+ * Where a child walking up to someone (action 'approaching') stops: beside the first other person in the row
+ * (not the cat), on the side it comes from. Undefined when there is nobody to walk to.
+ */
+export function childApproachGoal(row: readonly string[], actor: number, xs: readonly number[]): { x: number; target: number } | undefined {
+  const target = row.findIndex((id, i) => i !== actor && id !== 'mochi');
+  if (target < 0) return undefined;
+  const side = xs[actor] < xs[target] ? -1 : 1;
+  return { x: xs[target] + side * CHILD_APPROACH_GAP_X, target };
+}

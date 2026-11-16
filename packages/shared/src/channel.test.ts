@@ -32,7 +32,10 @@ describe('canPerform', () => {
     expect(canPerform('friend', 'hugging-knees')).toBe(true);
     expect(canPerform('mother', 'carrying-cat')).toBe(false);
     expect(canPerform('mochi', 'licking')).toBe(true);
-    expect(canPerform('mamas', 'approaching')).toBe(false);
+  });
+
+  it('lets everyone walk up to someone', () => {
+    for (const character of ['mamas', 'mother', 'mochi', 'friend'] as const) expect(canPerform(character, 'approaching')).toBe(true);
   });
 
   it('lets only the children crave a treat', () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { APPROACH_FRAMES, BED_HOP_RUN_X, approach, armEnd, armPoseTowards, bedClimbY, hangingAngle, hugArmAims } from './interactions';
+import { APPROACH_FRAMES, BED_HOP_RUN_X, CHILD_APPROACH_GAP_X, approach, armEnd, armPoseTowards, bedClimbY, childApproachGoal, hangingAngle, hugArmAims } from './interactions';
 
 describe('hangingAngle', () => {
   it('is 0 straight down and turns clockwise', () => {
@@ -95,5 +95,17 @@ describe('armEnd', () => {
 
   it('hangs straight down with a neutral pose', () => {
     expect(armEnd({ x: 5, y: 0 }, { bahu: 0, siku: 0 }, 50, 40)).toEqual({ x: 5, y: 90 });
+  });
+});
+
+describe('childApproachGoal', () => {
+  it('stops beside the friend, on the side the child comes from', () => {
+    expect(childApproachGoal(['mamas', 'friend'], 0, [700, 1220])).toEqual({ x: 1220 - CHILD_APPROACH_GAP_X, target: 1 });
+    expect(childApproachGoal(['friend', 'mamas'], 1, [700, 1220])).toEqual({ x: 700 + CHILD_APPROACH_GAP_X, target: 0 });
+  });
+
+  it('walks to a person, never to the cat, and needs someone there', () => {
+    expect(childApproachGoal(['mamas', 'mochi', 'mother'], 0, [560, 960, 1360])?.target).toBe(2);
+    expect(childApproachGoal(['mamas', 'mochi'], 0, [700, 1220])).toBeUndefined();
   });
 });

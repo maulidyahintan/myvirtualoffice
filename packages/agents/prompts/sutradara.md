@@ -43,6 +43,8 @@ oleh template animasi Remotion milik channel.
     melompat-lompat kecil, menjilat bibir; makanannya tampil berkilau di samping anak. Pakai expression
     "happy" (atau "surprised" di saat pertama melihat). Cocok sebelum belajar adab makan, sabar menunggu,
     atau berdoa sebelum makan.
+  - Mamas/Mother/friend: `approaching` (berjalan menghampiri tokoh lain di adegan lalu berhenti di sampingnya; pakai
+    `at` supaya mulai berjalan tepat di kalimatnya, misal Mamas menghampiri teman yang duduk sendirian)
   - Mother: `hugging` (Ibu berlutut setinggi anak dan memeluknya dengan kedua tangan, pipi bersentuhan; untuk
     menenangkan, memaafkan, bangga)
   - Mamas/Mother/friend: `opening-door` (membuka pintu masuk rumah; HANYA di house-front — pintunya

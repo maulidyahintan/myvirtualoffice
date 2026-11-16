@@ -11,7 +11,7 @@ import { isSadLike } from './characters/emotion';
 import { actionBeat, beatShots, moodBeat } from './camera/beatShots';
 import { IllustrationLayer } from './illustration/IllustrationLayer';
 import { MOTHER_KNEEL_DROP } from './characters/Mother';
-import { approach, bedClimbY, hugArmAims } from './characters/interactions';
+import { approach, bedClimbY, childApproachGoal, hugArmAims } from './characters/interactions';
 import { drawOrder, mochiLeavesRow, rowAtStart, stageInteractions } from './characters/staging';
 import { FRONT_DOOR, FrontDoor } from './backgrounds/HouseFront';
 import { DOOR_STANCE_X, doorOpen, doorReach, placeAroundDoor } from './backgrounds/door';
@@ -38,6 +38,8 @@ const APPROACH_GAP_X = 170;
 const BLANKET_APPROACH_GAP_X = 300;
 /** Frames into the scene before Mochi starts walking. */
 const APPROACH_DELAY_FRAMES = 12;
+/** Actions done sitting down: such a character does not walk into the scene. */
+const SITTING_ACTIONS: readonly Action[] = ['hugging-knees', 'hiding-under-blanket'];
 /** A child diving from the floor onto the bed: frames in the air and height of the leap. */
 const DIVE_FRAMES = 14;
 const DIVE_ARC_HEIGHT = 150;
@@ -704,6 +706,16 @@ export const SceneView: React.FC<{
   const iDipeluk = staging.hugged ? urut.indexOf(staging.hugged) : -1;
   // hugged: the child stands in front of Mother, at her right side
   if (iIbu >= 0 && iDipeluk >= 0) xs[iDipeluk] = xs[iIbu] + HUG_OFFSET_X;
+  // a child walking up to someone (action 'approaching'): from its spot to beside them, legs stepping
+  const jalanAnak = new Map<number, { step: number | null; facing: -1 | 1 }>();
+  urut.forEach((id, i) => {
+    if (id === 'mochi' || aktif.actions?.find((a) => a.character === id)?.action !== 'approaching') return;
+    const goal = childApproachGoal(urut, i, xs);
+    if (!goal) return;
+    const state = approach(frame - startOf(id), xs[i], goal.x);
+    xs[i] = state.x;
+    jalanAnak.set(i, { step: state.step, facing: state.facing });
+  });
   // opening the front door: the opener stands right of the door with the left arm on the handle
   const adaPintu = data.background === 'house-front';
   const iPembuka = adaPintu ? urut.findIndex((id) => aktif.actions?.some((a) => a.character === id && a.action === 'opening-door')) : -1;
@@ -923,7 +935,9 @@ export const SceneView: React.FC<{
             let lihatX = iPembicara >= 0 && iPembicara !== i ? Math.sign(xs[iPembicara] - xs[i]) : 0;
             // di Shorts karakter langsung muncul (berjalan masuk terlalu lama untuk video < 60 detik)
             const dalamPelukan = Boolean(staging.hugged) && (id === 'mother' || id === staging.hugged);
-            const masuk: Entrance = sebelumnya.includes(id) || dalamPelukan || i === iPembuka ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
+            // someone sitting (hugging the knees, under a blanket) is already there instead of walking in
+            const duduk = SITTING_ACTIONS.includes(aktif.actions?.find((a) => a.character === id)?.action ?? 'holding');
+            const masuk: Entrance = sebelumnya.includes(id) || dalamPelukan || i === iPembuka || duduk ? 'ada' : vertikal || xs[i] === 960 ? 'muncul' : xs[i] < 960 ? 'kiri' : 'kanan';
             const aksiIni = aktif.actions?.find((a) => a.character === id);
             const gaya = gerakHidup(id, i, frame, {
               bicara: data.speaker === id,
@@ -934,8 +948,10 @@ export const SceneView: React.FC<{
               aksi: aksiIni?.action,
             });
             if (gaya.lihatX !== undefined) lihatX = gaya.lihatX;
-            // the one opening the door looks at it; someone shouting calls out towards the window
+            // the one opening the door looks at it; someone shouting calls out towards the window; a walking child
+            // looks where it goes
             if (i === iPembuka) lihatX = -1;
+            if (jalanAnak.has(i)) lihatX = jalanAnak.get(i)!.facing;
             if (aksiIni?.action === 'shouting') lihatX = 1;
             return (
               <React.Fragment key={id}>
@@ -967,6 +983,7 @@ export const SceneView: React.FC<{
                   reach={i === iPembuka ? doorReach(sejakPintu) : undefined}
                   actionStart={startOf(id)}
                   listening={iPembicara >= 0 && i !== iPembicara}
+                  langkah={jalanAnak.get(i)?.step ?? undefined}
                 />
               </div>
               {id === staging.hugged && iIbu >= 0 ? <HugArms {...titikPelukan(iIbu, i)} layer="front" /> : null}

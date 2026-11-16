@@ -166,7 +166,8 @@ const ACTION_PERFORMERS: Partial<Record<Action, readonly Character[]>> = {
   sleeping: ['mochi'],
   circling: ['mochi'],
   falling: ['mochi'],
-  approaching: ['mochi'],
+  // Mochi walks up to a child; a child or Mother walks up to the first other person in the scene
+  approaching: ['mochi', 'mamas', 'mother', 'friend'],
   licking: ['mochi'],
   playing: ['mamas', 'mother', 'mochi', 'friend'],
   'wearing-backpack': CHILDREN,
