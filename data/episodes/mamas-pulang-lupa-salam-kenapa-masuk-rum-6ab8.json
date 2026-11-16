@@ -1,7 +1,7 @@
 {
   "id": "mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8",
   "created": "2026-11-13T01:01:30.473Z",
-  "modified": "2026-11-16T13:58:58.321Z",
+  "modified": "2026-11-16T14:10:08.094Z",
   "status": "needs_audio",
   "idea": {
     "title": "Mamas Pulang, Lupa Salam! Kenapa Masuk Rumah Harus Sebut Nama Allah?",
@@ -232,6 +232,91 @@
       "time": "2026-11-16T13:58:58.321Z",
       "by": "orchestrator",
       "message": "Siap direkam: bacakan narasi adegan secara berurutan"
+    },
+    {
+      "time": "2026-11-16T14:06:33.822Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-16T14:06:34.704Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 12 adegan dengan suara AI gratis (adegan 11, 12, 14 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-16T14:06:44.264Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 1 diisi suara AI (1/12)"
+    },
+    {
+      "time": "2026-11-16T14:07:38.654Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-16T14:07:39.535Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 11 adegan dengan suara AI gratis (adegan 11, 12, 14 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-16T14:07:47.055Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 2 diisi suara AI (1/11)"
+    },
+    {
+      "time": "2026-11-16T14:07:53.278Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 3 diisi suara AI (2/11)"
+    },
+    {
+      "time": "2026-11-16T14:08:04.187Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 4 diisi suara AI (3/11)"
+    },
+    {
+      "time": "2026-11-16T14:08:15.217Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 5 diisi suara AI (4/11)"
+    },
+    {
+      "time": "2026-11-16T14:08:21.604Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 6 diisi suara AI (5/11)"
+    },
+    {
+      "time": "2026-11-16T14:08:35.217Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 7 diisi suara AI (6/11)"
+    },
+    {
+      "time": "2026-11-16T14:08:45.968Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 8 diisi suara AI (7/11)"
+    },
+    {
+      "time": "2026-11-16T14:09:10.430Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 9 diisi suara AI (8/11)"
+    },
+    {
+      "time": "2026-11-16T14:09:36.153Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (9/11)"
+    },
+    {
+      "time": "2026-11-16T14:09:53.287Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (10/11)"
+    },
+    {
+      "time": "2026-11-16T14:10:08.094Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 15 diisi suara AI (11/11)"
+    },
+    {
+      "time": "2026-11-16T14:10:08.094Z",
+      "by": "pengisi-suara",
+      "message": "11 adegan diisi suara AI · rekam sendiri adegan 11, 12, 14"
     }
   ],
   "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
@@ -924,5 +1009,57 @@
       "Mamas dan Ibu"
     ],
     "thumbnailText": "Lupa Salam?"
-  }
+  },
+  "audioPerScene": [
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-1-ai-mwjc7fhi.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-2-ai-mwjc8rxq.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-3-ai-mwjc8wql.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-4-ai-mwjc955l.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-5-ai-mwjc9do0.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-6-ai-mwjc9ilf.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-7-ai-mwjc9t3k.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-8-ai-mwjca1e7.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-9-ai-mwjcak9n.wav",
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-10-ai-mwjcb446.wav",
+    null,
+    null,
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-13-ai-mwjcbhc4.wav",
+    null,
+    "audio/mamas-pulang-lupa-salam-kenapa-masuk-rum-6ab8-adegan-15-ai-mwjcbsrh.wav"
+  ],
+  "sceneOffsets": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "aiVoiceScenes": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    false,
+    true
+  ],
+  "recordingMode": "per-scene"
 }
