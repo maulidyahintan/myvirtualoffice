@@ -1,8 +1,8 @@
 {
   "id": "takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd",
   "created": "2026-11-14T03:03:44.615Z",
-  "modified": "2026-11-14T03:04:16.964Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-14T04:04:21.621Z",
+  "status": "scheduled",
   "idea": {
     "title": "Takut Petir? Ibu Jelaskan Guruh & Kilat Diatur Allah",
     "series": "kisah-sebelum-tidur",
@@ -44,6 +44,61 @@
       "time": "2026-11-14T03:04:16.964Z",
       "by": "video-creator",
       "message": "Video siap ditonton & disetujui"
+    },
+    {
+      "time": "2026-11-14T04:03:45.294Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-17 12:00"
+    },
+    {
+      "time": "2026-11-14T04:03:45.900Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-14T04:03:51.294Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak Shorts\""
+    },
+    {
+      "time": "2026-11-14T04:03:51.294Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-17T05:00:00.000Z"
+    },
+    {
+      "time": "2026-11-14T04:03:51.296Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook (Reels, atau video biasa kalau lebih dari 90 detik)"
+    },
+    {
+      "time": "2026-11-14T04:03:56.314Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook (Reels, atau video biasa kalau lebih dari 90 detik)"
+    },
+    {
+      "time": "2026-11-14T04:04:03.536Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-17T05:00:00.000Z: https://www.facebook.com/reel/1681586000208411"
+    },
+    {
+      "time": "2026-11-14T04:04:07.555Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-17T05:00:00.000Z: https://www.facebook.com/reel/3762826190539742"
+    },
+    {
+      "time": "2026-11-14T04:04:10.769Z",
+      "by": "channel-manager",
+      "message": "Postingan Facebook versi lama (belum tayang) dihapus"
+    },
+    {
+      "time": "2026-11-14T04:04:10.771Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook (Reels, atau video biasa kalau lebih dari 90 detik)"
+    },
+    {
+      "time": "2026-11-14T04:04:21.621Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-17T05:00:00.000Z: https://www.facebook.com/reel/1824055502067508"
     }
   ],
   "source": {
@@ -215,7 +270,7 @@
     null,
     null
   ],
-  "statusNote": "Video siap ditonton & disetujui",
+  "statusNote": "Terjadwal tayang 2026-11-17T05:00:00.000Z",
   "audioFile": "audio/takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd-gabung.wav",
   "render": {
     "video": "takut-petir-ibu-jelaskan-guruh-kilat-dia-28cd.mp4",
@@ -234,5 +289,22 @@
       }
     ],
     "time": "2026-11-14T03:04:16.963Z"
+  },
+  "selectedSchedule": "2026-11-17T05:00:00.000Z",
+  "youtube": {
+    "videoId": "TAtM_KHuf3g",
+    "url": "https://www.youtube.com/watch?v=TAtM_KHuf3g",
+    "publishTime": "2026-11-17T05:00:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak Shorts",
+      "id": "PLVmcdemlHVGc"
+    }
+  },
+  "facebook": {
+    "videoId": "1824055502067508",
+    "url": "https://www.facebook.com/reel/1824055502067508",
+    "kind": "reel",
+    "publishTime": "2026-11-17T05:00:00.000Z",
+    "pageId": "1383005048238430"
   }
 }

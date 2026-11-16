@@ -1,8 +1,8 @@
 {
   "id": "petir-duar-mamas-takut-ternyata-guruh-be-bdda",
   "created": "2026-11-14T03:35:29.155Z",
-  "modified": "2026-11-14T03:48:13.432Z",
-  "status": "needs_video_approval",
+  "modified": "2026-11-14T04:02:51.335Z",
+  "status": "scheduled",
   "idea": {
     "title": "Petir Duar! Mamas Takut, Ternyata Guruh Bertasbih",
     "series": "kisah-sebelum-tidur",
@@ -74,6 +74,61 @@
       "time": "2026-11-14T03:48:13.432Z",
       "by": "channel-manager",
       "message": "Metadata baru: \"Anak Takut Petir? Guruh Bertasbih | QS Ar-Ra'd Ayat 13\""
+    },
+    {
+      "time": "2026-11-14T04:01:56.876Z",
+      "by": "pemilik",
+      "message": "Video disetujui, tayang 2026-11-16 18:30"
+    },
+    {
+      "time": "2026-11-14T04:01:57.830Z",
+      "by": "channel-manager",
+      "message": "Upload ke YouTube"
+    },
+    {
+      "time": "2026-11-14T04:02:04.880Z",
+      "by": "channel-manager",
+      "message": "Dimasukkan ke playlist \"Obrolan Islami Anak Shorts\""
+    },
+    {
+      "time": "2026-11-14T04:02:04.882Z",
+      "by": "channel-manager",
+      "message": "Terjadwal tayang 2026-11-16T11:30:00.000Z"
+    },
+    {
+      "time": "2026-11-14T04:02:04.883Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook (Reels, atau video biasa kalau lebih dari 90 detik)"
+    },
+    {
+      "time": "2026-11-14T04:02:20.887Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook (Reels, atau video biasa kalau lebih dari 90 detik)"
+    },
+    {
+      "time": "2026-11-14T04:02:22.560Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-16T11:30:00.000Z: https://www.facebook.com/1383005048238430/videos/1118344960921998"
+    },
+    {
+      "time": "2026-11-14T04:02:32.795Z",
+      "by": "channel-manager",
+      "message": "Postingan Facebook versi lama (belum tayang) dihapus"
+    },
+    {
+      "time": "2026-11-14T04:02:32.797Z",
+      "by": "channel-manager",
+      "message": "Mengirim ke Page Facebook (Reels, atau video biasa kalau lebih dari 90 detik)"
+    },
+    {
+      "time": "2026-11-14T04:02:38.705Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-16T11:30:00.000Z: https://www.facebook.com/1383005048238430/videos/2156912821572468"
+    },
+    {
+      "time": "2026-11-14T04:02:51.335Z",
+      "by": "channel-manager",
+      "message": "Terjadwal di Facebook 2026-11-16T11:30:00.000Z: https://www.facebook.com/1383005048238430/videos/1106799998653679"
     }
   ],
   "source": {
@@ -315,7 +370,7 @@
     null,
     null
   ],
-  "statusNote": "Video siap ditonton & disetujui",
+  "statusNote": "Terjadwal tayang 2026-11-16T11:30:00.000Z",
   "audioFile": "audio/petir-duar-mamas-takut-ternyata-guruh-be-bdda-gabung.wav",
   "render": {
     "video": "petir-duar-mamas-takut-ternyata-guruh-be-bdda.mp4",
@@ -338,5 +393,22 @@
       }
     ],
     "time": "2026-11-14T03:36:17.153Z"
+  },
+  "selectedSchedule": "2026-11-16T11:30:00.000Z",
+  "youtube": {
+    "videoId": "zyHDqqq_iQA",
+    "url": "https://www.youtube.com/watch?v=zyHDqqq_iQA",
+    "publishTime": "2026-11-16T11:30:00.000Z",
+    "playlist": {
+      "name": "Obrolan Islami Anak Shorts",
+      "id": "PLVmcdemlHVGc"
+    }
+  },
+  "facebook": {
+    "videoId": "1106799998653679",
+    "url": "https://www.facebook.com/1383005048238430/videos/1106799998653679",
+    "kind": "video",
+    "publishTime": "2026-11-16T11:30:00.000Z",
+    "pageId": "1383005048238430"
   }
 }
