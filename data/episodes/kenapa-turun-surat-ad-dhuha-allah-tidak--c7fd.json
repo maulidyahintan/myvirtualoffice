@@ -1,8 +1,8 @@
 {
   "id": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd",
   "created": "2026-11-13T00:52:53.162Z",
-  "modified": "2026-11-13T09:22:09.673Z",
-  "status": "needs_audio",
+  "modified": "2026-11-16T09:14:34.023Z",
+  "status": "needs_video_approval",
   "idea": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
     "series": "asbabun-nuzul",
@@ -182,9 +182,79 @@
       "time": "2026-11-13T09:22:09.673Z",
       "by": "pengisi-suara",
       "message": "8 adegan diisi suara AI · berhenti: Jatah suara AI gratis hari ini sudah habis (±10 adegan per model per hari); terisi lagi besok pukul 15.00 WIB (±22 jam 38 menit lagi) · rekam sendiri adegan 7, 10, 11, 12, 13, 14, 15, 16"
+    },
+    {
+      "time": "2026-11-16T09:05:28.977Z",
+      "by": "pemilik",
+      "message": "Minta semua adegan kosong diisi suara AI satu per satu"
+    },
+    {
+      "time": "2026-11-16T09:05:29.946Z",
+      "by": "pengisi-suara",
+      "message": "Mengisi 6 adegan dengan suara AI gratis (adegan 7, 14 berisi bacaan Arab, rekam sendiri)"
+    },
+    {
+      "time": "2026-11-16T09:05:42.406Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 10 diisi suara AI (1/6)"
+    },
+    {
+      "time": "2026-11-16T09:05:54.279Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 11 diisi suara AI (2/6)"
+    },
+    {
+      "time": "2026-11-16T09:06:01.745Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 12 diisi suara AI (3/6)"
+    },
+    {
+      "time": "2026-11-16T09:06:11.352Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 13 diisi suara AI (4/6)"
+    },
+    {
+      "time": "2026-11-16T09:06:22.816Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 15 diisi suara AI (5/6)"
+    },
+    {
+      "time": "2026-11-16T09:06:37.906Z",
+      "by": "pengisi-suara",
+      "message": "Adegan 16 diisi suara AI (6/6)"
+    },
+    {
+      "time": "2026-11-16T09:06:37.907Z",
+      "by": "pengisi-suara",
+      "message": "6 adegan diisi suara AI · rekam sendiri adegan 7, 14"
+    },
+    {
+      "time": "2026-11-16T09:07:03.174Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 14 diupload"
+    },
+    {
+      "time": "2026-11-16T09:09:52.006Z",
+      "by": "pemilik",
+      "message": "Rekaman adegan 7 diupload"
+    },
+    {
+      "time": "2026-11-16T09:10:07.503Z",
+      "by": "pemilik",
+      "message": "Mulai render"
+    },
+    {
+      "time": "2026-11-16T09:10:08.471Z",
+      "by": "video-creator",
+      "message": "Render dengan rekaman suara"
+    },
+    {
+      "time": "2026-11-16T09:14:34.023Z",
+      "by": "video-creator",
+      "message": "Video siap ditonton & disetujui"
     }
   ],
-  "statusNote": "Siap direkam: bacakan narasi adegan secara berurutan",
+  "statusNote": "Video siap ditonton & disetujui",
   "script": {
     "title": "Kenapa Turun Surat Ad-Dhuha? Allah Tidak Pernah Meninggalkan Kita",
     "summary": "Mamas sedih karena diejek \"cengeng\" oleh temannya. Ia merasa sendirian, lalu ingin membalas mengejek. Ibu menahannya dengan lembut dan menceritakan asbabun nuzul Surat Ad-Dhuha. Suatu ketika Rasulullah ﷺ sakit sehingga tidak bangun shalat malam selama dua atau tiga malam. Saat itu wahyu belum turun, lalu ada orang yang mengejek bahwa beliau sudah ditinggalkan Tuhannya. Allah kemudian menurunkan Surat Ad-Dhuha: \"Tuhanmu tidak meninggalkanmu dan tidak membencimu.\" Mamas sadar bahwa ia tidak benar-benar sendirian. Ibu mengajarinya cara menghadapi ejekan: tarik napas, bicara dengan tenang, cerita kepada guru, dan mendoakan teman. Mamas berlatih di depan Mochi, yang malah menguap dan menjilat hidungnya. Ibu menutup dengan ayat 9–10: sayangi anak yatim dan jangan menghardik orang yang meminta. Contohnya berbagi bekal dan menyapa teman yang sendirian. Esok paginya Mamas mengajak bermain teman yang kemarin mengejeknya, lalu temannya minta maaf.",
@@ -675,16 +745,16 @@
     "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-4-ai-mwero6t4.wav",
     "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-5-ai-mwerobi2.wav",
     "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-6-ai-mwerohdt.wav",
-    null,
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-7-mwj1lngk.mp3",
     "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-8-ai-mwerooio.wav",
     "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-9-ai-mwerpwgh.wav",
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-10-ai-mwj1gav9.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-11-ai-mwj1gk11.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-12-ai-mwj1gpsg.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-13-ai-mwj1gx7a.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-14-mwj1i16s.mp3",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-15-ai-mwj1h61r.wav",
+    "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-adegan-16-ai-mwj1hhov.wav"
   ],
   "sceneOffsets": [
     null,
@@ -714,13 +784,85 @@
     false,
     true,
     true,
+    true,
+    true,
+    true,
+    true,
     false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
+    true,
+    true
   ],
-  "recordingMode": "per-scene"
+  "recordingMode": "per-scene",
+  "audioFile": "audio/kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd-gabung.wav",
+  "render": {
+    "video": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd.mp4",
+    "thumbnail": "kenapa-turun-surat-ad-dhuha-allah-tidak--c7fd.png",
+    "scenes": [
+      {
+        "start": 5,
+        "duration": 14.866666666666667
+      },
+      {
+        "start": 19.866666666666667,
+        "duration": 12.7
+      },
+      {
+        "start": 32.56666666666667,
+        "duration": 19.933333333333334
+      },
+      {
+        "start": 52.5,
+        "duration": 28.433333333333334
+      },
+      {
+        "start": 80.93333333333334,
+        "duration": 5
+      },
+      {
+        "start": 85.93333333333334,
+        "duration": 13.8
+      },
+      {
+        "start": 99.73333333333333,
+        "duration": 7.033333333333333
+      },
+      {
+        "start": 106.76666666666667,
+        "duration": 19.433333333333334
+      },
+      {
+        "start": 126.2,
+        "duration": 11.7
+      },
+      {
+        "start": 137.9,
+        "duration": 23.433333333333334
+      },
+      {
+        "start": 161.33333333333334,
+        "duration": 30.266666666666666
+      },
+      {
+        "start": 191.6,
+        "duration": 16.833333333333332
+      },
+      {
+        "start": 208.43333333333334,
+        "duration": 19.2
+      },
+      {
+        "start": 227.63333333333333,
+        "duration": 15.3
+      },
+      {
+        "start": 242.93333333333334,
+        "duration": 27.8
+      },
+      {
+        "start": 270.73333333333335,
+        "duration": 36.43333333333333
+      }
+    ],
+    "time": "2026-11-16T09:14:34.023Z"
+  }
 }
